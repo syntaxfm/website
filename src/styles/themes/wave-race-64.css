@@ -1,21 +1,21 @@
 /* Wave Race 64 Theme */
 
-.theme-wave-race-64 {
+/* .theme-wave-race-64 {
 	--purp: #a37592;
-	--green: hsl(111deg 100% 54%);
+	--c-green: hsl(111deg 100% 54%);
 	--blue: hsl(208deg 97% 37%);
-	--c-primary: var(--green);
+	--c-primary: var(--c-green);
 	--accent: var(--blue);
 	--warning: hsl(356deg 58% 55%);
-	--fg: #eee;
-	--fg-1: white;
-	--fg-sheet: #111;
+	--c-fg: #eee;
+	--c-fg-1: white;
+	--c-fg-sheet: #111;
 	--logo-color: #111;
-	--bg: #111;
-	--bg-1: #eaede0;
-	--bg-sheet: #eee;
-	--bg-grit: var(--bg-grit-light);
-	--line: var(--bg);
+	--c-bg: #111;
+	--c-bg-1: #eaede0;
+	--c-bg-sheet: #eee;
+	--c-bg-grit: var(--c-bg-grit-light);
+	--line: var(--c-bg);
 	--hero-gradient-1: #69cffa;
 	--hero-gradient-2: #3d4ef6;
 	--header-gradient-1: var(--hero-gradient-1);
@@ -25,7 +25,7 @@
 		linear-gradient(315deg, var(--purp) 0.57%, var(--blue) 100%);
 
 	nav {
-		--fg: #111;
+		--c-fg: #111;
 		--nav-a-bg: rgb(255 255 255 / 0.8);
 	}
-}
+} */

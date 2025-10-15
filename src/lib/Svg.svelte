@@ -8,7 +8,7 @@
 		stroke: string | null;
 	}
 
-	let { name, fill = 'var(--accent)', stroke }: Props = $props();
+	let { name, fill = 'var(--c-primary)', stroke }: Props = $props();
 	let img: HTMLImageElement = $state(null!);
 </script>
 

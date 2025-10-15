@@ -61,7 +61,7 @@
 
 <style>
 	section {
-		font-size: var(--fs-caption);
+		font-size: var(--fs-2);
 
 		ul {
 			width: 50%;

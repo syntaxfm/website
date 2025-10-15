@@ -37,7 +37,7 @@
 <style>
 	button {
 		--button-bg: transparent;
-		--button-fg: var(--fg);
+		--button-fg: var(--c-fg);
 
 		padding: 0;
 	}

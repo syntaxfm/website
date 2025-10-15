@@ -15,7 +15,7 @@
 		border: var(--border);
 		padding: 10px;
 		font-size: var(--font-size-base);
-		color: var(--fg);
-		border-radius: var(--brad);
+		color: var(--c-fg);
+		border-radius: var(--br-medium);
 	}
 </style>

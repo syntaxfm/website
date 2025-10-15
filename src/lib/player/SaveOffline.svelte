@@ -71,19 +71,22 @@
 <style>
 	button {
 		--button-bg: transparent;
-		--button-fg: var(--fg);
+		--button-fg: var(--c-fg);
+
 		border-color: transparent;
 		border-radius: 22.5px;
 		padding: 0;
 		height: 25px;
 		width: 25px;
 	}
+
 	button > div {
 		transition:
 			0.2s translate linear(0, 0.75, 1),
 			0.2s 0.2s opacity linear(0, 0.75, 1),
 			0.2s rotate linear(0, -0.1, 0.75, 1);
 	}
+
 	.INITIAL {
 		opacity: 0;
 		pointer-events: none;
@@ -98,7 +101,7 @@
 	}
 
 	button:has(.SAVED) {
-		border: 1px solid var(--accent);
+		border: 1px solid var(--c-primary);
 	}
 
 	.SAVED {

@@ -4,12 +4,12 @@
 
 	interface Props {
 		playlist: Playlist & {
-		item_count: number;
-		videos: PlaylistOnVideo[] &
-			{
-				video: Video;
-			}[];
-	};
+			item_count: number;
+			videos: PlaylistOnVideo[] &
+				{
+					video: Video;
+				}[];
+		};
 	}
 
 	let { playlist }: Props = $props();
@@ -38,31 +38,36 @@
 	}
 
 	article {
-		--bg: var(--bg-1);
+		--c-bg: var(--c-bg-1);
+
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-color: var(--bg);
-		background-image: var(--bg-grit);
+		background-color: var(--c-bg);
+		background-image: var(--c-bg-grit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
+
 		& a {
 			display: flex;
 			gap: 10px;
 		}
 
 		&:hover {
-			background-color: color-mix(in lch, var(--fg), var(--bg) 96%);
+			background-color: color-mix(in lch, var(--c-fg), var(--c-bg) 96%);
 		}
+
 		&.card {
-			border-radius: var(--brad);
-			border: solid var(--border-size) var(--subtle);
+			border-radius: var(--br-medium);
+			border: solid var(--border-size) var(--c-black-1);
 		}
+
 		.playlist-grid {
 			display: grid;
-			grid-gap: 20px;
+			gap: 20px;
 			grid-template-columns: 1fr;
+
 			@media (--above-med) {
 				grid-template-columns: repeat(3, minmax(190px, 1fr));
 			}
@@ -79,21 +84,23 @@
 		font-size: var(--font-size-lg);
 		line-height: 1.2;
 		text-shadow:
-			1px 0 0 var(--bg),
-			0 1px 0 var(--bg),
-			-1px 0 0 var(--bg),
-			0 -1px 0 var(--bg);
+			1px 0 0 var(--c-bg),
+			0 1px 0 var(--c-bg),
+			-1px 0 0 var(--c-bg),
+			0 -1px 0 var(--c-bg);
 	}
 
 	.date {
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 		margin: 0;
 		view-transition-name: var(--transition-name);
 		width: max-content;
+
 		@media (prefers-color-scheme: dark) {
-			background: var(--bg);
+			background: var(--c-bg);
 		}
+
 		/* adds contrast when light text overlaps show number */
-		text-shadow: 2px 1px 0px var(--bg);
+		text-shadow: 2px 1px 0 var(--c-bg);
 	}
 </style>

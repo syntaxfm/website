@@ -23,7 +23,7 @@
 		target="_blank"
 		title="Watch on Youtube"
 		aria-label="Youtube"
-		style:--fg="#F61C0D"
+		style:--c-fg="#F61C0D"
 		href={show.youtube_url}
 	>
 		<Icon name="youtube" />
@@ -41,8 +41,9 @@
 
 <style lang="postcss">
 	a {
-		color: white;
+		color: var(--c-white);
 		display: block;
+
 		:global(svg) {
 			display: block;
 		}

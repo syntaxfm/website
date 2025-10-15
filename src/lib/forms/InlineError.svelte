@@ -14,8 +14,8 @@
 
 <style>
 	.inline-error {
-		color: var(--red);
-		font-size: var(--font-size-xs);
+		color: var(--c-red);
+		font-size: var(--fs-2);
 		margin: 0;
 	}
 </style>

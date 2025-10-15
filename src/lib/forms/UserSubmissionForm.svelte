@@ -152,14 +152,14 @@
 
 	.status {
 		padding: 10px;
-		background: var(--subtle);
+		background: var(--c-black-1);
 		border-left: 8px solid var(--c-primary);
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 		margin: 1rem 0;
 		width: fit-content;
 
 		&.error {
-			border-color: var(--warning);
+			border-color: var(--c-red);
 		}
 
 		p {
@@ -174,7 +174,7 @@
 		padding: 0.6rem;
 		border-radius: 5px;
 		font-family: var(--ff-body);
-		border: 1px solid var(--fg);
+		border: 1px solid var(--c-fg);
 	}
 
 	textarea {
@@ -183,7 +183,7 @@
 	}
 
 	.required {
-		color: var(--warning);
+		color: var(--c-red);
 		font-size: 8px;
 		text-transform: uppercase;
 		margin: 0;

@@ -2,12 +2,12 @@
 	import Icon from '$lib/Icon.svelte';
 	interface Props {
 		host: {
-		name: string;
-		github?: string | null;
-		twitter?: string | null;
-		url?: string | null;
-		slug?: string;
-	};
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			url?: string | null;
+			slug?: string;
+		};
 	}
 
 	let { host }: Props = $props();
@@ -37,13 +37,15 @@
 <style lang="postcss">
 	.social-icon {
 		display: inline-block;
+
 		--icon_size: 12px;
 	}
 
 	a {
-		color: var(--fg);
+		color: var(--c-fg);
+
 		&:hover {
-			color: var(--accent);
+			color: var(--c-primary);
 		}
 	}
 </style>

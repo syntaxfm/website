@@ -3,13 +3,12 @@
 	import Layout from './(site)/+layout.svelte';
 	import type { UserWithRoles } from '$/server/auth/users';
 
-	
 	interface Props {
 		// error page does not automatically infer layout data...
 		data: {
-		user: UserWithRoles;
-		user_theme: string;
-	};
+			user: UserWithRoles;
+			user_theme: string;
+		};
 	}
 
 	let { data }: Props = $props();
@@ -30,6 +29,6 @@
 
 <style>
 	.error {
-		color: var(--warning);
+		color: var(--c-red);
 	}
 </style>

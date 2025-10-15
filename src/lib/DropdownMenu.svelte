@@ -34,10 +34,10 @@
 	}
 
 	[popover] {
-		background: var(--bg-sheet);
-		border: solid 1px var(--black-7);
+		background: var(--c-bg);
+		border: solid 1px var(--c-black-7);
 		border-radius: 6px;
-		color: var(--white);
+		color: var(--c-white);
 		padding: 10px;
 		translate: 0 10px;
 	}
@@ -47,11 +47,11 @@
 	}
 
 	.dropdown-links {
-		background: var(--bg-1);
-		box-shadow: inset 0 0 0 1px var(--subtle);
-		border-radius: var(--brad);
-		color: var(--fg);
-		translate: 0px 3px;
+		background: var(--c-bg-1);
+		box-shadow: inset 0 0 0 1px var(--c-black-1);
+		border-radius: var(--br-medium);
+		color: var(--c-fg);
+		translate: 0 3px;
 		position: absolute;
 		z-index: 10;
 	}

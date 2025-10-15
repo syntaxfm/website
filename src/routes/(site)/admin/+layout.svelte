@@ -48,13 +48,16 @@
 		padding: 1rem 0;
 		display: flex;
 		gap: 20px;
+
 		a {
-			color: var(--fg);
+			color: var(--c-fg);
 		}
+
 		.active {
 			text-decoration: underline;
 		}
 	}
+
 	.admin {
 		padding-bottom: 4rem;
 	}

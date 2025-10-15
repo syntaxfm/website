@@ -23,76 +23,70 @@
 	/* Relative Colors */
 
 	/** Yellow variants **/
-	--c-yellow-1: oklch(from var(--c-yellow) calc(l + 0.35) calc(c - 0.12) h);
-	--c-yellow-2: oklch(from var(--c-yellow) calc(l + 0.25) calc(c - 0.08) h);
-	--c-yellow-3: oklch(from var(--c-yellow) calc(l + 0.15) calc(c - 0.05) h);
-	--c-yellow-4: oklch(from var(--c-yellow) calc(l + 0.07) c h);
-	--c-yellow-5: var(--c-yellow);
-	--c-yellow-6: oklch(from var(--c-yellow) calc(l - 0.07) c h);
-	--c-yellow-7: oklch(from var(--c-yellow) calc(l - 0.15) c h);
-	--c-yellow-8: oklch(from var(--c-yellow) calc(l - 0.22) c h);
-	--c-yellow-9: oklch(from var(--c-yellow) calc(l - 0.3) c h);
-	--c-yellow-10: oklch(from var(--c-yellow) calc(l - 0.75) c h);
+	--c-yellow-1: oklch(from var(--c-yellow) l c h / 0.1);
+	--c-yellow-2: oklch(from var(--c-yellow) l c h / 0.2);
+	--c-yellow-3: oklch(from var(--c-yellow) l c h / 0.3);
+	--c-yellow-4: oklch(from var(--c-yellow) l c h / 0.4);
+	--c-yellow-5: oklch(from var(--c-yellow) l c h / 0.5);
+	--c-yellow-6: oklch(from var(--c-yellow) l c h / 0.6);
+	--c-yellow-7: oklch(from var(--c-yellow) l c h / 0.7);
+	--c-yellow-8: oklch(from var(--c-yellow) l c h / 0.8);
+	--c-yellow-9: oklch(from var(--c-yellow) l c h / 0.9);
 
 	/** Teal variants **/
-	--c-teal-1: oklch(from var(--c-teal) calc(l + 0.2) calc(c - 0.14) h);
-	--c-teal-2: oklch(from var(--c-teal) calc(l + 0.25) calc(c - 0.1) h);
-	--c-teal-3: oklch(from var(--c-teal) calc(l + 0.15) calc(c - 0.05) h);
-	--c-teal-4: oklch(from var(--c-teal) calc(l + 0.07) calc(c - 0.03) h);
-	--c-teal-5: var(--c-teal);
-	--c-teal-6: oklch(from var(--c-teal) calc(l - 0.07) c h);
-	--c-teal-7: oklch(from var(--c-teal) calc(l - 0.15) c h);
-	--c-teal-8: oklch(from var(--c-teal) calc(l - 0.22) c h);
-	--c-teal-9: oklch(from var(--c-teal) calc(l - 0.3) c h);
-	--c-teal-10: oklch(from var(--c-teal) calc(l - 0.75) c h);
+	--c-teal-1: oklch(from var(--c-teal) l c h / 0.1);
+	--c-teal-2: oklch(from var(--c-teal) l c h / 0.2);
+	--c-teal-3: oklch(from var(--c-teal) l c h / 0.3);
+	--c-teal-4: oklch(from var(--c-teal) l c h / 0.4);
+	--c-teal-5: oklch(from var(--c-teal) l c h / 0.5);
+	--c-teal-6: oklch(from var(--c-teal) l c h / 0.6);
+	--c-teal-7: oklch(from var(--c-teal) l c h / 0.7);
+	--c-teal-8: oklch(from var(--c-teal) l c h / 0.8);
+	--c-teal-9: oklch(from var(--c-teal) l c h / 0.9);
 
 	/** Green variants **/
-	--c-green-1: oklch(from var(--c-green) calc(l + 0.35) calc(c - 0.15) h);
-	--c-green-2: oklch(from var(--c-green) calc(l + 0.25) calc(c - 0.1) h);
-	--c-green-3: oklch(from var(--c-green) calc(l + 0.15) calc(c - 0.05) h);
-	--c-green-4: oklch(from var(--c-green) calc(l + 0.07) calc(c - 0.03) h);
-	--c-green-5: var(--c-green);
-	--c-green-6: oklch(from var(--c-green) calc(l - 0.07) c h);
-	--c-green-7: oklch(from var(--c-green) calc(l - 0.15) c h);
-	--c-green-8: oklch(from var(--c-green) calc(l - 0.22) c h);
-	--c-green-9: oklch(from var(--c-green) calc(l - 0.3) c h);
-	--c-green-10: oklch(from var(--c-green) calc(l - 0.75) calc(c - 0.1) h);
+	--c-green-1: oklch(from var(--c-green) l c h / 0.1);
+	--c-green-2: oklch(from var(--c-green) l c h / 0.2);
+	--c-green-3: oklch(from var(--c-green) l c h / 0.3);
+	--c-green-4: oklch(from var(--c-green) l c h / 0.4);
+	--c-green-5: oklch(from var(--c-green) l c h / 0.5);
+	--c-green-6: oklch(from var(--c-green) l c h / 0.6);
+	--c-green-7: oklch(from var(--c-green) l c h / 0.7);
+	--c-green-8: oklch(from var(--c-green) l c h / 0.8);
+	--c-green-9: oklch(from var(--c-green) l c h / 0.9);
 
 	/** Red variants **/
-	--c-red-1: oklch(from var(--c-red) calc(l + 0.35) calc(c - 0.1) h);
-	--c-red-2: oklch(from var(--c-red) calc(l + 0.25) calc(c - 0.09) h);
-	--c-red-3: oklch(from var(--c-red) calc(l + 0.15) calc(c - 0.07) h);
-	--c-red-4: oklch(from var(--c-red) calc(l + 0.07) calc(c - 0.03) h);
-	--c-red-5: var(--c-red);
-	--c-red-6: oklch(from var(--c-red) calc(l - 0.07) c h);
-	--c-red-7: oklch(from var(--c-red) calc(l - 0.15) c h);
-	--c-red-8: oklch(from var(--c-red) calc(l - 0.22) c h);
-	--c-red-9: oklch(from var(--c-red) calc(l - 0.3) c h);
-	--c-red-10: oklch(from var(--c-red) calc(l - 0.4) c h);
+	--c-red-1: oklch(from var(--c-red) l c h / 0.1);
+	--c-red-2: oklch(from var(--c-red) l c h / 0.2);
+	--c-red-3: oklch(from var(--c-red) l c h / 0.3);
+	--c-red-4: oklch(from var(--c-red) l c h / 0.4);
+	--c-red-5: oklch(from var(--c-red) l c h / 0.5);
+	--c-red-6: oklch(from var(--c-red) l c h / 0.6);
+	--c-red-7: oklch(from var(--c-red) l c h / 0.7);
+	--c-red-8: oklch(from var(--c-red) l c h / 0.8);
+	--c-red-9: oklch(from var(--c-red) l c h / 0.9);
 
 	/** Purple variants **/
-	--c-purple-1: oklch(from var(--c-purple) calc(l + 0.6) c h);
-	--c-purple-2: oklch(from var(--c-purple) calc(l + 0.5) c h);
-	--c-purple-3: oklch(from var(--c-purple) calc(l + 0.3) c h);
-	--c-purple-4: oklch(from var(--c-purple) calc(l + 0.1) c h);
-	--c-purple-5: var(--c-purple);
-	--c-purple-6: oklch(from var(--c-purple) calc(l - 0.07) c h);
-	--c-purple-7: oklch(from var(--c-purple) calc(l - 0.15) c h);
-	--c-purple-8: oklch(from var(--c-purple) calc(l - 0.22) c h);
-	--c-purple-9: oklch(from var(--c-purple) calc(l - 0.3) c h);
-	--c-purple-10: oklch(from var(--c-purple) calc(l - 0.4) c h);
+	--c-purple-1: oklch(from var(--c-purple) l c h / 0.1);
+	--c-purple-2: oklch(from var(--c-purple) l c h / 0.2);
+	--c-purple-3: oklch(from var(--c-purple) l c h / 0.3);
+	--c-purple-4: oklch(from var(--c-purple) l c h / 0.4);
+	--c-purple-5: oklch(from var(--c-purple) l c h / 0.5);
+	--c-purple-6: oklch(from var(--c-purple) l c h / 0.6);
+	--c-purple-7: oklch(from var(--c-purple) l c h / 0.7);
+	--c-purple-8: oklch(from var(--c-purple) l c h / 0.8);
+	--c-purple-9: oklch(from var(--c-purple) l c h / 0.9);
 
 	/** Black variants **/
-	--c-black-1: oklch(from var(--c-black) calc(l + 0.95) c h);
-	--c-black-2: oklch(from var(--c-black) calc(l + 0.85) c h);
-	--c-black-3: oklch(from var(--c-black) calc(l + 0.75) c h);
-	--c-black-4: oklch(from var(--c-black) calc(l + 0.65) c h);
-	--c-black-5: oklch(from var(--c-black) calc(l + 0.55) c h);
-	--c-black-6: oklch(from var(--c-black) calc(l + 0.45) c h);
-	--c-black-7: oklch(from var(--c-black) calc(l + 0.35) c h);
-	--c-black-8: oklch(from var(--c-black) calc(l + 0.25) c h);
-	--c-black-9: oklch(from var(--c-black) calc(l + 0.15) c h);
-	--c-black-10: oklch(from var(--c-black) calc(l + 0.05) c h);
+	--c-black-1: oklch(from var(--c-black) l c h / 0.1);
+	--c-black-2: oklch(from var(--c-black) l c h / 0.2);
+	--c-black-3: oklch(from var(--c-black) l c h / 0.3);
+	--c-black-4: oklch(from var(--c-black) l c h / 0.4);
+	--c-black-5: oklch(from var(--c-black) l c h / 0.5);
+	--c-black-6: oklch(from var(--c-black) l c h / 0.6);
+	--c-black-7: oklch(from var(--c-black) l c h / 0.7);
+	--c-black-8: oklch(from var(--c-black) l c h / 0.8);
+	--c-black-9: oklch(from var(--c-black) l c h / 0.9);
 
 	/* Color Usage */
 	--c-fg: light-dark(var(--c-black), var(--c-white));
@@ -112,15 +106,15 @@
 	--ff-heading: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
 
 	/* Font Sizes */
-	--fs-micro: 14px;
-	--fs-caption: 17px;
-	--fs-body: 20px;
-	--fs-6: 24px;
+	--fs-1: 14px;
+	--fs-2: 17px;
+	--fs-3: 20px;
+	--fs-4: 24px;
 	--fs-5: 29px;
-	--fs-4: 35px;
-	--fs-3: 41px;
-	--fs-2: 50px;
-	--fs-1: 60px;
+	--fs-6: 35px;
+	--fs-7: 41px;
+	--fs-8: 50px;
+	--fs-9: 60px;
 
 	/* Font Variations */
 	--fv-100: 'wght' 100;
@@ -151,10 +145,10 @@
 	/* BORDERS */
 
 	--b-feed: solid 12px var(--c-primary);
-	--b-xtra-light: soild 1px var(--c-fg);
-	--b-light: soild 2px var(--c-fg);
-	--b-medium: soild 4px var(--c-fg);
-	--b-heavy: soild 5px var(--c-fg);
+	--b-xtra-light: solid 1px var(--c-fg);
+	--b-light: solid 2px var(--c-fg);
+	--b-medium: solid 4px var(--c-fg);
+	--b-heavy: solid 5px var(--c-fg);
 
 	/* BORDER RADIUS */
 	--br-small: 4px;
@@ -165,6 +159,11 @@
 	--br-huge: 24px;
 
 	/* GRIT */
-	--grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
-	--grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
+	--c-bg-grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
+	--c-bg-grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
+
+	/* Misc */
+
+	/* Some of these are to appease stylelint */
+	--transition-name: 'null';
 }

@@ -36,7 +36,7 @@
 
 			& a,
 			button {
-				font-size: var(--fs-caption);
+				font-size: var(--fs-2);
 				display: flex;
 				flex-wrap: nowrap;
 				align-items: center;

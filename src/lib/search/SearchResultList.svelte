@@ -96,7 +96,7 @@
 
 <style lang="postcss">
 	.remove-from-recent {
-		color: var(--warning);
+		color: var(--c-red);
 		position: absolute;
 		right: -10px;
 		top: 50%;
@@ -104,19 +104,19 @@
 	}
 
 	.play-button {
-		background: var(--bg);
-		border: 2px solid var(--fg);
-		color: var(--fg);
+		background: var(--c-bg);
+		border: 2px solid var(--c-fg);
+		color: var(--c-fg);
 		padding: 5px 3px 5px 5px;
 		box-shadow: none;
 
-		--icon_size: 14px;
+		--icon-size: 14px;
 
 		height: 31px;
 		width: 31px;
 
 		&:hover {
-			color: var(--accent);
+			color: var(--c-primary);
 		}
 	}
 
@@ -149,7 +149,7 @@
 	}
 
 	li:hover {
-		background: var(--subtle);
+		background: var(--c-black-1);
 	}
 
 	a strong,
@@ -170,13 +170,13 @@
 	}
 
 	a span {
-		color: #737373;
+		color: var(--c-black-3);
 		margin: 0.4rem 0 0;
 	}
 
 	a :global(mark) {
 		--highlight-color: var(--c-primary);
-		--sk-text-1: var(--black);
+		--sk-text-1: var(--c-black);
 	}
 
 	a span :global(mark) {
@@ -192,7 +192,7 @@
 	}
 
 	a:focus strong {
-		color: white;
+		color: var(--c-white);
 	}
 
 	a:focus span :global(mark),
@@ -200,7 +200,7 @@
 		--highlight-color: hsl(240deg 8% 54%);
 
 		mix-blend-mode: lighten;
-		color: white;
+		color: var(--c-white);
 	}
 
 	a strong :global(mark) {

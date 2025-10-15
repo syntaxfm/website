@@ -1,10 +1,10 @@
-.theme-sentry {
-	--bg-sheet: var(--white);
-	--bg: #2d1130;
-	--fg: var(--white);
-	--fg-1: var(--white);
-	--fg-sheet: var(--black);
-	--bg-grit: var(--bg-grit-light);
+/* .theme-sentry {
+	--c-bg-sheet: var(--c-white);
+	--c-bg: #2d1130;
+	--c-fg: var(--c-white);
+	--c-fg-1: var(--c-white);
+	--c-fg-sheet: var(--c-black);
+	--c-bg-grit: var(--c-bg-grit-light);
 	--c-primary: #d15f7c;
 	--accent: #f9dc65;
-}
+} */

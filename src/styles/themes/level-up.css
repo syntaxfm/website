@@ -1,15 +1,16 @@
 /* Level Up Theme */
-.theme-level-up {
+
+/* .theme-level-up {
 	background-image: none;
 
-	--fg-1: var(--white);
-	--fg-sheet: #ebebe3;
-	--bg: #191324;
-	--bg-1: #191324;
-	--bg-2: var(--black-6);
-	--bg-sheet: #191324;
+	--c-fg-1: var(--c-white);
+	--c-fg-sheet: #ebebe3;
+	--c-bg: #191324;
+	--c-bg-1: #191324;
+	--c-bg-2: var(--c-black-6);
+	--c-bg-sheet: #191324;
 	--c-primary: #82d8d8;
 	--border-color: #82d8d8;
 	--border: solid 4px var(--border-color);
-	--subtle-accent: var(--purple-3);
-}
+	--c-black-1-accent: var(--purple-3);
+} */

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Dump from './Dump.svelte';
-	import { onMount } from 'svelte';
 
 	interface Props {
 		data: Record<any, any> | any[];
@@ -54,20 +53,23 @@
 
 <style lang="postcss">
 	table {
-		border: 1px solid black;
+		border: 1px solid var(--c-black);
 		width: 100%;
 		border-collapse: collapse;
 		position: relative;
+		color: var(--c-black);
 	}
+
 	th {
 		padding: 10px;
 		text-align: left;
-		background: black;
-		color: white;
+		background: var(--c-black);
+		color: var(--c-white);
 	}
+
 	td,
 	th {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid var(--c-black);
 		padding: 10px;
 		min-width: 50px;
 	}

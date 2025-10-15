@@ -101,7 +101,7 @@
 					<span class="pill">{submission.status}</span>
 				</h4>
 
-				<textarea class="submission_body"
+				<textarea class="submission-body"
 					>{submission.body.replaceAll('\n', '\n\n').trim()}
 				</textarea>
 				<footer>
@@ -149,11 +149,11 @@
 	}
 
 	h4 {
-		word-wrap: break-word;
+		overflow-wrap: break-word;
 	}
 
 	.submission {
-		border: 1px solid var(--fg);
+		border: 1px solid var(--c-fg);
 		padding: 2rem;
 		max-width: 100%;
 		display: grid;
@@ -162,12 +162,18 @@
 	}
 
 	footer {
-		display: flex;
 		flex-wrap: wrap;
+		border-top: 2px solid var(--c-fg);
+		display: grid;
+		padding-top: 1rem;
+		grid-auto-flow: column;
+		grid-auto-columns: max-content;
 		gap: 1rem;
+		justify-content: end;
+		place-items: center;
 	}
 
-	.submission_body {
+	.submission-body {
 		max-height: 400px;
 		overflow-x: auto;
 		white-space: pre-wrap;
@@ -177,8 +183,8 @@
 	}
 
 	.pill {
-		font-size: 12px;
-		background: var(--subtle);
+		font-size: var(--fs-1);
+		background: var(--c-black-1);
 		padding: 2px 5px;
 		border-radius: 5px;
 	}
@@ -187,16 +193,5 @@
 		display: flex;
 		gap: 1rem;
 		padding: 1rem 0;
-	}
-
-	footer {
-		border-top: 2px solid var(--fg);
-		display: grid;
-		padding-top: 1rem;
-		grid-auto-flow: column;
-		grid-auto-columns: max-content;
-		gap: 1rem;
-		justify-content: end;
-		place-items: center;
 	}
 </style>

@@ -107,7 +107,7 @@
 							<media-time-display></media-time-display>
 							<div class="media-range-bookmarks">
 								<media-time-range
-									style:--media-range-bar-color="var(--white)"
+									style:--media-range-bar-color="var(--c-white)"
 									style:--media-range-thumb-background="var(--c-primary)"
 								></media-time-range>
 							</div>
@@ -195,7 +195,7 @@
 
 	p {
 		margin-top: 0;
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 	}
 
 	a {
@@ -213,18 +213,18 @@
 	}
 
 	.player {
-		--player-bg: var(--bg-root);
+		--player-bg: var(--c-bg);
 
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		color: var(--fg);
+		color: var(--c-fg);
 		background-color: var(--player-bg, var(--c-black));
-		background-image: var(--bg-grit-dark);
+		background-image: var(--c-bg-grit-dark);
 		background-size: 400px;
-		box-shadow: 0 -5px 10px 0 oklch(var(--blacklch) / 0.4);
+		box-shadow: 0 -5px 10px 0 oklch(var(--c-blacklch) / 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -292,7 +292,7 @@
 	media-duration-display,
 	media-time-display {
 		padding: 0;
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 	}
 
 	media-time-display,
@@ -302,6 +302,6 @@
 
 	button {
 		--button-bg: transparent;
-		--button-fg: var(--fg);
+		--button-fg: var(--c-fg);
 	}
 </style>

@@ -21,17 +21,18 @@
 
 <style lang="postcss">
 	.button-reset {
-		box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.0786987545689);
+		box-shadow: inset 0 0 0 3px rgb(255 255 255 / 0.0786987545689);
 		border-radius: 20px;
-		color: var(--fg);
+		color: var(--c-fg);
 	}
 
 	.shortcut {
 		display: flex;
 		gap: 4px;
 		align-items: center;
-		background-color: rgba(255, 255, 255, 0.1);
+		background-color: rgb(255 255 255 / 0.1);
 		padding: 4px;
+
 		@media (--below-med) {
 			display: none;
 		}
@@ -39,6 +40,6 @@
 
 	.shortcut kbd {
 		font-family: system-ui, sans-serif;
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 	}
 </style>
