@@ -52,11 +52,8 @@ table {
 </main>
 
 <style>
-	header {
-		padding: var(--default-padding);
-	}
 	.newsletter-output {
-		border: 5px solid black;
-		background: white;
+		border: 5px solid var(--c-black);
+		background: var(--c-white);
 	}
 </style>

@@ -45,12 +45,7 @@
 	<Icon name="list" />
 	<Icon name="mail-send" />
 
-	<main
-		id="main-content"
-		class="layout zone"
-		style:--bg="var(--bg-sheet)"
-		style:--fg="var(--fg-sheet)"
-	>
+	<main id="main-content" class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
 		{@render children?.()}
 	</main>
 
@@ -81,7 +76,7 @@
 		left: -1000px;
 		z-index: 1000;
 		background-color: var(--c-primary);
-		color: var(--bg);
+		color: var(--c-bg);
 		padding: 0.5rem;
 
 		&:focus {

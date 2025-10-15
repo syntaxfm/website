@@ -14,8 +14,8 @@
 
 <style lang="postcss">
 	.badge {
-		background: color-mix(in lch, var(--fg), transparent 94%);
-		color: var(--fg);
+		background: color-mix(in lch, var(--c-fg), transparent 94%);
+		color: var(--c-fg);
 		padding: 2px 4px;
 		border-radius: 2px;
 	}

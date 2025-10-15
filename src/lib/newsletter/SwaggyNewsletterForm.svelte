@@ -42,8 +42,8 @@
 
 <style lang="postcss">
 	h5 {
-		background: var(--black);
-		color: var(--white);
+		background: var(--c-black);
+		color: var(--c-white);
 		padding: 10px 15px;
 		rotate: -2deg;
 		z-index: 3;
@@ -59,7 +59,7 @@
 		font-style: italic;
 		margin: 0.5rem 0 1.5rem;
 		text-align: center;
-		font-size: var(--font-size-s);
+		font-size: var(--fs-3);
 	}
 
 	.newsletter {
@@ -68,8 +68,8 @@
 	}
 
 	.newsletter-layout :global(input) {
-		box-shadow: inset 0 0 0 3px var(--black);
-		font-size: var(--font-size-s);
+		box-shadow: inset 0 0 0 3px var(--c-black);
+		font-size: var(--fs-3);
 		width: 100%;
 	}
 
@@ -83,6 +83,6 @@
 
 	.newsletter-layout {
 		background: var(--c-primary);
-		color: var(--black);
+		color: var(--c-black);
 	}
 </style>

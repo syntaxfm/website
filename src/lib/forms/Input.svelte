@@ -4,16 +4,10 @@
 		type?: HTMLInputElement['type'];
 		value?: string;
 		id: string;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let {
-		label = '',
-		type = 'text',
-		value = $bindable(''),
-		id,
-		...rest
-	}: Props = $props();
+	let { label = '', type = 'text', value = $bindable(''), id, ...rest }: Props = $props();
 
 	function typeAction(node: HTMLInputElement) {
 		node.type = type;
@@ -35,14 +29,14 @@
 		position: absolute;
 		top: -40%;
 		left: 0;
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 	}
 
 	input {
 		font-size: var(--font-size-base);
 		padding: 8px 14px;
 		border: none;
-		box-shadow: inset 0 0 0 3px oklch(var(--blacklch) / 0.2);
+		box-shadow: inset 0 0 0 3px oklch(var(--c-blacklch) / 0.2);
 		border-radius: 4px;
 		width: 100%;
 	}

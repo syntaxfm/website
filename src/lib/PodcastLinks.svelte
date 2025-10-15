@@ -7,7 +7,7 @@
 		<a
 			{href}
 			target="_blank"
-			class="button subscribe subscribe--{text.toLowerCase().replaceAll(' ', '-')}">{text}</a
+			class="button subscribe subscribe-{text.toLowerCase().replaceAll(' ', '-')}">{text}</a
 		>
 	{/each}
 </div>
@@ -20,12 +20,12 @@
 		gap: 10px;
 	}
 
-	.subscribe--apple-podcasts {
+	.subscribe-apple-podcasts {
 		--button-bg: linear-gradient(
 			to bottom,
-			rgb(205, 102, 246) 0%,
-			rgb(154, 61, 209) 80%,
-			rgb(142, 52, 201) 100%
+			rgb(205 102 246) 0%,
+			rgb(154 61 209) 80%,
+			rgb(142 52 201) 100%
 		);
 	}
 
@@ -39,57 +39,68 @@
 		pointer-events: none;
 	}
 
-	.subscribe--apple-podcasts::before {
+	.subscribe-apple-podcasts::before {
 		background-image: url('/icons/itunes.jpg');
 	}
 
-	.subscribe--overcast {
-		--button-bg: linear-gradient(to bottom, rgb(255, 138, 10) 0%, rgb(255, 105, 48) 100%);
+	.subscribe-overcast {
+		--button-bg: linear-gradient(to bottom, rgb(255 138 10) 0%, rgb(255 105 48) 100%);
 	}
-	.subscribe--overcast::before {
+
+	.subscribe-overcast::before {
 		background-image: url('/icons/overcast.jpg');
 	}
 
-	.subscribe--rss {
+	.subscribe-rss {
 		--button-bg: linear-gradient(
 			to bottom,
-			rgb(247, 163, 54) 0%,
-			rgb(235, 109, 30) 96%,
-			rgb(235, 108, 30) 100%
+			rgb(247 163 54) 0%,
+			rgb(235 109 30) 96%,
+			rgb(235 108 30) 100%
 		);
 	}
-	.subscribe--rss::before {
+
+	.subscribe-rss::before {
 		background-image: url('/icons/rss.svg');
 	}
 
-	.subscribe--spotify {
-		--button-bg: linear-gradient(to bottom, rgb(4, 160, 59) 0%, rgb(16, 172, 71) 100%);
+	.subscribe-spotify {
+		--button-bg: linear-gradient(to bottom, rgb(4 160 59) 0%, rgb(16 172 71) 100%);
 	}
-	.subscribe--spotify::before {
+
+	.subscribe-spotify::before {
 		background-image: url('/icons/spotify.svg');
 	}
-	.subscribe--pocketcasts {
-		--button-bg: linear-gradient(to bottom, rgb(242, 43, 36) 0%, rgb(215, 12, 11) 100%);
+
+	.subscribe-pocketcasts {
+		--button-bg: linear-gradient(to bottom, rgb(242 43 36) 0%, rgb(215 12 11) 100%);
 	}
-	.subscribe--youtube::before {
+
+	.subscribe-youtube::before {
 		background-image: url('/icons/youtube.svg');
 	}
-	.subscribe--youtube {
-		--button-bg: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(215, 215, 215) 100%);
+
+	.subscribe-youtube {
+		--button-bg: linear-gradient(to bottom, rgb(255 255 255) 0%, rgb(215 215 215) 100%);
 	}
-	.subscribe--pocketcasts::before {
+
+	.subscribe-pocketcasts::before {
 		background-image: url('/icons/pocketcasts.jpg');
 	}
-	.subscribe--google-podcasts {
-		--button-bg: linear-gradient(to bottom, rgb(245, 121, 23) 0%, rgb(254, 185, 90) 100%);
+
+	.subscribe-google-podcasts {
+		--button-bg: linear-gradient(to bottom, rgb(245 121 23) 0%, rgb(254 185 90) 100%);
 	}
-	.subscribe--amazon-music {
+
+	.subscribe-amazon-music {
 		--button-bg: linear-gradient(to bottom, #25d1da 0%, #399a9e 100%);
 	}
-	.subscribe--amazon-music::before {
+
+	.subscribe-amazon-music::before {
 		background-image: url('/icons/amznMusic.png');
 	}
+
 	a {
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 	}
 </style>

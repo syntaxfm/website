@@ -6,8 +6,8 @@
 
 <section
 	aria-label="Podcast Information Section"
-	style:--bg="var(--black)"
-	style:--fg="var(--fg-1)"
+	style:--c-bg="var(--c-black)"
+	style:--c-fg="var(--c-fg-1)"
 	class="zone full layout"
 >
 	<Header transparent={true} />
@@ -84,7 +84,7 @@
 	}
 
 	.tasty {
-		/* color: var(--yellow); */
+		/* color: var(--c-yellow); */
 	}
 
 	.logo {
@@ -126,7 +126,7 @@
 		}
 
 		.amp {
-			font-size: var(--font-size-xs);
+			font-size: var(--fs-2);
 		}
 	}
 

@@ -175,10 +175,11 @@
 
 <style lang="postcss">
 	.timeline {
-		--highlight: var(--subtle);
-		--future: var(--bg-2);
+		--highlight: var(--c-black-1);
+		--future: var(--c-black-2);
 		--current: var(--c-primary);
 		--past: var(--c-primary);
+		--gutter-border-size: 5px;
 	}
 
 	.past {
@@ -194,8 +195,8 @@
 				180deg,
 				var(--highlight) 0%,
 				var(--highlight) var(--progress),
-				/* clear Spacer */ var(--bg) calc(var(--progress)),
-				var(--bg) calc(var(--progress) + 2px),
+				/* clear Spacer */ var(--c-bg) calc(var(--progress)),
+				var(--c-bg) calc(var(--progress) + 2px),
 				var(--future) calc(var(--progress) + 2px)
 			);
 		}
@@ -222,9 +223,11 @@
 	h4 {
 		position: sticky;
 		top: 0;
-		font-size: var(--font-size-md);
+		font-size: var(--fs-4);
 		margin: 0;
 		z-index: 2;
+		padding: 1rem 0;
+		background: var(--c-bg);
 	}
 
 	.utterance {
@@ -232,7 +235,7 @@
 		display: grid;
 		grid-template-columns: 120px auto 1fr;
 		gap: 0 20px;
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 
 		@media (--below-med) {
 			grid-template-columns: 67px 1fr;
@@ -257,10 +260,10 @@
 		grid-template-columns: 95px var(--horizonal-spacing) 1fr;
 		place-content: center;
 		gap: 20px;
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 		position: sticky;
 		top: 0;
-		background: var(--bg);
+		background: var(--c-bg);
 		z-index: 2;
 		margin-top: var(--vertical-spacing);
 		margin-bottom: var(--vertical-spacing);
@@ -282,11 +285,6 @@
 				display: none;
 			}
 		}
-	}
-
-	h4 {
-		padding: 1rem 0;
-		background: var(--bg);
 	}
 
 	.marker {
@@ -339,7 +337,7 @@
 		height: var(--size);
 		position: relative;
 		border-radius: 50%;
-		border: 1.5px solid var(--bg);
+		border: 1.5px solid var(--c-bg);
 		background: var(--highlight);
 		justify-self: center;
 
@@ -348,12 +346,8 @@
 		}
 	}
 
-	.timeline {
-		--gutter-border-size: 5px;
-	}
-
 	.speaker {
-		font-size: var(--font-size-sm);
-		color: var(--subtle-accent);
+		font-size: var(--fs-3);
+		color: var(--c-black-1-accent);
 	}
 </style>

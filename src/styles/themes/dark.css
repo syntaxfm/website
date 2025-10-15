@@ -1,51 +1,53 @@
 /* System theme */
-.theme-system {
-	--bg-sheet: var(--white);
-	--bg: var(--black);
-	--fg: var(--white);
-	--fg-sheet: var(--black);
-	--c-primary: var(--yellow);
-	--accent: var(--teal);
-	--warning: var(--red);
-	--bg-grit: var(--bg-grit-light);
+
+/* .theme-system {
+	--c-bg-sheet: var(--c-white);
+	--c-bg: var(--c-black);
+	--c-fg: var(--c-white);
+	--c-fg-sheet: var(--c-black);
+	--c-primary: var(--c-yellow);
+	--accent: var(--c-teal);
+	--warning: var(--c-red);
+	--c-bg-grit: var(--c-bg-grit-light);
 
 	@media (prefers-color-scheme: dark) {
-		--fg-sheet: var(--white);
-		--bg-sheet: var(--black);
-		--c-primary: var(--yellow);
-		--accent: var(--teal);
-		--subtle-accent: var(--yellow-1);
-		--warning: var(--red);
-		--bg-2: var(--black);
-		--bg-1: var(--black);
-		--bg: var(--black);
-		--fg-1: var(--white);
-		--fg-2: var(--black-3);
-		--border: solid var(--border-size) var(--fg-sheet);
-		--bg-grit: var(--bg-grit-dark);
+		--c-fg-sheet: var(--c-white);
+		--c-bg-sheet: var(--c-black);
+		--c-primary: var(--c-yellow);
+		--accent: var(--c-teal);
+		--c-black-1-accent: var(--c-yellow-1);
+		--warning: var(--c-red);
+		--c-bg-2: var(--c-black);
+		--c-bg-1: var(--c-black);
+		--c-bg: var(--c-black);
+		--c-fg-1: var(--c-white);
+		--c-fg-2: var(--c-black-3);
+		--border: solid var(--border-size) var(--c-fg-sheet);
+		--c-bg-grit: var(--c-bg-grit-dark);
 
 		.border-on-dark {
 			border: var(--border);
 		}
 	}
-}
+} */
 
 /* Same as prefers color scheme dark */
-.theme-dark {
-	--fg-sheet: var(--white);
-	--bg-sheet: var(--black);
-	--c-primary: var(--yellow);
-	--accent: var(--teal);
-	--subtle-accent: var(--yellow-1);
-	--warning: var(--red);
-	--bg-2: var(--black-8);
-	--bg-1: var(--black);
-	--bg: var(--black);
-	--fg-1: var(--white);
-	--fg-2: var(--black-3);
-	--border-color: var(--bg-sheet);
-	--border: solid var(--border-size) var(--fg-sheet);
-	--bg-grit: var(--bg-grit-dark);
+
+/* .theme-dark {
+	--c-fg-sheet: var(--c-white);
+	--c-bg-sheet: var(--c-black);
+	--c-primary: var(--c-yellow);
+	--accent: var(--c-teal);
+	--c-black-1-accent: var(--c-yellow-1);
+	--warning: var(--c-red);
+	--c-bg-2: var(--c-black-8);
+	--c-bg-1: var(--c-black);
+	--c-bg: var(--c-black);
+	--c-fg-1: var(--c-white);
+	--c-fg-2: var(--c-black-3);
+	--border-color: var(--c-bg-sheet);
+	--border: solid var(--border-size) var(--c-fg-sheet);
+	--c-bg-grit: var(--c-bg-grit-dark);
 
 	.border-on-dark {
 		border: var(--border);
@@ -53,12 +55,12 @@
 }
 
 .theme-light {
-	--bg-sheet: var(--white);
-	--bg: var(--black);
-	--fg: var(--white);
-	--fg-sheet: var(--black);
-	--c-primary: var(--yellow);
-	--accent: var(--teal);
-	--warning: var(--red);
-	--bg-grit: var(--bg-grit-light);
-}
+	--c-bg-sheet: var(--c-white);
+	--c-bg: var(--c-black);
+	--c-fg: var(--c-white);
+	--c-fg-sheet: var(--c-black);
+	--c-primary: var(--c-yellow);
+	--accent: var(--c-teal);
+	--warning: var(--c-red);
+	--c-bg-grit: var(--c-bg-grit-light);
+} */

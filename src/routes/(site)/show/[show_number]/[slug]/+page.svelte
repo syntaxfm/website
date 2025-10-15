@@ -32,7 +32,7 @@
 	.thumbnail {
 		width: 100%;
 		overflow: hidden;
-		border-radius: var(--brad);
+		border-radius: var(--br-medium);
 	}
 
 	.related-videos {

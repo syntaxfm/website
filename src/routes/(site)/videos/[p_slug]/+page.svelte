@@ -19,12 +19,15 @@
 	img {
 		width: 100%;
 	}
+
 	.h6 {
 		margin-bottom: 0;
 	}
+
 	.playlist-grid {
 		display: grid;
-		grid-gap: 20px;
+		gap: 20px;
+
 		@media (--above-med) {
 			grid-template-columns: repeat(3, minmax(260px, 1fr));
 		}

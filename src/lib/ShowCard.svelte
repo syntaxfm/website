@@ -144,19 +144,17 @@
 
 <style lang="postcss">
 	article {
-		--bg: var(--bg-1);
-
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-color: var(--bg);
-		background-image: var(--bg-grit);
+		background-color: var(--c-bg);
+		background-image: var(--c-bg-grit);
 		position: relative;
 		overflow: hidden;
 		align-items: start;
 
 		& a {
-			color: var(--fg);
+			color: var(--c-fg);
 			display: flex;
 			gap: 10px;
 			height: 100%;
@@ -175,31 +173,31 @@
 		}
 
 		&:hover {
-			background-color: color-mix(in lch, var(--fg), var(--bg) 96%);
+			background-color: color-mix(in lch, var(--c-fg), var(--c-bg) 96%);
 		}
 
 		&.card {
-			border-radius: var(--brad);
-			border: solid var(--border-size) var(--subtle);
+			border-radius: var(--br-medium);
+			border: solid var(--border-size) var(--c-black-1);
 		}
 
 		&.highlight {
-			--bg: var(--bg-root);
-			--fg: var(--fg-root);
+			--c-bg: var(--c-bg);
+			--c-fg: var(--c-fg);
 
-			/* background-image: linear-gradient(to top, #00000000, var(--bg)), url('$assets/whitegrit.png');
+			/* background-image: linear-gradient(to top, #00000000, var(--c-bg)), url('$assets/whitegrit.png');
        */
 
-			border-radius: var(--brad);
+			border-radius: var(--br-medium);
 			grid-column: 1 / -1;
 			background-size: 269px;
 			background-repeat: repeat;
 			background-position: top center;
-			border: solid var(--border-size) var(--black-8);
+			border: solid var(--border-size) var(--c-black-8);
 		}
 
 		&.list {
-			border: solid 1px var(--subtle);
+			border: solid 1px var(--c-black-1);
 			margin-bottom: 20px;
 			padding: 20px 0;
 			margin-inline: auto;
@@ -208,7 +206,7 @@
 		.description {
 			span {
 				/* helps a11y when light text overlaps show number */
-				background-color: color-mix(in lch, var(--bg), transparent 50%);
+				background-color: color-mix(in lch, var(--c-bg), transparent 50%);
 			}
 		}
 
@@ -247,17 +245,17 @@
 	.h3 {
 		view-transition-name: var(--transition-name);
 		margin: 0;
-		font-size: var(--font-size-lg);
+		font-size: var(--fs-6);
 		line-height: 1.2;
 		text-shadow:
-			1px 0 0 var(--bg),
-			0 1px 0 var(--bg),
-			-1px 0 0 var(--bg),
-			0 -1px 0 var(--bg);
+			1px 0 0 var(--c-bg),
+			0 1px 0 var(--c-bg),
+			-1px 0 0 var(--c-bg),
+			0 -1px 0 var(--c-bg);
 	}
 
 	.date {
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 		margin: 0;
 		font-variation-settings: 'wght' 500;
 		view-transition-name: var(--transition-name);
@@ -265,11 +263,11 @@
 		position: relative;
 
 		@media (prefers-color-scheme: dark) {
-			background: var(--bg);
+			background: var(--c-bg);
 		}
 
 		/* adds contrast when light text overlaps show number */
-		text-shadow: 2px 1px 0 var(--bg);
+		text-shadow: 2px 1px 0 var(--c-bg);
 	}
 
 	.play-button {
@@ -278,8 +276,8 @@
 		align-self: center;
 		border-width: 1px;
 		padding: 10px;
-		box-shadow: inset 0 0 0 2px color-mix(in lch, var(--fg) 50%, transparent 94%);
-		color: var(--fg);
+		box-shadow: inset 0 0 0 2px color-mix(in lch, var(--c-fg) 50%, transparent 94%);
+		color: var(--c-fg);
 	}
 
 	.show-number {
@@ -308,7 +306,7 @@
 	@container show-card (width > 600px) {
 		.highlight {
 			& .h3 {
-				font-size: var(--font-size-xl);
+				font-size: var(--fs-6);
 			}
 		}
 

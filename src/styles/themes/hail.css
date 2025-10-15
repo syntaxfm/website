@@ -1,14 +1,14 @@
-.theme-hail {
-	--bg-sheet: var(--white);
-	--bg: #00274c;
-	--fg: var(--white);
-	--fg-1: var(--white);
-	--black: #131516;
-	--fg-sheet: var(--black);
-	--bg-grit: var(--bg-grit-light);
+/* .theme-hail {
+	--c-bg-sheet: var(--c-white);
+	--c-bg: #00274c;
+	--c-fg: var(--c-white);
+	--c-fg-1: var(--c-white);
+	--c-black: #131516;
+	--c-fg-sheet: var(--c-black);
+	--c-bg-grit: var(--c-bg-grit-light);
 	--c-primary: #ffcb05;
 	--accent: #ffcb05;
 	--warning: #9a3324;
 	--success: #ffcb05;
 	--line: #cfc096;
-}
+} */

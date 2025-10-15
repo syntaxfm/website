@@ -53,17 +53,18 @@
 	}
 
 	.errors {
-		color: red;
+		color: var(--c-red);
 	}
+
 	/* a[href^='#t='] {
-		background: var(--bg-1);
+		background: var(--c-bg-1);
 		padding: 4px 6px;
 		border-bottom: none;
 		text-decoration: none;
 		color: var(--color-2);
 		border-radius: 4px;
 		position: relative;
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 		font-variation-settings: var(--fv-800);
 
 		@media (--above-med) {

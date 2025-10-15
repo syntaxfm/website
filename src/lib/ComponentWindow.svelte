@@ -26,7 +26,7 @@
 	<div class="content">
 		<Component />
 	</div>
-	<div class="full zone" style:--bg="var(--black)" style:--fg="var(--white)">
+	<div class="full zone" style:--c-bg="var(--c-black)" style:--c-fg="var(--c-white)">
 		<Component />
 	</div>
 </div>
@@ -36,6 +36,7 @@
 		resize: both;
 		overflow: auto;
 		border: var(--border);
+
 		> span {
 			position: absolute;
 		}

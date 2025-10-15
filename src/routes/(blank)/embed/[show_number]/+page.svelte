@@ -20,7 +20,7 @@
 </script>
 
 <div class={'theme-system theme-wrapper zone'}>
-	<figure class="zone" style:--transition-name-bg="var(--black)" style:--fg="var(--white)">
+	<figure class="zone" style:--transition-name-bg="var(--c-black)" style:--c-fg="var(--c-white)">
 		<span style:--="show-date-{show.number}" class="show-number fv-900 grit">{show.number}</span>
 
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
@@ -52,7 +52,7 @@
 									slot="play"
 									style="
 
---icon_size: 32px;"
+--icon-size: 32px;"
 								>
 									<Icon name="play" />
 								</span>
@@ -60,7 +60,7 @@
 									slot="pause"
 									style="
 
---icon_size: 32px;"
+--icon-size: 32px;"
 								>
 									<Icon name="pause" />
 								</span>
@@ -70,7 +70,7 @@
 							<media-time-display></media-time-display>
 							<div class="media-range-bookmarks">
 								<media-time-range
-									style:--media-range-bar-color="var(--white)"
+									style:--media-range-bar-color="var(--c-white)"
 									style:--media-range-thumb-background="var(--c-primary)"
 								></media-time-range>
 							</div>
@@ -111,7 +111,7 @@
 
 <style lang="postcss">
 	figure {
-		border-bottom: solid var(--fg) 1px;
+		border-bottom: solid var(--c-fg) 1px;
 		position: relative;
 		z-index: 1;
 		margin: 0;
@@ -120,7 +120,7 @@
 		padding: 20px;
 		background-size: contain;
 		background-image:
-			var(--bg-grit-dark),
+			var(--c-bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
 
@@ -130,7 +130,7 @@
 
 	.overtake {
 		position: absolute;
-		background: var(--bg);
+		background: var(--c-bg);
 		inset: 0;
 		z-index: 1;
 		padding: 20px;
@@ -148,7 +148,7 @@
 	}
 
 	h1 {
-		font-size: var(--font-size-md);
+		font-size: var(--fs-4);
 		height: 64px;
 	}
 
@@ -168,7 +168,7 @@
 	}
 
 	.show-page-date {
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 	}
 
 	.show-number {

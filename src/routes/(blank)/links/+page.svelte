@@ -20,7 +20,7 @@
 	<div class="logo">
 		<a href="/"><Logo /></a>
 	</div>
-	<main class="layout zone" style:--bg="var(--bg-sheet)" style:--fg="var(--fg-sheet)">
+	<main class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
 		<section>
 			<h3 class="h4" style="margin: 2rem 0;">Subscribe to the podcast</h3>
 			<PodcastLinks />
@@ -70,7 +70,7 @@
 			</div>
 		</section>
 
-		<div class="zone layout full" style:--bg="var(--black)" style:--fg="var(--white)">
+		<div class="zone layout full" style:--c-bg="var(--c-black)" style:--c-fg="var(--c-white)">
 			<div>
 				<NewsletterForm show_logo={false} />
 			</div>
@@ -98,7 +98,7 @@
 	}
 
 	a {
-		font-size: var(--font-size-md);
+		font-size: var(--fs-4);
 		font-variation-settings: var(--fv-400);
 	}
 </style>

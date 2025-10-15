@@ -31,8 +31,8 @@
 <dialog
 	bind:this={modal}
 	class="zone"
-	style:--bg="var(--bg-sheet)"
-	style:--fg="var(--fg-sheet)"
+	style:--c-bg="var(--c-bg)"
+	style:--c-fg="var(--c-fg)"
 	use:clickOutDialog
 	onclose={close}
 	onclick-outside={close}

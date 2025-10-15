@@ -71,10 +71,10 @@
 	}
 
 	.host-guest-tag {
-		background: var(--yellow);
-		color: var(--black);
+		background: var(--c-yellow);
+		color: var(--c-black);
 		padding: 0 4px;
 		transform: rotate(-3deg);
-		font-size: var(--font-size-xs);
+		font-size: var(--fs-2);
 	}
 </style>

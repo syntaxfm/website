@@ -25,23 +25,23 @@
 
 			& > a {
 				padding: 10px 1rem;
-				border-radius: var(--brad) var(--brad) 0 0;
+				border-radius: var(--br-medium) var(--br-medium) 0 0;
 				font-variation-settings: var(--fv-900);
 			}
 
 			a:hover {
-				background: var(--bg-1);
+				background: var(--c-bg);
 			}
 
 			a.active {
 				text-decoration: none;
 				background: var(--c-primary);
 				position: relative;
-				color: var(--dark);
+				color: var(--c-black);
 			}
 
 			& :global(a) {
-				color: var(--fg);
+				color: var(--c-fg);
 			}
 		}
 	}

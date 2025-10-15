@@ -81,9 +81,9 @@
 
 <style lang="postcss">
 	[popover] {
-		background: var(--bg-1);
-		box-shadow: inset 0 0 0 1px var(--subtle);
-		border-radius: var(--brad);
+		background: var(--c-bg);
+		box-shadow: inset 0 0 0 1px var(--c-black-1);
+		border-radius: var(--br-medium);
 		padding: 10px;
 		translate: 0 10px;
 		border: none;
@@ -103,13 +103,13 @@
 		font-family: var(--ff-body);
 		padding: 8px 14px;
 		cursor: pointer;
-		font-size: var(--body-font-size);
-		color: var(--fg);
+		font-size: var(--fs-4);
+		color: var(--c-fg);
 		border-radius: 4px;
 
 		&:hover,
 		&.selected {
-			background: var(--subtle);
+			background: var(--c-black-1);
 		}
 	}
 </style>

@@ -21,7 +21,7 @@
 </script>
 
 {#if video}
-	<div class="video_page layout full">
+	<div class="video-page layout full">
 		<div class="content">
 			<youtube-video controls src="https://www.youtube.com/watch?v={video.id}"></youtube-video>
 			<h1 class="h3">{video.title}</h1>
@@ -44,12 +44,12 @@
 {/if}
 
 <style lang="postcss">
-	.video_page {
+	.video-page {
 		padding: 1rem 0;
 	}
 
 	youtube-video {
-		border-radius: var(--brad);
+		border-radius: var(--br-medium);
 		overflow: hidden;
 		aspect-ratio: 16 / 9;
 		width: 100%;

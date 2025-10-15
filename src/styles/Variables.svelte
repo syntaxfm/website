@@ -338,11 +338,6 @@
 		margin-bottom: 2rem;
 	}
 
-	h2 {
-		margin-bottom: 1rem;
-		font-size: var(--fs-3);
-	}
-
 	.breakpoints {
 		display: flex;
 		flex-direction: column;
@@ -389,7 +384,7 @@
 
 	.var-name,
 	.color-name {
-		font-size: var(--fs-micro);
+		font-size: var(--fs-1);
 		margin-bottom: 0.5rem;
 	}
 
@@ -405,7 +400,7 @@
 	}
 
 	.var-value {
-		font-size: var(--fs-micro);
+		font-size: var(--fs-1);
 		color: var(--c-shade-or-tint-hard);
 	}
 
@@ -422,7 +417,7 @@
 	}
 
 	.typography-item code {
-		font-size: var(--fs-micro);
+		font-size: var(--fs-1);
 		color: var(--c-shade-or-tint-hard);
 	}
 

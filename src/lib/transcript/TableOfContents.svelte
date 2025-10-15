@@ -27,7 +27,7 @@
 		margin: 0;
 		padding: 0;
 
-		--border-color: var(--subtle);
+		--border-color: var(--c-black-1);
 
 		border: 1px solid var(--border-color);
 		border-radius: 10px;
@@ -47,7 +47,7 @@
 		list-style: none;
 		padding: 10px;
 		border-bottom: 1px solid var(--border-color);
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 
 		&:nth-child(odd) {
 			border-right: 1px solid var(--border-color);
@@ -60,13 +60,13 @@
 	}
 
 	a {
-		font-size: var(--font-size-s);
+		font-size: var(--fs-3);
 		text-decoration: none;
 	}
 
 	.timestamp {
 		display: inline;
-		font-size: var(--font-size-xs);
-		color: var(--subtle-accent);
+		font-size: var(--fs-2);
+		color: var(--c-black-1);
 	}
 </style>

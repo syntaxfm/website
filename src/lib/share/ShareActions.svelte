@@ -35,7 +35,7 @@
 	scrolling="no"
 	src="https://syntax.fm/embed/${show.number}"
 	title="Show Embed"
-	style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid black"
+	style="width: 100%; height: 230px; max-width: 1200px; border: 1px solid var(--c-black)"
 />
 		`);
 		toast.success(
@@ -43,10 +43,11 @@
 		);
 	}
 
-	let time_stamp =
-		$derived(share_at_ts && $player?.audio?.currentTime
+	let time_stamp = $derived(
+		share_at_ts && $player?.audio?.currentTime
 			? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}`
-			: ``);
+			: ``
+	);
 	let share_url = $derived(`https%3A//syntax.fm/${show.number}${time_stamp}`);
 </script>
 
@@ -67,13 +68,13 @@
 	><Icon name="link" /> Link</button
 >
 <a
-	class="button share--x"
+	class="button share-x"
 	target="_blank"
 	href="https://twitter.com/intent/tweet?url={share_url}&text={show.title}&via=syntaxfm"
 	aria-label="Share on Twitter"><Icon name="x" /></a
 >
 <a
-	class="button share--facebook"
+	class="button share-facebook"
 	target="_blank"
 	aria-label="Share on Facebook"
 	href="https://facebook.com/sharer/sharer.php?u={share_url}&quote={show.title}"
@@ -81,24 +82,25 @@
 >
 <a
 	target="_blank"
-	class="button share--linkedin"
+	class="button share-linkedin"
 	aria-label="Share on LinkedIn"
 	href="https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
 	><Icon name="linkedin" /> LinkedIn</a
 >
 
 <style lang="postcss">
-	.share--x {
-		--button-bg: linear-gradient(to bottom, var(--black-7) 0%, var(--black-8) 100%);
-		--button-fg: var(--white);
+	.share-x {
+		--button-bg: linear-gradient(to bottom, var(--c-black-7) 0%, var(--c-black-8) 100%);
+		--button-fg: var(--c-white);
 	}
 
-	.share--facebook {
+	.share-facebook {
 		--button-bg: linear-gradient(to bottom, #57b1f9 0%, #2d64f6 100%);
-		--button-fg: var(--white);
+		--button-fg: var(--c-white);
 	}
-	.share--linkedin {
+
+	.share-linkedin {
 		--button-bg: linear-gradient(to bottom, #57b1f9 0%, #2d64bc 100%);
-		--button-fg: var(--white);
+		--button-fg: var(--c-white);
 	}
 </style>

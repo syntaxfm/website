@@ -4,7 +4,7 @@
 	import ProducedBySentry from './ProducedBySentry.svelte';
 </script>
 
-<footer class="layout zone" style:--bg="var(--bg-root)" style:--fg="var(--fg-1)">
+<footer class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg-1)">
 	<div>
 		<FooterLinks />
 

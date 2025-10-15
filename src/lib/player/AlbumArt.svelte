@@ -35,10 +35,12 @@
 		flex-shrink: 0;
 		display: none;
 		position: relative;
+
 		@media (--above-med) {
 			display: block;
 		}
 	}
+
 	.cd {
 		position: absolute;
 		inset: 0;
@@ -56,6 +58,7 @@
 		80% {
 			translate: 35px;
 		}
+
 		100% {
 			translate: 35px;
 		}

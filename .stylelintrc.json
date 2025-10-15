@@ -3,7 +3,25 @@
 	"overrides": [
 		{
 			"customSyntax": "postcss-html",
-			"files": ["**/*.svelte"]
+			"files": ["**/*.svelte"],
+			"rules": {
+				"csstools/value-no-unknown-custom-properties": [
+					true,
+					{
+						"ignoreLocallyDefined": true,
+						"importFrom": [
+							"src/styles/bass.css",
+							"src/styles/buttons.css",
+							"src/styles/layout.css",
+							"src/styles/reset.css",
+							"src/styles/theme.css",
+							"src/styles/typography.css",
+							"src/styles/utilities.css",
+							"src/styles/variables.css"
+						]
+					}
+				]
+			}
 		}
 	],
 	"plugins": [
@@ -18,6 +36,7 @@
 		"csstools/value-no-unknown-custom-properties": [
 			true,
 			{
+				"ignoreProperties": ["--ideal-font-size", "--max-font-size"],
 				"importFrom": [
 					"src/styles/bass.css",
 					"src/styles/buttons.css",
@@ -46,6 +65,12 @@
 				"disableFix": true,
 				"expandShorthand": true,
 				"ignoreValues": ["inherit", "unset", "initial", "transparent"]
+			}
+		],
+		"selector-pseudo-class-no-unknown": [
+			true,
+			{
+				"ignorePseudoClasses": ["global"]
 			}
 		]
 	}

@@ -1,8 +1,11 @@
-/* Freeze!
+/* 
+https://www.youtube.com/watch?v=7bCdrDhUjPo
+Freeze!
 Rock (rock rock rock rock rock rock rock)
 Aaah, aaah, aaah, aaah
 Uh raah!
-Bass! */
+Bass!
+ */
 
 /* FR tho, base styles should only be styles on elements themselves. */
 
@@ -33,8 +36,6 @@ Bass! */
 			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff'),
 			local('MD IO Variable Regular'),
 			local('MDIOVariable-Regular');
-		font-weight: 100 900;
-		font-style: normal italic;
 	}
 
 	p,
@@ -139,7 +140,7 @@ Bass! */
 	}
 
 	thead th + th {
-		border-left: var(--border);
+		border-left: var(--b-light);
 	}
 
 	td {
@@ -147,8 +148,8 @@ Bass! */
 	}
 
 	::selection {
-		background: var(--c-primary);
-		color: var(--c-dark);
+		background: var(--c-fg);
+		color: var(--c-bg);
 	}
 
 	a[href^='http']:not(.social-icon)::after {

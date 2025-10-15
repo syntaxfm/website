@@ -23,7 +23,7 @@
 
 <style lang="postcss">
 	.album {
-		background-color: var(--bg-root);
+		background-color: var(--c-bg);
 		padding: 5px;
 		background-size: cover;
 		border-radius: 4px;

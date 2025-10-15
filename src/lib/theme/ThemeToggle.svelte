@@ -7,6 +7,6 @@
 <style lang="postcss">
 	button {
 		background: transparent;
-		border: var(--yellow) solid 1px;
+		border: var(--c-yellow) solid 1px;
 	}
 </style>

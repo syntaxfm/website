@@ -82,9 +82,9 @@
 	}
 
 	.show-type {
-		background: var(--yellow);
-		color: var(--black);
-		font-size: var(--font-size-xs);
+		background: var(--c-yellow);
+		color: var(--c-black);
+		font-size: var(--fs-2);
 		rotate: 2deg;
 		margin-bottom: -4px;
 		text-transform: uppercase;

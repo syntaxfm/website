@@ -85,7 +85,7 @@
 		height: 100vh;
 		overflow: hidden;
 		backdrop-filter: blur(10px);
-		color: var(--sheet-fg);
+		color: var(--c-fg);
 		padding: var(--default-padding);
 		overflow-y: scroll;
 		border-left: var(--border);
@@ -111,8 +111,8 @@
 
 	.theme-preview {
 		display: block;
-		background: var(--bg-sheet);
-		color: var(--fg-sheet);
+		background: var(--c-bg);
+		color: var(--c-fg);
 		padding: 10px;
 
 		& p {
@@ -127,7 +127,7 @@
 	}
 
 	.color {
-		background: var(--fg-sheet);
+		background: var(--c-fg);
 	}
 
 	.primary {
@@ -135,16 +135,16 @@
 	}
 
 	.accent {
-		background: var(--accent);
+		background: var(--c-primary);
 	}
 
 	.warning {
-		background: var(--warning);
+		background: var(--c-red);
 	}
 
 	.theme-maker-buttons {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-		grid-gap: 1rem;
+		gap: 1rem;
 	}
 </style>

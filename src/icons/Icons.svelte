@@ -30,7 +30,7 @@
 	}
 
 	.icon-name {
-		font-size: var(--fs-caption);
+		font-size: var(--fs-2);
 		color: var(--c-fg);
 		text-align: center;
 	}

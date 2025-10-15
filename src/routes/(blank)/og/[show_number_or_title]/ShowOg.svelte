@@ -13,10 +13,12 @@
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
 	let hosts = (
-		show.hosts?.length > 0 ? show.hosts : [
-			{ name: 'Wes Bos', username: 'wesbos' },
-			{ name: 'Scott Tolinski', username: 'stolinski' }
-		]
+		show.hosts?.length > 0
+			? show.hosts
+			: [
+					{ name: 'Wes Bos', username: 'wesbos' },
+					{ name: 'Scott Tolinski', username: 'stolinski' }
+				]
 	).map((host) => ({
 		name: host.name || '',
 		github: host.username || ''
@@ -29,7 +31,6 @@
 			github: guest.Guest.github || ''
 		}))
 	];
-
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');
@@ -109,10 +110,7 @@
 		</h1>
 
 		<div class="brand-footer">
-			<FacePile
-				size="120px"
-				faces={allFaces}
-			/>
+			<FacePile size="120px" faces={allFaces} />
 			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<title>Syntax</title>
@@ -139,15 +137,16 @@
 
 <style lang="postcss">
 	article {
-		border: 10px solid var(--yellow);
+		border: 10px solid var(--c-yellow);
 		border-radius: 35px;
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-image: var(--bg-grit-dark),
+		background-image:
+			var(--c-bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
-		background-color: black;
-		color: var(--fg);
+		background-color: var(--c-black);
+		color: var(--c-fg);
 		position: relative;
 		align-items: start;
 		height: 100%;
@@ -171,21 +170,21 @@
 		transform: rotate(-1deg);
 		text-align: center;
 
-		/* black text outline in case white h1 text goes over yellow show number */
+		/* var(--c-black) text outline in case var(--c-white) h1 text goes over yellow show number */
 		text-shadow:
-			2px 0 0 black,
-			0 2px 0 black,
-			-2px 0 0 black,
-			0 -2px 0 black;
+			2px 0 0 var(--c-black),
+			0 2px 0 var(--c-black),
+			-2px 0 0 var(--c-black),
+			0 -2px 0 var(--c-black);
 	}
 
 	.date {
-		font-size: var(--font-size-md);
+		font-size: var(--fs-4);
 		margin: 0;
 	}
 
 	.sentry {
-		font-size: var(--font-size-sm);
+		font-size: var(--fs-3);
 		width: 100%;
 	}
 
@@ -195,7 +194,7 @@
 		top: 0;
 		transform: translate(6.9%, -22%);
 		font-size: 20cqw;
-		color: var(--yellow);
+		color: var(--c-yellow);
 		line-height: 1;
 		z-index: -1;
 	}

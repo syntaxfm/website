@@ -29,7 +29,7 @@
 
 	.thumbnail {
 		overflow: hidden;
-		border-radius: var(--brad);
+		border-radius: var(--br-medium);
 	}
 
 	img {

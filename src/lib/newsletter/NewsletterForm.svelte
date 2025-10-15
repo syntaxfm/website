@@ -83,10 +83,12 @@
 		form {
 			flex: 1 0 500px;
 			text-align: center;
+
 			/* max-width: 500px; */
 			> *:first-child {
 				margin-top: 0;
 			}
+
 			> *:last-child {
 				margin-bottom: 0;
 			}
@@ -98,6 +100,7 @@
 			justify-content: center;
 			flex-wrap: wrap;
 			margin: 2rem 0;
+
 			:global(.input) {
 				width: clamp(200px, 300px, 400px);
 			}
@@ -108,8 +111,9 @@
 				/* shrink form when small container */
 				flex: 1 1 100%;
 			}
+
 			p {
-				font-size: var(--font-size-sm);
+				font-size: var(--fs-3);
 			}
 
 			.newsletter button {

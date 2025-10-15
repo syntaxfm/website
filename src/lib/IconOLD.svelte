@@ -1,4 +1,4 @@
-<script lang="ts" module>
+<!-- <script lang="ts" module>
 	export type IconName =
 		| 'play'
 		| 'playing'
@@ -487,7 +487,7 @@
 			fill-rule="evenodd"
 			clip-rule="evenodd"
 			d="M11.28 1.22a.75.75 0 0 0-1.26.7L6.69 5.25H4.206c-1.114 0-1.671 1.346-.884 2.134l1.911 1.911-3.72 4.135A2 2 0 0 0 1 14.768V15h.233a2 2 0 0 0 1.337-.513l4.135-3.721 1.911 1.91c.788.788 2.134.23 2.134-.883V9.31l3.33-3.33a.75.75 0 0 0 .7-1.261l-.603-.604-2.293-2.293-.604-.603ZM12.94 5 11 3.06 8.06 6 10 7.94 12.94 5ZM6.69 6.75l2.56 2.56v1.88L4.81 6.75h1.88Z"
-			fill="var(--fg)"
+			fill="var(--c-fg)"
 		/></svg
 	>
 {/if}
@@ -523,4 +523,4 @@
 	.playing line:nth-child(3) {
 		animation-delay: 0.4s;
 	}
-</style>
+</style> -->

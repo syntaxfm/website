@@ -22,7 +22,7 @@
 
 	let worker: Worker = $state(null!);
 	let ready = $state(false);
-	let active_color = $state('var(--fg)');
+	let active_color = $state('var(--c-fg)');
 
 	let uid = $state(1);
 	const pending = new Set();
@@ -137,8 +137,8 @@
 <dialog
 	bind:this={modal}
 	class="zone"
-	style:--bg="var(--bg-sheet)"
-	style:--fg="var(--fg-sheet)"
+	style:--c-bg="var(--c-bg)"
+	style:--c-fg="var(--c-fg)"
 	use:clickOutDialog
 	onclick-outside={close}
 	aria-labelledby="search-header"
@@ -231,14 +231,14 @@
 
 <style lang="postcss">
 	header {
-		--border: var(--fg);
+		--border: var(--c-fg);
 
-		border-bottom: solid 4px var(--border);
+		border-bottom: var(--b-medium);
 		display: flex;
 		position: sticky;
 		top: 0;
 		z-index: 10;
-		background-color: var(--bg-sheet);
+		background-color: var(--c-bg);
 
 		&::before {
 			content: '> ';
@@ -259,14 +259,12 @@
 	}
 
 	dialog {
-		--search-height: 50vh;
-
 		padding: 0;
-		background-color: var(--bg-1);
-		height: var(--search-height);
-		border: var(--border);
-		border-color: var(--fg);
-		border-radius: var(--brad);
+		background-color: var(--c-bg);
+		height: var(--search-height, 50vh);
+		border: var(--b-medium);
+		border-color: var(--c-fg);
+		border-radius: var(--br-medium);
 		position: relative;
 		max-width: 100%;
 		width: 100%;
@@ -305,10 +303,10 @@
 		width: 100%;
 		border: none;
 		padding: 10px 50px 10px 10px;
-		font-size: var(--font-size-md);
+		font-size: var(--fs-4);
 		outline-color: transparent;
 		background-color: transparent;
-		color: var(--fg);
+		color: var(--c-fg);
 		font-family: var(--ff-body);
 	}
 
@@ -318,10 +316,10 @@
 		text-align: right;
 
 		p {
-			font-size: var(--font-size-smallest);
-			color: white;
+			font-size: var(--fs-1);
+			color: var(--c-white);
 			font-style: italic;
-			background: black;
+			background: var(--c-black);
 			padding: 5px;
 			margin: 0;
 			display: inline-block;
@@ -348,51 +346,51 @@
 			box-shadow: none;
 			border-radius: 0;
 			height: 20px;
-			background-color: var(--yellow);
+			background-color: var(--c-yellow);
 		}
 
 		button:nth-child(2) {
-			background-color: var(--teal);
+			background-color: var(--c-teal);
 		}
 
 		button:nth-child(3) {
-			background-color: var(--green);
+			background-color: var(--c-green);
 		}
 
 		button:nth-child(4) {
-			background-color: var(--red);
+			background-color: var(--c-red);
 		}
 
 		button:nth-child(5) {
-			background-color: var(--purple);
+			background-color: var(--c-purple);
 		}
 
 		button:nth-child(6) {
-			background-color: var(--black);
+			background-color: var(--c-black);
 		}
 
 		button:nth-child(7) {
-			background-color: var(--yellow-2);
+			background-color: var(--c-yellow-2);
 		}
 
 		button:nth-child(8) {
-			background-color: var(--teal-2);
+			background-color: var(--c-teal-2);
 		}
 
 		button:nth-child(9) {
-			background-color: var(--green-2);
+			background-color: var(--c-green-2);
 		}
 
 		button:nth-child(10) {
-			background-color: var(--red-2);
+			background-color: var(--c-red-2);
 		}
 
 		button:nth-child(11) {
-			background-color: var(--purple-2);
+			background-color: var(--c-purple-2);
 		}
 
 		button:nth-child(12) {
-			background-color: var(--black-2);
+			background-color: var(--c-black-2);
 		}
 	}
 </style>
