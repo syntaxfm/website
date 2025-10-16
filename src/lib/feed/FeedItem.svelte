@@ -11,7 +11,7 @@
 
 <!-- TODO make this if item type === show, swag social ect -->
 {#if show}
-	<FeedItemShow />
+	<FeedItemShow {show} />
 {/if}
 
 <style>

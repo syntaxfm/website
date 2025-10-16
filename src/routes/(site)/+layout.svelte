@@ -36,13 +36,10 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-	<Header />
+<Header />
 
 	<main id="main-content">
-		<svelte:boundary>
-			{@render children?.()}
-			{#snippet pending()}{/snippet}
-		</svelte:boundary>
+		{@render children?.()}
 	</main>
 
 	<Footer />

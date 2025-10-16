@@ -21,7 +21,7 @@
 	<div>GUESTS</div>
 	<div>
 		<span class="number fv-700-i">#{show.number}</span>
-		{#if show.thumbnail}
+		{#if show?.thumbnail}
 			<img src={show.thumbnail} alt={show.title} />
 		{:else}
 			DEFAULT AUDIO THUMBNAIL
