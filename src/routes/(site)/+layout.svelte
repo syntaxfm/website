@@ -2,10 +2,8 @@
 	import './style.css';
 	import 'media-chrome';
 	import 'youtube-video-element';
-	import Icon from '$/lib/Icon.svelte';
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import { page } from '$app/stores';
 	import AdminMenu from '$lib/AdminMenu.svelte';
 	import Loading from '$lib/Loading.svelte';
 	import Footer from '$lib/layout/Footer.svelte';
@@ -17,7 +15,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 
 	const { data, children } = $props();
-	const { user, user_theme, latest } = $derived(data);
+	const { user, user_theme } = $derived(data);
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -36,7 +34,7 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-<Header />
+	<Header />
 
 	<main id="main-content">
 		{@render children?.()}
@@ -47,7 +45,7 @@
 	<ThemeMaker />
 
 	{#if browser}
-		<Player initial_show={latest[0]} />
+		<Player />
 	{/if}
 
 	<Loading />

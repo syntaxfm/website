@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Feed from '$/lib/feed/Feed.svelte';
-	import MostPopularThisWeek from '$/lib/sidebar/MostPopularThisWeek.svelte';
-	import TrendingTopics from '$/lib/sidebar/TrendingTopics.svelte';
+	import MostPopularThisWeek from '$lib/sidebar/MostPopularThisWeek.svelte';
+	import TrendingTopics from '$lib/sidebar/TrendingTopics.svelte';
 </script>
 
 <h1 class="visually-hidden">Syntax Podcast</h1>

@@ -7,6 +7,7 @@
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
 	import cj from '$assets/cj.jpg';
+	import { count_podcasts } from '$/lib/shows/shows.remote.js';
 	let hosts = {
 		wes: {
 			name: 'Wes Bos',
@@ -67,7 +68,7 @@
 
 	let digits = $derived(since_start.toString().split(''));
 
-	let { data } = $props();
+	const count = await count_podcasts();
 </script>
 
 <main style:margin-bottom="2rem">
@@ -89,8 +90,8 @@
 					</span>
 				{/each} milliseconds ago to be exact)</span
 			>, Syntax has published
-			{data.count} podcast episodes on full-stack web development, covering JavaScript Server + Client,
-			the latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
+			{count} podcast episodes on full-stack web development, covering JavaScript Server + Client, the
+			latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
 		</p>
 
 		<p>You should listen! It's pretty good.</p>

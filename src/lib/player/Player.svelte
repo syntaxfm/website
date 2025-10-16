@@ -5,19 +5,10 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
-	import { onMount } from 'svelte';
-	import type { Show } from '@prisma/client';
+	import { get_latest_podcast } from '$lib/shows/shows.remote';
 
-	interface Props {
-		initial_show: Show;
-	}
-
-	let { initial_show }: Props = $props();
-
-	onMount(() => {
-		// Load latest show by default
-		player.initialize(initial_show);
-	});
+	const show = await get_latest_podcast();
+	player.initialize(show);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
 </script>

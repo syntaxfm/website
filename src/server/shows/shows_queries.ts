@@ -1,4 +1,8 @@
+import { asc, desc } from 'drizzle-orm';
+
 import { PER_PAGE } from '$/const';
+import { db } from '$/db/client';
+import { shows } from '$/db/schema';
 import { $Enums, Prisma } from '@prisma/client';
 
 const take_homepage = PER_PAGE;
@@ -64,19 +68,26 @@ export function get_list_shows(
 }
 export type ShowList = Prisma.ShowGetPayload<ReturnType<typeof get_list_shows>>;
 
-export function get_last_10_shows_query() {
-	const today = new Date();
-	const show_card_query = get_show_card_query();
-	return Prisma.validator<Prisma.ShowFindManyArgs>()({
-		take: take_homepage,
-		orderBy: { number: 'desc' },
-		where: {
-			date: { lte: today }
-		},
-		...show_card_query
+export async function get_last_10_shows() {
+	const last_10 = await db.query.shows.findMany({
+		limit: 10,
+		orderBy: [desc(shows.number)],
+		where: (show, { lte }) => lte(show.date, new Date()),
+		with: {
+			guests: true,
+			hosts: true,
+			aiShowNote: {
+				columns: {
+					description: true
+				},
+				with: {
+					topics: true
+				}
+			}
+		}
 	});
+	return last_10;
 }
-export type ShowLast10 = Prisma.ShowGetPayload<ReturnType<typeof get_last_10_shows_query>>;
 
 export function get_show_detail_query(number: number) {
 	return Prisma.validator<Prisma.ShowFindUniqueArgs>()({

@@ -13,10 +13,7 @@ export const load = async function ({ url, setHeaders }) {
 	const show_type = url.searchParams.get('type')?.toUpperCase();
 	const page = parseInt(url.searchParams.get('page') || '1');
 
-	const [shows, total_show_count] = await Promise.all([
-		cache.shows.list_shows(page, take, order, show_type),
-		cache.shows.count_shows()
-	]);
+	const [shows] = await Promise.all([cache.shows.list_shows(page, take, order, show_type)]);
 
 	if (!shows.length) {
 		// If there are no shows for this page, redirect them to the first page but keep their query params. This happens when someone changes the perPage value and that makes their page no longer have anything to show.
@@ -33,7 +30,6 @@ export const load = async function ({ url, setHeaders }) {
 
 	return {
 		shows,
-		count: total_show_count,
 		meta: {
 			title: `Syntax Podcast Shows ${page > 1 ? `- Page ${page}` : ''}`,
 			canonical: `${url.protocol}//${url.host}${url.pathname}${page > 1 ? `?page=${page}` : ''}`
