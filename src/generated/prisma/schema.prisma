@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+  seed     = "prisma/seed.ts"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+enum ThemeStatus {
+  PUBLISHED
+  UNPUBLISHED
+}
+
+enum ShowType {
+  HASTY
+  TASTY
+  SUPPER
+  SPECIAL
+}
+
+model User {
+  id          String     @id @default(uuid())
+  avatar_url  String?
+  created_at  DateTime   @default(now())
+  email       String?    @unique
+  github_id   Int        @unique
+  session     Session[]
+  updated_at  DateTime   @updatedAt
+  username    String?
+  roles       UserRole[]
+  theme       String     @default("system")
+  name        String?
+  twitter     String?
+  hostedShows Show[]
+}
+
+model Role {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  userRoles UserRole[]
+}
+
+model UserRole {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
+}
+
+model Session {
+  id            Int      @id @default(autoincrement())
+  user_id       String?
+  user          User?    @relation(fields: [user_id], references: [id])
+  access_token  String?  @unique
+  session_token String   @unique
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  ip            String?
+  country       String?
+
+  @@index([user_id])
+}
+
+model ShowGuest {
+  id           String      @id @default(uuid())
+  showId       String
+  guestId      String
+  Show         Show        @relation(fields: [showId], references: [id])
+  Guest        Guest       @relation(fields: [guestId], references: [id])
+  Transcript   Transcript? @relation(fields: [transcriptId], references: [id])
+  transcriptId String?
+
+  @@unique([showId, guestId])
+  @@index([transcriptId])
+  @@index([guestId])
+}
+
+model Guest {
+  id        String       @id @default(uuid())
+  name      String
+  name_slug String       @unique
+  twitter   String?      @unique
+  github    String?      @unique
+  of        String?      @default("")
+  social    SocialLink[]
+  url       String?
+  shows     ShowGuest[]
+
+  @@index([name])
+}
+
+model SocialLink {
+  id       String @id @default(uuid())
+  link     String
+  guest    Guest  @relation(fields: [guest_id], references: [id])
+  guest_id String
+
+  @@unique([link, guest_id])
+  @@index([guest_id])
+}
+
+model Show {
+  id          String      @id
+  number      Int         @unique
+  title       String      @db.Text
+  date        DateTime
+  url         String
+  youtube_url String?
+  show_notes  String      @db.Text
+  hash        String      @unique
+  slug        String
+  md_file     String      @unique
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  guests      ShowGuest[] // Relation to joining model
+  transcript  Transcript?
+  aiShowNote  AiShowNote?
+  show_type   ShowType    @default(SPECIAL)
+  videos      ShowVideo[]
+  hosts       User[]
+
+  @@index([number, date], name: "idx_show_number_date") // Define composite index
+  @@index([number]) // Define composite index
+}
+
+model Transcript {
+  id          String                @id @default(uuid())
+  show        Show                  @relation(fields: [show_number], references: [number])
+  show_number Int                   @unique
+  utterances  TranscriptUtterance[]
+  ShowGuest   ShowGuest[]
+}
+
+model TranscriptUtterance {
+  id               String                    @id @default(uuid())
+  start            Float
+  end              Float
+  confidence       Float
+  channel          Int
+  transcript_value String                    @db.Text
+  words            TranscriptUtteranceWord[]
+  speaker          Int
+  speakerName      String?
+  transcript       Transcript                @relation(fields: [transcriptId], references: [id], onDelete: Cascade)
+  transcriptId     String
+
+  @@index([transcriptId])
+}
+
+model TranscriptUtteranceWord {
+  id                    String               @id @default(uuid())
+  word                  String
+  start                 Float
+  end                   Float
+  confidence            Float
+  speaker               Int
+  speaker_confidence    Float
+  punctuated_word       String
+  TranscriptUtterance   TranscriptUtterance? @relation(fields: [transcriptUtteranceId], references: [id], onDelete: Cascade)
+  transcriptUtteranceId String
+
+  @@index([transcriptUtteranceId])
+}
+
+// AI Show Notes
+model AiShowNote {
+  id          Int              @id @default(autoincrement())
+  show        Show             @relation(fields: [show_number], references: [number])
+  show_number Int              @unique
+  title       String
+  description String           @db.VarChar(1500)
+  summary     AiSummaryEntry[]
+  tweets      AiTweet[]
+  links       Link[]
+  guests      AiGuest[]
+  topics      Topic[]
+  provider    String           @default("gpt3.5")
+}
+
+model AiSummaryEntry {
+  id          Int        @id @default(autoincrement())
+  time        String
+  text        String
+  description String?
+  showNote    Int
+  aiShowNote  AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+
+  @@index([showNote])
+}
+
+model AiTweet {
+  id         Int        @id @default(autoincrement())
+  content    String     @db.VarChar(350)
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+}
+
+model Link {
+  id         Int        @id @default(autoincrement())
+  name       String
+  url        String
+  timestamp  String?
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+}
+
+model AiGuest {
+  id         Int        @id @default(autoincrement())
+  name       String
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+}
+
+model Topic {
+  id         Int        @id @default(autoincrement())
+  name       String
+  showNote   Int
+  aiShowNote AiShowNote @relation(fields: [showNote], references: [id], onDelete: Cascade)
+
+  @@index([showNote])
+}
+
+// For a many-to-many relationship where a video can be in multiple playlists and a playlist contains multiple videos with order,
+// include an `order` field in the relation model to maintain the correct order of videos in each playlist.
+model Video {
+  id           String            @id @default(uuid())
+  title        String
+  description  String?           @db.Text
+  url          String
+  published_at DateTime
+  thumbnail    String
+  slug         String            @unique
+  playlists    PlaylistOnVideo[]
+  shows        ShowVideo[]
+}
+
+model Playlist {
+  id          String            @id @default(uuid())
+  title       String
+  description String?           @db.Text
+  created_at  DateTime          @default(now())
+  slug        String            @unique
+  unlisted    Boolean?          @default(false)
+  videos      PlaylistOnVideo[]
+}
+
+// Relational Table for playlist/video
+model PlaylistOnVideo {
+  video_id    String
+  playlist_id String
+  order       Int
+  video       Video    @relation(fields: [video_id], references: [id])
+  playlist    Playlist @relation(fields: [playlist_id], references: [id])
+
+  @@id([video_id, playlist_id])
+  @@unique([video_id, playlist_id])
+  @@index([video_id])
+  @@index([playlist_id])
+}
+
+// The playlists on YouTube, used to select which we'd like to import
+model RemotePlaylist {
+  playlist_id  String   @id
+  title        String
+  videos_count Int
+  created_at   DateTime
+}
+
+model ShowVideo {
+  show    Show   @relation(fields: [showId], references: [id])
+  showId  String
+  video   Video  @relation(fields: [videoId], references: [id])
+  videoId String
+
+  @@id([showId, videoId])
+  @@index([showId])
+  @@index([videoId])
+}
+
+enum UserSubmissionStatus {
+  PENDING
+  APPROVED
+  COMPLETED
+  REJECTED
+}
+
+enum UserSubmissionType {
+  POTLUCK
+  SPOOKY
+  GUEST
+  FEEDBACK
+  OTHER
+  OSS
+}
+
+model UserSubmission {
+  id              String               @id @default(uuid())
+  name            String?
+  email           String?
+  body            String               @db.Text
+  created_at      DateTime             @default(now())
+  updated_at      DateTime             @updatedAt
+  audio_url       String?
+  status          UserSubmissionStatus @default(PENDING)
+  submission_type UserSubmissionType   @default(OTHER)
+}
