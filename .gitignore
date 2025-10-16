@@ -27,3 +27,7 @@ bin
 
 db-data
 *storybook.log
+
+core.wasm
+core.worker.cjs
+

@@ -1,4 +1,5 @@
-import type { PrerecordedTranscriptionResponse, Utterance } from '@deepgram/sdk/dist/types';
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 import type { Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
@@ -7,6 +8,8 @@ import { prisma_client as prisma } from '$/server/prisma-client';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
 import pMap from 'p-map';
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');
+
+type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 export async function save_transcript_to_db(show: Show, utterances: Utterance[]) {
 	// Create Slim Utterances for Speaker Detection
@@ -89,7 +92,7 @@ export async function import_transcripts() {
 		// Loop over each one and import
 		const transcript_promises = transcriptFiles.map(async (file) => {
 			console.log(`Importing ${file}`);
-			const transcript: PrerecordedTranscriptionResponse = JSON.parse(
+			const transcript: SyncPrerecordedResponse = JSON.parse(
 				await readFile(path.join(transcripts_path, file), 'utf-8')
 			);
 			const show_number = parseInt(file.split(' - ')[0]);

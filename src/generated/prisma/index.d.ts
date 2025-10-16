@@ -9948,6 +9948,7 @@ export namespace Prisma {
     date: Date | null
     url: string | null
     youtube_url: string | null
+    spotify_id: string | null
     show_notes: string | null
     hash: string | null
     slug: string | null
@@ -9964,6 +9965,7 @@ export namespace Prisma {
     date: Date | null
     url: string | null
     youtube_url: string | null
+    spotify_id: string | null
     show_notes: string | null
     hash: string | null
     slug: string | null
@@ -9980,6 +9982,7 @@ export namespace Prisma {
     date: number
     url: number
     youtube_url: number
+    spotify_id: number
     show_notes: number
     hash: number
     slug: number
@@ -10006,6 +10009,7 @@ export namespace Prisma {
     date?: true
     url?: true
     youtube_url?: true
+    spotify_id?: true
     show_notes?: true
     hash?: true
     slug?: true
@@ -10022,6 +10026,7 @@ export namespace Prisma {
     date?: true
     url?: true
     youtube_url?: true
+    spotify_id?: true
     show_notes?: true
     hash?: true
     slug?: true
@@ -10038,6 +10043,7 @@ export namespace Prisma {
     date?: true
     url?: true
     youtube_url?: true
+    spotify_id?: true
     show_notes?: true
     hash?: true
     slug?: true
@@ -10141,6 +10147,7 @@ export namespace Prisma {
     date: Date
     url: string
     youtube_url: string | null
+    spotify_id: string | null
     show_notes: string
     hash: string
     slug: string
@@ -10176,6 +10183,7 @@ export namespace Prisma {
     date?: boolean
     url?: boolean
     youtube_url?: boolean
+    spotify_id?: boolean
     show_notes?: boolean
     hash?: boolean
     slug?: boolean
@@ -10200,6 +10208,7 @@ export namespace Prisma {
     date?: boolean
     url?: boolean
     youtube_url?: boolean
+    spotify_id?: boolean
     show_notes?: boolean
     hash?: boolean
     slug?: boolean
@@ -10209,7 +10218,7 @@ export namespace Prisma {
     show_type?: boolean
   }
 
-  export type ShowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "title" | "date" | "url" | "youtube_url" | "show_notes" | "hash" | "slug" | "md_file" | "created_at" | "updated_at" | "show_type", ExtArgs["result"]["show"]>
+  export type ShowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "title" | "date" | "url" | "youtube_url" | "spotify_id" | "show_notes" | "hash" | "slug" | "md_file" | "created_at" | "updated_at" | "show_type", ExtArgs["result"]["show"]>
   export type ShowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guests?: boolean | Show$guestsArgs<ExtArgs>
     transcript?: boolean | Show$transcriptArgs<ExtArgs>
@@ -10235,6 +10244,7 @@ export namespace Prisma {
       date: Date
       url: string
       youtube_url: string | null
+      spotify_id: string | null
       show_notes: string
       hash: string
       slug: string
@@ -10622,6 +10632,7 @@ export namespace Prisma {
     readonly date: FieldRef<"Show", 'DateTime'>
     readonly url: FieldRef<"Show", 'String'>
     readonly youtube_url: FieldRef<"Show", 'String'>
+    readonly spotify_id: FieldRef<"Show", 'String'>
     readonly show_notes: FieldRef<"Show", 'String'>
     readonly hash: FieldRef<"Show", 'String'>
     readonly slug: FieldRef<"Show", 'String'>
@@ -25808,6 +25819,7 @@ export namespace Prisma {
     date: 'date',
     url: 'url',
     youtube_url: 'youtube_url',
+    spotify_id: 'spotify_id',
     show_notes: 'show_notes',
     hash: 'hash',
     slug: 'slug',
@@ -26079,6 +26091,7 @@ export namespace Prisma {
     title: 'title',
     url: 'url',
     youtube_url: 'youtube_url',
+    spotify_id: 'spotify_id',
     show_notes: 'show_notes',
     hash: 'hash',
     slug: 'slug',
@@ -26721,6 +26734,7 @@ export namespace Prisma {
     date?: DateTimeFilter<"Show"> | Date | string
     url?: StringFilter<"Show"> | string
     youtube_url?: StringNullableFilter<"Show"> | string | null
+    spotify_id?: StringNullableFilter<"Show"> | string | null
     show_notes?: StringFilter<"Show"> | string
     hash?: StringFilter<"Show"> | string
     slug?: StringFilter<"Show"> | string
@@ -26742,6 +26756,7 @@ export namespace Prisma {
     date?: SortOrder
     url?: SortOrder
     youtube_url?: SortOrderInput | SortOrder
+    spotify_id?: SortOrderInput | SortOrder
     show_notes?: SortOrder
     hash?: SortOrder
     slug?: SortOrder
@@ -26769,6 +26784,7 @@ export namespace Prisma {
     date?: DateTimeFilter<"Show"> | Date | string
     url?: StringFilter<"Show"> | string
     youtube_url?: StringNullableFilter<"Show"> | string | null
+    spotify_id?: StringNullableFilter<"Show"> | string | null
     show_notes?: StringFilter<"Show"> | string
     slug?: StringFilter<"Show"> | string
     created_at?: DateTimeFilter<"Show"> | Date | string
@@ -26788,6 +26804,7 @@ export namespace Prisma {
     date?: SortOrder
     url?: SortOrder
     youtube_url?: SortOrderInput | SortOrder
+    spotify_id?: SortOrderInput | SortOrder
     show_notes?: SortOrder
     hash?: SortOrder
     slug?: SortOrder
@@ -26812,6 +26829,7 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"Show"> | Date | string
     url?: StringWithAggregatesFilter<"Show"> | string
     youtube_url?: StringNullableWithAggregatesFilter<"Show"> | string | null
+    spotify_id?: StringNullableWithAggregatesFilter<"Show"> | string | null
     show_notes?: StringWithAggregatesFilter<"Show"> | string
     hash?: StringWithAggregatesFilter<"Show"> | string
     slug?: StringWithAggregatesFilter<"Show"> | string
@@ -28139,6 +28157,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -28160,6 +28179,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -28181,6 +28201,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -28202,6 +28223,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -28223,6 +28245,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -28239,6 +28262,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -28255,6 +28279,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -29613,6 +29638,7 @@ export namespace Prisma {
     date?: SortOrder
     url?: SortOrder
     youtube_url?: SortOrder
+    spotify_id?: SortOrder
     show_notes?: SortOrder
     hash?: SortOrder
     slug?: SortOrder
@@ -29633,6 +29659,7 @@ export namespace Prisma {
     date?: SortOrder
     url?: SortOrder
     youtube_url?: SortOrder
+    spotify_id?: SortOrder
     show_notes?: SortOrder
     hash?: SortOrder
     slug?: SortOrder
@@ -29649,6 +29676,7 @@ export namespace Prisma {
     date?: SortOrder
     url?: SortOrder
     youtube_url?: SortOrder
+    spotify_id?: SortOrder
     show_notes?: SortOrder
     hash?: SortOrder
     slug?: SortOrder
@@ -31929,6 +31957,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -31949,6 +31978,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -32048,6 +32078,7 @@ export namespace Prisma {
     date?: DateTimeFilter<"Show"> | Date | string
     url?: StringFilter<"Show"> | string
     youtube_url?: StringNullableFilter<"Show"> | string | null
+    spotify_id?: StringNullableFilter<"Show"> | string | null
     show_notes?: StringFilter<"Show"> | string
     hash?: StringFilter<"Show"> | string
     slug?: StringFilter<"Show"> | string
@@ -32288,6 +32319,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -32308,6 +32340,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -32388,6 +32421,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -32408,6 +32442,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -32886,6 +32921,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -32906,6 +32942,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -32998,6 +33035,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -33018,6 +33056,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -33252,6 +33291,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -33272,6 +33312,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -33411,6 +33452,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -33431,6 +33473,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -34117,6 +34160,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -34137,6 +34181,7 @@ export namespace Prisma {
     date: Date | string
     url: string
     youtube_url?: string | null
+    spotify_id?: string | null
     show_notes: string
     hash: string
     slug: string
@@ -34200,6 +34245,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -34220,6 +34266,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -34332,6 +34379,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -34352,6 +34400,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -34372,6 +34421,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     url?: StringFieldUpdateOperationsInput | string
     youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    spotify_id?: NullableStringFieldUpdateOperationsInput | string | null
     show_notes?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string

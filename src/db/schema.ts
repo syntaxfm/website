@@ -109,6 +109,7 @@ export const shows = mysqlTable(
 		date: datetime('date').notNull(),
 		url: varchar('url', { length: 255 }).notNull(),
 		youtube_url: varchar('youtube_url', { length: 255 }),
+		spotify_id: varchar('spotify_id', { length: 255 }),
 		show_notes: text('show_notes').notNull(),
 		hash: varchar('hash', { length: 191 }).notNull().unique(),
 		slug: varchar('slug', { length: 191 }).notNull(),

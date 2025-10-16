@@ -8,7 +8,7 @@ This site is built on SvelteKit.
 
 ## Requirements
 
-- Node 18.0.0 or higher
+- Node 22.0.0 or higher
 
 ## Prerequisite
 

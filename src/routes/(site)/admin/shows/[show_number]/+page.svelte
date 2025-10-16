@@ -24,9 +24,22 @@
 {#if show}
 	<Dump data={show} />
 {/if}
+<div class="spotify-sync">
+	<h2 class="h5">Spotify Sync</h2>
+	<p>Sync Spotify data for this episode</p>
+	{#if form?.message}
+		<div class="sync-message" class:error={!form?.success} class:success={form?.success}>
+			{form.message}
+		</div>
+	{/if}
+	<form method="POST" action="?/sync_spotify">
+		<button type="submit">Sync Spotify</button>
+	</form>
+</div>
+
 <h1 class="h4">AI Show Notes</h1>
 {#if show?.aiShowNote}
-	<form class="flex" method="POST" bind:this={formRef}>
+    <form class="flex flex-col" method="POST" action="?/update_ai_show_note" bind:this={formRef}>
 		{#if form?.message}
 			<div class="errors">
 				{form?.message}
@@ -55,30 +68,31 @@
 	.errors {
 		color: var(--c-red);
 	}
-
-	/* a[href^='#t='] {
-		background: var(--c-bg-1);
-		padding: 4px 6px;
-		border-bottom: none;
-		text-decoration: none;
-		color: var(--color-2);
-		border-radius: 4px;
-		position: relative;
-		font-size: var(--fs-3);
-		font-variation-settings: var(--fv-800);
-
-		@media (--above-med) {
-			left: -17px;
-		}
-	} 
-	 .show-notes {
-		h2,
-		h3 {
-			font-size: var(--font-size-lg);
-		}
-
-		ul {
-			padding-left: 20px;
-		}
-	} */
+	.spotify-sync {
+		margin: 2rem 0;
+		padding: 1rem;
+		border: 1px solid var(--fg);
+		border-radius: 0.5rem;
+	}
+	.spotify-sync h2 {
+		margin: 0 0 0.5rem 0;
+	}
+	.spotify-sync p {
+		margin: 0 0 1rem 0;
+	}
+	.sync-message {
+		padding: 0.5rem;
+		margin: 0.5rem 0;
+		border-radius: 0.25rem;
+	}
+	.sync-message.error {
+		background-color: #fee;
+		border: 1px solid #f88;
+		color: #c00;
+	}
+	.sync-message.success {
+		background-color: #efe;
+		border: 1px solid #8f8;
+		color: #060;
+	}
 </style>
