@@ -1,4 +1,5 @@
 <script>
+	import { search } from '$state/search.svelte';
 	import Icon from '../Icon.svelte';
 
 	const LINKS = [
@@ -18,7 +19,11 @@
 			</li>
 		{/each}
 		<li>
-			<button><Icon name="search" />Search</button>
+			<button
+				onclick={() => {
+					search.searching = true;
+				}}><Icon name="search" />Search</button
+			>
 		</li>
 	</ul>
 </nav>

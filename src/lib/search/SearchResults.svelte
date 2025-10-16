@@ -5,13 +5,14 @@
 	interface Props {
 		results: Tree[];
 		query: string;
+		onselect: (href: string) => void;
 	}
 
-	let { results, query }: Props = $props();
+	let { results, query, onselect }: Props = $props();
 </script>
 
 {#if results.length > 0}
-	<SearchResultList {results} {query} on:select />
+	<SearchResultList {results} {query} {onselect} />
 {:else if query}
 	<p class="info fv-400">No results</p>
 {/if}

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { afterNavigate } from '$app/navigation';
-	import { overlay_open, search_query, search_recent, searching } from '$state/search';
-	import { onMount, tick } from 'svelte';
+	import { search } from '$state/search.svelte';
+	import { tick } from 'svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import SearchWorker from './search-worker.js?worker';
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
@@ -14,43 +13,81 @@
 
 	let search_input: HTMLInputElement = $state(null!);
 	let modal: HTMLDialogElement = $state(null!);
-	let search: {
+	let local_search: {
 		results: Tree[];
 		query: string;
 	} | null = $state(null);
 	let recent_searches: (Block & Show)[] = $state([]);
 
-	let worker: Worker = $state(null!);
+	let worker: Worker | null = null;
 	let ready = $state(false);
 	let active_color = $state('var(--c-fg)');
 
-	let uid = $state(1);
-	const pending = new Set();
+	let uid = 0;
+	const pending = new SvelteSet<number>();
 
-	onMount(async () => {
-		search_input.focus();
-		worker = new SearchWorker();
-		worker.addEventListener('message', (event) => {
+	//Initialize worker once on mount
+	$effect(() => {
+		const w = new SearchWorker();
+		worker = w;
+
+		w.addEventListener('message', (event) => {
 			const { type, payload } = event.data;
 			if (type === 'ready') {
 				ready = true;
-			}
-
-			if (type === 'results') {
-				search = payload;
-			}
-
-			if (type === 'recents') {
+			} else if (type === 'results') {
+				local_search = payload;
+			} else if (type === 'recents') {
 				recent_searches = payload;
 			}
 		});
 
-		worker.postMessage({
+		w.postMessage({
 			type: 'init',
 			payload: {
 				origin: location.origin
 			}
 		});
+
+		search_input?.focus();
+
+		return () => {
+			w.terminate();
+		};
+	});
+
+	// Send search query to worker when ready or query changes
+	$effect(() => {
+		if (ready && worker) {
+			const id = ++uid;
+			pending.add(id);
+			worker.postMessage({ type: 'query', id, payload: search.search_query });
+		}
+	});
+
+	// Send recent searches to worker when ready or recent list changes
+	$effect(() => {
+		if (ready && worker) {
+			worker.postMessage({
+				type: 'recents',
+				payload: $state.snapshot(search.search_recent.value)
+			});
+		}
+	});
+
+	// Sync overlay state with searching state
+	$effect(() => {
+		tick().then(() => {
+			search.overlay_open = search.searching;
+		});
+	});
+
+	// Show/hide modal based on searching state
+	$effect(() => {
+		if (search.searching && modal) {
+			search.overlay_open = true;
+			modal.showModal();
+		}
 	});
 
 	afterNavigate(() => {
@@ -58,56 +95,30 @@
 	});
 
 	async function close() {
-		modal.close();
-		if ($searching) {
-			$searching = false;
+		if (modal) {
+			modal.close();
 		}
-
-		search = null;
+		if (search.searching) {
+			search.searching = false;
+		}
+		local_search = null;
 	}
 
 	function navigate(href: string) {
-		$search_recent = [href, ...$search_recent.filter((x) => x !== href)];
+		// search.search_recent.value = (recent: string[]) => [href, ...recent.filter((x) => x !== href)];
 		close();
 	}
 
-	run(() => {
-		if (ready) {
-			const id = uid++;
-			pending.add(id);
-			worker.postMessage({ type: 'query', id, payload: $search_query });
-		}
-	});
-
-	run(() => {
-		if (ready) {
-			worker.postMessage({ type: 'recents', payload: $state.snapshot($search_recent) });
-		}
-	});
-
-	run(() => {
-		tick().then(() => ($overlay_open = $searching));
-	});
-
-	run(() => {
-		if ($searching) {
-			if (modal) {
-				$overlay_open = true;
-				modal.showModal();
-			}
-		}
-	});
-
 	function change_color(e: MouseEvent) {
 		if (e.target instanceof Element) {
-			let computed = window.getComputedStyle(e.target).backgroundColor;
+			const computed = window.getComputedStyle(e.target).backgroundColor;
 			active_color = computed;
 		}
 	}
 
 	function search_keydown(e: KeyboardEvent) {
 		if (e.key === 'Enter' && !e.isComposing) {
-			const anchor: HTMLAnchorElement | null = modal.querySelector('a[data-has-node]');
+			const anchor: HTMLAnchorElement | null = modal?.querySelector('a[data-has-node]');
 			if (anchor) {
 				anchor.click();
 			}
@@ -119,12 +130,12 @@
 	onkeydown={(e) => {
 		if (e.key === 'k' && (navigator.platform === 'MacIntel' ? e.metaKey : e.ctrlKey)) {
 			e.preventDefault();
-			$search_query = '';
+			search.search_query = '';
 
-			if ($searching) {
+			if (search.searching) {
 				close();
 			} else {
-				$searching = true;
+				search.searching = true;
 			}
 		}
 
@@ -149,9 +160,9 @@
 				bind:this={search_input}
 				onkeydown={search_keydown}
 				oninput={(e) => {
-					$search_query = e.currentTarget.value;
+					search.search_query = e.currentTarget.value;
 				}}
-				value={$search_query}
+				value={search.search_query}
 				placeholder="Search"
 				aria-describedby="search-description"
 				aria-label="Search"
@@ -162,14 +173,14 @@
 			<button class="close" onclick={close} type="submit">×</button>
 		</header>
 		<div class="results">
-			{#if search?.query}
+			{#if local_search?.query}
 				<div transition:fade={{ duration: 300 }}>
 					<SearchResults
-						results={search.results}
-						query={search.query}
-						on:select={(e) => {
+						results={local_search.results}
+						query={local_search.query}
+						onselect={(href) => {
 							close();
-							navigate(e.detail.href);
+							navigate(href);
 						}}
 					/>
 				</div>
@@ -203,13 +214,14 @@
 							Recent searches
 						</h2>
 						{#if !recent_searches.length}
-							<p>No recent searches</p>{/if}
+							<p>No recent searches</p>
+						{/if}
 
 						{#if recent_searches.length}
 							<SearchResultList
 								results={recent_searches}
 								recent_searches={true}
-								query={search?.query || ''}
+								query={local_search?.query || ''}
 								on:select={(e) => {
 									close();
 									navigate(e.detail.href);

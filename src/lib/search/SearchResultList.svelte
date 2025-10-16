@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { preventDefault } from 'svelte/legacy';
-
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import { search_recent } from '$state/search';
-	import { createEventDispatcher } from 'svelte';
+	import { search } from '$state/search.svelte';
+
 	import type { Tree, Block } from './types';
 	import type { Show } from '@prisma/client';
 
@@ -12,11 +10,10 @@
 		results: (Block & Show)[] | Tree[];
 		recent_searches?: boolean;
 		query: string;
+		onselect: (href: string) => void;
 	}
 
-	let { results, recent_searches = false, query }: Props = $props();
-
-	const dispatch = createEventDispatcher();
+	let { results, recent_searches = false, query, onselect }: Props = $props();
 
 	function escape(text: string) {
 		return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -58,14 +55,20 @@
 	{#each results as result (result.href)}
 		<li>
 			<!-- Show data not available in recent searches -->
-			<button onclick={preventDefault(() => play_show(result))} class="play-button">
+			<button
+				onclick={(e) => {
+					e.preventDefault();
+					play_show(result);
+				}}
+				class="play-button"
+			>
 				<Icon name="play" />
 			</button>
 
 			<a
 				data-sveltekit-preload-data
 				href={result.href}
-				onclick={() => dispatch('select', { href: result.href })}
+				onclick={() => onselect(result.href)}
 				data-has-node={is_tree(result) ? true : undefined}
 			>
 				<strong class="wrap">
@@ -82,7 +85,9 @@
 					aria-label="Delete"
 					class="button-reset remove-from-recent"
 					onclick={(e) => {
-						$search_recent = $search_recent.filter((href) => href !== result.href);
+						search.search_recent.value = search.search_recent.value.filter(
+							(href) => href !== result.href
+						);
 						e.stopPropagation();
 						e.preventDefault();
 					}}
