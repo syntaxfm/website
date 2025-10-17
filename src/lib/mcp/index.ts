@@ -11,6 +11,7 @@ const server = new McpServer(
 	{
 		description: 'MCP server to access Syntax episodes and transcripts',
 		name: 'Syntax MCP Server',
+		websiteUrl: 'https://syntax.fm',
 		version: '0.1.0',
 		icons
 	},
