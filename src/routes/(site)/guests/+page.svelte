@@ -1,12 +1,10 @@
 <script lang="ts">
 	import get_show_path from '$/utilities/slug.js';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import { getAllGuests } from '../guest/guests.remote';
 
-	let { data } = $props();
-	let guests: any[] = $state([]);
-	$effect(() => {
-		({ guests } = data);
-	});
+	const all_guests = await getAllGuests();
+	let guests: typeof all_guests = $state(all_guests);
 
 	function jumble() {
 		let currentIndex = guests.length,
@@ -27,7 +25,7 @@
 
 	function most_recent() {
 		guests = guests.sort((a, b) => {
-			return b.shows[0].Show.number - a.shows[0].Show.number;
+			return b.shows[0].show.number - a.shows[0].show.number;
 		});
 	}
 	let name_size_direction = $state('');
@@ -91,8 +89,8 @@
 						<HostSocialLink host={guest} />
 					</div>
 					<div>
-						{#each guest.shows as { Show }}
-							<a title={Show.title} class="grit" href={get_show_path(Show)}>#{Show.number}</a>
+						{#each guest.shows as { show }}
+							<a title={show.title} class="grit" href={get_show_path(show)}>#{show.number}</a>
 						{/each}
 					</div>
 				</div>
