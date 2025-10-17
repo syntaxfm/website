@@ -117,7 +117,7 @@
 		"svelte-local-storage-store": "^0.6.4",
 		"svelte-turnstile": "^0.8.0",
 		"sveltekit-search-params": "^2.1.2",
-		"tmcp": "^1.14.0",
+		"tmcp": "^1.15.1",
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
 		"waait": "^1.0.5",
@@ -127,5 +127,8 @@
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
+	},
+	"volta": {
+		"node": "22.20.0"
 	}
 }

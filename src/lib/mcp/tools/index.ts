@@ -2,12 +2,14 @@ import z from 'zod';
 import type { SyntaxMCP } from '../index.js';
 import { prisma_client } from '$/server/prisma-client.js';
 import { transcript_to_string } from '../utils.js';
+import { icons } from '../icons/index.js';
 
 export function setup_tools(server: SyntaxMCP) {
 	server.tool(
 		{
 			name: 'list_episodes',
 			description: 'Get a list of all the episodes with relative show notes',
+			icons,
 			schema: z.object({
 				query: z
 					.string()
@@ -86,6 +88,7 @@ export function setup_tools(server: SyntaxMCP) {
 		{
 			name: 'get_episode',
 			description: 'Get information about a specific episode by its number',
+			icons,
 			schema: z.object({
 				show_number: z
 					.number()
@@ -149,6 +152,7 @@ export function setup_tools(server: SyntaxMCP) {
 		{
 			name: 'get_transcript',
 			description: 'Get the transcript for a specific show number',
+			icons,
 			schema: z.object({
 				show_number: z
 					.number()

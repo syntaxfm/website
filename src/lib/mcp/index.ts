@@ -1,6 +1,6 @@
 import { McpServer } from 'tmcp';
 import { ZodV3JsonSchemaAdapter } from '@tmcp/adapter-zod-v3';
-import { z } from 'zod';
+import { icons } from './icons/index.js';
 import { HttpTransport } from '@tmcp/transport-http';
 import { setup_tools } from './tools';
 import { setup_resources } from './resources';
@@ -11,7 +11,8 @@ const server = new McpServer(
 	{
 		description: 'MCP server to access Syntax episodes and transcripts',
 		name: 'Syntax MCP Server',
-		version: '0.1.0'
+		version: '0.1.0',
+		icons
 	},
 	{
 		adapter: new ZodV3JsonSchemaAdapter(),

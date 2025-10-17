@@ -1,6 +1,7 @@
 import { prisma_client } from '$/server/prisma-client.js';
 import type { SyntaxMCP } from '../index.js';
 import { transcript_to_string } from '../utils.js';
+import { icons } from '../icons/index.js';
 
 export function setup_resources(server: SyntaxMCP) {
 	server.template(
@@ -9,6 +10,7 @@ export function setup_resources(server: SyntaxMCP) {
 			description: 'Get all info about a specific show given its slug',
 			name: 'show_info',
 			title: 'Show Info',
+			icons,
 			async list() {
 				const slugs = await prisma_client.show.findMany({
 					select: {
