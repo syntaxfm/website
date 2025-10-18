@@ -29,5 +29,6 @@ setup_tools(server);
 setup_resources(server);
 
 export const transport = new HttpTransport(server, {
-	cors: true
+	cors: true,
+	path: '/mcp'
 });

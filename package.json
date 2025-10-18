@@ -86,7 +86,7 @@
 		"@svelte-put/shortcut": "^3.2.0",
 		"@sveltejs/adapter-vercel": "^5.7.2",
 		"@tmcp/adapter-zod-v3": "^0.2.1",
-		"@tmcp/transport-http": "^0.6.3",
+		"@tmcp/transport-http": "^0.7.0",
 		"@types/core-js": "^2.5.8",
 		"@upstash/redis": "^1.35.1",
 		"chroma-js": "^2.6.0",
