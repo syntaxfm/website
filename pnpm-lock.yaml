@@ -46,10 +46,10 @@ importers:
         version: 5.7.2(@sveltejs/kit@2.5.27(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(rollup@4.44.2)
       '@tmcp/adapter-zod-v3':
         specifier: ^0.2.1
-        version: 0.2.1(tmcp@1.15.1(typescript@5.8.3))(zod@3.25.75)
+        version: 0.2.1(tmcp@1.16.1(typescript@5.8.3))(zod@3.25.75)
       '@tmcp/transport-http':
-        specifier: ^0.7.0
-        version: 0.7.0(tmcp@1.15.1(typescript@5.8.3))
+        specifier: ^0.8.0
+        version: 0.8.0(tmcp@1.16.1(typescript@5.8.3))
       '@types/core-js':
         specifier: ^2.5.8
         version: 2.5.8
@@ -141,8 +141,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@sveltejs/kit@2.5.27(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0)))(svelte@5.35.3)(vite@5.4.19(@types/node@22.16.0))
       tmcp:
-        specifier: ^1.15.1
-        version: 1.15.1(typescript@5.8.3)
+        specifier: ^1.16.1
+        version: 1.16.1(typescript@5.8.3)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.16.0)(typescript@5.8.3)
@@ -1708,13 +1708,19 @@ packages:
       tmcp: ^1.10.2
       zod: ^3.0.0
 
-  '@tmcp/session-manager@0.1.2':
-    resolution: {integrity: sha512-hNkEeMt7/CdD8JdjPXMlIv5OMPTp5LnBqeo1Tb/AXcm31DpgwlNbf4voJ3CeWxWAZPPZ/MgHZ682TtgGhsvXiw==}
-
-  '@tmcp/transport-http@0.7.0':
-    resolution: {integrity: sha512-JvLvi2ZM3xaBIZyxy6ssGtzlhL/5JvOkjWWymxkLi84vMK44pM5zCQVN1KXAfQqHbbDlYNR/BW39cd/eP3hylA==}
+  '@tmcp/session-manager@0.2.0':
+    resolution: {integrity: sha512-/MjEFFvnvrV3DbnwEAXMBKhIFmm7z81EgazBtPhKP9i5pe37/iDkYHOa+SD6aaqT3V7gACQ1nmqoJH3MdrC7gQ==}
     peerDependencies:
-      tmcp: ^1.15.1
+      tmcp: ^1.16.0
+
+  '@tmcp/transport-http@0.8.0':
+    resolution: {integrity: sha512-XkIFDIDr8zzQhJiwI+6He0pIGmEg0SAwHdsv914UtL0zqKuUfFvFLLARkryB95Rhp1ib4nVWAgLcV1FtdWGzIw==}
+    peerDependencies:
+      '@tmcp/auth': ^0.3.3
+      tmcp: ^1.16.0
+    peerDependenciesMeta:
+      '@tmcp/auth':
+        optional: true
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -4503,8 +4509,8 @@ packages:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
     engines: {node: '>=14.0.0'}
 
-  tmcp@1.15.1:
-    resolution: {integrity: sha512-Mn2FZIcN6Vj/pJYda/Zv1t5Iv0vJIQDi+BRpcpBn9gNwID5bNtgMFOj+1LH3rkOJOTz9R78dIXSsJxDN5Vy90g==}
+  tmcp@1.16.1:
+    resolution: {integrity: sha512-pmqdFMfYi8e57p8bzpIkEtTt6GfAXGpub8rwySgo1yEEQogTpGdXFjGbISeS0SKrYN/MnIsHN6nj8gPjmAc+EQ==}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -6385,21 +6391,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tmcp/adapter-zod-v3@0.2.1(tmcp@1.15.1(typescript@5.8.3))(zod@3.25.75)':
+  '@tmcp/adapter-zod-v3@0.2.1(tmcp@1.16.1(typescript@5.8.3))(zod@3.25.75)':
     dependencies:
       '@standard-schema/spec': 1.0.0
       '@types/json-schema': 7.0.15
-      tmcp: 1.15.1(typescript@5.8.3)
+      tmcp: 1.16.1(typescript@5.8.3)
       zod: 3.25.75
       zod-to-json-schema: 3.24.6(zod@3.25.75)
 
-  '@tmcp/session-manager@0.1.2': {}
-
-  '@tmcp/transport-http@0.7.0(tmcp@1.15.1(typescript@5.8.3))':
+  '@tmcp/session-manager@0.2.0(tmcp@1.16.1(typescript@5.8.3))':
     dependencies:
-      '@tmcp/session-manager': 0.1.2
+      tmcp: 1.16.1(typescript@5.8.3)
+
+  '@tmcp/transport-http@0.8.0(tmcp@1.16.1(typescript@5.8.3))':
+    dependencies:
+      '@tmcp/session-manager': 0.2.0(tmcp@1.16.1(typescript@5.8.3))
       esm-env: 1.2.2
-      tmcp: 1.15.1(typescript@5.8.3)
+      tmcp: 1.16.1(typescript@5.8.3)
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -9579,7 +9587,7 @@ snapshots:
 
   tinyspy@3.0.2: {}
 
-  tmcp@1.15.1(typescript@5.8.3):
+  tmcp@1.16.1(typescript@5.8.3):
     dependencies:
       '@standard-schema/spec': 1.0.0
       json-rpc-2.0: 1.7.1
