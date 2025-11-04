@@ -1,7 +1,7 @@
 ---
 number: 953
 title: Why v0 creator left Vercel to fix GitHub (GOAT Jared Palmer)
-date: 1762772400000
+date: 1762776000000
 url: https://traffic.megaphone.fm/FSI4441540097.mp3
 youtube_url: https://www.youtube.com/watch?v=krMJQF4CJ9c
 guest:
