@@ -1,32 +1,14 @@
 <script lang="ts">
-	import type { Show } from '@prisma/client';
-	import FeedItemShow from './FeedItemShow.svelte';
+	import type { AllPossibleContent } from '$server/db/types';
+	import FeedItemPodcast from './FeedItemPodcast.svelte';
+	import FeedItemVideo from './FeedItemVideo.svelte';
 
-	type Props = {
-		show: Show;
-	};
-
-	const { show }: Props = $props();
+	const { content }: { content: AllPossibleContent } = $props();
 </script>
 
 <!-- TODO make this if item type === show, swag social ect -->
-{#if show}
-	<FeedItemShow {show} />
-{/if}
-
-<style>
-	img {
-		border-radius: 20px;
-		border: solid 12px var(--c-primary);
-		width: 100%;
-	}
-
-	.number {
-		font-size: 160px;
-		color: var(--c-primary);
-		margin: 0;
-		line-height: 0;
-		display: block;
-		text-align: right;
-	}
-</style>
+{#if content.type === 'PODCAST'}
+	<FeedItemPodcast show={content.show} />
+{:else if content.type === 'VIDEO'}
+	<FeedItemVideo video={content.video} />
+{:else if content.type === 'ARTICLE'}{/if}

@@ -12,6 +12,37 @@
 		font-size: var(--fs-body);
 	}
 
+	.fs-1 {
+		font-size: var(--fs-1);
+	}
+
+	.fs-2 {
+		font-size: var(--fs-2);
+	}
+
+	.fs-3 {
+		font-size: var(--fs-3);
+	}
+
+	.fs-4 {
+		font-size: var(--fs-4);
+	}
+	.fs-5 {
+		font-size: var(--fs-5);
+	}
+	.fs-6 {
+		font-size: var(--fs-6);
+	}
+	.fs-7 {
+		font-size: var(--fs-7);
+	}
+	.fs-8 {
+		font-size: var(--fs-8);
+	}
+	.fs-9 {
+		font-size: var(--fs-9);
+	}
+
 	/* Font Variation Settings */
 	.fv-100 {
 		font-variation-settings: var(--fv-100);

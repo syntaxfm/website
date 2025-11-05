@@ -1,11 +1,14 @@
 import { createClient } from '@deepgram/sdk';
-import { prisma_client as prisma } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { show } from '$server/db/schema';
+import { eq } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
 import { addFlaggerAudio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
+import { env } from '$env/dynamic/private';
 
-const deepgram_api_key = process.env.DEEPGRAM_SECRET;
+const deepgram_api_key = env.DEEPGRAM_SECRET;
 if (!deepgram_api_key) {
 	console.error('Please set the DEEPGRAM_SECRET environment variable.');
 	process.exit(1);
@@ -14,24 +17,30 @@ if (!deepgram_api_key) {
 export const deepgram_client = createClient(deepgram_api_key);
 
 export async function get_transcript(showNumber: number) {
-	const show = await prisma.show.findUnique({
-		where: { number: showNumber },
-		include: {
-			transcript: true
+	const active_show = await db.query.show.findFirst({
+		where: eq(show.number, showNumber),
+		// By default, {} would select all transcript columns. We only need to know if one exists,
+		// so select just the id to avoid loading unnecessary data.
+		with: {
+			transcript: {
+				columns: {
+					id: true
+				}
+			}
 		}
 	});
 
-	if (!show) {
+	if (!active_show) {
 		error(500, `Show #${showNumber} not found.`);
 	}
-	if (show.transcript) {
+	if (active_show.transcript) {
 		error(
 			409,
 			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
 		);
 	}
-	const show_buffer = await addFlaggerAudio(show);
-	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
+	const show_buffer = await addFlaggerAudio(active_show);
+	console.log(`Fetching transcript for show #${active_show.number} - ${active_show.title}...`);
 
 	try {
 		const transcript = await deepgram_client.listen.prerecorded.transcribeFile(show_buffer, {
@@ -47,12 +56,14 @@ export async function get_transcript(showNumber: number) {
 			keywords
 		});
 
-		console.log(`Transcript for show #${show.number} - ${show.title} fetched.`);
-		await save_transcript_to_db(show, transcript.result?.results.utterances || []);
+		console.log(`Transcript for show #${active_show.number} - ${active_show.title} fetched.`);
+		await save_transcript_to_db(active_show, transcript.result?.results.utterances || []);
 
-		console.log(`Transcript for show #${show.number} - ${show.title} saved.`);
+		console.log(`Transcript for show #${active_show.number} - ${active_show.title} saved.`);
 	} catch (e) {
-		console.log(`Error fetching transcript for show #${show.number} - ${show.title}.`);
+		console.log(
+			`Error fetching transcript for show #${active_show.number} - ${active_show.title}.`
+		);
 		console.log(e);
 	}
 }

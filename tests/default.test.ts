@@ -1,7 +1,5 @@
+import { db } from '$server/db/client';
 import { expect, test } from '@playwright/test';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 test('index page has expected h1', async ({ page }) => {
 	await page.goto('/');
@@ -30,7 +28,7 @@ test('admin action should require login', async ({ request, baseURL }) => {
 	expect(body.status).toBe(302);
 	expect(body.location).toBe('/login');
 
-	const result = await prisma.guest.findMany();
+	const result = await db.query.guests.findMany();
 	expect(result.length).not.toBe(0);
 });
 

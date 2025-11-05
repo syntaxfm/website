@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { preventDefault } from 'svelte/legacy';
-
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
@@ -9,10 +7,10 @@
 	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
-	import type { ShowCard } from '$/server/shows/shows_queries';
+	import type { Show } from '$server/db/types';
 
 	interface Props {
-		show: ShowCard;
+		show: Show;
 		display?: 'list' | 'card' | 'highlight';
 		heading?: string;
 		show_date?: any;
@@ -44,8 +42,8 @@
 	if ((show?.hosts?.length || 0) > 0) {
 		show.hosts?.forEach((host) => {
 			hosts.push({
-				name: host.name || '',
-				github: host.username || ''
+				name: host?.name || '',
+				github: host?.username || ''
 			});
 		});
 	} else {
@@ -65,7 +63,10 @@
 		{#if display === 'list'}
 			<button
 				data-testid="play-show"
-				onclick={preventDefault(() => player.start_show(show))}
+				onclick={(e) => {
+					e.preventDefault();
+					player.start_show(show);
+				}}
 				class="play-button"
 			>
 				<Icon name="play" />
@@ -109,9 +110,9 @@
 			{#if show.aiShowNote?.topics}
 				<Badges>
 					{#each show.aiShowNote.topics
-						.filter((topic) => topic.name.length < 15)
+						.filter((topic) => topic?.name.length < 15)
 						.slice(0, 4) as topic}
-						<Badge>{topic.name.startsWith('#') ? '' : '#'}{topic.name}</Badge>
+						<Badge>{topic?.name.startsWith('#') ? '' : '#'}{topic?.name}</Badge>
 					{/each}
 				</Badges>
 			{/if}
@@ -121,8 +122,8 @@
 					faces={[
 						...hosts,
 						...(show.guests || []).map((guest) => ({
-							name: guest.Guest.name,
-							github: guest.Guest.github || ''
+							name: guest.Guest?.name,
+							github: guest.Guest?.github || ''
 						}))
 					]}
 				/>
@@ -132,8 +133,10 @@
 						<button
 							data-testid="play-show"
 							class:play={display === 'highlight'}
-							onclick={preventDefault(() => player.start_show(show))}
-							><Icon name="play" /> Play #{show.number}</button
+							onclick={(e) => {
+								e.preventDefault();
+								player.start_show(show);
+							}}><Icon name="play" /> Play #{show.number}</button
 						>
 					</div>
 				{/if}

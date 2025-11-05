@@ -36,7 +36,6 @@ Sentry.init({
 	environment: dev ? 'development' : 'production',
 	integrations: [
 		nodeProfilingIntegration,
-		Sentry.prismaIntegration(),
 		Sentry.redisIntegration({ cachePrefixes: ['show:', 'shows:', 'show-og:'] })
 	],
 	_experiments: {
@@ -74,8 +73,8 @@ export const admin: Handle = async function ({ event, resolve }) {
 	return resolve(event);
 };
 
-// This hook is used to pass our prisma instance to each action, load, and endpoint
-export const prisma: Handle = async function ({ event, resolve }) {
+// This hook is used to pass our  instance to each action, load, and endpoint
+export const headers: Handle = async function ({ event, resolve }) {
 	const ip = event.request.headers.get('x-forwarded-for') as string;
 	const country = event.request.headers.get('x-vercel-ip-country') as string;
 	event.locals.session = {
@@ -111,7 +110,7 @@ export const safe_form_data: Handle = async function ({ event, resolve }) {
 // Wraps requests in this sequence of hooks
 export const handle: Handle = sequence(
 	Sentry.sentryHandle(),
-	prisma,
+	headers,
 	auth,
 	admin,
 	safe_form_data,

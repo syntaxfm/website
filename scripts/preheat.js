@@ -1,15 +1,31 @@
 #!/usr/bin/env node
-
 import { promises as fs } from 'fs';
 import { execSync } from 'child_process';
 import { createConnection } from 'mysql2/promise';
 import dotenv from 'dotenv';
 import { expand } from 'dotenv-expand';
 import semver from 'semver';
-import { PrismaClient } from '../src/generated/prisma/index.js';
+import { drizzle } from 'drizzle-orm/mysql2';
+import { mysqlTable, varchar, datetime, int } from 'drizzle-orm/mysql-core';
+import { sql } from 'drizzle-orm';
 
 // Load environment variables
 expand(dotenv.config());
+
+// Define minimal user schema for this script
+// This is just here so that Node won't get mad. We could make this in TS if we want later and run via tsx or something. I just didn't want to add another dep.
+const users = mysqlTable('User', {
+	id: varchar('id', { length: 191 }).primaryKey(),
+	avatar_url: varchar('avatar_url', { length: 255 }),
+	created_at: datetime('created_at').notNull().default(new Date()),
+	email: varchar('email', { length: 191 }),
+	github_id: int('github_id').notNull().unique(),
+	updated_at: datetime('updated_at').notNull(),
+	username: varchar('username', { length: 191 }),
+	theme: varchar('theme', { length: 50 }).notNull().default('system'),
+	name: varchar('name', { length: 191 }),
+	twitter: varchar('twitter', { length: 191 })
+});
 
 async function main() {
 	const args = process.argv.slice(2);
@@ -26,6 +42,7 @@ async function main() {
 		await checkPnpmVersion();
 		await checkAndUpdateEnv();
 		checkDatabaseUrl();
+		await ensureDrizzleMigrationSetup();
 		await createUpdateSchema();
 		await checkShowTableData();
 		console.log('🥘 Website preheated to 450°F (232°C)');
@@ -103,17 +120,84 @@ function checkDatabaseUrl() {
 	console.log('✅ DATABASE_URL Check');
 }
 
-async function createUpdateSchema() {
+async function ensureDrizzleMigrationSetup() {
+	const connection = await createMysqlConnection();
 	try {
-		execSync('pnpm db:push', { stdio: 'inherit' });
-		console.log('✅ Database schema created / updated');
-	} catch {
-		throw new Error('❌ Unable to create / update DB schema');
+		// Check if __drizzle_migrations table exists
+		const [tables] = await connection.execute(`
+			SELECT TABLE_NAME
+			FROM information_schema.TABLES
+			WHERE TABLE_SCHEMA = DATABASE()
+			AND TABLE_NAME = '__drizzle_migrations'
+		`);
+
+		if (tables.length === 0) {
+			// Table doesn't exist, create it
+			console.log('🔧 Setting up Drizzle migrations...');
+			await connection.execute(`
+				CREATE TABLE \`__drizzle_migrations\` (
+					\`id\` SERIAL PRIMARY KEY,
+					\`hash\` text NOT NULL,
+					\`created_at\` bigint
+				)
+			`);
+			console.log('✅ Created __drizzle_migrations table');
+		}
+
+		// Check if initial migration is marked as applied
+		const [migrations] = await connection.execute(`
+			SELECT * FROM \`__drizzle_migrations\`
+			WHERE \`hash\` = '0000_graceful_shaman'
+		`);
+
+		if (migrations.length === 0) {
+			// Mark initial migration as applied (Prisma -> Drizzle transition)
+			console.log('�� Marking initial migration as applied (Prisma → Drizzle transition)...');
+			await connection.execute(`
+				INSERT INTO \`__drizzle_migrations\` (\`hash\`, \`created_at\`)
+				VALUES ('0000_graceful_shaman', UNIX_TIMESTAMP() * 1000)
+			`);
+			console.log('✅ Initial migration marked as applied');
+		} else {
+			console.log('✅ Drizzle migrations');
+		}
+	} catch (error) {
+		throw new Error(`❌ Failed to set up Drizzle migrations: ${error.message}`);
+	} finally {
+		await connection.end();
+	}
+}
+
+async function createUpdateSchema() {
+	const connection = await createMysqlConnection();
+	try {
+		// Check if Shows table exists (main indicator that schema is set up)
+		const [tables] = await connection.execute(`
+			SELECT TABLE_NAME
+			FROM information_schema.TABLES
+			WHERE TABLE_SCHEMA = DATABASE()
+			AND TABLE_NAME = 'Show'
+		`);
+
+		if (tables.length > 0) {
+			console.log('✅ Database schema exists');
+			return;
+		}
+
+		// No schema found - need to restore from production first
+		console.log('❌ No database schema found!');
+		console.log('   Run: node scripts/restore_from_prod.js');
+		process.exit(1);
+	} catch (error) {
+		throw new Error(`❌ Unable to verify DB schema: ${error.message}`);
+	} finally {
+		await connection.end();
 	}
 }
 
 async function createHostUsers() {
-	const prisma = new PrismaClient();
+	const connection = await createMysqlConnection();
+	const db = drizzle(connection);
 
 	try {
 		const hosts = [
@@ -144,42 +228,59 @@ async function createHostUsers() {
 		];
 
 		for (const host of hosts) {
-			await prisma.user.upsert({
-				where: { github_id: host.github_id },
-				update: {
-					username: host.username,
-					name: host.name,
-					avatar_url: host.avatar_url,
-					email: host.email,
-					twitter: host.twitter
-				},
-				create: {
+			await db
+				.insert(users)
+				.values({
 					id: `user_${host.username}`,
 					username: host.username,
 					name: host.name,
 					github_id: host.github_id,
 					avatar_url: host.avatar_url,
 					email: host.email,
-					twitter: host.twitter
-				}
-			});
+					twitter: host.twitter,
+					updated_at: new Date()
+				})
+				.onDuplicateKeyUpdate({
+					set: {
+						username: host.username,
+						name: host.name,
+						avatar_url: host.avatar_url,
+						email: host.email,
+						twitter: host.twitter,
+						updated_at: new Date()
+					}
+				});
 		}
 		console.log('✅ Host users created/updated');
 	} catch (error) {
 		console.error('❌ Error creating host users:', error);
 	} finally {
-		await prisma.$disconnect();
+		await connection.end();
 	}
 }
 
 async function checkShowTableData() {
 	const connection = await createMysqlConnection();
 	try {
-		execSync('pnpm i-changed-the-schema', { stdio: 'inherit' });
-		console.log('✅ Schema updated');
+		// Check both possible table names
+		let count = 0;
+		try {
+			const [showsRows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
+			count = showsRows[0].count;
+			console.log(`[DEBUG] Show table count: ${count}`);
+		} catch (e) {
+			console.log(`[DEBUG] Show table query failed:`, e.message);
+		}
 
-		const [rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
-		const count = rows[0].count;
+		if (count === 0) {
+			try {
+				const [showRows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
+				count = showRows[0].count;
+				console.log(`[DEBUG] Show table count: ${count}`);
+			} catch (e) {
+				console.log(`[DEBUG] Show table query failed:`, e.message);
+			}
+		}
 
 		if (count > 0) {
 			console.log('✅ Data Check');
@@ -198,17 +299,30 @@ async function checkShowTableData() {
 
 async function seedDatabase() {
 	const seedFilePath = './seed/seed.sql';
-	const seedContent = await fs.readFile(seedFilePath, 'utf8');
-	const connection = await createMysqlConnection();
 	try {
-		await connection.query(seedContent);
-	} finally {
-		await connection.end();
+		const seedContent = await fs.readFile(seedFilePath, 'utf8');
+		const connection = await createMysqlConnection();
+		try {
+			// Disable foreign key checks for seeding
+			await connection.execute('SET FOREIGN_KEY_CHECKS = 0');
+			await connection.query(seedContent);
+			await connection.execute('SET FOREIGN_KEY_CHECKS = 1');
+		} finally {
+			await connection.end();
+		}
+	} catch (error) {
+		if (error.code === 'ENOENT') {
+			console.log('⚠️  No seed file found at ./seed/seed.sql - skipping seed');
+		} else if (error.code === 'ER_DUP_ENTRY') {
+			console.log('⚠️  Some seed data already exists - skipping');
+		} else {
+			throw error;
+		}
 	}
 }
 
 async function createMysqlConnection() {
-	const url = new URL(process.env.DATABASE_URL);
+	const url = new URL(process?.env?.DATABASE_URL);
 	return await createConnection({
 		host: url.hostname,
 		port: parseInt(url.port),

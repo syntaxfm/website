@@ -5,9 +5,9 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
-	import { get_latest_podcast } from '$lib/shows/shows.remote';
+	import { get_latest_podcast } from '$server/shows/shows.remote';
 
-	const show = await get_latest_podcast();
+	const show = $derived(await get_latest_podcast());
 	player.initialize(show);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
@@ -20,10 +20,10 @@
 			class="minimize"
 			onclick={player.toggle_minimize}
 			aria-label={`${mix_max_verb} Player`}
-			title={`${mix_max_verb} Player`}><Icon name="minimize" /></button
+			title={`${mix_max_verb} Player`}><Icon name="down" /></button
 		>
 		<button class="close" onclick={player.close} aria-label="Close Player" title="Close Player"
-			>×</button
+			><Icon name="close" /></button
 		>
 	</div>
 
@@ -67,30 +67,20 @@
 						<div class="media-controls">
 							<media-seek-backward-button>
 								<span slot="icon">
-									<Icon name="back-30" />
+									<Icon name="rewind" />
 								</span>
 							</media-seek-backward-button>
 							<media-play-button>
-								<span
-									slot="play"
-									style="
-
---icon_size: 26px;"
-								>
-									<Icon name="play" />
+								<span slot="play" style="--icon_size: 26px;">
+									<Icon name="play" width={34} height={34} />
 								</span>
-								<span
-									slot="pause"
-									style="
-
---icon_size: 26px;"
-								>
+								<span slot="pause" style="--icon_size: 26px;">
 									<Icon name="pause" />
 								</span>
 							</media-play-button>
 							<media-seek-forward-button>
 								<span slot="icon">
-									<Icon name="forward-30" />
+									<Icon name="forwards" />
 								</span>
 							</media-seek-forward-button>
 						</div>
@@ -191,6 +181,7 @@
 
 	a {
 		text-decoration: none;
+		color: var(--c-white);
 	}
 
 	.minimize :global(svg) {
@@ -204,14 +195,14 @@
 	}
 
 	.player {
-		--player-bg: var(--c-bg);
+		--player-bg: var(--c-black);
 
 		container: player / inline-size;
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		color: var(--c-fg);
+		color: var(--c-white);
 		background-color: var(--player-bg, var(--c-black));
 		background-image: var(--c-bg-grit-dark);
 		background-size: 400px;

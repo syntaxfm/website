@@ -1,4 +1,4 @@
-import type { Show } from '@prisma/client';
+import type { Show } from '$server/db/schema';
 
 export async function check_for_cached_mp3(path: string) {
 	if (typeof caches !== 'undefined') {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import get_show_path from '$/utilities/slug.js';
+	import get_show_path from '$utilities/slug.js';
 	let {
 		prev_show,
 		next_show

@@ -2,23 +2,33 @@
 	import Icon, { type IconName } from '../Icon.svelte';
 
 	interface Props {
-		label: string;
 		checked: boolean;
-		on_icon: IconName;
-		off_icon: IconName;
+		on_icon: IconName[number];
+		off_icon: IconName[number];
+		onchange?: (checked: boolean) => void;
 	}
 
-	let { checked = $bindable(true), on_icon, off_icon }: Props = $props();
+	let { checked = $bindable(true), on_icon, off_icon, onchange }: Props = $props();
 </script>
 
 <div class="toggle">
 	<div class="background" style={`translate: ${checked ? '0' : '100%'} 0px;`}></div>
-	<button class={checked ? 'active' : ''} onclick={() => (checked = true)} data-testid="toggle-on">
+	<button
+		class={checked ? 'active' : ''}
+		onclick={() => {
+			checked = true;
+			onchange?.(true);
+		}}
+		data-testid="toggle-on"
+	>
 		<Icon width={16} height={16} name={on_icon} />
 	</button>
 	<button
 		class={!checked ? 'active' : ''}
-		onclick={() => (checked = false)}
+		onclick={() => {
+			checked = false;
+			onchange?.(false);
+		}}
 		data-testid="toggle-off"
 	>
 		<Icon width={16} height={16} name={off_icon} />
@@ -50,12 +60,16 @@
 			border-radius: 50%;
 			padding: 0;
 			width: var(--size);
+			color: var(--fg);
 			height: var(--size);
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			position: relative;
 			z-index: 1;
+			&.active {
+				color: var(--c-black);
+			}
 		}
 	}
 </style>

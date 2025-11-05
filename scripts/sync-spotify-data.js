@@ -7,6 +7,8 @@
  * and tracks episodes that could not be matched.
  */
 
+// TODO update to prisma
+
 import { PrismaClient } from '@prisma/client';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';

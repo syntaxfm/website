@@ -1,14 +1,14 @@
 <script lang="ts">
 	import '$/routes/(site)/style.css';
 	import { format } from 'date-fns';
-	import Icon from '$/lib/Icon.svelte';
-	import ListenLinks from '$/lib/ListenLinks.svelte';
-	import AlbumArt from '$/lib/player/AlbumArt.svelte';
-	import ShareButton from '$/lib/share/HairButton.svelte';
+	import Icon from '$lib/Icon.svelte';
+	import ListenLinks from '$lib/ListenLinks.svelte';
+	import AlbumArt from '$lib/player/AlbumArt.svelte';
+	import ShareButton from '$lib/share/HairButton.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import ShareActions from '$/lib/share/ShareActions.svelte';
+	import ShareActions from '$lib/share/ShareActions.svelte';
 	import { fade } from 'svelte/transition';
-	import { episode_share_status } from '$/state/player.js';
+	import { episode_share_status } from '$state/player.js';
 	import { browser } from '$app/environment';
 
 	let { data } = $props();

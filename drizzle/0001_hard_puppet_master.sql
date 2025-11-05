@@ -1,0 +1,1 @@
+ALTER TABLE `Playlist` MODIFY COLUMN `unlisted` tinyint;

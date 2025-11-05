@@ -5,8 +5,9 @@ import { left_pad } from '$utilities/left_pad';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
-import { prisma_client as prisma } from '$/server/prisma-client';
-import { cache } from './cache/cache';
+import { db } from '$server/db/client';
+import { shows, guests, showGuests, socialLinks, users, showHosts } from '$server/db/schema';
+import { eq, inArray, and } from 'drizzle-orm';
 
 interface FrontMatterGuest {
 	name: string;
@@ -51,16 +52,14 @@ export async function import_or_update_all_changed_shows() {
 				md_file_path
 			);
 
-			const existing_show = await prisma.show.findUnique({
-				where: { number: number }
+			const existing_show = await db.query.shows.findFirst({
+				where: eq(shows.number, number)
 			});
 
 			// If show doesn't exist or the hash has changed. Refresh
 			if (!existing_show || existing_show.hash !== hash) {
 				console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
-				// Remove cache of updated show
-				cache.shows.drop_show_cache(number);
 				updatedShows.push(number);
 			} else {
 				console.log(`Skipping Show # ${number}`, {
@@ -73,7 +72,6 @@ export async function import_or_update_all_changed_shows() {
 		console.error('❌ Pod Sync Error:', err);
 		error(500, 'Error Importing Shows');
 	}
-	cache.shows.drop_shows_list_cache();
 	console.log('🤖 Pod Sync Complete ✅');
 	return { message: 'Import All Shows', updatedShows };
 }
@@ -104,42 +102,10 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
-		// Prepare the hosts connection if hosts exist in the frontmatter
-		let hostsConnection = {};
-		if (data.hosts && Array.isArray(data.hosts)) {
-			const hostUsers = await prisma.user.findMany({
-				where: {
-					username: {
-						in: data.hosts
-					}
-				}
-			});
-
-			if (hostUsers.length > 0) {
-				hostsConnection = {
-					hosts: {
-						connect: hostUsers.map((user) => ({ id: user.id }))
-					}
-				};
-			}
-		}
-
-		await prisma.show.upsert({
-			where: { id },
-			update: {
-				title: data.title,
-				slug: slug(data.title),
-				date,
-				number,
-				url: data.url,
-				youtube_url: data.youtube_url,
-				show_notes: content,
-				hash: hash,
-				md_file,
-				show_type, // Assign the calculated show_type
-				...hostsConnection
-			},
-			create: {
+		// Upsert the show
+		await db
+			.insert(shows)
+			.values({
 				id,
 				slug: slug(data.title),
 				number,
@@ -150,10 +116,45 @@ export async function parse_and_save_show_notes(
 				show_notes: content,
 				hash: hash,
 				md_file,
-				show_type, // Assign the calculated show_type
-				...hostsConnection
+				show_type,
+				updated_at: new Date()
+			})
+			.onDuplicateKeyUpdate({
+				set: {
+					title: data.title,
+					slug: slug(data.title),
+					date,
+					url: data.url,
+					youtube_url: data.youtube_url,
+					show_notes: content,
+					hash: hash,
+					md_file,
+					show_type,
+					updated_at: new Date()
+				}
+			});
+
+		// Handle hosts connection if they exist in the frontmatter
+		if (data.hosts && Array.isArray(data.hosts)) {
+			const hostUsers = await db.query.users.findMany({
+				where: inArray(users.username, data.hosts)
+			});
+
+			if (hostUsers.length > 0) {
+				// Upsert host connections (ON DUPLICATE KEY UPDATE does nothing since unique constraint exists)
+				await db
+					.insert(showHosts)
+					.values(
+						hostUsers.map((user) => ({
+							A: id,
+							B: user.id
+						}))
+					)
+					.onDuplicateKeyUpdate({
+						set: { A: id }
+					});
 			}
-		});
+		}
 
 		// If data guest
 		if (data?.guest && Array.isArray(data?.guest)) {
@@ -181,61 +182,72 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
 		const { social, name, ...guest_without_socials } = guest;
 		const name_slug = slug(name);
+		const guest_id = `guest_${name_slug}`;
 
-		const guest_record = await prisma.$transaction(async (prisma) => {
-			const existingGuest = await prisma.guest.findUnique({ where: { name_slug } });
-			if (existingGuest) {
-				return await prisma.guest.update({
-					where: { name_slug },
-					data: { ...guest_without_socials, name, name_slug }
-				});
-			} else {
-				return await prisma.guest.create({
-					data: {
-						...guest_without_socials,
-						name_slug,
-						name
-					}
-				});
-			}
-		});
-
-		// now do the same for showGuest
-		await prisma.$transaction(async (prisma) => {
-			const existingShowGuest = await prisma.showGuest.findUnique({
-				where: { showId_guestId: { showId: show_id, guestId: guest_record.id } }
+		// Upsert the guest
+		await db
+			.insert(guests)
+			.values({
+				id: guest_id,
+				name,
+				name_slug,
+				...guest_without_socials
+			})
+			.onDuplicateKeyUpdate({
+				set: {
+					name,
+					...guest_without_socials
+				}
 			});
 
-			if (existingShowGuest) {
-				return; // if the show guest already exists, we do nothing
-			} else {
-				await prisma.showGuest.create({
-					data: { showId: show_id, guestId: guest_record.id }
-				});
-			}
-		});
+		// Upsert the showGuest relationship
+		const showGuest_id = `${show_id}_${guest_id}`;
+		await db
+			.insert(showGuests)
+			.values({
+				id: showGuest_id,
+				showId: show_id,
+				guestId: guest_id
+			})
+			.onDuplicateKeyUpdate({
+				set: {
+					showId: show_id,
+					guestId: guest_id
+				}
+			});
 
 		if (social) {
-			let socialLinks = [];
+			let socialLinksArray = [];
 			// If social is a string, convert it to an array with one element
 			if (typeof social === 'string') {
-				socialLinks = [social];
+				socialLinksArray = [social];
 			} else if (Array.isArray(social)) {
-				socialLinks = social;
+				socialLinksArray = social;
 			} else {
 				console.error('Unexpected data type for social:', typeof social);
 				return;
 			}
-			const socialLink_promises = socialLinks.map((social_link) =>
-				prisma.socialLink.upsert({
-					where: { link_guest_id: { link: social_link, guest_id: guest_record.id } },
-					update: { link: social_link, guest: { connect: { id: guest_record.id } } },
-					create: { link: social_link, guest: { connect: { id: guest_record.id } } }
-				})
-			);
+
+			const socialLink_promises = socialLinksArray.map((social_link) => {
+				const social_link_id = `${guest_id}_${slug(social_link)}`;
+				return db
+					.insert(socialLinks)
+					.values({
+						id: social_link_id,
+						link: social_link,
+						guest_id: guest_id
+					})
+					.onDuplicateKeyUpdate({
+						set: {
+							link: social_link
+						}
+					});
+			});
+
 			await Promise.all(socialLink_promises);
 		}
-		return guest_record;
+
+		return { id: guest_id, name, name_slug };
 	} catch (err) {
 		console.error('Error Importing Guests:', show_id, guest, err);
 	}

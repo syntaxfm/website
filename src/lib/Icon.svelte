@@ -1,34 +1,42 @@
 <script lang="ts" module>
 	export const icon_names = [
-		'mail-send',
+		'close',
+		'down',
+		'share',
+		'link-out',
+		'rewind',
+		'forwards',
+		'volume-off',
+		'volume-up',
+		'pause',
+		'play',
+		'search',
 		'list',
 		'grid',
-		'twitter',
-		'spotify',
-		'applepod',
-		'calendar',
-		'link',
-		'mute',
-		'tshirt',
-		'youtube',
-		'instagram',
+		'send',
+		'download',
+		'bluesky',
 		'discord',
 		'github',
+		'twitter',
+		'instagram',
+		'linkedin',
 		'tiktok',
-		'search'
+		'threads'
 	] as const;
-	export type IconName = (typeof icon_names)[number];
+	export type IconName = typeof icon_names;
 </script>
 
 <script lang="ts">
 	import { capitalize } from '$utilities/capitalize';
 
 	interface Props {
-		name: IconName;
+		name: IconName[number];
 		title?: string;
 		aria_hidden?: boolean;
 		height?: number;
 		width?: number;
+		weight?: number;
 	}
 
 	let {
@@ -36,11 +44,16 @@
 		title = $bindable(''),
 		aria_hidden = true,
 		height = 16,
-		width = 16
+		width = 16,
+		weight = 2
 	}: Props = $props();
 	if (!title) title = capitalize(name);
 </script>
 
-<svg style="height: {height}px; width: {width}px;" aria-hidden={aria_hidden}>
-	<use xlink:href="/__spritemap#{name}"></use>
+<svg
+	class="icon"
+	style="height: {height}px; width: {width}px; stroke-width: {weight}px;"
+	aria-hidden={aria_hidden}
+>
+	<use href="#icon-{name}" />
 </svg>

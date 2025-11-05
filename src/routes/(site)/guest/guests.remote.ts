@@ -1,25 +1,18 @@
 import * as v from 'valibot';
-
-import { prisma_client } from '$/server/prisma-client';
-import { get_show_card_query } from '$/server/shows/shows_queries';
+import { with_show_card_show } from '$server/shows/shows_queries';
 import { query } from '$app/server';
-import { db } from '$/db/client';
+import { db } from '$server/db/client';
+import { guest } from '$server/db/schema';
+import { eq } from 'drizzle-orm';
 
 export const getGuest = query(v.string(), async (name_slug) => {
-	const show_card_query = get_show_card_query();
-	return prisma_client.guest.findUnique({
-		where: {
-			name_slug
-		},
-		include: {
-			shows: {
-				orderBy: {
-					showId: 'desc'
-				},
-				select: {
-					Show: {
-						...show_card_query
-					}
+	return db.query.guest.findFirst({
+		where: eq(guest.name_slug, name_slug),
+		with: {
+			show: {
+				orderBy: (showGuest, { desc }) => [desc(showGuest.showId)],
+				with: {
+					show: with_show_card_show
 				}
 			}
 		}
@@ -27,7 +20,7 @@ export const getGuest = query(v.string(), async (name_slug) => {
 });
 
 export const getAllGuests = query(async () => {
-	const guests = await db.query.guests.findMany({
+	const guests = await db.query.guest.findMany({
 		with: {
 			shows: {
 				with: {

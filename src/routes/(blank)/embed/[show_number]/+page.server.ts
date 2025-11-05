@@ -1,4 +1,4 @@
-import { cache } from '$/server/cache/cache';
+import { cache } from '$server/cache/cache';
 import { error } from '@sveltejs/kit';
 
 export const load = async function ({ params, locals }) {

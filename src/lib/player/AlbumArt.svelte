@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { PUBLIC_URL } from '$env/static/public';
-	import type { Show } from '@prisma/client';
 	import Album from './Album.svelte';
-	import { player } from '$/state/player';
+	import { player } from '$state/player';
+	import type { Show } from '$server/db/schema';
 
 	interface Props {
 		is_link?: boolean;

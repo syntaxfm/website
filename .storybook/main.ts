@@ -9,7 +9,7 @@ const config: StorybookConfig = {
 		options: {}
 	},
 	viteFinal: async (config) => {
-		config.plugins.push(VitePluginSvgSpritemap('./src/icons/*.svg'));
+		// config.plugins.push(VitePluginSvgSpritemap('./src/icons/*.svg'));
 		return config;
 	}
 };

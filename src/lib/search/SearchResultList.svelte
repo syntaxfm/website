@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
+	import type { Show } from '$server/db/schema';
 	import { player } from '$state/player';
 	import { search } from '$state/search.svelte';
-
 	import type { Tree, Block } from './types';
-	import type { Show } from '@prisma/client';
 
 	interface Props {
 		results: (Block & Show)[] | Tree[];

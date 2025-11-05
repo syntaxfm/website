@@ -9,7 +9,7 @@
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
-	import type { Show } from '@prisma/client';
+	import type { Show } from '$server/db/schema';
 
 	let search_input: HTMLInputElement = $state(null!);
 	let modal: HTMLDialogElement = $state(null!);
@@ -233,10 +233,7 @@
 			{/if}
 		</div>
 		<footer role="contentinfo">
-			<p>
-				<!-- If you came into the source to look at what vibes is, it's this code -->
-				Search powered by vibes.
-			</p>
+			<p>Search powered by JavaScript.</p>
 		</footer>
 	</section>
 </dialog>

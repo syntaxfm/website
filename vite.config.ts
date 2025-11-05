@@ -48,17 +48,6 @@ export default defineConfig(({ mode }) => {
 				}
 			}
 		},
-		ssr: {
-			external: ['@sentry/profiling-node']
-		},
-		esbuild: {
-			exclude: '@sentry/profiling-node'
-		},
-		resolve: {
-			alias: {
-				'.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js'
-			}
-		},
 		define: {
 			__VER__: JSON.stringify(env.npm_package_version)
 		}

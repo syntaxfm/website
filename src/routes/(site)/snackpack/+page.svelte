@@ -1,40 +1,27 @@
 <script lang="ts">
-	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
-	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
-	import { format } from 'date-fns';
-	let { data } = $props();
+	import { get_newsletter_archive } from '$lib/newsletter/newsletter.remote';
+	import NewsletterArchive from '$lib/newsletter/NewsletterArchive.svelte';
+	import NewsletterBanner from '$lib/newsletter/NewsletterBanner.svelte';
+
+	let { issues, count } = await get_newsletter_archive();
 </script>
 
-<main>
-	<div>
-		<h1 class="h3" id="newsletter-form-label">Syntax Snack Pack</h1>
+<div>
+	<NewsletterBanner {count} />
 
-		<p class="center">
-			Wanna be one of the <strong>{data.count}</strong> coolest people in the world?
+	<div>
+		<h2 style="font-size: var(--fs-9)" class="fv-700-i">Past Issues</h2>
+		<p class="readable center">
+			Wanna see how good our snackpack is? Looking for something mentioned in the past?
 		</p>
-		<div class="newsletter-logo-container">
-			<NewsletterLogo></NewsletterLogo>
-		</div>
-		<NewsletterForm show_logo={false} />
-		<div class="center">
-			<h2>Past Issues</h2>
-			<p class="readable center">
-				Wanna see how good our snackpack is? Looking for something mentioned in the past?
-			</p>
-			<!-- Loop over data.issues -->
-			{#if !data.issues.length}
-				<p class="error">Oopsie daisy! Unable to load past issues.</p>
-			{/if}
-			<ul>
-				{#each data.issues as issue}
-					<li>
-						<a href="/snackpack/{issue.id}">
-							<small>{format(new Date(issue.published_at), 'MMM dd, yyyy')}</small>
-							<p>{issue.subject}</p>
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</div>
+		<!-- Loop over data.issues -->
+		{#if !issues.length}
+			<p class="error">Oopsie daisy! Unable to load past issues.</p>
+		{/if}
+		<ul class="no-list">
+			{#each issues as issue}
+				<NewsletterArchive title={issue.subject} date={issue.published_at} issue={issue.id} />
+			{/each}
+		</ul>
 	</div>
-</main>
+</div>

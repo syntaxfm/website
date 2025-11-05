@@ -1,3 +1,9 @@
+<script>
+	import Meta from '$lib/meta/Meta.svelte';
+</script>
+
+<Meta title="Ask a Potluck Question" />
+
 <main>
 	<div style:margin-bottom="2rem">
 		<h1 class="h3">Ask a Potluck Question</h1>

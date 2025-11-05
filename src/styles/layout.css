@@ -4,10 +4,17 @@
 		gap: var(--flex-gap, 10px);
 	}
 
+	.split {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--split-gap, 10px);
+	}
+
 	.stack {
 		display: flex;
 		flex-direction: column;
-		gap: var(--stack-gap, 10px);
+		gap: var(--stack-gap, 2rem);
 	}
 
 	.stack-reverse {
@@ -24,13 +31,19 @@
 
 	.layout-sidebar {
 		display: grid;
-		grid-template-columns: 1fr 250px;
-		gap: var(--layout-gap, var(--gap, 2rem));
+		grid-template-columns: 1fr 300px;
+		gap: var(--layout-gap, var(--gap, 4rem));
 		align-items: start;
 	}
 
 	.sticky {
 		position: sticky;
 		top: 0;
+	}
+
+	.layout-main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-inline: var(--layout-padding, var(--padding, 2rem));
 	}
 }

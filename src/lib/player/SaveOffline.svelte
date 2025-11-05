@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Show } from '@prisma/client';
 	import Icon from '../Icon.svelte';
 	import { check_for_cached_mp3 } from '$state/player_offline';
+	import type { Show } from '$server/db/schema';
 
 	interface Props {
 		show: Show;

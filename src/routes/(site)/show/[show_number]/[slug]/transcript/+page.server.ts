@@ -1,20 +1,20 @@
-import { prisma_client } from '$/server/prisma-client';
-import { transcript_with_utterances } from '$server/ai/queries';
+import { db } from '$server/db/client';
 import { get_show_cache_s } from '$utilities/get_show_cache_ms';
-import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async function ({ setHeaders, params, parent }) {
+export const load = async function ({ setHeaders, params, parent }) {
 	const { show } = await parent();
 	const cache_ms = get_show_cache_s(show.date);
 	setHeaders({
-		'cache-control': `public s-maxage=${cache_ms}, stale-while-revalidate=${cache_ms}`
+		'cache-control': `public, s-maxage=${cache_ms}, stale-while-revalidate=${cache_ms}`
 	});
 	const { show_number } = params;
 
 	return {
-		transcript: await prisma_client.transcript.findUnique({
-			where: { show_number: parseInt(show_number) },
-			...transcript_with_utterances
+		transcript: await db.query.transcripts.findFirst({
+			where: (transcripts, { eq }) => eq(transcripts.show_number, parseInt(show_number)),
+			with: {
+				utterances: true
+			}
 		})
 	};
 };

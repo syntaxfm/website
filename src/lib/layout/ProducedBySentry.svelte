@@ -1,5 +1,5 @@
 <script>
-	import Logo from '$/lib/layout/Logo.svelte';
+	import Logo from '$lib/layout/Logo.svelte';
 </script>
 
 <div class="presented stack">

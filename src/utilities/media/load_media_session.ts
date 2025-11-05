@@ -1,7 +1,7 @@
 import coverArt from '$assets/coverart-128.png';
 import coverArt512 from '$assets/coverart-512.png';
 
-import type { Show } from '@prisma/client';
+import type { Show } from '$server/db/schema';
 
 export function load_media_session(show: Show) {
 	if (!('mediaSession' in navigator)) {

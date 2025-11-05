@@ -1,12 +1,13 @@
-import { Prisma } from '@prisma/client';
+import { desc, lte } from 'drizzle-orm';
+import { shows } from '$server/db/schema';
 
-export const shows_api_query = (): Prisma.ShowFindManyArgs => ({
-	orderBy: { number: 'desc' },
-	include: {
+export const shows_api_query = () => ({
+	orderBy: desc(shows.number),
+	with: {
 		guests: {
-			select: {
-				Guest: {
-					select: {
+			with: {
+				guest: {
+					columns: {
 						github: true,
 						name: true
 					}
@@ -14,9 +15,5 @@ export const shows_api_query = (): Prisma.ShowFindManyArgs => ({
 			}
 		}
 	},
-	where: {
-		date: {
-			lte: new Date()
-		}
-	}
+	where: lte(shows.date, new Date())
 });

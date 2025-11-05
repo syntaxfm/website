@@ -1,13 +1,10 @@
 <script lang="ts">
-	import type { Guest } from '@prisma/client';
-	import Host from '$lib/hosts/Host.svelte';
+	import type { Guest, Host as HostType } from '$server/db/types';
+	import Host from './hosts/Host.svelte';
+
 	interface Props {
-		guests?: { Guest: Guest }[];
-		hosts?: {
-		name: string | null;
-		username: string | null;
-		twitter: string | null;
-	}[];
+		guests?: { guest: Guest }[];
+		hosts?: HostType[];
 	}
 
 	let { guests = [], hosts = [] }: Props = $props();
@@ -15,13 +12,13 @@
 
 <div class="guests-and-hosts">
 	{#if guests?.length > 0}
-		{#each guests as { Guest }}
+		{#each guests as { guest }}
 			<Host
 				host={{
-					name: Guest.name,
-					github: Guest?.github,
-					twitter: Guest?.twitter,
-					slug: Guest?.name_slug
+					name: guest.name,
+					github: guest?.github,
+					twitter: guest?.twitter,
+					slug: guest?.name_slug
 				}}
 				guest={true}
 			/>

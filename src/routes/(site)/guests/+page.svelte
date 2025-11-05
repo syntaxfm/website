@@ -1,5 +1,5 @@
 <script lang="ts">
-	import get_show_path from '$/utilities/slug.js';
+	import get_show_path from '$utilities/slug.js';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import { getAllGuests } from '../guest/guests.remote';
 

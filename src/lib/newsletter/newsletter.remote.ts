@@ -1,0 +1,116 @@
+import { query } from '$app/server';
+import { env } from '$env/dynamic/private';
+
+const numberformatter = new Intl.NumberFormat('en-US');
+
+function formatNumber(n: number) {
+	return `${numberformatter.format(n)}`;
+}
+
+export type Broadcast = {
+	id: number;
+	publication_id: string;
+	created_at: string;
+	subject: string;
+	description: string;
+	content: string;
+	public: boolean;
+	published_at: string | null;
+	send_at: string | null;
+	thumbnail_alt: string | null;
+	thumbnail_url: string | null;
+	email_address: string;
+	email_layout_template: string;
+};
+
+export type Pagination = {
+	has_previous_page: boolean;
+	has_next_page: boolean;
+	start_cursor: string;
+	end_cursor: string;
+	per_page: number;
+};
+
+type BroadcastSkinny = Pick<Broadcast, 'id' | 'subject'> & { published_at: string };
+
+type BroadCastResponse = {
+	broadcasts: Broadcast[];
+	pagination: Pagination;
+};
+
+async function getBroadcastsPage(after?: string) {
+	const params = new URLSearchParams();
+	if (after) {
+		params.append('after', after);
+	}
+	const headers = new Headers();
+	headers.append('X-Kit-Api-Key', env.CONVERT_KIT_V4_API_KEY);
+	const response = await fetch(`https://api.convertkit.com/v4/broadcasts?${params.toString()}`, {
+		headers
+	});
+	return response.json() as Promise<BroadCastResponse | undefined>;
+}
+
+async function fetchBroadcastList() {
+	try {
+		const results: BroadcastSkinny[] = [];
+		let current_response: BroadCastResponse | undefined = {
+			broadcasts: [],
+			pagination: {
+				has_previous_page: false,
+				has_next_page: true,
+				start_cursor: '',
+				end_cursor: '',
+				per_page: 50
+			}
+		};
+		const now = new Date();
+		const start = new Date(2022, 0, 1);
+		while (current_response?.pagination.has_next_page) {
+			current_response = await getBroadcastsPage(current_response.pagination.end_cursor);
+			current_response?.broadcasts.forEach(
+				({ id, published_at, created_at, send_at, subject, public: isPublic }) => {
+					const date = new Date(published_at || created_at);
+					const is_published = isPublic && send_at && date >= start && date <= now;
+					const title = subject.toLowerCase();
+					const is_snackpack_issue = title.includes('snack pack') || title.includes('issue #');
+					if (is_published && is_snackpack_issue) {
+						results.push({
+							id,
+							published_at: published_at || created_at,
+							subject
+						});
+					}
+				}
+			);
+		}
+
+		return results.sort(
+			(a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+		);
+	} catch {
+		return [];
+	}
+}
+
+export const get_newsletter_archive = query(async () => {
+	const subs = await fetch(
+		`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`
+	)
+		.then((res) => res.json())
+		.catch(console.error);
+
+	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
+		? await fetchBroadcastList()
+		: [
+				{
+					published_at: new Date().toUTCString(),
+					subject: 'ConvertKit API key not set (this is a fake issue)',
+					id: 1337
+				}
+			];
+	const count =
+		typeof subs?.total_subscribers === 'number' ? formatNumber(subs.total_subscribers) : '';
+
+	return { count, issues };
+});

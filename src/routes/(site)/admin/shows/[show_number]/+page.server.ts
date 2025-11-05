@@ -1,13 +1,15 @@
-import type { AiShowNote } from '@prisma/client';
-import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
-import { cache } from '$/server/cache/cache';
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { shows, aiShowNotes } from '$server/db/schema';
+import { eq } from 'drizzle-orm';
 import { env } from '$env/dynamic/private';
-import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '$/server/megaphone/sync';
+import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '$server/megaphone/sync';
 
-type AiShowNoteUpdate = Pick<AiShowNote, 'title' | 'description'>;
+type AiShowNoteUpdate = {
+	title: string;
+	description: string;
+};
 
 export const actions = {
 	update_ai_show_note: async ({ locals, params }) => {
@@ -20,23 +22,27 @@ export const actions = {
 		}
 
 		const show_number = parseInt(params.show_number);
-		await prisma_client.aiShowNote.update({
-			where: {
-				show_number
-			},
-			data: {
+		await db
+			.update(aiShowNotes)
+			.set({
 				title: data.title,
 				description: data.description
-			}
-		});
-
-		await cache.shows.drop_show_cache(show_number);
+			})
+			.where(eq(aiShowNotes.show_number, show_number));
 
 		return { success: true };
 	},
 	sync_spotify: async ({ params }) => {
 		try {
 			const show_number = parseInt(params.show_number);
+
+			// Validate required environment variables
+			if (!env.MEGAPHONE_API_TOKEN || !env.MEGAPHONE_NETWORK_ID || !env.MEGAPHONE_PODCAST_ID) {
+				return fail(500, {
+					message:
+						'Missing required Megaphone environment variables. Check MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, and MEGAPHONE_PODCAST_ID.'
+				});
+			}
 
 			// Create credentials object
 			const credentials: MegaphoneCredentials = {
@@ -54,30 +60,26 @@ export const actions = {
 					'Spotify sync completed successfully! Check the spotify_id field in the DB dump above.'
 			};
 		} catch (error) {
-			return {
-				success: false,
+			return fail(500, {
 				message: `Error syncing Spotify data: ${error instanceof Error ? error.message : 'Unknown error'}`
-			};
+			});
 		}
 	}
 } satisfies Actions;
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load = async ({ params }) => {
 	return {
-		show: await prisma_client.show.findUnique({
-			where: {
-				number: parseInt(params.show_number)
-			},
-			include: {
+		show: await db.query.show.findFirst({
+			where: eq(shows.number, parseInt(params.show_number)),
+			with: {
 				aiShowNote: {
-					include: {
+					with: {
 						links: true,
 						summary: true,
 						topics: true,
 						tweets: true
 					}
 				},
-				// transcript: transcript_select,
 				guests: true
 			}
 		})

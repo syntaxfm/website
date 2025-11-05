@@ -1,6 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
 import type { UserWithRoles } from '$server/auth/users';
-import type { PrismaClient } from '@prisma/client';
 // Import the relevant types
 
 // for information about these interfaces
@@ -24,7 +23,6 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			prisma: PrismaClient;
 			form_data: Record<string, unknown>;
 			session: {
 				ip: string;

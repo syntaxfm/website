@@ -1,4 +1,4 @@
-import { localStore } from '$/utilities/local_store.svelte';
+import { localStore } from '$utilities/local_store.svelte';
 
 class Search {
 	searching = $state(false);

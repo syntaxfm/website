@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Why is this file called HairButton? https://github.com/syntaxfm/website/issues/1563
-	import { episode_share_status } from '$/state/player';
-	import type { Show } from '@prisma/client';
+	import { episode_share_status } from '$state/player';
+	import type { Show } from '$server/db/schema';
 	import Icon from '../Icon.svelte';
 	interface Props {
 		show: Show;

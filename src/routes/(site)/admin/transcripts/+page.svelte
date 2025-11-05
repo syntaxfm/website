@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
+	import AdminActions from '$lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
 	import type { PageData } from './$types';

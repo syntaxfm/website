@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ShowTable from '$/lib/ShowTable.svelte';
+	import ShowTable from '$lib/ShowTable.svelte';
 	import type { PageData } from './$types';
 
 	interface Props {

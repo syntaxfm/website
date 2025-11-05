@@ -115,7 +115,7 @@
 	--fs-6: 35px;
 	--fs-7: 41px;
 	--fs-8: 50px;
-	--fs-9: 60px;
+	--fs-9: 64px;
 
 	/* Font Variations */
 	--fv-100: 'wght' 100;
@@ -140,6 +140,7 @@
 		-5px 5px 0 var(--c-fg), -10px 10px 0 var(--c-fg), -11px 11px 0 var(--c-fg),
 		-12px 12px 0 var(--c-fg), -13px 13px 0 var(--c-fg), -14px 14px 0 var(--c-fg),
 		-15px 15px 0 var(--c-fg), -20px 20px 0 var(--c-fg);
+
 	--s-light: 0 0 4px rgb(0 0 0 / 0.25);
 	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
@@ -159,6 +160,11 @@
 	--br-xxlarge: 20px;
 	--br-huge: 24px;
 
+	--pad-small: 8px;
+	--pad-medium: 16px;
+	--pad-large: 24px;
+	--pad-xlarge: 32px;
+
 	/* GRIT */
 	--c-bg-grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--c-bg-grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
@@ -167,6 +173,4 @@
 
 	/* Some of these are to appease stylelint */
 	--transition-name: 'null';
-
-
 }

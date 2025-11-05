@@ -1,11 +1,12 @@
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { roles, userRoles } from '$server/db/schema';
+import { eq } from 'drizzle-orm';
+import { randomUUID } from 'crypto';
 
 export async function add_user_to_role(userId: string, roleName: string) {
 	// Find the role by its name
-	const role = await prisma_client.role.findUnique({
-		where: {
-			name: roleName
-		}
+	const role = await db.query.roles.findFirst({
+		where: eq(roles.name, roleName)
 	});
 
 	if (!role) {
@@ -13,20 +14,12 @@ export async function add_user_to_role(userId: string, roleName: string) {
 	}
 
 	// Create a UserRole entry linking the user and the role
-	const userRole = await prisma_client.userRole.create({
-		data: {
-			user: {
-				connect: {
-					id: userId
-				}
-			},
-			role: {
-				connect: {
-					id: role.id
-				}
-			}
-		}
+	const userRoleId = randomUUID();
+	await db.insert(userRoles).values({
+		id: userRoleId,
+		userId: userId,
+		roleId: role.id
 	});
 
-	return userRole;
+	return { id: userRoleId, userId, roleId: role.id };
 }

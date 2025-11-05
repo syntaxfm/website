@@ -1,4 +1,4 @@
-import type { Show } from '@prisma/client';
+import type { Show } from '$server/db/schema';
 
 export interface PlayerState {
 	current_show: null | Show;

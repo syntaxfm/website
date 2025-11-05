@@ -1,5 +1,6 @@
+<!-- TODO update to new look -->
 <script lang="ts">
-	import FacePile from '$/lib/FacePile.svelte';
+	import FacePile from '$lib/FacePile.svelte';
 	import type { LatestShow } from '$server/ai/queries';
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';

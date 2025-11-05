@@ -1,0 +1,90 @@
+{
+  "User": {
+    "lastMigration": "2025-11-04T05:12:33.439Z",
+    "rowCount": 16
+  },
+  "Role": {
+    "lastMigration": "2025-11-04T05:12:33.767Z",
+    "rowCount": 3
+  },
+  "Show": {
+    "lastMigration": "2025-11-04T05:12:36.578Z",
+    "rowCount": 951
+  },
+  "Guest": {
+    "lastMigration": "2025-11-04T05:12:36.945Z",
+    "rowCount": 177
+  },
+  "Video": {
+    "lastMigration": "2025-11-04T05:12:37.383Z",
+    "rowCount": 89
+  },
+  "Playlist": {
+    "lastMigration": "2025-11-04T05:12:37.730Z",
+    "rowCount": 7
+  },
+  "UserSubmission": {
+    "lastMigration": "2025-11-04T05:12:38.262Z",
+    "rowCount": 307
+  },
+  "RemotePlaylist": {
+    "lastMigration": "2025-11-04T05:12:38.607Z",
+    "rowCount": 124
+  },
+  "Session": {
+    "lastMigration": "2025-11-04T05:12:38.949Z",
+    "rowCount": 89
+  },
+  "UserRole": {
+    "lastMigration": "2025-11-04T05:12:39.299Z",
+    "rowCount": 5
+  },
+  "_ShowToUser": {
+    "lastMigration": "2025-11-04T05:12:39.636Z",
+    "rowCount": 37
+  },
+  "AiShowNote": {
+    "lastMigration": "2025-11-04T05:12:40.068Z",
+    "rowCount": 679
+  },
+  "SocialLink": {
+    "lastMigration": "2025-11-04T05:12:40.519Z",
+    "rowCount": 161
+  },
+  "PlaylistOnVideo": {
+    "lastMigration": "2025-11-04T05:12:40.854Z",
+    "rowCount": 110
+  },
+  "ShowVideo": {
+    "lastMigration": "2025-11-04T05:12:41.193Z",
+    "rowCount": 15
+  },
+  "AiSummaryEntry": {
+    "lastMigration": "2025-11-04T05:12:42.233Z",
+    "rowCount": 10499
+  },
+  "AiTweet": {
+    "lastMigration": "2025-11-04T05:12:42.959Z",
+    "rowCount": 4016
+  },
+  "Link": {
+    "lastMigration": "2025-11-04T05:12:43.404Z",
+    "rowCount": 1867
+  },
+  "Topic": {
+    "lastMigration": "2025-11-04T05:12:44.022Z",
+    "rowCount": 2203
+  },
+  "ShowGuest": {
+    "lastMigration": "2025-11-04T05:12:44.348Z",
+    "rowCount": 196
+  },
+  "Transcript": {
+    "lastMigration": "2025-11-03T21:01:44.597Z",
+    "rowCount": 725
+  },
+  "TranscriptUtterance": {
+    "lastMigration": "2025-11-03T21:02:21.688Z",
+    "rowCount": 295736
+  }
+}

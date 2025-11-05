@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating } from '$app/stores';
+	import { navigating } from '$app/state';
 	import { onNavigate } from '$app/navigation';
 	let visible = $state(false);
 	let progress = $state(0);
@@ -7,7 +7,7 @@
 	let average_load = $derived(load_durations.reduce((a, b) => a + b, 0) / load_durations.length);
 	const increment = 1;
 
-	onNavigate((navigation) => {
+	onNavigate(() => {
 		const typical_load_time = average_load || 200; //ms
 		const frequency = typical_load_time / 100;
 		let start = performance.now();
@@ -19,7 +19,7 @@
 			progress += increment;
 		}, frequency);
 		// Resolve the promise when the page is done loading
-		$navigating?.complete.then(() => {
+		navigating?.complete.then(() => {
 			progress = 100; // Fill out the progress bar
 			clearInterval(interval);
 			// after 100 ms hide the progress bar

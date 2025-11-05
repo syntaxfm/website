@@ -1,10 +1,10 @@
 import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
-import { shows_api_query } from './query.js';
-import { prisma_client } from '$/server/prisma-client';
+import { shows_api_query } from './query';
+import { db } from '$server/db/client';
 
 export async function GET() {
-	const data = await prisma_client.show.findMany(shows_api_query());
+	const data = await db.query.shows.findMany(shows_api_query());
 
 	const shows = data.map((show) => {
 		return {

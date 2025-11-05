@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Dot from '$/icons/Dot.svelte';
+	import Dot from '$lib/utilities/Dot.svelte';
+	import no_thumb from './no_thumb.png';
 
 	interface Props {
 		show: {
@@ -21,7 +22,7 @@
 		<img
 			class={[type === 'list' ? 'br-small' : 'br-medium']}
 			style={type === 'list' ? 'width: 135px;' : 'width: 100%'}
-			src={show.thumbnail}
+			src={show.thumbnail || no_thumb}
 			alt={show.title}
 		/>
 	</div>
@@ -39,6 +40,7 @@
 			{/if}
 			<Dot color="var(--c-primary)" />
 			<p class="fs-caption">{show.show}</p>
+			{show.number}
 		</div>
 	</div>
 </article>

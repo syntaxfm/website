@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { getFeed } from '$lib/feed/feed.remote';
+	import { get_feed_content } from '$lib/feed/feed.remote';
 	import FeedItem from './FeedItem.svelte';
 	import FeedTitle from './FeedTitle.svelte';
 </script>
 
 <section>
 	<FeedTitle />
-	{#each await getFeed() as post}
-		<FeedItem show={post} />
-	{/each}
+	<div class="stack">
+		{#each await get_feed_content() as content}
+			<FeedItem {content} />
+		{/each}
+	</div>
 </section>

@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/sveltekit';
-import type { Show } from '@prisma/client';
+import type { Show } from '$server/db/schema';
 import { get, writable } from 'svelte/store';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';

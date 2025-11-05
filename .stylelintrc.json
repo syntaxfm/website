@@ -51,14 +51,6 @@
 		],
 		"font-family-no-missing-generic-family-keyword": null,
 		"import-notation": "string",
-		"plugin/no-undefined-classes": [
-			true,
-			{
-				"cssFiles": ["**/*.css"],
-				"htmlFiles": ["**/*.html", "**/*.svelte"],
-				"ignoreClasses": ["sr-only", "visually-hidden", "/^js-/"]
-			}
-		],
 		"scale-unlimited/declaration-strict-value": [
 			["/color$/", "font-size"],
 			{

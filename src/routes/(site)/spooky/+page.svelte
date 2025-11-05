@@ -1,7 +1,10 @@
 <script lang="ts">
-	import UserSubmissionForm from '$/lib/forms/UserSubmissionForm.svelte';
+	import UserSubmissionForm from '$lib/forms/UserSubmissionForm.svelte';
+	import Meta from '$lib/meta/Meta.svelte';
 	let { form } = $props();
 </script>
+
+<Meta title="Submit a Spooky Story"></Meta>
 
 <main>
 	<div style:margin-bottom="2rem">

@@ -1,11 +1,7 @@
-<script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {import('svelte').Snippet} [children]
-	 */
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 
-	/** @type {Props} */
-	let { children } = $props();
+	let { children }: { children: Snippet } = $props();
 </script>
 
 <div class="tabs grit">

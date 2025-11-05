@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Icon from '$/lib/Icon.svelte';
-	import Logo from '$/lib/layout/Logo.svelte';
-	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
-	import PodcastLinks from '$/lib/PodcastLinks.svelte';
+	import Icon from '$lib/Icon.svelte';
+	import Logo from '$lib/layout/Logo.svelte';
+	import NewsletterForm from '$lib/newsletter/NewsletterForm.svelte';
+	import PodcastLinks from '$lib/PodcastLinks.svelte';
 	import '../../(site)/style.css';
 
 	const POD_DATA = {
@@ -29,7 +29,7 @@
 
 			<div class="links">
 				<a href={`https://x.com/${POD_DATA.twitter}`} target="_blank" class="button subscribe">
-					<Icon name="x" title={`${POD_DATA.name} on X`} />
+					<Icon name="twitter" title={`${POD_DATA.name} on X`} />
 				</a>
 
 				<a href={`https://github.com/${POD_DATA.github}`} target="_blank" class="button subscribe">

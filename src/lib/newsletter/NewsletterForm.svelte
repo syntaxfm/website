@@ -47,7 +47,7 @@
 
 		<div class="newsletter">
 			<Input required type="email" label="Email" id="email_address" />
-			<button type="submit">Subscribe</button>
+			<button class="button-graphic large" type="submit">Subscribe</button>
 		</div>
 		<p>Hot takes, tips & tricks, new content, swag drops & more</p>
 
@@ -66,6 +66,7 @@
 
 	@layer theme {
 		.newsletter-layout {
+			width: 100%;
 			container: newsletter-form / inline-size;
 			display: flex;
 			flex-flow: wrap;

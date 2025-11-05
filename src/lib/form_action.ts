@@ -1,3 +1,6 @@
+/**
+ * @deprecated Use .remote() functions instead
+ */
 import { applyAction } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 import toast from 'svelte-french-toast';

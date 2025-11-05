@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import type { Show } from '@prisma/client';
+	import type { Show } from '$server/db/schema';
 	import toast, { Toaster } from 'svelte-french-toast';
 
 	interface Props {
@@ -71,7 +71,7 @@
 	class="button share-x"
 	target="_blank"
 	href="https://twitter.com/intent/tweet?url={share_url}&text={show.title}&via=syntaxfm"
-	aria-label="Share on Twitter"><Icon name="x" /></a
+	aria-label="Share on Twitter"><Icon name="twitter" /></a
 >
 <a
 	class="button share-facebook"

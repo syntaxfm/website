@@ -1,4 +1,6 @@
-import { prisma_client } from '$server/prisma-client';
+import { db } from '$server/db/client';
+import { shows } from '$server/db/schema';
+import { eq, ne, isNull, desc, and, sql } from 'drizzle-orm';
 import { MegaphoneApiClient } from './client';
 
 /**
@@ -157,12 +159,12 @@ async function updateShowSpotifyId(
 	spotifyId: string,
 	matchResult: any
 ): Promise<boolean> {
-	const existingShow = await prisma_client.show.findFirst({
-		where: {
-			spotify_id: spotifyId,
-			number: { not: showNumber }
-		},
-		select: { number: true, title: true }
+	const existingShow = await db.query.shows.findFirst({
+		where: and(eq(shows.spotify_id, spotifyId), ne(shows.number, showNumber)),
+		columns: {
+			number: true,
+			title: true
+		}
 	});
 
 	if (existingShow) {
@@ -175,12 +177,14 @@ async function updateShowSpotifyId(
 		return false;
 	}
 
-	await prisma_client.show.update({
-		where: { number: showNumber },
-		data: {
-			spotify_id: spotifyId
-		}
-	});
+	await db
+		.update(shows)
+		.set({
+			spotify_id: spotifyId,
+			updated_at: new Date()
+		})
+		.where(eq(shows.number, showNumber));
+
 	return true;
 }
 
@@ -302,9 +306,9 @@ export async function syncEpisodeSpotifyData(
 	credentials: MegaphoneCredentials
 ): Promise<void> {
 	// Get the show from database
-	const show = await prisma_client.show.findUnique({
-		where: { number: showNumber },
-		select: {
+	const show = await db.query.shows.findFirst({
+		where: eq(shows.number, showNumber),
+		columns: {
 			number: true,
 			title: true,
 			date: true,
@@ -341,24 +345,27 @@ export async function syncEpisodeSpotifyData(
 export async function checkDuplicateSpotifyIds(): Promise<
 	Array<{ spotifyId: string; shows: Array<{ number: number; title: string }> }>
 > {
-	const duplicates = await prisma_client.$queryRaw<Array<{ spotify_id: string; count: number }>>`
+	const duplicates = await db.execute<{ spotify_id: string; count: number }>(sql`
 		SELECT spotify_id, COUNT(*) as count
 		FROM \`Show\`
 		WHERE spotify_id IS NOT NULL
 		GROUP BY spotify_id
 		HAVING count > 1
-	`;
+	`);
 
 	const duplicateDetails = [];
-	for (const duplicate of duplicates) {
-		const shows = await prisma_client.show.findMany({
-			where: { spotify_id: duplicate.spotify_id },
-			select: { number: true, title: true }
+	for (const duplicate of duplicates.rows) {
+		const showsData = await db.query.shows.findMany({
+			where: eq(shows.spotify_id, duplicate.spotify_id),
+			columns: {
+				number: true,
+				title: true
+			}
 		});
 
 		duplicateDetails.push({
 			spotifyId: duplicate.spotify_id,
-			shows: shows
+			shows: showsData
 		});
 	}
 
@@ -370,18 +377,14 @@ export async function checkDuplicateSpotifyIds(): Promise<
  */
 export async function syncAllEpisodesSpotifyData(credentials: MegaphoneCredentials): Promise<void> {
 	// Get all shows without Spotify data
-	const showsWithoutSpotify = await prisma_client.show.findMany({
-		where: {
-			spotify_id: null
-		},
-		select: {
+	const showsWithoutSpotify = await db.query.shows.findMany({
+		where: isNull(shows.spotify_id),
+		columns: {
 			number: true,
 			title: true,
 			date: true
 		},
-		orderBy: {
-			number: 'desc'
-		}
+		orderBy: [desc(shows.number)]
 	});
 
 	// Get all episodes from Megaphone API once

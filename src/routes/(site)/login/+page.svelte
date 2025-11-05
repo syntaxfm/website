@@ -3,6 +3,8 @@
 	import { enhance } from '$app/forms';
 	import { loading } from '$state/loading';
 	import { form_action } from '$lib/form_action';
+	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
+	import { logout } from '../user.remote.js';
 
 	let { data } = $props();
 	const { user } = data;
@@ -13,9 +15,7 @@
 		<h1 class="h3">Login</h1>
 		{#if user}
 			<p>Hell yea, You are currently Logged In</p>
-			<form use:enhance={form_action({ message: 'Logout ' })} action="/?/logout" method="POST">
-				<button class="button" type="submit">Logout</button>
-			</form>
+			<RemoteFormButton remote={logout}>Logout</RemoteFormButton>
 		{:else}
 			<p>If you are not on the Syntax team, this login will do nothing for you.</p>
 			<a

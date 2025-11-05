@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { PUBLIC_URL } from '$env/static/public';
+	import { page } from '$app/state';
+	const props = $props();
 
 	let title = `Syntax - Web Development Podcast`;
 
+	$inspect(page.data.meta);
 	let meta = $derived({
 		//·defaults
 		description: `Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 2 times a week!`,
-		image: `${$page.url.protocol}//${$page.url.host}/og/${encodeURIComponent(
-			$page.data.meta?.title || title
+		image: `${page.url.protocol}//${page.url.host}/og/${encodeURIComponent(
+			page.data.meta?.title || title
 		)}.jpg`,
 		title,
 		// any page customizations
-		...$page.data.meta
+		...page.data.meta,
+		...props
 	});
 
 	function generateTitle(title: string) {

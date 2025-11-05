@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Playlist, Video } from '@prisma/client';
+	import type { Playlist, Video } from '$server/db/schema';
 
 	interface Props {
 		video: Video;

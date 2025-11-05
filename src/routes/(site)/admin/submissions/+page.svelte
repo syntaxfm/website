@@ -2,8 +2,8 @@
 	import { formatDistance } from 'date-fns';
 	import type { PageData } from './$types';
 	import { queryParameters } from 'sveltekit-search-params';
-	import SelectMenu from '$/lib/SelectMenu.svelte';
-	import FormWithLoader from '$/lib/FormWithLoader.svelte';
+	import SelectMenu from '$lib/SelectMenu.svelte';
+	import FormWithLoader from '$lib/FormWithLoader.svelte';
 	const store = queryParameters<{
 		submission_type?: string;
 		status?: string;

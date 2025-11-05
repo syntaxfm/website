@@ -1,7 +1,5 @@
-import type { PageServerLoad } from './$types';
 // import env from svelte kit environment
 import { env } from '$env/dynamic/private';
-import { super_cache_mang } from '$/server/cache/cache_mang';
 
 const numberformatter = new Intl.NumberFormat('en-US');
 
@@ -95,20 +93,20 @@ async function fetchBroadcastList() {
 	}
 }
 
-export const load: PageServerLoad = async function ({ setHeaders }) {
+export const load = async function ({ setHeaders }) {
 	// 1 min cache with 1 min stale allowed
 	setHeaders({
-		'cache-control': `public s-maxage=60, stale-while-revalidate=60`
+		'cache-control': `public, s-maxage=60, stale-while-revalidate=60`
 	});
 
-	const subs = await super_cache_mang('snackpack:subs', () =>
-		fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`)
-			.then((res) => res.json())
-			.catch(console.error)
-	);
+	const subs = await fetch(
+		`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`
+	)
+		.then((res) => res.json())
+		.catch(console.error);
 
 	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
-		? await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
+		? await fetchBroadcastList()
 		: [
 				{
 					published_at: new Date().toUTCString(),
@@ -116,6 +114,7 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 					id: 1337
 				}
 			];
+
 	const count =
 		typeof subs?.total_subscribers === 'number' ? formatNumber(subs.total_subscribers) : '';
 

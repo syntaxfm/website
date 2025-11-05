@@ -1,6 +1,6 @@
-import type { Show } from '@prisma/client';
 import flexsearch from 'flexsearch';
 import type { Block, Tree } from './types';
+import type { Show } from '$server/db/schema';
 
 const Index = flexsearch.Index ?? flexsearch;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Show } from '@prisma/client';
+	import type { Show } from '$server/db/types';
 	import { format } from 'date-fns';
 
 	interface Props {

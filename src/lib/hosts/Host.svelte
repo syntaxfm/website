@@ -1,13 +1,9 @@
 <script lang="ts">
+	import type { Host } from '$server/db/types';
 	import HostSocialLink from './HostSocialLink.svelte';
 	interface Props {
 		guest?: boolean;
-		host: {
-			name: string;
-			github?: string | null;
-			twitter?: string | null;
-			slug?: string;
-		};
+		host: Host;
 	}
 
 	let { guest = false, host }: Props = $props();

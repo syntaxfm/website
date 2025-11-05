@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon, { type IconName, icon_names } from '$lib/Icon.svelte';
+	import IconSprite from '$lib/utilities/IconSprite.svelte';
 </script>
 
 <div class="icons-grid">
@@ -10,6 +11,8 @@
 		</div>
 	{/each}
 </div>
+
+<IconSprite />
 
 <style>
 	.icons-grid {

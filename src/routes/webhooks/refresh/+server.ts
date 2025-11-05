@@ -1,4 +1,4 @@
-import { import_or_update_all_changed_shows } from '../../../server/shows';
+import { import_or_update_all_changed_shows } from '$server/shows';
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { has_auth } from '../transcripts/has_auth';

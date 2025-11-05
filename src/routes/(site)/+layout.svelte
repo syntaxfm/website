@@ -13,6 +13,8 @@
 	import Player from '$lib/player/Player.svelte';
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
+	import FollowBanner from '$lib/social/FollowBanner.svelte';
+	import IconSprite from '$lib/utilities/IconSprite.svelte';
 
 	const { data, children } = $props();
 	const { user, user_theme } = $derived(data);
@@ -36,9 +38,11 @@
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
 	<Header />
 
-	<main id="main-content">
+	<main id="main-content" class="layout-main">
 		{@render children?.()}
 	</main>
+
+	<FollowBanner />
 
 	<Footer />
 
@@ -59,7 +63,9 @@
 	{/if}
 </div>
 
-<style lang="postcss">
+<IconSprite />
+
+<style>
 	.skip-to-main-content {
 		position: absolute;
 		top: -1000px;

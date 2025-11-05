@@ -3,17 +3,14 @@ import type { PageServerLoad } from './$types';
 import { env } from '$env/dynamic/private';
 import type { Broadcast } from '../proxy+page.server';
 import { parseHTML } from 'linkedom';
-import { super_cache_mang } from '$/server/cache/cache_mang';
 
 export const load: PageServerLoad = async function ({ setHeaders, params }) {
 	// 1. Fetch a broadcast by this ID
-	const response = await super_cache_mang(`snackpack:issue-${params.issue_id}`, () =>
-		fetch(
-			`https://api.convertkit.com/v3/broadcasts/${params.issue_id}?api_secret=${env.CONVERT_KIT_SECRET}`
-		)
-			.then((res) => res.json() as Promise<{ broadcast: Broadcast | undefined }>)
-			.catch(() => ({ broadcast: undefined }))
-	);
+	const response = await fetch(
+		`https://api.convertkit.com/v3/broadcasts/${params.issue_id}?api_secret=${env.CONVERT_KIT_SECRET}`
+	)
+		.then((res) => res.json() as Promise<{ broadcast: Broadcast | undefined }>)
+		.catch(() => ({ broadcast: undefined }));
 	// 2. Check if the response is valid, public, and in the past
 	if (
 		!response.broadcast ||

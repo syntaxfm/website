@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
+import type { DBUtterance, SlimUtterance, SpeakerMap } from './types';
 
 type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 /**
  * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
- * @param utterances the utterances to slim. This can be used on both Prisma Database Utterances and straight from Deepgram.
+ * @param utterances the utterances to slim. This can be used on both Database Utterances and straight from Deepgram.
  */
 
 export function getSlimUtterances(
-	utterances: PrismaUtterance[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
+	utterances: DBUtterance[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
 	showNumber: number,
 	groupForPunctuation = true
 ): SlimUtterance[] {
 	const start: Omit<SlimUtterance, 'utteranceIndex' | 'speakerName'>[] = [];
 	const slim = utterances.reduce((acc, utterance) => {
 		const { speaker, start, end } = utterance;
-		// Prisma uses transcript_value, deepgram uses transcript
+		// DB uses transcript_value, deepgram uses transcript
 		const transcript_value =
 			'transcript_value' in utterance ? utterance.transcript_value : utterance.transcript;
 		const lastUtterance = acc[acc.length - 1];

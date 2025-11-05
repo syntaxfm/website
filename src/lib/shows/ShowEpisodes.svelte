@@ -14,18 +14,8 @@
 	let { type, shows }: Props = $props();
 </script>
 
-{#if type === 'grid'}
-	<div class="grid">
-		{#each shows as show}
-			<Show {show} {type} />
-		{/each}
-	</div>
-{/if}
-
-{#if type === 'list'}
-	<div class="stack">
-		{#each shows as show}
-			<Show {show} {type} />
-		{/each}
-	</div>
-{/if}
+<div class={type === 'grid' ? 'grid' : 'stack'}>
+	{#each shows as show}
+		<Show {show} {type} />
+	{/each}
+</div>

@@ -10,7 +10,7 @@
 
 <div class="tag-row flex">
 	{#each tags as tag}
-		<Tag>{tag}</Tag>
+		<Tag><span>{tag}</span></Tag>
 	{/each}
 </div>
 

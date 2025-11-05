@@ -101,6 +101,20 @@
 	.br-xlarge {
 		border-radius: var(--br-xlarge);
 	}
+
+	.primary {
+		color: var(--c-primary);
+	}
+
+	.no-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			margin: 0;
+			padding: 0;
+		}
+	}
 }
 
 .size {

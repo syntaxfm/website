@@ -1,10 +1,8 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
-	import AdminSearch from '$/lib/AdminSearch.svelte';
+	import AdminActions from '$lib/AdminActions.svelte';
+	import AdminSearch from '$lib/AdminSearch.svelte';
 	import { format } from 'date-fns';
-
-	let { data } = $props();
-	let { local_playlists } = $derived(data);
+	import { get_all_videos } from './admin_videos.remote';
 
 	let search_text = $state('');
 </script>
@@ -15,43 +13,41 @@
 	<a href="/admin/videos/import">Import New Videos</a>
 </AdminActions>
 
-<div>
-	<AdminSearch bind:text={search_text} />
+<AdminSearch bind:text={search_text} />
 
-	<div class="table-container">
-		<table>
-			<thead>
+<div class="table-container">
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Videos</th>
+				<th>Published At</th>
+				<th>Id</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each (await get_all_videos()).filter((s) => s.title
+					.toLowerCase()
+					.includes(search_text.toLowerCase())) as playlist}
 				<tr>
-					<th>Title</th>
-					<th>Videos</th>
-					<th>Published At</th>
-					<th>Id</th>
+					<td>
+						<a href="/admin/videos/{playlist.id}">
+							{playlist.title}
+						</a>
+					</td>
+					<td>
+						{playlist.item_count}
+					</td>
+					<td>
+						{format(playlist.created_at, 'MMM d, yyyy')}
+					</td>
+					<td>
+						{playlist.id}
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				{#each local_playlists.filter((s) => s.title
-						.toLowerCase()
-						.includes(search_text.toLowerCase())) as playlist}
-					<tr>
-						<td>
-							<a href="/admin/videos/{playlist.id}">
-								{playlist.title}
-							</a>
-						</td>
-						<td>
-							{playlist.item_count}
-						</td>
-						<td>
-							{format(playlist.created_at, 'MMM d, yyyy')}
-						</td>
-						<td>
-							{playlist.id}
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
+			{/each}
+		</tbody>
+	</table>
 </div>
 
 <!-- Types of videos -->

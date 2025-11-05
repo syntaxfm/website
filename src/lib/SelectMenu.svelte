@@ -4,7 +4,7 @@
 	import Icon from './Icon.svelte';
 	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 	if (!isSupported() && browser) {
@@ -12,12 +12,11 @@
 	}
 	interface Props {
 		options: { value: string; label: string }[];
-		button_icon?: IconName | null;
+		button_icon?: IconName[number] | null;
 		value_as_label?: boolean;
 		button_text: string;
 		popover_id: string;
 		value?: string;
-		onselect: (e: CustomEvent) => void;
 	}
 
 	let {
@@ -26,21 +25,21 @@
 		value_as_label = false,
 		button_text,
 		popover_id,
-		value = '',
-		onselect
+		value = ''
 	}: Props = $props();
 	let id = popover_id.replace('filter-', '');
 	// let searchParams = new URLSearchParams(window.location.search);
+	//
 
-	let generate_search_params = $derived((id: string, value: string) => {
-		const searchParams = new URLSearchParams($page.url.search);
+	function generate_search_params(id: string, value: string) {
+		const searchParams = new URLSearchParams(page.url.search);
 		if (!value) {
 			searchParams.delete(id);
 		} else {
 			searchParams.set(id, value);
 		}
 		return searchParams.toString();
-	});
+	}
 
 	function closePopoverWhenSelected(node: HTMLDivElement) {
 		function handlePopoverSelection(event: MouseEvent) {
@@ -66,11 +65,13 @@
 			{value}
 		{/if}
 		{button_text}
+		<Icon name="down" />
 	</button>
 	<div popover id={popover_id} use:closePopoverWhenSelected>
 		<div class="select-menu-menu-wrapper">
 			{#each options as option}
 				<a
+					onclick={onselect}
 					class:selected={option.value === value}
 					href={`?${generate_search_params(id, option.value)}`}>{option.label}</a
 				>
@@ -89,6 +90,24 @@
 		border: none;
 	}
 
+	button {
+		background: var(--c-shade-or-tint);
+		padding: 10px 2rem 8px;
+		border-radius: var(--br-huge);
+		font-size: var(--fs-2);
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		gap: 10px;
+		border: none;
+		cursor: pointer;
+		color: var(--c-fg);
+
+		&:hover {
+			background: var(--c-shade-or-tint-light);
+		}
+	}
+
 	.select-menu-menu-wrapper {
 		flex-direction: column;
 		gap: 10px;
@@ -100,7 +119,6 @@
 		text-align: left;
 		box-shadow: none;
 		white-space: nowrap;
-		font-family: var(--ff-body);
 		padding: 8px 14px;
 		cursor: pointer;
 		font-size: var(--fs-4);

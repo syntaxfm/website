@@ -1,8 +1,4 @@
-<script lang="ts">
-	import white_grit from '$assets/whitegrit.png';
-</script>
-
-<div class="album" style="background-image: url({white_grit});">
+<div class="album">
 	<svg
 		width="80px"
 		height="70.72px"
@@ -23,7 +19,6 @@
 
 <style lang="postcss">
 	.album {
-		background-color: var(--c-bg);
 		padding: 5px;
 		background-size: cover;
 		border-radius: 4px;

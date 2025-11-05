@@ -1,18 +1,27 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
+	import { page } from '$app/state';
 
-	let { children }: Props = $props();
+	let { children } = $props();
 	const LINKS = [
 		{
 			name: 'Dashboard',
 			link: '/admin'
 		},
 		{
+			name: 'Content',
+			link: '/admin/content'
+		},
+		{
 			name: 'Shows',
 			link: '/admin/shows'
+		},
+		{
+			name: 'Articles',
+			link: '/admin/articles'
+		},
+		{
+			name: 'Tools',
+			link: '/admin/tools'
 		},
 		{
 			name: 'Transcripts',
@@ -25,25 +34,21 @@
 		{
 			name: 'Submissions',
 			link: '/admin/submissions'
-		},
-		{
-			name: 'Cache',
-			link: '/admin/cache'
 		}
 	];
 </script>
 
 <nav>
 	{#each LINKS as link}
-		<a class:active={$page.url.pathname === link.link} href={link.link}>{link.name}</a>
+		<a class:active={page.url.pathname === link.link} href={link.link}>{link.name}</a>
 	{/each}
 </nav>
 
-<div class="admin">
+<div class="admin stack">
 	{@render children?.()}
 </div>
 
-<style lang="postcss">
+<style>
 	nav {
 		padding: 1rem 0;
 		display: flex;

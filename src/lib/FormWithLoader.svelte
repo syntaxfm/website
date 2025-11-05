@@ -1,3 +1,4 @@
+<!-- @deprecated Use .remote() functions instead -->
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
@@ -5,11 +6,12 @@
 	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
 	let formLoading = $state(false);
+
 	interface Props {
 		global?: boolean;
 		confirm?: string;
 		children?: import('svelte').Snippet<[any]>;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { global = true, confirm = '', children, ...rest }: Props = $props();
@@ -54,6 +56,7 @@
 	};
 </script>
 
+/** * @deprecated Use .remote() functions instead */
 <form {...rest} use:enhance={form_action()}>
-	{@render children?.({ loading: formLoading, })}
+	{@render children?.({ loading: formLoading })}
 </form>

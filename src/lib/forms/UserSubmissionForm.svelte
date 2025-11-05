@@ -4,12 +4,12 @@
 	import { Turnstile } from 'svelte-turnstile';
 	import { env } from '$env/dynamic/public';
 	import InlineError from './InlineError.svelte';
-	import { UserSubmissionType } from '@prisma/client';
 	import type { ActionData } from '../../routes/(site)/oss/$types';
+	import type { SubmissionType } from '$server/db/schema';
 	let reset: (() => void) | undefined = $state();
 	interface Props {
 		form: ActionData;
-		selected_submission_type?: UserSubmissionType;
+		selected_submission_type?: SubmissionType;
 	}
 
 	let { form, selected_submission_type = 'SPOOKY' }: Props = $props();

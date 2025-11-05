@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Playlist, PlaylistOnVideo, Video } from '@prisma/client';
+	import type { PlaylistOnVideo, Playlist, Video } from '$server/db/schema';
 	import PlaylistVideo from './PlaylistVideo.svelte';
 
 	interface Props {

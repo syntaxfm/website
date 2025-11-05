@@ -1,7 +1,7 @@
 <script lang="ts">
 	import RankedItem from './RankedItem.svelte';
 	import SidebarTitle from './SidebarTitle.svelte';
-	import type { Show } from '@prisma/client';
+	import type { Show } from '$server/db/schema';
 
 	type Props = {
 		items: Show[];

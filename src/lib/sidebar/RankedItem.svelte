@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Dot from '$/icons/Dot.svelte';
+	import Dot from '$lib/utilities/Dot.svelte';
+	import no_thumb from '../shows/no_thumb.png';
 	import { format } from 'date-fns';
-	import type { Show } from '@prisma/client';
+	import type { Show } from '$server/db/schema';
 
 	type Props = {
 		show: Show;
@@ -15,7 +16,7 @@
 
 	<div class="stack ranked-item-info">
 		<p class="fs-body">{show.show} - #{show.number}</p>
-		<img src={show.thumbnail} alt={show.title} />
+		<img src={show?.thumbnail || no_thumb} alt={show.title} />
 		<h4 class="fs-body fv-700-i">{show.title}</h4>
 		<p class="fs-caption">
 			{show.guests.map((guest) => guest.name).join(', ')}

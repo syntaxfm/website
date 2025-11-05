@@ -5,9 +5,9 @@
 	const LINKS = [
 		['/shows', 'Shows'],
 		['/about', 'About'],
-		['/newsletter', 'Newsletter'],
+		['/snackpack', 'Newsletter'],
 		['/potluck', 'Potluck Qs'],
-		['https://sentry.shop/collections/syntax', 'Shows']
+		['https://sentry.shop/collections/syntax', 'Shop']
 	];
 </script>
 
@@ -33,7 +33,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		gap: 24px;
+		gap: 1rem;
 		padding: 0;
 
 		& li {

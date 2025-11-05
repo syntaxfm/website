@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import get_show_path from '$/utilities/slug';
+import { db } from '$server/db/client';
+import get_show_path from '$utilities/slug';
 import { error, redirect } from '@sveltejs/kit';
 
 export async function load(event) {
@@ -7,11 +7,13 @@ export async function load(event) {
 	if (isNaN(maybe_show_number)) error(404, 'Not found');
 
 	// Is there a show with this number?
-	const show = await prisma_client.show.findUnique({ where: { number: maybe_show_number } });
-	// No show found, pass it down the middleware chain - will probably 404, but thats sveltekit's job to figure that out, not ours!
-	if (!show) error(404, 'Not found');
+	const found_podcast = await db.query.show.findFirst({
+		where: (show, { eq }) => eq(show.number, maybe_show_number)
+	});
+	// No show found, pass it down the middleware chain - will probably 404, but that's sveltekit's job to figure that out, not ours!
+	if (!found_podcast) error(404, 'Not found');
 
-	const url = get_show_path(show);
+	const url = get_show_path(found_podcast);
 	// Redirect to the page for this show
 	redirect(302, url + event.url.search);
 }

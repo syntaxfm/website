@@ -1,22 +1,20 @@
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { transcripts, transcriptUtterances } from '$server/db/schema';
 import { import_transcripts } from '$server/transcripts/transcripts';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
+import { sql } from 'drizzle-orm';
 
-export const load: PageServerLoad = async () => {
+export const load = async () => {
 	return {
-		transcripts: await prisma_client.transcript.findMany({
-			include: {
-				show: true,
-				_count: {
-					select: {
-						utterances: true
-					}
-				}
-				// utterances: {
-				//   // include: {
-				//   //   words: true
-				//   // }
-				// }
+		transcripts: await db.query.transcripts.findMany({
+			with: {
+				show: true
+			},
+			extras: {
+				utterance_count:
+					sql<number>`(SELECT COUNT(*) FROM ${transcriptUtterances} WHERE ${transcriptUtterances.transcriptId} = ${transcripts.id})`.as(
+						'utterance_count'
+					)
 			}
 		})
 	};
@@ -32,7 +30,7 @@ export const actions: Actions = {
 
 	delete_all_transcripts: async () => {
 		// Order of these is important because of how db relations work
-		await prisma_client.transcript.deleteMany({});
+		await db.delete(transcripts);
 		return { message: 'Deleted All Transcripts!' };
 	}
 };

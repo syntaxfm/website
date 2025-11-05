@@ -1,7 +1,6 @@
-import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$env/static/public';
 
-export const GET: RequestHandler = async function GET({ setHeaders }) {
+export const GET = async function GET({ setHeaders }) {
 	const robotsTxt = `User-agent: *
 Disallow: /admin
 Disallow: /haters

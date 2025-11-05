@@ -1,23 +1,24 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$env/static/public';
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import {
+	shows as showsTable,
+	guests as guestsTable,
+	playlists as playlistsTable,
+	videos as videosTable
+} from '$server/db/schema';
+import { lte } from 'drizzle-orm';
 
 const site = `https://${PUBLIC_URL}`;
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
-	const shows = await prisma_client.show.findMany({
-		where: {
-			date: {
-				lte: new Date() // only shows in the future
-			}
-		}
-	});
-	const guests = await prisma_client.guest.findMany();
-	const playlists = await prisma_client.playlist.findMany();
-	const videos = await prisma_client.video.findMany({
-		include: {
+	const shows = await db.select().from(showsTable).where(lte(showsTable.date, new Date()));
+	const guests = await db.select().from(guestsTable);
+	const playlists = await db.select().from(playlistsTable);
+	const videos = await db.query.videos.findMany({
+		with: {
 			playlists: {
-				include: {
+				with: {
 					playlist: true
 				}
 			}

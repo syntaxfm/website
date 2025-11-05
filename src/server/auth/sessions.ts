@@ -1,5 +1,7 @@
-import type { Session, User } from '@prisma/client';
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { session } from '$server/db/schema';
+import type { Session, User } from '$server/db/types';
+import { eq } from 'drizzle-orm';
 
 export async function find_session(
 	access_token: string,
@@ -10,16 +12,24 @@ export async function find_session(
 		country: string;
 	}
 ): Promise<Session> {
-	return prisma_client.session.update({
-		where: {
-			session_token
-		},
-		data: {
+	await db
+		.update(session)
+		.set({
 			access_token,
 			user_id: user.id,
-			session_token,
+			updated_at: new Date(),
 			ip: details.ip,
 			country: details.country
-		}
+		})
+		.where(eq(session.session_token, session_token));
+
+	const updatedSession = await db.query.session.findFirst({
+		where: eq(session.session_token, session_token)
 	});
+
+	if (!updatedSession) {
+		throw new Error('Session not found after update');
+	}
+
+	return updatedSession;
 }

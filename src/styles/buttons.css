@@ -5,9 +5,10 @@
 
 	a.button,
 	button {
-		font-size: var(--fs-6);
+		font-size: var(--fs-3);
 		border-radius: var(--br-small);
 		appearance: none;
+		display: inline-flex;
 		border: none;
 		background: var(--c-fg);
 		color: var(--c-bg);
@@ -22,7 +23,7 @@
 
 	a.button-graphic,
 	.button-graphic {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		font-variation-settings: var(--fv-700-italic);
 		gap: 10px;
@@ -32,6 +33,9 @@
 			-5px 5px 0 var(--c-fg),
 			-5px 5px 0 var(--c-fg),
 			-5px 5px 0 var(--c-fg);
+		&.large {
+			font-size: var(--fs-5);
+		}
 	}
 
 	a.primary-ghost,

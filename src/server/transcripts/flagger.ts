@@ -2,13 +2,13 @@ import { createWriteStream, existsSync } from 'fs';
 import { Readable } from 'stream';
 import { finished } from 'stream/promises';
 import { FFmpeg } from '@ffmpeg.wasm/main';
-import type { Show } from '@prisma/client';
 import core from '@ffmpeg.wasm/core-mt';
 import { read } from '$app/server';
 import { logProgress } from './logProgress';
 
 import wes_flagger from './audio/wes-flagger.mp3';
 import scott_flagger from './audio/scott-flagger.mp3';
+import type { Show } from '$server/db/schema';
 
 const flag_paths = [wes_flagger, scott_flagger];
 

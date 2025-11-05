@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Layout from './(site)/+layout.svelte';
-	import type { UserWithRoles } from '$/server/auth/users';
+	import type { UserWithRoles } from '$server/auth/users';
 
 	interface Props {
 		// error page does not automatically infer layout data...
@@ -16,11 +16,11 @@
 </script>
 
 <!-- Manually render (site) layout around error -->
-<Layout data={{ user: user, user_theme, latest: [] }}>
+<Layout data={{ user: user, user_theme }}>
 	<div>
 		<h2>Oopsie-daisy</h2>
-		{#if $page?.error?.message}
-			<p class="error">{$page.error.message}</p>
+		{#if page?.error?.message}
+			<p class="error">{page.error.message}</p>
 		{:else}
 			<p class="error">Something went wrong. Don't worry, we use Sentry!</p>
 		{/if}

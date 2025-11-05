@@ -7,7 +7,8 @@
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
 	import cj from '$assets/cj.jpg';
-	import { count_podcasts } from '$/lib/shows/shows.remote.js';
+	import { count_podcasts } from '$server/shows/shows.remote';
+
 	let hosts = {
 		wes: {
 			name: 'Wes Bos',

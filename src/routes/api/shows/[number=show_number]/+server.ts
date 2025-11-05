@@ -1,27 +1,21 @@
 import { error, json } from '@sveltejs/kit';
 import { format } from 'date-fns';
-import { shows_api_query } from '../query.js';
-import { prisma_client } from '$/server/prisma-client';
+import { shows_api_query } from '../query';
+import { db } from '$server/db/client';
+import { shows } from '$server/db/schema';
+import { and, eq, lte } from 'drizzle-orm';
 
 const query = shows_api_query();
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
-	const data = await prisma_client.show.findFirst({
-		where: {
-			AND: [
-				{ number: show_number },
-				{
-					date: {
-						lte: new Date()
-					}
-				}
-			]
-		},
-		include: {
-			...query.include
+	const data = await db.query.shows.findFirst({
+		where: and(eq(shows.number, show_number), lte(shows.date, new Date())),
+		with: {
+			...query.with
 		}
 	});
+
 	if (data) {
 		return json(
 			{

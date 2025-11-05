@@ -3,14 +3,13 @@ import { generate_ai_notes } from '$server/ai/openai';
 import { transcript_without_ai_notes_query } from '$server/ai/queries';
 import { error, json } from '@sveltejs/kit';
 import { has_auth } from '../transcripts/has_auth';
-import type { RequestEvent } from './$types';
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
 };
 
-export const GET = async function transcriptCronHandler({ request }: RequestEvent) {
+export const GET = async function transcriptCronHandler({ request }) {
 	const start = Date.now();
 	const allowed = has_auth(request);
 	// 1. Make sure we have an API key
@@ -18,7 +17,7 @@ export const GET = async function transcriptCronHandler({ request }: RequestEven
 		error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
-	const show = await prisma_client.show.findFirst(transcript_without_ai_notes_query);
+	const show = await db.query.shows.findFirst(transcript_without_ai_notes_query());
 
 	if (!show) {
 		return json({ message: 'No shows without AI Show notes found.' });

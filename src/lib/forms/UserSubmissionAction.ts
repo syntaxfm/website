@@ -1,9 +1,11 @@
 import { fail, type Action } from '@sveltejs/kit';
 import { validateToken } from './validateTurnstileToken';
-import { prisma_client } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import { userSubmission } from '$server/db/schema';
 import { env } from '$env/dynamic/private';
-import { user_submission_schema } from '$/lib/forms/userSubmissionSchema';
+import { user_submission_schema } from '$lib/forms/userSubmissionSchema';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 export const user_submission_action: Action = async function ({ locals }) {
 	// Validate Turnsile Token
@@ -38,18 +40,19 @@ export const user_submission_action: Action = async function ({ locals }) {
 		});
 	}
 
-	return prisma_client.userSubmission
-		.create({
-			data: parsed.data
-		})
-		.then(() => {
-			return {
-				status: 200,
-				message: 'Form Submitted Successfully! Thank you.'
-			};
-		})
-		.catch((error: Error) => {
-			console.log('ERROR saving', error);
-			return fail(500, { message: 'Failed to save to DB', error: error.name });
+	try {
+		await db.insert(userSubmission).values({
+			id: randomUUID(),
+			...parsed.data,
+			updated_at: new Date()
 		});
+
+		return {
+			status: 200,
+			message: 'Form Submitted Successfully! Thank you.'
+		};
+	} catch (error: any) {
+		console.log('ERROR saving', error);
+		return fail(500, { message: 'Failed to save to DB', error: error.name });
+	}
 };

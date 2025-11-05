@@ -1,13 +1,8 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
+	import type { Host } from '$server/db/types';
 	interface Props {
-		host: {
-			name: string;
-			github?: string | null;
-			twitter?: string | null;
-			url?: string | null;
-			slug?: string;
-		};
+		host: Host;
 	}
 
 	let { host }: Props = $props();
@@ -18,7 +13,7 @@
 
 {#if host.twitter}
 	<a href={`https://x.com/${host.twitter}`} target="_blank" class="social-icon">
-		<Icon name="x" title={`${host.name} on X`} />
+		<Icon name="twitter" title={`${host.name} on X`} />
 	</a>
 {/if}
 

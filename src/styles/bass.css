@@ -1,4 +1,4 @@
-/* 
+/*
 https://www.youtube.com/watch?v=7bCdrDhUjPo
 Freeze!
 Rock (rock rock rock rock rock rock rock)
@@ -55,32 +55,32 @@ Bass!
 
 	h1,
 	.h1 {
-		font-size: var(--fs-1);
+		font-size: var(--fs-9);
 	}
 
 	h2,
 	.h2 {
-		font-size: var(--fs-2);
+		font-size: var(--fs-8);
 	}
 
 	h3,
 	.h3 {
-		font-size: var(--fs-3);
+		font-size: var(--fs-7);
 	}
 
 	h4,
 	.h4 {
-		font-size: var(--fs-4);
+		font-size: var(--fs-3);
 	}
 
 	h5,
 	.h5 {
-		font-size: var(--fs-5);
+		font-size: var(--fs-2);
 	}
 
 	h6,
 	.h6 {
-		font-size: var(--fs-6);
+		font-size: var(--fs-1);
 	}
 
 	h1,
@@ -155,5 +155,9 @@ Bass!
 	a[href^='http']:not(.social-icon)::after {
 		content: '↗';
 		margin-left: 8px;
+	}
+
+	a {
+		color: var(--c-fg);
 	}
 }

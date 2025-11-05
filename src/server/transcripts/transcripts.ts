@@ -1,12 +1,20 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-import type { Show } from '@prisma/client';
+import type { Show } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
 import path from 'path';
-import { prisma_client as prisma } from '$/server/prisma-client';
+import { db } from '$server/db/client';
+import {
+	shows,
+	transcripts,
+	transcriptUtterances,
+	transcriptUtteranceWords
+} from '$server/db/schema';
+import { eq } from 'drizzle-orm';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
 import pMap from 'p-map';
+import { randomUUID } from 'crypto';
+
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');
 
 type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
@@ -48,39 +56,39 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 	console.log(`About to Save to the DB`);
 
 	// 1. Create the Transcript Record
-	const transcript = await prisma.transcript.create({
-		data: {
-			show_number: show.number
-		}
+	const transcriptId = randomUUID();
+	await db.insert(transcripts).values({
+		id: transcriptId,
+		show_number: show.number
 	});
-	console.log(`Created Transcript Record: ${transcript.id}`);
+	console.log(`Created Transcript Record: ${transcriptId}`);
 	console.log(`About to create ${create_utterances.length} utterances`);
-	// 2. Create the Utterances
 
+	// 2. Create the Utterances
 	async function saveUtterance({ words, ...utterance }: (typeof create_utterances)[0]) {
 		console.log(`Creating Utterance: ${utterance.start}`);
-		const utteranceRecord = await prisma.transcriptUtterance.create({
-			data: {
-				...utterance,
-				transcriptId: transcript.id // Associate the Utterance with the Transcript
-			}
+		const utteranceId = randomUUID();
+
+		await db.insert(transcriptUtterances).values({
+			id: utteranceId,
+			...utterance,
+			transcriptId: transcriptId
 		});
+
 		console.log(`Creating Words for Utterance: ${utterance.start} (${words.create.length})`);
-		await prisma.transcriptUtteranceWord.createMany({
-			data: words.create.map((word) => {
-				return {
-					...word,
-					// Associate the Word with the Utterance
-					transcriptUtteranceId: utteranceRecord.id
-				};
-			})
-		});
-		return;
+		await db.insert(transcriptUtteranceWords).values(
+			words.create.map((word) => ({
+				id: randomUUID(),
+				...word,
+				transcriptUtteranceId: utteranceId
+			}))
+		);
 	}
-	// Only save 100 at a time so we dont hit DB limits
+
+	// Only save 100 at a time so we don't hit DB limits
 	await pMap(create_utterances, saveUtterance, { concurrency: 100 });
 
-	return transcript;
+	return { id: transcriptId, show_number: show.number };
 }
 
 // Import Transcripts from JSON file - used for the initial import
@@ -97,13 +105,17 @@ export async function import_transcripts() {
 			);
 			const show_number = parseInt(file.split(' - ')[0]);
 			// Check if there is already a transcript for this show
-			const existing_transcript = await prisma.transcript.findUnique({ where: { show_number } });
+			const existing_transcript = await db.query.transcripts.findFirst({
+				where: eq(transcripts.show_number, show_number)
+			});
 			if (existing_transcript) {
 				// console.log('Transcript already exists, skipping');
 				return;
 			}
 			// Find the show this transcript belongs to
-			const show = await prisma.show.findUnique({ where: { number: show_number } });
+			const show = await db.query.shows.findFirst({
+				where: eq(shows.number, show_number)
+			});
 			if (!show) {
 				console.log('No associated show found');
 				return;

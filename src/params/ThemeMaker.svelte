@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { variable_color_svg } from '$/lib/theme/variable_color_svg';
+	import { variable_color_svg } from '$lib/theme/variable_color_svg';
 	import { clickOutside } from '$actions/click_outside';
 	import { invalidate } from '$app/navigation';
 	import { theme_maker } from '$state/theme';

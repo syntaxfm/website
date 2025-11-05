@@ -1,7 +1,17 @@
-import { YOUTUBE_CHANNEL_ID } from '$/const';
-import { prisma_client } from '$/server/prisma-client';
-import { YOUTUBE_API_KEY } from '$env/static/private';
+import { YOUTUBE_CHANNEL_ID } from '$const';
+import { db } from '$server/db/client';
+
 import slug from 'speakingurl';
+import { eq, and, notInArray } from 'drizzle-orm';
+import {
+	playlist,
+	playlistOnVideo,
+	remotePlaylist,
+	show,
+	showVideo,
+	video
+} from '$server/db/schema';
+import { env } from '$env/dynamic/private';
 
 // Youtube importer
 // Important things to know -> Youtube is the source of truth for all the data
@@ -49,13 +59,13 @@ interface YouTubePlaylistItemResponse {
 	nextPageToken?: string;
 }
 
-export async function get_remote_playlists(): Promise<void> {
+export async function get_youtube_playlists(): Promise<void> {
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
 	const params = new URLSearchParams({
 		part: 'snippet,contentDetails',
 		channelId: YOUTUBE_CHANNEL_ID,
 		maxResults: '50',
-		key: YOUTUBE_API_KEY
+		key: env.YOUTUBE_API_KEY
 	});
 
 	let next_page_token: string | null = null;
@@ -73,21 +83,23 @@ export async function get_remote_playlists(): Promise<void> {
 			const data: YouTubePlaylistResponse = await response.json();
 
 			// Iterate over all the playlists to upsert them
-			for (const playlist of data.items) {
-				await prisma_client.remotePlaylist.upsert({
-					where: { playlist_id: playlist.id },
-					update: {
-						title: playlist.snippet.title,
-						videos_count: playlist.contentDetails.itemCount,
-						created_at: new Date(playlist.snippet.publishedAt)
-					},
-					create: {
-						playlist_id: playlist.id,
-						title: playlist.snippet.title,
-						videos_count: playlist.contentDetails.itemCount,
-						created_at: new Date(playlist.snippet.publishedAt)
-					}
-				});
+			for (const playlist_item of data.items) {
+				await db
+					.insert(remotePlaylist)
+					.values({
+						playlist_id: playlist_item.id,
+						title: playlist_item.snippet.title,
+						videos_count: playlist_item.contentDetails.itemCount,
+						created_at: new Date(playlist_item.snippet.publishedAt)
+					})
+					.onConflictDoUpdate({
+						target: remotePlaylist.playlist_id,
+						set: {
+							title: playlist_item.snippet.title,
+							videos_count: playlist_item.contentDetails.itemCount,
+							created_at: new Date(playlist_item.snippet.publishedAt)
+						}
+					});
 			}
 
 			next_page_token = data.nextPageToken || null;
@@ -100,56 +112,99 @@ export async function get_remote_playlists(): Promise<void> {
 	console.log('Playlists imported and updated successfully.');
 }
 
-export async function import_playlist(playlist_id: string) {
+export async function import_youtube_playlist(playlist_id: string) {
 	// Yo, let's grab that playlist data from the YouTube API!
 	const playlist_response = await fetch(
-		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlist_id}&key=${process.env.YOUTUBE_API_KEY}`
+		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlist_id}&key=${env.YOUTUBE_API_KEY}`
 	);
+
+	if (!playlist_response.ok) {
+		throw new Error(
+			`Failed to fetch playlist: ${playlist_response.status} ${playlist_response.statusText}`
+		);
+	}
+
 	const playlist_data: YouTubePlaylistResponse = await playlist_response.json();
 
+	if (!playlist_data.items || playlist_data.items.length === 0) {
+		throw new Error(`No playlist found with ID: ${playlist_id}`);
+	}
+
+	console.log(playlist_data);
 	// Upsert that playlist like a boss!
-	const playlist = await prisma_client.playlist.upsert({
-		where: { id: playlist_id },
-		update: {
-			title: playlist_data.items[0].snippet.title,
-			description: playlist_data.items[0].snippet.description,
-			slug: slug(playlist_data.items[0].snippet.title)
-		},
-		create: {
+	await db
+		.insert(playlist)
+		.values({
 			id: playlist_id,
 			title: playlist_data.items[0].snippet.title,
 			description: playlist_data.items[0].snippet.description,
 			slug: slug(playlist_data.items[0].snippet.title)
-		}
-	});
+		})
+		.onConflictDoUpdate({
+			target: playlist.id,
+			set: {
+				title: playlist_data.items[0].snippet.title,
+				description: playlist_data.items[0].snippet.description,
+				slug: slug(playlist_data.items[0].snippet.title)
+			}
+		});
 
 	let video_ids: string[] = [];
 	let next_page_token: string | undefined = undefined;
-	let videos: YouTubePlaylistItem[] = [];
+	let playlist_items: YouTubePlaylistItem[] = [];
 
 	do {
 		// Time to fetch those video details, page by page!
 		const video_response = await fetch(
-			`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist_id}&key=${process.env.YOUTUBE_API_KEY}&maxResults=50${
+			`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist_id}&key=${env.YOUTUBE_API_KEY}&maxResults=50${
 				next_page_token ? `&pageToken=${next_page_token}` : ''
 			}`
 		);
+
+		if (!video_response.ok) {
+			throw new Error(
+				`Failed to fetch playlist items: ${video_response.status} ${video_response.statusText}`
+			);
+		}
+
 		const video_data: YouTubePlaylistItemResponse = await video_response.json();
+
+		if (!video_data.items || video_data.items.length === 0) {
+			console.log('No more items in playlist');
+			break;
+		}
 
 		// Extract the video IDs from the playlist items
 		video_ids = [...video_ids, ...video_data.items.map((item) => item.snippet.resourceId.videoId)];
 
 		// Store the playlist items for later use
-		videos = [...videos, ...video_data.items];
+		playlist_items = [...playlist_items, ...video_data.items];
 
 		next_page_token = video_data.nextPageToken;
 	} while (next_page_token);
 
+	if (video_ids.length === 0) {
+		console.log('No videos found in playlist');
+		return;
+	}
+
 	// Fetch video details using the videos endpoint
 	const videos_response = await fetch(
-		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${video_ids.join(',')}&key=${process.env.YOUTUBE_API_KEY}`
+		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${video_ids.join(',')}&key=${env.YOUTUBE_API_KEY}`
 	);
+
+	if (!videos_response.ok) {
+		throw new Error(
+			`Failed to fetch video details: ${videos_response.status} ${videos_response.statusText}`
+		);
+	}
+
 	const videos_data = await videos_response.json();
+
+	if (!videos_data.items || videos_data.items.length === 0) {
+		console.log('No video details returned from API');
+		return;
+	}
 
 	// Process the video details
 	for (const item of videos_data.items) {
@@ -159,17 +214,9 @@ export async function import_playlist(playlist_id: string) {
 		}
 
 		try {
-			const video = await prisma_client.video.upsert({
-				where: { id: item.id },
-				update: {
-					title: item.snippet.title,
-					slug: slug(item.snippet.title),
-					description: item.snippet.description,
-					url: `https://www.youtube.com/watch?v=${item.id}`,
-					published_at: new Date(item.snippet.publishedAt),
-					thumbnail: item.snippet.thumbnails.maxres.url
-				},
-				create: {
+			await db
+				.insert(video)
+				.values({
 					id: item.id,
 					title: item.snippet.title,
 					slug: slug(item.snippet.title),
@@ -177,28 +224,36 @@ export async function import_playlist(playlist_id: string) {
 					url: `https://www.youtube.com/watch?v=${item.id}`,
 					published_at: new Date(item.snippet.publishedAt),
 					thumbnail: item.snippet.thumbnails.maxres.url
-				}
-			});
+				})
+				.onConflictDoUpdate({
+					target: video.id,
+					set: {
+						title: item.snippet.title,
+						slug: slug(item.snippet.title),
+						description: item.snippet.description,
+						url: `https://www.youtube.com/watch?v=${item.id}`,
+						published_at: new Date(item.snippet.publishedAt),
+						thumbnail: item.snippet.thumbnails.maxres.url
+					}
+				});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = videos.find((i) => i.snippet.resourceId.videoId === item.id);
+			const playlistItem = playlist_items.find((i) => i.snippet.resourceId.videoId === item.id);
 
-			await prisma_client.playlistOnVideo.upsert({
-				where: {
-					video_id_playlist_id: {
-						video_id: video.id,
-						playlist_id: playlist.id
-					}
-				},
-				update: {
-					video_id: video.id
-				},
-				create: {
-					video_id: video.id,
-					playlist_id: playlist.id,
+			await db
+				.insert(playlistOnVideo)
+				.values({
+					video_id: item.id,
+					playlist_id: playlist_id,
 					order: playlistItem?.snippet.position || 0
-				}
-			});
+				})
+				.onConflictDoUpdate({
+					target: [playlistOnVideo.video_id, playlistOnVideo.playlist_id],
+					set: {
+						order: playlistItem?.snippet.position || 0
+					}
+				});
+
 			// Check for "syntax-shownumber" tags and connect to the corresponding shows
 			const syntaxShowNumberTags = item.snippet.tags?.filter((tag: string) =>
 				/^syntax-related-\d+$/.test(tag)
@@ -207,24 +262,23 @@ export async function import_playlist(playlist_id: string) {
 			if (syntaxShowNumberTags) {
 				for (const tag of syntaxShowNumberTags) {
 					const showNumber = parseInt(tag.split('-')[2]);
-					const show = await prisma_client.show.findUnique({
-						where: { number: showNumber }
+					const current_show = await db.query.show.findFirst({
+						where: eq(show.number, showNumber)
 					});
 
-					if (show) {
-						await prisma_client.showVideo.upsert({
-							where: {
-								showId_videoId: {
-									showId: show.id,
-									videoId: video.id
+					if (current_show) {
+						await db
+							.insert(showVideo)
+							.values({
+								showId: current_show.id,
+								videoId: item.id
+							})
+							.onConflictDoUpdate({
+								target: [showVideo.showId, showVideo.videoId],
+								set: {
+									showId: current_show.id
 								}
-							},
-							update: {},
-							create: {
-								showId: show.id,
-								videoId: video.id
-							}
-						});
+							});
 					}
 				}
 			}
@@ -236,18 +290,20 @@ export async function import_playlist(playlist_id: string) {
 
 	// Clean up those old relationships for videos that got kicked out of the playlist!
 	const playlist_video_ids = (
-		await prisma_client.playlistOnVideo.findMany({
-			where: { playlist_id },
-			select: { video_id: true }
+		await db.query.playlistOnVideo.findMany({
+			where: eq(playlistOnVideo.playlist_id, playlist_id),
+			columns: {
+				video_id: true
+			}
 		})
 	).map((item) => item.video_id);
 
-	await prisma_client.playlistOnVideo.deleteMany({
-		where: {
-			playlist_id,
-			video_id: {
-				notIn: playlist_video_ids
-			}
-		}
-	});
+	await db
+		.delete(playlistOnVideo)
+		.where(
+			and(
+				eq(playlistOnVideo.playlist_id, playlist_id),
+				notInArray(playlistOnVideo.video_id, playlist_video_ids)
+			)
+		);
 }

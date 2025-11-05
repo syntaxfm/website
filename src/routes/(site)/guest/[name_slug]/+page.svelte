@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import { getGuest } from '../guests.remote';
-	let { params } = $props();
-	const guest = await getGuest(params.name_slug);
+
+	const guest = await getGuest(page.params.name_slug!);
 </script>
 
 {#if guest}
