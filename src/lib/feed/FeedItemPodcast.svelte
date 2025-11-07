@@ -4,8 +4,9 @@
 	import type { ShowWithHostsAndGuests } from '$server/db/types';
 	import FeedHosts from '$lib/hosts/FeedHosts.svelte';
 
-	const { show }: { show: ShowWithHostsAndGuests } = $props();
-	$inspect(show);
+	const { show, content }: { show: ShowWithHostsAndGuests } = $props();
+
+	$inspect(content);
 </script>
 
 <article class="stack">
@@ -26,7 +27,7 @@
 			{show.title}
 		</a>
 	</h4>
-	<TagRow tags={show?.aiShowNote?.topics.map((topic) => topic.name)} />
+	<TagRow tags={content.tags.map((tag) => tag.tag.name)} />
 </article>
 
 <style>

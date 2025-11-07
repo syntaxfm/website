@@ -76,7 +76,10 @@ const DEFAULT_MIGRATION_ORDER = [
 	'Topic',
 	'ShowGuest',
 	// Level 3: Depends on Level 2
-	'TranscriptUtteranceWord'
+	'TranscriptUtteranceWord',
+	// Level 4: Complex migrations requiring data transformation
+	'Tag',
+	'ContentTag'
 ];
 
 // MySQL to PostgreSQL column name mapping
@@ -256,6 +259,15 @@ const COLUMN_MAPPING = {
 		submission_type: 'submission_type',
 		created_at: 'created_at',
 		updated_at: 'updated_at'
+	},
+	Tag: {
+		id: 'id',
+		name: 'name',
+		slug: 'slug'
+	},
+	ContentTag: {
+		content_id: 'content_id',
+		tag_id: 'tag_id'
 	}
 };
 
@@ -284,7 +296,9 @@ const TABLE_NAME_MAPPING = {
 	PlaylistOnVideo: 'playlist_videos',
 	ShowVideo: 'show_videos',
 	RemotePlaylist: 'remote_playlists',
-	UserSubmission: 'user_submissions'
+	UserSubmission: 'user_submissions',
+	Tag: 'tags',
+	ContentTag: 'content_tags'
 };
 
 // ============================================================================
@@ -339,6 +353,22 @@ function updateMigrationTime(tableName, state) {
 // ============================================================================
 // TYPE TRANSFORMERS
 // ============================================================================
+
+/**
+ * Generate a URL-safe slug from a tag name
+ */
+function generateSlug(name) {
+	if (!name) return null;
+
+	return name
+		.toLowerCase()
+		.trim()
+		.replace(/^#+/, '') // Remove leading # symbols
+		.replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+		.replace(/\s+/g, '-') // Replace spaces with hyphens
+		.replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+		.replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
 
 /**
  * Generate full-text search vector from text fields
@@ -730,6 +760,168 @@ async function populateContentTable(pgClient) {
 	}
 }
 
+async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
+	console.log('\n\n📋 Migrating: Tag');
+	console.log('🔄 Converting Topics to Tags with content relationships...\n');
+
+	try {
+		const startTime = Date.now();
+
+		// Clear existing tags and content_tags in refresh mode
+		if (MODE === 'refresh') {
+			console.log('🗑️  Clearing existing tags and content_tags (refresh mode)...');
+			await pgClient`DELETE FROM content_tags WHERE 1=1`;
+			await pgClient`DELETE FROM tags WHERE 1=1`;
+			console.log('✅ Cleared\n');
+		}
+
+		// Query all topics from MySQL with JOIN to get show_number
+		const [topics] = await mysqlConn.query(`
+			SELECT
+				t.id,
+				t.name,
+				asn.show_number
+			FROM Topic t
+			INNER JOIN AiShowNote asn ON t.showNote = asn.id
+			ORDER BY asn.show_number, t.name
+		`);
+
+		const totalTopics = topics.length;
+		console.log(`📊 Total topics: ${totalTopics.toLocaleString()}\n`);
+
+		if (totalTopics === 0) {
+			console.log('⚠️  No topics to migrate');
+			return;
+		}
+
+		// Track stats
+		let tagsCreated = 0;
+		let tagsReused = 0;
+		let linksCreated = 0;
+		let skipped = 0;
+
+		// Cache for tags (slug -> id mapping for deduplication)
+		const tagCache = new Map();
+
+		// Pre-load all existing tags from database
+		console.log('🔍 Loading existing tags...');
+		const existingTags = await pgClient`SELECT id, slug FROM tags WHERE slug IS NOT NULL`;
+		for (const row of existingTags) {
+			tagCache.set(row.slug, row.id);
+		}
+		console.log(`   Found ${existingTags.length} existing tags\n`);
+
+		console.log('🔄 Processing topics and creating tags...');
+
+		for (let i = 0; i < topics.length; i++) {
+			const topic = topics[i];
+
+			// Skip empty/null names
+			if (!topic.name || topic.name.trim() === '') {
+				skipped++;
+				continue;
+			}
+
+			// Clean topic name: remove # prefix, trim whitespace
+			const cleanName = topic.name.trim().replace(/^#+/, '');
+
+			if (!cleanName) {
+				skipped++;
+				continue;
+			}
+
+			// Generate slug from cleaned name
+			const slug = generateSlug(cleanName);
+
+			if (!slug) {
+				skipped++;
+				continue;
+			}
+
+			// Check if we've already processed this slug
+			let tagId = tagCache.get(slug);
+
+			if (!tagId) {
+				// Check if tag with this slug exists in PostgreSQL
+				const existingTag = await pgClient`
+					SELECT id FROM tags WHERE slug = ${slug}
+				`;
+
+				if (existingTag.length > 0) {
+					tagId = existingTag[0].id;
+					tagsReused++;
+				} else {
+					// Create new tag
+					const newTag = await pgClient`
+						INSERT INTO tags (id, name, slug)
+						VALUES (gen_random_uuid(), ${cleanName}, ${slug})
+						RETURNING id
+					`;
+					tagId = newTag[0].id;
+					tagsCreated++;
+				}
+
+				// Cache the tag by slug
+				tagCache.set(slug, tagId);
+			} else {
+				tagsReused++;
+			}
+
+			// Get show's content_id
+			const showResult = await pgClient`
+				SELECT content_id FROM shows WHERE number = ${topic.show_number}
+			`;
+
+			if (showResult.length === 0 || !showResult[0].content_id) {
+				skipped++;
+				continue;
+			}
+
+			const contentId = showResult[0].content_id;
+
+			// Create content_tags relationship (ON CONFLICT DO NOTHING handles duplicates)
+			await pgClient`
+				INSERT INTO content_tags (content_id, tag_id)
+				VALUES (${contentId}, ${tagId})
+				ON CONFLICT DO NOTHING
+			`;
+
+			linksCreated++;
+
+			// Progress reporting
+			if ((i + 1) % 100 === 0 || i === topics.length - 1) {
+				const percent = (((i + 1) / totalTopics) * 100).toFixed(1);
+				const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+				const rate = ((i + 1) / elapsed).toFixed(0);
+
+				process.stdout.write(
+					`\r   Progress: ${(i + 1).toLocaleString()}/${totalTopics.toLocaleString()} (${percent}%) - ${rate} rows/sec [Created: ${tagsCreated} tags, Reused: ${tagsReused} tags]`
+				);
+			}
+		}
+
+		const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+
+		console.log('\n\n✨ Table migrated!');
+		console.log(`⏱️  Time: ${totalTime}s`);
+		console.log(`📊 Unique tags created: ${tagsCreated.toLocaleString()}`);
+		console.log(`📊 Content links created: ${linksCreated.toLocaleString()}`);
+		if (skipped > 0) {
+			console.log(`⚠️  Skipped: ${skipped.toLocaleString()} (no content_id or empty name)`);
+		}
+		console.log(`⚡ Rate: ${(totalTopics / totalTime).toFixed(0)} rows/sec`);
+
+		// Update migration state
+		updateMigrationTime('Tag', migrationState);
+		migrationState.Tag.rowCount = tagsCreated;
+		migrationState.Tag.linksCreated = linksCreated;
+		saveMigrationState(migrationState);
+	} catch (error) {
+		console.error('❌ Error migrating topics to tags:', error.message);
+		throw error;
+	}
+}
+
 async function main() {
 	console.log(`🚀 Direct MySQL → PostgreSQL Migration\n`);
 
@@ -810,9 +1002,33 @@ async function main() {
 	try {
 		const overallStartTime = Date.now();
 
+		// Track if we've populated content table
+		let contentTablePopulated = false;
+
 		// Migrate each table in order
 		for (const tableName of tablesToMigrate) {
-			await migrateSingleTable(tableName, mysqlConn, pgClient, migrationState);
+			// Populate content table before Tag migration if needed
+			if (tableName === 'Tag' && !contentTablePopulated && POPULATE_CONTENT) {
+				// Check if Show or Video was migrated (or if we have existing shows/videos in DB)
+				const showCount = await pgClient`SELECT COUNT(*) as count FROM shows`;
+				const videoCount = await pgClient`SELECT COUNT(*) as count FROM videos`;
+
+				if (showCount[0].count > 0 || videoCount[0].count > 0) {
+					console.log('\n⚡ Populating content table before Tag migration...');
+					await populateContentTable(pgClient);
+					contentTablePopulated = true;
+				}
+			}
+
+			if (tableName === 'Tag') {
+				// Custom migration for Topic -> Tag + ContentTag
+				await migrateTopicsToTags(mysqlConn, pgClient, migrationState);
+			} else if (tableName === 'ContentTag') {
+				// Skip - already handled by migrateTopicsToTags
+				console.log('\n📋 Skipping ContentTag (already migrated with Tags)');
+			} else {
+				await migrateSingleTable(tableName, mysqlConn, pgClient, migrationState);
+			}
 		}
 
 		const overallTime = ((Date.now() - overallStartTime) / 1000).toFixed(1);
@@ -821,8 +1037,9 @@ async function main() {
 		console.log(`⏱️  Total time: ${overallTime}s`);
 		console.log(`📁 Migration state saved to: ${MIGRATION_STATE_FILE}`);
 
-		// Automatically populate content table if requested
+		// Populate content table if not already done and requested
 		if (
+			!contentTablePopulated &&
 			POPULATE_CONTENT &&
 			(tablesToMigrate.includes('Show') || tablesToMigrate.includes('Video'))
 		) {

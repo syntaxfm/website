@@ -5,7 +5,7 @@ import { db } from '$server/db/client';
 export const get_feed_content = query(() => {
 	return db.query.content.findMany({
 		orderBy: (c, { desc }) => [desc(c.published_at)],
-		limit: 10,
+		limit: 100,
 		with: {
 			show: {
 				with: {
@@ -18,7 +18,11 @@ export const get_feed_content = query(() => {
 					}
 				}
 			},
-
+			tags: {
+				with: {
+					tag: true
+				}
+			},
 			article: true,
 			video: true
 		}

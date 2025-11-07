@@ -8,7 +8,7 @@
 
 <!-- TODO make this if item type === show, swag social ect -->
 {#if content.type === 'PODCAST'}
-	<FeedItemPodcast show={content.show} />
+	<FeedItemPodcast show={content.show} {content} />
 {:else if content.type === 'VIDEO'}
 	<FeedItemVideo video={content.video} />
 {:else if content.type === 'ARTICLE'}{/if}
