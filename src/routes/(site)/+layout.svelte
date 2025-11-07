@@ -35,6 +35,9 @@
 <a href="#main-content" class="skip-to-main-content">Skip to main content</a>
 <PageLoadingIndicator />
 
+{#if user?.roles?.includes('admin')}
+	<AdminMenu />
+{/if}
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
 	<Header />
 
@@ -56,10 +59,6 @@
 
 	{#if browser}
 		<SearchBox />
-	{/if}
-
-	{#if user?.roles?.includes('admin')}
-		<AdminMenu />
 	{/if}
 </div>
 

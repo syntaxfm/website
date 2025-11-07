@@ -10,7 +10,7 @@ export const load = async function ({ setHeaders, params, parent }) {
 	const { show_number } = params;
 
 	return {
-		transcript: await db.query.transcripts.findFirst({
+		transcript: await db.query.transcript.findFirst({
 			where: (transcripts, { eq }) => eq(transcripts.show_number, parseInt(show_number)),
 			with: {
 				utterances: true

@@ -1,16 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import { SideMenu } from '@leveluptuts/svelte-side-menu';
-	import { form_action } from './form_action';
-	import ThemeToggle from './theme/ThemeToggle.svelte';
-</script>
-
-<SideMenu
-	top="40px"
-	links={[
-		{
-			text: 'Admin'
-		},
+	let links = [
 		{
 			text: 'Dashboard',
 			path: '/admin'
@@ -42,12 +31,25 @@
 			text: 'Shows',
 			path: '/podcast'
 		}
-	]}
->
-	<ThemeToggle />
-	<div>
-		<form action="/?/dump_cache" use:enhance={form_action()} method="POST">
-			<button>Dump Cache</button>
-		</form>
-	</div>
-</SideMenu>
+	];
+</script>
+
+<div class="admin-menu">
+	{#each links as link (link.path + 'admin-nav')}
+		<a href={link.path}>{link.text}</a>
+	{/each}
+</div>
+
+<style>
+	.admin-menu {
+		overflow: scroll;
+		display: flex;
+		gap: 20px;
+		padding: 20px;
+		flex-wrap: nowrap;
+		border-bottom: var(--c-shade-or-tint) solid 1px;
+		a {
+			white-space: nowrap;
+		}
+	}
+</style>

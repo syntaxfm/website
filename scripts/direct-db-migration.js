@@ -34,14 +34,20 @@ const SKIP_EXISTING = args.includes('--skip-existing');
 const SKIP_INVALID_FK = args.includes('--skip-invalid-fk'); // Skip rows with invalid foreign keys
 const SKIP_TRANSCRIPTS = args.includes('--skip-transcripts'); // Skip transcript tables
 const TRANSCRIPTS_ONLY = args.includes('--transcripts-only'); // Migrate only transcript tables
+const SKIP_TRANSCRIPT_WORDS = !args.includes('--include-transcript-words'); // Skip TranscriptUtteranceWord by default
 const INCREMENTAL = args.includes('--incremental'); // Incremental sync for transcripts
+const POPULATE_CONTENT = !args.includes('--skip-populate-content'); // Run content population after migration by default
 const MODE = args.find((arg) => arg.startsWith('--mode='))?.split('=')[1] || 'refresh'; // refresh | upsert
 const BATCH_SIZE = 5000;
 
 // Transcript table names (for --skip-transcripts and --transcripts-only)
 const TRANSCRIPT_TABLES = ['Transcript', 'TranscriptUtterance', 'TranscriptUtteranceWord'];
 
+// Tables that should NEVER be imported (Session contains sensitive data)
+const EXCLUDED_TABLES = ['Session'];
+
 // Default migration order (respects foreign key dependencies)
+// NOTE: Session is intentionally excluded for security reasons
 const DEFAULT_MIGRATION_ORDER = [
 	// Level 0: No dependencies
 	'User',
@@ -53,7 +59,7 @@ const DEFAULT_MIGRATION_ORDER = [
 	'UserSubmission',
 	'RemotePlaylist',
 	// Level 1: Depends on Level 0
-	'Session',
+	// 'Session', // EXCLUDED: Contains sensitive session data
 	'UserRole',
 	'_ShowToUser', // Many-to-many join table
 	'Transcript',
@@ -425,7 +431,9 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	}
 
 	// Get row count (with WHERE clause if incremental)
-	const [countResult] = await mysqlConn.query(`SELECT COUNT(*) as count FROM \`${tableName}\`${whereClause}`);
+	const [countResult] = await mysqlConn.query(
+		`SELECT COUNT(*) as count FROM \`${tableName}\`${whereClause}`
+	);
 	const totalRows = countResult[0].count;
 
 	console.log(`📊 ${incrementalMode ? 'Changed' : 'Total'} rows: ${totalRows.toLocaleString()}`);
@@ -460,9 +468,7 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		if (existingRows > 0) {
 			// Only skip if counts match (fully migrated)
 			if (existingRows === totalRows) {
-				console.log(
-					`⏭️  Skipping (already complete: ${existingRows.toLocaleString()} rows)`
-				);
+				console.log(`⏭️  Skipping (already complete: ${existingRows.toLocaleString()} rows)`);
 				return;
 			} else {
 				console.log(
@@ -528,7 +534,7 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
               ON CONFLICT (${pgClient(pkCol)})
               DO UPDATE SET ${pgClient(
 								Object.fromEntries(
-									pgCols.filter(col => col !== pkCol).map(col => [col, pgRow[col]])
+									pgCols.filter((col) => col !== pkCol).map((col) => [col, pgRow[col]])
 								)
 							)}
             `;
@@ -603,6 +609,127 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	saveMigrationState(migrationState);
 }
 
+async function populateContentTable(pgClient) {
+	console.log('\n\n📦 Populating content table from existing shows and videos...');
+
+	try {
+		// Clear existing content table - do this BEFORE resetting foreign keys
+		console.log('🗑️  Clearing existing content table...');
+		await pgClient`DELETE FROM content WHERE 1=1`;
+		console.log('✅ Cleared');
+
+		// Get all shows
+		const shows = await pgClient`
+			SELECT id, title, slug, created_at, date
+			FROM shows
+			ORDER BY number
+		`;
+
+		// Get all videos
+		const videos = await pgClient`
+			SELECT id, title, slug, published_at
+			FROM videos
+			ORDER BY published_at
+		`;
+
+		console.log(`📊 Found ${shows.length} shows and ${videos.length} videos to process`);
+
+		// Global slug counter to handle duplicates
+		const slug_counts = new Map();
+		let show_counter = 0;
+		let video_counter = 0;
+
+		// Process shows
+		for (const show_item of shows) {
+			// Handle duplicate slugs
+			let unique_slug = show_item.slug;
+			const count = slug_counts.get(show_item.slug) || 0;
+			if (count > 0) {
+				unique_slug = `${show_item.slug}-${count}`;
+			}
+			slug_counts.set(show_item.slug, count + 1);
+
+			try {
+				await pgClient.begin(async (tx) => {
+					// Create content record
+					const [new_content] = await tx`
+						INSERT INTO content (title, slug, type, status, created_at, updated_at, published_at)
+						VALUES (
+							${show_item.title},
+							${unique_slug},
+							'PODCAST',
+							'PUBLISHED',
+							${show_item.created_at},
+							NOW(),
+							${show_item.date}
+						)
+						RETURNING id
+					`;
+
+					// Update show with content_id
+					await tx`
+						UPDATE shows
+						SET content_id = ${new_content.id}
+						WHERE id = ${show_item.id}
+					`;
+				});
+
+				show_counter++;
+			} catch (err) {
+				console.error(`❌ Failed to process show ${show_item.id}:`, err.message);
+			}
+		}
+
+		// Process videos
+		for (const video_item of videos) {
+			// Handle duplicate slugs
+			let unique_slug = video_item.slug;
+			const count = slug_counts.get(video_item.slug) || 0;
+			if (count > 0) {
+				unique_slug = `${video_item.slug}-${count}`;
+			}
+			slug_counts.set(video_item.slug, count + 1);
+
+			try {
+				await pgClient.begin(async (tx) => {
+					// Create content record
+					const [new_content] = await tx`
+						INSERT INTO content (title, slug, type, status, created_at, updated_at, published_at)
+						VALUES (
+							${video_item.title},
+							${unique_slug},
+							'VIDEO',
+							'PUBLISHED',
+							NOW(),
+							NOW(),
+							${video_item.published_at}
+						)
+						RETURNING id
+					`;
+
+					// Update video with content_id
+					await tx`
+						UPDATE videos
+						SET content_id = ${new_content.id}
+						WHERE id = ${video_item.id}
+					`;
+				});
+
+				video_counter++;
+			} catch (err) {
+				console.error(`❌ Failed to process video ${video_item.id}:`, err.message);
+			}
+		}
+
+		console.log(`✅ Content population complete!`);
+		console.log(`   Shows: ${show_counter}`);
+		console.log(`   Videos: ${video_counter}`);
+	} catch (error) {
+		console.error('❌ Error populating content:', error.message);
+		throw error;
+	}
+}
+
 async function main() {
 	console.log(`🚀 Direct MySQL → PostgreSQL Migration\n`);
 
@@ -623,6 +750,12 @@ async function main() {
 	// Determine tables to migrate
 	let tablesToMigrate = TABLE_NAME ? [TABLE_NAME] : DEFAULT_MIGRATION_ORDER;
 
+	// Always filter out excluded tables (Session, etc.)
+	tablesToMigrate = tablesToMigrate.filter((t) => !EXCLUDED_TABLES.includes(t));
+	if (EXCLUDED_TABLES.some((t) => DEFAULT_MIGRATION_ORDER.includes(t))) {
+		console.log(`🚫 Excluding tables: ${EXCLUDED_TABLES.join(', ')}`);
+	}
+
 	// Filter based on --skip-transcripts or --transcripts-only
 	if (SKIP_TRANSCRIPTS) {
 		tablesToMigrate = tablesToMigrate.filter((t) => !TRANSCRIPT_TABLES.includes(t));
@@ -630,6 +763,14 @@ async function main() {
 	} else if (TRANSCRIPTS_ONLY) {
 		tablesToMigrate = tablesToMigrate.filter((t) => TRANSCRIPT_TABLES.includes(t));
 		console.log(`📋 Migrating ONLY transcript tables: ${TRANSCRIPT_TABLES.join(', ')}`);
+	}
+
+	// Skip TranscriptUtteranceWord by default (unless --include-transcript-words is specified)
+	if (SKIP_TRANSCRIPT_WORDS && !TRANSCRIPTS_ONLY) {
+		tablesToMigrate = tablesToMigrate.filter((t) => t !== 'TranscriptUtteranceWord');
+		console.log(
+			`⏭️  Skipping TranscriptUtteranceWord (large table - use --include-transcript-words to migrate)`
+		);
 	}
 
 	console.log(`📋 Tables to migrate: ${tablesToMigrate.join(', ')}`);
@@ -644,6 +785,11 @@ async function main() {
 	}
 	if (INCREMENTAL) {
 		modes.push('Incremental sync');
+	}
+	if (POPULATE_CONTENT) {
+		modes.push('Auto-populate content');
+	} else {
+		modes.push('Skip content population');
 	}
 	console.log(`⚙️  ${modes.join(', ')}\n`);
 
@@ -674,6 +820,14 @@ async function main() {
 		console.log('\n\n🎉 All migrations complete!');
 		console.log(`⏱️  Total time: ${overallTime}s`);
 		console.log(`📁 Migration state saved to: ${MIGRATION_STATE_FILE}`);
+
+		// Automatically populate content table if requested
+		if (
+			POPULATE_CONTENT &&
+			(tablesToMigrate.includes('Show') || tablesToMigrate.includes('Video'))
+		) {
+			await populateContentTable(pgClient);
+		}
 	} catch (error) {
 		console.error('\n❌ Migration failed:', error.message);
 		throw error;

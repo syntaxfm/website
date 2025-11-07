@@ -1,34 +1,34 @@
 {
   "User": {
-    "lastMigration": "2025-11-04T05:12:33.439Z",
+    "lastMigration": "2025-11-05T06:13:40.285Z",
     "rowCount": 16
   },
   "Role": {
-    "lastMigration": "2025-11-04T05:12:33.767Z",
+    "lastMigration": "2025-11-05T06:13:40.615Z",
     "rowCount": 3
   },
   "Show": {
-    "lastMigration": "2025-11-04T05:12:36.578Z",
-    "rowCount": 951
+    "lastMigration": "2025-11-05T06:13:42.107Z",
+    "rowCount": 953
   },
   "Guest": {
-    "lastMigration": "2025-11-04T05:12:36.945Z",
+    "lastMigration": "2025-11-05T06:13:42.470Z",
     "rowCount": 177
   },
   "Video": {
-    "lastMigration": "2025-11-04T05:12:37.383Z",
+    "lastMigration": "2025-11-05T06:13:42.886Z",
     "rowCount": 89
   },
   "Playlist": {
-    "lastMigration": "2025-11-04T05:12:37.730Z",
+    "lastMigration": "2025-11-05T06:13:43.217Z",
     "rowCount": 7
   },
   "UserSubmission": {
-    "lastMigration": "2025-11-04T05:12:38.262Z",
+    "lastMigration": "2025-11-05T06:13:43.733Z",
     "rowCount": 307
   },
   "RemotePlaylist": {
-    "lastMigration": "2025-11-04T05:12:38.607Z",
+    "lastMigration": "2025-11-05T06:13:44.059Z",
     "rowCount": 124
   },
   "Session": {
@@ -36,55 +36,55 @@
     "rowCount": 89
   },
   "UserRole": {
-    "lastMigration": "2025-11-04T05:12:39.299Z",
+    "lastMigration": "2025-11-05T06:13:44.398Z",
     "rowCount": 5
   },
   "_ShowToUser": {
-    "lastMigration": "2025-11-04T05:12:39.636Z",
-    "rowCount": 37
+    "lastMigration": "2025-11-05T06:13:44.733Z",
+    "rowCount": 40
   },
   "AiShowNote": {
-    "lastMigration": "2025-11-04T05:12:40.068Z",
+    "lastMigration": "2025-11-05T06:13:45.538Z",
     "rowCount": 679
   },
   "SocialLink": {
-    "lastMigration": "2025-11-04T05:12:40.519Z",
-    "rowCount": 161
+    "lastMigration": "2025-11-05T06:13:45.964Z",
+    "rowCount": 162
   },
   "PlaylistOnVideo": {
-    "lastMigration": "2025-11-04T05:12:40.854Z",
+    "lastMigration": "2025-11-05T06:13:46.312Z",
     "rowCount": 110
   },
   "ShowVideo": {
-    "lastMigration": "2025-11-04T05:12:41.193Z",
+    "lastMigration": "2025-11-05T06:13:46.643Z",
     "rowCount": 15
   },
   "AiSummaryEntry": {
-    "lastMigration": "2025-11-04T05:12:42.233Z",
+    "lastMigration": "2025-11-05T06:14:26.381Z",
     "rowCount": 10499
   },
   "AiTweet": {
-    "lastMigration": "2025-11-04T05:12:42.959Z",
+    "lastMigration": "2025-11-05T06:14:26.923Z",
     "rowCount": 4016
   },
   "Link": {
-    "lastMigration": "2025-11-04T05:12:43.404Z",
+    "lastMigration": "2025-11-05T06:14:27.323Z",
     "rowCount": 1867
   },
   "Topic": {
-    "lastMigration": "2025-11-04T05:12:44.022Z",
+    "lastMigration": "2025-11-05T06:14:27.887Z",
     "rowCount": 2203
   },
   "ShowGuest": {
-    "lastMigration": "2025-11-04T05:12:44.348Z",
-    "rowCount": 196
+    "lastMigration": "2025-11-05T06:14:28.233Z",
+    "rowCount": 197
   },
   "Transcript": {
-    "lastMigration": "2025-11-03T21:01:44.597Z",
-    "rowCount": 725
+    "lastMigration": "2025-11-05T06:13:45.088Z",
+    "rowCount": 727
   },
   "TranscriptUtterance": {
-    "lastMigration": "2025-11-03T21:02:21.688Z",
-    "rowCount": 295736
+    "lastMigration": "2025-11-05T06:14:25.306Z",
+    "rowCount": 296134
   }
 }
