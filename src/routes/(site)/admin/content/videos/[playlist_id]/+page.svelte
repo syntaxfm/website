@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AdminSearch from '$lib/AdminSearch.svelte';
+	import AdminSearch from '../../../AdminSearch.svelte';
+
 	import { get_playlist } from '../admin_videos.remote';
 	let search_text = $state('');
 

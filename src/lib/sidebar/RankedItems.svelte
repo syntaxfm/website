@@ -28,7 +28,7 @@
 			display: block;
 			width: 2px;
 			height: 100%;
-			background-color: var(--c-shade-or-tint);
+			background-color: var(--c-tint-or-shade);
 			position: absolute;
 			left: 15px;
 			top: 0;

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import AdminActions from '$lib/AdminActions.svelte';
-	import { populate_content_from_existing_data, get_all_content } from './admin_content.remote';
+	import AdminActions from '../AdminActions.svelte';
+
+	import { get_all_content } from './admin_content.remote';
 	let search_text = $state('');
 </script>
 
 <h1 class="h4">Content</h1>
 <AdminActions>
-	<button onclick={() => populate_content_from_existing_data()}>Populate Content</button>
+	<!-- Potentially needed for migration -->
+	<!-- <button onclick={() => populate_content_from_existing_data()}>Populate Content</button> -->
 </AdminActions>
 
 <div class="table-container">
@@ -34,7 +36,11 @@
 							</span> -->
 					</td>
 
-					<td class="center">{show.type}</td>
+					<td class="center">
+						<span class="label {show.type.toLowerCase()}">
+							{show.type}
+						</span>
+					</td>
 				</tr>
 			{/each}
 		</tbody>

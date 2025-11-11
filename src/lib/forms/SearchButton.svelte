@@ -14,7 +14,7 @@
 		width: var(--size);
 		height: var(--size);
 		border-radius: 50%;
-		background: var(--c-shade-or-tint);
+		background: var(--c-tint-or-shade);
 		padding: 0;
 		display: flex;
 		align-items: center;
@@ -22,7 +22,7 @@
 		cursor: pointer;
 
 		&:hover {
-			background: var(--c-shade-or-tint-hard);
+			background: var(--c-tint-or-shade-hard);
 		}
 	}
 </style>

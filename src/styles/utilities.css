@@ -74,16 +74,12 @@
 		margin: 1rem 0;
 	}
 
-	.td-full {
-		grid-column: 1 / -1;
-	}
-
 	.bg-shade-or-tint {
-		background: var(--c-shade-or-tint);
+		background: var(--c-tint-or-shade);
 	}
 
 	.bg-shade-or-tint-light {
-		background: var(--c-shade-or-tint-light);
+		background: var(--c-tint-or-shade-light);
 	}
 
 	.br-small {

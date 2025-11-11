@@ -1,12 +1,12 @@
 <script lang="ts">
-	import AdminActions from '$lib/AdminActions.svelte';
-	import AdminSearch from '$lib/AdminSearch.svelte';
 	import { format } from 'date-fns';
 	import {
 		import_remote_playlists,
 		get_remote_playlists,
 		import_playlist
 	} from '../admin_videos.remote';
+	import AdminActions from '../../../AdminActions.svelte';
+	import AdminSearch from '../../../AdminSearch.svelte';
 
 	let search_text = $state('');
 	let { playlists, local_playlists } = $derived(await get_remote_playlists());

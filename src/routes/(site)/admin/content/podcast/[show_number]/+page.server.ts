@@ -1,7 +1,7 @@
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { db } from '$server/db/client';
-import { shows, aiShowNotes } from '$server/db/schema';
+import { show, aiShowNote } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 import { env } from '$env/dynamic/private';
 import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '$server/megaphone/sync';
@@ -23,12 +23,12 @@ export const actions = {
 
 		const show_number = parseInt(params.show_number);
 		await db
-			.update(aiShowNotes)
+			.update(aiShowNote)
 			.set({
 				title: data.title,
 				description: data.description
 			})
-			.where(eq(aiShowNotes.show_number, show_number));
+			.where(eq(aiShowNote.show_number, show_number));
 
 		return { success: true };
 	},
@@ -70,7 +70,7 @@ export const actions = {
 export const load = async ({ params }) => {
 	return {
 		show: await db.query.show.findFirst({
-			where: eq(shows.number, parseInt(params.show_number)),
+			where: eq(show.number, parseInt(params.show_number)),
 			with: {
 				aiShowNote: {
 					with: {

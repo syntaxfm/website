@@ -1,5 +1,6 @@
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm';
 import * as schema from './schema';
+import type { SUBMISSION_TYPE_VALUES } from './schema';
 
 // Select types (for reading from database)
 export type Article = InferSelectModel<typeof schema.article>;
@@ -72,3 +73,5 @@ export type AllPossibleContent = Content & {
 } & {
 	video: Video;
 };
+
+export type SUBMISSION_TYPES = (typeof SUBMISSION_TYPE_VALUES.enumValues)[number];

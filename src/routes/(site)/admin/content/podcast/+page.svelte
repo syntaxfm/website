@@ -1,11 +1,11 @@
 <script lang="ts">
-	import AdminActions from '$lib/AdminActions.svelte';
-	import AdminSearch from '$lib/AdminSearch.svelte';
 	import { dev } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
 	import { get_all_shows } from './admin_shows.remote';
+	import AdminActions from '../../AdminActions.svelte';
+	import AdminSearch from '../../AdminSearch.svelte';
 
 	let confirm = $state(false);
 	let search_text = $state('');

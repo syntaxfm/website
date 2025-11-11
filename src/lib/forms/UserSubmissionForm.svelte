@@ -4,12 +4,11 @@
 	import { Turnstile } from 'svelte-turnstile';
 	import { env } from '$env/dynamic/public';
 	import InlineError from './InlineError.svelte';
-	import type { ActionData } from '../../routes/(site)/oss/$types';
-	import type { SubmissionType } from '$server/db/schema';
+	import type { SUBMISSION_TYPES } from '$server/db/types';
+
 	let reset: (() => void) | undefined = $state();
 	interface Props {
-		form: ActionData;
-		selected_submission_type?: SubmissionType;
+		selected_submission_type?: SUBMISSION_TYPES;
 	}
 
 	let { form, selected_submission_type = 'SPOOKY' }: Props = $props();

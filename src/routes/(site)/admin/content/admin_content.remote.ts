@@ -3,6 +3,8 @@ import { db } from '$server/db/client';
 import { content, show, video } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 
+// TEMP FUNCTION CAN BE REMOVED AFTER MIGRATION
+// this finds shows and videos and makes content from them
 export const populate_content_from_existing_data = command(async () => {
 	try {
 		// Global slug counter across ALL content types (shows, videos, etc.)

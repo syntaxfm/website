@@ -1,0 +1,16 @@
+.label {
+	background: var(--c-tint-or-shade);
+	padding: var(--pad-xsmall) var(--pad-xsmall);
+	font-size: var(--fs-1);
+	text-transform: uppercase;
+
+	&.podcast {
+		background-color: var(--c-yellow);
+		color: var(--c-black);
+	}
+
+	&.video {
+		background-color: var(--c-red);
+		color: var(--c-white);
+	}
+}

@@ -137,6 +137,7 @@ Bass!
 	th {
 		padding: 6px;
 		text-align: left;
+		background: var(--c-gray-3);
 	}
 
 	thead th + th {
@@ -144,7 +145,7 @@ Bass!
 	}
 
 	td {
-		padding: 6px;
+		padding: var(--pad-medium);
 	}
 
 	::selection {
@@ -159,5 +160,22 @@ Bass!
 
 	a {
 		color: var(--c-fg);
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	tr {
+		border-bottom: solid 1px var(--c-fg);
+
+		&:nth-child(odd) {
+			background: var(--c-gray-1);
+		}
+
+		&:hover {
+			background: var(--c-gray-3);
+		}
 	}
 }

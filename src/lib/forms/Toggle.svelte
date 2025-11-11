@@ -42,7 +42,7 @@
 		width: auto;
 		display: inline-flex;
 		position: relative;
-		background: var(--c-shade-or-tint);
+		background: var(--c-tint-or-shade);
 		border-radius: var(--size);
 
 		.background {

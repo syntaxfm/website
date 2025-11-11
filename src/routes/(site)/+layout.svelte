@@ -4,7 +4,6 @@
 	import 'youtube-video-element';
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import AdminMenu from '$lib/AdminMenu.svelte';
 	import Loading from '$lib/Loading.svelte';
 	import Footer from '$lib/layout/Footer.svelte';
 	import Header from '$lib/layout/Header.svelte';
@@ -15,6 +14,7 @@
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import FollowBanner from '$lib/social/FollowBanner.svelte';
 	import IconSprite from '$lib/utilities/IconSprite.svelte';
+	import AdminMenu from './admin/AdminMenu.svelte';
 
 	const { data, children } = $props();
 	const { user, user_theme } = $derived(data);

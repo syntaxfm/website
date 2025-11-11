@@ -91,7 +91,7 @@
 	}
 
 	button {
-		background: var(--c-shade-or-tint);
+		background: var(--c-tint-or-shade);
 		padding: 10px 2rem 8px;
 		border-radius: var(--br-huge);
 		font-size: var(--fs-2);
@@ -104,7 +104,7 @@
 		color: var(--c-fg);
 
 		&:hover {
-			background: var(--c-shade-or-tint-light);
+			background: var(--c-tint-or-shade-light);
 		}
 	}
 

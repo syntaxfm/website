@@ -1,8 +1,8 @@
 <script lang="ts">
-	import AdminActions from '$lib/AdminActions.svelte';
-	import AdminSearch from '$lib/AdminSearch.svelte';
 	import { format } from 'date-fns';
 	import { get_all_videos } from './admin_videos.remote';
+	import AdminActions from '../../AdminActions.svelte';
+	import AdminSearch from '../../AdminSearch.svelte';
 
 	let search_text = $state('');
 </script>

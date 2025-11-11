@@ -1,14 +1,9 @@
 <script lang="ts">
-	import AdminActions from '$lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
-	import type { PageData } from './$types';
+	import AdminActions from '../../../AdminActions.svelte';
 
-	interface Props {
-		data: PageData;
-	}
-
-	let { data }: Props = $props();
+	let { data } = $props();
 	let { transcripts } = $derived(data);
 </script>
 

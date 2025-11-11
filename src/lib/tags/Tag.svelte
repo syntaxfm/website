@@ -7,7 +7,7 @@
 <style>
 	a {
 		display: inline-block;
-		border: solid 1px var(--c-shade-or-tint-hard);
+		border: solid 1px var(--c-tint-or-shade-hard);
 		border-radius: var(--br-small);
 		padding: 4px 8px;
 		display: inline-block;

@@ -1,12 +1,7 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
 	import Dump from './Dump.svelte';
-	interface Props {
-		data: PageData;
-		form: ActionData;
-	}
 
-	let { data, form }: Props = $props();
+	let { data, form } = $props();
 	let formRef: HTMLFormElement | null = $state(null);
 	let { show } = $derived(data);
 
@@ -39,7 +34,7 @@
 
 <h1 class="h4">AI Show Notes</h1>
 {#if show?.aiShowNote}
-    <form class="flex flex-col" method="POST" action="?/update_ai_show_note" bind:this={formRef}>
+	<form class="flex flex-col" method="POST" action="?/update_ai_show_note" bind:this={formRef}>
 		{#if form?.message}
 			<div class="errors">
 				{form?.message}

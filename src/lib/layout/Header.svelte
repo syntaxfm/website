@@ -10,18 +10,20 @@
 	let { page_type = 'interior' }: Props = $props();
 </script>
 
-<header>
-	<div class="layout-main">
-		{#if page_type === 'interior'}
-			<a title="Syntax Podcast Home" href="/">
-				<Logo height="95px" />
-			</a>
-		{:else}
-			<Logo height="185px" --logo-color="var(--c-primary)" />
-		{/if}
-		<Nav />
-	</div>
-</header>
+{#if !page.url.pathname.includes('admin')}
+	<header>
+		<div class="layout-main">
+			{#if page_type === 'interior'}
+				<a title="Syntax Podcast Home" href="/">
+					<Logo height="95px" />
+				</a>
+			{:else}
+				<Logo height="185px" --logo-color="var(--c-primary)" />
+			{/if}
+			<Nav />
+		</div>
+	</header>
+{/if}
 
 <style>
 	header {

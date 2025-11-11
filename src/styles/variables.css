@@ -19,6 +19,7 @@
 	--c-purple: #362d59;
 	--c-black: #000;
 	--c-white: #fff;
+	--c-gray: oklch(50% 0.02 270deg);
 
 	/* Relative Colors */
 
@@ -88,14 +89,24 @@
 	--c-black-8: oklch(from var(--c-black) l c h / 0.8);
 	--c-black-9: oklch(from var(--c-black) l c h / 0.9);
 
+	/* Gray */
+	--c-gray-1: oklch(from var(--c-gray) l c h / 0.1);
+	--c-gray-2: oklch(from var(--c-gray) l c h / 0.2);
+	--c-gray-3: oklch(from var(--c-gray) l c h / 0.3);
+	--c-gray-4: oklch(from var(--c-gray) l c h / 0.4);
+	--c-gray-5: oklch(from var(--c-gray) l c h / 0.5);
+	--c-gray-6: oklch(from var(--c-gray) l c h / 0.6);
+	--c-gray-7: oklch(from var(--c-gray) l c h / 0.75);
+	--c-gray-8: oklch(from var(--c-gray) l c h / 0.9);
+	--c-gray-9: var(--c-gray);
+
 	/* Color Usage */
 	--c-fg: light-dark(var(--c-black), var(--c-white));
 	--c-bg: light-dark(var(--c-white), var(--c-black));
-
 	--c-primary: var(--c-yellow);
-	--c-shade-or-tint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
-	--c-shade-or-tint-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
-	--c-shade-or-tint-hard: light-dark(rgb(0 0 0 / 0.64), rgb(255 255 255 / 0.64));
+	--c-tint-or-shade: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
+	--c-tint-or-shade-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
+	--c-tint-or-shade-hard: light-dark(rgb(0 0 0 / 0.64), rgb(255 255 255 / 0.64));
 	--c-sentry-footer-bg:
 		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 
@@ -107,15 +118,15 @@
 	--ff-heading: '💪', 'Operator Mono', consolas, menlo, monaco, 'Courier New', monospace;
 
 	/* Font Sizes */
-	--fs-1: 14px;
-	--fs-2: 17px;
-	--fs-3: 20px;
-	--fs-4: 24px;
-	--fs-5: 29px;
-	--fs-6: 35px;
-	--fs-7: 41px;
-	--fs-8: 50px;
-	--fs-9: 64px;
+	--fs-1: 12px;
+	--fs-2: 14px;
+	--fs-3: 17px;
+	--fs-4: 20px;
+	--fs-5: 24px;
+	--fs-6: 29px;
+	--fs-7: 35px;
+	--fs-8: 41px;
+	--fs-9: 50px;
 
 	/* Font Variations */
 	--fv-100: 'wght' 100;
@@ -140,7 +151,6 @@
 		-5px 5px 0 var(--c-fg), -10px 10px 0 var(--c-fg), -11px 11px 0 var(--c-fg),
 		-12px 12px 0 var(--c-fg), -13px 13px 0 var(--c-fg), -14px 14px 0 var(--c-fg),
 		-15px 15px 0 var(--c-fg), -20px 20px 0 var(--c-fg);
-
 	--s-light: 0 0 4px rgb(0 0 0 / 0.25);
 	--s: 0 7.5px 7.5px rgb(0 0 0 / 0.25);
 
@@ -160,6 +170,8 @@
 	--br-xxlarge: 20px;
 	--br-huge: 24px;
 
+	/* Padding */
+	--pad-xsmall: 4px;
 	--pad-small: 8px;
 	--pad-medium: 16px;
 	--pad-large: 24px;
