@@ -4,7 +4,7 @@ title: ShopTalk x Syntax
 date: 1627477200833
 url: https://traffic.megaphone.fm/FSI5302178815.mp3
 guest:
-  - name: Chis Coyier
+  - name: Chris Coyier
     github: chriscoyier
     twitter: chriscoyier
     url: https://chriscoyier.net/
@@ -18,7 +18,7 @@ guest:
     social: https://mastodon.social/@davatron5000
 ---
 
-In this episode of Syntax, Scott and Wes do a collaboration with Chis Coyier and Dave Rupert from ShopTalk Show! They talk about favorite tech stacks, podcasting, learning new tech, dealing with FOMO, and more!
+In this episode of Syntax, Scott and Wes do a collaboration with Chris Coyier and Dave Rupert from ShopTalk Show! They talk about favorite tech stacks, podcasting, learning new tech, dealing with FOMO, and more!
 
 ## Prismic - Sponsor
 Prismic is a Headless CMS that makes it easy to build website pages as a set of components. Break pages into sections of components using React, Vue, or whatever you like. Make corresponding Slices in Prismic. Start building pages dynamically in minutes. Get started at [prismic.io/syntax](https://prismic.io/syntax).
