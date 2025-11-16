@@ -25,7 +25,7 @@
 					path: '/admin/content/videos',
 					subroutes: [
 						{
-							text: 'Video Import',
+							text: 'Import',
 							path: '/admin/content/videos/import'
 						}
 					]
@@ -95,14 +95,14 @@
 <div class="admin-nav-wrapper">
 	<div class="admin-menu flex">
 		{#each links as link (link.path + 'admin-nav')}
-			<a href={link.path}>{link.text}</a>
+			<a href={link.path} class:active={active_parent === link}>{link.text}</a>
 		{/each}
 	</div>
 
 	{#if show_subnav}
 		<div class="admin-submenu flex">
 			{#each active_subroutes as subroute (subroute.path + 'admin-subnav')}
-				<a href={subroute.path}>{subroute.text}</a>
+				<a href={subroute.path} class:active={active_subroute === subroute}>{subroute.text}</a>
 			{/each}
 		</div>
 	{/if}
@@ -110,7 +110,7 @@
 	{#if show_nested_subnav}
 		<div class="admin-nested-submenu flex">
 			{#each active_nested_subroutes as nested (nested.path + 'admin-nested-subnav')}
-				<a href={nested.path}>{nested.text}</a>
+				<a href={nested.path} class:active={page.url.pathname === nested.path}>{nested.text}</a>
 			{/each}
 		</div>
 	{/if}
@@ -118,7 +118,7 @@
 
 <style>
 	.admin-nav-wrapper {
-		border-bottom: var(--c-tint-or-shade) solid 1px;
+		border-bottom: var(--c-fg-1) solid 1px;
 	}
 
 	.admin-menu {
@@ -128,9 +128,6 @@
 		flex-wrap: nowrap;
 		a {
 			white-space: nowrap;
-			&:hover {
-				text-decoration: underline;
-			}
 		}
 	}
 
@@ -140,12 +137,16 @@
 		gap: 15px;
 		padding: var(--pad-small) var(--pad-medium);
 		flex-wrap: nowrap;
-		border-top: var(--c-tint-or-shade) solid 1px;
+		border-top: var(--c-fg-1) solid 1px;
 		a {
 			white-space: nowrap;
 			font-size: 0.9em;
 			opacity: 0.85;
 			&:hover {
+				text-decoration: underline;
+				opacity: 1;
+			}
+			&.active {
 				text-decoration: underline;
 				opacity: 1;
 			}

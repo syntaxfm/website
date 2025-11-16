@@ -15,9 +15,14 @@
 		padding: 4px 16px;
 		line-height: 1.7;
 		transition: 0.2s ease background;
+		cursor: pointer;
 
 		&:hover {
 			background: oklch(from var(--c-fg) calc(l + 0.35) c h);
+		}
+
+		&.small {
+			font-size: var(--fs-2);
 		}
 	}
 
@@ -33,6 +38,7 @@
 			-5px 5px 0 var(--c-fg),
 			-5px 5px 0 var(--c-fg),
 			-5px 5px 0 var(--c-fg);
+
 		&.large {
 			font-size: var(--fs-5);
 		}

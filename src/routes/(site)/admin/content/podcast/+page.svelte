@@ -3,9 +3,10 @@
 	import { enhance } from '$app/forms';
 	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
-	import { get_all_shows } from './admin_shows.remote';
+	import { get_all_shows, import_all_shows, refresh_all } from './admin_podcast.remote';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
+	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
 
 	let confirm = $state(false);
 	let search_text = $state('');
@@ -15,43 +16,12 @@
 <h1 class="h4">Shows</h1>
 
 <AdminActions>
-	<form action="?/import_all_shows" method="POST" use:enhance={form_action()}>
-		<button type="submit">Sync Changed/New Shows</button>
-	</form>
-
-	<form action="?/refresh_all" method="POST" use:enhance={form_action()}>
-		<button type="submit">Sync All Shows</button>
-	</form>
-
+	<RemoteFormButton class="small" remote={import_all_shows}>Sync Changed/New Shows</RemoteFormButton
+	>
+	<RemoteFormButton class="small" remote={refresh_all}>Refresh All Shows</RemoteFormButton>
 	<form action="/webhooks/refresh" method="GET">
-		<button type="submit">Test Refresh Webhook </button>
+		<button class="small" type="submit">Refresh Webhook</button>
 	</form>
-
-	{#if dev}
-		<form
-			action="?/delete_all_shows"
-			method="post"
-			style="position: relative;"
-			use:enhance={form_action()}
-		>
-			{#if !confirm}
-				<button
-					onclick={() => {
-						confirm = true;
-					}}
-					class="warning">Drop All Shows</button
-				>
-			{:else}
-				<p
-					class="fs-micro"
-					style="position: absolute; top: -120%; width: auto; white-space: nowrap;"
-				>
-					This will delete all shows, guests, transcripts (utterance, word and transcripts)
-				</p>
-				<button type="submit" class="warning">For real, drop um'</button>
-			{/if}
-		</form>
-	{/if}
 </AdminActions>
 
 <div>

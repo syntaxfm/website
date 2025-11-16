@@ -1,5 +1,5 @@
 .label {
-	background: var(--c-tint-or-shade);
+	background: var(--c-fg-1);
 	padding: var(--pad-xsmall) var(--pad-xsmall);
 	font-size: var(--fs-1);
 	text-transform: uppercase;

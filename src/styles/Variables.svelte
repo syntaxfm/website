@@ -389,7 +389,7 @@
 	}
 
 	.color-name {
-		background: var(--c-tint-or-shade-hard);
+		background: var(--c-fg-6);
 		padding: 0.25rem 0.5rem;
 		color: var(--c-bg);
 		position: absolute;
@@ -401,7 +401,7 @@
 
 	.var-value {
 		font-size: var(--fs-1);
-		color: var(--c-tint-or-shade-hard);
+		color: var(--c-fg-6);
 	}
 
 	.typography-list {
@@ -418,7 +418,7 @@
 
 	.typography-item code {
 		font-size: var(--fs-1);
-		color: var(--c-tint-or-shade-hard);
+		color: var(--c-fg-6);
 	}
 
 	.typography-item p {

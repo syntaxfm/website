@@ -141,11 +141,11 @@ Bass!
 	}
 
 	thead th + th {
-		border-left: var(--b-light);
+		border-left: var(--c-gray-8) solid 1px;
 	}
 
 	td {
-		padding: var(--pad-medium);
+		padding: var(--pad-medium) var(--pad-small);
 	}
 
 	::selection {
@@ -168,7 +168,7 @@ Bass!
 	}
 
 	tr {
-		border-bottom: solid 1px var(--c-fg);
+		border-bottom: var(--c-fg-1) solid 1px;
 
 		&:nth-child(odd) {
 			background: var(--c-gray-1);

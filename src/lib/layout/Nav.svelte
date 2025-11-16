@@ -47,14 +47,14 @@
 				align-items: center;
 				gap: 10px;
 				text-decoration: none;
-				background: var(--c-tint-or-shade);
+				background: var(--c-fg-1);
 				padding: 10px 18px 8px;
 				border-radius: var(--br-huge);
 				color: var(--c-fg);
 				transition: background 0.2s ease-in-out;
 
 				&:hover {
-					background: var(--c-tint-or-shade-light);
+					background: var(--c-fg-05);
 				}
 			}
 		}

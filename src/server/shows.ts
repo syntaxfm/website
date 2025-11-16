@@ -6,7 +6,15 @@ import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
 import { db } from '$server/db/client';
-import { shows, guests, showGuests, socialLinks, users, showHosts } from '$server/db/schema';
+import {
+	show,
+	showGuest,
+	showToUser,
+	socialLink,
+	user,
+	guest as guests,
+	content
+} from '$server/db/schema';
 import { eq, inArray, and } from 'drizzle-orm';
 
 interface FrontMatterGuest {
@@ -52,8 +60,8 @@ export async function import_or_update_all_changed_shows() {
 				md_file_path
 			);
 
-			const existing_show = await db.query.shows.findFirst({
-				where: eq(shows.number, number)
+			const existing_show = await db.query.show.findFirst({
+				where: eq(show.number, number)
 			});
 
 			// If show doesn't exist or the hash has changed. Refresh
@@ -91,7 +99,7 @@ export async function parse_and_save_show_notes(
 	md_file: string
 ) {
 	// Parse the front matter
-	const { data, content } = matter(notes);
+	const { data, content: show_notes_content } = matter(notes);
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
@@ -100,58 +108,96 @@ export async function parse_and_save_show_notes(
 
 	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
+	const show_slug = slug(data.title);
+
 	// Save or update the show
 	try {
-		// Upsert the show
+		// First, check if show exists to get its content_id
+		const existing_show = await db.query.show.findFirst({
+			where: eq(show.id, id)
+		});
+
+		let content_id: string;
+
+		if (existing_show?.content_id) {
+			// Update existing content
+			const updateData = {
+				title: data.title,
+				slug: show_slug,
+				updated_at: new Date(),
+				published_at: date
+			};
+			await db.update(content).set(updateData).where(eq(content.id, existing_show.content_id));
+			content_id = existing_show.content_id;
+		} else {
+			// Create new content
+			const [new_content] = await db
+				.insert(content)
+				.values({
+					title: data.title,
+					slug: show_slug,
+					type: 'PODCAST',
+					status: 'PUBLISHED',
+					published_at: date
+				})
+				.returning({ id: content.id });
+			content_id = new_content.id;
+		}
+
+		// Upsert the show with content_id
 		await db
-			.insert(shows)
+			.insert(show)
 			.values({
 				id,
-				slug: slug(data.title),
+				slug: show_slug,
 				number,
 				title: data.title,
 				date,
 				url: data.url,
 				youtube_url: data.youtube_url,
-				show_notes: content,
+				show_notes: show_notes_content,
 				hash: hash,
 				md_file,
 				show_type,
+				content_id,
 				updated_at: new Date()
 			})
-			.onDuplicateKeyUpdate({
+			.onConflictDoUpdate({
+				target: show.id,
 				set: {
 					title: data.title,
-					slug: slug(data.title),
+					slug: show_slug,
 					date,
 					url: data.url,
 					youtube_url: data.youtube_url,
-					show_notes: content,
+					show_notes: show_notes_content,
 					hash: hash,
 					md_file,
 					show_type,
+					content_id,
 					updated_at: new Date()
 				}
 			});
 
 		// Handle hosts connection if they exist in the frontmatter
 		if (data.hosts && Array.isArray(data.hosts)) {
-			const hostUsers = await db.query.users.findMany({
-				where: inArray(users.username, data.hosts)
+			const hostUsers = await db.query.user.findMany({
+				where: inArray(user.username, data.hosts)
 			});
 
 			if (hostUsers.length > 0) {
-				// Upsert host connections (ON DUPLICATE KEY UPDATE does nothing since unique constraint exists)
+				// Upsert host connections (ON CONFLICT DO UPDATE does nothing since unique constraint exists)
 				await db
-					.insert(showHosts)
+					.insert(showToUser)
 					.values(
-						hostUsers.map((user) => ({
-							A: id,
-							B: user.id
+						hostUsers.map((host_user) => ({
+							show_id: id,
+							user_id: host_user.id
 						}))
 					)
-					.onDuplicateKeyUpdate({
-						set: { A: id }
+					.onConflictDoUpdate({
+						target: [showToUser.show_id, showToUser.user_id],
+						set: { show_id: id }
 					});
 			}
 		}
@@ -172,7 +218,7 @@ export async function parse_and_save_show_notes(
 		}
 		console.log(`Episode # ${id} imported successfully`);
 	} catch (err) {
-		console.error('Error Importing Show:', err, data, content);
+		console.error('Error Importing Show:', err, data, show_notes_content);
 		// Throw an error to stop the import process
 		throw new Error('Error Importing Shows');
 	}
@@ -193,7 +239,8 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 				name_slug,
 				...guest_without_socials
 			})
-			.onDuplicateKeyUpdate({
+			.onConflictDoUpdate({
+				target: guests.id,
 				set: {
 					name,
 					...guest_without_socials
@@ -201,18 +248,17 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 			});
 
 		// Upsert the showGuest relationship
-		const showGuest_id = `${show_id}_${guest_id}`;
 		await db
-			.insert(showGuests)
+			.insert(showGuest)
 			.values({
-				id: showGuest_id,
-				showId: show_id,
-				guestId: guest_id
+				show_id: show_id,
+				guest_id: guest_id
 			})
-			.onDuplicateKeyUpdate({
+			.onConflictDoUpdate({
+				target: [showGuest.show_id, showGuest.guest_id],
 				set: {
-					showId: show_id,
-					guestId: guest_id
+					show_id: show_id,
+					guest_id: guest_id
 				}
 			});
 
@@ -231,13 +277,14 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 			const socialLink_promises = socialLinksArray.map((social_link) => {
 				const social_link_id = `${guest_id}_${slug(social_link)}`;
 				return db
-					.insert(socialLinks)
+					.insert(socialLink)
 					.values({
 						id: social_link_id,
 						link: social_link,
 						guest_id: guest_id
 					})
-					.onDuplicateKeyUpdate({
+					.onConflictDoUpdate({
+						target: socialLink.id,
 						set: {
 							link: social_link
 						}

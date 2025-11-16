@@ -103,10 +103,17 @@
 	/* Color Usage */
 	--c-fg: light-dark(var(--c-black), var(--c-white));
 	--c-bg: light-dark(var(--c-white), var(--c-black));
+	--c-fg-05: oklch(from var(--c-fg) l c h / 0.05);
+	--c-fg-1: oklch(from var(--c-fg) l c h / 0.1);
+	--c-fg-2: oklch(from var(--c-fg) l c h / 0.2);
+	--c-fg-3: oklch(from var(--c-fg) l c h / 0.3);
+	--c-fg-4: oklch(from var(--c-fg) l c h / 0.4);
+	--c-fg-5: oklch(from var(--c-fg) l c h / 0.5);
+	--c-fg-6: oklch(from var(--c-fg) l c h / 0.6);
+	--c-fg-7: oklch(from var(--c-fg) l c h / 0.75);
+	--c-fg-8: oklch(from var(--c-fg) l c h / 0.9);
+	--c-fg-9: var(--c-fg);
 	--c-primary: var(--c-yellow);
-	--c-tint-or-shade: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
-	--c-tint-or-shade-light: light-dark(rgb(0 0 0 / 0.03), rgb(255 255 255 / 0.03));
-	--c-tint-or-shade-hard: light-dark(rgb(0 0 0 / 0.64), rgb(255 255 255 / 0.64));
 	--c-sentry-footer-bg:
 		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 

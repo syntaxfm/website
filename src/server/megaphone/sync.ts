@@ -1,5 +1,5 @@
 import { db } from '$server/db/client';
-import { shows } from '$server/db/schema';
+import { show } from '$server/db/schema';
 import { eq, ne, isNull, desc, and, sql } from 'drizzle-orm';
 import { MegaphoneApiClient } from './client';
 
@@ -159,8 +159,8 @@ async function updateShowSpotifyId(
 	spotifyId: string,
 	matchResult: any
 ): Promise<boolean> {
-	const existingShow = await db.query.shows.findFirst({
-		where: and(eq(shows.spotify_id, spotifyId), ne(shows.number, showNumber)),
+	const existingShow = await db.query.show.findFirst({
+		where: and(eq(show.spotify_id, spotifyId), ne(show.number, showNumber)),
 		columns: {
 			number: true,
 			title: true
@@ -178,12 +178,12 @@ async function updateShowSpotifyId(
 	}
 
 	await db
-		.update(shows)
+		.update(show)
 		.set({
 			spotify_id: spotifyId,
 			updated_at: new Date()
 		})
-		.where(eq(shows.number, showNumber));
+		.where(eq(show.number, showNumber));
 
 	return true;
 }
@@ -306,8 +306,8 @@ export async function syncEpisodeSpotifyData(
 	credentials: MegaphoneCredentials
 ): Promise<void> {
 	// Get the show from database
-	const show = await db.query.shows.findFirst({
-		where: eq(shows.number, showNumber),
+	const current_show = await db.query.show.findFirst({
+		where: eq(show.number, showNumber),
 		columns: {
 			number: true,
 			title: true,
@@ -316,12 +316,12 @@ export async function syncEpisodeSpotifyData(
 		}
 	});
 
-	if (!show) {
+	if (!current_show) {
 		throw new Error(`Show ${showNumber} not found`);
 	}
 
 	// Skip if we already have Spotify data
-	if (show.spotify_id) {
+	if (current_show.spotify_id) {
 		return;
 	}
 
@@ -332,7 +332,7 @@ export async function syncEpisodeSpotifyData(
 		credentials.podcastId
 	);
 
-	const { matchingEpisode, matchResult } = findBestEpisodeMatch(show, episodes);
+	const { matchingEpisode, matchResult } = findBestEpisodeMatch(current_show, episodes);
 
 	if (matchingEpisode?.spotifyIdentifier) {
 		await updateShowSpotifyId(showNumber, matchingEpisode.spotifyIdentifier, matchResult);
@@ -355,8 +355,8 @@ export async function checkDuplicateSpotifyIds(): Promise<
 
 	const duplicateDetails = [];
 	for (const duplicate of duplicates.rows) {
-		const showsData = await db.query.shows.findMany({
-			where: eq(shows.spotify_id, duplicate.spotify_id),
+		const showsData = await db.query.show.findMany({
+			where: eq(show.spotify_id, duplicate.spotify_id),
 			columns: {
 				number: true,
 				title: true
@@ -377,14 +377,14 @@ export async function checkDuplicateSpotifyIds(): Promise<
  */
 export async function syncAllEpisodesSpotifyData(credentials: MegaphoneCredentials): Promise<void> {
 	// Get all shows without Spotify data
-	const showsWithoutSpotify = await db.query.shows.findMany({
-		where: isNull(shows.spotify_id),
+	const showsWithoutSpotify = await db.query.show.findMany({
+		where: isNull(show.spotify_id),
 		columns: {
 			number: true,
 			title: true,
 			date: true
 		},
-		orderBy: [desc(shows.number)]
+		orderBy: [desc(show.number)]
 	});
 
 	// Get all episodes from Megaphone API once

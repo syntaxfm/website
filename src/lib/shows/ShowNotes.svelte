@@ -26,7 +26,7 @@
 		:global(li) {
 			list-style: none;
 			:global(strong) {
-				background: var(--c-tint-or-shade);
+				background: var(--c-fg-1);
 				border-radius: var(--br-small);
 				padding: 2px 4px;
 				font-size: var(--fs-1);
