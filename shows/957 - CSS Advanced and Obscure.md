@@ -1,6 +1,6 @@
 ---
 number: 957
-title: What the hell is a CSS pipe?!
+title: "CSS: Advanced and Obscure"
 date: 1763985600000
 url: https://traffic.megaphone.fm/FSI8931380710.mp3
 youtube_url: https://www.youtube.com/watch?v=GQnhkUIPq9Q
