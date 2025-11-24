@@ -6,7 +6,7 @@ url: https://traffic.megaphone.fm/FSI2962532444.mp3
 youtube_url: https://www.youtube.com/watch?v=RB1EucXfCJU
 ---
 
-In this potluck episode, Wes and Scott answer your questions about paid vs. free SSL, the state of frontend jobs, headless WordPress trade-offs, organizing TypeScript types, and more!
+In this potluck episode, Wes and Scott answer your questions about paid vs. free SSL, the state of frontend jobs, headless WordPress trade-offs, organizing TypeScript types, and more.
 
 ### Show Notes
 
