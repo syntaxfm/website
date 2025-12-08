@@ -1,6 +1,6 @@
 {
 	"name": "syntax",
-	"version": "2.1.332",
+	"version": "2.1.333",
 	"private": true,
 	"scripts": {
 		"dev": "node ./scripts/preheat.js",
