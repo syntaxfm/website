@@ -4,6 +4,9 @@ title: Keeping Up With The Fast and Furious Web
 date: 1765195200000
 url: https://traffic.megaphone.fm/FSI7948226652.mp3
 youtube_url: https://www.youtube.com/watch?v=ONZzpdIQfy8
+hosts:
+  - stolinski
+  - w3cj
 ---
 	
 Scott and CJ go live from JS Nation NYC to talk about how developers can actually stay current without drowning in the constant churn of new tools and trends. They break down how to see through the fluff, focus on why tech exists before adopting it, and build a healthier, curiosity-driven approach to learning in 2025 and beyond.
