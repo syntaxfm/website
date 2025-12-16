@@ -21,6 +21,7 @@ guest:
     of: Syntax
     url: https://syntax.fm
   - name: Niki Brandner
+    github: brandnerniki
     twitter: brandner_niki
     of: Syntax
     url: https://syntax.fm
