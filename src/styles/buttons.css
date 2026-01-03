@@ -14,6 +14,8 @@
 		font-family: var(--body-font-family);
 		font-variation-settings: var(--fw-600);
 		padding: 6px 15px;
+
+		/* --body-font-size is never defined, maybe --font-size-base? */
 		font-size: var(--body-font-size);
 		border-radius: var(--brad);
 		background: var(--button-bg);
