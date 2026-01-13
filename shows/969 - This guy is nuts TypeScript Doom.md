@@ -5,19 +5,19 @@ date: 1768215600000
 url: https://traffic.megaphone.fm/FSI8241835215.mp3
 youtube_url: https://www.youtube.com/watch?v=0cXD1FGvRdA
 guest:
-  name: Dimitri Metropolis
+  name: Dimitri Mitropoulos
   github: dimitropoulos
   of: Cloudflare
   url: https://www.cloudflare.com/
   social: https://www.youtube.com/@MichiganTypeScript
 ---
 	
-Scott and Wes sit down with Dimitri Metropolis to explore the wild edges of TypeScript—from running Doom in the type system to building tools like Typeslayer. They dig into Turing-complete types, performance limits, and what the future might hold for TypeScript and programming languages as a whole.
+Scott and Wes sit down with Dimitri Mitropoulos to explore the wild edges of TypeScript—from running Doom in the type system to building tools like Typeslayer. They dig into Turing-complete types, performance limits, and what the future might hold for TypeScript and programming languages as a whole.
 
 ### Show Notes
 
 * **[00:00](#t=00:00)** Welcome to Syntax!
-* **[00:27](#t=00:27)** Dimitri Metropolis Introduction
+* **[00:27](#t=00:27)** Dimitri Mitropoulos Introduction
 * **[01:29](#t=01:29)** What is [Doom in TypeScript?](https://www.youtube.com/watch?v=0mCsluv5FXA) 
 * **[03:10](#t=03:10)** TypeScript Types and Turing Completeness
 * **[04:06](#t=04:06)** Project Overview and Challenges
