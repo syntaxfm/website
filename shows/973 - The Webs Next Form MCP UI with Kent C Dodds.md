@@ -44,7 +44,7 @@ Scott and Wes sit down with Kent C. Dodds to break down MCP, context engineering
 
 ### Shameless Plugs
 
-- Kent: [http://EpicAI.pro](EpicAI.pro),[http://EpicWeb.dev](EpicWeb.dev),[http://EpicReact.dev](EpicReact.dev)
+- Kent: [https://EpicAI.pro](EpicAI.pro),[https://EpicWeb.dev](EpicWeb.dev),[https://EpicReact.dev](EpicReact.dev)
 
 ### Hit us up on Socials!
 
