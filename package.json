@@ -120,7 +120,7 @@
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.6.0",
 		"zod": "^3.25.75",
-		"zx": "^7.2.4"
+		"zx": "^8.8.5"
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
