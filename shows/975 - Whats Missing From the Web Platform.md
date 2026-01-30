@@ -11,7 +11,7 @@ Scott and Wes run through their wishlist for the web platform, digging into the 
 ### Show Notes
 
 * **[00:00](#t=00:00)** Welcome to Syntax!
-  * [Wes Tweet]([https://x.com/wesbos/status/2011110928012791836](https://x.com/wesbos/status/2011110928012791836)
+  * [Wes Tweet](https://x.com/wesbos/status/2011110928012791836)
 * **[00:39](#t=00:39)** Exploring What's Missing from the Web Platform
 * **[02:26](#t=02:26)** Enhancing DOM Primitives for Better User Experience
 * **[03:59](#t=03:59)** Multi-select + Combobox.
