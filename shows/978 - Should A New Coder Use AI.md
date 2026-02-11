@@ -28,7 +28,7 @@ Wes and Scott answer your questions about AI agents, learning to code with AI, p
 
 ### Sick Picks
 
-- Scott: [Trmnl]([https://trmnl.com/?ref=levelup](https://trmnl.com/?ref=levelup))
+- Scott: [Trmnl](https://trmnl.com/?ref=levelup)
 - Wes: [RYOBI Soldering Iron](https://www.amazon.com/RYOBI-Cordless-120-Watt-Soldering-Topper/dp/B0BQ1DCG1Q/)
 
 ### Shameless Plugs
