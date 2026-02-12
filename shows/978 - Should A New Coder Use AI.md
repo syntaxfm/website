@@ -17,6 +17,7 @@ Wes and Scott answer your questions about AI agents, learning to code with AI, p
 * **[12:45](#t=12:45)** What is pagination and why do websites use it?
 * **[18:17](#t=18:17)** Should beginners use AI while learning to code?
 * **[30:24](#t=30:24)** The real-world skills CS degrees don’t teach you
+  * [Syntax #732 Stop going to Spam: DMARC, SPF and DKIM Explained](https://syntax.fm/show/732/stop-going-to-spam-dmarc-spf-and-dkim-explained)
 * **[35:59](#t=35:59)** Someone tried to hack Syntax
 * **[38:12](#t=38:12)** How Wes and Scott became co-hosts
 * **[42:00](#t=42:00)** Moving from junior to mid-level when your skills are outdated
