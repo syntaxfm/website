@@ -45,20 +45,23 @@
 		return searchParams.toString();
 	}
 
-	function close_popover_when_selected(event: MouseEvent) {
-		const current_target = event.currentTarget;
-		if (!(current_target instanceof HTMLDivElement)) {
-			return;
+	function close_popover_when_selected(node: HTMLDivElement) {
+		function handle_popover_selection(event: MouseEvent) {
+			const target = event.target;
+			if (!(target instanceof Element)) {
+				return;
+			}
+
+			if (target.closest('a, button')) {
+				node.hidePopover();
+			}
 		}
 
-		const target = event.target;
-		if (!(target instanceof Element)) {
-			return;
-		}
+		node.addEventListener('click', handle_popover_selection);
 
-		if (target.closest('a, button')) {
-			current_target.hidePopover();
-		}
+		return () => {
+			node.removeEventListener('click', handle_popover_selection);
+		};
 	}
 </script>
 
@@ -78,7 +81,7 @@
 		{button_text}
 		<Icon name="down" />
 	</button>
-	<div popover id={popover_id} onclick={close_popover_when_selected}>
+	<div popover id={popover_id} {@attach close_popover_when_selected}>
 		<div class="select-menu-menu-wrapper">
 			{#each options as option (option.value)}
 				{#if onselect}
