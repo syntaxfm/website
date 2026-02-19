@@ -7,21 +7,30 @@
 
 	let search_text = $state('');
 	let shows = await get_all_shows();
+
+	let filtered_shows = $derived.by(() => {
+		const query = search_text.toLowerCase();
+		if (!query) return shows;
+
+		return shows.filter((show) => show.title.toLowerCase().includes(query));
+	});
 </script>
 
-<h1 class="h3">Shows</h1>
+<div class="stack" style:--stack-gap="var(--pad-medium)">
+	<div class="split" style="flex-wrap: wrap">
+		<h1 class="h3">Shows</h1>
+		<AdminActions>
+			<a class="button small" href="/admin/content/podcast/new">Create Show</a>
+			<RemoteFormButton class="small" remote={import_all_shows}
+				>Sync Changed/New Shows</RemoteFormButton
+			>
+			<RemoteFormButton class="small" remote={refresh_all}>Refresh All Shows</RemoteFormButton>
+			<form action="/webhooks/refresh" method="GET">
+				<button class="small" type="submit">Refresh Webhook</button>
+			</form>
+		</AdminActions>
+	</div>
 
-<AdminActions>
-	<a class="button small" href="/admin/content/podcast/new">Create Show</a>
-	<RemoteFormButton class="small" remote={import_all_shows}>Sync Changed/New Shows</RemoteFormButton
-	>
-	<RemoteFormButton class="small" remote={refresh_all}>Refresh All Shows</RemoteFormButton>
-	<form action="/webhooks/refresh" method="GET">
-		<button class="small" type="submit">Refresh Webhook</button>
-	</form>
-</AdminActions>
-
-<div>
 	<AdminSearch bind:text={search_text} />
 
 	<div class="table-container">
@@ -38,79 +47,83 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each shows.filter((s) => s.title
-						.toLowerCase()
-						.includes(search_text.toLowerCase())) as show (show.number)}
+				{#if filtered_shows.length === 0}
 					<tr>
-						<td>
-							<a href={`/admin/content/podcast/${show.number}`}>#{show.number}</a>
-						</td>
-						<td>
-							<a
-								href={`/show/${show.number}/${show.slug}`}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								{show?.title}
-								[↗]
-							</a>
-							<br />
-							<span>
-								{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
-								{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
-							</span>
-						</td>
-
-						<td>
-							{#if format(show.date, 'EEE') === 'Mon'}
-								Hasty
-							{:else if format(show.date, 'EEE') === 'Wed'}
-								Tasty
-							{:else if format(show.date, 'EEE') === 'Fri'}
-								Supper Club
-							{/if}
-						</td>
-
-						<td class="center">
-							<!-- {show._count.guests} -->
-						</td>
-						<td class="center">
-							<!-- {#if show.transcript}
-								✅ <FormWithLoader global={false} action="?/delete_transcript" method="post">
-									{#snippet children({ loading })}
-										<input type="hidden" name="show_number" value={show.number} />
-										<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
-									{/snippet}
-								</FormWithLoader>
-							{:else}
-								<FormWithLoader global={false} action="?/fetch_show_transcript" method="post">
-									{#snippet children({ loading })}
-										<input type="hidden" name="show_number" value={show.number} />
-										<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-									{/snippet}
-								</FormWithLoader>
-							{/if} -->
-						</td>
-						<td class="center">
-							<!-- <FormWithLoader global={false} action="?/fetch_AI_notes" method="post">
-								{#snippet children({ loading })}
-									<fieldset disabled={loading}>
-										<input type="hidden" name="show_number" value={show.number} />
-										{#if show.aiShowNote}
-											✅
-											<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
-										{:else}
-											<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-										{/if}
-									</fieldset>
-								{/snippet}
-							</FormWithLoader> -->
-						</td>
-						<td>
-							<a href={`/admin/content/podcast/${show.number}`}>Edit</a>
-						</td>
+						<td colspan="7">No shows found.</td>
 					</tr>
-				{/each}
+				{:else}
+					{#each filtered_shows as show (show.number)}
+						<tr>
+							<td>
+								<a href={`/admin/content/podcast/${show.number}`}>#{show.number}</a>
+							</td>
+							<td>
+								<a
+									href={`/show/${show.number}/${show.slug}`}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{show?.title}
+									[↗]
+								</a>
+								<br />
+								<span>
+									{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
+									{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
+								</span>
+							</td>
+
+							<td>
+								{#if format(show.date, 'EEE') === 'Mon'}
+									Hasty
+								{:else if format(show.date, 'EEE') === 'Wed'}
+									Tasty
+								{:else if format(show.date, 'EEE') === 'Fri'}
+									Supper Club
+								{/if}
+							</td>
+
+							<td class="center">
+								<!-- {show._count.guests} -->
+							</td>
+							<td class="center">
+								<!-- {#if show.transcript}
+									✅ <FormWithLoader global={false} action="?/delete_transcript" method="post">
+										{#snippet children({ loading })}
+											<input type="hidden" name="show_number" value={show.number} />
+											<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
+										{/snippet}
+									</FormWithLoader>
+								{:else}
+									<FormWithLoader global={false} action="?/fetch_show_transcript" method="post">
+										{#snippet children({ loading })}
+											<input type="hidden" name="show_number" value={show.number} />
+											<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+										{/snippet}
+									</FormWithLoader>
+								{/if} -->
+							</td>
+							<td class="center">
+								<!-- <FormWithLoader global={false} action="?/fetch_AI_notes" method="post">
+									{#snippet children({ loading })}
+										<fieldset disabled={loading}>
+											<input type="hidden" name="show_number" value={show.number} />
+											{#if show.aiShowNote}
+												✅
+												<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
+											{:else}
+												<button type="submit">Fetch{loading ? 'ing' : ''}</button>
+											{/if}
+										</fieldset>
+									{/snippet}
+								</FormWithLoader> -->
+							</td>
+							<td>
+								<a href={`/admin/content/podcast/${show.number}`}>Edit</a>
+							</td>
+						</tr>
+					{/each}
+				{/if}
 			</tbody>
 		</table>
 	</div>

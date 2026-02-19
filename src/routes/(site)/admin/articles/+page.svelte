@@ -48,7 +48,7 @@
 		<h1 class="h3">Articles</h1>
 		<AdminActions>
 			<button type="button" onclick={() => void create_new_article()} disabled={creating}>
-				{creating ? 'Creating...' : 'New Article'}
+				{creating ? 'Creating...' : 'Create Article'}
 			</button>
 		</AdminActions>
 	</div>

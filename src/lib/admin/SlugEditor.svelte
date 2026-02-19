@@ -56,7 +56,7 @@
 			? show_regenerate
 				? 'Using custom slug. Click Regenerate to sync from title.'
 				: 'Using custom slug.'
-			: 'Slug is auto-generated from title.'
+			: ''
 	);
 </script>
 
@@ -77,5 +77,7 @@
 			<button type="button" onclick={regenerate_slug}>Regenerate</button>
 		{/if}
 	</div>
-	<p class="fs-1">{helper_text}</p>
+	{#if helper_text}
+		<p class="fs-1">{helper_text}</p>
+	{/if}
 </div>
