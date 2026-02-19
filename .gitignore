@@ -30,4 +30,4 @@ db-data
 
 core.wasm
 core.worker.cjs
-
+db_exports/
