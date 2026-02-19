@@ -31,3 +31,4 @@ db-data
 core.wasm
 core.worker.cjs
 db_exports/
+scripts/prod_backup.sql
