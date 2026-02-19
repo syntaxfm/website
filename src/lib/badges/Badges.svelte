@@ -8,14 +8,17 @@
 	let { children } = $props();
 </script>
 
-<div class="badges">
+<ul class="badges">
 	{@render children?.()}
-</div>
+</ul>
 
 <style lang="postcss">
 	.badges {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 </style>

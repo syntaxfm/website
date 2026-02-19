@@ -1,21 +1,18 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { enhance } from '$app/forms';
-	import { form_action } from '$lib/form_action';
 	import { format } from 'date-fns';
 	import { get_all_shows, import_all_shows, refresh_all } from './admin_podcast.remote';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
 
-	let confirm = $state(false);
 	let search_text = $state('');
 	let shows = await get_all_shows();
 </script>
 
-<h1 class="h4">Shows</h1>
+<h1 class="h3">Shows</h1>
 
 <AdminActions>
+	<a class="button small" href="/admin/content/podcast/new">Create Show</a>
 	<RemoteFormButton class="small" remote={import_all_shows}>Sync Changed/New Shows</RemoteFormButton
 	>
 	<RemoteFormButton class="small" remote={refresh_all}>Refresh All Shows</RemoteFormButton>
@@ -37,21 +34,26 @@
 					<th>Guests</th>
 					<th>Transcript</th>
 					<th>AI Notes</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				{#each shows.filter((s) => s.title
 						.toLowerCase()
-						.includes(search_text.toLowerCase())) as show}
+						.includes(search_text.toLowerCase())) as show (show.number)}
 					<tr>
 						<td>
-							<a href="/admin/shows/{show.number}">#{show.number}</a>
+							<a href={`/admin/content/podcast/${show.number}`}>#{show.number}</a>
 						</td>
 						<td>
-							<a href="/{show.number}" target="_blank">
-								{show?.title}
-								[↗]</a
+							<a
+								href={`/show/${show.number}/${show.slug}`}
+								target="_blank"
+								rel="noopener noreferrer"
 							>
+								{show?.title}
+								[↗]
+							</a>
 							<br />
 							<span>
 								{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
@@ -103,6 +105,9 @@
 									</fieldset>
 								{/snippet}
 							</FormWithLoader> -->
+						</td>
+						<td>
+							<a href={`/admin/content/podcast/${show.number}`}>Edit</a>
 						</td>
 					</tr>
 				{/each}

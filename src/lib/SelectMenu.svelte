@@ -17,6 +17,8 @@
 		button_text: string;
 		popover_id: string;
 		value?: string;
+		onselect?: (value: string) => void;
+		disabled?: boolean;
 	}
 
 	let {
@@ -25,9 +27,11 @@
 		value_as_label = false,
 		button_text,
 		popover_id,
-		value = ''
+		value = '',
+		onselect,
+		disabled = false
 	}: Props = $props();
-	let id = popover_id.replace('filter-', '');
+	let id = $derived(popover_id.replace('filter-', ''));
 	// let searchParams = new URLSearchParams(window.location.search);
 	//
 
@@ -41,23 +45,30 @@
 		return searchParams.toString();
 	}
 
-	function closePopoverWhenSelected(node: HTMLDivElement) {
-		function handlePopoverSelection(event: MouseEvent) {
-			if (event.target instanceof HTMLAnchorElement) {
-				node.hidePopover();
-			}
+	function close_popover_when_selected(event: MouseEvent) {
+		const current_target = event.currentTarget;
+		if (!(current_target instanceof HTMLDivElement)) {
+			return;
 		}
-		node.addEventListener('click', handlePopoverSelection);
-		return {
-			destroy() {
-				node.removeEventListener('click', handlePopoverSelection);
-			}
-		};
+
+		const target = event.target;
+		if (!(target instanceof Element)) {
+			return;
+		}
+
+		if (target.closest('a, button')) {
+			current_target.hidePopover();
+		}
 	}
 </script>
 
 <div style="position: relative;">
-	<button popovertarget={popover_id} use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}>
+	<button
+		type="button"
+		{disabled}
+		popovertarget={popover_id}
+		use:anchor={{ id: popover_id, position: ['BOTTOM', 'LEFT'] }}
+	>
 		{#if button_icon}
 			<Icon name={button_icon} />
 		{/if}
@@ -67,14 +78,21 @@
 		{button_text}
 		<Icon name="down" />
 	</button>
-	<div popover id={popover_id} use:closePopoverWhenSelected>
+	<div popover id={popover_id} onclick={close_popover_when_selected}>
 		<div class="select-menu-menu-wrapper">
-			{#each options as option}
-				<a
-					onclick={onselect}
-					class:selected={option.value === value}
-					href={`?${generate_search_params(id, option.value)}`}>{option.label}</a
-				>
+			{#each options as option (option.value)}
+				{#if onselect}
+					<button
+						type="button"
+						class:selected={option.value === value}
+						onclick={() => onselect(option.value)}>{option.label}</button
+					>
+				{:else}
+					<a
+						class:selected={option.value === value}
+						href={`?${generate_search_params(id, option.value)}`}>{option.label}</a
+					>
+				{/if}
 			{/each}
 		</div>
 	</div>
@@ -114,7 +132,7 @@
 		display: flex;
 	}
 
-	div[popover] a {
+	div[popover] :is(a, button) {
 		background: none;
 		text-align: left;
 		box-shadow: none;
@@ -124,6 +142,9 @@
 		font-size: var(--fs-4);
 		color: var(--c-fg);
 		border-radius: 4px;
+		border: none;
+		width: 100%;
+		font-family: inherit;
 
 		&:hover,
 		&.selected {

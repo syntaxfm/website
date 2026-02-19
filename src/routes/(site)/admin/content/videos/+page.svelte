@@ -5,49 +5,59 @@
 	import AdminSearch from '../../AdminSearch.svelte';
 
 	let search_text = $state('');
+	const playlists = await get_all_videos();
+
+	let filtered_playlists = $derived(
+		playlists.filter((playlist) => playlist.title.toLowerCase().includes(search_text.toLowerCase()))
+	);
 </script>
 
-<h1 class="h4">🔄 Synced Playlists</h1>
+<div class="stack" style:--stack-gap="var(--pad-small)">
+	<h1 class="h3">🔄 Synced Playlists</h1>
 
-<AdminActions>
-	<a href="/admin/videos/import">Import New Videos</a>
-</AdminActions>
+	<p class="fs-2">
+		YouTube is the canonical source for video metadata. Admin edits here are only for
+		associations/workflow and sync operations.
+	</p>
 
-<AdminSearch bind:text={search_text} />
+	<AdminActions>
+		<a class="button" href="/admin/content/videos/import">Import New Videos</a>
+	</AdminActions>
 
-<div class="table-container">
-	<table>
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Videos</th>
-				<th>Published At</th>
-				<th>Id</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each (await get_all_videos()).filter((s) => s.title
-					.toLowerCase()
-					.includes(search_text.toLowerCase())) as playlist}
+	<AdminSearch bind:text={search_text} />
+
+	<div class="table-container">
+		<table>
+			<thead>
 				<tr>
-					<td>
-						<a href="/admin/videos/{playlist.id}">
-							{playlist.title}
-						</a>
-					</td>
-					<td>
-						{playlist.item_count}
-					</td>
-					<td>
-						{format(playlist.created_at, 'MMM d, yyyy')}
-					</td>
-					<td>
-						{playlist.id}
-					</td>
+					<th>Title</th>
+					<th>Videos</th>
+					<th>Published At</th>
+					<th>Id</th>
 				</tr>
-			{/each}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{#each filtered_playlists as playlist (playlist.id)}
+					<tr>
+						<td>
+							<a href={`/admin/content/videos/${playlist.id}`}>
+								{playlist.title}
+							</a>
+						</td>
+						<td>
+							{playlist.videos.length}
+						</td>
+						<td>
+							{format(playlist.created_at, 'MMM d, yyyy')}
+						</td>
+						<td>
+							{playlist.id}
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <!-- Types of videos -->

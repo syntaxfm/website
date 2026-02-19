@@ -7,6 +7,10 @@
 			path: '/admin'
 		},
 		{
+			text: 'Submissions',
+			path: '/admin/submissions'
+		},
+		{
 			text: 'Content',
 			path: '/admin/content',
 			subroutes: [
@@ -16,7 +20,7 @@
 					subroutes: [
 						{
 							text: 'Transcripts',
-							path: '/admin/content/transcripts'
+							path: '/admin/content/podcast/transcripts'
 						}
 					]
 				},
@@ -33,6 +37,20 @@
 				{
 					text: 'Articles',
 					path: '/admin/articles'
+				}
+			]
+		},
+		{
+			text: 'Tags',
+			path: '/admin/tags'
+		},
+		{
+			text: 'Users',
+			path: '/admin/users',
+			subroutes: [
+				{
+					text: 'Roles',
+					path: '/admin/users/roles'
 				}
 			]
 		}

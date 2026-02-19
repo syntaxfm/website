@@ -12,9 +12,14 @@
 	);
 </script>
 
-<h1>{playlist?.title}</h1>
+<div class="stack" style:--stack-gap="var(--pad-small)">
+	<h1 class="h3">{playlist?.title}</h1>
 
-<div>
+	<p class="fs-2">
+		YouTube is the canonical source for video metadata. Use this page for local associations and
+		workflow visibility.
+	</p>
+
 	<AdminSearch bind:text={search_text} />
 
 	<div class="table-container">
@@ -31,7 +36,7 @@
 
 			<tbody>
 				{#if filtered}
-					{#each filtered as video}
+					{#each filtered as video (video.video.id)}
 						<tr>
 							<td>
 								{video.video.title}

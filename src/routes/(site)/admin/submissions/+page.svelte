@@ -1,64 +1,165 @@
 <script lang="ts">
 	import { formatDistance } from 'date-fns';
-	import type { PageData } from './$types';
-	import { queryParameters } from 'sveltekit-search-params';
+	import { page } from '$app/state';
 	import SelectMenu from '$lib/SelectMenu.svelte';
-	import FormWithLoader from '$lib/FormWithLoader.svelte';
-	const store = queryParameters<{
-		submission_type?: string;
-		status?: string;
-		perPage?: string;
-		order?: 'ASC' | 'DESC';
-		page: string;
-	}>();
+	import {
+		delete_submission,
+		get_submissions,
+		update_submission_status
+	} from './admin_submissions.remote';
 
-	interface Props {
-		data: PageData;
+	type SubmissionsResult = Awaited<ReturnType<typeof get_submissions>>;
+
+	type RowState = {
+		updating: boolean;
+		deleting: boolean;
+	};
+
+	let row_state_by_id = $state<Record<string, RowState>>({});
+	let submissions = $state<SubmissionsResult['submissions']>([]);
+	let submission_count = $state(0);
+	let user_submission_type_values = $state<string[]>([]);
+	let user_submission_status_values = $state<string[]>([]);
+	let is_loading = $state(false);
+	let load_error = $state<string | null>(null);
+	let last_loaded_query_string = $state<string>('');
+
+	const params = $derived(page.url.searchParams);
+	const active_submission_type = $derived(params.get('submission_type') ?? '');
+	const active_status = $derived(params.get('status') ?? '');
+	const active_per_page = $derived(params.get('perPage') ?? '100');
+	const active_order = $derived.by(() => {
+		const order = params.get('order');
+		return order === 'asc' || order === 'desc' ? order : 'desc';
+	});
+	const show_clear_filters = $derived(
+		active_submission_type !== '' ||
+			active_status !== '' ||
+			active_per_page !== '100' ||
+			active_order !== 'desc'
+	);
+
+	function get_per_page_value() {
+		const parsed_per_page = Number.parseInt(active_per_page, 10);
+		if (!Number.isFinite(parsed_per_page) || parsed_per_page < 1) {
+			return 100;
+		}
+
+		return parsed_per_page;
 	}
 
-	let { data }: Props = $props();
-	let { submissions, submission_count, user_submission_status, user_submission_type } =
-		$derived(data);
+	async function load_submissions() {
+		const query_string = page.url.searchParams.toString();
+		is_loading = true;
+		load_error = null;
+
+		try {
+			const result = await get_submissions({
+				submission_type: active_submission_type,
+				status: active_status,
+				per_page: get_per_page_value(),
+				order: active_order
+			});
+
+			submissions = result.submissions;
+			submission_count = result.submission_count;
+			user_submission_type_values = result.user_submission_type;
+			user_submission_status_values = result.user_submission_status;
+			last_loaded_query_string = query_string;
+		} catch (error) {
+			console.error(error);
+			load_error = 'Unable to load submissions';
+			submissions = [];
+			submission_count = 0;
+		} finally {
+			is_loading = false;
+		}
+	}
+
+	await load_submissions();
+
+	$effect(() => {
+		const query_string = page.url.searchParams.toString();
+		if (query_string === last_loaded_query_string) return;
+
+		void load_submissions();
+	});
+
+	function update_row_state(submission_id: string, next: Partial<RowState>) {
+		const current = row_state_by_id[submission_id] ?? { updating: false, deleting: false };
+		row_state_by_id[submission_id] = { ...current, ...next };
+	}
+
+	async function set_submission_status(submission_id: string, status: string) {
+		update_row_state(submission_id, { updating: true });
+		try {
+			await update_submission_status({ id: submission_id, status });
+			submissions = submissions.map((s) =>
+				s.id === submission_id ? { ...s, status: status as (typeof s)['status'] } : s
+			);
+			// If a status filter is active and this submission no longer matches, remove it
+			if (active_status && status !== active_status) {
+				submissions = submissions.filter((s) => s.id !== submission_id);
+				submission_count--;
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			update_row_state(submission_id, { updating: false });
+		}
+	}
+
+	async function remove_submission(submission_id: string) {
+		if (!window.confirm('Are you sure you want to delete this submission?')) return;
+
+		update_row_state(submission_id, { deleting: true });
+		try {
+			await delete_submission({ id: submission_id });
+			submissions = submissions.filter((s) => s.id !== submission_id);
+			submission_count--;
+		} catch (error) {
+			console.error(error);
+		} finally {
+			update_row_state(submission_id, { deleting: false });
+		}
+	}
 </script>
 
-<h1 class="h4">Submissions ({submission_count})</h1>
+<h1 class="h3">Submissions ({is_loading ? '...' : submission_count})</h1>
 
 <div>
 	<nav>
 		<SelectMenu
 			popover_id="filter-submission_type"
-			onselect={(e) => {
-				$store.submission_type = e.detail;
-			}}
-			button_text={`Type ${$store.submission_type ? `(${$store.submission_type})` : ''}`}
-			button_icon="filter"
-			value={$store.submission_type || ''}
+			button_text={`Type ${active_submission_type ? `(${active_submission_type})` : ''}`}
+			button_icon={'filter' as any}
+			value={active_submission_type}
 			options={[
 				{ value: '', label: 'All' },
-				...Object.keys(user_submission_type).map((key) => ({ value: key, label: key }))
+				...user_submission_type_values.map((enum_value) => ({
+					value: enum_value,
+					label: enum_value
+				}))
 			]}
 		/>
 		<SelectMenu
 			popover_id="filter-status"
-			onselect={(e) => {
-				$store.status = e.detail;
-			}}
-			button_text={`Status ${$store.status ? `(${$store.status})` : ''}`}
-			button_icon="filter"
-			value={$store.status || ''}
+			button_text={`Status ${active_status ? `(${active_status})` : ''}`}
+			button_icon={'filter' as any}
+			value={active_status}
 			options={[
 				{ value: '', label: 'All' },
-				...Object.keys(user_submission_status).map((key) => ({ value: key, label: key }))
+				...user_submission_status_values.map((enum_value) => ({
+					value: enum_value,
+					label: enum_value
+				}))
 			]}
 		/>
 		<SelectMenu
 			popover_id="filter-perPage"
-			onselect={(e) => {
-				$store.perPage = e.detail;
-			}}
 			value_as_label
 			button_text="Per Page"
-			value={$store.perPage?.toString() || '100'}
+			value={active_per_page}
 			options={[
 				{ value: '10', label: '10' },
 				{ value: '20', label: '20' },
@@ -68,26 +169,31 @@
 		/>
 		<SelectMenu
 			popover_id="filter-order"
-			onselect={(e) => {
-				$store.order = e.detail;
-			}}
-			value={$store.order || 'desc'}
+			value={active_order}
 			button_text="Sort"
-			button_icon="sort"
+			button_icon={'sort' as any}
 			options={[
 				{ value: 'desc', label: 'Newest To Oldest' },
 				{ value: 'asc', label: 'Oldest To Newest' }
 			]}
 		/>
-		<a class="button" href="/admin/submissions">× Clear</a>
+		{#if show_clear_filters}
+			<a class="button" href="/admin/submissions">× Clear</a>
+		{/if}
 	</nav>
 </div>
 
 <div class="submissions">
-	{#if !submissions}
+	{#if load_error}
+		<p>{load_error}</p>
+	{:else if is_loading}
+		<p>Loading submissions...</p>
+	{:else if submissions.length === 0}
 		<p>No Submissions found</p>
 	{:else}
-		{#each submissions as submission}
+		{#each submissions as submission (submission.id)}
+			{@const row_state = row_state_by_id[submission.id] ?? { updating: false, deleting: false }}
+			{@const row_busy = row_state.updating || row_state.deleting}
 			<div class="submission" style:--transition-name="submission-{submission.id}">
 				<h4>
 					From {submission.name || 'Anon'}
@@ -105,36 +211,29 @@
 					>{submission.body.replaceAll('\n', '\n\n').trim()}
 				</textarea>
 				<footer>
-					<FormWithLoader global={false} action="?/update_submission" method="post">
-						{#snippet children({ loading })}
-							<select
-								name="status"
-								id="status"
-								value={submission.status}
-								onchange={(e) => {
-									e.currentTarget.form?.requestSubmit();
-								}}
-							>
-								<option value="PENDING">PENDING</option>
-								<option value="APPROVED">APPROVED</option>
-								<option value="COMPLETED">COMPLETED</option>
-								<option value="REJECTED">REJECTED</option>
-							</select>
-							<input type="hidden" name="id" value={submission.id} />
-							<button style:display="none" type="submit">{loading ? 'Updating' : 'Update'}</button>
-						{/snippet}
-					</FormWithLoader>
-					<FormWithLoader
-						global={false}
-						confirm="Are you sure you want to delete this submission?"
-						action="?/delete_submission"
-						method="post"
+					<SelectMenu
+						popover_id="status-{submission.id}"
+						button_text={submission.status}
+						value={submission.status}
+						disabled={row_busy}
+						options={user_submission_status_values.map((s) => ({
+							value: s,
+							label: s
+						}))}
+						onselect={(status) => {
+							void set_submission_status(submission.id, status);
+						}}
+					/>
+					<button
+						class="warning"
+						type="button"
+						disabled={row_busy}
+						onclick={() => {
+							void remove_submission(submission.id);
+						}}
 					>
-						{#snippet children({ loading })}
-							<input type="hidden" name="id" value={submission.id} />
-							<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
-						{/snippet}
-					</FormWithLoader>
+						{row_state.deleting ? 'Deleting' : 'Delete'}
+					</button>
 				</footer>
 			</div>
 		{/each}

@@ -12,7 +12,7 @@
 	let { playlists, local_playlists } = $derived(await get_remote_playlists());
 </script>
 
-<h1 class="h4">Youtube Playlists</h1>
+<h1 class="h3">Youtube Playlists</h1>
 
 <AdminActions>
 	<button onclick={() => import_remote_playlists()}>Sync Playlists</button>

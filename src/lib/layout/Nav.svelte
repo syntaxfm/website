@@ -13,7 +13,7 @@
 
 <nav>
 	<ul>
-		{#each LINKS as [href, text]}
+		{#each LINKS as [href, text] (href)}
 			<li>
 				<a {href}>{text}</a>
 			</li>

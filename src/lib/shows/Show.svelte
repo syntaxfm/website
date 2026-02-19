@@ -8,6 +8,7 @@
 			date: Date;
 			show: string;
 			thumbnail: string;
+			number: number;
 		};
 		type: 'grid' | 'list';
 	}
@@ -26,7 +27,7 @@
 			alt={show.title}
 		/>
 	</div>
-	<div class="stack {[type === 'grid' && 'stack-reverse']}">
+	<div class={['stack', type === 'grid' && 'stack-reverse']}>
 		<h3 class="fs-body fv-700-i">{show.title}</h3>
 		<div class="flex">
 			{#if type === 'list'}
@@ -40,7 +41,7 @@
 			{/if}
 			<Dot color="var(--c-primary)" />
 			<p class="fs-caption">{show.show}</p>
-			{show.number}
+			<p class="fs-caption">{show.number}</p>
 		</div>
 	</div>
 </article>

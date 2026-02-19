@@ -111,8 +111,10 @@
 				<Badges>
 					{#each show.aiShowNote.topics
 						.filter((topic) => topic?.name.length < 15)
-						.slice(0, 4) as topic}
-						<Badge>{topic?.name.startsWith('#') ? '' : '#'}{topic?.name}</Badge>
+						.slice(0, 4) as topic (topic?.name)}
+						<li>
+							<Badge>{topic?.name.startsWith('#') ? '' : '#'}{topic?.name}</Badge>
+						</li>
 					{/each}
 				</Badges>
 			{/if}

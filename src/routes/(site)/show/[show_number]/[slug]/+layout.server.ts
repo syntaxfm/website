@@ -4,8 +4,9 @@ import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import { inArray } from 'drizzle-orm';
 import { get_show_detail_query } from '$server/shows/shows_queries';
+import type { LayoutServerLoad } from './$types';
 
-export const load = async function ({ params, locals, url }) {
+export const load: LayoutServerLoad = async ({ params, locals, url, cookies }) => {
 	const show_number = parseInt(params.show_number);
 
 	// Get the full show details
@@ -27,10 +28,13 @@ export const load = async function ({ params, locals, url }) {
 	const now = new Date();
 	const show_date = new Date(show_data?.date || '');
 	const is_admin = locals?.user?.roles?.includes('admin');
-	if (show_date > now && !is_admin) {
+	const has_preview_access =
+		show_data?.content_id && cookies.get('preview_content_id') === show_data.content_id;
+
+	if (show_date > now && !is_admin && !has_preview_access) {
 		error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
 	}
-	if (!show) {
+	if (!show_data) {
 		error(404, `This show does not exist.`);
 	}
 
