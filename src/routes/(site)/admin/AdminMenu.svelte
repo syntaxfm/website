@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { slide } from 'svelte/transition';
 
 	let links = [
 		{
@@ -118,7 +119,7 @@
 	</div>
 
 	{#if show_subnav}
-		<div class="admin-submenu flex">
+		<div class="admin-submenu flex" transition:slide={{ duration: 200 }}>
 			{#each active_subroutes as subroute (subroute.path + 'admin-subnav')}
 				<a href={subroute.path} class:active={active_subroute === subroute}>{subroute.text}</a>
 			{/each}
@@ -126,7 +127,7 @@
 	{/if}
 
 	{#if show_nested_subnav}
-		<div class="admin-nested-submenu flex">
+		<div class="admin-nested-submenu flex" transition:slide={{ duration: 200 }}>
 			{#each active_nested_subroutes as nested (nested.path + 'admin-nested-subnav')}
 				<a href={nested.path} class:active={page.url.pathname === nested.path}>{nested.text}</a>
 			{/each}

@@ -155,14 +155,15 @@
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Tags</h1>
-		<span class="fs-2">{filtered_rows.length} of {rows.length} tags</span>
+		<p class="fs-2" style="color: var(--c-fg-2)">{filtered_rows.length} of {rows.length} tags</p>
 	</div>
 
 	<div class="bg-shade-or-tint-light br-small" style="padding: var(--pad-medium)">
 		<div class="stack" style:--stack-gap="var(--pad-small)">
-			<span class="fs-2 fv-700">Create New Tag</span>
+			<span class="fs-2 fv-700">Create Tag</span>
 			<form
 				class="flex"
+				style="flex-wrap: wrap"
 				style:--flex-gap="var(--pad-small)"
 				onsubmit={(event) => {
 					event.preventDefault();
@@ -177,7 +178,7 @@
 					<span class="fs-2">Slug (optional)</span>
 					<input type="text" bind:value={new_slug} placeholder="javascript" />
 				</label>
-				<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create tag'}</button>
+				<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create Tag'}</button>
 			</form>
 		</div>
 	</div>
@@ -190,7 +191,7 @@
 		<p class="fs-2" style="color: var(--c-red)">{status_error}</p>
 	{/if}
 
-	<input type="text" bind:value={search_text} placeholder="Filter tags..." class="search-input" />
+	<input class="search-input" type="search" placeholder="Search tags" bind:value={search_text} />
 
 	<div class="table-container">
 		<table>
@@ -278,16 +279,6 @@
 </div>
 
 <style lang="postcss">
-	.search-input {
-		width: 100%;
-		background: transparent;
-		border: var(--border);
-		padding: 10px;
-		font-size: var(--font-size-base);
-		color: var(--c-fg);
-		border-radius: var(--br-medium);
-	}
-
 	td input {
 		width: 100%;
 		background: transparent;
@@ -317,5 +308,22 @@
 		background: var(--c-red);
 		color: white;
 		border-color: var(--c-red);
+	}
+
+	.search-input {
+		width: 100%;
+		border: 1px solid var(--c-fg-1);
+		padding: 10px;
+		font-size: var(--fs-2);
+		outline-color: transparent;
+		background-color: transparent;
+		color: var(--c-fg);
+		font-family: var(--ff-body);
+		border-radius: var(--br-small);
+	}
+
+	.search-input:focus {
+		border-color: var(--c-primary);
+		outline: none;
 	}
 </style>

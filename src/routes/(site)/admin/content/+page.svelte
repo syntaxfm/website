@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { page as current_page } from '$app/state';
-	import AdminActions from '../AdminActions.svelte';
 	import AdminSearch from '../AdminSearch.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
@@ -9,7 +8,6 @@
 		assign_content_tags,
 		bulk_delete_content,
 		bulk_update_status,
-		export_content,
 		get_tag_options,
 		remove_content_tags,
 		list_content
@@ -278,40 +276,6 @@
 		}
 	}
 
-	async function export_current_filters() {
-		clear_feedback();
-		busy = true;
-
-		try {
-			const result = await export_content({
-				search_text,
-				status: status_filter,
-				type: type_filter,
-				date_from_iso: date_from || undefined,
-				date_to_iso: date_to || undefined,
-				page: 1,
-				page_size: 1000
-			});
-
-			const download_blob = new Blob([JSON.stringify(result.items, null, 2)], {
-				type: 'application/json'
-			});
-			const download_url = URL.createObjectURL(download_blob);
-			const link = document.createElement('a');
-			link.href = download_url;
-			link.download = result.filename;
-			link.click();
-			URL.revokeObjectURL(download_url);
-
-			action_message = `Exported ${result.total} item(s).`;
-		} catch (error) {
-			console.error(error);
-			action_error = 'Export failed. Please try again.';
-		} finally {
-			busy = false;
-		}
-	}
-
 	function to_public_link(content_row: (typeof list_items)[number]) {
 		if (content_row.show) {
 			return `/show/${content_row.show.number}/${content_row.show.slug}`;
@@ -342,12 +306,7 @@
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Content</h1>
-		<AdminActions>
-			<button type="button" onclick={export_current_filters} disabled={busy}>Export JSON</button>
-		</AdminActions>
-	</div>
+	<h1 class="h3">Content</h1>
 
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<AdminSearch bind:text={search_text} />
@@ -380,65 +339,55 @@
 		</div>
 	</div>
 
-	<div
-		class="stack bg-shade-or-tint-light br-small"
-		style="padding: var(--pad-small); --stack-gap: var(--pad-small)"
-		aria-label="Bulk actions"
-	>
-		<div class="split" style:--split-gap="var(--pad-small)">
-			<span class="fs-2 fv-700">Bulk Actions</span>
-			{#if selected_content_ids.length > 0}
+	{#if selected_content_ids.length > 0}
+		<div
+			class="stack bg-shade-or-tint-light br-small"
+			style="padding: var(--pad-small); --stack-gap: var(--pad-small)"
+			aria-label="Bulk actions"
+		>
+			<div class="split" style:--split-gap="var(--pad-small)">
+				<span class="fs-2 fv-700">Bulk Actions</span>
 				<span class="fs-2 primary">{selected_content_ids.length} selected</span>
-			{/if}
-		</div>
+			</div>
 
-		<MultiSelect
-			options={bulk_tag_options}
-			bind:selected_ids={bulk_selected_tag_ids}
-			label="Tags"
-			placeholder="Search tags"
-		/>
-		<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
-			<button
-				type="button"
-				onclick={run_bulk_add_tags}
-				disabled={busy || selected_content_ids.length === 0 || bulk_selected_tag_ids.length === 0}
-			>
-				Add tags
-			</button>
-			<button
-				type="button"
-				onclick={run_bulk_remove_tags}
-				disabled={busy || selected_content_ids.length === 0 || bulk_selected_tag_ids.length === 0}
-			>
-				Remove tags
-			</button>
-		</div>
-
-		<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center">
-			<SelectMenu
-				popover_id="filter-bulk_status"
-				button_text={`Bulk status (${bulk_status})`}
-				button_icon={'filter' as any}
-				value={bulk_status}
-				options={BULK_STATUS_OPTIONS}
+			<MultiSelect
+				options={bulk_tag_options}
+				bind:selected_ids={bulk_selected_tag_ids}
+				label="Tags"
+				placeholder="Search tags"
 			/>
-			<button
-				type="button"
-				onclick={run_bulk_status_update}
-				disabled={busy || selected_content_ids.length === 0}
-			>
-				Update status
-			</button>
-			<button
-				type="button"
-				onclick={run_bulk_delete}
-				disabled={busy || selected_content_ids.length === 0}
-			>
-				Delete selected
-			</button>
+			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
+				<button
+					type="button"
+					onclick={run_bulk_add_tags}
+					disabled={busy || bulk_selected_tag_ids.length === 0}
+				>
+					Add tags
+				</button>
+				<button
+					type="button"
+					onclick={run_bulk_remove_tags}
+					disabled={busy || bulk_selected_tag_ids.length === 0}
+				>
+					Remove tags
+				</button>
+			</div>
+
+			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center">
+				<SelectMenu
+					popover_id="filter-bulk_status"
+					button_text={`Bulk status (${bulk_status})`}
+					button_icon={'filter' as any}
+					value={bulk_status}
+					options={BULK_STATUS_OPTIONS}
+				/>
+				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+					Update status
+				</button>
+				<button type="button" onclick={run_bulk_delete} disabled={busy}> Delete selected </button>
+			</div>
 		</div>
-	</div>
+	{/if}
 
 	{#if action_message}
 		<p class="fs-2" style="color: var(--c-green)">{action_message}</p>

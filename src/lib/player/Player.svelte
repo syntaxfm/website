@@ -7,7 +7,7 @@
 	import ShareButton from '../share/HairButton.svelte';
 	import { get_latest_podcast } from '$server/shows/shows.remote';
 
-	const show = $derived(await get_latest_podcast());
+	const show = await get_latest_podcast();
 	player.initialize(show);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
