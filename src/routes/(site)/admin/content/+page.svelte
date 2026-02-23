@@ -91,10 +91,11 @@
 	let action_message = $state('');
 	let action_error = $state('');
 	let busy = $state(false);
-	let refresh_token = $state(0);
 
 	type BulkTagOption = { id: string; name: string };
 	let bulk_tag_options = $state<BulkTagOption[]>([]);
+	type ContentListResult = Awaited<ReturnType<typeof list_content>>;
+	type ContentListItem = ContentListResult['items'][number];
 
 	async function load_bulk_tag_options() {
 		try {
@@ -110,31 +111,19 @@
 
 	void load_bulk_tag_options();
 
-	let list_result = $derived(
-		await (async () => {
-			refresh_token;
+	function get_list_content_query() {
+		return list_content({
+			search_text,
+			status: status_filter,
+			type: type_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			page,
+			page_size: 25
+		});
+	}
 
-			return list_content({
-				search_text,
-				status: status_filter,
-				type: type_filter,
-				date_from_iso: date_from || undefined,
-				date_to_iso: date_to || undefined,
-				page,
-				page_size: 25
-			});
-		})()
-	);
-
-	let list_items = $derived(list_result?.items ?? []);
-	let total = $derived(list_result?.total ?? 0);
-	let total_pages = $derived(list_result?.total_pages ?? 1);
-	let page_number = $derived(list_result?.page ?? page);
-
-	let all_visible_selected = $derived(
-		list_items.length > 0 &&
-			list_items.every((item: { id: string }) => selected_content_ids.includes(item.id))
-	);
+	let list_result_promise = $derived.by(() => get_list_content_query());
 
 	function clear_feedback() {
 		action_message = '';
@@ -152,8 +141,8 @@
 		selected_content_ids = selected_content_ids.filter((id) => id !== content_id);
 	}
 
-	function toggle_all_visible(checked: boolean) {
-		selected_content_ids = checked ? list_items.map((item: { id: string }) => item.id) : [];
+	function toggle_all_visible(checked: boolean, visible_items: ContentListItem[]) {
+		selected_content_ids = checked ? visible_items.map((item) => item.id) : [];
 	}
 
 	async function run_bulk_status_update() {
@@ -172,7 +161,7 @@
 			});
 			action_message = `Updated ${result.count} item(s) to ${bulk_status}.`;
 			selected_content_ids = [];
-			refresh_token += 1;
+			await get_list_content_query().refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to update status. Please try again.';
@@ -203,7 +192,7 @@
 
 			action_message = `Deleted ${result.deleted_count} item(s). Skipped ${result.skipped_count} non-article item(s).`;
 			selected_content_ids = [];
-			refresh_token += 1;
+			await get_list_content_query().refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to delete selected rows. Please try again.';
@@ -235,7 +224,7 @@
 
 			action_message = `Added ${bulk_selected_tag_ids.length} tag(s) to ${selected_content_ids.length} item(s). (${result.count} assignment(s) processed)`;
 			selected_content_ids = [];
-			refresh_token += 1;
+			await get_list_content_query().refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to add tags to selected rows. Please try again.';
@@ -267,7 +256,7 @@
 
 			action_message = `Removed ${bulk_selected_tag_ids.length} tag(s) from ${selected_content_ids.length} item(s).`;
 			selected_content_ids = [];
-			refresh_token += 1;
+			await get_list_content_query().refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to remove tags from selected rows. Please try again.';
@@ -276,7 +265,7 @@
 		}
 	}
 
-	function to_public_link(content_row: (typeof list_items)[number]) {
+	function to_public_link(content_row: ContentListItem) {
 		if (content_row.show) {
 			return `/show/${content_row.show.number}/${content_row.show.slug}`;
 		}
@@ -288,7 +277,7 @@
 		return null;
 	}
 
-	function go_previous_page() {
+	function go_previous_page(page_number: number) {
 		if (page_number <= 1) {
 			return;
 		}
@@ -296,7 +285,7 @@
 		page = page_number - 1;
 	}
 
-	function go_next_page() {
+	function go_next_page(page_number: number, total_pages: number) {
 		if (page_number >= total_pages) {
 			return;
 		}
@@ -397,103 +386,155 @@
 		<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
 	{/if}
 
-	<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
-		<button type="button" onclick={go_previous_page} disabled={page_number <= 1 || busy}
-			>Previous</button
-		>
-		<p class="fs-2">Page {page_number} of {total_pages} ({total} total)</p>
-		<button type="button" onclick={go_next_page} disabled={page_number >= total_pages || busy}
-			>Next</button
-		>
-	</div>
-
-	<div class="table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type="checkbox"
-							aria-label="Select all rows on this page"
-							checked={all_visible_selected}
-							onchange={(event) => {
-								const target = event.currentTarget;
-								if (!(target instanceof HTMLInputElement)) {
-									return;
-								}
-
-								toggle_all_visible(target.checked);
-							}}
-						/>
-					</th>
-					<th>Title</th>
-					<th>Status</th>
-					<th>Type</th>
-					<th>Published</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if !list_result}
+	{#await list_result_promise}
+		<div class="table-container">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<input type="checkbox" aria-label="Select all rows on this page" disabled />
+						</th>
+						<th>Title</th>
+						<th>Status</th>
+						<th>Type</th>
+						<th>Published</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
 					<tr>
 						<td colspan="6">Loading content...</td>
 					</tr>
-				{:else if list_items.length === 0}
-					<tr>
-						<td colspan="6">No matching content found.</td>
-					</tr>
-				{:else}
-					{#each list_items as content_row (content_row.id)}
-						<tr>
-							<td>
-								<input
-									type="checkbox"
-									aria-label={`Select ${content_row.title}`}
-									checked={selected_content_ids.includes(content_row.id)}
-									onchange={(event) => {
-										const target = event.currentTarget;
-										if (!(target instanceof HTMLInputElement)) {
-											return;
-										}
+				</tbody>
+			</table>
+		</div>
+	{:then list_result}
+		{@const list_items = list_result.items}
+		{@const total = list_result.total}
+		{@const total_pages = list_result.total_pages}
+		{@const page_number = list_result.page}
+		{@const all_visible_selected =
+			list_items.length > 0 && list_items.every((item) => selected_content_ids.includes(item.id))}
 
-										toggle_selected(content_row.id, target.checked);
-									}}
-								/>
-							</td>
-							<td>
-								<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-									<p>{content_row.title}</p>
-									<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-										<a href={`/admin/content/${content_row.id}`}>Edit</a>
-										{#if to_public_link(content_row)}
-											<a
-												href={to_public_link(content_row) || '#'}
-												target="_blank"
-												rel="noopener noreferrer">Public [↗]</a
-											>
-										{/if}
-										<a href={`/preview/${content_row.id}`} target="_blank" rel="noopener noreferrer"
-											>Preview [↗]</a
-										>
-									</div>
-								</div>
-							</td>
-							<td>{content_row.status}</td>
-							<td>{content_row.type}</td>
-							<td>
-								{#if content_row.published_at}
-									{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-								{:else}
-									-
-								{/if}
-							</td>
-							<td>
-								<a href={`/admin/content/${content_row.id}`}>Open</a>
-							</td>
+		<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
+			<button
+				type="button"
+				onclick={() => go_previous_page(page_number)}
+				disabled={page_number <= 1 || busy}>Previous</button
+			>
+			<p class="fs-2">Page {page_number} of {total_pages} ({total} total)</p>
+			<button
+				type="button"
+				onclick={() => go_next_page(page_number, total_pages)}
+				disabled={page_number >= total_pages || busy}>Next</button
+			>
+		</div>
+
+		<div class="table-container">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type="checkbox"
+								aria-label="Select all rows on this page"
+								checked={all_visible_selected}
+								onchange={(event) => {
+									const target = event.currentTarget;
+									if (!(target instanceof HTMLInputElement)) {
+										return;
+									}
+
+									toggle_all_visible(target.checked, list_items);
+								}}
+							/>
+						</th>
+						<th>Title</th>
+						<th>Status</th>
+						<th>Type</th>
+						<th>Published</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#if list_items.length === 0}
+						<tr>
+							<td colspan="6">No matching content found.</td>
 						</tr>
-					{/each}
-				{/if}
-			</tbody>
-		</table>
-	</div>
+					{:else}
+						{#each list_items as content_row (content_row.id)}
+							<tr>
+								<td>
+									<input
+										type="checkbox"
+										aria-label={`Select ${content_row.title}`}
+										checked={selected_content_ids.includes(content_row.id)}
+										onchange={(event) => {
+											const target = event.currentTarget;
+											if (!(target instanceof HTMLInputElement)) {
+												return;
+											}
+
+											toggle_selected(content_row.id, target.checked);
+										}}
+									/>
+								</td>
+								<td>
+									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+										<p>{content_row.title}</p>
+										<div class="flex" style:--flex-gap="var(--pad-xsmall)">
+											<a href={`/admin/content/${content_row.id}`}>Edit</a>
+											{#if to_public_link(content_row)}
+												<a
+													href={to_public_link(content_row) || '#'}
+													target="_blank"
+													rel="noopener noreferrer">Public [↗]</a
+												>
+											{/if}
+											<a
+												href={`/preview/${content_row.id}`}
+												target="_blank"
+												rel="noopener noreferrer">Preview [↗]</a
+											>
+										</div>
+									</div>
+								</td>
+								<td>{content_row.status}</td>
+								<td>{content_row.type}</td>
+								<td>
+									{#if content_row.published_at}
+										{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
+									{:else}
+										-
+									{/if}
+								</td>
+								<td>
+									<a href={`/admin/content/${content_row.id}`}>Open</a>
+								</td>
+							</tr>
+						{/each}
+					{/if}
+				</tbody>
+			</table>
+		</div>
+	{:catch}
+		<div class="table-container">
+			<table>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Status</th>
+						<th>Type</th>
+						<th>Published</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="5">Unable to load content. Please try again.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	{/await}
 </div>
