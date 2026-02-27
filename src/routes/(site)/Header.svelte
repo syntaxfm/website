@@ -2,6 +2,7 @@
 	import Logo from '$lib/Logo.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
+	import MadCSS from '$lib/MadCSS.svelte';
 	import { page } from '$app/stores';
 	interface Props {
 		transparent?: boolean;
@@ -10,6 +11,7 @@
 	let { transparent = false }: Props = $props();
 </script>
 
+<MadCSS />
 <header class="layout full" class:transparent style:--fg="var(--fg-1)">
 	<div class="header-container content">
 		<div class="logo">
@@ -39,7 +41,8 @@
 
 <style lang="postcss">
 	header {
-		background-image: url('/svg/grit.svg?dark'),
+		background-image:
+			url('/svg/grit.svg?dark'),
 			linear-gradient(to bottom, var(--header-gradient-1) 0%, var(--header-gradient-2) 100%);
 		background-size: 250px;
 		background-color: var(--bg);
