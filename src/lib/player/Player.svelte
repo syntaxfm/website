@@ -32,7 +32,7 @@
 			<AlbumArt />
 		{/if}
 
-		<div style="flex-grow: 1;">
+		<div style="flex-grow: 1;" class="stack" style:--stack-gap="0.5rem">
 			{#if $player.current_show}
 				<p>
 					<a id="player_show_title" href={get_show_path($player.current_show)}
@@ -145,7 +145,7 @@
 		grid-row: bottom / bottom;
 		display: flex;
 		gap: 16px;
-		align-items: baseline;
+		align-items: center;
 
 		@container (min-width: 650px) {
 			grid-column: controls / controls;
@@ -283,7 +283,20 @@
 	}
 
 	button {
-		--button-bg: transparent;
-		--button-fg: var(--c-fg);
+		background: transparent;
+		color: var(--c-fg);
+		padding: 0;
+	}
+
+	.window-controls {
+		:global(button) {
+			padding: 10px;
+		}
+	}
+
+	media-seek-backward-button,
+	media-play-button,
+	media-seek-forward-button {
+		line-height: 0;
 	}
 </style>

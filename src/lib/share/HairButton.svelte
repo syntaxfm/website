@@ -36,9 +36,8 @@
 
 <style>
 	button {
-		--button-bg: transparent;
-		--button-fg: var(--c-fg);
-
+		background: transparent;
+		color: var(--c-fg);
 		padding: 0;
 	}
 </style>

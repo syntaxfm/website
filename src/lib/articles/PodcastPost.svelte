@@ -14,11 +14,16 @@
 	import SwaggyNewsletterForm from '../newsletter/SwaggyNewsletterForm.svelte';
 	import TagRow from '../tags/TagRow.svelte';
 	import PageTitle from '../layout/PageTitle.svelte';
+	import { get_id_from_url } from '$lib/videos/utils';
 
 	let { show, time_start, children } = $props();
 	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
+	let youtube_video_id = $derived(show.youtube_url ? get_id_from_url(show.youtube_url) : '');
+	let youtube_embed_url = $derived(
+		youtube_video_id ? `https://www.youtube.com/embed/${youtube_video_id}?rel=0` : ''
+	);
 	let tags = $derived(
-		show.aiShowNote?.topics?.map((topic) =>
+		show.aiShowNote?.topics?.map((topic: { name: string }) =>
 			topic.name.startsWith('#') ? topic.name.slice(1) : topic.name
 		) || []
 	);
@@ -38,15 +43,17 @@
 	}
 </script>
 
-<iframe
-	class="youtube"
-	src="https://www.youtube.com/embed/5az_4IwTwAE?si=j2n96qJcGcBtf9m3"
-	title="YouTube video player"
-	frameborder="0"
-	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-	referrerpolicy="strict-origin-when-cross-origin"
-	allowfullscreen
-></iframe>
+{#if youtube_embed_url}
+	<iframe
+		class="youtube"
+		src={youtube_embed_url}
+		title={`${show.title} on YouTube`}
+		frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		referrerpolicy="strict-origin-when-cross-origin"
+		allowfullscreen
+	></iframe>
+{/if}
 <!--
 <div class="show-actions-wrap">
 	<div
@@ -133,7 +140,7 @@
 			<div class="related-videos">
 				<h2 class="h5">Related Videos</h2>
 
-				{#each show.videos as { video }}
+				{#each show.videos as { video } (video.slug)}
 					<a href={`/videos/${video.playlists[0].playlist.slug}/${video.slug}`}>
 						<img src={video.thumbnail} class="thumbnail" alt={video.title} />
 					</a>

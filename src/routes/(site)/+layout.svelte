@@ -13,7 +13,6 @@
 	import SearchBox from '$lib/search/SearchBox.svelte';
 	import ThemeMaker from '../../params/ThemeMaker.svelte';
 	import FollowBanner from '$lib/social/FollowBanner.svelte';
-	import IconSprite from '$lib/utilities/IconSprite.svelte';
 	import AdminMenu from './admin/AdminMenu.svelte';
 
 	const { data, children } = $props();
@@ -61,8 +60,6 @@
 		<SearchBox />
 	{/if}
 </div>
-
-<IconSprite />
 
 <style>
 	.skip-to-main-content {

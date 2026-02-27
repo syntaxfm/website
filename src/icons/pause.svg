@@ -1,0 +1,27 @@
+<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<title>pause</title><g class="nc-icon-wrapper"
+			><rect
+				x="4"
+				y="4"
+				width="3.5"
+				height="12"
+				rx="1"
+				ry="1"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				fill="currentColor"
+			></rect><rect
+				x="12.5"
+				y="4"
+				width="3.5"
+				height="12"
+				rx="1"
+				ry="1"
+				fill="inherit"
+				stroke="inherit"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			></rect></g
+		>
+</svg>

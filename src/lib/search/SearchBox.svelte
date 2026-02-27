@@ -9,7 +9,7 @@
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
-	import type { Show } from '$server/db/schema';
+	import type { Show } from '$server/db/types';
 
 	let search_input: HTMLInputElement = $state(null!);
 	let modal: HTMLDialogElement = $state(null!);
@@ -148,8 +148,6 @@
 <dialog
 	bind:this={modal}
 	class="zone"
-	style:--c-bg="var(--c-bg)"
-	style:--c-fg="var(--c-fg)"
 	use:clickOutDialog
 	onclick-outside={close}
 	aria-labelledby="search-header"
@@ -221,10 +219,9 @@
 							<SearchResultList
 								results={recent_searches}
 								recent_searches={true}
-								query={local_search?.query || ''}
-								on:select={(e) => {
+								onselect={(href) => {
 									close();
-									navigate(e.detail.href);
+									navigate(href);
 								}}
 							/>
 						{/if}
@@ -274,7 +271,9 @@
 		border: var(--b-medium);
 		border-color: var(--c-fg);
 		border-radius: var(--br-medium);
-		position: relative;
+		position: fixed;
+		inset: 0;
+		margin: auto;
 		max-width: 100%;
 		width: 100%;
 

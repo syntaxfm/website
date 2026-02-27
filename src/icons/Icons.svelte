@@ -1,18 +1,15 @@
 <script lang="ts">
-	import Icon, { type IconName, icon_names } from '$lib/Icon.svelte';
-	import IconSprite from '$lib/utilities/IconSprite.svelte';
+	import Icon, { icon_names } from '$lib/Icon.svelte';
 </script>
 
 <div class="icons-grid">
-	{#each icon_names as icon_name}
+	{#each icon_names as icon_name (icon_name)}
 		<div class="icon-box">
 			<Icon name={icon_name} />
 			<span class="icon-name">{icon_name}</span>
 		</div>
 	{/each}
 </div>
-
-<IconSprite />
 
 <style>
 	.icons-grid {

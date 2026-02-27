@@ -277,6 +277,18 @@
 		return null;
 	}
 
+	function to_edit_link(content_row: ContentListItem) {
+		if (content_row.type === 'ARTICLE') {
+			return `/admin/content/${content_row.id}/article`;
+		}
+
+		if (content_row.type === 'PODCAST' && content_row.show) {
+			return `/admin/content/podcast/${content_row.show.number}`;
+		}
+
+		return `/admin/content/${content_row.id}`;
+	}
+
 	function go_previous_page(page_number: number) {
 		if (page_number <= 1) {
 			return;
@@ -483,7 +495,7 @@
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										<p>{content_row.title}</p>
 										<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-											<a href={`/admin/content/${content_row.id}`}>Edit</a>
+											<a href={to_edit_link(content_row)}>Edit</a>
 											{#if to_public_link(content_row)}
 												<a
 													href={to_public_link(content_row) || '#'}
@@ -509,7 +521,7 @@
 									{/if}
 								</td>
 								<td>
-									<a href={`/admin/content/${content_row.id}`}>Open</a>
+									<a href={to_edit_link(content_row)}>Open</a>
 								</td>
 							</tr>
 						{/each}

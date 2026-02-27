@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
 				uploadToken: env.CODECOV_TOKEN
 			}),
 			VitePluginSvgSpritemap('./src/icons/*.svg', {
-				prefix: ''
+				prefix: 'icon-'
 			})
 		],
 		test: {

@@ -1,6 +1,6 @@
 import flexsearch from 'flexsearch';
 import type { Block, Tree } from './types';
-import type { Show } from '$server/db/schema';
+import type { Show } from '$server/db/types';
 
 const Index = flexsearch.Index ?? flexsearch;
 

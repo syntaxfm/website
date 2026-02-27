@@ -1,4 +1,4 @@
-import type { Show } from '$server/db/schema';
+import type { Show } from '$server/db/types';
 
 export interface Block {
 	breadcrumbs: string[];

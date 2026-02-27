@@ -17,13 +17,14 @@ export const count_podcasts = query(async () => {
 
 export const get_all_podcasts = query(async () => {
 	const { url } = getRequestEvent();
-	const page = parseInt(url.searchParams.get('page') || '1');
+	const page_number = Math.max(1, parseInt(url.searchParams.get('page') || '1') || 1);
 	const order = url.searchParams.get('order') || 'desc';
-	const limit = parseInt(url.searchParams.get('perPage') || '29');
+	const per_page = Math.max(1, parseInt(url.searchParams.get('perPage') || '29') || 29);
+	const offset = (page_number - 1) * per_page;
 
 	return db.query.show.findMany({
-		limit,
-		offset: page * limit - 1,
+		limit: per_page,
+		offset,
 		orderBy: [order === 'desc' ? desc(show.number) : asc(show.number)],
 		where: (show, { lte }) => lte(show.date, new Date()),
 		with: {

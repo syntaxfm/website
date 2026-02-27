@@ -6,9 +6,11 @@
 		shows: {
 			title: string;
 			show: string;
-			thumbnail: string;
+			thumbnail?: string;
+			youtube_url?: string;
 			date: Date;
 			number: number;
+			slug: string;
 		}[];
 	};
 
@@ -25,8 +27,12 @@
 
 <style>
 	.show-episodes {
+		li {
+			list-style: none;
+		}
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		--stack-gap: 1rem;
 	}
 </style>

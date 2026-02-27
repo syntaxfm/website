@@ -1,28 +1,40 @@
 <script lang="ts" module>
 	export const icon_names = [
+		'apple-podcasts',
+		'arrow-right',
+		'bluesky',
 		'close',
+		'code',
+		'discord',
 		'down',
-		'share',
-		'link-out',
-		'rewind',
+		'download',
+		'edit',
+		'facebook',
+		'filter',
 		'forwards',
-		'volume-off',
-		'volume-up',
+		'github',
+		'grid',
+		'instagram',
+		'link',
+		'link-out',
+		'linkedin',
+		'list',
+		'monitor',
 		'pause',
 		'play',
+		'rewind',
 		'search',
-		'list',
-		'grid',
 		'send',
-		'download',
-		'bluesky',
-		'discord',
-		'github',
-		'twitter',
-		'instagram',
-		'linkedin',
+		'share',
+		'sort',
+		'spotify',
+		'threads',
+		'thumbtack',
 		'tiktok',
-		'threads'
+		'twitter',
+		'volume-off',
+		'volume-up',
+		'youtube'
 	] as const;
 	export type IconName = typeof icon_names;
 </script>
@@ -47,7 +59,14 @@
 		width = 16,
 		weight = 2
 	}: Props = $props();
-	if (!title) title = capitalize(name);
+
+	const capitalized_name = $derived(capitalize(name));
+	let has_initialized_title = false;
+	$effect(() => {
+		if (has_initialized_title) return;
+		if (!title) title = capitalized_name;
+		has_initialized_title = true;
+	});
 </script>
 
 <svg
@@ -55,5 +74,5 @@
 	style="height: {height}px; width: {width}px; stroke-width: {weight}px;"
 	aria-hidden={aria_hidden}
 >
-	<use href="#icon-{name}" />
+	<use href={`/__spritemap#icon-${name}`} />
 </svg>

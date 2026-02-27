@@ -15,6 +15,8 @@
 		show: {
 			title: '$300M for a domain? Web Devs React',
 			show: 'Syntax Podcast',
+			number: 123,
+			slug: '300m-for-a-domain-web-devs-react',
 			thumbnail:
 				'https://i.ytimg.com/vi/AIlgkt7oPMA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCkovHTvZUZi6tf8TUmeRfPX_wr8Q',
 			date: new Date('2021-01-01')
@@ -28,6 +30,8 @@
 		show: {
 			title: '$300M for a domain? Web Devs React',
 			show: 'Syntax Podcast',
+			number: 123,
+			slug: '300m-for-a-domain-web-devs-react',
 			thumbnail:
 				'https://i.ytimg.com/vi/AIlgkt7oPMA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCkovHTvZUZi6tf8TUmeRfPX_wr8Q',
 			date: new Date('2021-01-01')

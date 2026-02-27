@@ -12,7 +12,7 @@
 </script>
 
 {#if results.length > 0}
-	<SearchResultList {results} {query} {onselect} />
+	<SearchResultList {results} {onselect} />
 {:else if query}
 	<p class="info fv-400">No results</p>
 {/if}

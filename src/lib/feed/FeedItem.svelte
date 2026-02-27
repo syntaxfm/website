@@ -3,7 +3,11 @@
 	import FeedItemPodcast from './FeedItemPodcast.svelte';
 	import FeedItemVideo from './FeedItemVideo.svelte';
 
-	const { content }: { content: AllPossibleContent } = $props();
+	type Feed_content = AllPossibleContent & {
+		tags: Array<{ tag: { name: string } }>;
+	};
+
+	const { content }: { content: Feed_content } = $props();
 </script>
 
 <!-- TODO make this if item type === show, swag social ect -->
