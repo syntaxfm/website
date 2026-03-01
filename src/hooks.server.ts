@@ -10,6 +10,7 @@ import { dev } from '$app/environment';
 import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
 import { Redis } from '@upstash/redis';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
+import { transport } from './lib/mcp';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
@@ -106,6 +107,25 @@ export const safe_form_data: Handle = async function ({ event, resolve }) {
 	return resolve(event);
 };
 
+export const mcp: Handle = async function ({ event, resolve }) {
+	const mcp_response = await transport.respond(event.request);
+	// we are deploying on vercel the SSE connection will timeout after 5 minutes...for
+	// the moment we are not sending back any notifications (logs, or list changed notifications)
+	// so it's a waste of resources to keep a connection open that will error
+	// after 5 minutes making the logs dirty. For this reason if we have a response from
+	// the MCP server and it's a GET request we just return an empty response (it has to be
+	// 200 or the MCP client will complain)
+	if (mcp_response && event.request.method === 'GET') {
+		try {
+			await mcp_response.body?.cancel();
+		} catch {
+			// ignore
+		}
+		return new Response('', { status: 200 });
+	}
+	return mcp_response ?? resolve(event);
+};
+
 // * END HOOKS
 
 // Wraps requests in this sequence of hooks
@@ -115,7 +135,8 @@ export const handle: Handle = sequence(
 	auth,
 	admin,
 	safe_form_data,
-	document_policy
+	document_policy,
+	mcp
 );
 
 export const handleError = Sentry.handleErrorWithSentry();
