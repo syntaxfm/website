@@ -30,11 +30,11 @@ Scott and Wes are joined by Phil Miller and Theo Ephraim to talk about Varlock, 
 * **[14:08](#t=14:08)** Brought to you by [Sentry.io](https://sentry.io/syntax)
 * **[14:32](#t=14:32)** Cross-Language Compatibility
 * **[17:50](#t=17:50)** Best Practices for Environment Variables
-* **[21:11](#t=21:11)** Security Features of VarLoc
+* **[21:11](#t=21:11)** Security Features of Varlock
 * **[25:02](#t=25:02)** AI Integration and Environment Variables
-* **[29:12](#t=29:12)** Introduction to Varloc and GitHub Actions
+* **[29:12](#t=29:12)** Introduction to Varlock and GitHub Actions
 * **[32:45](#t=32:45)** Secrets Management and Best Practices
-* **[36:09](#t=36:09)** The Future of Varloc and Open Source
+* **[36:09](#t=36:09)** The Future of Varlock and Open Source
 * **[38:36](#t=38:36)** Sick Picks + Shameless Plugs
 
 ### Sick Picks
