@@ -11,7 +11,8 @@ export async function GET() {
 				...data,
 				notesFile: data?.md_file,
 				displayNumber: data?.number.toString(),
-				displayDate: format(new Date(data.date), 'MMMM do, yyyy')
+				displayDate: format(new Date(data.date), 'MMMM do, yyyy'),
+				transcript: `/api/transcripts/${data.number}`
 			},
 			{
 				headers: {
