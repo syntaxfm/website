@@ -1,5 +1,6 @@
 import { error, json } from '@sveltejs/kit';
 import { prisma_client } from '$/server/prisma-client';
+import { getSlimUtterances } from '$/server/transcripts/utils';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
@@ -17,7 +18,6 @@ export async function GET({ params }) {
 			utterances: {
 				select: {
 					speaker: true,
-					speakerName: true,
 					transcript_value: true,
 					start: true,
 					end: true
@@ -33,14 +33,16 @@ export async function GET({ params }) {
 		error(404, 'Transcript not found');
 	}
 
+	const grouped_utterances = getSlimUtterances(transcript.utterances, show_number);
+
 	return json(
 		{
 			show_title: transcript.show.title,
 			show_number: transcript.show.number,
-			utterances: transcript.utterances.map((utterance) => ({
-				speaker: utterance.speaker,
+			utterances: grouped_utterances.map((utterance) => ({
+				speaker: utterance.speakerId,
 				speaker_name: utterance.speakerName,
-				transcript: utterance.transcript_value,
+				transcript: utterance.transcript,
 				start: utterance.start,
 				end: utterance.end
 			}))
