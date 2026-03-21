@@ -40,6 +40,17 @@
 				: a.name.length - b.name.length;
 		});
 	}
+
+	let appearance_count_direction = $state('');
+
+	function appearance_count() {
+		appearance_count_direction = appearance_count_direction === 'asc' ? 'desc' : 'asc';
+		guests = guests.sort((a, b) => {
+			return appearance_count_direction === 'desc'
+				? b.shows.length - a.shows.length
+				: a.shows.length - b.shows.length;
+		});
+	}
 </script>
 
 <section>
@@ -61,6 +72,13 @@
 		<button onclick={most_recent}>Most Recent</button>
 		<button onclick={name_size}
 			>Name Size {name_size_direction ? (name_size_direction === 'desc' ? '↓' : '↑') : ''}</button
+		>
+		<button onclick={appearance_count}
+			>Appearance Count {appearance_count_direction
+				? appearance_count_direction === 'desc'
+					? '↓'
+					: '↑'
+				: ''}</button
 		>
 	</div>
 
