@@ -6,7 +6,6 @@ url: https://traffic.megaphone.fm/FSI7028552678.mp3
 guest:
   name: Zach Lloyd
   twitter: zachlloydtweets
-  linkedin: zachlloyd
   github: zachlloyd
   url: https://www.warp.dev/
 ---
