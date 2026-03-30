@@ -95,6 +95,19 @@ const validateTimestamps = (content) => {
 	return invalidTimestamps;
 };
 
+// Function to check frontmatter for invalid whitespace characters
+const validateFrontmatter = (content) => {
+	const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+	if (!frontMatterMatch) return [];
+
+	const errors = [];
+	const frontMatter = frontMatterMatch[1];
+	if (frontMatter.includes('\u00A0')) {
+		errors.push('non-breaking space (U+00A0) found in frontmatter — use regular spaces for indentation');
+	}
+	return errors;
+};
+
 // Function to process a single markdown file for broken links
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
@@ -115,10 +128,12 @@ const processFile = async (filePath) => {
 	const brokenLinks = urlsToCheck.filter((_, index) => !results[index]);
 
 	const invalidTimestamps = validateTimestamps(content);
+	const frontmatterErrors = validateFrontmatter(content);
 
 	return {
 		brokenLinks,
-		invalidTimestamps
+		invalidTimestamps,
+		frontmatterErrors
 	};
 };
 
@@ -149,13 +164,14 @@ const main = async () => {
 		console.log('No new markdown files to check in ./shows.');
 	} else {
 		for (const file of mdFiles) {
-			const { brokenLinks, invalidTimestamps } = await processFile(file);
-			if (brokenLinks.length > 0 || invalidTimestamps.length > 0) {
+			const { brokenLinks, invalidTimestamps, frontmatterErrors } = await processFile(file);
+			if (brokenLinks.length > 0 || invalidTimestamps.length > 0 || frontmatterErrors.length > 0) {
 				errorMessages.push(`Issues found in ${file}:`);
 				brokenLinks.forEach((link) => errorMessages.push(`- Broken link: ${link}`));
 				invalidTimestamps.forEach((timestamp) =>
 					errorMessages.push(`- Invalid timestamp: ${timestamp}`)
 				);
+				frontmatterErrors.forEach((err) => errorMessages.push(`- Invalid frontmatter: ${err}`));
 			}
 		}
 	}
