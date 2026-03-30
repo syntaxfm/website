@@ -5,9 +5,9 @@ date: 1774868400000
 url: https://traffic.megaphone.fm/FSI5967497459.mp3
 youtube_url: https://www.youtube.com/watch?v=wtkZUdkUHhc
 hosts:
-  - stolinski
-  - wesbos
-  - w3cj
+  - stolinski
+  - wesbos
+  - w3cj
 ---
 	
 Vite just launched Void, a fullstack JavaScript framework and cloud platform that bundles together routing, SSR, auth, an ORM, and nearly everything you'd expect from a modern meta-framework — all built on top of Cloudflare's infrastructure. Scott, Wes, and CJ dig into whether Void is the Rails moment JavaScript has been waiting for, or just shiny Cloudflare lock-in with a bow on it.
