@@ -70,7 +70,11 @@
 				<div>
 					<a href="/guest/{guest.name_slug}">
 						<img
-							src="https://github.com/{guest.github || 'null'}.png"
+							src={guest.github
+								? `https://github.com/${guest.github}.png`
+								: guest.twitter
+									? `https://unavatar.io/twitter/${guest.twitter}`
+									: `https://github.com/ghost.png`}
 							alt={guest.name}
 							width="460"
 							height="460"
