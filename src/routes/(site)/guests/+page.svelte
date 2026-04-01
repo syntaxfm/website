@@ -74,7 +74,7 @@
 								? `https://github.com/${guest.github}.png`
 								: guest.twitter
 									? `https://unavatar.io/twitter/${guest.twitter}`
-									: `https://github.com/ghost.png`}
+									: `https://github.com/null.png`}
 							alt={guest.name}
 							width="460"
 							height="460"
