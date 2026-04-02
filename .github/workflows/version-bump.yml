@@ -4,18 +4,46 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   update-version:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Bump
-        uses: tool3/bump@master
+        uses: actions/checkout@v4
         with:
-          branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          user: 'github-actions[bot]'
-          email: 'github-actions[bot]@users.noreply.github.com'
+          fetch-depth: 0
+
+      - name: Bump package version and tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch --tags
+
+          current_version="$(node -p "require('./package.json').version")"
+          latest_tag="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n1 || true)"
+          latest_tag_version="${latest_tag#v}"
+
+          if [[ -z "${latest_tag_version}" || "${latest_tag_version}" == "${latest_tag}" ]]; then
+            base_version="${current_version}"
+          else
+            highest_version="$(printf '%s\n%s\n' "${current_version}" "${latest_tag_version}" | sort -V | tail -n1)"
+            base_version="${highest_version}"
+          fi
+
+          IFS='.' read -r major minor patch <<< "${base_version}"
+          next_version="${major}.${minor}.$((patch + 1))"
+          next_tag="v${next_version}"
+
+          npm version "${next_version}" --no-git-tag-version
+          git add package.json
+          git commit -m "Bump version to ${next_tag}"
+          git tag "${next_tag}"
+          git push origin main --follow-tags
