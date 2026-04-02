@@ -11,11 +11,8 @@
 		<img src="/mad-css-logo2.svg" alt="MadCSS Logo" class="logo" />
 
 		<div class="text-section">
-			<h1 class="headline">MadCSS Starts March 6!</h1>
+			<h1 class="headline">MadCSS is live!</h1>
 			<h2 class="subtitle">16 Devs Battle for Glory</h2>
-			<p class="cta">
-				Fill out your bracket today to win over <span class="prize">$2,000 in swag!</span>
-			</p>
 		</div>
 	</div>
 </a>
