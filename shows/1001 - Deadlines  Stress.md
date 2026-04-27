@@ -1,6 +1,6 @@
 ---
 number: 1001
-title: Deadlines + Stress
+title: Managing Deadlines + Stress
 date: 1777892400000
 url: https://traffic.megaphone.fm/FSI6198109364.mp3
 youtube_url: https://www.youtube.com/watch?v=55KhU-ImnB0
