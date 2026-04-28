@@ -9,7 +9,7 @@ In this episode of Syntax, Wes and Scott relate even more spooky listener submit
 
 ## Show Notes
 
-- **[00:09](#t=00:09)** Velcome to Synax
+- **[00:09](#t=00:09)** Welcome to Syntax
 - **[01:09](#t=01:09)** Syntax Brought to you by Sentry
 - **[01:36](#t=01:36)** Stories are anonymous!
 - **[01:57](#t=01:57)** Crypto copy + paste

@@ -28,7 +28,7 @@ Auth0 is the easiest way for developers to add authentication and secure their a
 * **[09:09](#t=09:09)** Why does my M1 Mac feel slower than my Intel Mac?
 * **[14:44](#t=14:44)** Do you alphabetize your larger javascript objects by key name?
 * **[17:14](#t=17:14)** Sponsor: Prismic
-* **[19:06](#t=19:06)** Why did you choose noSQL database over SQL databse?
+* **[19:06](#t=19:06)** Why did you choose noSQL database over SQL database?
 * **[25:13](#t=25:13)** What does it mean to support ESM?
 * **[30:23](#t=30:23)** Sponsor: LogRocket
 * **[31:35](#t=31:35)** Are open source maintainers doing harm by inserting protestware into packages?

@@ -31,7 +31,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 16:14 - Converting React components to Svelte
 * useState becomes just a straight-up variable
 * Graphql calls were hooks now just imported generated functions
-* Remove extranous fragments
+* Remove extraneous fragments
 * Convert {things && } to {#if thing}{/if}
 * `<component hello={hello} />` becomes `<component {hello} />`
 

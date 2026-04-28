@@ -28,7 +28,7 @@ In this supper club episode of Syntax, Wes and Scott talk with Simen & Espen fro
 - **[04:04](#t=04:04)** What kinds of services use Sanity?
 - **[06:18](#t=06:18)** What is a content lake?
 - **[07:26](#t=07:26)** Enabling code access to Sanity Studio
-- **[13:12](#t=13:12)** Implenting Sanity into a React app
+- **[13:12](#t=13:12)** Implementing Sanity into a React app
 - **[14:49](#t=14:49)** What is GROQ?
 - **[21:04](#t=21:04)** Is GraphQL still the best way to query data?
 - **[25:32](#t=25:32)** Workflows in Sanity

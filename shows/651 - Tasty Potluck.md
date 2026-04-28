@@ -11,7 +11,7 @@ In this potluck episode of Syntax, Wes and Scott answer your questions about Typ
 
 * **[00:11](#t=00:11)** Welcome
 * **[03:11](#t=03:11)** The Sunday scaries
-* **[06:03](#t=06:03)** Is TypeSctipt just a bunch of fancy Duck Tape?
+* **[06:03](#t=06:03)** Is TypeScript just a bunch of fancy Duck Tape?
 * [Is TypeScript saving us?](https://stackblitz.com/edit/typescript-xddko7?file=index.ts,index.html)
 * **[12:29](#t=12:29)** How do you go years into programming without back pain?
 * [Hasty Treat - Stretching For Developers with Scott — Syntax Podcast 293](https://syntax.fm/show/293/hasty-treat-stretching-for-developers-with-scott)

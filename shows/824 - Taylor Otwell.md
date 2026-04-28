@@ -19,7 +19,7 @@ Wes and Scott talk with Taylor Otwell, the creator of Laravel. Taylor shares ins
 * **[00:00](#t=00:00)** Welcome to Syntax!
 * **[00:29](#t=00:29)** [Laracon](https://laracon.us/)
 * **[03:13](#t=03:13)** Laravel's inspiration and features
-  * [Intertia](https://inertiajs.com/)
+  * [Inertia](https://inertiajs.com/)
   * [Livewire](https://laravel-livewire.com/)
 * **[07:18](#t=07:18)** Why don't we have a "Laravel for JavaScript"?
 * **[09:02](#t=09:02)** What parts of Laravel came first?
@@ -27,7 +27,7 @@ Wes and Scott talk with Taylor Otwell, the creator of Laravel. Taylor shares ins
   * [Forge](https://forge.laravel.com/)
   * [Vapor](https://vapor.laravel.com/)
 * **[12:29](#t=12:29)** [Laravel Cloud](https://cloud.laravel.com/)
-* **[14:00](#t=14:00)** What parts of Laravel are Intertia and what parts are React?
+* **[14:00](#t=14:00)** What parts of Laravel are Inertia and what parts are React?
 * **[15:57](#t=15:57)** How many people are using Laravel?
 * **[16:59](#t=16:59)** Taylor's productivity and development philosophy
 * **[24:43](#t=24:43)** Brought to you by [Sentry.io](https://sentry.io)
