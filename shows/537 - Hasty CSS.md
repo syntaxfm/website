@@ -45,8 +45,8 @@ LogRocket lets you replay what users do on your site, helping you reproduce bugs
 * **[42:28](#t=42:28)** Sass
 * **[43:20](#t=43:20)** Print styles
 * **[45:38](#t=45:38)** Sponsor: Sanity
-* **[46:38](#t=46:38)** Longhand properities
-* **[48:21](#t=48:21)** Non-existant properties
+* **[46:38](#t=46:38)** Longhand properties
+* **[48:21](#t=48:21)** Non-existent properties
 * **[52:06](#t=52:06)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
