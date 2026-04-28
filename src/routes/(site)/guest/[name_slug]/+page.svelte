@@ -9,7 +9,14 @@
 {#if guest}
 	<section>
 		<header>
-			<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
+			<img
+				src={guest.github
+					? `https://github.com/${guest.github}.png`
+					: guest.twitter
+						? `https://unavatar.io/twitter/${guest.twitter}`
+						: `https://github.com/null.png`}
+				alt={guest.name}
+			/>
 			<div>
 				<h1>{guest.name}</h1>
 				{#if guest.twitter || guest.github || guest.url}
