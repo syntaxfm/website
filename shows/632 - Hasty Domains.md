@@ -21,7 +21,7 @@ In this Hasty Treat, Scott and Wes talk about where you should register a domain
 * [Spaceship](https://www.spaceship.com/)
 * **[17:42](#t=17:42)** GoDaddy
 * [GoDaddy](https://www.godaddy.com/)
-* **[19:26](#t=19:26)** Gandhi
+* **[19:26](#t=19:26)** Gandi
 * [Gandi.net](https://www.gandi.net/en-CA)
 * **[21:16](#t=21:16)** Porkbun
 * [Porkbun](https://www.porkbun.com)
