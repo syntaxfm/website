@@ -173,13 +173,14 @@
 
 	a,
 	.a {
+		/* --link-fg is never defined */
 		color: var(--link-fg, var(--fg));
 		text-decoration: none;
 	}
 
 	:is(p, li) a,
 	.a {
-		color: var(--color-sheet);
+		color: var(--fg-sheet);
 		text-decoration: underline;
 		text-decoration-color: var(--primary);
 		text-decoration-thickness: 1.5px;
@@ -225,6 +226,8 @@
 		padding: 4px 6px;
 		border-bottom: none;
 		text-decoration: none;
+
+		/* --color-2 is never defined */
 		color: var(--color-2);
 		border-radius: 4px;
 		position: relative;
