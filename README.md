@@ -17,9 +17,9 @@ This site is built on SvelteKit.
   - If you are on a Mac, there is an issue with the curl install.
   - Preferably, use homebrew to install:
     - `brew install pnpm`
-- Install mysql or use docker with the provided `docker-compose.yml` file.
+- Install PostgreSQL or use docker with the provided `docker-compose.yml` file.
 
-This site uses MySQL via Prisma, so you will need a valid MySQL connection string.
+This site uses PostgreSQL via [Drizzle ORM](https://orm.drizzle.team/), so you will need a valid PostgreSQL connection string. See [`docs/adr/0001-drizzle-postgres-over-prisma-mysql.md`](./docs/adr/0001-drizzle-postgres-over-prisma-mysql.md) for the rationale behind this stack.
 
 ## Getting Started
 
@@ -37,23 +37,15 @@ That's it!
 
 1. Read Prerequisites above ^^ before starting
 1. Copy `.env.example` to `.env` and specify env variables (needs at least `DATABASE_URL`, see [here](#where-to-get-your-own-environment-variables) for how to get the others)
-   - If using Docker, add the following at the top of your `.env` file to share variables with the `docker-compose.yml` (replace the existing DATABASE_URL with the one below)
+   - If using Docker, the included `docker-compose.yml` runs a local PostgreSQL on port `5434`. Set `DATABASE_URL` to match — e.g.:
      ```sh
-     # required to run the seed commands within the container
-     DOCKER=true
-     # any value other than "true" is considered false
-     DATABASE_HOST=localhost
-     DATABASE_PORT=3306
-     DATABASE_USER=syntax
-     DATABASE_PASSWORD=syntax
-     DATABASE_NAME=syntax
-     DATABASE_ROOT_PASSWORD=syntax
-     DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+     DATABASE_URL=postgresql://root:mysecretpassword@localhost:5434/local
      REDIS_PORT=6379
      REDIS_HTTP_PORT=8079
      UPSPLASH_TOKEN=supersecret
      UPSPLASH_URL=http://localhost:${REDIS_HTTP_PORT}
      ```
+     Adjust credentials to match `docker-compose.yml` if you've customized it.
 1. If using docker, in a separate tab run -> `docker compose up`
 1. Run -> `pnpm preheat`
 1. Run -> `pnpm dev`
@@ -61,14 +53,18 @@ That's it!
 
 ### Scripts
 
-- Generate Types `pnpm db:generate`
-- DB studio `pnpm db:studio`
-- DB Migrations `pnpm db:push`
-- DB Seed `pnpm db:seed`
+- DB studio: `pnpm drizzle-kit studio`
+- Generate migration from schema: `pnpm drizzle-kit generate`
+- Apply migrations: `pnpm drizzle-kit migrate`
+- DB seed: `pnpm db:seed`
+
+For the full schema-change workflow, see [`docs/schema-workflow.md`](./docs/schema-workflow.md).
 
 ### About this codebase
 
-Just about all major code folders live in `/src` with the exception of `/shows` - the md source of truth for all podcast episodes as well as `/prisma` for our db connections and schema.
+Just about all major code folders live in `/src`, with the exception of `/shows` (the markdown source of truth for podcast episodes) and `/drizzle` (generated SQL migration files). The database schema lives in `src/server/db/schema.ts`.
+
+For contributor and agent guidance, see [`AGENTS.md`](./AGENTS.md). For domain language (Show vs Syntax, Host vs Guest, the unified `content` model), see [`docs/CONTEXT.md`](./docs/CONTEXT.md). For decisions like Drizzle/Postgres, text IDs, and naming conventions, see [`docs/adr/`](./docs/adr/).
 
 |              |                                                                                               | Alias      |
 | ------------ | --------------------------------------------------------------------------------------------- | ---------- |

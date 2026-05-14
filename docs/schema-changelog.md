@@ -59,8 +59,8 @@ This file tracks all schema changes made during and after the PostgreSQL migrati
 - Types: `src/server/db/types.ts`
 
 ### Documentation
-- `POSTGRES_MIGRATION_GUIDE.md` - Complete migration guide
-- `SCHEMA_DECISION.md` - Key pragmatic decisions
+- `docs/archive/postgres-migration-guide.md` — Complete migration guide (archived)
+- [ADR-0002](./adr/0002-text-ids-not-uuids.md), [ADR-0003](./adr/0003-no-check-constraints.md) — Key pragmatic decisions
 
 ### Deployment Notes
 - MySQL remains primary during transition period

@@ -369,7 +369,7 @@ pnpm db:migrate:direct Transcript --mode=refresh
 - Migration state: `scripts/migration-state.json`
 
 **Documentation:**
-- **This file**: Complete migration guide
-- `SCHEMA_EVOLUTION_WORKFLOW.md`: How to make schema changes during/after migration
-- `SCHEMA_CHANGELOG.md`: Track all schema changes over time
-- `SCHEMA_DECISION.md`: Key decisions and rationale
+- **This file** (archived): historical migration guide
+- `docs/schema-workflow.md` — How to make schema changes
+- `docs/schema-changelog.md` — Track all schema changes over time
+- `docs/adr/0002-text-ids-not-uuids.md`, `docs/adr/0003-no-check-constraints.md` — Key decisions and rationale

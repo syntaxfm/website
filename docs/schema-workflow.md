@@ -1,13 +1,15 @@
 # Schema Evolution Workflow
 
-This guide covers how to make schema changes during and after the MySQL → PostgreSQL transition.
+This guide covers how to make schema changes to the Drizzle/Postgres database.
+
+> **Note**: This document originally covered the MySQL → PostgreSQL transition. The cutover is complete — Postgres is now primary. The "Post-Cutover" section near the bottom is the workflow that applies today. The earlier "Transition Period" sections are kept for reference until the legacy MySQL access path (`src/server/db/x-*.ts`) is fully removed.
 
 ## Current State
 
-**Primary Database**: MySQL (production traffic)
-**Secondary Database**: PostgreSQL (being synced, testing)
-**Migration Tool**: `scripts/direct-db-migration.js` (repeatable MySQL → PostgreSQL sync)
-**Schema Source of Truth**: `src/server/db/schema.ts` (PostgreSQL schema)
+**Primary Database**: PostgreSQL (production)
+**Migration tool**: Drizzle Kit (`pnpm drizzle-kit generate` / `migrate`)
+**Schema source of truth**: `src/server/db/schema.ts`
+**Legacy MySQL access**: `src/server/db/x-*.ts` — do not import in new code; kept only for migration reconciliation.
 
 ---
 
@@ -190,7 +192,7 @@ export async function load({ params }) {
 
 Add to your migration log:
 
-**File**: `SCHEMA_CHANGELOG.md` (create this)
+**File**: `docs/schema-changelog.md`
 
 ```markdown
 ## 2025-11-02 - Add SEO Metadata
@@ -382,8 +384,8 @@ git checkout -b schema/add-seo-metadata
 # 3. Test thoroughly locally
 
 # 4. Document change
-# - Update SCHEMA_CHANGELOG.md
-# - Update POSTGRES_MIGRATION_GUIDE.md (if workflow changes)
+# - Update docs/schema-changelog.md
+# - Update docs/archive/postgres-migration-guide.md (if workflow changes)
 
 # 5. Commit with clear message
 git add src/server/db/schema.ts scripts/direct-db-migration.js
@@ -552,7 +554,7 @@ pnpm db:pg:migrate
 
 ## Next Steps
 
-1. **Create** `SCHEMA_CHANGELOG.md` to track all schema changes
+1. **Maintain** `docs/schema-changelog.md` as schema changes happen
 2. **Add schema version** to migration state tracking
 3. **Set up staging environment** to test schema changes
 4. **Document your specific tables** and their relationships for reference
