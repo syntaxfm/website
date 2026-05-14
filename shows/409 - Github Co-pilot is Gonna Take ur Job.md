@@ -27,7 +27,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * **[09:43](#t=09:43)** Writing pseudo code
 * [Emmet](https://www.emmet.io)
 * **[12:51](#t=12:51)** Using it for loop callbacks
-* **[13:52](#t=13:52)** What langauges does GitHub Co-Pilot work with?
+* **[13:52](#t=13:52)** What languages does GitHub Co-Pilot work with?
 * **[14:54](#t=14:54)** It plays nice with HTML files
 * **[15:48](#t=15:48)** Svelte component example
 * **[16:31](#t=16:31)** Benefits for course creators

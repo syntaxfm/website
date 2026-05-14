@@ -14,7 +14,7 @@ CSS :has() is out in all browsers and Wes and Scott have got the top 10 reasons 
 * **[03:02](#t=03:02)** Overview of :has
 * **[07:09](#t=07:09)** The anywhere selector
 * **[09:41](#t=09:41)** Previous element
-* **[12:59](#t=12:59)** Layout targetting
+* **[12:59](#t=12:59)** Layout targeting
 * **[15:45](#t=15:45)** Form validation styling
 * **[17:51](#t=17:51)** All siblings
 * **[21:07](#t=21:07)** Quantity queries

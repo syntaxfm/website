@@ -85,7 +85,7 @@ if(err) // ....
 
 * [await-to-js - npm](https://www.npmjs.com/package/await-to-js)
 * **[16:58](#t=16:58)** 7) Dev tools - Copy as fetch
-* **[17:54](#t=17:54)** 8) You can programatically create a Request, Response and Headers objects
+* **[17:54](#t=17:54)** 8) You can programmatically create a Request, Response and Headers objects
 
 ```
 const myRequest = new Request('https://traffic.libsyn.com/syntax/Syntax_-_641.mp3', {

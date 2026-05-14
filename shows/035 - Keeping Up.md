@@ -72,7 +72,7 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 
 30:00
 
-* Complacency in Web Devleopment
+* Complacency in Web Development
 * Motivating Comfortable Web Developers
 * You have to stay up to date
 

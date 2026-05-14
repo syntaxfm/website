@@ -67,7 +67,7 @@ If you are a small business or freelancer check out [Freshbooks.com Cloud Accoun
 
 34:00
 
-* Cross Browser Compatability
+* Cross Browser Compatibility
 * [Polyfill.io](https://Polyfill.io)
 
 37:00

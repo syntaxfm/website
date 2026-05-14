@@ -47,7 +47,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 
 17:02
 
-* View your code in other browers
+* View your code in other browsers
 * Make sure your browser is up to date
 
 18:50
@@ -91,7 +91,7 @@ Check out Coffeecup's [CSS Grid.cc](https://cssgrid.cc/) builder tool and resour
 32:34 - Chrome Dev Tools Tabs Rundown
 
 * 33:10 - Network tab
-* 34:15 - Preformance tab
+* 34:15 - Performance tab
 * 35:58 - Lesser known tools
   * 36:15 - Firefox Grid Debug
   * 36:20 - Firefox Fonts tab

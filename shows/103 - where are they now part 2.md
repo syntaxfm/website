@@ -36,9 +36,9 @@ Sanity.io is a real-time headless CMS with a fully customizable Content Studio b
 * [Bootstrap](https://getbootstrap.com/)
 * [Foundation](https://foundation.zurb.com/)
 
-16:02 - CoffeScript
+16:02 - CoffeeScript
 
-* [CoffeScript](https://coffeescript.org/)
+* [CoffeeScript](https://coffeescript.org/)
 * [Compass](http://compass-style.org/)
 
 18:18 - Underscore.js

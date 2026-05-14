@@ -28,7 +28,7 @@ Appwrite is a self-hosted backend-as-a-service platform that provides developers
 * [Web Assembly (WASM)](https://webassembly.org)
 * [Rustlings](https://github.com/rust-lang/rustlings)
 * **[19:46](#t=19:46)** Sponsor: Auth0
-* **[21:03](#t=21:03)** Which company will Vercel aquire next?
+* **[21:03](#t=21:03)** Which company will Vercel acquire next?
 * [Guillermo Rauch](https://twitter.com/rauchg)
 * [Akamai Acquires Linode](https://www.akamai.com/newsroom/press-release/akamai-to-acquire-linode)
 * **[27:12](#t=27:12)** Svelte Kit and Vercel

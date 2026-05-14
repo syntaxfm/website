@@ -78,7 +78,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 
 ## Shameless Plugs
 * Scott: [All Courses](https://www.leveluptutorials.com/pro) - Sign up for the year and save 50%!
-* Wes: [All Courses](https://wesbos.com/courses/) - Eveything is 50% off! Use the coupon code 'Syntax' for $10 off!
+* Wes: [All Courses](https://wesbos.com/courses/) - Everything is 50% off! Use the coupon code 'Syntax' for $10 off!
 
 ## Tweet us your tasty treats!
 * [Scott's Instagram](https://www.instagram.com/stolinski/)

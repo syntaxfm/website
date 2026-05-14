@@ -41,7 +41,7 @@ In this potluck episode of Syntax, Wes and Scott answer your questions about hos
 - **[42:57](#t=42:57)** Subgrid and the :has selector usage
 - **[46:02](#t=46:02)** Is it okay to be a front end developer and not be as interested in CSS?
 - [Tool Academy (American TV series)](<https://en.wikipedia.org/wiki/Tool_Academy_(American_TV_series)>)
-- **[51:12](#t=51:12)** Could you explain what are workers, processes, jobs, tasks, and deamons?
+- **[51:12](#t=51:12)** Could you explain what are workers, processes, jobs, tasks, and daemons?
 - **[56:29](#t=56:29)** SIIIIICK ××× PIIIICKS ×××
 
 ## ××× SIIIIICK ××× PIIIICKS ×××
