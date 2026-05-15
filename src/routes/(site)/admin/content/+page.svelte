@@ -414,12 +414,11 @@
 						<th>Status</th>
 						<th>Type</th>
 						<th>Published</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="6">Loading content...</td>
+						<td colspan="5">Loading content...</td>
 					</tr>
 				</tbody>
 			</table>
@@ -469,17 +468,17 @@
 						<th>Status</th>
 						<th>Type</th>
 						<th>Published</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#if list_items.length === 0}
 						<tr>
-							<td colspan="6">No matching content found.</td>
+							<td colspan="5">No matching content found.</td>
 						</tr>
 					{:else}
 						{#each list_items as content_row (content_row.id)}
 							{@const edit_link = to_edit_link(content_row)}
+							{@const public_link = to_public_link(content_row)}
 							<tr>
 								<td>
 									<input
@@ -498,19 +497,16 @@
 								</td>
 								<td>
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-										<p>{content_row.title}</p>
-										<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-											{#if edit_link}
-												<a href={edit_link}>Edit</a>
-											{/if}
-											{#if to_public_link(content_row)}
-												<a
-													href={to_public_link(content_row) || '#'}
-													target="_blank"
-													rel="noopener noreferrer">Public [↗]</a
-												>
-											{/if}
-										</div>
+										{#if public_link}
+											<a href={public_link} target="_blank" rel="noopener noreferrer">
+												{content_row.title}
+											</a>
+										{:else}
+											<p>{content_row.title}</p>
+										{/if}
+										{#if edit_link}
+											<a href={edit_link}>Edit</a>
+										{/if}
 									</div>
 								</td>
 								<td>{content_row.status}</td>
@@ -518,13 +514,6 @@
 								<td>
 									{#if content_row.published_at}
 										{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-									{:else}
-										-
-									{/if}
-								</td>
-								<td>
-									{#if edit_link}
-										<a href={edit_link}>Open</a>
 									{:else}
 										-
 									{/if}
@@ -544,12 +533,11 @@
 						<th>Status</th>
 						<th>Type</th>
 						<th>Published</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5">Unable to load content. Please try again.</td>
+						<td colspan="4">Unable to load content. Please try again.</td>
 					</tr>
 				</tbody>
 			</table>
