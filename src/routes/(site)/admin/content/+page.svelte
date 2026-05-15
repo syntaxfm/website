@@ -1,12 +1,18 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
-	import { createUseQueryParams } from 'svelte-query-params';
-	import { sveltekit } from 'svelte-query-params/adapters/sveltekit';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
 	import {
 		assign_content_tags,
 		bulk_delete_content,
@@ -27,53 +33,12 @@
 		'EVENT'
 	] as const;
 	const BULK_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const FILTER_KEYS = ['q', 'status', 'type', 'date_from', 'date_to'] as const;
 	const PAGE_SIZE = 25;
 
 	type ContentStatusFilter = (typeof STATUS_FILTERS)[number];
 	type ContentTypeFilter = (typeof TYPE_FILTERS)[number];
 	type ContentStatus = (typeof BULK_STATUSES)[number];
-
-	type QueryValue = string | string[] | undefined;
-
-	function first(value: QueryValue): string {
-		if (Array.isArray(value)) return value[0] ?? '';
-		return value ?? '';
-	}
-
-	function picklist<T extends string>(allowed: readonly T[], fallback: T) {
-		return (value: QueryValue): T => {
-			const raw = first(value);
-			return (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
-		};
-	}
-
-	function string_default(fallback = '') {
-		return (value: QueryValue): string => first(value) || fallback;
-	}
-
-	function page_int(value: QueryValue): number {
-		const parsed = Number.parseInt(first(value), 10);
-		if (!Number.isFinite(parsed) || parsed < 1) return 1;
-		return parsed;
-	}
-
-	const use_params = createUseQueryParams(
-		{
-			q: string_default(''),
-			status: picklist<ContentStatusFilter>(STATUS_FILTERS, 'ALL'),
-			type: picklist<ContentTypeFilter>(TYPE_FILTERS, 'ALL'),
-			date_from: string_default(''),
-			date_to: string_default(''),
-			page: page_int,
-			bulk_status: picklist<ContentStatus>(BULK_STATUSES, 'DRAFT')
-		},
-		{
-			adapter: sveltekit({ replace: true }),
-			debounce: 250
-		}
-	);
-
-	const [params, helpers] = use_params(current_page.url);
 
 	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
@@ -84,6 +49,31 @@
 		label: value === 'ALL' ? 'All' : value
 	}));
 	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
+
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<ContentStatusFilter>(
+			current_page.url.searchParams,
+			'status',
+			STATUS_FILTERS,
+			'ALL'
+		)
+	);
+	let type_filter = $derived(
+		read_picklist<ContentTypeFilter>(current_page.url.searchParams, 'type', TYPE_FILTERS, 'ALL')
+	);
+	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
+	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let bulk_status = $derived(
+		read_picklist<ContentStatus>(
+			current_page.url.searchParams,
+			'bulk_status',
+			BULK_STATUSES,
+			'DRAFT'
+		)
+	);
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let selected_content_ids = $state<string[]>([]);
 	let bulk_selected_tag_ids = $state<string[]>([]);
@@ -110,58 +100,58 @@
 
 	void load_bulk_tag_options();
 
-	let url_q = $derived(current_page.url.searchParams.get('q') ?? '');
-	let url_status = $derived(
-		(current_page.url.searchParams.get('status') as ContentStatusFilter | null) ?? 'ALL'
-	);
-	let url_type = $derived(
-		(current_page.url.searchParams.get('type') as ContentTypeFilter | null) ?? 'ALL'
-	);
-	let url_date_from = $derived(current_page.url.searchParams.get('date_from') ?? '');
-	let url_date_to = $derived(current_page.url.searchParams.get('date_to') ?? '');
-	let url_page = $derived(page_int(current_page.url.searchParams.get('page') ?? undefined));
-
-	let show_clear_filters = $derived(
-		url_q !== '' ||
-			url_status !== 'ALL' ||
-			url_type !== 'ALL' ||
-			url_date_from !== '' ||
-			url_date_to !== ''
-	);
-
 	function get_list_content_query() {
 		return list_content({
-			search_text: url_q,
-			status: url_status,
-			type: url_type,
-			date_from_iso: url_date_from || undefined,
-			date_to_iso: url_date_to || undefined,
-			page: url_page,
+			search_text,
+			status: status_filter,
+			type: type_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			page: page_number,
 			page_size: PAGE_SIZE
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_list_content_query());
 
-	function on_page_change(next_page: number) {
-		helpers.update({ page: next_page });
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
 	}
 
 	function on_status_select(next_value: string) {
-		const fallback: ContentStatusFilter = 'ALL';
-		const next = (next_value || fallback) as ContentStatusFilter;
-		helpers.update({ status: next, page: 1 });
+		update_url({ status: next_value || null, page: null });
 	}
 
 	function on_type_select(next_value: string) {
-		const fallback: ContentTypeFilter = 'ALL';
-		const next = (next_value || fallback) as ContentTypeFilter;
-		helpers.update({ type: next, page: 1 });
+		update_url({ type: next_value || null, page: null });
+	}
+
+	function on_date_from_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_from: target.value || null, page: null });
+	}
+
+	function on_date_to_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_to: target.value || null, page: null });
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	function on_bulk_status_select(next_value: string) {
-		const next = (next_value || 'DRAFT') as ContentStatus;
-		helpers.update({ bulk_status: next });
+		update_url({ bulk_status: next_value || null });
 	}
 
 	function clear_feedback() {
@@ -181,9 +171,9 @@
 		try {
 			const result = await bulk_update_status({
 				content_ids: selected_content_ids,
-				status: params.bulk_status
+				status: bulk_status
 			});
-			action_message = `Updated ${result.count} item(s) to ${params.bulk_status}.`;
+			action_message = `Updated ${result.count} item(s) to ${bulk_status}.`;
 			selected_content_ids = [];
 			await get_list_content_query().refresh();
 		} catch (error) {
@@ -339,34 +329,34 @@
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch bind:text={params.q} />
+					<AdminSearch text={search_text} on_input={on_search_input} />
 					<div
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
 						<SelectMenu
 							popover_id="filter-status"
-							button_text={`Status ${params.status !== 'ALL' ? `(${params.status})` : ''}`}
+							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
 							button_icon={'filter' as any}
-							value={params.status === 'ALL' ? '' : params.status}
+							value={status_filter === 'ALL' ? '' : status_filter}
 							options={STATUS_FILTER_OPTIONS}
 							onselect={on_status_select}
 						/>
 						<SelectMenu
 							popover_id="filter-type"
-							button_text={`Type ${params.type !== 'ALL' ? `(${params.type})` : ''}`}
+							button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
 							button_icon={'filter' as any}
-							value={params.type === 'ALL' ? '' : params.type}
+							value={type_filter === 'ALL' ? '' : type_filter}
 							options={TYPE_FILTER_OPTIONS}
 							onselect={on_type_select}
 						/>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">From</span>
-							<input type="date" bind:value={params.date_from} />
+							<input type="date" value={date_from} onchange={on_date_from_change} />
 						</label>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">To</span>
-							<input type="date" bind:value={params.date_to} />
+							<input type="date" value={date_to} onchange={on_date_to_change} />
 						</label>
 						{#if show_clear_filters}
 							<a class="button small" href="/admin/content">× Clear</a>
@@ -405,9 +395,9 @@
 				>
 					<SelectMenu
 						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${params.bulk_status})`}
+						button_text={`Bulk status (${bulk_status})`}
 						button_icon={'filter' as any}
-						value={params.bulk_status}
+						value={bulk_status}
 						options={BULK_STATUS_OPTIONS}
 						onselect={on_bulk_status_select}
 					/>

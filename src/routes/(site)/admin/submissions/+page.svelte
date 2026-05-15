@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { formatDistance } from 'date-fns';
+	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
-	import { createUseQueryParams } from 'svelte-query-params';
-	import { sveltekit } from 'svelte-query-params/adapters/sveltekit';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
 	import {
 		bulk_delete_submissions,
 		bulk_update_submission_status,
@@ -15,61 +21,16 @@
 	} from './admin_submissions.remote';
 
 	const STATUS_VALUES = ['PENDING', 'APPROVED', 'COMPLETED', 'REJECTED'] as const;
-	const STATUS_FILTER_VALUES = ['', ...STATUS_VALUES] as const;
 	const TYPE_VALUES = ['POTLUCK', 'SPOOKY', 'GUEST', 'FEEDBACK', 'OTHER', 'OSS'] as const;
-	const TYPE_FILTER_VALUES = ['', ...TYPE_VALUES] as const;
 	const ORDER_VALUES = ['desc', 'asc'] as const;
 	const PAGE_SIZE_VALUES = ['10', '20', '40', '100'] as const;
+	const FILTER_KEYS = ['q', 'status', 'submission_type', 'order', 'page_size'] as const;
+	const DEFAULT_PAGE_SIZE = '20';
 
 	type SubmissionStatus = (typeof STATUS_VALUES)[number];
-	type SubmissionStatusFilter = (typeof STATUS_FILTER_VALUES)[number];
-	type SubmissionTypeFilter = (typeof TYPE_FILTER_VALUES)[number];
+	type SubmissionType = (typeof TYPE_VALUES)[number];
 	type SubmissionOrder = (typeof ORDER_VALUES)[number];
 	type PageSizeValue = (typeof PAGE_SIZE_VALUES)[number];
-
-	const DEFAULT_PAGE_SIZE: PageSizeValue = '20';
-
-	type QueryValue = string | string[] | undefined;
-
-	function first(value: QueryValue): string {
-		if (Array.isArray(value)) return value[0] ?? '';
-		return value ?? '';
-	}
-
-	function picklist<T extends string>(allowed: readonly T[], fallback: T) {
-		return (value: QueryValue): T => {
-			const raw = first(value);
-			return (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
-		};
-	}
-
-	function string_default(fallback = '') {
-		return (value: QueryValue): string => first(value) || fallback;
-	}
-
-	function page_int(value: QueryValue): number {
-		const parsed = Number.parseInt(first(value), 10);
-		if (!Number.isFinite(parsed) || parsed < 1) return 1;
-		return parsed;
-	}
-
-	const use_params = createUseQueryParams(
-		{
-			q: string_default(''),
-			status: picklist<SubmissionStatusFilter>(STATUS_FILTER_VALUES, ''),
-			submission_type: picklist<SubmissionTypeFilter>(TYPE_FILTER_VALUES, ''),
-			order: picklist<SubmissionOrder>(ORDER_VALUES, 'desc'),
-			page_size: picklist<PageSizeValue>(PAGE_SIZE_VALUES, DEFAULT_PAGE_SIZE),
-			page: page_int,
-			bulk_status: picklist<SubmissionStatus>(STATUS_VALUES, 'APPROVED')
-		},
-		{
-			adapter: sveltekit({ replace: true }),
-			debounce: 250
-		}
-	);
-
-	const [params, helpers] = use_params(current_page.url);
 
 	const STATUS_FILTER_OPTIONS = [
 		{ value: '', label: 'All' },
@@ -86,82 +47,100 @@
 	const PAGE_SIZE_OPTIONS = PAGE_SIZE_VALUES.map((value) => ({ value, label: value }));
 	const BULK_STATUS_OPTIONS = STATUS_VALUES.map((value) => ({ value, label: value }));
 
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<SubmissionStatus | ''>(
+			current_page.url.searchParams,
+			'status',
+			['', ...STATUS_VALUES] as const,
+			''
+		)
+	);
+	let type_filter = $derived(
+		read_picklist<SubmissionType | ''>(
+			current_page.url.searchParams,
+			'submission_type',
+			['', ...TYPE_VALUES] as const,
+			''
+		)
+	);
+	let order = $derived(
+		read_picklist<SubmissionOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
+	);
+	let page_size_value = $derived(
+		read_picklist<PageSizeValue>(
+			current_page.url.searchParams,
+			'page_size',
+			PAGE_SIZE_VALUES,
+			DEFAULT_PAGE_SIZE
+		)
+	);
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let bulk_status = $derived(
+		read_picklist<SubmissionStatus>(
+			current_page.url.searchParams,
+			'bulk_status',
+			STATUS_VALUES,
+			'APPROVED'
+		)
+	);
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
+
 	let selected_submission_ids = $state<string[]>([]);
 	let action_message = $state('');
 	let action_error = $state('');
 	let busy = $state(false);
 
-	let url_q = $derived(current_page.url.searchParams.get('q') ?? '');
-	let url_status = $derived(
-		picklist<SubmissionStatusFilter>(STATUS_FILTER_VALUES, '')(
-			current_page.url.searchParams.get('status') ?? undefined
-		)
-	);
-	let url_submission_type = $derived(
-		picklist<SubmissionTypeFilter>(TYPE_FILTER_VALUES, '')(
-			current_page.url.searchParams.get('submission_type') ?? undefined
-		)
-	);
-	let url_order = $derived(
-		picklist<SubmissionOrder>(ORDER_VALUES, 'desc')(
-			current_page.url.searchParams.get('order') ?? undefined
-		)
-	);
-	let url_page_size = $derived(
-		picklist<PageSizeValue>(PAGE_SIZE_VALUES, DEFAULT_PAGE_SIZE)(
-			current_page.url.searchParams.get('page_size') ?? undefined
-		)
-	);
-	let url_page = $derived(page_int(current_page.url.searchParams.get('page') ?? undefined));
-
-	let show_clear_filters = $derived(
-		url_q !== '' ||
-			url_status !== '' ||
-			url_submission_type !== '' ||
-			url_order !== 'desc' ||
-			url_page_size !== DEFAULT_PAGE_SIZE
-	);
-
 	function get_submissions_query() {
 		return get_submissions({
-			search_text: url_q,
-			status: url_status,
-			submission_type: url_submission_type,
-			order: url_order,
-			page: url_page,
-			page_size: Number.parseInt(url_page_size, 10)
+			search_text,
+			status: status_filter,
+			submission_type: type_filter,
+			order,
+			page: page_number,
+			page_size: Number.parseInt(page_size_value, 10)
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_submissions_query());
 
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
 	function on_status_select(next_value: string) {
-		const next = (next_value || '') as SubmissionStatusFilter;
-		helpers.update({ status: next, page: 1 });
+		update_url({ status: next_value || null, page: null });
 	}
 
 	function on_type_select(next_value: string) {
-		const next = (next_value || '') as SubmissionTypeFilter;
-		helpers.update({ submission_type: next, page: 1 });
+		update_url({ submission_type: next_value || null, page: null });
 	}
 
 	function on_order_select(next_value: string) {
-		const next = (next_value || 'desc') as SubmissionOrder;
-		helpers.update({ order: next, page: 1 });
+		update_url({ order: next_value === 'desc' ? null : next_value, page: null });
 	}
 
 	function on_page_size_select(next_value: string) {
-		const next = (next_value || DEFAULT_PAGE_SIZE) as PageSizeValue;
-		helpers.update({ page_size: next, page: 1 });
+		update_url({
+			page_size: next_value === DEFAULT_PAGE_SIZE ? null : next_value,
+			page: null
+		});
 	}
 
 	function on_page_change(next_page: number) {
-		helpers.update({ page: next_page });
+		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	function on_bulk_status_select(next_value: string) {
-		const next = (next_value || 'APPROVED') as SubmissionStatus;
-		helpers.update({ bulk_status: next });
+		update_url({ bulk_status: next_value || null });
 	}
 
 	function clear_feedback() {
@@ -213,9 +192,9 @@
 		try {
 			const result = await bulk_update_submission_status({
 				submission_ids: selected_submission_ids,
-				status: params.bulk_status
+				status: bulk_status
 			});
-			action_message = `Updated ${result.count} submission(s) to ${params.bulk_status}.`;
+			action_message = `Updated ${result.count} submission(s) to ${bulk_status}.`;
 			selected_submission_ids = [];
 			await get_submissions_query().refresh();
 		} catch (error_value) {
@@ -279,24 +258,28 @@
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch bind:text={params.q} placeholder="Search name, email, or body" />
+					<AdminSearch
+						text={search_text}
+						on_input={on_search_input}
+						placeholder="Search name, email, or body"
+					/>
 					<div
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
 						<SelectMenu
 							popover_id="filter-submission_type"
-							button_text={`Type ${params.submission_type !== '' ? `(${params.submission_type})` : ''}`}
+							button_text={`Type ${type_filter !== '' ? `(${type_filter})` : ''}`}
 							button_icon={'filter' as any}
-							value={params.submission_type}
+							value={type_filter}
 							options={TYPE_FILTER_OPTIONS}
 							onselect={on_type_select}
 						/>
 						<SelectMenu
 							popover_id="filter-status"
-							button_text={`Status ${params.status !== '' ? `(${params.status})` : ''}`}
+							button_text={`Status ${status_filter !== '' ? `(${status_filter})` : ''}`}
 							button_icon={'filter' as any}
-							value={params.status}
+							value={status_filter}
 							options={STATUS_FILTER_OPTIONS}
 							onselect={on_status_select}
 						/>
@@ -304,7 +287,7 @@
 							popover_id="filter-order"
 							button_text="Sort"
 							button_icon={'sort' as any}
-							value={params.order}
+							value={order}
 							options={ORDER_OPTIONS}
 							onselect={on_order_select}
 						/>
@@ -312,7 +295,7 @@
 							popover_id="filter-page_size"
 							value_as_label
 							button_text="Per Page"
-							value={params.page_size}
+							value={page_size_value}
 							options={PAGE_SIZE_OPTIONS}
 							onselect={on_page_size_select}
 						/>
@@ -330,9 +313,9 @@
 				>
 					<SelectMenu
 						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${params.bulk_status})`}
+						button_text={`Bulk status (${bulk_status})`}
 						button_icon={'filter' as any}
-						value={params.bulk_status}
+						value={bulk_status}
 						options={BULK_STATUS_OPTIONS}
 						onselect={on_bulk_status_select}
 					/>

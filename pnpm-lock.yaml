@@ -137,9 +137,6 @@ importers:
       svelte-local-storage-store:
         specifier: ^0.6.4
         version: 0.6.4(svelte@5.53.5)
-      svelte-query-params:
-        specifier: ^0.2.5
-        version: 0.2.5(@sveltejs/kit@2.53.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.5)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)))(svelte@5.53.5)(typescript@5.9.3)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)))(svelte@5.53.5)(valibot@1.2.0(typescript@5.9.3))(zod@4.3.6)
       svelte-turnstile:
         specifier: ^0.11.0
         version: 0.11.0(svelte@5.53.5)
@@ -5172,22 +5169,6 @@ packages:
       sugarss:
         optional: true
       typescript:
-        optional: true
-
-  svelte-query-params@0.2.5:
-    resolution: {integrity: sha512-XH7AYnNP62w+IPsBFEq/7iZCVE4WCyc1ubkTWQSIaVo7DVAldn0EEVQKvLsDyxwTFygambUM+9rXOlkOZoRr8w==}
-    engines: {node: '>=v20.0.0'}
-    peerDependencies:
-      '@sveltejs/kit': ^2.0.0
-      svelte: ^5.0.0-next.169
-      valibot: ^0.31.0
-      zod: ^3.22.2
-    peerDependenciesMeta:
-      '@sveltejs/kit':
-        optional: true
-      valibot:
-        optional: true
-      zod:
         optional: true
 
   svelte-turnstile@0.11.0:
@@ -10860,14 +10841,6 @@ snapshots:
       postcss: 8.5.6
       postcss-load-config: 6.0.1(jiti@2.6.1)(postcss@8.5.6)
       typescript: 5.9.3
-
-  svelte-query-params@0.2.5(@sveltejs/kit@2.53.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.5)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)))(svelte@5.53.5)(typescript@5.9.3)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)))(svelte@5.53.5)(valibot@1.2.0(typescript@5.9.3))(zod@4.3.6):
-    dependencies:
-      svelte: 5.53.5
-    optionalDependencies:
-      '@sveltejs/kit': 2.53.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.5)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)))(svelte@5.53.5)(typescript@5.9.3)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1))
-      valibot: 1.2.0(typescript@5.9.3)
-      zod: 4.3.6
 
   svelte-turnstile@0.11.0(svelte@5.53.5):
     dependencies:

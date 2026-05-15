@@ -2,92 +2,74 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
-	import { createUseQueryParams } from 'svelte-query-params';
-	import { sveltekit } from 'svelte-query-params/adapters/sveltekit';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
 	import { create_article, list_articles } from './admin_articles.remote';
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const FILTER_KEYS = ['q', 'status'] as const;
 	const PAGE_SIZE = 25;
 
 	type ArticleStatusFilter = (typeof STATUS_FILTERS)[number];
-
-	type QueryValue = string | string[] | undefined;
-
-	function first(value: QueryValue): string {
-		if (Array.isArray(value)) return value[0] ?? '';
-		return value ?? '';
-	}
-
-	function picklist<T extends string>(allowed: readonly T[], fallback: T) {
-		return (value: QueryValue): T => {
-			const raw = first(value);
-			return (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
-		};
-	}
-
-	function string_default(fallback = '') {
-		return (value: QueryValue): string => first(value) || fallback;
-	}
-
-	function page_int(value: QueryValue): number {
-		const parsed = Number.parseInt(first(value), 10);
-		if (!Number.isFinite(parsed) || parsed < 1) return 1;
-		return parsed;
-	}
-
-	const use_params = createUseQueryParams(
-		{
-			q: string_default(''),
-			status: picklist<ArticleStatusFilter>(STATUS_FILTERS, 'ALL'),
-			page: page_int
-		},
-		{
-			adapter: sveltekit({ replace: true }),
-			debounce: 250
-		}
-	);
-
-	const [params, helpers] = use_params(current_page.url);
 
 	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
 		label: value === 'ALL' ? 'All' : value
 	}));
 
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<ArticleStatusFilter>(
+			current_page.url.searchParams,
+			'status',
+			STATUS_FILTERS,
+			'ALL'
+		)
+	);
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
+
 	let creating = $state(false);
 	let create_error = $state('');
 
-	let url_q = $derived(current_page.url.searchParams.get('q') ?? '');
-	let url_status = $derived(
-		(current_page.url.searchParams.get('status') as ArticleStatusFilter | null) ?? 'ALL'
-	);
-	let url_page = $derived(page_int(current_page.url.searchParams.get('page') ?? undefined));
-
-	let show_clear_filters = $derived(url_q !== '' || url_status !== 'ALL');
-
 	function get_list_articles_query() {
 		return list_articles({
-			search_text: url_q,
-			status: url_status,
-			page: url_page,
+			search_text,
+			status: status_filter,
+			page: page_number,
 			page_size: PAGE_SIZE
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_list_articles_query());
 
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
 	function on_status_select(next_value: string) {
-		const fallback: ArticleStatusFilter = 'ALL';
-		const next = (next_value || fallback) as ArticleStatusFilter;
-		helpers.update({ status: next, page: 1 });
+		update_url({ status: next_value || null, page: null });
 	}
 
 	function on_page_change(next_page: number) {
-		helpers.update({ page: next_page });
+		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	async function create_new_article() {
@@ -134,15 +116,15 @@
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch bind:text={params.q} />
+					<AdminSearch text={search_text} on_input={on_search_input} />
 					<div
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
 						<SelectMenu
 							popover_id="filter-status"
-							button_text={`Status ${params.status !== 'ALL' ? `(${params.status})` : ''}`}
-							value={params.status === 'ALL' ? '' : params.status}
+							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+							value={status_filter === 'ALL' ? '' : status_filter}
 							options={STATUS_FILTER_OPTIONS}
 							onselect={on_status_select}
 						/>

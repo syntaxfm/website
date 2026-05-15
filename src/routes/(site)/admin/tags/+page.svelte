@@ -1,42 +1,17 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
-	import { createUseQueryParams } from 'svelte-query-params';
-	import { sveltekit } from 'svelte-query-params/adapters/sveltekit';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
+	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
+	const FILTER_KEYS = ['q'] as const;
 	const PAGE_SIZE = 25;
 
-	type QueryValue = string | string[] | undefined;
-
-	function first(value: QueryValue): string {
-		if (Array.isArray(value)) return value[0] ?? '';
-		return value ?? '';
-	}
-
-	function string_default(fallback = '') {
-		return (value: QueryValue): string => first(value) || fallback;
-	}
-
-	function page_int(value: QueryValue): number {
-		const parsed = Number.parseInt(first(value), 10);
-		if (!Number.isFinite(parsed) || parsed < 1) return 1;
-		return parsed;
-	}
-
-	const use_params = createUseQueryParams(
-		{
-			q: string_default(''),
-			page: page_int
-		},
-		{
-			adapter: sveltekit({ replace: true }),
-			debounce: 250
-		}
-	);
-
-	const [params, helpers] = use_params(current_page.url);
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let new_name = $state('');
 	let new_slug = $state('');
@@ -51,22 +26,30 @@
 	type TagListResult = Awaited<ReturnType<typeof list_tags>>;
 	type TagListItem = TagListResult['items'][number];
 
-	let url_q = $derived(current_page.url.searchParams.get('q') ?? '');
-	let url_page = $derived(page_int(current_page.url.searchParams.get('page') ?? undefined));
-	let show_clear_filters = $derived(url_q !== '');
-
 	function get_list_tags_query() {
 		return list_tags({
-			search_text: url_q,
-			page: url_page,
+			search_text,
+			page: page_number,
 			page_size: PAGE_SIZE
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_list_tags_query());
 
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
 	function on_page_change(next_page: number) {
-		helpers.update({ page: next_page });
+		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	function clear_feedback() {
@@ -212,7 +195,7 @@
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch bind:text={params.q} placeholder="Search tags" />
+					<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search tags" />
 					{#if show_clear_filters}
 						<div>
 							<a class="button small" href="/admin/tags">× Clear</a>

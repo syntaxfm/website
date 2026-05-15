@@ -135,7 +135,6 @@
     "speakingurl": "^14.0.1",
     "svelte-french-toast": "1.2.0",
     "svelte-local-storage-store": "^0.6.4",
-    "svelte-query-params": "^0.2.5",
     "svelte-turnstile": "^0.11.0",
     "sveltekit-search-params": "^3.0.0",
     "ts-node": "^10.9.2",
