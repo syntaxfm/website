@@ -1,9 +1,18 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import AdminSearch from '../AdminSearch.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
 	import {
 		assign_content_tags,
 		bulk_delete_content,
@@ -13,19 +22,8 @@
 		list_content
 	} from './admin_content.remote';
 
-	type ContentStatusFilter = 'ALL' | 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
-	type ContentTypeFilter =
-		| 'ALL'
-		| 'PODCAST'
-		| 'ARTICLE'
-		| 'VIDEO'
-		| 'TOOL'
-		| 'NEWSLETTER'
-		| 'EVENT';
-	type ContentStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
-
-	const STATUS_FILTERS: ContentStatusFilter[] = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'];
-	const TYPE_FILTERS: ContentTypeFilter[] = [
+	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const TYPE_FILTERS = [
 		'ALL',
 		'PODCAST',
 		'ARTICLE',
@@ -33,61 +31,52 @@
 		'TOOL',
 		'NEWSLETTER',
 		'EVENT'
-	];
-	const BULK_STATUSES: ContentStatus[] = ['DRAFT', 'PUBLISHED', 'ARCHIVED'];
-	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((status_value) => ({
-		value: status_value === 'ALL' ? '' : status_value,
-		label: status_value === 'ALL' ? 'All' : status_value
+	] as const;
+	const BULK_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const FILTER_KEYS = ['q', 'status', 'type', 'date_from', 'date_to'] as const;
+	const PAGE_SIZE = 25;
+
+	type ContentStatusFilter = (typeof STATUS_FILTERS)[number];
+	type ContentTypeFilter = (typeof TYPE_FILTERS)[number];
+	type ContentStatus = (typeof BULK_STATUSES)[number];
+
+	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
+		value: value === 'ALL' ? '' : value,
+		label: value === 'ALL' ? 'All' : value
 	}));
-	const TYPE_FILTER_OPTIONS = TYPE_FILTERS.map((type_value) => ({
-		value: type_value === 'ALL' ? '' : type_value,
-		label: type_value === 'ALL' ? 'All' : type_value
+	const TYPE_FILTER_OPTIONS = TYPE_FILTERS.map((value) => ({
+		value: value === 'ALL' ? '' : value,
+		label: value === 'ALL' ? 'All' : value
 	}));
-	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((status_value) => ({
-		value: status_value,
-		label: status_value
-	}));
+	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
 
-	let search_text = $state('');
-	let status_filter = $derived.by(() => {
-		const status_value = current_page.url.searchParams.get('status');
-		if (!status_value) {
-			return 'ALL';
-		}
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<ContentStatusFilter>(
+			current_page.url.searchParams,
+			'status',
+			STATUS_FILTERS,
+			'ALL'
+		)
+	);
+	let type_filter = $derived(
+		read_picklist<ContentTypeFilter>(current_page.url.searchParams, 'type', TYPE_FILTERS, 'ALL')
+	);
+	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
+	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let bulk_status = $derived(
+		read_picklist<ContentStatus>(
+			current_page.url.searchParams,
+			'bulk_status',
+			BULK_STATUSES,
+			'DRAFT'
+		)
+	);
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
-		return STATUS_FILTERS.includes(status_value as ContentStatusFilter)
-			? (status_value as ContentStatusFilter)
-			: 'ALL';
-	});
-
-	let type_filter = $derived.by(() => {
-		const type_value = current_page.url.searchParams.get('type');
-		if (!type_value) {
-			return 'ALL';
-		}
-
-		return TYPE_FILTERS.includes(type_value as ContentTypeFilter)
-			? (type_value as ContentTypeFilter)
-			: 'ALL';
-	});
-
-	let clear_filter_link = $derived('/admin/content');
-	let show_clear_filters = $derived(status_filter !== 'ALL' || type_filter !== 'ALL');
-	let date_from = $state('');
-	let date_to = $state('');
-	let page = $state(1);
 	let selected_content_ids = $state<string[]>([]);
 	let bulk_selected_tag_ids = $state<string[]>([]);
-	let bulk_status = $derived.by(() => {
-		const bulk_status_value = current_page.url.searchParams.get('bulk_status');
-		if (!bulk_status_value) {
-			return 'DRAFT';
-		}
-
-		return BULK_STATUSES.includes(bulk_status_value as ContentStatus)
-			? (bulk_status_value as ContentStatus)
-			: 'DRAFT';
-	});
 	let action_message = $state('');
 	let action_error = $state('');
 	let busy = $state(false);
@@ -118,31 +107,56 @@
 			type: type_filter,
 			date_from_iso: date_from || undefined,
 			date_to_iso: date_to || undefined,
-			page,
-			page_size: 25
+			page: page_number,
+			page_size: PAGE_SIZE
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_list_content_query());
 
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
+	function on_status_select(next_value: string) {
+		update_url({ status: next_value || null, page: null });
+	}
+
+	function on_type_select(next_value: string) {
+		update_url({ type: next_value || null, page: null });
+	}
+
+	function on_date_from_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_from: target.value || null, page: null });
+	}
+
+	function on_date_to_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_to: target.value || null, page: null });
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
+	}
+
+	function on_bulk_status_select(next_value: string) {
+		update_url({ bulk_status: next_value || null });
+	}
+
 	function clear_feedback() {
 		action_message = '';
 		action_error = '';
-	}
-
-	function toggle_selected(content_id: string, checked: boolean) {
-		if (checked) {
-			if (!selected_content_ids.includes(content_id)) {
-				selected_content_ids = [...selected_content_ids, content_id];
-			}
-			return;
-		}
-
-		selected_content_ids = selected_content_ids.filter((id) => id !== content_id);
-	}
-
-	function toggle_all_visible(checked: boolean, visible_items: ContentListItem[]) {
-		selected_content_ids = checked ? visible_items.map((item) => item.id) : [];
 	}
 
 	async function run_bulk_status_update() {
@@ -292,255 +306,187 @@
 
 		return null;
 	}
-
-	function go_previous_page(page_number: number) {
-		if (page_number <= 1) {
-			return;
-		}
-
-		page = page_number - 1;
-	}
-
-	function go_next_page(page_number: number, total_pages: number) {
-		if (page_number >= total_pages) {
-			return;
-		}
-
-		page = page_number + 1;
-	}
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<h1 class="h3">Content</h1>
 
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<AdminSearch bind:text={search_text} />
-		<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end">
-			<SelectMenu
-				popover_id="filter-status"
-				button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-				button_icon={'filter' as any}
-				value={status_filter === 'ALL' ? '' : status_filter}
-				options={STATUS_FILTER_OPTIONS}
-			/>
-			<SelectMenu
-				popover_id="filter-type"
-				button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
-				button_icon={'filter' as any}
-				value={type_filter === 'ALL' ? '' : type_filter}
-				options={TYPE_FILTER_OPTIONS}
-			/>
-			<label class="stack" style="--stack-gap: 2px">
-				<span class="fs-1">From</span>
-				<input type="date" bind:value={date_from} />
-			</label>
-			<label class="stack" style="--stack-gap: 2px">
-				<span class="fs-1">To</span>
-				<input type="date" bind:value={date_to} />
-			</label>
-			{#if show_clear_filters}
-				<a class="button small" href={clear_filter_link}>× Clear</a>
-			{/if}
-		</div>
-	</div>
-
-	{#if selected_content_ids.length > 0}
-		<div
-			class="stack bg-shade-or-tint-light br-small"
-			style="padding: var(--pad-small); --stack-gap: var(--pad-small)"
-			aria-label="Bulk actions"
-		>
-			<div class="split" style:--split-gap="var(--pad-small)">
-				<span class="fs-2 fv-700">Bulk Actions</span>
-				<span class="fs-2 primary">{selected_content_ids.length} selected</span>
-			</div>
-
-			<MultiSelect
-				options={bulk_tag_options}
-				bind:selected_ids={bulk_selected_tag_ids}
-				label="Tags"
-				placeholder="Search tags"
-			/>
-			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
-				<button
-					type="button"
-					onclick={run_bulk_add_tags}
-					disabled={busy || bulk_selected_tag_ids.length === 0}
-				>
-					Add tags
-				</button>
-				<button
-					type="button"
-					onclick={run_bulk_remove_tags}
-					disabled={busy || bulk_selected_tag_ids.length === 0}
-				>
-					Remove tags
-				</button>
-			</div>
-
-			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center">
-				<SelectMenu
-					popover_id="filter-bulk_status"
-					button_text={`Bulk status (${bulk_status})`}
-					button_icon={'filter' as any}
-					value={bulk_status}
-					options={BULK_STATUS_OPTIONS}
-				/>
-				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
-					Update status
-				</button>
-				<button type="button" onclick={run_bulk_delete} disabled={busy}> Delete selected </button>
-			</div>
-		</div>
-	{/if}
-
-	{#if action_message}
-		<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
-	{/if}
-
-	{#if action_error}
-		<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
-	{/if}
-
 	{#await list_result_promise}
-		<div class="table-container">
-			<table>
-				<thead>
-					<tr>
-						<th>
-							<input type="checkbox" aria-label="Select all rows on this page" disabled />
-						</th>
-						<th>Title</th>
-						<th>Status</th>
-						<th>Type</th>
-						<th>Published</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="5">Loading content...</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<p class="fs-2">Loading content...</p>
 	{:then list_result}
 		{@const list_items = list_result.items}
-		{@const total = list_result.total}
-		{@const total_pages = list_result.total_pages}
-		{@const page_number = list_result.page}
-		{@const all_visible_selected =
-			list_items.length > 0 && list_items.every((item) => selected_content_ids.includes(item.id))}
+		{@const visible_ids = list_items.map((item) => item.id)}
 
-		<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
-			<button
-				type="button"
-				onclick={() => go_previous_page(page_number)}
-				disabled={page_number <= 1 || busy}>Previous</button
-			>
-			<p class="fs-2">Page {page_number} of {total_pages} ({total} total)</p>
-			<button
-				type="button"
-				onclick={() => go_next_page(page_number, total_pages)}
-				disabled={page_number >= total_pages || busy}>Next</button
-			>
-		</div>
+		<AdminList
+			total={list_result.total}
+			page={list_result.page}
+			page_size={list_result.page_size}
+			total_pages={list_result.total_pages}
+			{on_page_change}
+			bind:selected_ids={selected_content_ids}
+			{visible_ids}
+			{busy}
+		>
+			{#snippet filters()}
+				<div class="stack" style:--stack-gap="var(--pad-small)">
+					<AdminSearch text={search_text} on_input={on_search_input} />
+					<div
+						class="flex"
+						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					>
+						<SelectMenu
+							popover_id="filter-status"
+							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+							button_icon={'filter' as any}
+							value={status_filter === 'ALL' ? '' : status_filter}
+							options={STATUS_FILTER_OPTIONS}
+							onselect={on_status_select}
+						/>
+						<SelectMenu
+							popover_id="filter-type"
+							button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
+							button_icon={'filter' as any}
+							value={type_filter === 'ALL' ? '' : type_filter}
+							options={TYPE_FILTER_OPTIONS}
+							onselect={on_type_select}
+						/>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">From</span>
+							<input type="date" value={date_from} onchange={on_date_from_change} />
+						</label>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">To</span>
+							<input type="date" value={date_to} onchange={on_date_to_change} />
+						</label>
+						{#if show_clear_filters}
+							<a class="button small" href="/admin/content">× Clear</a>
+						{/if}
+					</div>
+				</div>
+			{/snippet}
 
-		<div class="table-container">
-			<table>
-				<thead>
+			{#snippet bulk()}
+				<MultiSelect
+					options={bulk_tag_options}
+					bind:selected_ids={bulk_selected_tag_ids}
+					label="Tags"
+					placeholder="Search tags"
+				/>
+				<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
+					<button
+						type="button"
+						onclick={run_bulk_add_tags}
+						disabled={busy || bulk_selected_tag_ids.length === 0}
+					>
+						Add tags
+					</button>
+					<button
+						type="button"
+						onclick={run_bulk_remove_tags}
+						disabled={busy || bulk_selected_tag_ids.length === 0}
+					>
+						Remove tags
+					</button>
+				</div>
+
+				<div
+					class="flex"
+					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				>
+					<SelectMenu
+						popover_id="filter-bulk_status"
+						button_text={`Bulk status (${bulk_status})`}
+						button_icon={'filter' as any}
+						value={bulk_status}
+						options={BULK_STATUS_OPTIONS}
+						onselect={on_bulk_status_select}
+					/>
+					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+						Update status
+					</button>
+					<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
+				</div>
+			{/snippet}
+
+			{#snippet action_feedback()}
+				{#if action_message}
+					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				{/if}
+				{#if action_error}
+					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				{/if}
+			{/snippet}
+
+			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+				<th>
+					<input
+						type="checkbox"
+						aria-label="Select all rows on this page"
+						checked={all_visible_selected}
+						onchange={(event) => {
+							const target = event.currentTarget;
+							if (!(target instanceof HTMLInputElement)) return;
+							toggle_all_visible(target.checked);
+						}}
+					/>
+				</th>
+				<th>Title</th>
+				<th>Status</th>
+				<th>Type</th>
+				<th>Published</th>
+			{/snippet}
+
+			{#snippet table_body({ toggle_selected, is_selected })}
+				{#each list_items as content_row (content_row.id)}
+					{@const edit_link = to_edit_link(content_row)}
+					{@const public_link = to_public_link(content_row)}
 					<tr>
-						<th>
+						<td>
 							<input
 								type="checkbox"
-								aria-label="Select all rows on this page"
-								checked={all_visible_selected}
+								aria-label={`Select ${content_row.title}`}
+								checked={is_selected(content_row.id)}
 								onchange={(event) => {
 									const target = event.currentTarget;
-									if (!(target instanceof HTMLInputElement)) {
-										return;
-									}
-
-									toggle_all_visible(target.checked, list_items);
+									if (!(target instanceof HTMLInputElement)) return;
+									toggle_selected(content_row.id, target.checked);
 								}}
 							/>
-						</th>
-						<th>Title</th>
-						<th>Status</th>
-						<th>Type</th>
-						<th>Published</th>
+						</td>
+						<td>
+							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+								{#if public_link}
+									<a href={public_link} target="_blank" rel="noopener noreferrer">
+										{content_row.title}
+									</a>
+								{:else}
+									<p>{content_row.title}</p>
+								{/if}
+								{#if edit_link}
+									<a href={edit_link}>Edit</a>
+								{/if}
+							</div>
+						</td>
+						<td>{content_row.status}</td>
+						<td>{content_row.type}</td>
+						<td>
+							{#if content_row.published_at}
+								{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
+							{:else}
+								-
+							{/if}
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					{#if list_items.length === 0}
-						<tr>
-							<td colspan="5">No matching content found.</td>
-						</tr>
-					{:else}
-						{#each list_items as content_row (content_row.id)}
-							{@const edit_link = to_edit_link(content_row)}
-							{@const public_link = to_public_link(content_row)}
-							<tr>
-								<td>
-									<input
-										type="checkbox"
-										aria-label={`Select ${content_row.title}`}
-										checked={selected_content_ids.includes(content_row.id)}
-										onchange={(event) => {
-											const target = event.currentTarget;
-											if (!(target instanceof HTMLInputElement)) {
-												return;
-											}
+				{/each}
+			{/snippet}
 
-											toggle_selected(content_row.id, target.checked);
-										}}
-									/>
-								</td>
-								<td>
-									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-										{#if public_link}
-											<a href={public_link} target="_blank" rel="noopener noreferrer">
-												{content_row.title}
-											</a>
-										{:else}
-											<p>{content_row.title}</p>
-										{/if}
-										{#if edit_link}
-											<a href={edit_link}>Edit</a>
-										{/if}
-									</div>
-								</td>
-								<td>{content_row.status}</td>
-								<td>{content_row.type}</td>
-								<td>
-									{#if content_row.published_at}
-										{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-									{:else}
-										-
-									{/if}
-								</td>
-							</tr>
-						{/each}
-					{/if}
-				</tbody>
-			</table>
-		</div>
+			{#snippet empty()}
+				<tr>
+					<td colspan="5">No matching content found.</td>
+				</tr>
+			{/snippet}
+		</AdminList>
 	{:catch}
-		<div class="table-container">
-			<table>
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Status</th>
-						<th>Type</th>
-						<th>Published</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="4">Unable to load content. Please try again.</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<p class="fs-2" style="color: var(--c-red)">Unable to load content. Please try again.</p>
 	{/await}
 </div>

@@ -1,12 +1,23 @@
 <script lang="ts">
 	interface Props {
 		text?: string;
+		on_input?: (next_value: string) => void;
+		placeholder?: string;
 	}
 
-	let { text = $bindable('') }: Props = $props();
+	let { text = $bindable(''), on_input, placeholder = 'Search' }: Props = $props();
+
+	function handle_input(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		on_input?.(target.value);
+	}
 </script>
 
-<input type="text" bind:value={text} placeholder="Search" />
+<input type="text" bind:value={text} {placeholder} oninput={handle_input} />
 
 <style lang="postcss">
 	input {
