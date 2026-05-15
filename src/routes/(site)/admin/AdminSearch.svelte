@@ -3,36 +3,32 @@
 		text?: string;
 		on_input?: (next_value: string) => void;
 		placeholder?: string;
-		debounce_ms?: number;
 	}
 
-	let {
-		text = $bindable(''),
-		on_input,
-		placeholder = 'Search',
-		debounce_ms = 250
-	}: Props = $props();
+	let { text = '', on_input, placeholder = 'Search' }: Props = $props();
 
-	let timer: ReturnType<typeof setTimeout> | null = null;
+	let value = $state(text);
 
-	function handle_input(event: Event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLInputElement)) {
-			return;
-		}
-
-		if (timer) clearTimeout(timer);
-		timer = setTimeout(() => {
-			on_input?.(target.value);
-		}, debounce_ms);
+	function handle_submit(event: Event) {
+		event.preventDefault();
+		on_input?.(value);
 	}
 </script>
 
-<input type="text" bind:value={text} {placeholder} oninput={handle_input} />
+<form class="admin-search" onsubmit={handle_submit}>
+	<input type="text" bind:value {placeholder} />
+	<button type="submit">Search</button>
+</form>
 
 <style lang="postcss">
-	input {
+	.admin-search {
+		display: flex;
+		gap: var(--pad-xsmall);
 		width: 100%;
+	}
+
+	input {
+		flex: 1;
 		background: transparent;
 		border: var(--border);
 		padding: 10px;
