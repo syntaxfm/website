@@ -15,15 +15,13 @@
 	}
 </script>
 
-<form class="admin-search" onsubmit={handle_submit}>
+<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_submit}>
 	<input type="text" bind:value {placeholder} />
 	<button type="submit">Search</button>
 </form>
 
 <style lang="postcss">
-	.admin-search {
-		display: flex;
-		gap: var(--pad-xsmall);
+	form {
 		width: 100%;
 	}
 
