@@ -63,18 +63,6 @@
 		});
 	}
 
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
-	}
-
-	function on_bulk_role_select(next_value: string) {
-		bulk_role_id = next_value;
-	}
-
 	function clear_feedback() {
 		action_message = '';
 		action_error = '';
@@ -181,13 +169,17 @@
 			page={list_result.page}
 			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
-			{on_page_change}
+			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 			bind:selected_ids={selected_user_ids}
 			{visible_ids}
 			{busy}
 		>
 			{#snippet filters()}
-				<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search users" />
+				<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+					placeholder="Search users"
+				/>
 			{/snippet}
 
 			{#snippet bulk()}
@@ -200,7 +192,7 @@
 						button_text={`Role (${bulk_role_label})`}
 						value={bulk_role_id}
 						options={role_select_options}
-						onselect={on_bulk_role_select}
+						onselect={(value) => (bulk_role_id = value)}
 					/>
 					<button
 						type="button"

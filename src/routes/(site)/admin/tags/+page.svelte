@@ -44,14 +44,6 @@
 		});
 	}
 
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
-	}
-
 	function clear_feedback() {
 		action_message = '';
 		action_error = '';
@@ -190,12 +182,16 @@
 			page={list_result.page}
 			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
-			{on_page_change}
+			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 			{visible_ids}
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search tags" />
+					<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+					placeholder="Search tags"
+				/>
 					{#if show_clear_filters}
 						<div>
 							<a class="button small" href="/admin/tags">× Clear</a>

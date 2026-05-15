@@ -86,34 +86,6 @@
 		});
 	}
 
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_status_select(next_value: string) {
-		update_url({ status: next_value || null, page: null });
-	}
-
-	function on_date_from_change(event: Event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLInputElement)) return;
-		update_url({ date_from: target.value || null, page: null });
-	}
-
-	function on_date_to_change(event: Event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLInputElement)) return;
-		update_url({ date_to: target.value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
-	}
-
-	function on_bulk_status_select(next_value: string) {
-		update_url({ bulk_status: next_value || null });
-	}
-
 	function clear_feedback() {
 		action_message = '';
 		action_error = '';
@@ -193,14 +165,17 @@
 			page={list_result.page}
 			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
-			{on_page_change}
+			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 			bind:selected_ids
 			{visible_ids}
 			{busy}
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch text={search_text} on_input={on_search_input} />
+					<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+				/>
 					<div
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
@@ -211,15 +186,25 @@
 							button_icon={'filter' as any}
 							value={status_filter === 'ALL' ? '' : status_filter}
 							options={STATUS_FILTER_OPTIONS}
-							onselect={on_status_select}
+							onselect={(value) => update_url({ status: value || null, page: null })}
 						/>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">From</span>
-							<input type="date" value={date_from} onchange={on_date_from_change} />
+							<input
+								type="date"
+								value={date_from}
+								onchange={(e) =>
+									update_url({ date_from: e.currentTarget.value || null, page: null })}
+							/>
 						</label>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">To</span>
-							<input type="date" value={date_to} onchange={on_date_to_change} />
+							<input
+								type="date"
+								value={date_to}
+								onchange={(e) =>
+									update_url({ date_to: e.currentTarget.value || null, page: null })}
+							/>
 						</label>
 						{#if show_clear_filters}
 							<a class="button small" href="/admin/content/podcast">× Clear</a>
@@ -239,7 +224,7 @@
 						button_icon={'filter' as any}
 						value={bulk_status}
 						options={BULK_STATUS_OPTIONS}
-						onselect={on_bulk_status_select}
+						onselect={(value) => update_url({ bulk_status: value || null })}
 					/>
 					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
 						Update status

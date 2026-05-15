@@ -112,37 +112,6 @@
 		});
 	}
 
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_status_select(next_value: string) {
-		update_url({ status: next_value || null, page: null });
-	}
-
-	function on_type_select(next_value: string) {
-		update_url({ submission_type: next_value || null, page: null });
-	}
-
-	function on_order_select(next_value: string) {
-		update_url({ order: next_value === 'desc' ? null : next_value, page: null });
-	}
-
-	function on_page_size_select(next_value: string) {
-		update_url({
-			page_size: next_value === DEFAULT_PAGE_SIZE ? null : next_value,
-			page: null
-		});
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
-	}
-
-	function on_bulk_status_select(next_value: string) {
-		update_url({ bulk_status: next_value || null });
-	}
-
 	function clear_feedback() {
 		action_message = '';
 		action_error = '';
@@ -251,7 +220,7 @@
 			page={list_result.page}
 			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
-			{on_page_change}
+			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 			bind:selected_ids={selected_submission_ids}
 			{visible_ids}
 			{busy}
@@ -260,7 +229,7 @@
 				<div class="stack" style:--stack-gap="var(--pad-small)">
 					<AdminSearch
 						text={search_text}
-						on_input={on_search_input}
+						on_input={(value) => update_url({ q: value || null, page: null })}
 						placeholder="Search name, email, or body"
 					/>
 					<div
@@ -273,7 +242,7 @@
 							button_icon={'filter' as any}
 							value={type_filter}
 							options={TYPE_FILTER_OPTIONS}
-							onselect={on_type_select}
+							onselect={(value) => update_url({ submission_type: value || null, page: null })}
 						/>
 						<SelectMenu
 							popover_id="filter-status"
@@ -281,7 +250,7 @@
 							button_icon={'filter' as any}
 							value={status_filter}
 							options={STATUS_FILTER_OPTIONS}
-							onselect={on_status_select}
+							onselect={(value) => update_url({ status: value || null, page: null })}
 						/>
 						<SelectMenu
 							popover_id="filter-order"
@@ -289,7 +258,8 @@
 							button_icon={'sort' as any}
 							value={order}
 							options={ORDER_OPTIONS}
-							onselect={on_order_select}
+							onselect={(value) =>
+								update_url({ order: value === 'desc' ? null : value, page: null })}
 						/>
 						<SelectMenu
 							popover_id="filter-page_size"
@@ -297,7 +267,11 @@
 							button_text="Per Page"
 							value={page_size_value}
 							options={PAGE_SIZE_OPTIONS}
-							onselect={on_page_size_select}
+							onselect={(value) =>
+								update_url({
+									page_size: value === DEFAULT_PAGE_SIZE ? null : value,
+									page: null
+								})}
 						/>
 						{#if show_clear_filters}
 							<a class="button small" href="/admin/submissions">× Clear</a>
@@ -317,7 +291,7 @@
 						button_icon={'filter' as any}
 						value={bulk_status}
 						options={BULK_STATUS_OPTIONS}
-						onselect={on_bulk_status_select}
+						onselect={(value) => update_url({ bulk_status: value || null })}
 					/>
 					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
 						Update status
