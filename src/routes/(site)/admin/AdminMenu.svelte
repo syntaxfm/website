@@ -32,18 +32,26 @@
 						{
 							text: 'Import',
 							path: '/admin/content/videos/import'
+						},
+						{
+							text: 'Playlists',
+							path: '/admin/content/videos/playlists'
 						}
 					]
 				},
 				{
 					text: 'Articles',
-					path: '/admin/articles'
+					path: '/admin/content/articles'
 				}
 			]
 		},
 		{
 			text: 'Tags',
 			path: '/admin/tags'
+		},
+		{
+			text: 'Guests',
+			path: '/admin/guests'
 		},
 		{
 			text: 'Users',
