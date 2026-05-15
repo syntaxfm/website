@@ -47,8 +47,26 @@ A third-party who appears on a **Show** as an interviewee. Stored in the `guest`
 
 ### AI-generated content
 
-**aiShowNote / aiSummaryEntry / aiTweet / aiGuest**:
-AI-generated artifacts associated with a Show (or, for `aiGuest`, a draft guest profile). Lifecycle and review semantics: TODO — capture when next encountered.
+**aiShowNote**:
+The parent AI-generated artifact for a **Show** — one row per show (unique on `show_number`). Holds the AI-written title and description of the episode. Owns child rows: `aiSummaryEntry`, `aiTweet`, `link`, `aiGuest`, `topic`.
+
+**aiSummaryEntry**:
+A timestamped summary segment within an `aiShowNote` (e.g. "01:23 — Topic introduction"). Many per show note.
+
+**aiTweet**:
+An AI-drafted promotional tweet about the **Show**. Many per show note.
+
+**link**:
+An AI-extracted link mentioned in the **Show**, with optional timestamp. Many per show note.
+
+**aiGuest**:
+An AI-detected guest *name* mentioned in the **Show**. Not the same as a **Guest** record — `aiGuest` is just a name string; a **Guest** is a curated profile. The two are deliberately separate.
+
+**topic**:
+An AI-detected topic mentioned in the **Show**. Many per show note. Not the same as a **Tag** — `topic` is an AI suggestion; a **Tag** is a curated taxonomy entry.
+
+**Lifecycle**:
+AI artifacts have no status column and no approval gate. They are generated wholesale from a transcript and may be edited inline in the show editor. **Regeneration replaces them wholesale** — manual edits are lost when "Regenerate AI notes" is invoked. The show editor must confirm before regenerating if any artifact rows exist. AI artifacts render publicly as-is once present; absence is not failure (the site falls back to the human-curated `show.show_notes`).
 
 ### Submissions
 
@@ -91,3 +109,4 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 - "User" used to imply public accounts. **Resolved**: no public accounts exist; every **User** is effectively an admin. If/when public accounts are added, this entry must be re-resolved.
 - `show_type` reads like a current taxonomy but is a back-catalog artifact. **Resolved**: documented above; the column is unreliable for recent episodes.
 - "UserSubmission" implies it's tied to a User; it isn't (submissions are anonymous). The name is historical.
+- The admin URL segment `/admin/content/podcast` lists **Shows**, not "podcasts." **Resolved**: the URL matches the `content_types` enum value (`PODCAST`), which is machine-canonical; the page heading and navigation label remain "Shows" (the domain term). This is a deliberate asymmetry between URL/enum and display language. Do not rename the URL to match the term without renaming the enum value, and do not rename the enum without a migration ADR.

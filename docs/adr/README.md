@@ -11,3 +11,4 @@ When you make a decision that fits all three criteria, add a new ADR with the ne
 - [0003 — Application-level validation, not CHECK constraints](./0003-no-check-constraints.md)
 - [0004 — Unified `content` model wraps all content types](./0004-unified-content-model.md)
 - [0005 — snake_case for TypeScript identifiers and module filenames](./0005-snake-case-typescript-naming.md)
+- [0006 — Per-type admin editors are canonical; `/admin/content/[id]` removed](./0006-per-type-admin-editors.md) (supersedes part of ADR-0004)
