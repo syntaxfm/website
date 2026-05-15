@@ -1,19 +1,13 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { createUseQueryParams } from 'svelte-query-params';
+	import { sveltekit } from 'svelte-query-params/adapters/sveltekit';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
-	import {
-		build_url,
-		has_any_filter,
-		read_int,
-		read_picklist,
-		read_string
-	} from '$lib/admin/admin_filters';
 	import {
 		bulk_update_show_status,
 		import_all_shows,
@@ -23,11 +17,51 @@
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 	const BULK_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
-	const FILTER_KEYS = ['q', 'status', 'date_from', 'date_to'] as const;
 	const PAGE_SIZE = 25;
 
 	type ShowStatusFilter = (typeof STATUS_FILTERS)[number];
 	type ShowStatus = (typeof BULK_STATUSES)[number];
+
+	type QueryValue = string | string[] | undefined;
+
+	function first(value: QueryValue): string {
+		if (Array.isArray(value)) return value[0] ?? '';
+		return value ?? '';
+	}
+
+	function picklist<T extends string>(allowed: readonly T[], fallback: T) {
+		return (value: QueryValue): T => {
+			const raw = first(value);
+			return (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
+		};
+	}
+
+	function string_default(fallback = '') {
+		return (value: QueryValue): string => first(value) || fallback;
+	}
+
+	function page_int(value: QueryValue): number {
+		const parsed = Number.parseInt(first(value), 10);
+		if (!Number.isFinite(parsed) || parsed < 1) return 1;
+		return parsed;
+	}
+
+	const use_params = createUseQueryParams(
+		{
+			q: string_default(''),
+			status: picklist<ShowStatusFilter>(STATUS_FILTERS, 'ALL'),
+			date_from: string_default(''),
+			date_to: string_default(''),
+			page: page_int,
+			bulk_status: picklist<ShowStatus>(BULK_STATUSES, 'DRAFT')
+		},
+		{
+			adapter: sveltekit({ replace: true }),
+			debounce: 250
+		}
+	);
+
+	const [params, helpers] = use_params(current_page.url);
 
 	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
@@ -35,29 +69,7 @@
 	}));
 	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
 
-	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
-	let status_filter = $derived(
-		read_picklist<ShowStatusFilter>(
-			current_page.url.searchParams,
-			'status',
-			STATUS_FILTERS,
-			'ALL'
-		)
-	);
-	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
-	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
-	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
-	let bulk_status = $derived(
-		read_picklist<ShowStatus>(
-			current_page.url.searchParams,
-			'bulk_status',
-			BULK_STATUSES,
-			'DRAFT'
-		)
-	);
-	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
-
-	let selected_ids = $state<string[]>([]);
+	let selected_show_numbers = $state<string[]>([]);
 	let action_message = $state('');
 	let action_error = $state('');
 	let busy = $state(false);
@@ -65,53 +77,44 @@
 	type ShowListResult = Awaited<ReturnType<typeof list_shows>>;
 	type ShowListItem = ShowListResult['items'][number];
 
+	let url_q = $derived(current_page.url.searchParams.get('q') ?? '');
+	let url_status = $derived(
+		(current_page.url.searchParams.get('status') as ShowStatusFilter | null) ?? 'ALL'
+	);
+	let url_date_from = $derived(current_page.url.searchParams.get('date_from') ?? '');
+	let url_date_to = $derived(current_page.url.searchParams.get('date_to') ?? '');
+	let url_page = $derived(page_int(current_page.url.searchParams.get('page') ?? undefined));
+
+	let show_clear_filters = $derived(
+		url_q !== '' || url_status !== 'ALL' || url_date_from !== '' || url_date_to !== ''
+	);
+
 	function get_list_shows_query() {
 		return list_shows({
-			search_text,
-			status: status_filter,
-			date_from_iso: date_from || undefined,
-			date_to_iso: date_to || undefined,
-			page: page_number,
+			search_text: url_q,
+			status: url_status,
+			date_from_iso: url_date_from || undefined,
+			date_to_iso: url_date_to || undefined,
+			page: url_page,
 			page_size: PAGE_SIZE
 		});
 	}
 
 	let list_result_promise = $derived.by(() => get_list_shows_query());
 
-	function update_url(updates: Record<string, string | number | null | undefined>) {
-		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
-		});
-	}
-
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
+	function on_page_change(next_page: number) {
+		helpers.update({ page: next_page });
 	}
 
 	function on_status_select(next_value: string) {
-		update_url({ status: next_value || null, page: null });
-	}
-
-	function on_date_from_change(event: Event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLInputElement)) return;
-		update_url({ date_from: target.value || null, page: null });
-	}
-
-	function on_date_to_change(event: Event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLInputElement)) return;
-		update_url({ date_to: target.value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
+		const fallback: ShowStatusFilter = 'ALL';
+		const next = (next_value || fallback) as ShowStatusFilter;
+		helpers.update({ status: next, page: 1 });
 	}
 
 	function on_bulk_status_select(next_value: string) {
-		update_url({ bulk_status: next_value || null });
+		const next = (next_value || 'DRAFT') as ShowStatus;
+		helpers.update({ bulk_status: next });
 	}
 
 	function clear_feedback() {
@@ -120,7 +123,7 @@
 	}
 
 	async function run_bulk_status_update() {
-		if (selected_ids.length === 0) {
+		if (selected_show_numbers.length === 0) {
 			action_error = 'Select at least one row first.';
 			return;
 		}
@@ -129,19 +132,19 @@
 		busy = true;
 
 		try {
-			const show_numbers = selected_ids
+			const show_numbers = selected_show_numbers
 				.map((id) => Number.parseInt(id, 10))
 				.filter((value) => Number.isFinite(value));
 
 			const result = await bulk_update_show_status({
 				show_numbers,
-				status: bulk_status
+				status: params.bulk_status
 			});
 
 			const skipped_suffix =
 				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
-			action_message = `Updated ${result.count} show(s) to ${bulk_status}.${skipped_suffix}`;
-			selected_ids = [];
+			action_message = `Updated ${result.count} show(s) to ${params.bulk_status}.${skipped_suffix}`;
+			selected_show_numbers = [];
 			await get_list_shows_query().refresh();
 		} catch (error) {
 			console.error(error);
@@ -194,32 +197,32 @@
 			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
 			{on_page_change}
-			bind:selected_ids
+			bind:selected_ids={selected_show_numbers}
 			{visible_ids}
 			{busy}
 		>
 			{#snippet filters()}
 				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch text={search_text} on_input={on_search_input} />
+					<AdminSearch bind:text={params.q} />
 					<div
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
 						<SelectMenu
 							popover_id="filter-status"
-							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+							button_text={`Status ${params.status !== 'ALL' ? `(${params.status})` : ''}`}
 							button_icon={'filter' as any}
-							value={status_filter === 'ALL' ? '' : status_filter}
+							value={params.status === 'ALL' ? '' : params.status}
 							options={STATUS_FILTER_OPTIONS}
 							onselect={on_status_select}
 						/>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">From</span>
-							<input type="date" value={date_from} onchange={on_date_from_change} />
+							<input type="date" bind:value={params.date_from} />
 						</label>
 						<label class="stack" style="--stack-gap: 2px">
 							<span class="fs-1">To</span>
-							<input type="date" value={date_to} onchange={on_date_to_change} />
+							<input type="date" bind:value={params.date_to} />
 						</label>
 						{#if show_clear_filters}
 							<a class="button small" href="/admin/content/podcast">× Clear</a>
@@ -235,9 +238,9 @@
 				>
 					<SelectMenu
 						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${bulk_status})`}
+						button_text={`Bulk status (${params.bulk_status})`}
 						button_icon={'filter' as any}
-						value={bulk_status}
+						value={params.bulk_status}
 						options={BULK_STATUS_OPTIONS}
 						onselect={on_bulk_status_select}
 					/>
