@@ -2,16 +2,23 @@ import { command, form, getRequestEvent, query } from '$app/server';
 import { env } from '$env/dynamic/private';
 import { db } from '$server/db/client';
 import {
+	aiGuest,
 	aiShowNote,
+	aiSummaryEntry,
+	aiTweet,
 	guest,
 	content,
+	link,
 	show,
 	showGuest,
+	showToUser,
 	showVideo,
 	socialLink,
+	topic,
 	transcript,
 	transcriptUtterance,
 	transcriptUtteranceWord,
+	user,
 	video
 } from '$server/db/schema';
 import {
@@ -26,7 +33,7 @@ import {
 	import_or_update_all_shows
 } from '$server/shows';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
+import { and, desc, eq, gte, ilike, inArray, lte, ne, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { generate_ai_notes } from '$server/ai/openai';
 import { save_ai_notes_to_db } from '$server/ai/db';
@@ -95,6 +102,54 @@ const video_search_schema = v.object({
 const show_video_schema = v.object({
 	show_id: v.string(),
 	video_id: v.string()
+});
+
+const user_search_schema = v.object({
+	search_text: v.optional(v.string())
+});
+
+const show_host_schema = v.object({
+	show_id: v.string(),
+	user_id: v.string()
+});
+
+const update_ai_show_note_schema = v.object({
+	id: v.number(),
+	title: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	description: v.string()
+});
+
+const update_ai_summary_entry_schema = v.object({
+	id: v.number(),
+	time: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	text: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	description: v.optional(v.nullable(v.string()))
+});
+
+const update_ai_tweet_schema = v.object({
+	id: v.number(),
+	content: v.pipe(v.string(), v.trim(), v.minLength(1), v.maxLength(350))
+});
+
+const update_link_schema = v.object({
+	id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	url: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	timestamp: v.optional(v.nullable(v.string()))
+});
+
+const update_ai_guest_schema = v.object({
+	id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1))
+});
+
+const update_topic_schema = v.object({
+	id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1))
+});
+
+const ai_child_id_schema = v.object({
+	id: v.number()
 });
 
 function assert_admin_user() {
@@ -283,10 +338,23 @@ export const get_show_editor = query(v.number(), async (show_number) => {
 					}
 				}
 			},
-			aiShowNote: true,
+			aiShowNote: {
+				with: {
+					summary: true,
+					tweets: true,
+					links: true,
+					guests: true,
+					topics: true
+				}
+			},
 			guests: {
 				with: {
 					guest: true
+				}
+			},
+			hosts: {
+				with: {
+					user: true
 				}
 			},
 			videos: {
@@ -296,6 +364,11 @@ export const get_show_editor = query(v.number(), async (show_number) => {
 							meta: true
 						}
 					}
+				}
+			},
+			transcript: {
+				columns: {
+					id: true
 				}
 			}
 		}
@@ -542,6 +615,189 @@ export const remove_show_video = command(show_video_schema, async ({ show_id, vi
 	await db
 		.delete(showVideo)
 		.where(and(eq(showVideo.show_id, show_id), eq(showVideo.video_id, video_id)));
+
+	return { success: true };
+});
+
+// ============================================================================
+// HOST PANEL — search and attach Users to a Show
+// ============================================================================
+
+export const search_users_for_host = query(user_search_schema, async ({ search_text }) => {
+	assert_admin_user();
+
+	const normalized_search = search_text?.trim() || '';
+
+	const where_clause = normalized_search
+		? or(
+				ilike(user.username, `%${normalized_search}%`),
+				ilike(user.name, `%${normalized_search}%`),
+				ilike(user.email, `%${normalized_search}%`)
+			)
+		: undefined;
+
+	return db.query.user.findMany({
+		where: where_clause,
+		columns: {
+			id: true,
+			username: true,
+			name: true,
+			email: true
+		},
+		orderBy: (user_item, { asc }) => [asc(user_item.username)],
+		limit: 25
+	});
+});
+
+export const add_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
+	assert_admin_user();
+
+	await db
+		.insert(showToUser)
+		.values({
+			show_id,
+			user_id
+		})
+		.onConflictDoNothing();
+
+	return { success: true };
+});
+
+export const remove_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
+	assert_admin_user();
+
+	await db
+		.delete(showToUser)
+		.where(and(eq(showToUser.show_id, show_id), eq(showToUser.user_id, user_id)));
+
+	return { success: true };
+});
+
+// ============================================================================
+// AI ARTIFACT EDITORIAL CRUD
+// AI artifacts have no status column; regeneration replaces them wholesale.
+// See docs/CONTEXT.md → "AI-generated content" and the lifecycle paragraph.
+// ============================================================================
+
+export const update_ai_show_note = command(update_ai_show_note_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(aiShowNote)
+		.set({
+			title: input.title,
+			description: input.description
+		})
+		.where(eq(aiShowNote.id, input.id));
+
+	return { success: true };
+});
+
+export const update_ai_summary_entry = command(update_ai_summary_entry_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(aiSummaryEntry)
+		.set({
+			time: input.time,
+			text: input.text,
+			description: input.description ?? null
+		})
+		.where(eq(aiSummaryEntry.id, input.id));
+
+	return { success: true };
+});
+
+export const update_ai_tweet = command(update_ai_tweet_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(aiTweet)
+		.set({
+			content: input.content
+		})
+		.where(eq(aiTweet.id, input.id));
+
+	return { success: true };
+});
+
+export const update_link = command(update_link_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(link)
+		.set({
+			name: input.name,
+			url: input.url,
+			timestamp: input.timestamp ?? null
+		})
+		.where(eq(link.id, input.id));
+
+	return { success: true };
+});
+
+export const update_ai_guest = command(update_ai_guest_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(aiGuest)
+		.set({
+			name: input.name
+		})
+		.where(eq(aiGuest.id, input.id));
+
+	return { success: true };
+});
+
+export const update_topic = command(update_topic_schema, async (input) => {
+	assert_admin_user();
+
+	await db
+		.update(topic)
+		.set({
+			name: input.name
+		})
+		.where(eq(topic.id, input.id));
+
+	return { success: true };
+});
+
+export const delete_ai_summary_entry = command(ai_child_id_schema, async ({ id }) => {
+	assert_admin_user();
+
+	await db.delete(aiSummaryEntry).where(eq(aiSummaryEntry.id, id));
+
+	return { success: true };
+});
+
+export const delete_ai_tweet = command(ai_child_id_schema, async ({ id }) => {
+	assert_admin_user();
+
+	await db.delete(aiTweet).where(eq(aiTweet.id, id));
+
+	return { success: true };
+});
+
+export const delete_link = command(ai_child_id_schema, async ({ id }) => {
+	assert_admin_user();
+
+	await db.delete(link).where(eq(link.id, id));
+
+	return { success: true };
+});
+
+export const delete_ai_guest = command(ai_child_id_schema, async ({ id }) => {
+	assert_admin_user();
+
+	await db.delete(aiGuest).where(eq(aiGuest.id, id));
+
+	return { success: true };
+});
+
+export const delete_topic = command(ai_child_id_schema, async ({ id }) => {
+	assert_admin_user();
+
+	await db.delete(topic).where(eq(topic.id, id));
 
 	return { success: true };
 });
