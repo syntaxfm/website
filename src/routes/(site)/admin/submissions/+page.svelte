@@ -1,296 +1,446 @@
 <script lang="ts">
 	import { formatDistance } from 'date-fns';
-	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import { page as current_page } from '$app/state';
+	import AdminSearch from '../AdminSearch.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
+	import {
+		bulk_delete_submissions,
+		bulk_update_submission_status,
 		delete_submission,
 		get_submissions,
 		update_submission_status
 	} from './admin_submissions.remote';
 
-	type SubmissionsResult = Awaited<ReturnType<typeof get_submissions>>;
+	const STATUS_VALUES = ['PENDING', 'APPROVED', 'COMPLETED', 'REJECTED'] as const;
+	const TYPE_VALUES = ['POTLUCK', 'SPOOKY', 'GUEST', 'FEEDBACK', 'OTHER', 'OSS'] as const;
+	const ORDER_VALUES = ['desc', 'asc'] as const;
+	const PAGE_SIZE_VALUES = ['10', '20', '40', '100'] as const;
+	const FILTER_KEYS = ['q', 'status', 'submission_type', 'order', 'page_size'] as const;
+	const DEFAULT_PAGE_SIZE = '20';
 
-	type RowState = {
-		updating: boolean;
-		deleting: boolean;
-	};
+	type SubmissionStatus = (typeof STATUS_VALUES)[number];
+	type SubmissionType = (typeof TYPE_VALUES)[number];
+	type SubmissionOrder = (typeof ORDER_VALUES)[number];
+	type PageSizeValue = (typeof PAGE_SIZE_VALUES)[number];
 
-	let row_state_by_id = $state<Record<string, RowState>>({});
-	let submissions = $state<SubmissionsResult['submissions']>([]);
-	let submission_count = $state(0);
-	let user_submission_type_values = $state<string[]>([]);
-	let user_submission_status_values = $state<string[]>([]);
-	let is_loading = $state(false);
-	let load_error = $state<string | null>(null);
-	let last_loaded_query_string = $state<string>('');
+	const STATUS_FILTER_OPTIONS = [
+		{ value: '', label: 'All' },
+		...STATUS_VALUES.map((value) => ({ value, label: value }))
+	];
+	const TYPE_FILTER_OPTIONS = [
+		{ value: '', label: 'All' },
+		...TYPE_VALUES.map((value) => ({ value, label: value }))
+	];
+	const ORDER_OPTIONS = [
+		{ value: 'desc', label: 'Newest To Oldest' },
+		{ value: 'asc', label: 'Oldest To Newest' }
+	];
+	const PAGE_SIZE_OPTIONS = PAGE_SIZE_VALUES.map((value) => ({ value, label: value }));
+	const BULK_STATUS_OPTIONS = STATUS_VALUES.map((value) => ({ value, label: value }));
 
-	const params = $derived(page.url.searchParams);
-	const active_submission_type = $derived(params.get('submission_type') ?? '');
-	const active_status = $derived(params.get('status') ?? '');
-	const active_per_page = $derived(params.get('perPage') ?? '100');
-	const active_order = $derived.by(() => {
-		const order = params.get('order');
-		return order === 'asc' || order === 'desc' ? order : 'desc';
-	});
-	const show_clear_filters = $derived(
-		active_submission_type !== '' ||
-			active_status !== '' ||
-			active_per_page !== '100' ||
-			active_order !== 'desc'
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<SubmissionStatus | ''>(
+			current_page.url.searchParams,
+			'status',
+			['', ...STATUS_VALUES] as const,
+			''
+		)
 	);
+	let type_filter = $derived(
+		read_picklist<SubmissionType | ''>(
+			current_page.url.searchParams,
+			'submission_type',
+			['', ...TYPE_VALUES] as const,
+			''
+		)
+	);
+	let order = $derived(
+		read_picklist<SubmissionOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
+	);
+	let page_size_value = $derived(
+		read_picklist<PageSizeValue>(
+			current_page.url.searchParams,
+			'page_size',
+			PAGE_SIZE_VALUES,
+			DEFAULT_PAGE_SIZE
+		)
+	);
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let bulk_status = $derived(
+		read_picklist<SubmissionStatus>(
+			current_page.url.searchParams,
+			'bulk_status',
+			STATUS_VALUES,
+			'APPROVED'
+		)
+	);
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
-	function get_per_page_value() {
-		const parsed_per_page = Number.parseInt(active_per_page, 10);
-		if (!Number.isFinite(parsed_per_page) || parsed_per_page < 1) {
-			return 100;
-		}
+	let selected_submission_ids = $state<string[]>([]);
+	let action_message = $state('');
+	let action_error = $state('');
+	let busy = $state(false);
 
-		return parsed_per_page;
+	function get_submissions_query() {
+		return get_submissions({
+			search_text,
+			status: status_filter,
+			submission_type: type_filter,
+			order,
+			page: page_number,
+			page_size: Number.parseInt(page_size_value, 10)
+		});
 	}
 
-	async function load_submissions() {
-		const query_string = page.url.searchParams.toString();
-		is_loading = true;
-		load_error = null;
+	let list_result_promise = $derived.by(() => get_submissions_query());
 
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
+	function on_status_select(next_value: string) {
+		update_url({ status: next_value || null, page: null });
+	}
+
+	function on_type_select(next_value: string) {
+		update_url({ submission_type: next_value || null, page: null });
+	}
+
+	function on_order_select(next_value: string) {
+		update_url({ order: next_value === 'desc' ? null : next_value, page: null });
+	}
+
+	function on_page_size_select(next_value: string) {
+		update_url({
+			page_size: next_value === DEFAULT_PAGE_SIZE ? null : next_value,
+			page: null
+		});
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
+	}
+
+	function on_bulk_status_select(next_value: string) {
+		update_url({ bulk_status: next_value || null });
+	}
+
+	function clear_feedback() {
+		action_message = '';
+		action_error = '';
+	}
+
+	async function set_submission_status(submission_id: string, next_status: string) {
+		clear_feedback();
+		busy = true;
 		try {
-			const result = await get_submissions({
-				submission_type: active_submission_type,
-				status: active_status,
-				per_page: get_per_page_value(),
-				order: active_order
-			});
-
-			submissions = result.submissions;
-			submission_count = result.submission_count;
-			user_submission_type_values = result.user_submission_type;
-			user_submission_status_values = result.user_submission_status;
-			last_loaded_query_string = query_string;
-		} catch (error) {
-			console.error(error);
-			load_error = 'Unable to load submissions';
-			submissions = [];
-			submission_count = 0;
+			await update_submission_status({ id: submission_id, status: next_status });
+			action_message = `Updated submission to ${next_status}.`;
+			await get_submissions_query().refresh();
+		} catch (error_value) {
+			console.error('update_submission_status failed', error_value);
+			action_error = 'Unable to update submission status. Please try again.';
 		} finally {
-			is_loading = false;
-		}
-	}
-
-	await load_submissions();
-
-	$effect(() => {
-		const query_string = page.url.searchParams.toString();
-		if (query_string === last_loaded_query_string) return;
-
-		void load_submissions();
-	});
-
-	function update_row_state(submission_id: string, next: Partial<RowState>) {
-		const current = row_state_by_id[submission_id] ?? { updating: false, deleting: false };
-		row_state_by_id[submission_id] = { ...current, ...next };
-	}
-
-	async function set_submission_status(submission_id: string, status: string) {
-		update_row_state(submission_id, { updating: true });
-		try {
-			await update_submission_status({ id: submission_id, status });
-			submissions = submissions.map((s) =>
-				s.id === submission_id ? { ...s, status: status as (typeof s)['status'] } : s
-			);
-			// If a status filter is active and this submission no longer matches, remove it
-			if (active_status && status !== active_status) {
-				submissions = submissions.filter((s) => s.id !== submission_id);
-				submission_count--;
-			}
-		} catch (error) {
-			console.error(error);
-		} finally {
-			update_row_state(submission_id, { updating: false });
+			busy = false;
 		}
 	}
 
 	async function remove_submission(submission_id: string) {
 		if (!window.confirm('Are you sure you want to delete this submission?')) return;
 
-		update_row_state(submission_id, { deleting: true });
+		clear_feedback();
+		busy = true;
 		try {
 			await delete_submission({ id: submission_id });
-			submissions = submissions.filter((s) => s.id !== submission_id);
-			submission_count--;
-		} catch (error) {
-			console.error(error);
+			action_message = 'Submission deleted.';
+			selected_submission_ids = selected_submission_ids.filter((id) => id !== submission_id);
+			await get_submissions_query().refresh();
+		} catch (error_value) {
+			console.error('delete_submission failed', error_value);
+			action_error = 'Unable to delete submission. Please try again.';
 		} finally {
-			update_row_state(submission_id, { deleting: false });
+			busy = false;
+		}
+	}
+
+	async function run_bulk_status_update() {
+		if (selected_submission_ids.length === 0) {
+			action_error = 'Select at least one submission first.';
+			return;
+		}
+		clear_feedback();
+		busy = true;
+
+		try {
+			const result = await bulk_update_submission_status({
+				submission_ids: selected_submission_ids,
+				status: bulk_status
+			});
+			action_message = `Updated ${result.count} submission(s) to ${bulk_status}.`;
+			selected_submission_ids = [];
+			await get_submissions_query().refresh();
+		} catch (error_value) {
+			console.error('bulk_update_submission_status failed', error_value);
+			action_error = 'Unable to update submissions. Please try again.';
+		} finally {
+			busy = false;
+		}
+	}
+
+	async function run_bulk_delete() {
+		if (selected_submission_ids.length === 0) {
+			action_error = 'Select at least one submission first.';
+			return;
+		}
+		clear_feedback();
+
+		const confirm_text = window.prompt('Type DELETE to confirm deleting selected submissions');
+		if (confirm_text !== 'DELETE') {
+			action_message = 'Delete cancelled.';
+			return;
+		}
+		busy = true;
+
+		try {
+			const result = await bulk_delete_submissions({
+				submission_ids: selected_submission_ids,
+				confirm_text
+			});
+			action_message = `Deleted ${result.deleted_count} submission(s).`;
+			selected_submission_ids = [];
+			await get_submissions_query().refresh();
+		} catch (error_value) {
+			console.error('bulk_delete_submissions failed', error_value);
+			action_error = 'Unable to delete submissions. Please try again.';
+		} finally {
+			busy = false;
 		}
 	}
 </script>
 
-<h1 class="h3">Submissions ({is_loading ? '...' : submission_count})</h1>
+<div class="stack" style:--stack-gap="var(--pad-medium)">
+	{#await list_result_promise}
+		<h1 class="h3">Submissions</h1>
+		<p class="fs-2">Loading submissions...</p>
+	{:then list_result}
+		{@const list_items = list_result.items}
+		{@const visible_ids = list_items.map((item) => item.id)}
 
-<div>
-	<nav>
-		<SelectMenu
-			popover_id="filter-submission_type"
-			button_text={`Type ${active_submission_type ? `(${active_submission_type})` : ''}`}
-			button_icon={'filter' as any}
-			value={active_submission_type}
-			options={[
-				{ value: '', label: 'All' },
-				...user_submission_type_values.map((enum_value) => ({
-					value: enum_value,
-					label: enum_value
-				}))
-			]}
-		/>
-		<SelectMenu
-			popover_id="filter-status"
-			button_text={`Status ${active_status ? `(${active_status})` : ''}`}
-			button_icon={'filter' as any}
-			value={active_status}
-			options={[
-				{ value: '', label: 'All' },
-				...user_submission_status_values.map((enum_value) => ({
-					value: enum_value,
-					label: enum_value
-				}))
-			]}
-		/>
-		<SelectMenu
-			popover_id="filter-perPage"
-			value_as_label
-			button_text="Per Page"
-			value={active_per_page}
-			options={[
-				{ value: '10', label: '10' },
-				{ value: '20', label: '20' },
-				{ value: '40', label: '40' },
-				{ value: '100', label: '100' }
-			]}
-		/>
-		<SelectMenu
-			popover_id="filter-order"
-			value={active_order}
-			button_text="Sort"
-			button_icon={'sort' as any}
-			options={[
-				{ value: 'desc', label: 'Newest To Oldest' },
-				{ value: 'asc', label: 'Oldest To Newest' }
-			]}
-		/>
-		{#if show_clear_filters}
-			<a class="button" href="/admin/submissions">× Clear</a>
-		{/if}
-	</nav>
-</div>
+		<h1 class="h3">Submissions ({list_result.total})</h1>
 
-<div class="submissions">
-	{#if load_error}
-		<p>{load_error}</p>
-	{:else if is_loading}
-		<p>Loading submissions...</p>
-	{:else if submissions.length === 0}
-		<p>No Submissions found</p>
-	{:else}
-		{#each submissions as submission (submission.id)}
-			{@const row_state = row_state_by_id[submission.id] ?? { updating: false, deleting: false }}
-			{@const row_busy = row_state.updating || row_state.deleting}
-			<div class="submission" style:--transition-name="submission-{submission.id}">
-				<h4>
-					From {submission.name || 'Anon'}
-					<span class="pill"
-						>{formatDistance(new Date(submission.created_at), new Date(), {
-							addSuffix: true
-						})}</span
+		<AdminList
+			total={list_result.total}
+			page={list_result.page}
+			page_size={list_result.page_size}
+			total_pages={list_result.total_pages}
+			{on_page_change}
+			bind:selected_ids={selected_submission_ids}
+			{visible_ids}
+			{busy}
+		>
+			{#snippet filters()}
+				<div class="stack" style:--stack-gap="var(--pad-small)">
+					<AdminSearch
+						text={search_text}
+						on_input={on_search_input}
+						placeholder="Search name, email, or body"
+					/>
+					<div
+						class="flex"
+						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
-					<span class="pill">{submission.submission_type}</span>
-					<span class="pill">{submission.email || 'No Email'}</span>
-					<span class="pill">{submission.status}</span>
-				</h4>
+						<SelectMenu
+							popover_id="filter-submission_type"
+							button_text={`Type ${type_filter !== '' ? `(${type_filter})` : ''}`}
+							button_icon={'filter' as any}
+							value={type_filter}
+							options={TYPE_FILTER_OPTIONS}
+							onselect={on_type_select}
+						/>
+						<SelectMenu
+							popover_id="filter-status"
+							button_text={`Status ${status_filter !== '' ? `(${status_filter})` : ''}`}
+							button_icon={'filter' as any}
+							value={status_filter}
+							options={STATUS_FILTER_OPTIONS}
+							onselect={on_status_select}
+						/>
+						<SelectMenu
+							popover_id="filter-order"
+							button_text="Sort"
+							button_icon={'sort' as any}
+							value={order}
+							options={ORDER_OPTIONS}
+							onselect={on_order_select}
+						/>
+						<SelectMenu
+							popover_id="filter-page_size"
+							value_as_label
+							button_text="Per Page"
+							value={page_size_value}
+							options={PAGE_SIZE_OPTIONS}
+							onselect={on_page_size_select}
+						/>
+						{#if show_clear_filters}
+							<a class="button small" href="/admin/submissions">× Clear</a>
+						{/if}
+					</div>
+				</div>
+			{/snippet}
 
-				<textarea class="submission-body"
-					>{submission.body.replaceAll('\n', '\n\n').trim()}
-				</textarea>
-				<footer>
+			{#snippet bulk()}
+				<div
+					class="flex"
+					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				>
 					<SelectMenu
-						popover_id="status-{submission.id}"
-						button_text={submission.status}
-						value={submission.status}
-						disabled={row_busy}
-						options={user_submission_status_values.map((s) => ({
-							value: s,
-							label: s
-						}))}
-						onselect={(status) => {
-							void set_submission_status(submission.id, status);
+						popover_id="filter-bulk_status"
+						button_text={`Bulk status (${bulk_status})`}
+						button_icon={'filter' as any}
+						value={bulk_status}
+						options={BULK_STATUS_OPTIONS}
+						onselect={on_bulk_status_select}
+					/>
+					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+						Update status
+					</button>
+					<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
+				</div>
+			{/snippet}
+
+			{#snippet action_feedback()}
+				{#if action_message}
+					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				{/if}
+				{#if action_error}
+					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				{/if}
+			{/snippet}
+
+			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+				<th>
+					<input
+						type="checkbox"
+						aria-label="Select all submissions on this page"
+						checked={all_visible_selected}
+						onchange={(event) => {
+							const target = event.currentTarget;
+							if (!(target instanceof HTMLInputElement)) return;
+							toggle_all_visible(target.checked);
 						}}
 					/>
-					<button
-						class="warning"
-						type="button"
-						disabled={row_busy}
-						onclick={() => {
-							void remove_submission(submission.id);
-						}}
-					>
-						{row_state.deleting ? 'Deleting' : 'Delete'}
-					</button>
-				</footer>
-			</div>
-		{/each}
-	{/if}
+				</th>
+				<th>From</th>
+				<th>Type</th>
+				<th>Body</th>
+				<th>Received</th>
+				<th>Status</th>
+				<th>Actions</th>
+			{/snippet}
+
+			{#snippet table_body({ toggle_selected, is_selected })}
+				{#each list_items as submission (submission.id)}
+					<tr>
+						<td>
+							<input
+								type="checkbox"
+								aria-label={`Select submission from ${submission.name || 'Anon'}`}
+								checked={is_selected(submission.id)}
+								onchange={(event) => {
+									const target = event.currentTarget;
+									if (!(target instanceof HTMLInputElement)) return;
+									toggle_selected(submission.id, target.checked);
+								}}
+							/>
+						</td>
+						<td>
+							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+								<span>{submission.name || 'Anon'}</span>
+								<span class="fs-1">{submission.email || 'No email'}</span>
+							</div>
+						</td>
+						<td>{submission.submission_type}</td>
+						<td>
+							<textarea class="submission-body" readonly
+								>{submission.body.replaceAll('\n', '\n\n').trim()}</textarea
+							>
+						</td>
+						<td class="fs-1">
+							{formatDistance(new Date(submission.created_at), new Date(), {
+								addSuffix: true
+							})}
+						</td>
+						<td>
+							<SelectMenu
+								popover_id="status-{submission.id}"
+								button_text={submission.status}
+								value={submission.status}
+								disabled={busy}
+								options={STATUS_VALUES.map((status_value) => ({
+									value: status_value,
+									label: status_value
+								}))}
+								onselect={(next_status) => {
+									void set_submission_status(submission.id, next_status);
+								}}
+							/>
+						</td>
+						<td>
+							<button
+								class="warning"
+								type="button"
+								disabled={busy}
+								onclick={() => {
+									void remove_submission(submission.id);
+								}}
+							>
+								Delete
+							</button>
+						</td>
+					</tr>
+				{/each}
+			{/snippet}
+
+			{#snippet empty()}
+				<tr>
+					<td colspan="7">No matching submissions found.</td>
+				</tr>
+			{/snippet}
+		</AdminList>
+	{:catch}
+		<h1 class="h3">Submissions</h1>
+		<p class="fs-2" style="color: var(--c-red)">Unable to load submissions. Please try again.</p>
+	{/await}
 </div>
 
 <style>
-	.submissions {
-		display: grid;
-		gap: 2rem;
-		grid-template-columns: minmax(0, 1fr);
-	}
-
-	h4 {
-		overflow-wrap: break-word;
-	}
-
-	.submission {
-		border: 1px solid var(--c-fg);
-		padding: 2rem;
-		max-width: 100%;
-		display: grid;
-		gap: 1rem;
-		view-transition-name: var(--transition-name);
-	}
-
-	footer {
-		flex-wrap: wrap;
-		border-top: 2px solid var(--c-fg);
-		display: grid;
-		padding-top: 1rem;
-		grid-auto-flow: column;
-		grid-auto-columns: max-content;
-		gap: 1rem;
-		justify-content: end;
-		place-items: center;
-	}
-
 	.submission-body {
-		max-height: 400px;
-		overflow-x: auto;
+		max-width: 480px;
+		min-width: 240px;
+		max-height: 200px;
+		overflow-y: auto;
 		white-space: pre-wrap;
 		overflow-wrap: break-word;
 		field-sizing: content;
 		border: none;
-	}
-
-	.pill {
-		font-size: var(--fs-1);
-		background: var(--c-black-1);
-		padding: 2px 5px;
-		border-radius: 5px;
-	}
-
-	nav {
-		display: flex;
-		gap: 1rem;
-		padding: 1rem 0;
+		background: transparent;
 	}
 </style>

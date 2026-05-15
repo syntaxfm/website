@@ -26,7 +26,7 @@ import {
 	import_or_update_all_shows
 } from '$server/shows';
 import { error } from '@sveltejs/kit';
-import { and, eq, ilike, ne } from 'drizzle-orm';
+import { and, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { generate_ai_notes } from '$server/ai/openai';
 import { save_ai_notes_to_db } from '$server/ai/db';
@@ -36,6 +36,21 @@ import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_c
 import { left_pad } from '$utilities/left_pad';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
+
+const list_shows_schema = v.object({
+	search_text: v.optional(v.string()),
+	status: v.optional(v.picklist(FILTER_STATUS_VALUES)),
+	date_from_iso: v.optional(v.string()),
+	date_to_iso: v.optional(v.string()),
+	page: v.optional(v.number()),
+	page_size: v.optional(v.number())
+});
+
+const bulk_show_status_schema = v.object({
+	show_numbers: v.pipe(v.array(v.number()), v.minLength(1)),
+	status: v.picklist(CONTENT_STATUS_VALUES)
+});
 
 const update_show_editor_schema = v.object({
 	show_number: v.number(),
@@ -140,6 +155,117 @@ export const get_all_shows = query(async () => {
 			}
 		}
 	});
+});
+
+export const list_shows = query(list_shows_schema, async (input) => {
+	assert_admin_user();
+
+	const search_text = input.search_text?.trim() || '';
+	const status = input.status || 'ALL';
+	const page = Math.max(1, input.page || 1);
+	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
+	const offset = (page - 1) * page_size;
+
+	const where_clauses = [];
+
+	if (search_text.length > 0) {
+		where_clauses.push(ilike(show.title, `%${search_text}%`));
+	}
+
+	if (status !== 'ALL') {
+		where_clauses.push(
+			inArray(
+				show.content_id,
+				db
+					.select({ id: content.id })
+					.from(content)
+					.where(eq(content.status, status))
+			)
+		);
+	}
+
+	const date_from = parse_optional_iso_date(input.date_from_iso);
+	if (date_from) {
+		where_clauses.push(gte(show.date, date_from));
+	}
+
+	const date_to = parse_optional_iso_date(input.date_to_iso);
+	if (date_to) {
+		where_clauses.push(lte(show.date, date_to));
+	}
+
+	const where_clause = where_clauses.length > 0 ? and(...where_clauses) : undefined;
+
+	const total_rows = where_clause
+		? await db.select({ total: sql<number>`count(*)` }).from(show).where(where_clause)
+		: await db.select({ total: sql<number>`count(*)` }).from(show);
+
+	const total = Number(total_rows[0]?.total || 0);
+
+	const items = await db.query.show.findMany({
+		where: where_clause,
+		with: {
+			meta: true
+		},
+		orderBy: [desc(show.number)],
+		limit: page_size,
+		offset
+	});
+
+	return {
+		items,
+		total,
+		page,
+		page_size,
+		total_pages: Math.max(1, Math.ceil(total / page_size))
+	};
+});
+
+export const bulk_update_show_status = command(bulk_show_status_schema, async (input) => {
+	assert_admin_user();
+
+	const existing_shows = await db.query.show.findMany({
+		where: inArray(show.number, input.show_numbers),
+		columns: {
+			number: true,
+			content_id: true
+		}
+	});
+
+	const updatable_content_ids = existing_shows
+		.map((row) => row.content_id)
+		.filter((maybe_id): maybe_id is string => Boolean(maybe_id));
+
+	const skipped_count = existing_shows.length - updatable_content_ids.length;
+
+	if (updatable_content_ids.length === 0) {
+		return { success: true, count: 0, skipped_count };
+	}
+
+	const set_values: {
+		status: (typeof CONTENT_STATUS_VALUES)[number];
+		updated_at: Date;
+		published_at?: Date | null | ReturnType<typeof sql>;
+	} = {
+		status: input.status,
+		updated_at: new Date()
+	};
+
+	if (input.status === 'PUBLISHED') {
+		set_values.published_at = sql`coalesce(${content.published_at}, now())`;
+	}
+
+	if (input.status === 'DRAFT') {
+		set_values.published_at = null;
+	}
+
+	await db.update(content).set(set_values).where(inArray(content.id, updatable_content_ids));
+
+	return {
+		success: true,
+		count: updatable_content_ids.length,
+		skipped_count
+	};
 });
 
 export const get_show_editor = query(v.number(), async (show_number) => {

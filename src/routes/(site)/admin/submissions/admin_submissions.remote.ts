@@ -6,17 +6,19 @@ import {
 	userSubmission
 } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { and, asc, count, desc, eq } from 'drizzle-orm';
+import { and, asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
 type SubmissionStatus = (typeof SUBMISSION_STATUS_VALUES.enumValues)[number];
 type SubmissionType = (typeof SUBMISSION_TYPE_VALUES.enumValues)[number];
 
 const list_submissions_schema = v.object({
+	search_text: v.optional(v.string()),
 	submission_type: v.optional(v.string()),
 	status: v.optional(v.string()),
-	per_page: v.optional(v.number()),
-	order: v.optional(v.string())
+	order: v.optional(v.string()),
+	page: v.optional(v.number()),
+	page_size: v.optional(v.number())
 });
 
 const update_submission_schema = v.object({
@@ -28,6 +30,16 @@ const delete_submission_schema = v.object({
 	id: v.string()
 });
 
+const bulk_status_schema = v.object({
+	submission_ids: v.array(v.string()),
+	status: v.string()
+});
+
+const bulk_delete_schema = v.object({
+	submission_ids: v.array(v.string()),
+	confirm_text: v.string()
+});
+
 function assert_admin_user() {
 	const event = getRequestEvent();
 	if (!event.locals?.user?.roles?.includes('admin')) {
@@ -37,11 +49,21 @@ function assert_admin_user() {
 
 export const get_submissions = query(
 	list_submissions_schema,
-	async ({ submission_type, status, per_page: raw_per_page, order }) => {
+	async ({
+		search_text: raw_search_text,
+		submission_type,
+		status,
+		order,
+		page: raw_page,
+		page_size: raw_page_size
+	}) => {
 		assert_admin_user();
+		const search_text = raw_search_text?.trim() ?? '';
 		const submission_type_param = submission_type?.trim() || '';
 		const status_param = status?.trim() || '';
-		const per_page = Math.min(250, Math.max(1, raw_per_page || 100));
+		const page = Math.max(1, raw_page || 1);
+		const page_size = Math.min(250, Math.max(1, raw_page_size || 25));
+		const offset = (page - 1) * page_size;
 		const order_param = order?.toLowerCase();
 		const order_by =
 			order_param === 'asc' ? asc(userSubmission.created_at) : desc(userSubmission.created_at);
@@ -63,20 +85,42 @@ export const get_submissions = query(
 			conditions.push(eq(userSubmission.status, status_param as SubmissionStatus));
 		}
 
+		if (search_text.length > 0) {
+			const like_pattern = `%${search_text}%`;
+			const search_condition = or(
+				ilike(userSubmission.name, like_pattern),
+				ilike(userSubmission.email, like_pattern),
+				ilike(userSubmission.body, like_pattern)
+			);
+			if (search_condition) {
+				conditions.push(search_condition);
+			}
+		}
+
 		const where = conditions.length > 0 ? and(...conditions) : undefined;
 
-		const count_query = db.select({ submission_count: count() }).from(userSubmission);
-		const [{ submission_count }] = where ? await count_query.where(where) : await count_query;
+		const total_rows = where
+			? await db
+					.select({ total: sql<number>`count(*)` })
+					.from(userSubmission)
+					.where(where)
+			: await db.select({ total: sql<number>`count(*)` }).from(userSubmission);
 
-		const submissions = await db.query.userSubmission.findMany({
-			limit: per_page,
+		const total = Number(total_rows[0]?.total || 0);
+
+		const items = await db.query.userSubmission.findMany({
+			limit: page_size,
+			offset,
 			orderBy: [order_by],
 			where
 		});
 
 		return {
-			submissions,
-			submission_count,
+			items,
+			total,
+			page,
+			page_size,
+			total_pages: Math.max(1, Math.ceil(total / page_size)),
 			user_submission_status,
 			user_submission_type
 		};
@@ -113,3 +157,47 @@ export const delete_submission = command(delete_submission_schema, async (input)
 		success: true
 	};
 });
+
+export const bulk_update_submission_status = command(bulk_status_schema, async (input) => {
+	assert_admin_user();
+
+	const next_status = input.status;
+	if (!SUBMISSION_STATUS_VALUES.enumValues.includes(next_status as SubmissionStatus)) {
+		error(400, 'Invalid status');
+	}
+
+	if (input.submission_ids.length === 0) {
+		return { count: 0 };
+	}
+
+	const updated = await db
+		.update(userSubmission)
+		.set({
+			status: next_status as SubmissionStatus,
+			updated_at: new Date()
+		})
+		.where(inArray(userSubmission.id, input.submission_ids))
+		.returning({ id: userSubmission.id });
+
+	return { count: updated.length };
+});
+
+export const bulk_delete_submissions = command(bulk_delete_schema, async (input) => {
+	assert_admin_user();
+
+	if (input.confirm_text !== 'DELETE') {
+		error(400, 'Confirmation text required');
+	}
+
+	if (input.submission_ids.length === 0) {
+		return { deleted_count: 0 };
+	}
+
+	const deleted = await db
+		.delete(userSubmission)
+		.where(inArray(userSubmission.id, input.submission_ids))
+		.returning({ id: userSubmission.id });
+
+	return { deleted_count: deleted.length };
+});
+

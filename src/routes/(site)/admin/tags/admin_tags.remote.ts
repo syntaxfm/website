@@ -2,7 +2,7 @@ import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
 import { content_tags, tag } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { asc, eq, ilike, sql } from 'drizzle-orm';
+import { asc, eq, ilike, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 import get_slug from 'speakingurl';
 
@@ -21,6 +21,12 @@ const search_tag_schema = v.object({
 	search_text: v.optional(v.string())
 });
 
+const list_tags_schema = v.object({
+	search_text: v.optional(v.string()),
+	page: v.optional(v.number()),
+	page_size: v.optional(v.number())
+});
+
 function assert_admin_user() {
 	const event = getRequestEvent();
 	if (!event.locals?.user?.roles?.includes('admin')) {
@@ -36,10 +42,25 @@ function normalize_slug(input_text: string) {
 	});
 }
 
-export const list_tags = query(async () => {
+export const list_tags = query(list_tags_schema, async (input) => {
 	assert_admin_user();
 
-	return db
+	const search_text = input.search_text?.trim() || '';
+	const page = Math.max(1, input.page || 1);
+	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
+	const offset = (page - 1) * page_size;
+
+	const search_clause = search_text
+		? or(ilike(tag.name, `%${search_text}%`), ilike(tag.slug, `%${search_text}%`))
+		: undefined;
+
+	const total_rows = search_clause
+		? await db.select({ total: sql<number>`count(*)` }).from(tag).where(search_clause)
+		: await db.select({ total: sql<number>`count(*)` }).from(tag);
+
+	const total = Number(total_rows[0]?.total || 0);
+
+	const base_select = db
 		.select({
 			id: tag.id,
 			name: tag.name,
@@ -47,9 +68,26 @@ export const list_tags = query(async () => {
 			content_count: sql<number>`count(${content_tags.content_id})`
 		})
 		.from(tag)
-		.leftJoin(content_tags, eq(tag.id, content_tags.tag_id))
+		.leftJoin(content_tags, eq(tag.id, content_tags.tag_id));
+
+	const items = await (search_clause ? base_select.where(search_clause) : base_select)
 		.groupBy(tag.id)
-		.orderBy(asc(tag.name));
+		.orderBy(asc(tag.name))
+		.limit(page_size)
+		.offset(offset);
+
+	return {
+		items: items.map((row) => ({
+			id: row.id,
+			name: row.name,
+			slug: row.slug ?? '',
+			content_count: Number(row.content_count)
+		})),
+		total,
+		page,
+		page_size,
+		total_pages: Math.max(1, Math.ceil(total / page_size))
+	};
 });
 
 export const search_tags = query(search_tag_schema, async ({ search_text }) => {

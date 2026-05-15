@@ -1,33 +1,76 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { goto } from '$app/navigation';
+	import { page as current_page } from '$app/state';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
-	import { goto } from '$app/navigation';
-	import { create_article, get_all_articles } from './admin_articles.remote';
+	import AdminList from '$lib/admin/AdminList.svelte';
+	import SelectMenu from '$lib/SelectMenu.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
+	import { create_article, list_articles } from './admin_articles.remote';
 
-	let search_text = $state('');
+	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const FILTER_KEYS = ['q', 'status'] as const;
+	const PAGE_SIZE = 25;
+
+	type ArticleStatusFilter = (typeof STATUS_FILTERS)[number];
+
+	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
+		value: value === 'ALL' ? '' : value,
+		label: value === 'ALL' ? 'All' : value
+	}));
+
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<ArticleStatusFilter>(
+			current_page.url.searchParams,
+			'status',
+			STATUS_FILTERS,
+			'ALL'
+		)
+	);
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
+
 	let creating = $state(false);
 	let create_error = $state('');
 
-	const articles = await get_all_articles();
-
-	let filtered_articles = $derived.by(() => {
-		const query = search_text.toLowerCase();
-		if (!query) return articles;
-
-		return articles.filter((article_item) => {
-			const title = article_item.meta.title.toLowerCase();
-			const slug = article_item.meta.slug?.toLowerCase() ?? '';
-			const author_name = article_item.author?.name?.toLowerCase() ?? '';
-			const author_username = article_item.author?.username?.toLowerCase() ?? '';
-			return (
-				title.includes(query) ||
-				slug.includes(query) ||
-				author_name.includes(query) ||
-				author_username.includes(query)
-			);
+	function get_list_articles_query() {
+		return list_articles({
+			search_text,
+			status: status_filter,
+			page: page_number,
+			page_size: PAGE_SIZE
 		});
-	});
+	}
+
+	let list_result_promise = $derived.by(() => get_list_articles_query());
+
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
+	function on_status_select(next_value: string) {
+		update_url({ status: next_value || null, page: null });
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
+	}
 
 	async function create_new_article() {
 		create_error = '';
@@ -47,7 +90,7 @@
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Articles</h1>
 		<AdminActions>
-			<button type="button" onclick={() => void create_new_article()} disabled={creating}>
+			<button type="button" onclick={create_new_article} disabled={creating}>
 				{creating ? 'Creating...' : 'Create Article'}
 			</button>
 		</AdminActions>
@@ -57,50 +100,80 @@
 		<p class="fs-2" style="color: var(--c-red)">{create_error}</p>
 	{/if}
 
-	<AdminSearch bind:text={search_text} />
+	{#await list_result_promise}
+		<p class="fs-2">Loading articles...</p>
+	{:then list_result}
+		{@const list_items = list_result.items}
+		{@const visible_ids = list_items.map((item) => item.content_id)}
 
-	<div class="table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Status</th>
-					<th>Author</th>
-					<th>Published</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if filtered_articles.length === 0}
+		<AdminList
+			total={list_result.total}
+			page={list_result.page}
+			page_size={list_result.page_size}
+			total_pages={list_result.total_pages}
+			{on_page_change}
+			{visible_ids}
+		>
+			{#snippet filters()}
+				<div class="stack" style:--stack-gap="var(--pad-small)">
+					<AdminSearch text={search_text} on_input={on_search_input} />
+					<div
+						class="flex"
+						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					>
+						<SelectMenu
+							popover_id="filter-status"
+							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+							value={status_filter === 'ALL' ? '' : status_filter}
+							options={STATUS_FILTER_OPTIONS}
+							onselect={on_status_select}
+						/>
+						{#if show_clear_filters}
+							<a class="button small" href="/admin/content/articles">× Clear</a>
+						{/if}
+					</div>
+				</div>
+			{/snippet}
+
+			{#snippet table_head()}
+				<th>Title</th>
+				<th>Status</th>
+				<th>Author</th>
+				<th>Updated</th>
+			{/snippet}
+
+			{#snippet table_body()}
+				{#each list_items as article_item (article_item.content_id)}
+					{@const edit_link = `/admin/content/articles/${article_item.content_id}`}
 					<tr>
-						<td colspan="5">No articles found.</td>
+						<td>
+							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+								<p>{article_item.meta.title}</p>
+								<a href={edit_link}>Edit</a>
+							</div>
+						</td>
+						<td>{article_item.meta.status}</td>
+						<td>
+							{article_item.author?.name || article_item.author?.username || '-'}
+						</td>
+						<td>
+							{#if article_item.meta.updated_at}
+								{format(article_item.meta.updated_at, 'MMM d, yyyy HH:mm')}
+							{:else}
+								-
+							{/if}
+						</td>
 					</tr>
-				{:else}
-					{#each filtered_articles as article_item (article_item.id)}
-						<tr>
-							<td>
-								<a href={`/admin/content/articles/${article_item.content_id}`}>
-									{article_item.meta.title}
-								</a>
-							</td>
-							<td>{article_item.meta.status}</td>
-							<td>
-								{article_item.author?.name || article_item.author?.username || '-'}
-							</td>
-							<td>
-								{#if article_item.meta.published_at}
-									{format(article_item.meta.published_at, 'MMM d, yyyy')}
-								{:else}
-									-
-								{/if}
-							</td>
-							<td>
-								<a href={`/admin/content/articles/${article_item.content_id}`}>Edit</a>
-							</td>
-						</tr>
-					{/each}
-				{/if}
-			</tbody>
-		</table>
-	</div>
+				{/each}
+			{/snippet}
+
+			{#snippet empty()}
+				<tr>
+					<td colspan="4">No articles found.</td>
+				</tr>
+			{/snippet}
+		</AdminList>
+	{:catch}
+		<p class="fs-2" style="color: var(--c-red)">Unable to load articles. Please try again.</p>
+	{/await}
 </div>

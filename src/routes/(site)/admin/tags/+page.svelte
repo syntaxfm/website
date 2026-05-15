@@ -1,39 +1,60 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page as current_page } from '$app/state';
+	import AdminSearch from '../AdminSearch.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
+	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
-	interface TagRow {
-		id: string;
-		name: string;
-		slug: string;
-		content_count: number;
-	}
+	const FILTER_KEYS = ['q'] as const;
+	const PAGE_SIZE = 25;
+
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let new_name = $state('');
 	let new_slug = $state('');
 	let creating = $state(false);
-	let loading = $state(false);
 
-	let rows = $state<TagRow[]>([]);
 	let draft_by_id = $state<Record<string, { name: string; slug: string }>>({});
 	let row_busy = $state<Record<string, boolean>>({});
 
-	let status_message = $state('');
-	let status_error = $state('');
+	let action_message = $state('');
+	let action_error = $state('');
 
-	let search_text = $state('');
+	type TagListResult = Awaited<ReturnType<typeof list_tags>>;
+	type TagListItem = TagListResult['items'][number];
 
-	let filtered_rows = $derived(
-		search_text.trim() === ''
-			? rows
-			: rows.filter((row) => {
-					const query = search_text.toLowerCase();
-					return row.name.toLowerCase().includes(query) || row.slug.toLowerCase().includes(query);
-				})
-	);
+	function get_list_tags_query() {
+		return list_tags({
+			search_text,
+			page: page_number,
+			page_size: PAGE_SIZE
+		});
+	}
+
+	let list_result_promise = $derived.by(() => get_list_tags_query());
+
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
+	}
 
 	function clear_feedback() {
-		status_message = '';
-		status_error = '';
+		action_message = '';
+		action_error = '';
 	}
 
 	function set_row_busy(tag_id: string, busy: boolean) {
@@ -43,8 +64,8 @@
 		};
 	}
 
-	function get_draft(tag_id: string) {
-		return draft_by_id[tag_id] || { name: '', slug: '' };
+	function get_draft(row: TagListItem) {
+		return draft_by_id[row.id] ?? { name: row.name, slug: row.slug };
 	}
 
 	function set_draft(tag_id: string, draft: { name: string; slug: string }) {
@@ -54,30 +75,16 @@
 		};
 	}
 
-	async function load_rows() {
-		loading = true;
-		clear_feedback();
-
-		try {
-			const result = (await list_tags()) as TagRow[];
-			rows = result;
-			draft_by_id = Object.fromEntries(
-				result.map((row) => [row.id, { name: row.name, slug: row.slug }])
-			);
-		} catch (error) {
-			console.error(error);
-			status_error = 'Unable to load tags.';
-		} finally {
-			loading = false;
-		}
+	function clear_draft(tag_id: string) {
+		const { [tag_id]: _removed, ...rest } = draft_by_id;
+		draft_by_id = rest;
 	}
 
-	await load_rows();
-
-	async function create_new_tag() {
+	async function create_new_tag(event: SubmitEvent) {
+		event.preventDefault();
 		const trimmed_name = new_name.trim();
 		if (!trimmed_name) {
-			status_error = 'Tag name is required.';
+			action_error = 'Tag name is required.';
 			return;
 		}
 
@@ -91,85 +98,74 @@
 			});
 			new_name = '';
 			new_slug = '';
-			status_message = 'Tag created.';
-			await load_rows();
+			action_message = 'Tag created.';
+			await get_list_tags_query().refresh();
 		} catch (error) {
 			console.error(error);
-			status_error = error instanceof Error ? error.message : 'Unable to create tag.';
+			action_error = error instanceof Error ? error.message : 'Unable to create tag.';
 		} finally {
 			creating = false;
 		}
 	}
 
-	async function save_tag(tag_id: string) {
-		const draft = get_draft(tag_id);
+	async function save_tag(row: TagListItem) {
+		const draft = get_draft(row);
 		const trimmed_name = draft.name.trim();
 
 		if (!trimmed_name) {
-			status_error = 'Tag name is required.';
+			action_error = 'Tag name is required.';
 			return;
 		}
 
-		set_row_busy(tag_id, true);
+		set_row_busy(row.id, true);
 		clear_feedback();
 
 		try {
 			await update_tag({
-				id: tag_id,
+				id: row.id,
 				name: trimmed_name,
 				slug: draft.slug.trim() || undefined
 			});
-			status_message = 'Tag updated.';
-			await load_rows();
+			action_message = 'Tag updated.';
+			clear_draft(row.id);
+			await get_list_tags_query().refresh();
 		} catch (error) {
 			console.error(error);
-			status_error = error instanceof Error ? error.message : 'Unable to update tag.';
+			action_error = error instanceof Error ? error.message : 'Unable to update tag.';
 		} finally {
-			set_row_busy(tag_id, false);
+			set_row_busy(row.id, false);
 		}
 	}
 
-	async function remove_tag(tag_id: string) {
-		const tag = rows.find((r) => r.id === tag_id);
-		const tag_name = tag ? tag.name : 'this tag';
-		if (!window.confirm(`Delete tag "${tag_name}"? This cannot be undone.`)) {
+	async function remove_tag(row: TagListItem) {
+		if (!window.confirm(`Delete tag "${row.name}"? This cannot be undone.`)) {
 			return;
 		}
 
-		set_row_busy(tag_id, true);
+		set_row_busy(row.id, true);
 		clear_feedback();
 
 		try {
-			await delete_tag(tag_id);
-			status_message = 'Tag deleted.';
-			await load_rows();
+			await delete_tag(row.id);
+			action_message = 'Tag deleted.';
+			clear_draft(row.id);
+			await get_list_tags_query().refresh();
 		} catch (error) {
 			console.error(error);
-			status_error = error instanceof Error ? error.message : 'Unable to delete tag.';
+			action_error = error instanceof Error ? error.message : 'Unable to delete tag.';
 		} finally {
-			set_row_busy(tag_id, false);
+			set_row_busy(row.id, false);
 		}
 	}
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Tags</h1>
-		<p class="fs-2" style="color: var(--c-fg-2)">{filtered_rows.length} of {rows.length} tags</p>
-	</div>
+	<h1 class="h3">Tags</h1>
 
 	<div class="bg-shade-or-tint-light br-small" style="padding: var(--pad-medium)">
 		<div class="stack" style:--stack-gap="var(--pad-small)">
 			<span class="fs-2 fv-700">Create Tag</span>
-			<form
-				class="flex"
-				style="flex-wrap: wrap"
-				style:--flex-gap="var(--pad-small)"
-				onsubmit={(event) => {
-					event.preventDefault();
-					void create_new_tag();
-				}}
-			>
+			<form class="flex" style="flex-wrap: wrap" style:--flex-gap="var(--pad-small)" onsubmit={create_new_tag}>
 				<label class="stack" style:--stack-gap="0.35rem">
 					<span class="fs-2">Name</span>
 					<input type="text" bind:value={new_name} placeholder="JavaScript" required />
@@ -183,99 +179,107 @@
 		</div>
 	</div>
 
-	{#if status_message}
-		<p class="fs-2" style="color: var(--c-green)">{status_message}</p>
-	{/if}
+	{#await list_result_promise}
+		<p class="fs-2">Loading tags...</p>
+	{:then list_result}
+		{@const list_items = list_result.items}
+		{@const visible_ids = list_items.map((item) => item.id)}
 
-	{#if status_error}
-		<p class="fs-2" style="color: var(--c-red)">{status_error}</p>
-	{/if}
+		<AdminList
+			total={list_result.total}
+			page={list_result.page}
+			page_size={list_result.page_size}
+			total_pages={list_result.total_pages}
+			{on_page_change}
+			{visible_ids}
+		>
+			{#snippet filters()}
+				<div class="stack" style:--stack-gap="var(--pad-small)">
+					<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search tags" />
+					{#if show_clear_filters}
+						<div>
+							<a class="button small" href="/admin/tags">× Clear</a>
+						</div>
+					{/if}
+				</div>
+			{/snippet}
 
-	<input class="search-input" type="search" placeholder="Search tags" bind:value={search_text} />
-
-	<div class="table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Slug</th>
-					<th class="center">Usage count</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if loading}
-					<tr>
-						<td colspan="4">Loading tags...</td>
-					</tr>
-				{:else if filtered_rows.length === 0}
-					<tr>
-						<td colspan="4">No tags found.</td>
-					</tr>
-				{:else}
-					{#each filtered_rows as row (row.id)}
-						<tr>
-							<td>
-								<input
-									type="text"
-									value={get_draft(row.id).name}
-									oninput={(event) => {
-										const target = event.currentTarget;
-										if (!(target instanceof HTMLInputElement)) {
-											return;
-										}
-
-										set_draft(row.id, {
-											...get_draft(row.id),
-											name: target.value
-										});
-									}}
-								/>
-							</td>
-							<td>
-								<input
-									type="text"
-									value={get_draft(row.id).slug}
-									oninput={(event) => {
-										const target = event.currentTarget;
-										if (!(target instanceof HTMLInputElement)) {
-											return;
-										}
-
-										set_draft(row.id, {
-											...get_draft(row.id),
-											slug: target.value
-										});
-									}}
-								/>
-							</td>
-							<td class="center">{row.content_count}</td>
-							<td>
-								<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-									<button
-										class="small"
-										type="button"
-										onclick={() => save_tag(row.id)}
-										disabled={row_busy[row.id]}
-									>
-										Save
-									</button>
-									<button
-										class="small delete-btn"
-										type="button"
-										onclick={() => remove_tag(row.id)}
-										disabled={row_busy[row.id]}
-									>
-										Delete
-									</button>
-								</div>
-							</td>
-						</tr>
-					{/each}
+			{#snippet action_feedback()}
+				{#if action_message}
+					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
 				{/if}
-			</tbody>
-		</table>
-	</div>
+				{#if action_error}
+					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				{/if}
+			{/snippet}
+
+			{#snippet table_head(_params)}
+				<th>Name</th>
+				<th>Slug</th>
+				<th class="center">Usage count</th>
+				<th>Actions</th>
+			{/snippet}
+
+			{#snippet table_body(_params)}
+				{#each list_items as row (row.id)}
+					{@const draft = get_draft(row)}
+					<tr>
+						<td>
+							<input
+								type="text"
+								value={draft.name}
+								oninput={(event) => {
+									const target = event.currentTarget;
+									if (!(target instanceof HTMLInputElement)) return;
+									set_draft(row.id, { ...draft, name: target.value });
+								}}
+							/>
+						</td>
+						<td>
+							<input
+								type="text"
+								value={draft.slug}
+								oninput={(event) => {
+									const target = event.currentTarget;
+									if (!(target instanceof HTMLInputElement)) return;
+									set_draft(row.id, { ...draft, slug: target.value });
+								}}
+							/>
+						</td>
+						<td class="center">{row.content_count}</td>
+						<td>
+							<div class="flex" style:--flex-gap="var(--pad-xsmall)">
+								<button
+									class="small"
+									type="button"
+									onclick={() => save_tag(row)}
+									disabled={row_busy[row.id]}
+								>
+									Save
+								</button>
+								<button
+									class="small delete-btn"
+									type="button"
+									onclick={() => remove_tag(row)}
+									disabled={row_busy[row.id]}
+								>
+									Delete
+								</button>
+							</div>
+						</td>
+					</tr>
+				{/each}
+			{/snippet}
+
+			{#snippet empty()}
+				<tr>
+					<td colspan="4">No tags found.</td>
+				</tr>
+			{/snippet}
+		</AdminList>
+	{:catch}
+		<p class="fs-2" style="color: var(--c-red)">Unable to load tags. Please try again.</p>
+	{/await}
 </div>
 
 <style lang="postcss">
@@ -308,22 +312,5 @@
 		background: var(--c-red);
 		color: white;
 		border-color: var(--c-red);
-	}
-
-	.search-input {
-		width: 100%;
-		border: 1px solid var(--c-fg-1);
-		padding: 10px;
-		font-size: var(--fs-2);
-		outline-color: transparent;
-		background-color: transparent;
-		color: var(--c-fg);
-		font-family: var(--ff-body);
-		border-radius: var(--br-small);
-	}
-
-	.search-input:focus {
-		border-color: var(--c-primary);
-		outline: none;
 	}
 </style>

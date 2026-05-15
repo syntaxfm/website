@@ -1,26 +1,177 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { get_all_shows, import_all_shows, refresh_all } from './admin_podcast.remote';
+	import { goto } from '$app/navigation';
+	import { page as current_page } from '$app/state';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
+	import SelectMenu from '$lib/SelectMenu.svelte';
 	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '$lib/admin/admin_filters';
+	import {
+		bulk_update_show_status,
+		import_all_shows,
+		list_shows,
+		refresh_all
+	} from './admin_podcast.remote';
 
-	let search_text = $state('');
-	let shows = await get_all_shows();
+	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const BULK_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const FILTER_KEYS = ['q', 'status', 'date_from', 'date_to'] as const;
+	const PAGE_SIZE = 25;
 
-	let filtered_shows = $derived.by(() => {
-		const query = search_text.toLowerCase();
-		if (!query) return shows;
+	type ShowStatusFilter = (typeof STATUS_FILTERS)[number];
+	type ShowStatus = (typeof BULK_STATUSES)[number];
 
-		return shows.filter((show) => show.title.toLowerCase().includes(query));
-	});
+	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
+		value: value === 'ALL' ? '' : value,
+		label: value === 'ALL' ? 'All' : value
+	}));
+	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
+
+	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let status_filter = $derived(
+		read_picklist<ShowStatusFilter>(
+			current_page.url.searchParams,
+			'status',
+			STATUS_FILTERS,
+			'ALL'
+		)
+	);
+	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
+	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
+	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
+	let bulk_status = $derived(
+		read_picklist<ShowStatus>(
+			current_page.url.searchParams,
+			'bulk_status',
+			BULK_STATUSES,
+			'DRAFT'
+		)
+	);
+	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
+
+	let selected_ids = $state<string[]>([]);
+	let action_message = $state('');
+	let action_error = $state('');
+	let busy = $state(false);
+
+	type ShowListResult = Awaited<ReturnType<typeof list_shows>>;
+	type ShowListItem = ShowListResult['items'][number];
+
+	function get_list_shows_query() {
+		return list_shows({
+			search_text,
+			status: status_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			page: page_number,
+			page_size: PAGE_SIZE
+		});
+	}
+
+	let list_result_promise = $derived.by(() => get_list_shows_query());
+
+	function update_url(updates: Record<string, string | number | null | undefined>) {
+		void goto(build_url(current_page.url, updates), {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	function on_search_input(next_value: string) {
+		update_url({ q: next_value || null, page: null });
+	}
+
+	function on_status_select(next_value: string) {
+		update_url({ status: next_value || null, page: null });
+	}
+
+	function on_date_from_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_from: target.value || null, page: null });
+	}
+
+	function on_date_to_change(event: Event) {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) return;
+		update_url({ date_to: target.value || null, page: null });
+	}
+
+	function on_page_change(next_page: number) {
+		update_url({ page: next_page > 1 ? next_page : null });
+	}
+
+	function on_bulk_status_select(next_value: string) {
+		update_url({ bulk_status: next_value || null });
+	}
+
+	function clear_feedback() {
+		action_message = '';
+		action_error = '';
+	}
+
+	async function run_bulk_status_update() {
+		if (selected_ids.length === 0) {
+			action_error = 'Select at least one row first.';
+			return;
+		}
+
+		clear_feedback();
+		busy = true;
+
+		try {
+			const show_numbers = selected_ids
+				.map((id) => Number.parseInt(id, 10))
+				.filter((value) => Number.isFinite(value));
+
+			const result = await bulk_update_show_status({
+				show_numbers,
+				status: bulk_status
+			});
+
+			const skipped_suffix =
+				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
+			action_message = `Updated ${result.count} show(s) to ${bulk_status}.${skipped_suffix}`;
+			selected_ids = [];
+			await get_list_shows_query().refresh();
+		} catch (error) {
+			console.error(error);
+			action_error = 'Unable to update status. Please try again.';
+		} finally {
+			busy = false;
+		}
+	}
+
+	function to_show_type_label(show_row: ShowListItem): string {
+		switch (show_row.show_type) {
+			case 'HASTY':
+				return 'Hasty';
+			case 'TASTY':
+				return 'Tasty';
+			case 'SUPPER':
+				return 'Supper Club';
+			case 'SPECIAL':
+				return 'Special';
+			default:
+				return show_row.show_type;
+		}
+	}
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Shows</h1>
 		<AdminActions>
-			<a class="button small" href="/admin/content/podcast/new">Create Show</a>
+			<a class="button small" href="/admin/content/podcast/new">New Show</a>
 			<RemoteFormButton class="small" remote={import_all_shows}
 				>Sync Changed/New Shows</RemoteFormButton
 			>
@@ -31,100 +182,141 @@
 		</AdminActions>
 	</div>
 
-	<AdminSearch bind:text={search_text} />
+	{#await list_result_promise}
+		<p class="fs-2">Loading shows...</p>
+	{:then list_result}
+		{@const list_items = list_result.items}
+		{@const visible_ids = list_items.map((item) => String(item.number))}
 
-	<div class="table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>Number</th>
-					<th>Title</th>
-					<th>Type</th>
-					<th>Guests</th>
-					<th>Transcript</th>
-					<th>AI Notes</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if filtered_shows.length === 0}
-					<tr>
-						<td colspan="7">No shows found.</td>
-					</tr>
-				{:else}
-					{#each filtered_shows as show (show.number)}
-						<tr>
-							<td>
-								<a href={`/admin/content/podcast/${show.number}`}>#{show.number}</a>
-							</td>
-							<td>
-								<a
-									href={`/show/${show.number}/${show.slug}`}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									{show?.title}
-									[↗]
-								</a>
-								<br />
-								<span>
-									{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}
-									{format(show.date, 'EEE MMM d yyyy h:mm:ss a z')}
-								</span>
-							</td>
+		<AdminList
+			total={list_result.total}
+			page={list_result.page}
+			page_size={list_result.page_size}
+			total_pages={list_result.total_pages}
+			{on_page_change}
+			bind:selected_ids
+			{visible_ids}
+			{busy}
+		>
+			{#snippet filters()}
+				<div class="stack" style:--stack-gap="var(--pad-small)">
+					<AdminSearch text={search_text} on_input={on_search_input} />
+					<div
+						class="flex"
+						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					>
+						<SelectMenu
+							popover_id="filter-status"
+							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+							button_icon={'filter' as any}
+							value={status_filter === 'ALL' ? '' : status_filter}
+							options={STATUS_FILTER_OPTIONS}
+							onselect={on_status_select}
+						/>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">From</span>
+							<input type="date" value={date_from} onchange={on_date_from_change} />
+						</label>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">To</span>
+							<input type="date" value={date_to} onchange={on_date_to_change} />
+						</label>
+						{#if show_clear_filters}
+							<a class="button small" href="/admin/content/podcast">× Clear</a>
+						{/if}
+					</div>
+				</div>
+			{/snippet}
 
-							<td>
-								{#if format(show.date, 'EEE') === 'Mon'}
-									Hasty
-								{:else if format(show.date, 'EEE') === 'Wed'}
-									Tasty
-								{:else if format(show.date, 'EEE') === 'Fri'}
-									Supper Club
-								{/if}
-							</td>
+			{#snippet bulk()}
+				<div
+					class="flex"
+					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				>
+					<SelectMenu
+						popover_id="filter-bulk_status"
+						button_text={`Bulk status (${bulk_status})`}
+						button_icon={'filter' as any}
+						value={bulk_status}
+						options={BULK_STATUS_OPTIONS}
+						onselect={on_bulk_status_select}
+					/>
+					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+						Update status
+					</button>
+				</div>
+			{/snippet}
 
-							<td class="center">
-								<!-- {show._count.guests} -->
-							</td>
-							<td class="center">
-								<!-- {#if show.transcript}
-									✅ <FormWithLoader global={false} action="?/delete_transcript" method="post">
-										{#snippet children({ loading })}
-											<input type="hidden" name="show_number" value={show.number} />
-											<button class="warning" type="submit">{loading ? 'Deleting' : 'Delete'}</button>
-										{/snippet}
-									</FormWithLoader>
-								{:else}
-									<FormWithLoader global={false} action="?/fetch_show_transcript" method="post">
-										{#snippet children({ loading })}
-											<input type="hidden" name="show_number" value={show.number} />
-											<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-										{/snippet}
-									</FormWithLoader>
-								{/if} -->
-							</td>
-							<td class="center">
-								<!-- <FormWithLoader global={false} action="?/fetch_AI_notes" method="post">
-									{#snippet children({ loading })}
-										<fieldset disabled={loading}>
-											<input type="hidden" name="show_number" value={show.number} />
-											{#if show.aiShowNote}
-												✅
-												<button type="submit"> Refetch{loading ? 'ing' : ''}</button>
-											{:else}
-												<button type="submit">Fetch{loading ? 'ing' : ''}</button>
-											{/if}
-										</fieldset>
-									{/snippet}
-								</FormWithLoader> -->
-							</td>
-							<td>
-								<a href={`/admin/content/podcast/${show.number}`}>Edit</a>
-							</td>
-						</tr>
-					{/each}
+			{#snippet action_feedback()}
+				{#if action_message}
+					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
 				{/if}
-			</tbody>
-		</table>
-	</div>
+				{#if action_error}
+					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				{/if}
+			{/snippet}
+
+			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+				<th>
+					<input
+						type="checkbox"
+						aria-label="Select all rows on this page"
+						checked={all_visible_selected}
+						onchange={(event) => {
+							const target = event.currentTarget;
+							if (!(target instanceof HTMLInputElement)) return;
+							toggle_all_visible(target.checked);
+						}}
+					/>
+				</th>
+				<th>Number</th>
+				<th>Title</th>
+				<th>Status</th>
+				<th>Date</th>
+				<th>Show type</th>
+			{/snippet}
+
+			{#snippet table_body({ toggle_selected, is_selected })}
+				{#each list_items as show_row (show_row.number)}
+					{@const row_id = String(show_row.number)}
+					{@const public_link = `/show/${show_row.number}/${show_row.slug}`}
+					{@const edit_link = `/admin/content/podcast/${show_row.number}`}
+					<tr>
+						<td>
+							<input
+								type="checkbox"
+								aria-label={`Select ${show_row.title}`}
+								checked={is_selected(row_id)}
+								onchange={(event) => {
+									const target = event.currentTarget;
+									if (!(target instanceof HTMLInputElement)) return;
+									toggle_selected(row_id, target.checked);
+								}}
+							/>
+						</td>
+						<td>#{show_row.number}</td>
+						<td>
+							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+								<a href={public_link} target="_blank" rel="noopener noreferrer">
+									{show_row.title}
+								</a>
+								<a href={edit_link}>Edit</a>
+							</div>
+						</td>
+						<td>{show_row.meta ? show_row.meta.status : '-'}</td>
+						<td>{format(show_row.date, 'MMM d, yyyy')}</td>
+						<td>{to_show_type_label(show_row)}</td>
+					</tr>
+				{/each}
+			{/snippet}
+
+			{#snippet empty()}
+				<tr>
+					<td colspan="6">No matching shows found.</td>
+				</tr>
+			{/snippet}
+		</AdminList>
+	{:catch}
+		<p class="fs-2" style="color: var(--c-red)">Unable to load shows. Please try again.</p>
+	{/await}
 </div>
