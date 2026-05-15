@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Icon from '$lib/Icon.svelte';
 	import Dot from '$lib/utilities/Dot.svelte';
+	import { player } from '$state/player';
 	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
 	import get_show_path from '$utilities/slug';
 	import no_thumb from './no_thumb.png';
@@ -11,6 +13,7 @@
 			show: string;
 			thumbnail?: string | null;
 			youtube_url?: string | null;
+			url?: string | null;
 			number: number;
 			slug: string;
 		};
@@ -35,6 +38,16 @@
 			day: 'numeric'
 		})
 	);
+	let can_play_show = $derived(Boolean(show.url));
+
+	type PlayerShow = Parameters<typeof player.start_show>[0];
+
+	function on_play_overlay_click(event: MouseEvent) {
+		event.preventDefault();
+		event.stopPropagation();
+		if (!can_play_show) return;
+		void player.start_show(show as PlayerShow);
+	}
 </script>
 
 <a
@@ -47,13 +60,24 @@
 	<article
 		class={[type === 'list' ? 'flex bg-shade-or-tint-light show-list-view' : 'show-grid-view']}
 	>
-		<div>
+		<div class={['thumbnail-wrap', type === 'list' ? 'br-small' : 'br-medium']}>
 			<img
-				class={[type === 'list' ? 'br-small' : 'br-medium']}
 				style={type === 'list' ? 'width: 135px;' : 'width: 100%'}
 				src={thumbnail_src}
 				alt={show.title}
 			/>
+			{#if can_play_show}
+				<button
+					type="button"
+					class="thumbnail-play-overlay"
+					onclick={on_play_overlay_click}
+					aria-label={`Play episode ${show.number}: ${show.title}`}
+				>
+					<span class="play-icon-wrap" aria-hidden="true">
+						<Icon name="play" width={18} height={18} aria_hidden={true} />
+					</span>
+				</button>
+			{/if}
 		</div>
 		<div class={['stack', type === 'grid' && 'stack-reverse']} style:--stack-gap="0.5rem">
 			<h3 class="fs-body fv-700-i">{show.title}</h3>
@@ -85,10 +109,54 @@
 
 	.show-grid-view {
 		max-width: 300px;
+	}
+
+	.show-grid-view .thumbnail-wrap {
+		margin-bottom: 0.5rem;
+	}
+
+	.thumbnail-wrap {
+		position: relative;
+		overflow: hidden;
 
 		img {
-			margin-bottom: 0.5rem;
+			display: block;
 		}
+	}
+
+	.thumbnail-play-overlay {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		opacity: 0;
+		pointer-events: none;
+		background: color-mix(in lch, var(--c-black), transparent 55%);
+		border: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	.thumbnail-wrap:hover .thumbnail-play-overlay,
+	.thumbnail-wrap:focus-within .thumbnail-play-overlay {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.play-icon-wrap {
+		display: grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 9999px;
+		background: color-mix(in lch, var(--c-black), transparent 30%);
+		color: var(--c-white);
+	}
+
+	.thumbnail-play-overlay:focus-visible {
+		opacity: 1;
+		pointer-events: auto;
+		outline: 2px solid var(--c-primary);
+		outline-offset: -2px;
 	}
 
 	.flex {
