@@ -277,16 +277,20 @@
 		return null;
 	}
 
-	function to_edit_link(content_row: ContentListItem) {
+	function to_edit_link(content_row: ContentListItem): string | null {
 		if (content_row.type === 'ARTICLE') {
-			return `/admin/content/${content_row.id}/article`;
+			return `/admin/content/articles/${content_row.id}`;
 		}
 
 		if (content_row.type === 'PODCAST' && content_row.show) {
 			return `/admin/content/podcast/${content_row.show.number}`;
 		}
 
-		return `/admin/content/${content_row.id}`;
+		if (content_row.type === 'VIDEO') {
+			return `/admin/content/videos/${content_row.id}`;
+		}
+
+		return null;
 	}
 
 	function go_previous_page(page_number: number) {
@@ -475,6 +479,7 @@
 						</tr>
 					{:else}
 						{#each list_items as content_row (content_row.id)}
+							{@const edit_link = to_edit_link(content_row)}
 							<tr>
 								<td>
 									<input
@@ -495,7 +500,9 @@
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										<p>{content_row.title}</p>
 										<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-											<a href={to_edit_link(content_row)}>Edit</a>
+											{#if edit_link}
+												<a href={edit_link}>Edit</a>
+											{/if}
 											{#if to_public_link(content_row)}
 												<a
 													href={to_public_link(content_row) || '#'}
@@ -503,11 +510,6 @@
 													rel="noopener noreferrer">Public [↗]</a
 												>
 											{/if}
-											<a
-												href={`/preview/${content_row.id}`}
-												target="_blank"
-												rel="noopener noreferrer">Preview [↗]</a
-											>
 										</div>
 									</div>
 								</td>
@@ -521,7 +523,11 @@
 									{/if}
 								</td>
 								<td>
-									<a href={to_edit_link(content_row)}>Open</a>
+									{#if edit_link}
+										<a href={edit_link}>Open</a>
+									{:else}
+										-
+									{/if}
 								</td>
 							</tr>
 						{/each}

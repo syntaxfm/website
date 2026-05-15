@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AdminSearch from '../../../AdminSearch.svelte';
+	import AdminSearch from '../../../../AdminSearch.svelte';
 
-	import { get_playlist } from '../admin_videos.remote';
+	import { get_playlist } from '../../admin_videos.remote';
 	let search_text = $state('');
 
-	const playlist = $derived(await get_playlist(page.params.playlist_id!));
+	const playlist = $derived(await get_playlist(page.params.id!));
 
 	let filtered = $derived(
 		playlist?.videos?.filter((s) => s.video.title.toLowerCase().includes(search_text.toLowerCase()))

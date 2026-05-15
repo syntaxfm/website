@@ -336,9 +336,6 @@
 			<button type="button" onclick={sync_spotify} disabled={syncing_spotify || saving}>
 				{syncing_spotify ? 'Syncing Spotify...' : 'Sync Spotify'}
 			</button>
-			{#if show.meta?.id}
-				<a href={`/preview/${show.meta.id}`} target="_blank" rel="noopener noreferrer">Preview</a>
-			{/if}
 		</div>
 
 		<p class="fs-2">

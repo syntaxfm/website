@@ -41,7 +41,7 @@
 					{#each filtered_playlists as playlist (playlist.id)}
 						<tr>
 							<td>
-								<a href={`/admin/content/videos/${playlist.id}`}>
+								<a href={`/admin/content/videos/playlists/${playlist.id}`}>
 									{playlist.title}
 								</a>
 							</td>

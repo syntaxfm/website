@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import AdminActions from '../AdminActions.svelte';
-	import AdminSearch from '../AdminSearch.svelte';
+	import AdminActions from '../../AdminActions.svelte';
+	import AdminSearch from '../../AdminSearch.svelte';
 	import { goto } from '$app/navigation';
 	import { create_article, get_all_articles } from './admin_articles.remote';
 
@@ -34,7 +34,7 @@
 		creating = true;
 		try {
 			const created = await create_article({ title: 'Untitled Article' });
-			await goto(`/admin/content/${created.content_id}/article`);
+			await goto(`/admin/content/articles/${created.content_id}`);
 		} catch (error) {
 			console.error(error);
 			create_error = error instanceof Error ? error.message : 'Unable to create article.';
@@ -79,7 +79,7 @@
 					{#each filtered_articles as article_item (article_item.id)}
 						<tr>
 							<td>
-								<a href={`/admin/content/${article_item.content_id}/article`}>
+								<a href={`/admin/content/articles/${article_item.content_id}`}>
 									{article_item.meta.title}
 								</a>
 							</td>
@@ -95,7 +95,7 @@
 								{/if}
 							</td>
 							<td>
-								<a href={`/admin/content/${article_item.content_id}/article`}>Edit</a>
+								<a href={`/admin/content/articles/${article_item.content_id}`}>Edit</a>
 							</td>
 						</tr>
 					{/each}

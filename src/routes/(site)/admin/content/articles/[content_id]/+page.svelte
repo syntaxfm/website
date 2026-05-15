@@ -9,7 +9,7 @@
 		get_article_authors,
 		get_article_editor,
 		update_article
-	} from '../../../articles/admin_articles.remote';
+	} from '../admin_articles.remote';
 
 	type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
 
