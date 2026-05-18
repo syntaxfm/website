@@ -24,15 +24,11 @@
 	let creating = $state(false);
 	let create_error = $state('');
 
-	function get_list_playlists_query() {
-		return list_playlists({
-			search_text,
-			page: page_number,
-			page_size: PAGE_SIZE
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_list_playlists_query());
+	const list_result = await list_playlists({
+		search_text,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -40,14 +36,6 @@
 			keepFocus: true,
 			noScroll: true
 		});
-	}
-
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	async function create_new_playlist(event: Event) {
@@ -95,66 +83,61 @@
 		<p class="fs-2" style="color: var(--c-red)">{create_error}</p>
 	{/if}
 
-	{#await list_result_promise}
-		<p class="fs-2">Loading playlists...</p>
-	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => item.id)}
+	<AdminList
+		total={list_result.total}
+		page={list_result.page}
+		page_size={list_result.page_size}
+		total_pages={list_result.total_pages}
+		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
+		visible_ids={list_result.items.map((item) => item.id)}
+	>
+		{#snippet filters()}
+			<div class="stack" style:--stack-gap="var(--pad-small)">
+				<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+					placeholder="Search playlists"
+				/>
+				{#if show_clear_filters}
+					<div class="flex" style="--flex-gap: var(--pad-small)">
+						<a class="button small" href="/admin/content/videos/playlists">× Clear</a>
+					</div>
+				{/if}
+			</div>
+		{/snippet}
 
-		<AdminList
-			total={list_result.total}
-			page={list_result.page}
-			page_size={list_result.page_size}
-			total_pages={list_result.total_pages}
-			{on_page_change}
-			{visible_ids}
-		>
-			{#snippet filters()}
-				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search playlists" />
-					{#if show_clear_filters}
-						<div class="flex" style="--flex-gap: var(--pad-small)">
-							<a class="button small" href="/admin/content/videos/playlists">× Clear</a>
-						</div>
-					{/if}
-				</div>
-			{/snippet}
+		{#snippet table_head()}
+			<th>Title</th>
+			<th>Slug</th>
+			<th>Videos count</th>
+			<th>Created</th>
+		{/snippet}
 
-			{#snippet table_head()}
-				<th>Title</th>
-				<th>Slug</th>
-				<th>Videos count</th>
-				<th>Created</th>
-			{/snippet}
-
-			{#snippet table_body()}
-				{#each list_items as playlist_row (playlist_row.id)}
-					<tr>
-						<td>
-							<a href={`/admin/content/videos/playlists/${playlist_row.id}`}>
-								{playlist_row.title}
-							</a>
-						</td>
-						<td>/{playlist_row.slug}</td>
-						<td>{playlist_row.videos.length}</td>
-						<td>
-							{#if playlist_row.created_at}
-								{format(playlist_row.created_at, 'MMM d, yyyy')}
-							{:else}
-								-
-							{/if}
-						</td>
-					</tr>
-				{/each}
-			{/snippet}
-
-			{#snippet empty()}
+		{#snippet table_body()}
+			{#each list_result.items as playlist_row (playlist_row.id)}
 				<tr>
-					<td colspan="4">No playlists found.</td>
+					<td>
+						<a href={`/admin/content/videos/playlists/${playlist_row.id}`}>
+							{playlist_row.title}
+						</a>
+					</td>
+					<td>/{playlist_row.slug}</td>
+					<td>{playlist_row.videos.length}</td>
+					<td>
+						{#if playlist_row.created_at}
+							{format(playlist_row.created_at, 'MMM d, yyyy')}
+						{:else}
+							-
+						{/if}
+					</td>
 				</tr>
-			{/snippet}
-		</AdminList>
-	{:catch}
-		<p class="fs-2" style="color: var(--c-red)">Unable to load playlists. Please try again.</p>
-	{/await}
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="4">No playlists found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

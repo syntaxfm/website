@@ -67,6 +67,7 @@
 	let order = $derived(
 		read_picklist<SubmissionOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
 	);
+
 	let page_size_value = $derived(
 		read_picklist<PageSizeValue>(
 			current_page.url.searchParams,
@@ -75,6 +76,7 @@
 			DEFAULT_PAGE_SIZE
 		)
 	);
+
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
 	let bulk_status = $derived(
 		read_picklist<SubmissionStatus>(
@@ -91,18 +93,14 @@
 	let action_error = $state('');
 	let busy = $state(false);
 
-	function get_submissions_query() {
-		return get_submissions({
-			search_text,
-			status: status_filter,
-			submission_type: type_filter,
-			order,
-			page: page_number,
-			page_size: Number.parseInt(page_size_value, 10)
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_submissions_query());
+	const submission_results = await get_submissions({
+		search_text,
+		status: status_filter,
+		submission_type: type_filter,
+		order,
+		page: page_number,
+		page_size: Number.parseInt(page_size_value, 10)
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -123,7 +121,14 @@
 		try {
 			await update_submission_status({ id: submission_id, status: next_status });
 			action_message = `Updated submission to ${next_status}.`;
-			await get_submissions_query().refresh();
+			await get_submissions({
+				search_text,
+				status: status_filter,
+				submission_type: type_filter,
+				order,
+				page: page_number,
+				page_size: Number.parseInt(page_size_value, 10)
+			}).refresh();
 		} catch (error_value) {
 			console.error('update_submission_status failed', error_value);
 			action_error = 'Unable to update submission status. Please try again.';
@@ -141,7 +146,14 @@
 			await delete_submission({ id: submission_id });
 			action_message = 'Submission deleted.';
 			selected_submission_ids = selected_submission_ids.filter((id) => id !== submission_id);
-			await get_submissions_query().refresh();
+			await get_submissions({
+				search_text,
+				status: status_filter,
+				submission_type: type_filter,
+				order,
+				page: page_number,
+				page_size: Number.parseInt(page_size_value, 10)
+			}).refresh();
 		} catch (error_value) {
 			console.error('delete_submission failed', error_value);
 			action_error = 'Unable to delete submission. Please try again.';
@@ -165,7 +177,14 @@
 			});
 			action_message = `Updated ${result.count} submission(s) to ${bulk_status}.`;
 			selected_submission_ids = [];
-			await get_submissions_query().refresh();
+			await get_submissions({
+				search_text,
+				status: status_filter,
+				submission_type: type_filter,
+				order,
+				page: page_number,
+				page_size: Number.parseInt(page_size_value, 10)
+			}).refresh();
 		} catch (error_value) {
 			console.error('bulk_update_submission_status failed', error_value);
 			action_error = 'Unable to update submissions. Please try again.';
@@ -195,7 +214,14 @@
 			});
 			action_message = `Deleted ${result.deleted_count} submission(s).`;
 			selected_submission_ids = [];
-			await get_submissions_query().refresh();
+			await get_submissions({
+				search_text,
+				status: status_filter,
+				submission_type: type_filter,
+				order,
+				page: page_number,
+				page_size: Number.parseInt(page_size_value, 10)
+			}).refresh();
 		} catch (error_value) {
 			console.error('bulk_delete_submissions failed', error_value);
 			action_error = 'Unable to delete submissions. Please try again.';
@@ -206,7 +232,7 @@
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
-	{#await list_result_promise}
+	{#await submission_results}
 		<h1 class="h3">Submissions</h1>
 		<p class="fs-2">Loading submissions...</p>
 	{:then list_result}

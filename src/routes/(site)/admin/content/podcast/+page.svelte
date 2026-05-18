@@ -65,18 +65,14 @@
 	type ShowListResult = Awaited<ReturnType<typeof list_shows>>;
 	type ShowListItem = ShowListResult['items'][number];
 
-	function get_list_shows_query() {
-		return list_shows({
-			search_text,
-			status: status_filter,
-			date_from_iso: date_from || undefined,
-			date_to_iso: date_to || undefined,
-			page: page_number,
-			page_size: PAGE_SIZE
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_list_shows_query());
+	const list_result = await list_shows({
+		search_text,
+		status: status_filter,
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -114,7 +110,14 @@
 				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
 			action_message = `Updated ${result.count} show(s) to ${bulk_status}.${skipped_suffix}`;
 			selected_ids = [];
-			await get_list_shows_query().refresh();
+			await list_shows({
+				search_text,
+				status: status_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to update status. Please try again.';
@@ -154,154 +157,145 @@
 		</AdminActions>
 	</div>
 
-	{#await list_result_promise}
-		<p class="fs-2">Loading shows...</p>
-	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => String(item.number))}
-
-		<AdminList
-			total={list_result.total}
-			page={list_result.page}
-			page_size={list_result.page_size}
-			total_pages={list_result.total_pages}
-			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
-			bind:selected_ids
-			{visible_ids}
-			{busy}
-		>
-			{#snippet filters()}
-				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch
-					text={search_text}
-					on_input={(value) => update_url({ q: value || null, page: null })}
-				/>
-					<div
-						class="flex"
-						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
-					>
-						<SelectMenu
-							popover_id="filter-status"
-							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-							button_icon={'filter' as any}
-							value={status_filter === 'ALL' ? '' : status_filter}
-							options={STATUS_FILTER_OPTIONS}
-							onselect={(value) => update_url({ status: value || null, page: null })}
-						/>
-						<label class="stack" style="--stack-gap: 2px">
-							<span class="fs-1">From</span>
-							<input
-								type="date"
-								value={date_from}
-								onchange={(e) =>
-									update_url({ date_from: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						<label class="stack" style="--stack-gap: 2px">
-							<span class="fs-1">To</span>
-							<input
-								type="date"
-								value={date_to}
-								onchange={(e) =>
-									update_url({ date_to: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						{#if show_clear_filters}
-							<a class="button small" href="/admin/content/podcast">× Clear</a>
-						{/if}
-					</div>
-				</div>
-			{/snippet}
-
-			{#snippet bulk()}
+	<AdminList
+		total={list_result.total}
+		page={list_result.page}
+		page_size={list_result.page_size}
+		total_pages={list_result.total_pages}
+		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
+		bind:selected_ids
+		visible_ids={list_result.items.map((item) => String(item.number))}
+		{busy}
+	>
+		{#snippet filters()}
+			<div class="stack" style:--stack-gap="var(--pad-small)">
+				<AdminSearch
+				text={search_text}
+				on_input={(value) => update_url({ q: value || null, page: null })}
+			/>
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 				>
 					<SelectMenu
-						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${bulk_status})`}
+						popover_id="filter-status"
+						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
 						button_icon={'filter' as any}
-						value={bulk_status}
-						options={BULK_STATUS_OPTIONS}
-						onselect={(value) => update_url({ bulk_status: value || null })}
+						value={status_filter === 'ALL' ? '' : status_filter}
+						options={STATUS_FILTER_OPTIONS}
+						onselect={(value) => update_url({ status: value || null, page: null })}
 					/>
-					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
-						Update status
-					</button>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">From</span>
+						<input
+							type="date"
+							value={date_from}
+							onchange={(e) =>
+								update_url({ date_from: e.currentTarget.value || null, page: null })}
+						/>
+					</label>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">To</span>
+						<input
+							type="date"
+							value={date_to}
+							onchange={(e) =>
+								update_url({ date_to: e.currentTarget.value || null, page: null })}
+						/>
+					</label>
+					{#if show_clear_filters}
+						<a class="button small" href="/admin/content/podcast">× Clear</a>
+					{/if}
 				</div>
-			{/snippet}
+			</div>
+		{/snippet}
 
-			{#snippet action_feedback()}
-				{#if action_message}
-					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
-				{/if}
-				{#if action_error}
-					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
-				{/if}
-			{/snippet}
+		{#snippet bulk()}
+			<div
+				class="flex"
+				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+			>
+				<SelectMenu
+					popover_id="filter-bulk_status"
+					button_text={`Bulk status (${bulk_status})`}
+					button_icon={'filter' as any}
+					value={bulk_status}
+					options={BULK_STATUS_OPTIONS}
+					onselect={(value) => update_url({ bulk_status: value || null })}
+				/>
+				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+					Update status
+				</button>
+			</div>
+		{/snippet}
 
-			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
-				<th>
-					<input
-						type="checkbox"
-						aria-label="Select all rows on this page"
-						checked={all_visible_selected}
-						onchange={(event) => {
-							const target = event.currentTarget;
-							if (!(target instanceof HTMLInputElement)) return;
-							toggle_all_visible(target.checked);
-						}}
-					/>
-				</th>
-				<th>Number</th>
-				<th>Title</th>
-				<th>Status</th>
-				<th>Date</th>
-				<th>Show type</th>
-			{/snippet}
+		{#snippet action_feedback()}
+			{#if action_message}
+				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+			{/if}
+			{#if action_error}
+				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+			{/if}
+		{/snippet}
 
-			{#snippet table_body({ toggle_selected, is_selected })}
-				{#each list_items as show_row (show_row.number)}
-					{@const row_id = String(show_row.number)}
-					{@const public_link = `/show/${show_row.number}/${show_row.slug}`}
-					{@const edit_link = `/admin/content/podcast/${show_row.number}`}
-					<tr>
-						<td>
-							<input
-								type="checkbox"
-								aria-label={`Select ${show_row.title}`}
-								checked={is_selected(row_id)}
-								onchange={(event) => {
-									const target = event.currentTarget;
-									if (!(target instanceof HTMLInputElement)) return;
-									toggle_selected(row_id, target.checked);
-								}}
-							/>
-						</td>
-						<td>#{show_row.number}</td>
-						<td>
-							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-								<a href={public_link} target="_blank" rel="noopener noreferrer">
-									{show_row.title}
-								</a>
-								<a href={edit_link}>Edit</a>
-							</div>
-						</td>
-						<td>{show_row.meta ? show_row.meta.status : '-'}</td>
-						<td>{format(show_row.date, 'MMM d, yyyy')}</td>
-						<td>{to_show_type_label(show_row)}</td>
-					</tr>
-				{/each}
-			{/snippet}
+		{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+			<th>
+				<input
+					type="checkbox"
+					aria-label="Select all rows on this page"
+					checked={all_visible_selected}
+					onchange={(event) => {
+						const target = event.currentTarget;
+						if (!(target instanceof HTMLInputElement)) return;
+						toggle_all_visible(target.checked);
+					}}
+				/>
+			</th>
+			<th>Number</th>
+			<th>Title</th>
+			<th>Status</th>
+			<th>Date</th>
+			<th>Show type</th>
+		{/snippet}
 
-			{#snippet empty()}
+		{#snippet table_body({ toggle_selected, is_selected })}
+			{#each list_result.items as show_row (show_row.number)}
+				{@const row_id = String(show_row.number)}
+				{@const public_link = `/show/${show_row.number}/${show_row.slug}`}
+				{@const edit_link = `/admin/content/podcast/${show_row.number}`}
 				<tr>
-					<td colspan="6">No matching shows found.</td>
+					<td>
+						<input
+							type="checkbox"
+							aria-label={`Select ${show_row.title}`}
+							checked={is_selected(row_id)}
+							onchange={(event) => {
+								const target = event.currentTarget;
+								if (!(target instanceof HTMLInputElement)) return;
+								toggle_selected(row_id, target.checked);
+							}}
+						/>
+					</td>
+					<td>#{show_row.number}</td>
+					<td>
+						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+							<a href={public_link} target="_blank" rel="noopener noreferrer">
+								{show_row.title}
+							</a>
+							<a href={edit_link}>Edit</a>
+						</div>
+					</td>
+					<td>{show_row.meta ? show_row.meta.status : '-'}</td>
+					<td>{format(show_row.date, 'MMM d, yyyy')}</td>
+					<td>{to_show_type_label(show_row)}</td>
 				</tr>
-			{/snippet}
-		</AdminList>
-	{:catch}
-		<p class="fs-2" style="color: var(--c-red)">Unable to load shows. Please try again.</p>
-	{/await}
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="6">No matching shows found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

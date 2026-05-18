@@ -45,15 +45,11 @@
 
 	void load_role_options();
 
-	function get_list_users_query() {
-		return list_users({
-			search_text: search_text || undefined,
-			page: page_number,
-			page_size: PAGE_SIZE
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_list_users_query());
+	const list_result = await list_users({
+		search_text: search_text || undefined,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -92,7 +88,11 @@
 				role_options.find((role_item) => role_item.id === bulk_role_id)?.name ?? 'role';
 			action_message = `Assigned ${role_name} to ${result.count} user(s).`;
 			selected_user_ids = [];
-			await get_list_users_query().refresh();
+			await list_users({
+				search_text: search_text || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to assign role. Please try again.';
@@ -125,7 +125,11 @@
 				role_options.find((role_item) => role_item.id === bulk_role_id)?.name ?? 'role';
 			action_message = `Removed ${role_name} from ${selected_user_ids.length} user(s).`;
 			selected_user_ids = [];
-			await get_list_users_query().refresh();
+			await list_users({
+				search_text: search_text || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to remove role. Please try again.';
@@ -158,132 +162,123 @@
 		</AdminActions>
 	</div>
 
-	{#await list_result_promise}
-		<p class="fs-2">Loading users...</p>
-	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => item.id)}
+	<AdminList
+		total={list_result.total}
+		page={list_result.page}
+		page_size={list_result.page_size}
+		total_pages={list_result.total_pages}
+		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
+		bind:selected_ids={selected_user_ids}
+		visible_ids={list_result.items.map((item) => item.id)}
+		{busy}
+	>
+		{#snippet filters()}
+			<AdminSearch
+				text={search_text}
+				on_input={(value) => update_url({ q: value || null, page: null })}
+				placeholder="Search users"
+			/>
+		{/snippet}
 
-		<AdminList
-			total={list_result.total}
-			page={list_result.page}
-			page_size={list_result.page_size}
-			total_pages={list_result.total_pages}
-			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
-			bind:selected_ids={selected_user_ids}
-			{visible_ids}
-			{busy}
-		>
-			{#snippet filters()}
-				<AdminSearch
-					text={search_text}
-					on_input={(value) => update_url({ q: value || null, page: null })}
-					placeholder="Search users"
+		{#snippet bulk()}
+			<div
+				class="flex"
+				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+			>
+				<SelectMenu
+					popover_id="filter-bulk_role"
+					button_text={`Role (${bulk_role_label})`}
+					value={bulk_role_id}
+					options={role_select_options}
+					onselect={(value) => (bulk_role_id = value)}
 				/>
-			{/snippet}
-
-			{#snippet bulk()}
-				<div
-					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				<button
+					type="button"
+					onclick={run_bulk_assign}
+					disabled={busy || !bulk_role_id}
 				>
-					<SelectMenu
-						popover_id="filter-bulk_role"
-						button_text={`Role (${bulk_role_label})`}
-						value={bulk_role_id}
-						options={role_select_options}
-						onselect={(value) => (bulk_role_id = value)}
-					/>
-					<button
-						type="button"
-						onclick={run_bulk_assign}
-						disabled={busy || !bulk_role_id}
-					>
-						Assign role
-					</button>
-					<button
-						type="button"
-						onclick={run_bulk_remove}
-						disabled={busy || !bulk_role_id}
-					>
-						Remove role
-					</button>
-				</div>
-			{/snippet}
+					Assign role
+				</button>
+				<button
+					type="button"
+					onclick={run_bulk_remove}
+					disabled={busy || !bulk_role_id}
+				>
+					Remove role
+				</button>
+			</div>
+		{/snippet}
 
-			{#snippet action_feedback()}
-				{#if action_message}
-					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
-				{/if}
-				{#if action_error}
-					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
-				{/if}
-			{/snippet}
+		{#snippet action_feedback()}
+			{#if action_message}
+				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+			{/if}
+			{#if action_error}
+				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+			{/if}
+		{/snippet}
 
-			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
-				<th>
-					<input
-						type="checkbox"
-						aria-label="Select all rows on this page"
-						checked={all_visible_selected}
-						onchange={(event) => {
-							const target = event.currentTarget;
-							if (!(target instanceof HTMLInputElement)) return;
-							toggle_all_visible(target.checked);
-						}}
-					/>
-				</th>
-				<th>Name / Email</th>
-				<th>Roles</th>
-				<th>Created</th>
-			{/snippet}
+		{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+			<th>
+				<input
+					type="checkbox"
+					aria-label="Select all rows on this page"
+					checked={all_visible_selected}
+					onchange={(event) => {
+						const target = event.currentTarget;
+						if (!(target instanceof HTMLInputElement)) return;
+						toggle_all_visible(target.checked);
+					}}
+				/>
+			</th>
+			<th>Name / Email</th>
+			<th>Roles</th>
+			<th>Created</th>
+		{/snippet}
 
-			{#snippet table_body({ toggle_selected, is_selected })}
-				{#each list_items as user_row (user_row.id)}
-					<tr>
-						<td>
-							<input
-								type="checkbox"
-								aria-label={`Select ${user_row.username || user_row.email || user_row.id}`}
-								checked={is_selected(user_row.id)}
-								onchange={(event) => {
-									const target = event.currentTarget;
-									if (!(target instanceof HTMLInputElement)) return;
-									toggle_selected(user_row.id, target.checked);
-								}}
-							/>
-						</td>
-						<td>
-							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-								<p>{user_row.username || '-'}</p>
-								{#if user_row.name}
-									<p class="fs-2">{user_row.name}</p>
-								{/if}
-								{#if user_row.email}
-									<p class="fs-2">{user_row.email}</p>
-								{/if}
-								<a href={`/admin/users/${user_row.id}`}>Edit</a>
-							</div>
-						</td>
-						<td>{format_roles(user_row)}</td>
-						<td>
-							{#if user_row.created_at}
-								{format(user_row.created_at, 'MMM d, yyyy')}
-							{:else}
-								-
-							{/if}
-						</td>
-					</tr>
-				{/each}
-			{/snippet}
-
-			{#snippet empty()}
+		{#snippet table_body({ toggle_selected, is_selected })}
+			{#each list_result.items as user_row (user_row.id)}
 				<tr>
-					<td colspan="4">No matching users found.</td>
+					<td>
+						<input
+							type="checkbox"
+							aria-label={`Select ${user_row.username || user_row.email || user_row.id}`}
+							checked={is_selected(user_row.id)}
+							onchange={(event) => {
+								const target = event.currentTarget;
+								if (!(target instanceof HTMLInputElement)) return;
+								toggle_selected(user_row.id, target.checked);
+							}}
+						/>
+					</td>
+					<td>
+						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+							<p>{user_row.username || '-'}</p>
+							{#if user_row.name}
+								<p class="fs-2">{user_row.name}</p>
+							{/if}
+							{#if user_row.email}
+								<p class="fs-2">{user_row.email}</p>
+							{/if}
+							<a href={`/admin/users/${user_row.id}`}>Edit</a>
+						</div>
+					</td>
+					<td>{format_roles(user_row)}</td>
+					<td>
+						{#if user_row.created_at}
+							{format(user_row.created_at, 'MMM d, yyyy')}
+						{:else}
+							-
+						{/if}
+					</td>
 				</tr>
-			{/snippet}
-		</AdminList>
-	{:catch}
-		<p class="fs-2" style="color: var(--c-red)">Unable to load users. Please try again.</p>
-	{/await}
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="4">No matching users found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

@@ -22,15 +22,11 @@
 	let new_guest_name = $state('');
 	let creating_guest = $state(false);
 
-	function get_list_guests_query() {
-		return list_guests({
-			search_text,
-			page: page_number,
-			page_size: PAGE_SIZE
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_list_guests_query());
+	const list_result = await list_guests({
+		search_text,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -38,14 +34,6 @@
 			keepFocus: true,
 			noScroll: true
 		});
-	}
-
-	function on_search_input(next_value: string) {
-		update_url({ q: next_value || null, page: null });
-	}
-
-	function on_page_change(next_page: number) {
-		update_url({ page: next_page > 1 ? next_page : null });
 	}
 
 	function clear_feedback() {
@@ -100,95 +88,90 @@
 		</form>
 	</AdminActions>
 
-	{#await list_result_promise}
-		<p class="fs-2">Loading guests...</p>
-	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => item.id)}
-
-		<AdminList
-			total={list_result.total}
-			page={list_result.page}
-			page_size={list_result.page_size}
-			total_pages={list_result.total_pages}
-			{on_page_change}
-			bind:selected_ids={selected_guest_ids}
-			{visible_ids}
-			{busy}
-		>
-			{#snippet filters()}
-				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch text={search_text} on_input={on_search_input} placeholder="Search guests" />
-					{#if show_clear_filters}
-						<div class="flex" style:--flex-gap="var(--pad-small)">
-							<a class="button small" href="/admin/guests">× Clear</a>
-						</div>
-					{/if}
-				</div>
-			{/snippet}
-
-			{#snippet action_feedback()}
-				{#if action_message}
-					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+	<AdminList
+		total={list_result.total}
+		page={list_result.page}
+		page_size={list_result.page_size}
+		total_pages={list_result.total_pages}
+		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
+		bind:selected_ids={selected_guest_ids}
+		visible_ids={list_result.items.map((item) => item.id)}
+		{busy}
+	>
+		{#snippet filters()}
+			<div class="stack" style:--stack-gap="var(--pad-small)">
+				<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+					placeholder="Search guests"
+				/>
+				{#if show_clear_filters}
+					<div class="flex" style:--flex-gap="var(--pad-small)">
+						<a class="button small" href="/admin/guests">× Clear</a>
+					</div>
 				{/if}
-				{#if action_error}
-					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
-				{/if}
-			{/snippet}
+			</div>
+		{/snippet}
 
-			{#snippet table_head()}
-				<th>Name</th>
-				<th>Slug</th>
-				<th>Twitter</th>
-				<th>GitHub</th>
-				<th>Title</th>
-			{/snippet}
+		{#snippet action_feedback()}
+			{#if action_message}
+				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+			{/if}
+			{#if action_error}
+				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+			{/if}
+		{/snippet}
 
-			{#snippet table_body()}
-				{#each list_items as guest_row (guest_row.id)}
-					<tr>
-						<td>
-							<a href={`/admin/guests/${guest_row.id}`}>{guest_row.name}</a>
-						</td>
-						<td>/{guest_row.name_slug}</td>
-						<td>
-							{#if guest_row.twitter}
-								<a
-									href={`https://twitter.com/${guest_row.twitter}`}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									[↗]
-								</a>
-							{:else}
-								-
-							{/if}
-						</td>
-						<td>
-							{#if guest_row.github}
-								<a
-									href={`https://github.com/${guest_row.github}`}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									[↗]
-								</a>
-							{:else}
-								-
-							{/if}
-						</td>
-						<td>{guest_row.of || '-'}</td>
-					</tr>
-				{/each}
-			{/snippet}
+		{#snippet table_head()}
+			<th>Name</th>
+			<th>Slug</th>
+			<th>Twitter</th>
+			<th>GitHub</th>
+			<th>Title</th>
+		{/snippet}
 
-			{#snippet empty()}
+		{#snippet table_body()}
+			{#each list_result.items as guest_row (guest_row.id)}
 				<tr>
-					<td colspan="5">No matching guests found.</td>
+					<td>
+						<a href={`/admin/guests/${guest_row.id}`}>{guest_row.name}</a>
+					</td>
+					<td>/{guest_row.name_slug}</td>
+					<td>
+						{#if guest_row.twitter}
+							<a
+								href={`https://twitter.com/${guest_row.twitter}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								[↗]
+							</a>
+						{:else}
+							-
+						{/if}
+					</td>
+					<td>
+						{#if guest_row.github}
+							<a
+								href={`https://github.com/${guest_row.github}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								[↗]
+							</a>
+						{:else}
+							-
+						{/if}
+					</td>
+					<td>{guest_row.of || '-'}</td>
 				</tr>
-			{/snippet}
-		</AdminList>
-	{:catch}
-		<p class="fs-2" style="color: var(--c-red)">Unable to load guests. Please try again.</p>
-	{/await}
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="5">No matching guests found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

@@ -100,19 +100,15 @@
 
 	void load_bulk_tag_options();
 
-	function get_list_content_query() {
-		return list_content({
-			search_text,
-			status: status_filter,
-			type: type_filter,
-			date_from_iso: date_from || undefined,
-			date_to_iso: date_to || undefined,
-			page: page_number,
-			page_size: PAGE_SIZE
-		});
-	}
-
-	let list_result_promise = $derived.by(() => get_list_content_query());
+	const list_result = await list_content({
+		search_text,
+		status: status_filter,
+		type: type_filter,
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -143,7 +139,15 @@
 			});
 			action_message = `Updated ${result.count} item(s) to ${bulk_status}.`;
 			selected_content_ids = [];
-			await get_list_content_query().refresh();
+			await list_content({
+				search_text,
+				status: status_filter,
+				type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to update status. Please try again.';
@@ -174,7 +178,15 @@
 
 			action_message = `Deleted ${result.deleted_count} item(s). Skipped ${result.skipped_count} non-article item(s).`;
 			selected_content_ids = [];
-			await get_list_content_query().refresh();
+			await list_content({
+				search_text,
+				status: status_filter,
+				type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to delete selected rows. Please try again.';
@@ -206,7 +218,15 @@
 
 			action_message = `Added ${bulk_selected_tag_ids.length} tag(s) to ${selected_content_ids.length} item(s). (${result.count} assignment(s) processed)`;
 			selected_content_ids = [];
-			await get_list_content_query().refresh();
+			await list_content({
+				search_text,
+				status: status_filter,
+				type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to add tags to selected rows. Please try again.';
@@ -238,7 +258,15 @@
 
 			action_message = `Removed ${bulk_selected_tag_ids.length} tag(s) from ${selected_content_ids.length} item(s).`;
 			selected_content_ids = [];
-			await get_list_content_query().refresh();
+			await list_content({
+				search_text,
+				status: status_filter,
+				type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
+				page: page_number,
+				page_size: PAGE_SIZE
+			}).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to remove tags from selected rows. Please try again.';
@@ -279,195 +307,186 @@
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<h1 class="h3">Content</h1>
 
-	{#await list_result_promise}
-		<p class="fs-2">Loading content...</p>
-	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => item.id)}
-
-		<AdminList
-			total={list_result.total}
-			page={list_result.page}
-			page_size={list_result.page_size}
-			total_pages={list_result.total_pages}
-			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
-			bind:selected_ids={selected_content_ids}
-			{visible_ids}
-			{busy}
-		>
-			{#snippet filters()}
-				<div class="stack" style:--stack-gap="var(--pad-small)">
-					<AdminSearch
-						text={search_text}
-						on_input={(value) => update_url({ q: value || null, page: null })}
-					/>
-					<div
-						class="flex"
-						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
-					>
-						<SelectMenu
-							popover_id="filter-status"
-							button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-							button_icon={'filter' as any}
-							value={status_filter === 'ALL' ? '' : status_filter}
-							options={STATUS_FILTER_OPTIONS}
-							onselect={(value) => update_url({ status: value || null, page: null })}
-						/>
-						<SelectMenu
-							popover_id="filter-type"
-							button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
-							button_icon={'filter' as any}
-							value={type_filter === 'ALL' ? '' : type_filter}
-							options={TYPE_FILTER_OPTIONS}
-							onselect={(value) => update_url({ type: value || null, page: null })}
-						/>
-						<label class="stack" style="--stack-gap: 2px">
-							<span class="fs-1">From</span>
-							<input
-								type="date"
-								value={date_from}
-								onchange={(e) =>
-									update_url({ date_from: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						<label class="stack" style="--stack-gap: 2px">
-							<span class="fs-1">To</span>
-							<input
-								type="date"
-								value={date_to}
-								onchange={(e) =>
-									update_url({ date_to: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						{#if show_clear_filters}
-							<a class="button small" href="/admin/content">× Clear</a>
-						{/if}
-					</div>
-				</div>
-			{/snippet}
-
-			{#snippet bulk()}
-				<MultiSelect
-					options={bulk_tag_options}
-					bind:selected_ids={bulk_selected_tag_ids}
-					label="Tags"
-					placeholder="Search tags"
+	<AdminList
+		total={list_result.total}
+		page={list_result.page}
+		page_size={list_result.page_size}
+		total_pages={list_result.total_pages}
+		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
+		bind:selected_ids={selected_content_ids}
+		visible_ids={list_result.items.map((item) => item.id)}
+		{busy}
+	>
+		{#snippet filters()}
+			<div class="stack" style:--stack-gap="var(--pad-small)">
+				<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
 				/>
-				<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
-					<button
-						type="button"
-						onclick={run_bulk_add_tags}
-						disabled={busy || bulk_selected_tag_ids.length === 0}
-					>
-						Add tags
-					</button>
-					<button
-						type="button"
-						onclick={run_bulk_remove_tags}
-						disabled={busy || bulk_selected_tag_ids.length === 0}
-					>
-						Remove tags
-					</button>
-				</div>
-
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 				>
 					<SelectMenu
-						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${bulk_status})`}
+						popover_id="filter-status"
+						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
 						button_icon={'filter' as any}
-						value={bulk_status}
-						options={BULK_STATUS_OPTIONS}
-						onselect={(value) => update_url({ bulk_status: value || null })}
+						value={status_filter === 'ALL' ? '' : status_filter}
+						options={STATUS_FILTER_OPTIONS}
+						onselect={(value) => update_url({ status: value || null, page: null })}
 					/>
-					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
-						Update status
-					</button>
-					<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
+					<SelectMenu
+						popover_id="filter-type"
+						button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
+						button_icon={'filter' as any}
+						value={type_filter === 'ALL' ? '' : type_filter}
+						options={TYPE_FILTER_OPTIONS}
+						onselect={(value) => update_url({ type: value || null, page: null })}
+					/>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">From</span>
+						<input
+							type="date"
+							value={date_from}
+							onchange={(e) =>
+								update_url({ date_from: e.currentTarget.value || null, page: null })}
+						/>
+					</label>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">To</span>
+						<input
+							type="date"
+							value={date_to}
+							onchange={(e) =>
+								update_url({ date_to: e.currentTarget.value || null, page: null })}
+						/>
+					</label>
+					{#if show_clear_filters}
+						<a class="button small" href="/admin/content">× Clear</a>
+					{/if}
 				</div>
-			{/snippet}
+			</div>
+		{/snippet}
 
-			{#snippet action_feedback()}
-				{#if action_message}
-					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
-				{/if}
-				{#if action_error}
-					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
-				{/if}
-			{/snippet}
+		{#snippet bulk()}
+			<MultiSelect
+				options={bulk_tag_options}
+				bind:selected_ids={bulk_selected_tag_ids}
+				label="Tags"
+				placeholder="Search tags"
+			/>
+			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
+				<button
+					type="button"
+					onclick={run_bulk_add_tags}
+					disabled={busy || bulk_selected_tag_ids.length === 0}
+				>
+					Add tags
+				</button>
+				<button
+					type="button"
+					onclick={run_bulk_remove_tags}
+					disabled={busy || bulk_selected_tag_ids.length === 0}
+				>
+					Remove tags
+				</button>
+			</div>
 
-			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
-				<th>
-					<input
-						type="checkbox"
-						aria-label="Select all rows on this page"
-						checked={all_visible_selected}
-						onchange={(event) => {
-							const target = event.currentTarget;
-							if (!(target instanceof HTMLInputElement)) return;
-							toggle_all_visible(target.checked);
-						}}
-					/>
-				</th>
-				<th>Title</th>
-				<th>Status</th>
-				<th>Type</th>
-				<th>Published</th>
-			{/snippet}
+			<div
+				class="flex"
+				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+			>
+				<SelectMenu
+					popover_id="filter-bulk_status"
+					button_text={`Bulk status (${bulk_status})`}
+					button_icon={'filter' as any}
+					value={bulk_status}
+					options={BULK_STATUS_OPTIONS}
+					onselect={(value) => update_url({ bulk_status: value || null })}
+				/>
+				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+					Update status
+				</button>
+				<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
+			</div>
+		{/snippet}
 
-			{#snippet table_body({ toggle_selected, is_selected })}
-				{#each list_items as content_row (content_row.id)}
-					{@const edit_link = to_edit_link(content_row)}
-					{@const public_link = to_public_link(content_row)}
-					<tr>
-						<td>
-							<input
-								type="checkbox"
-								aria-label={`Select ${content_row.title}`}
-								checked={is_selected(content_row.id)}
-								onchange={(event) => {
-									const target = event.currentTarget;
-									if (!(target instanceof HTMLInputElement)) return;
-									toggle_selected(content_row.id, target.checked);
-								}}
-							/>
-						</td>
-						<td>
-							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-								{#if public_link}
-									<a href={public_link} target="_blank" rel="noopener noreferrer">
-										{content_row.title}
-									</a>
-								{:else}
-									<p>{content_row.title}</p>
-								{/if}
-								{#if edit_link}
-									<a href={edit_link}>Edit</a>
-								{/if}
-							</div>
-						</td>
-						<td>{content_row.status}</td>
-						<td>{content_row.type}</td>
-						<td>
-							{#if content_row.published_at}
-								{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-							{:else}
-								-
-							{/if}
-						</td>
-					</tr>
-				{/each}
-			{/snippet}
+		{#snippet action_feedback()}
+			{#if action_message}
+				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+			{/if}
+			{#if action_error}
+				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+			{/if}
+		{/snippet}
 
-			{#snippet empty()}
+		{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+			<th>
+				<input
+					type="checkbox"
+					aria-label="Select all rows on this page"
+					checked={all_visible_selected}
+					onchange={(event) => {
+						const target = event.currentTarget;
+						if (!(target instanceof HTMLInputElement)) return;
+						toggle_all_visible(target.checked);
+					}}
+				/>
+			</th>
+			<th>Title</th>
+			<th>Status</th>
+			<th>Type</th>
+			<th>Published</th>
+		{/snippet}
+
+		{#snippet table_body({ toggle_selected, is_selected })}
+			{#each list_result.items as content_row (content_row.id)}
+				{@const edit_link = to_edit_link(content_row)}
+				{@const public_link = to_public_link(content_row)}
 				<tr>
-					<td colspan="5">No matching content found.</td>
+					<td>
+						<input
+							type="checkbox"
+							aria-label={`Select ${content_row.title}`}
+							checked={is_selected(content_row.id)}
+							onchange={(event) => {
+								const target = event.currentTarget;
+								if (!(target instanceof HTMLInputElement)) return;
+								toggle_selected(content_row.id, target.checked);
+							}}
+						/>
+					</td>
+					<td>
+						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+							{#if public_link}
+								<a href={public_link} target="_blank" rel="noopener noreferrer">
+									{content_row.title}
+								</a>
+							{:else}
+								<p>{content_row.title}</p>
+							{/if}
+							{#if edit_link}
+								<a href={edit_link}>Edit</a>
+							{/if}
+						</div>
+					</td>
+					<td>{content_row.status}</td>
+					<td>{content_row.type}</td>
+					<td>
+						{#if content_row.published_at}
+							{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
+						{:else}
+							-
+						{/if}
+					</td>
 				</tr>
-			{/snippet}
-		</AdminList>
-	{:catch}
-		<p class="fs-2" style="color: var(--c-red)">Unable to load content. Please try again.</p>
-	{/await}
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="5">No matching content found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>
