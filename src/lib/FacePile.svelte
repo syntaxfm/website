@@ -2,6 +2,7 @@
 	type FaceForThePile = {
 		name: string;
 		github: string;
+		twitter?: string;
 	};
 	interface Props {
 		size?: string;
@@ -13,7 +14,14 @@
 
 <div class="pile" style:--face-size={size} style:--face-count={faces.length}>
 	{#each faces as face}
-		<img src="https://github.com/{face.github || 'null'}.png" alt={face.name} />
+		<img
+			src={face.github
+				? `https://github.com/${face.github}.png`
+				: face.twitter
+					? `https://unavatar.io/twitter/${face.twitter}`
+					: `https://github.com/null.png`}
+			alt={face.name}
+		/>
 	{/each}
 </div>
 
