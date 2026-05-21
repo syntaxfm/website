@@ -94,7 +94,7 @@
 		"flexsearch": "^0.7.43",
 		"gpt-3-encoder": "^1.1.4",
 		"gray-matter": "^4.0.3",
-		"js-cookie": "^3.0.5",
+		"js-cookie": "^3.0.7",
 		"linkedom": "^0.18.11",
 		"media-chrome": "^3.2.5",
 		"npm-run-all2": "^6.2.6",
