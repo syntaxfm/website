@@ -2,7 +2,7 @@
 	import Logo from '$lib/Logo.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
-	import MadCSS from '$lib/MadCSS.svelte';
+	import AmsterdamBanner from '$lib/AmsterdamBanner.svelte';
 	import { page } from '$app/stores';
 	interface Props {
 		transparent?: boolean;
@@ -11,7 +11,7 @@
 	let { transparent = false }: Props = $props();
 </script>
 
-<MadCSS />
+<AmsterdamBanner />
 <header class="layout full" class:transparent style:--fg="var(--fg-1)">
 	<div class="header-container content">
 		<div class="logo">
