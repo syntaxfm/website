@@ -5,12 +5,12 @@ date: 1780916400000
 url: https://traffic.megaphone.fm/FSI4346709770.mp3
 youtube_url: https://www.youtube.com/watch?v=ffuxDr_QCAI
 guest:
-	name: Ben Vinegar
-    github: benvinegar
-    twitter: bentlegen
-    of: Modem
-    url: https://modem.dev/
-    social: https://benv.ca/
+  name: Ben Vinegar
+  github: benvinegar
+  twitter: bentlegen
+  of: Modem
+  url: https://modem.dev/
+  social: https://benv.ca/
 ---
 	
 Scott and Wes sit down with Ben Vinegar, former Syntax GM and founder of Modem.dev, to geek out over terminal-maxxing, from SSH-based development and tmux workflows to AI-powered coding agents. Ben also demos two of his open source tools: Hunk, a slick terminal code reviewer with 4k+ GitHub stars, and TermDraw, a terminal-based diagramming tool that posts directly to your agent.
