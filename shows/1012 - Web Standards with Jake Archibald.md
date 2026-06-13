@@ -20,7 +20,7 @@ Scott and Wes sit down with Jake Archibald from Mozilla to unpack how web standa
 * **[00:00](#t=00:00)** The Importance of Sunscreen
 * **[02:29](#t=02:29)** Welcome to Syntax!
 * **[04:35](#t=04:35)** Transitioning from Google to Mozilla
-*  **[06:00](#t=06:00)** Brought to you by [Sentry.io] (https://sentry.io/syntax) 
+*  **[06:00](#t=06:00)** Brought to you by [Sentry.io](https://sentry.io/syntax) 
 * **[06:43](#t=06:43)** Mozilla's Current Position and Development Priority
   * [HTML Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API) 
 * **[08:35](#t=08:35)** Feature Implementation and Developer Feedback
