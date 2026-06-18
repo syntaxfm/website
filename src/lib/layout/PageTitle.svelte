@@ -7,18 +7,28 @@
 		title,
 		tags = [],
 		date = '',
-		show_name = ''
+		show_name = '',
+		episode_type = ''
 	}: {
 		type: 'SIMPLE' | 'CRAZY' | 'NORMAL';
 		date?: string;
 		title: string;
 		tags?: string[];
 		show_name?: string;
+		episode_type?: string;
 	} = $props();
 </script>
 
 <header class="title-type-{type} stack">
-	<p class="flex">{date} <span class="primary"><Icon name="close" /></span> {show_name}</p>
+	<p class="flex">
+		{date}
+		<span class="primary"><Icon name="close" /></span>
+		{show_name}
+		{#if episode_type}
+			<span class="primary"><Icon name="close" /></span>
+			{episode_type}
+		{/if}
+	</p>
 	<h1 class="fv-700-i" style:--transition-name="show-title-{title}">{title}</h1>
 	<TagRow {tags} />
 </header>

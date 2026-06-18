@@ -17,6 +17,7 @@
 	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
 	import { get_id_from_url } from '$lib/videos/utils';
+	import { format_show_type } from '$utilities/format_show_type';
 
 	let { show, time_start, children } = $props();
 	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
@@ -55,6 +56,10 @@
 		referrerpolicy="strict-origin-when-cross-origin"
 		allowfullscreen
 	></iframe>
+	<a class="youtube-cta" href={show.youtube_url} target="_blank" rel="noopener">
+		<Icon name="youtube" />
+		View on YouTube to comment and like!
+	</a>
 {/if}
 <!--
 <div class="show-actions-wrap">
@@ -114,6 +119,7 @@
 	type="NORMAL"
 	date={format(new Date(show.date), 'MMMM do, yyyy')}
 	show_name="Syntax Podcast"
+	episode_type={format_show_type(new Date(show.date))}
 />
 
 <div>
@@ -258,6 +264,15 @@
 		border: var(--c-fg) solid 10px;
 		overflow: hidden;
 		border-radius: 24px;
+		margin-bottom: 1rem;
+	}
+
+	.youtube-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		margin-bottom: 2rem;
+		color: var(--c-fg);
+		font-variation-settings: var(--fv-700);
 	}
 </style>
