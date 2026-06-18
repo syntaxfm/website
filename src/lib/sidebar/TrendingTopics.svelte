@@ -1,35 +1,14 @@
 <script lang="ts">
 	import TagRow from '../tags/TagRow.svelte';
 	import SidebarTitle from './SidebarTitle.svelte';
+	import { get_trending_tags } from '../feed/feed.remote';
 
-	// TODO: Replace with actual trending topics
-	let tags = $state([
-		'NextJS',
-		'Svelte',
-		'TailwindCSS',
-		'TypeScript',
-		'React',
-		'Vue',
-		'Svelte',
-		'TailwindCSS',
-		'TypeScript',
-		'React',
-		'Vue',
-		'Vite',
-		'Git',
-		'Docker',
-		'GraphQL',
-		'React',
-		'Vue',
-		'Vite',
-		'Git',
-		'Docker',
-		'GraphQL',
-		'DevTools'
-	]);
+	const tags = await get_trending_tags();
 </script>
 
-<div>
-	<SidebarTitle title="_TRENDING_TOPICS()" />
-	<TagRow {tags} />
-</div>
+{#if tags.length > 0}
+	<div>
+		<SidebarTitle title="_TRENDING_TOPICS()" />
+		<TagRow {tags} />
+	</div>
+{/if}

@@ -1,19 +1,19 @@
 <script lang="ts">
 	import RankedItem from './RankedItem.svelte';
 	import SidebarTitle from './SidebarTitle.svelte';
-	import type { Show } from '$server/db/schema';
+	import type { RankedContent } from './ranked';
 
 	type Props = {
-		items: Show[];
+		items: RankedContent[];
 	};
 	let { items }: Props = $props();
 </script>
 
 <div>
-	<SidebarTitle title="_MOST_POPULAR_SHOWS()" />
+	<SidebarTitle title="_MOST_POPULAR_THIS_WEEK()" />
 	<div class="ranked-items stack">
-		{#each items as show, index (show.id)}
-			<RankedItem {show} rank={index + 1} />
+		{#each items as item, index (item.id)}
+			<RankedItem {item} rank={index + 1} />
 		{/each}
 	</div>
 </div>

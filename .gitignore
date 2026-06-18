@@ -33,3 +33,4 @@ core.worker.cjs
 db_exports/
 scripts/prod_backup.sql
 .warden/
+.design-scratch/

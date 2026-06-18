@@ -14,6 +14,8 @@
 	import SwaggyNewsletterForm from '../newsletter/SwaggyNewsletterForm.svelte';
 	import TagRow from '../tags/TagRow.svelte';
 	import PageTitle from '../layout/PageTitle.svelte';
+	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
+	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
 	import { get_id_from_url } from '$lib/videos/utils';
 
 	let { show, time_start, children } = $props();
@@ -135,7 +137,7 @@
 
 		{@render children()}
 	</section>
-	<aside>
+	<aside class="stack">
 		{#if show?.videos?.length > 0}
 			<div class="related-videos">
 				<h2 class="h5">Related Videos</h2>
@@ -147,9 +149,9 @@
 				{/each}
 			</div>
 		{/if}
-		<div class="sticky">
-			<SwaggyNewsletterForm />
-		</div>
+		<SwaggyNewsletterForm />
+		<MostPopularThisWeek />
+		<TrendingTopics />
 	</aside>
 </div>
 

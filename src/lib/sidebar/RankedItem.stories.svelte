@@ -12,15 +12,16 @@
 	name="Default"
 	args={{
 		rank: 1,
-		show: {
+		item: {
+			id: '1',
 			title: '$300M for a domain? Web Devs React',
-			show: 'Syntax Podcast',
+			href: '/show/100/300m-for-a-domain',
+			series: 'Syntax Podcast',
 			number: 100,
 			thumbnail:
 				'https://i.ytimg.com/vi/AIlgkt7oPMA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCkovHTvZUZi6tf8TUmeRfPX_wr8Q',
 			date: new Date('2021-01-01'),
-			hosts: [{ name: 'Wes Bos', github: 'wesbos', twitter: 'wesbos' }],
-			guests: [{ name: 'Dan Abramov', github: 'dan_abramov', twitter: 'dan_abramov' }]
+			people: ['Dan Abramov', 'Wes Bos', 'Scott Tolinski']
 		}
 	}}
 />

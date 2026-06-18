@@ -5,4 +5,6 @@
 	const items = await get_most_popular_content_this_week();
 </script>
 
-<RankedItems {items} />
+{#if items.length > 0}
+	<RankedItems {items} />
+{/if}

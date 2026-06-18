@@ -34,6 +34,10 @@
 		grid-template-columns: 1fr 300px;
 		gap: var(--layout-gap, var(--gap, 4rem));
 		align-items: start;
+
+		@media (--below-large) {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.sticky {

@@ -1,35 +1,41 @@
 <script lang="ts">
-	import Dot from '$lib/utilities/Dot.svelte';
-	import no_thumb from '../shows/no_thumb.png';
 	import { format } from 'date-fns';
-	import type { Show } from '$server/db/schema';
+	import no_thumb from '../shows/no_thumb.png';
+	import type { RankedContent } from './ranked';
 
 	type Props = {
-		show: Show;
+		item: RankedContent;
 		rank: number;
 	};
-	let { show, rank }: Props = $props();
+	let { item, rank }: Props = $props();
 </script>
 
-<article class="flex">
+<a class="flex ranked-item" href={item.href}>
 	<span class="rank fs-caption size">{rank}</span>
 
 	<div class="stack ranked-item-info">
-		<p class="fs-body">{show.show} - #{show.number}</p>
-		<img src={show?.thumbnail || no_thumb} alt={show.title} />
-		<h4 class="fs-body fv-700-i">{show.title}</h4>
-		<p class="fs-caption">
-			{show.guests.map((guest) => guest.name).join(', ')}
-			<Dot />
-			{show.hosts.map((host) => host.name).join(', ')}
-		</p>
+		<p class="fs-body">{item.series}{#if item.number} - #{item.number}{/if}</p>
+		<img src={item.thumbnail ?? no_thumb} alt={item.title} />
+		<h4 class="fs-body fv-700-i">{item.title}</h4>
+		{#if item.people.length > 0}
+			<p class="fs-caption">{item.people.join(', ')}</p>
+		{/if}
 		<p class="fs-micro">
-			{format(show.date, 'MMM d, yyyy')}
+			{format(item.date, 'MMM d, yyyy')}
 		</p>
 	</div>
-</article>
+</a>
 
 <style>
+	.ranked-item {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.ranked-item:hover h4 {
+		text-decoration: underline;
+	}
+
 	.ranked-item-info {
 		gap: 5px;
 	}
