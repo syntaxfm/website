@@ -34,6 +34,3 @@ db_exports/
 scripts/prod_backup.sql
 .warden/
 .design-scratch/
-# Local pnpm 11 regenerates this for build-script approvals; Vercel uses
-# pnpm 9 which errors on its presence. Keep it out of commits/CI.
-pnpm-workspace.yaml

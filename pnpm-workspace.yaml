@@ -1,0 +1,12 @@
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@sentry-internal/node-cpu-profiler'
+  - '@sentry/cli'
+  - '@sentry/node-cpu-profiler'
+  - bufferutil
+  - core-js
+  - esbuild
+  - prisma
+  - svelte-preprocess
+  - utf-8-validate
