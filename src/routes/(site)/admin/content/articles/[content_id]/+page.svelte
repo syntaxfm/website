@@ -1,15 +1,23 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '$lib/admin/MarkdownEditor.svelte';
+	import MultiSelect from '$lib/admin/MultiSelect.svelte';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import StatusSelect from '$lib/admin/StatusSelect.svelte';
 	import {
+		delete_article,
 		get_article_authors,
 		get_article_editor,
 		update_article
 	} from '../admin_articles.remote';
+	import {
+		assign_content_tags,
+		get_tag_options,
+		remove_content_tags
+	} from '../../admin_content.remote';
 
 	type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
 
@@ -23,10 +31,16 @@
 		: null;
 	const initial_author_id = loaded_article_item?.author_id ?? '';
 	const initial_body = loaded_article_item?.body ?? '';
+	const initial_selected_tag_ids =
+		loaded_article_item?.meta.tags.map((content_tag) => content_tag.tag.id) ?? [];
 	const authors = await get_article_authors();
 	const author_options = authors.map((author) => ({
 		value: author.id,
 		label: author.name || author.username || author.email || author.id
+	}));
+	const tag_options = (await get_tag_options()).map((tag_item) => ({
+		id: tag_item.id,
+		name: tag_item.name
 	}));
 
 	let article_item = $state(loaded_article_item);
@@ -48,8 +62,17 @@
 		() => author_options.find((option) => option.value === author_id)?.label ?? 'Select author'
 	);
 	let body = $state(initial_body);
+	let selected_tag_ids = $state(initial_selected_tag_ids);
+	let initial_tag_ids = $state([...initial_selected_tag_ids]);
+
+	let selected_tags_set = $derived(new Set(selected_tag_ids));
+	let initial_tags_set = $derived(new Set(initial_tag_ids));
+
+	let tags_to_add = $derived(selected_tag_ids.filter((tag_id) => !initial_tags_set.has(tag_id)));
+	let tags_to_remove = $derived(initial_tag_ids.filter((tag_id) => !selected_tags_set.has(tag_id)));
 
 	let saving = $state(false);
+	let deleting = $state(false);
 	let status_message = $state('');
 	let status_error = $state('');
 
@@ -79,13 +102,56 @@
 				author_id
 			});
 
+			if (tags_to_add.length > 0) {
+				await assign_content_tags({
+					content_ids: [article_item.content_id],
+					tag_ids: tags_to_add
+				});
+			}
+
+			if (tags_to_remove.length > 0) {
+				await remove_content_tags({
+					content_ids: [article_item.content_id],
+					tag_ids: tags_to_remove
+				});
+			}
+
 			article_item = await get_article_editor(content_id);
+			initial_tag_ids = [...selected_tag_ids];
 			status_message = 'Article updated.';
 		} catch (error) {
 			console.error(error);
 			status_error = error instanceof Error ? error.message : 'Unable to save article.';
 		} finally {
 			saving = false;
+		}
+	}
+
+	async function handle_delete_article() {
+		if (!article_item) {
+			status_error = 'Article not found.';
+			return;
+		}
+
+		status_message = '';
+		status_error = '';
+
+		const confirm_text = window.prompt('Type DELETE to confirm deleting this article');
+		if (confirm_text !== 'DELETE') {
+			status_message = 'Delete cancelled.';
+			return;
+		}
+
+		deleting = true;
+
+		try {
+			await delete_article({ content_id: article_item.content_id, confirm_text });
+			await goto('/admin/content/articles');
+		} catch (error) {
+			console.error('Unable to delete article', error);
+			status_error = error instanceof Error ? error.message : 'Unable to delete article.';
+		} finally {
+			deleting = false;
 		}
 	}
 </script>
@@ -121,15 +187,19 @@
 				<SelectMenu
 					popover_id="filter-author_id"
 					button_text={`Author (${selected_author_label})`}
-					button_icon={'filter' as any}
+					button_icon="filter"
 					value={author_id}
 					options={author_options}
 				/>
 			</label>
 
+			<MultiSelect options={tag_options} bind:selected_ids={selected_tag_ids} label="Tags" />
+
 			<MarkdownEditor bind:value={body} />
 
-			<button type="submit" disabled={saving}>{saving ? 'Saving...' : 'Save Article'}</button>
+			<button type="submit" disabled={saving || deleting}
+				>{saving ? 'Saving...' : 'Save Article'}</button
+			>
 		</form>
 
 		{#if status_message}
@@ -141,5 +211,15 @@
 		{/if}
 
 		<p><a href={`/admin/content/${content_id}`}>Back to content shell</a></p>
+
+		<section class="stack" style:--stack-gap="var(--pad-small)">
+			<h2 class="h5">Danger zone</h2>
+			<div class="flex" style:--flex-gap="var(--pad-small)">
+				<button type="button" onclick={handle_delete_article} disabled={saving || deleting}>
+					{deleting ? 'Deleting...' : 'Delete Article'}
+				</button>
+				<a href="/admin/content/articles">Back to articles</a>
+			</div>
+		</section>
 	</div>
 {/if}

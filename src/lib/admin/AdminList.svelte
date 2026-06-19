@@ -3,6 +3,7 @@
 
 	type TableHeadParams = {
 		all_visible_selected: boolean;
+		indeterminate: boolean;
 		toggle_all_visible: (checked: boolean) => void;
 	};
 
@@ -47,6 +48,11 @@
 
 	let all_visible_selected = $derived(
 		visible_ids.length > 0 && visible_ids.every((id) => selected_ids.includes(id))
+	);
+
+	// Partial selection drives the header checkbox's indeterminate state.
+	let indeterminate = $derived(
+		!all_visible_selected && visible_ids.some((id) => selected_ids.includes(id))
 	);
 
 	function toggle_selected(id: string, checked: boolean) {
@@ -117,17 +123,25 @@
 		{@render action_feedback()}
 	{/if}
 
-	<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
-		<button type="button" onclick={go_previous} disabled={page <= 1 || busy}>Previous</button>
-		<p class="fs-2">Page {page} of {total_pages} ({total} total)</p>
-		<button type="button" onclick={go_next} disabled={page >= total_pages || busy}>Next</button>
-	</div>
+	{#snippet pager()}
+		<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
+			<button type="button" onclick={go_previous} disabled={page <= 1 || busy}>Previous</button>
+			<p class="fs-2">Page {page} of {total_pages} ({total} total)</p>
+			<button type="button" onclick={go_next} disabled={page >= total_pages || busy}>Next</button>
+		</div>
+	{/snippet}
+
+	{#if total_pages > 1}
+		{@render pager()}
+	{:else}
+		<p class="fs-1">{total} {total === 1 ? 'item' : 'items'}</p>
+	{/if}
 
 	<div class="table-container">
 		<table>
 			<thead>
 				<tr>
-					{@render table_head({ all_visible_selected, toggle_all_visible })}
+					{@render table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
 				</tr>
 			</thead>
 			<tbody>
@@ -145,4 +159,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	{#if total_pages > 1}
+		{@render pager()}
+	{/if}
 </div>

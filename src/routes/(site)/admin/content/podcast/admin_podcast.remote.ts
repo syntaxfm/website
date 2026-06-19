@@ -152,6 +152,46 @@ const ai_child_id_schema = v.object({
 	id: v.number()
 });
 
+const add_ai_summary_entry_schema = v.object({
+	show_note_id: v.number(),
+	time: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	text: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	description: v.optional(v.nullable(v.string()))
+});
+
+const add_ai_tweet_schema = v.object({
+	show_note_id: v.number(),
+	content: v.pipe(v.string(), v.trim(), v.minLength(1), v.maxLength(350))
+});
+
+const add_link_schema = v.object({
+	show_note_id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	url: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	timestamp: v.optional(v.nullable(v.string()))
+});
+
+const add_ai_guest_schema = v.object({
+	show_note_id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1))
+});
+
+const add_topic_schema = v.object({
+	show_note_id: v.number(),
+	name: v.pipe(v.string(), v.trim(), v.minLength(1))
+});
+
+async function assert_ai_show_note_exists(show_note_id: number) {
+	const parent = await db.query.aiShowNote.findFirst({
+		where: eq(aiShowNote.id, show_note_id),
+		columns: { id: true }
+	});
+
+	if (!parent) {
+		error(404, 'AI show note not found');
+	}
+}
+
 function assert_admin_user() {
 	const event = getRequestEvent();
 	if (!event.locals?.user?.roles?.includes('admin')) {
@@ -760,6 +800,85 @@ export const update_topic = command(update_topic_schema, async (input) => {
 		.where(eq(topic.id, input.id));
 
 	return { success: true };
+});
+
+export const add_ai_summary_entry = command(add_ai_summary_entry_schema, async (input) => {
+	assert_admin_user();
+	await assert_ai_show_note_exists(input.show_note_id);
+
+	const [inserted] = await db
+		.insert(aiSummaryEntry)
+		.values({
+			show_note_id: input.show_note_id,
+			time: input.time,
+			text: input.text,
+			description: input.description ?? null
+		})
+		.returning();
+
+	return inserted;
+});
+
+export const add_ai_tweet = command(add_ai_tweet_schema, async (input) => {
+	assert_admin_user();
+	await assert_ai_show_note_exists(input.show_note_id);
+
+	const [inserted] = await db
+		.insert(aiTweet)
+		.values({
+			show_note_id: input.show_note_id,
+			content: input.content
+		})
+		.returning();
+
+	return inserted;
+});
+
+export const add_link = command(add_link_schema, async (input) => {
+	assert_admin_user();
+	await assert_ai_show_note_exists(input.show_note_id);
+
+	const [inserted] = await db
+		.insert(link)
+		.values({
+			show_note_id: input.show_note_id,
+			name: input.name,
+			url: input.url,
+			timestamp: input.timestamp ?? null
+		})
+		.returning();
+
+	return inserted;
+});
+
+export const add_ai_guest = command(add_ai_guest_schema, async (input) => {
+	assert_admin_user();
+	await assert_ai_show_note_exists(input.show_note_id);
+
+	const [inserted] = await db
+		.insert(aiGuest)
+		.values({
+			show_note_id: input.show_note_id,
+			name: input.name
+		})
+		.returning();
+
+	return inserted;
+});
+
+export const add_topic = command(add_topic_schema, async (input) => {
+	assert_admin_user();
+	await assert_ai_show_note_exists(input.show_note_id);
+
+	const [inserted] = await db
+		.insert(topic)
+		.values({
+			show_note_id: input.show_note_id,
+			name: input.name
+		})
+		.returning();
+
+	return inserted;
 });
 
 export const delete_ai_summary_entry = command(ai_child_id_schema, async ({ id }) => {

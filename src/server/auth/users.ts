@@ -4,7 +4,7 @@ import { db } from '$server/db/client';
 import { eq } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 import type { User } from '$server/db/types';
-import { session, user } from '$server/db/schema';
+import { role, session, user, userRole } from '$server/db/schema';
 
 export interface UserWithRoles extends User {
 	roles: string[];
@@ -67,6 +67,23 @@ export async function find_user_by_access_token(access_token: string) {
 		return find_user_with_roles(active_session.user_id);
 	}
 	return null;
+}
+
+// Returns the first user that holds the `admin` role, fully populated with roles.
+// Used by the dev-only admin bypass in hooks so /admin is viewable without OAuth locally.
+export async function find_first_admin_user(): Promise<UserWithRoles | null> {
+	const [admin_link] = await db
+		.select({ user_id: userRole.user_id })
+		.from(userRole)
+		.innerJoin(role, eq(userRole.role_id, role.id))
+		.where(eq(role.name, 'admin'))
+		.limit(1);
+
+	if (!admin_link?.user_id) {
+		return null;
+	}
+
+	return find_user_with_roles(admin_link.user_id);
 }
 
 // Because of how roles are done, the find returns an array of objects

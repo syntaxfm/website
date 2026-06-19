@@ -7,6 +7,7 @@
 	} from '../admin_videos.remote';
 	import AdminActions from '../../../AdminActions.svelte';
 	import AdminSearch from '../../../AdminSearch.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
 
 	let search_text = $state('');
 	let { playlists, local_playlists } = $derived(await get_remote_playlists());
@@ -27,50 +28,59 @@
 		</AdminActions>
 	</div>
 
-	<AdminSearch bind:text={search_text} />
+	<AdminList
+		total={filtered_playlists.length}
+		page={1}
+		page_size={filtered_playlists.length}
+		total_pages={1}
+		on_page_change={() => {}}
+		visible_ids={filtered_playlists.map((playlist) => playlist.playlist_id)}
+	>
+		{#snippet filters()}
+			<AdminSearch
+				text={search_text}
+				on_input={(value) => {
+					search_text = value;
+				}}
+			/>
+		{/snippet}
 
-	<div class="table-container">
-		<table>
-			<thead>
+		{#snippet table_head()}
+			<th>Title</th>
+			<th>Videos</th>
+			<th>Published At</th>
+			<th>Id</th>
+			<th>Action</th>
+		{/snippet}
+
+		{#snippet table_body()}
+			{#each filtered_playlists as playlist (playlist.playlist_id)}
 				<tr>
-					<th>Title</th>
-					<th>Videos</th>
-					<th>Published At</th>
-					<th>Id</th>
-					<th>Action</th>
+					<td>
+						{playlist.title}
+					</td>
+					<td>
+						{playlist.videos_count}
+					</td>
+					<td>
+						{format(playlist.created_at, 'MMM d, yyyy')}
+					</td>
+					<td class="center">
+						{playlist.playlist_id}
+					</td>
+					<td class="center">
+						<button onclick={() => import_playlist(playlist.playlist_id)}>
+							{local_playlists.includes(playlist.playlist_id) ? 'Sync Playlist' : 'Link To Local'}
+						</button>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				{#if filtered_playlists.length === 0}
-					<tr>
-						<td colspan="5">No playlists found.</td>
-					</tr>
-				{:else}
-					{#each filtered_playlists as playlist (playlist.playlist_id)}
-						<tr>
-							<td>
-								{playlist.title}
-							</td>
-							<td>
-								{playlist.videos_count}
-							</td>
-							<td>
-								{format(playlist.created_at, 'MMM d, yyyy')}
-							</td>
-							<td class="center">
-								{playlist.playlist_id}
-							</td>
-							<td class="center">
-								<button onclick={() => import_playlist(playlist.playlist_id)}>
-									{local_playlists.includes(playlist.playlist_id)
-										? 'Sync Playlist'
-										: 'Link To Local'}
-								</button>
-							</td>
-						</tr>
-					{/each}
-				{/if}
-			</tbody>
-		</table>
-	</div>
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="5">No playlists found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

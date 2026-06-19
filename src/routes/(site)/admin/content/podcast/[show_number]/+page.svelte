@@ -6,9 +6,14 @@
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import StatusSelect from '$lib/admin/StatusSelect.svelte';
 	import {
+		add_ai_guest,
+		add_ai_summary_entry,
+		add_ai_tweet,
+		add_link,
 		add_show_guest,
 		add_show_host,
 		add_show_video,
+		add_topic,
 		delete_ai_guest,
 		delete_ai_summary_entry,
 		delete_ai_tweet,
@@ -197,6 +202,16 @@
 
 	let ai_show_note = $state<AiShowNoteData | null>(initial_ai_show_note);
 	const has_transcript = Boolean(show?.transcript);
+
+	let new_summary_time = $state('');
+	let new_summary_text = $state('');
+	let new_summary_description = $state('');
+	let new_tweet_content = $state('');
+	let new_link_name = $state('');
+	let new_link_url = $state('');
+	let new_link_timestamp = $state('');
+	let new_ai_guest_name = $state('');
+	let new_topic_name = $state('');
 
 	const tag_options = (await get_tag_options()).map((tag_item: TagOption) => ({
 		id: tag_item.id,
@@ -737,6 +752,159 @@
 		}
 	}
 
+	async function add_summary_entry_row() {
+		if (!ai_show_note) {
+			return;
+		}
+
+		ai_busy = true;
+		clear_feedback();
+
+		try {
+			const inserted = await add_ai_summary_entry({
+				show_note_id: ai_show_note.id,
+				time: new_summary_time.trim(),
+				text: new_summary_text.trim(),
+				description: new_summary_description.trim() || null
+			});
+			ai_show_note.summary = [
+				...ai_show_note.summary,
+				{
+					id: inserted.id,
+					time: inserted.time,
+					text: inserted.text,
+					description: inserted.description ?? null
+				}
+			];
+			new_summary_time = '';
+			new_summary_text = '';
+			new_summary_description = '';
+			status_message = 'Summary entry added.';
+		} catch (error) {
+			console.error(error);
+			status_error = error instanceof Error ? error.message : 'Unable to add summary entry.';
+		} finally {
+			ai_busy = false;
+		}
+	}
+
+	async function add_tweet_row() {
+		if (!ai_show_note) {
+			return;
+		}
+
+		ai_busy = true;
+		clear_feedback();
+
+		try {
+			const inserted = await add_ai_tweet({
+				show_note_id: ai_show_note.id,
+				content: new_tweet_content.trim()
+			});
+			ai_show_note.tweets = [
+				...ai_show_note.tweets,
+				{ id: inserted.id, content: inserted.content }
+			];
+			new_tweet_content = '';
+			status_message = 'Tweet added.';
+		} catch (error) {
+			console.error(error);
+			status_error = error instanceof Error ? error.message : 'Unable to add tweet.';
+		} finally {
+			ai_busy = false;
+		}
+	}
+
+	async function add_link_row() {
+		if (!ai_show_note) {
+			return;
+		}
+
+		ai_busy = true;
+		clear_feedback();
+
+		try {
+			const inserted = await add_link({
+				show_note_id: ai_show_note.id,
+				name: new_link_name.trim(),
+				url: new_link_url.trim(),
+				timestamp: new_link_timestamp.trim() || null
+			});
+			ai_show_note.links = [
+				...ai_show_note.links,
+				{
+					id: inserted.id,
+					name: inserted.name,
+					url: inserted.url,
+					timestamp: inserted.timestamp ?? null
+				}
+			];
+			new_link_name = '';
+			new_link_url = '';
+			new_link_timestamp = '';
+			status_message = 'Link added.';
+		} catch (error) {
+			console.error(error);
+			status_error = error instanceof Error ? error.message : 'Unable to add link.';
+		} finally {
+			ai_busy = false;
+		}
+	}
+
+	async function add_ai_guest_row() {
+		if (!ai_show_note) {
+			return;
+		}
+
+		ai_busy = true;
+		clear_feedback();
+
+		try {
+			const inserted = await add_ai_guest({
+				show_note_id: ai_show_note.id,
+				name: new_ai_guest_name.trim()
+			});
+			ai_show_note.guests = [
+				...ai_show_note.guests,
+				{ id: inserted.id, name: inserted.name }
+			];
+			new_ai_guest_name = '';
+			status_message = 'AI guest added.';
+		} catch (error) {
+			console.error(error);
+			status_error = error instanceof Error ? error.message : 'Unable to add AI guest.';
+		} finally {
+			ai_busy = false;
+		}
+	}
+
+	async function add_topic_row() {
+		if (!ai_show_note) {
+			return;
+		}
+
+		ai_busy = true;
+		clear_feedback();
+
+		try {
+			const inserted = await add_topic({
+				show_note_id: ai_show_note.id,
+				name: new_topic_name.trim()
+			});
+			ai_show_note.topics = [
+				...ai_show_note.topics,
+				{ id: inserted.id, name: inserted.name }
+			];
+			new_topic_name = '';
+			status_message = 'Topic added.';
+		} catch (error) {
+			console.error(error);
+			status_error = error instanceof Error ? error.message : 'Unable to add topic.';
+		} finally {
+			ai_busy = false;
+		}
+	}
+
 	function confirm_regenerate(event: SubmitEvent) {
 		const confirmed = window.confirm(
 			'This will delete every AI artifact for this Show including any manual edits. Continue?'
@@ -1089,6 +1257,28 @@
 							{/each}
 						</ul>
 					{/if}
+					<form
+						class="stack"
+						style:--stack-gap="0.35rem"
+						onsubmit={(event) => {
+							event.preventDefault();
+							void add_summary_entry_row();
+						}}
+					>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Time
+							<input type="text" bind:value={new_summary_time} required />
+						</label>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Text
+							<input type="text" bind:value={new_summary_text} required />
+						</label>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Description
+							<textarea bind:value={new_summary_description} rows="2"></textarea>
+						</label>
+						<button type="submit" disabled={ai_busy}>Add summary entry</button>
+					</form>
 				</details>
 
 				<details>
@@ -1119,6 +1309,20 @@
 							{/each}
 						</ul>
 					{/if}
+					<form
+						class="stack"
+						style:--stack-gap="0.35rem"
+						onsubmit={(event) => {
+							event.preventDefault();
+							void add_tweet_row();
+						}}
+					>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Content
+							<textarea bind:value={new_tweet_content} rows="3" maxlength="350" required></textarea>
+						</label>
+						<button type="submit" disabled={ai_busy}>Add tweet</button>
+					</form>
 				</details>
 
 				<details>
@@ -1161,6 +1365,28 @@
 							{/each}
 						</ul>
 					{/if}
+					<form
+						class="stack"
+						style:--stack-gap="0.35rem"
+						onsubmit={(event) => {
+							event.preventDefault();
+							void add_link_row();
+						}}
+					>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Name
+							<input type="text" bind:value={new_link_name} required />
+						</label>
+						<label class="stack" style:--stack-gap="0.25rem">
+							URL
+							<input type="url" bind:value={new_link_url} required />
+						</label>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Timestamp
+							<input type="text" bind:value={new_link_timestamp} />
+						</label>
+						<button type="submit" disabled={ai_busy}>Add link</button>
+					</form>
 				</details>
 
 				<details>
@@ -1195,6 +1421,20 @@
 							{/each}
 						</ul>
 					{/if}
+					<form
+						class="stack"
+						style:--stack-gap="0.35rem"
+						onsubmit={(event) => {
+							event.preventDefault();
+							void add_ai_guest_row();
+						}}
+					>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Name
+							<input type="text" bind:value={new_ai_guest_name} required />
+						</label>
+						<button type="submit" disabled={ai_busy}>Add AI guest</button>
+					</form>
 				</details>
 
 				<details>
@@ -1229,6 +1469,20 @@
 							{/each}
 						</ul>
 					{/if}
+					<form
+						class="stack"
+						style:--stack-gap="0.35rem"
+						onsubmit={(event) => {
+							event.preventDefault();
+							void add_topic_row();
+						}}
+					>
+						<label class="stack" style:--stack-gap="0.25rem">
+							Name
+							<input type="text" bind:value={new_topic_name} required />
+						</label>
+						<button type="submit" disabled={ai_busy}>Add topic</button>
+					</form>
 				</details>
 			{/if}
 		</section>

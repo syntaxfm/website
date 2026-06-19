@@ -5,6 +5,7 @@ import { error } from '@sveltejs/kit';
 import { and, asc, count, desc, eq, gt, gte, lt, lte } from 'drizzle-orm';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+const MAX_MISSING_ROWS = 50;
 
 function assert_admin_user() {
 	const event = getRequestEvent();
@@ -18,8 +19,8 @@ export const get_dashboard = query(async () => {
 	assert_admin_user();
 
 	const now = new Date();
-	const thirty_days_ago = new Date(now.getTime() - 30 * DAY_MS);
 	const seven_days_ago = new Date(now.getTime() - 7 * DAY_MS);
+	const fourteen_days_ago = new Date(now.getTime() - 14 * DAY_MS);
 
 	const [pending_submissions_row] = await db
 		.select({ value: count() })
@@ -51,21 +52,35 @@ export const get_dashboard = query(async () => {
 		count: Number(row.value)
 	}));
 
-	const next_shows = await db.query.show.findMany({
-		where: gt(show.date, now),
-		orderBy: [asc(show.date)],
-		limit: 3,
+	const upcoming_content = await db.query.content.findMany({
+		where: and(eq(content.status, 'PUBLISHED'), gt(content.published_at, now)),
+		with: {
+			show: { columns: { number: true, slug: true } },
+			video: { columns: { url: true } }
+		},
+		orderBy: [asc(content.published_at)],
+		limit: 10
+	});
+
+	const stale_drafts = await db.query.content.findMany({
+		where: and(eq(content.status, 'DRAFT'), lt(content.updated_at, fourteen_days_ago)),
+		with: {
+			show: { columns: { number: true, slug: true } },
+			video: { columns: { url: true } }
+		},
+		orderBy: [asc(content.updated_at)],
+		limit: 10,
 		columns: {
 			id: true,
-			number: true,
+			type: true,
 			title: true,
 			slug: true,
-			date: true
+			updated_at: true
 		}
 	});
 
 	const recent_shows = await db.query.show.findMany({
-		where: and(gte(show.date, thirty_days_ago), lt(show.date, now)),
+		where: lt(show.date, now),
 		with: {
 			transcript: { columns: { id: true } },
 			aiShowNote: { columns: { id: true } }
@@ -82,11 +97,13 @@ export const get_dashboard = query(async () => {
 
 	const shows_missing_transcript = recent_shows
 		.filter((row) => !row.transcript)
-		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest);
+		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest)
+		.slice(0, MAX_MISSING_ROWS);
 
 	const shows_missing_ai_notes = recent_shows
 		.filter((row) => row.transcript && !row.aiShowNote)
-		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest);
+		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest)
+		.slice(0, MAX_MISSING_ROWS);
 
 	const recently_published = await db.query.content.findMany({
 		where: and(
@@ -180,7 +197,8 @@ export const get_dashboard = query(async () => {
 		drafts_count: Number(drafts_row?.value ?? 0),
 		scheduled_count: Number(scheduled_row?.value ?? 0),
 		submission_breakdown,
-		next_shows,
+		upcoming_content,
+		stale_drafts,
 		shows_missing_transcript,
 		shows_missing_ai_notes,
 		recently_published,

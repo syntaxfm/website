@@ -1,10 +1,12 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { content_tags, tag } from '$server/db/schema';
+import { content, content_tags, tag } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { asc, eq, ilike, or, sql } from 'drizzle-orm';
+import { asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 import get_slug from 'speakingurl';
+
+const TAG_DETAIL_LIMIT = 100;
 
 const create_tag_schema = v.object({
 	name: v.pipe(v.string(), v.trim(), v.minLength(1)),
@@ -87,6 +89,66 @@ export const list_tags = query(list_tags_schema, async (input) => {
 		page,
 		page_size,
 		total_pages: Math.max(1, Math.ceil(total / page_size))
+	};
+});
+
+export const get_tag_detail = query(v.string(), async (tag_id) => {
+	assert_admin_user();
+
+	const tag_row = await db.query.tag.findFirst({
+		where: eq(tag.id, tag_id),
+		columns: {
+			id: true,
+			name: true,
+			slug: true
+		}
+	});
+
+	if (!tag_row) {
+		error(404, 'Tag not found');
+	}
+
+	const total_rows = await db
+		.select({ total: sql<number>`count(*)` })
+		.from(content_tags)
+		.where(eq(content_tags.tag_id, tag_id));
+
+	const total_content_count = Number(total_rows[0]?.total || 0);
+
+	const page_ids = await db
+		.select({ id: content.id, updated_at: content.updated_at })
+		.from(content_tags)
+		.innerJoin(content, eq(content_tags.content_id, content.id))
+		.where(eq(content_tags.tag_id, tag_id))
+		.orderBy(desc(content.updated_at))
+		.limit(TAG_DETAIL_LIMIT);
+
+	const content_ids = page_ids.map((row) => row.id);
+
+	const items = content_ids.length
+		? await db.query.content.findMany({
+				where: inArray(content.id, content_ids),
+				with: {
+					show: true,
+					video: true
+				}
+			})
+		: [];
+
+	const items_by_id = new Map(items.map((item) => [item.id, item]));
+	const ordered_items = content_ids
+		.map((content_id) => items_by_id.get(content_id))
+		.filter((item): item is (typeof items)[number] => item !== undefined);
+
+	return {
+		tag: {
+			id: tag_row.id,
+			name: tag_row.name,
+			slug: tag_row.slug ?? ''
+		},
+		items: ordered_items,
+		total_content_count,
+		limit: TAG_DETAIL_LIMIT
 	};
 });
 

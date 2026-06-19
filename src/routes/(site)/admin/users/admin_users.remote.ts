@@ -1,8 +1,8 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { role, user, userRole } from '$server/db/schema';
+import { article, content, role, show, showToUser, user, userRole } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { and, eq, ilike, inArray, or, sql } from 'drizzle-orm';
+import { and, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
 const user_role_schema = v.object({
@@ -80,7 +80,7 @@ export const list_users = query(list_users_schema, async (input) => {
 export const get_user_detail = query(v.string(), async (user_id) => {
 	assert_admin_user();
 
-	return db.query.user.findFirst({
+	const result = await db.query.user.findFirst({
 		where: eq(user.id, user_id),
 		with: {
 			roles: {
@@ -90,6 +90,38 @@ export const get_user_detail = query(v.string(), async (user_id) => {
 			}
 		}
 	});
+
+	if (!result) {
+		return null;
+	}
+
+	const shows_hosted = await db
+		.select({
+			number: show.number,
+			slug: show.slug,
+			title: show.title,
+			date: show.date
+		})
+		.from(showToUser)
+		.innerJoin(show, eq(show.id, showToUser.show_id))
+		.where(eq(showToUser.user_id, user_id))
+		.orderBy(desc(show.date));
+
+	const articles_authored = await db
+		.select({
+			id: content.id,
+			title: content.title,
+			slug: content.slug,
+			status: content.status,
+			updated_at: content.updated_at,
+			published_at: content.published_at
+		})
+		.from(article)
+		.innerJoin(content, eq(content.id, article.content_id))
+		.where(eq(article.author_id, user_id))
+		.orderBy(desc(content.updated_at));
+
+	return { ...result, shows_hosted, articles_authored };
 });
 
 export const list_roles = query(async () => {

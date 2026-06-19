@@ -1,8 +1,8 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { guest, socialLink } from '$server/db/schema';
+import { guest, show, showGuest, socialLink } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { and, asc, eq, ilike, ne, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, ilike, ne, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 import get_slug from 'speakingurl';
 
@@ -107,7 +107,23 @@ export const get_guest_detail = query(v.string(), async (guest_id) => {
 		}
 	});
 
-	return result ?? null;
+	if (!result) {
+		return null;
+	}
+
+	const shows = await db
+		.select({
+			number: show.number,
+			slug: show.slug,
+			title: show.title,
+			date: show.date
+		})
+		.from(showGuest)
+		.innerJoin(show, eq(show.id, showGuest.show_id))
+		.where(eq(showGuest.guest_id, guest_id))
+		.orderBy(desc(show.date));
+
+	return { ...result, shows };
 });
 
 export const create_guest = command(create_guest_schema, async (input) => {

@@ -6,6 +6,7 @@
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
+	import StatusBadge from '$lib/admin/StatusBadge.svelte';
 	import {
 		build_url,
 		has_any_filter,
@@ -16,15 +17,21 @@
 	import { create_article, list_articles } from './admin_articles.remote';
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
-	const FILTER_KEYS = ['q', 'status'] as const;
+	const ORDER_VALUES = ['desc', 'asc'] as const;
+	const FILTER_KEYS = ['q', 'status', 'date_from', 'date_to', 'order'] as const;
 	const PAGE_SIZE = 25;
 
 	type ArticleStatusFilter = (typeof STATUS_FILTERS)[number];
+	type ArticleOrder = (typeof ORDER_VALUES)[number];
 
 	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
 		label: value === 'ALL' ? 'All' : value
 	}));
+	const ORDER_OPTIONS = [
+		{ value: 'desc', label: 'Newest To Oldest' },
+		{ value: 'asc', label: 'Oldest To Newest' }
+	];
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
@@ -35,6 +42,11 @@
 			'ALL'
 		)
 	);
+	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
+	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
+	let order = $derived(
+		read_picklist<ArticleOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
+	);
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
@@ -44,6 +56,9 @@
 	const list_result = await list_articles({
 		search_text,
 		status: status_filter,
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
+		order,
 		page: page_number,
 		page_size: PAGE_SIZE
 	});
@@ -102,12 +117,38 @@
 					class="flex"
 					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 				>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">From</span>
+						<input
+							type="date"
+							value={date_from}
+							onchange={(event) =>
+								update_url({ date_from: event.currentTarget.value || null, page: null })}
+						/>
+					</label>
+					<label class="stack" style="--stack-gap: 2px">
+						<span class="fs-1">To</span>
+						<input
+							type="date"
+							value={date_to}
+							onchange={(event) =>
+								update_url({ date_to: event.currentTarget.value || null, page: null })}
+						/>
+					</label>
 					<SelectMenu
 						popover_id="filter-status"
 						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
 						value={status_filter === 'ALL' ? '' : status_filter}
 						options={STATUS_FILTER_OPTIONS}
 						onselect={(value) => update_url({ status: value || null, page: null })}
+					/>
+					<SelectMenu
+						popover_id="filter-order"
+						button_text="Sort"
+						button_icon="sort"
+						value={order}
+						options={ORDER_OPTIONS}
+						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
 						<a class="button small" href="/admin/content/articles">× Clear</a>
@@ -133,7 +174,7 @@
 							<a href={edit_link}>Edit</a>
 						</div>
 					</td>
-					<td>{article_item.meta.status}</td>
+					<td><StatusBadge status={article_item.meta.status} /></td>
 					<td>
 						{article_item.author?.name || article_item.author?.username || '-'}
 					</td>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { format } from 'date-fns';
 	import {
 		add_user_role,
 		get_user_detail,
@@ -12,6 +13,22 @@
 		name: string;
 	}
 
+	interface ShowHostedRow {
+		number: number;
+		slug: string;
+		title: string;
+		date: Date;
+	}
+
+	interface ArticleAuthoredRow {
+		id: string;
+		title: string;
+		slug: string;
+		status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
+		updated_at: Date;
+		published_at: Date | null;
+	}
+
 	interface UserDetail {
 		id: string;
 		username: string | null;
@@ -20,6 +37,8 @@
 		roles: Array<{
 			role: RoleItem;
 		}>;
+		shows_hosted: ShowHostedRow[];
+		articles_authored: ArticleAuthoredRow[];
 	}
 
 	const user_id = (page.params as Record<string, string>).user_id ?? '';
@@ -174,6 +193,51 @@
 
 		{#if status_error}
 			<p>{status_error}</p>
+		{/if}
+
+		<h2 class="h5">Shows hosted</h2>
+
+		{#if user_detail.shows_hosted.length === 0}
+			<p class="fs-2">No shows hosted yet.</p>
+		{:else}
+			<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
+				{#each user_detail.shows_hosted as show_row (show_row.number)}
+					<li class="split" style:--split-gap="var(--pad-small)">
+						<span class="flex" style:--flex-gap="var(--pad-xsmall)">
+							<span class="fs-2">#{show_row.number}</span>
+							<a href={`/admin/content/podcast/${show_row.number}`}>{show_row.title}</a>
+						</span>
+						<span class="flex" style:--flex-gap="var(--pad-small)">
+							<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
+							<a
+								href={`/show/${show_row.number}/${show_row.slug}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								View
+							</a>
+						</span>
+					</li>
+				{/each}
+			</ul>
+		{/if}
+
+		<h2 class="h5">Articles authored</h2>
+
+		{#if user_detail.articles_authored.length === 0}
+			<p class="fs-2">No articles yet.</p>
+		{:else}
+			<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
+				{#each user_detail.articles_authored as article_row (article_row.id)}
+					<li class="split" style:--split-gap="var(--pad-small)">
+						<a href={`/admin/content/articles/${article_row.id}`}>{article_row.title}</a>
+						<span class="flex" style:--flex-gap="var(--pad-small)">
+							<span class="fs-2">{article_row.status}</span>
+							<span class="fs-2">{format(article_row.updated_at, 'MMM d, yyyy')}</span>
+						</span>
+					</li>
+				{/each}
+			</ul>
 		{/if}
 
 		<p><a href="/admin/users">Back to users</a></p>

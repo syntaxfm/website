@@ -71,7 +71,13 @@ AI artifacts have no status column and no approval gate. They are generated whol
 ### Submissions
 
 **UserSubmission**:
-User-generated content submitted from public-facing forms (Potluck, Spooky, guest pitch, feedback, OSS). Despite the name, these come from anonymous public visitors (since there are no public User accounts). The "User" prefix is historical. Status flow: `PENDING → APPROVED → COMPLETED` or `REJECTED`.
+Audience-submitted Q&A-style content from public-facing forms — questions, topic suggestions, and nominations the audience wants the hosts to discuss on a Show. The "User" in the name refers to a site visitor (lowercase-u, audience member), **not** to a row in the `user` table. Confirmed in `src/server/db/schema.ts`: `user_submissions` has no `user_id` column and no FK to `user`, and `userSubmission` has no Drizzle relations defined. The row carries a self-reported `name` and `email` (both nullable `varchar`), so a submitter may identify themselves, but that identity never resolves to a **User** record. The naming collides with this codebase's capital-U **User** (an authenticated admin identity); read it as "submission from someone using the site."
+
+A submission is **not** a curated Guest, Tool, Article, or any other entity — it's a piece of audience input that may inform what gets discussed on a Show. `submission_type` is the form it came from (`POTLUCK`, `SPOOKY`, `GUEST`, `FEEDBACK`, `OSS`, `OTHER`).
+
+_Avoid_: treating a `submission_type=GUEST` row as a **Guest** record. The `GUEST` type means "audience-suggested guest pitch," not "Guest entity." There is no foreign key from `userSubmission` to `guest`.
+
+Status flow: `PENDING → APPROVED → COMPLETED` or `REJECTED`. **COMPLETED** means "the question has been answered" (typically on a Show) — it's the filter that hides handled items. There is no enforced link from a COMPLETED submission back to the Show that answered it; it's editorial bookkeeping.
 
 ### Transcripts
 
@@ -108,5 +114,5 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 - "Show" historically meant both the podcast (Syntax) and a single episode. **Resolved**: a row in the `show` table is a **Show** (an episode); the podcast itself is **Syntax**.
 - "User" used to imply public accounts. **Resolved**: no public accounts exist; every **User** is effectively an admin. If/when public accounts are added, this entry must be re-resolved.
 - `show_type` reads like a current taxonomy but is a back-catalog artifact. **Resolved**: documented above; the column is unreliable for recent episodes.
-- "UserSubmission" implies it's tied to a User; it isn't (submissions are anonymous). The name is historical.
+- "UserSubmission" implies it's tied to a **User** (the capital-U admin entity); it isn't. The "User" in the name is the colloquial sense (a site visitor), not the `user` table row. Submissions are anonymous and have no FK to `user`.
 - The admin URL segment `/admin/content/podcast` lists **Shows**, not "podcasts." **Resolved**: the URL matches the `content_types` enum value (`PODCAST`), which is machine-canonical; the page heading and navigation label remain "Shows" (the domain term). This is a deliberate asymmetry between URL/enum and display language. Do not rename the URL to match the term without renaming the enum value, and do not rename the enum without a migration ADR.

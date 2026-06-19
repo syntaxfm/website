@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
+	import { format } from 'date-fns';
 	import {
 		add_social_link,
 		delete_guest,
@@ -231,6 +232,35 @@
 					{adding_link ? 'Adding...' : 'Add link'}
 				</button>
 			</form>
+		</section>
+
+		<section class="stack" style:--stack-gap="var(--pad-small)">
+			<h2 class="h5">Shows</h2>
+
+			{#if loaded_guest.shows.length === 0}
+				<p class="fs-2">No shows yet.</p>
+			{:else}
+				<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
+					{#each loaded_guest.shows as show_row (show_row.number)}
+						<li class="split" style:--split-gap="var(--pad-small)">
+							<span class="flex" style:--flex-gap="var(--pad-xsmall)">
+								<span class="fs-2">#{show_row.number}</span>
+								<a href={`/admin/content/podcast/${show_row.number}`}>{show_row.title}</a>
+							</span>
+							<span class="flex" style:--flex-gap="var(--pad-small)">
+								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
+								<a
+									href={`/show/${show_row.number}/${show_row.slug}`}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									View
+								</a>
+							</span>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</section>
 
 		<section class="stack" style:--stack-gap="var(--pad-small)">

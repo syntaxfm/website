@@ -39,22 +39,22 @@
 	</div>
 	<div class="social-links">
 		<a target="_blank" rel="noopener" href="https://x.com/syntaxfm"
-			><Icon name="twitter" width={24} height={24} /></a
+			><Icon name="twitter" width={24} height={24} weight={1.5} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://github.com/syntaxfm"
-			><Icon name="github" width={24} height={24} /></a
+			><Icon name="github" width={24} height={24} weight={1.5} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://discord.gg/W5y68HMfZV"
-			><Icon name="discord" width={24} height={24} /></a
+			><Icon name="discord" width={24} height={24} weight={1.5} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.youtube.com/@syntaxfm"
-			><Icon name="youtube" width={24} height={24} /></a
+			><Icon name="youtube" width={24} height={24} weight={1.5} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.tiktok.com/@syntaxfm"
-			><Icon name="tiktok" width={24} height={24} /></a
+			><Icon name="tiktok" width={24} height={24} weight={1.5} /></a
 		>
 		<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/"
-			><Icon name="instagram" width={24} height={24} /></a
+			><Icon name="instagram" width={24} height={24} weight={1.5} /></a
 		>
 	</div>
 </section>

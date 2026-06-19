@@ -1,6 +1,15 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { article, content, content_tags, show, tag, video } from '$server/db/schema';
+import {
+	article,
+	content,
+	content_tags,
+	playlistOnVideo,
+	show,
+	showVideo,
+	tag,
+	video
+} from '$server/db/schema';
 import { error } from '@sveltejs/kit';
 import { and, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
 import * as v from 'valibot';
@@ -18,6 +27,7 @@ const list_content_schema = v.object({
 	type: v.optional(v.picklist(FILTER_TYPE_VALUES)),
 	date_from_iso: v.optional(v.string()),
 	date_to_iso: v.optional(v.string()),
+	tag_id: v.optional(v.string()),
 	page: v.optional(v.number()),
 	page_size: v.optional(v.number())
 });
@@ -118,6 +128,19 @@ async function fetch_content_list(input: ListContentInput) {
 	const date_to = parse_optional_iso_date(input.date_to_iso);
 	if (date_to) {
 		where_clauses.push(lte(content.published_at, date_to));
+	}
+
+	const tag_id = input.tag_id?.trim() || '';
+	if (tag_id.length > 0) {
+		where_clauses.push(
+			inArray(
+				content.id,
+				db
+					.select({ id: content_tags.content_id })
+					.from(content_tags)
+					.where(eq(content_tags.tag_id, tag_id))
+			)
+		);
 	}
 
 	const where_clause = where_clauses.length > 0 ? and(...where_clauses) : undefined;
@@ -533,19 +556,48 @@ export const bulk_delete_content = command(bulk_delete_schema, async (input) => 
 		}
 	});
 
-	const deletable_ids = existing_items
+	const article_ids = existing_items
 		.filter((item) => item.type === 'ARTICLE')
 		.map((item) => item.id);
 
-	const skipped = existing_items.filter((item) => item.type !== 'ARTICLE').map((item) => item.id);
+	const video_content_ids = existing_items
+		.filter((item) => item.type === 'VIDEO')
+		.map((item) => item.id);
 
-	if (deletable_ids.length > 0) {
-		await db.delete(content).where(inArray(content.id, deletable_ids));
+	const skipped = existing_items
+		.filter((item) => item.type !== 'ARTICLE' && item.type !== 'VIDEO')
+		.map((item) => item.id);
+
+	const linked_videos = video_content_ids.length
+		? await db.query.video.findMany({
+				where: inArray(video.content_id, video_content_ids),
+				columns: {
+					id: true
+				}
+			})
+		: [];
+	const video_row_ids = linked_videos.map((video_row) => video_row.id);
+
+	if (article_ids.length > 0 || video_content_ids.length > 0) {
+		await db.transaction(async (tx) => {
+			if (video_row_ids.length > 0) {
+				await tx.delete(playlistOnVideo).where(inArray(playlistOnVideo.video_id, video_row_ids));
+				await tx.delete(showVideo).where(inArray(showVideo.video_id, video_row_ids));
+				await tx.delete(video).where(inArray(video.id, video_row_ids));
+			}
+
+			const all_deletable_ids = [...article_ids, ...video_content_ids];
+			await tx.delete(content_tags).where(inArray(content_tags.content_id, all_deletable_ids));
+			if (article_ids.length > 0) {
+				await tx.delete(article).where(inArray(article.content_id, article_ids));
+			}
+			await tx.delete(content).where(inArray(content.id, all_deletable_ids));
+		});
 	}
 
 	return {
 		success: true,
-		deleted_count: deletable_ids.length,
+		deleted_count: article_ids.length + video_content_ids.length,
 		skipped_count: skipped.length,
 		skipped_ids: skipped
 	};

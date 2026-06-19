@@ -5,23 +5,10 @@ import * as Sentry from '@sentry/sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
-import { find_user_by_access_token } from './server/auth/users';
+import { find_first_admin_user, find_user_by_access_token } from './server/auth/users';
+import type { UserWithRoles } from './server/auth/users';
 import { dev } from '$app/environment';
-import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
-import { Redis } from '@upstash/redis';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
-
-export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
-
-export const redis =
-	cache_status == 'ONLINE'
-		? new Redis({
-				url: UPSPLASH_URL,
-				token: UPSPLASH_TOKEN,
-				automaticDeserialization: false
-			})
-		: null;
-console.log(`🤓 Cache Status... ${cache_status}`);
 
 // import { ADMIN_LOGIN } from '$env/static/private';
 
@@ -48,6 +35,11 @@ Sentry.init({
 // * HOOKS
 // RUNS ON EVERY REQUEST
 
+// Dev-only: resolve a real admin user once per process so /admin (and its remote
+// functions) are reachable locally without completing GitHub OAuth. Inert in prod
+// builds because `dev` is statically false and this branch is tree-shaken out.
+let dev_admin_promise: Promise<UserWithRoles | null> | null = null;
+
 export const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
 	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
@@ -56,6 +48,14 @@ export const auth: Handle = async function ({ event, resolve }) {
 		const user = await find_user_by_access_token(access_token);
 		if (user) {
 			event.locals.user = user;
+		}
+	}
+
+	if (dev && !event.locals.user) {
+		dev_admin_promise ??= find_first_admin_user();
+		const dev_admin = await dev_admin_promise;
+		if (dev_admin) {
+			event.locals.user = dev_admin;
 		}
 	}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AdminActions from '../../../AdminActions.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
 	import { delete_all_transcripts, import_all_transcripts } from '../admin_podcast.remote';
 
 	let { data } = $props();
@@ -34,42 +35,51 @@
 	}
 </script>
 
-<h1 class="h3">Transcripts</h1>
-{#if status_message}
-	<p class={status_kind === 'error' ? 'alert alert-error' : 'alert alert-success'}>
-		{status_message}
-	</p>
-{/if}
-<AdminActions>
-	<button type="button" onclick={handle_import_all_transcripts}>Import All Transcripts</button>
-	<button class="warning" type="button" onclick={handle_delete_all_transcripts}>
-		Drop All Transcripts
-	</button>
-</AdminActions>
+<div class="stack" style:--stack-gap="var(--pad-medium)">
+	<div class="split" style="flex-wrap: wrap">
+		<h1 class="h3">Transcripts</h1>
+		<AdminActions>
+			<button type="button" onclick={handle_import_all_transcripts}>Import All Transcripts</button>
+			<button class="warning" type="button" onclick={handle_delete_all_transcripts}>
+				Drop All Transcripts
+			</button>
+		</AdminActions>
+	</div>
 
-<div class="table-container">
-	<table>
-		<thead>
-			<tr>
-				<th>Number</th>
-				<th>Name</th>
-				<th>Utterance Count</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#if !transcripts}
+	{#if status_message}
+		<p class={status_kind === 'error' ? 'alert alert-error' : 'alert alert-success'}>
+			{status_message}
+		</p>
+	{/if}
+
+	<AdminList
+		total={transcripts.length}
+		page={1}
+		page_size={transcripts.length}
+		total_pages={1}
+		on_page_change={() => {}}
+		visible_ids={transcripts.map((transcript) => transcript.id)}
+	>
+		{#snippet table_head()}
+			<th>Number</th>
+			<th>Name</th>
+			<th>Utterance Count</th>
+		{/snippet}
+
+		{#snippet table_body()}
+			{#each transcripts as transcript (transcript.show_number)}
 				<tr>
-					<td colspan="4">No Transcripts found</td>
+					<td>{transcript.show_number}</td>
+					<td>{transcript.show.title}</td>
+					<td>{transcript.utterance_count}</td>
 				</tr>
-			{:else}
-				{#each transcripts as transcript (transcript.show_number)}
-					<tr>
-						<td>{transcript.show_number}</td>
-						<td>{transcript.show.title}</td>
-						<td>{transcript.utterance_count}</td>
-					</tr>
-				{/each}
-			{/if}
-		</tbody>
-	</table>
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td colspan="3">No Transcripts found</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

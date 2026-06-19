@@ -6,6 +6,7 @@
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
+	import StatusBadge from '$lib/admin/StatusBadge.svelte';
 	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
 	import {
 		build_url,
@@ -177,14 +178,6 @@
 					class="flex"
 					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 				>
-					<SelectMenu
-						popover_id="filter-status"
-						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-						button_icon={'filter' as any}
-						value={status_filter === 'ALL' ? '' : status_filter}
-						options={STATUS_FILTER_OPTIONS}
-						onselect={(value) => update_url({ status: value || null, page: null })}
-					/>
 					<label class="stack" style="--stack-gap: 2px">
 						<span class="fs-1">From</span>
 						<input
@@ -203,6 +196,14 @@
 								update_url({ date_to: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
+					<SelectMenu
+						popover_id="filter-status"
+						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
+						button_icon="filter"
+						value={status_filter === 'ALL' ? '' : status_filter}
+						options={STATUS_FILTER_OPTIONS}
+						onselect={(value) => update_url({ status: value || null, page: null })}
+					/>
 					{#if show_clear_filters}
 						<a class="button small" href="/admin/content/podcast">× Clear</a>
 					{/if}
@@ -218,7 +219,7 @@
 				<SelectMenu
 					popover_id="filter-bulk_status"
 					button_text={`Bulk status (${bulk_status})`}
-					button_icon={'filter' as any}
+					button_icon="filter"
 					value={bulk_status}
 					options={BULK_STATUS_OPTIONS}
 					onselect={(value) => update_url({ bulk_status: value || null })}
@@ -238,12 +239,13 @@
 			{/if}
 		{/snippet}
 
-		{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+		{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
 			<th>
 				<input
 					type="checkbox"
 					aria-label="Select all rows on this page"
 					checked={all_visible_selected}
+					{indeterminate}
 					onchange={(event) => {
 						const target = event.currentTarget;
 						if (!(target instanceof HTMLInputElement)) return;
@@ -285,7 +287,7 @@
 							<a href={edit_link}>Edit</a>
 						</div>
 					</td>
-					<td>{show_row.meta ? show_row.meta.status : '-'}</td>
+					<td><StatusBadge status={show_row.meta?.status} /></td>
 					<td>{format(show_row.date, 'MMM d, yyyy')}</td>
 					<td>{to_show_type_label(show_row)}</td>
 				</tr>

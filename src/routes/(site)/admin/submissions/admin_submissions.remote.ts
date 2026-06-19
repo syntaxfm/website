@@ -6,7 +6,7 @@ import {
 	userSubmission
 } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { and, asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gte, ilike, inArray, lte, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
 type SubmissionStatus = (typeof SUBMISSION_STATUS_VALUES.enumValues)[number];
@@ -16,6 +16,8 @@ const list_submissions_schema = v.object({
 	search_text: v.optional(v.string()),
 	submission_type: v.optional(v.string()),
 	status: v.optional(v.string()),
+	date_from_iso: v.optional(v.string()),
+	date_to_iso: v.optional(v.string()),
 	order: v.optional(v.string()),
 	page: v.optional(v.number()),
 	page_size: v.optional(v.number())
@@ -47,12 +49,27 @@ function assert_admin_user() {
 	}
 }
 
+function parse_optional_iso_date(maybe_iso: string | null | undefined) {
+	if (!maybe_iso) {
+		return null;
+	}
+
+	const parsed_date = new Date(maybe_iso);
+	if (Number.isNaN(parsed_date.getTime())) {
+		return null;
+	}
+
+	return parsed_date;
+}
+
 export const get_submissions = query(
 	list_submissions_schema,
 	async ({
 		search_text: raw_search_text,
 		submission_type,
 		status,
+		date_from_iso,
+		date_to_iso,
 		order,
 		page: raw_page,
 		page_size: raw_page_size
@@ -83,6 +100,16 @@ export const get_submissions = query(
 			user_submission_status.includes(status_param as SubmissionStatus)
 		) {
 			conditions.push(eq(userSubmission.status, status_param as SubmissionStatus));
+		}
+
+		const date_from = parse_optional_iso_date(date_from_iso);
+		if (date_from) {
+			conditions.push(gte(userSubmission.created_at, date_from));
+		}
+
+		const date_to = parse_optional_iso_date(date_to_iso);
+		if (date_to) {
+			conditions.push(lte(userSubmission.created_at, date_to));
 		}
 
 		if (search_text.length > 0) {

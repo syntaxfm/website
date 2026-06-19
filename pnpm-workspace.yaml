@@ -1,13 +1,14 @@
 allowBuilds:
-  '@prisma/client': set this to true or false
-  '@prisma/engines': set this to true or false
-  '@sentry-internal/node-cpu-profiler': set this to true or false
-  '@sentry/cli': set this to true or false
+  '@prisma/client': true
+  '@prisma/engines': true
+  '@sentry-internal/node-cpu-profiler': true
+  '@sentry/cli': true
+  '@sentry/node-cpu-profiler': true
   bufferutil: set this to true or false
-  core-js: set this to true or false
-  esbuild: set this to true or false
-  prisma: set this to true or false
-  svelte-preprocess: set this to true or false
+  core-js: true
+  esbuild: true
+  prisma: true
+  svelte-preprocess: true
   svelte-query-params: set this to true or false
   utf-8-validate: set this to true or false
 onlyBuiltDependencies:

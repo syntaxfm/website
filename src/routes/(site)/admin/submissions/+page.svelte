@@ -5,6 +5,7 @@
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
+	import { humanize_enum } from '$lib/utils/format_enum';
 	import {
 		build_url,
 		has_any_filter,
@@ -13,9 +14,7 @@
 		read_string
 	} from '$lib/admin/admin_filters';
 	import {
-		bulk_delete_submissions,
 		bulk_update_submission_status,
-		delete_submission,
 		get_submissions,
 		update_submission_status
 	} from './admin_submissions.remote';
@@ -24,7 +23,15 @@
 	const TYPE_VALUES = ['POTLUCK', 'SPOOKY', 'GUEST', 'FEEDBACK', 'OTHER', 'OSS'] as const;
 	const ORDER_VALUES = ['desc', 'asc'] as const;
 	const PAGE_SIZE_VALUES = ['10', '20', '40', '100'] as const;
-	const FILTER_KEYS = ['q', 'status', 'submission_type', 'order', 'page_size'] as const;
+	const FILTER_KEYS = [
+		'q',
+		'status',
+		'submission_type',
+		'date_from',
+		'date_to',
+		'order',
+		'page_size'
+	] as const;
 	const DEFAULT_PAGE_SIZE = '20';
 
 	type SubmissionStatus = (typeof STATUS_VALUES)[number];
@@ -64,6 +71,8 @@
 			''
 		)
 	);
+	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
+	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
 	let order = $derived(
 		read_picklist<SubmissionOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
 	);
@@ -97,6 +106,8 @@
 		search_text,
 		status: status_filter,
 		submission_type: type_filter,
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
 		order,
 		page: page_number,
 		page_size: Number.parseInt(page_size_value, 10)
@@ -125,6 +136,8 @@
 				search_text,
 				status: status_filter,
 				submission_type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
 				order,
 				page: page_number,
 				page_size: Number.parseInt(page_size_value, 10)
@@ -132,31 +145,6 @@
 		} catch (error_value) {
 			console.error('update_submission_status failed', error_value);
 			action_error = 'Unable to update submission status. Please try again.';
-		} finally {
-			busy = false;
-		}
-	}
-
-	async function remove_submission(submission_id: string) {
-		if (!window.confirm('Are you sure you want to delete this submission?')) return;
-
-		clear_feedback();
-		busy = true;
-		try {
-			await delete_submission({ id: submission_id });
-			action_message = 'Submission deleted.';
-			selected_submission_ids = selected_submission_ids.filter((id) => id !== submission_id);
-			await get_submissions({
-				search_text,
-				status: status_filter,
-				submission_type: type_filter,
-				order,
-				page: page_number,
-				page_size: Number.parseInt(page_size_value, 10)
-			}).refresh();
-		} catch (error_value) {
-			console.error('delete_submission failed', error_value);
-			action_error = 'Unable to delete submission. Please try again.';
 		} finally {
 			busy = false;
 		}
@@ -181,6 +169,8 @@
 				search_text,
 				status: status_filter,
 				submission_type: type_filter,
+				date_from_iso: date_from || undefined,
+				date_to_iso: date_to || undefined,
 				order,
 				page: page_number,
 				page_size: Number.parseInt(page_size_value, 10)
@@ -193,42 +183,6 @@
 		}
 	}
 
-	async function run_bulk_delete() {
-		if (selected_submission_ids.length === 0) {
-			action_error = 'Select at least one submission first.';
-			return;
-		}
-		clear_feedback();
-
-		const confirm_text = window.prompt('Type DELETE to confirm deleting selected submissions');
-		if (confirm_text !== 'DELETE') {
-			action_message = 'Delete cancelled.';
-			return;
-		}
-		busy = true;
-
-		try {
-			const result = await bulk_delete_submissions({
-				submission_ids: selected_submission_ids,
-				confirm_text
-			});
-			action_message = `Deleted ${result.deleted_count} submission(s).`;
-			selected_submission_ids = [];
-			await get_submissions({
-				search_text,
-				status: status_filter,
-				submission_type: type_filter,
-				order,
-				page: page_number,
-				page_size: Number.parseInt(page_size_value, 10)
-			}).refresh();
-		} catch (error_value) {
-			console.error('bulk_delete_submissions failed', error_value);
-			action_error = 'Unable to delete submissions. Please try again.';
-		} finally {
-			busy = false;
-		}
-	}
 </script>
 
 <div class="stack" style:--stack-gap="var(--pad-medium)">
@@ -262,10 +216,28 @@
 						class="flex"
 						style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
 					>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">From</span>
+							<input
+								type="date"
+								value={date_from}
+								onchange={(e) =>
+									update_url({ date_from: e.currentTarget.value || null, page: null })}
+							/>
+						</label>
+						<label class="stack" style="--stack-gap: 2px">
+							<span class="fs-1">To</span>
+							<input
+								type="date"
+								value={date_to}
+								onchange={(e) =>
+									update_url({ date_to: e.currentTarget.value || null, page: null })}
+							/>
+						</label>
 						<SelectMenu
 							popover_id="filter-submission_type"
 							button_text={`Type ${type_filter !== '' ? `(${type_filter})` : ''}`}
-							button_icon={'filter' as any}
+							button_icon="filter"
 							value={type_filter}
 							options={TYPE_FILTER_OPTIONS}
 							onselect={(value) => update_url({ submission_type: value || null, page: null })}
@@ -273,7 +245,7 @@
 						<SelectMenu
 							popover_id="filter-status"
 							button_text={`Status ${status_filter !== '' ? `(${status_filter})` : ''}`}
-							button_icon={'filter' as any}
+							button_icon="filter"
 							value={status_filter}
 							options={STATUS_FILTER_OPTIONS}
 							onselect={(value) => update_url({ status: value || null, page: null })}
@@ -281,7 +253,7 @@
 						<SelectMenu
 							popover_id="filter-order"
 							button_text="Sort"
-							button_icon={'sort' as any}
+							button_icon="sort"
 							value={order}
 							options={ORDER_OPTIONS}
 							onselect={(value) =>
@@ -314,7 +286,7 @@
 					<SelectMenu
 						popover_id="filter-bulk_status"
 						button_text={`Bulk status (${bulk_status})`}
-						button_icon={'filter' as any}
+						button_icon="filter"
 						value={bulk_status}
 						options={BULK_STATUS_OPTIONS}
 						onselect={(value) => update_url({ bulk_status: value || null })}
@@ -322,7 +294,6 @@
 					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
 						Update status
 					</button>
-					<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
 				</div>
 			{/snippet}
 
@@ -335,12 +306,13 @@
 				{/if}
 			{/snippet}
 
-			{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+			{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
 				<th>
 					<input
 						type="checkbox"
 						aria-label="Select all submissions on this page"
 						checked={all_visible_selected}
+						{indeterminate}
 						onchange={(event) => {
 							const target = event.currentTarget;
 							if (!(target instanceof HTMLInputElement)) return;
@@ -377,11 +349,12 @@
 								<span class="fs-1">{submission.email || 'No email'}</span>
 							</div>
 						</td>
-						<td>{submission.submission_type}</td>
+						<td>{humanize_enum(submission.submission_type)}</td>
 						<td>
-							<textarea class="submission-body" readonly
-								>{submission.body.replaceAll('\n', '\n\n').trim()}</textarea
-							>
+							<details class="submission-body">
+								<summary>{submission.body.trim()}</summary>
+								<p>{submission.body.trim()}</p>
+							</details>
 						</td>
 						<td class="fs-1">
 							{formatDistance(new Date(submission.created_at), new Date(), {
@@ -404,16 +377,27 @@
 							/>
 						</td>
 						<td>
-							<button
-								class="warning"
-								type="button"
-								disabled={busy}
-								onclick={() => {
-									void remove_submission(submission.id);
-								}}
-							>
-								Delete
-							</button>
+							{#if submission.status === 'COMPLETED'}
+								<button
+									type="button"
+									disabled={busy}
+									onclick={() => {
+										void set_submission_status(submission.id, 'PENDING');
+									}}
+								>
+									Reopen
+								</button>
+							{:else}
+								<button
+									type="button"
+									disabled={busy}
+									onclick={() => {
+										void set_submission_status(submission.id, 'COMPLETED');
+									}}
+								>
+									Close
+								</button>
+							{/if}
 						</td>
 					</tr>
 				{/each}
@@ -433,14 +417,36 @@
 
 <style>
 	.submission-body {
-		max-width: 480px;
-		min-width: 240px;
-		max-height: 200px;
+		max-width: 420px;
+		min-width: 220px;
+	}
+
+	/* Clamp to two lines until expanded; no heavy textarea, no scrollbars. */
+	.submission-body summary {
+		list-style: none;
+		cursor: pointer;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+
+	.submission-body summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.submission-body[open] summary {
+		display: none;
+	}
+
+	.submission-body p {
+		margin: 0;
+		max-height: 320px;
 		overflow-y: auto;
 		white-space: pre-wrap;
 		overflow-wrap: break-word;
-		field-sizing: content;
-		border: none;
-		background: transparent;
 	}
 </style>

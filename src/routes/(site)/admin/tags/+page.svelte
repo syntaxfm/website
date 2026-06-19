@@ -156,11 +156,14 @@
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<h1 class="h3">Tags</h1>
 
-	<form class="flex" style="flex-wrap: wrap; align-items: flex-end" style:--flex-gap="var(--pad-small)" onsubmit={create_new_tag}>
-		<label class="stack" style:--stack-gap="0.35rem">
-			<span class="fs-2">New tag name</span>
-			<input type="text" bind:value={new_name} placeholder="JavaScript" required />
-		</label>
+	<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={create_new_tag}>
+		<input
+			type="text"
+			bind:value={new_name}
+			placeholder="New tag name"
+			required
+			disabled={creating}
+		/>
 		<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create Tag'}</button>
 	</form>
 
@@ -219,7 +222,7 @@
 						/>
 					</td>
 					<td>/{row.slug}</td>
-					<td class="center">{row.content_count}</td>
+					<td class="center"><a href={`/admin/tags/${row.id}`}>{row.content_count}</a></td>
 					<td>
 						<div class="flex" style:--flex-gap="var(--pad-xsmall)">
 							<button

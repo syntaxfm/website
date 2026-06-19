@@ -144,7 +144,7 @@
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								[↗]
+								@{guest_row.twitter}
 							</a>
 						{:else}
 							-
@@ -157,7 +157,7 @@
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								[↗]
+								{guest_row.github}
 							</a>
 						{:else}
 							-

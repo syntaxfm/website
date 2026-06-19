@@ -1,4 +1,6 @@
 <script lang="ts">
+	import AdminActions from '../../AdminActions.svelte';
+	import AdminList from '$lib/admin/AdminList.svelte';
 	import { create_role, list_roles } from '../admin_users.remote';
 
 	interface RoleItem {
@@ -47,52 +49,60 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-small)">
-	<h1 class="h3">Roles</h1>
-
-	<form
-		class="flex"
-		style:--flex-gap="var(--pad-small)"
-		onsubmit={(event) => {
-			event.preventDefault();
-			void add_role();
-		}}
-	>
-		<label class="stack" style:--stack-gap="0.35rem">
-			Role name
-			<input type="text" bind:value={role_name} placeholder="editor" required />
-		</label>
-		<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Add role'}</button>
-	</form>
-
-	{#if status_message}
-		<p>{status_message}</p>
-	{/if}
-
-	{#if status_error}
-		<p>{status_error}</p>
-	{/if}
-
-	<div class="table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if roles.length === 0}
-					<tr>
-						<td>No roles found.</td>
-					</tr>
-				{:else}
-					{#each roles as role_item (role_item.id)}
-						<tr>
-							<td>{role_item.name}</td>
-						</tr>
-					{/each}
-				{/if}
-			</tbody>
-		</table>
+<div class="stack" style:--stack-gap="var(--pad-medium)">
+	<div class="split" style="flex-wrap: wrap">
+		<h1 class="h3">Roles</h1>
+		<AdminActions>
+			<form
+				class="flex"
+				style:--flex-gap="var(--pad-small)"
+				onsubmit={(event) => {
+					event.preventDefault();
+					void add_role();
+				}}
+			>
+				<label class="stack" style:--stack-gap="0.35rem">
+					Role name
+					<input type="text" bind:value={role_name} placeholder="editor" required />
+				</label>
+				<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Add role'}</button>
+			</form>
+		</AdminActions>
 	</div>
+
+	<AdminList
+		total={roles.length}
+		page={1}
+		page_size={roles.length}
+		total_pages={1}
+		on_page_change={() => {}}
+		visible_ids={roles.map((role_item) => role_item.id)}
+	>
+		{#snippet action_feedback()}
+			{#if status_message}
+				<p>{status_message}</p>
+			{/if}
+			{#if status_error}
+				<p>{status_error}</p>
+			{/if}
+		{/snippet}
+
+		{#snippet table_head()}
+			<th>Name</th>
+		{/snippet}
+
+		{#snippet table_body()}
+			{#each roles as role_item (role_item.id)}
+				<tr>
+					<td>{role_item.name}</td>
+				</tr>
+			{/each}
+		{/snippet}
+
+		{#snippet empty()}
+			<tr>
+				<td>No roles found.</td>
+			</tr>
+		{/snippet}
+	</AdminList>
 </div>

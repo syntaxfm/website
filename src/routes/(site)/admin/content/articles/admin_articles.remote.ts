@@ -1,17 +1,21 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { article, content } from '$server/db/schema';
+import { article, content, content_tags } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, ilike, inArray, ne, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 import get_slug from 'speakingurl';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
+const ORDER_VALUES = ['asc', 'desc'] as const;
 
 const list_articles_schema = v.object({
 	search_text: v.optional(v.string()),
 	status: v.optional(v.picklist(FILTER_STATUS_VALUES)),
+	date_from_iso: v.optional(v.string()),
+	date_to_iso: v.optional(v.string()),
+	order: v.optional(v.picklist(ORDER_VALUES)),
 	page: v.optional(v.number()),
 	page_size: v.optional(v.number())
 });
@@ -31,6 +35,11 @@ const update_article_schema = v.object({
 	published_at_iso: v.optional(v.nullable(v.string())),
 	body: v.string(),
 	author_id: v.string()
+});
+
+const delete_article_schema = v.object({
+	content_id: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	confirm_text: v.string()
 });
 
 function assert_admin_user() {
@@ -77,6 +86,7 @@ export const get_all_articles = query(async () => {
 async function fetch_article_list(input: ListArticlesInput) {
 	const search_text = input.search_text?.trim() || '';
 	const status = input.status || 'ALL';
+	const order = input.order || 'desc';
 	const page = Math.max(1, input.page || 1);
 	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
 	const offset = (page - 1) * page_size;
@@ -91,6 +101,16 @@ async function fetch_article_list(input: ListArticlesInput) {
 		content_where_clauses.push(eq(content.status, status));
 	}
 
+	const date_from = parse_optional_iso_date(input.date_from_iso);
+	if (date_from) {
+		content_where_clauses.push(gte(content.published_at, date_from));
+	}
+
+	const date_to = parse_optional_iso_date(input.date_to_iso);
+	if (date_to) {
+		content_where_clauses.push(lte(content.published_at, date_to));
+	}
+
 	const content_where = and(...content_where_clauses);
 
 	const total_rows = await db
@@ -100,11 +120,13 @@ async function fetch_article_list(input: ListArticlesInput) {
 
 	const total = Number(total_rows[0]?.total || 0);
 
+	const order_clause = order === 'asc' ? asc(content.updated_at) : desc(content.updated_at);
+
 	const page_id_rows = await db
 		.select({ id: content.id })
 		.from(content)
 		.where(content_where)
-		.orderBy(desc(content.updated_at))
+		.orderBy(order_clause)
 		.limit(page_size)
 		.offset(offset);
 
@@ -122,10 +144,14 @@ async function fetch_article_list(input: ListArticlesInput) {
 
 	const fetched_items = await fetch_article_rows(page_ids);
 
-	const items_by_id = new Map(fetched_items.map((article_item) => [article_item.content_id, article_item]));
+	const items_by_id = new Map(
+		fetched_items.map((article_item) => [article_item.content_id, article_item])
+	);
 	const items_ordered = page_ids
 		.map((content_id) => items_by_id.get(content_id))
-		.filter((article_item): article_item is (typeof fetched_items)[number] => article_item !== undefined);
+		.filter(
+			(article_item): article_item is (typeof fetched_items)[number] => article_item !== undefined
+		);
 
 	return {
 		items: items_ordered,
@@ -202,7 +228,15 @@ export const get_article_editor = query(v.string(), async (content_id) => {
 	return db.query.article.findFirst({
 		where: eq(article.content_id, content_id),
 		with: {
-			meta: true,
+			meta: {
+				with: {
+					tags: {
+						with: {
+							tag: true
+						}
+					}
+				}
+			},
 			author: true
 		}
 	});
@@ -268,4 +302,36 @@ export const update_article = command(update_article_schema, async (input) => {
 	return {
 		success: true
 	};
+});
+
+export const delete_article = command(delete_article_schema, async (input) => {
+	assert_admin_user();
+
+	if (input.confirm_text !== 'DELETE') {
+		error(400, 'Type DELETE to confirm article deletion');
+	}
+
+	const target_content = await db.query.content.findFirst({
+		where: eq(content.id, input.content_id),
+		columns: {
+			id: true,
+			type: true
+		}
+	});
+
+	if (!target_content) {
+		error(404, 'Article not found');
+	}
+
+	if (target_content.type !== 'ARTICLE') {
+		error(400, 'Refusing to delete non-article content');
+	}
+
+	await db.transaction(async (tx) => {
+		await tx.delete(article).where(eq(article.content_id, input.content_id));
+		await tx.delete(content_tags).where(eq(content_tags.content_id, input.content_id));
+		await tx.delete(content).where(eq(content.id, input.content_id));
+	});
+
+	return { deleted: true };
 });

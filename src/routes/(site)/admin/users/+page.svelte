@@ -218,12 +218,13 @@
 			{/if}
 		{/snippet}
 
-		{#snippet table_head({ all_visible_selected, toggle_all_visible })}
+		{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
 			<th>
 				<input
 					type="checkbox"
 					aria-label="Select all rows on this page"
 					checked={all_visible_selected}
+					{indeterminate}
 					onchange={(event) => {
 						const target = event.currentTarget;
 						if (!(target instanceof HTMLInputElement)) return;
