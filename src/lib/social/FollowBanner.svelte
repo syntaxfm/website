@@ -22,19 +22,20 @@
 
 <p>
 	Empowering developers for over
-
-	<span>
-		{#each Array.from({ length: digits.length }, (_, i) => i) as i}
-			<span>
-				{#key `${digits.at(i)}-${i + 1}`}
+	<span class="count fv-700-i">
+		{#each digits as digit, i (i)}
+			<span class="digit">
+				{#key digit}
 					<span
+						class="digit-value"
 						in:fly={{ duration: speed, y: -15, delay: i * 10 }}
-						out:fly={{ duration: speed, y: 15, delay: i * 10 }}>{digits.at(i)}</span
+						out:fly={{ duration: speed, y: 15, delay: i * 10 }}>{digit}</span
 					>
 				{/key}
 			</span>
-		{/each} milliseconds</span
-	>
+		{/each}
+	</span>
+	milliseconds!
 </p>
 
 <PlatformLinks />
@@ -42,5 +43,29 @@
 <style>
 	img {
 		margin: 2rem auto;
+	}
+
+	p {
+		max-width: 24rem;
+		margin: 0 auto 2rem;
+		text-align: center;
+		font-size: var(--fs-4);
+	}
+
+	.count {
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Each digit is a fixed slot; the outgoing/incoming values stack in one grid cell
+	   so a swap never changes width (no neighbour shove), and overflow clips the
+	   fly for a clean slot-machine roll. */
+	.digit {
+		display: inline-grid;
+		overflow: hidden;
+	}
+
+	.digit-value {
+		grid-area: 1 / 1;
 	}
 </style>
