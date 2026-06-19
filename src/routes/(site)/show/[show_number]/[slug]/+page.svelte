@@ -9,3 +9,11 @@
 	<ShowNotes show_notes={show.show_notes} />
 	<PrevNext {prev_show} {next_show} />
 </div>
+
+<style>
+	.main {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+</style>

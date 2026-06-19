@@ -14,14 +14,14 @@
 	<span class="rank fs-caption size">{rank}</span>
 
 	<div class="stack ranked-item-info">
-		<p class="fs-body">{item.series}{#if item.number} - #{item.number}{/if}</p>
+		<p class="fs-body">{item.series}{item.number ? ` – #${item.number}` : ''}</p>
 		<img src={item.thumbnail ?? no_thumb} alt={item.title} />
 		<h4 class="fs-body fv-700-i">{item.title}</h4>
 		{#if item.people.length > 0}
 			<p class="fs-caption">{item.people.join(', ')}</p>
 		{/if}
 		<p class="fs-micro">
-			{format(item.date, 'MMM d, yyyy')}
+			{format(item.date, 'MMM d')}
 		</p>
 	</div>
 </a>

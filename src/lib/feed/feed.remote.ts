@@ -39,7 +39,7 @@ export const get_most_popular_content_this_week = query(async (): Promise<Ranked
 	const rows = await db.query.content.findMany({
 		where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
-		limit: 10,
+		limit: 6,
 		with: {
 			show: { with: with_show_card_show }
 		}

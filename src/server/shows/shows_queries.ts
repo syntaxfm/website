@@ -62,6 +62,13 @@ export function get_show_detail_query(number: number) {
 		where: eq(show.number, number),
 		with: {
 			...with_show_card_show,
+			meta: {
+				with: {
+					tags: {
+						with: { tag: true }
+					}
+				}
+			},
 			videos: {
 				with: {
 					video: {
