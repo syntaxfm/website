@@ -16,6 +16,7 @@ transcripts-flagged/
 
 test-results
 .vercel
+.wrangler
 .env
 .svelte-kit
 .sentryclirc

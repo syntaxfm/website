@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-cloudflare';
 import atImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
 import preprocess from 'svelte-preprocess';
@@ -37,9 +37,7 @@ const config = {
 		experimental: {
 			remoteFunctions: true
 		},
-		adapter: adapter({
-			runtime: 'nodejs22.x'
-		}),
+		adapter: adapter(),
 		alias: {
 			$actions: 'src/actions',
 			$assets: 'src/assets',

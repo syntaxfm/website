@@ -8,9 +8,11 @@ allowBuilds:
   core-js: true
   esbuild: true
   prisma: true
+  sharp: set this to true or false
   svelte-preprocess: true
   svelte-query-params: set this to true or false
   utf-8-validate: set this to true or false
+  workerd: set this to true or false
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
