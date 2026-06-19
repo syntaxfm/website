@@ -1,12 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$env/static/public';
 import { db } from '$server/db/client';
-import {
-	shows as showsTable,
-	guests as guestsTable,
-	playlists as playlistsTable,
-	videos as videosTable
-} from '$server/db/schema';
+import { show as showsTable, guest as guestsTable } from '$server/db/schema';
 import { lte } from 'drizzle-orm';
 
 const site = `https://${PUBLIC_URL}`;
@@ -14,16 +9,6 @@ const site = `https://${PUBLIC_URL}`;
 export const GET: RequestHandler = async function GET({ setHeaders }) {
 	const shows = await db.select().from(showsTable).where(lte(showsTable.date, new Date()));
 	const guests = await db.select().from(guestsTable);
-	const playlists = await db.select().from(playlistsTable);
-	const videos = await db.query.videos.findMany({
-		with: {
-			playlists: {
-				with: {
-					playlist: true
-				}
-			}
-		}
-	});
 	const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -39,59 +24,50 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
         <priority>1</priority>
       </url>
 
-	  <url>
+      <url>
         <loc>${site}/about</loc>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
       </url>
 
-			<url>
+      <url>
         <loc>${site}/shows</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
       </url>
-			<url>
-        <loc>${site}/videos</loc>
-        <changefreq>daily</changefreq>
-        <priority>1</priority>
-      </url>
-			<url>
+
+      <url>
         <loc>${site}/potluck</loc>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
       </url>
-			<url>
+
+      <url>
         <loc>${site}/pages/privacy</loc>
         <changefreq>yearly</changefreq>
         <priority>0.1</priority>
       </url>
-			<url>
-        <loc>${site}/potluck</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.4</priority>
-      </url>
 
-			<url>
+      <url>
         <loc>${site}/system/colors</loc>
         <changefreq>monthly</changefreq>
         <priority>0.2</priority>
       </url>
-			<url>
+      <url>
         <loc>${site}/system/layout</loc>
         <changefreq>monthly</changefreq>
         <priority>0.2</priority>
       </url>
-			<url>
+      <url>
         <loc>${site}/system/typography</loc>
         <changefreq>monthly</changefreq>
         <priority>0.2</priority>
       </url>
-			<url>
+      <url>
         <loc>${site}/system/theme</loc>
         <changefreq>monthly</changefreq>
         <priority>0.2</priority>
       </url>
-
 
 		${shows
 			?.map(
@@ -116,31 +92,6 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
   `
 			)
 			.join('')}
-
-			${playlists
-				?.map(
-					(playlist) => `
-  <url>
-    <loc>${site}/videos/${playlist?.slug}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  `
-				)
-				.join('')}
-
-			${videos
-				?.map(
-					(video) => `
-  <url>
-    <loc>${site}/videos/${video.playlists[0].playlist?.slug}/${video.slug}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  `
-				)
-				.join('')}
-
 
       <url>
         <loc>${site}/guests</loc>

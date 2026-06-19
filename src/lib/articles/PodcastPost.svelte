@@ -137,17 +137,6 @@
 		{@render children()}
 	</section>
 	<aside class="stack">
-		{#if show?.videos?.length > 0}
-			<div class="related-videos">
-				<h2 class="h5">Related Videos</h2>
-
-				{#each show.videos as { video } (video.slug)}
-					<a href={`/videos/${video.playlists[0].playlist.slug}/${video.slug}`}>
-						<img src={video.thumbnail} class="thumbnail" alt={video.title} />
-					</a>
-				{/each}
-			</div>
-		{/if}
 		<SwaggyNewsletterForm />
 		<MostPopularThisWeek />
 		<TrendingTopics />

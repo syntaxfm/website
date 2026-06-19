@@ -10,10 +10,6 @@
 		page?: number;
 	}
 
-	$effect(() => {
-		console.log('pageStore.url.search', pageStore.url);
-	});
-
 	let { count, perPage = PER_PAGE, page = 1 }: Props = $props();
 	let totalPages = $derived(Math.ceil(count / perPage));
 	let generate_search_params = $derived((id: string, value: string | number) => {

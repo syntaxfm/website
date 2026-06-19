@@ -3,7 +3,7 @@
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
 	import { format } from 'date-fns';
-	import FacePile from './FacePile.svelte';
+	import FacePile from '$lib/hosts/FacePile.svelte';
 	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';

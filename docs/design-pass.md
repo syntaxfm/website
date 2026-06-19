@@ -39,10 +39,10 @@ Status: ⬜ todo · 🟨 in progress · ✅ done · ⏭️ deferred
 | # | Route | Page | Status | Notes |
 |---|-------|------|--------|-------|
 | 1 | `/` | Home | ⬜ | thin shell; many commented placeholders (Staff Picks, Fan Favorites, Recent Shorts) — pilot page |
-| 2 | `/shows` | Shows index | ⬜ | |
+| 2 | `/shows` | Shows index | ✅ | Now the episode grid itself (was a 1-box doorway). Heading + intro removed per LIST \| Topic - Grid View; visually-hidden h1 kept for SEO; reuses ShowEpisodes/Pagination. Deleted orphaned ShowBox. Open: controls row still uses Per-Page select; Figma frame uses filter chips + search (deferred) |
 | 3 | `/show/[show_number]/[slug]` | Show detail | ✅ | video Post frame matched: sidebar (swag/most-popular/trending), subscribe row, red YouTube CTA in title (top-right), relative date, canonical tags under title, prev/next, capped Most-Popular(5). Open: backfill content_tags on #950+ (tag row empty on recent shows); audio-only play UI is deferred (commented scaffolding kept on purpose, not dead code) |
 | 4 | `/show/[show_number]/[slug]/transcript` | Transcript | ⬜ | |
-| 5 | `/shows/syntax-podcast` | Podcast landing | ⬜ | |
+| 5 | `/shows/syntax-podcast` | Podcast landing | ✅ | Consolidated into `/shows` — now a 301 redirect (preserves `?page`/`?perPage`). No standalone page. |
 | 6 | `/guests` | Guests index | ⬜ | |
 | 7 | `/guest/[name_slug]` | Guest detail | ⬜ | |
 | 8 | `/snackpack` | Snackpack index | ⬜ | |
@@ -54,7 +54,7 @@ Status: ⬜ todo · 🟨 in progress · ✅ done · ⏭️ deferred
 | 14 | `/pages/[page]` | CMS pages | ⬜ | template chrome only; body is CMS content |
 | 15 | `/login` | Login | ⬜ | |
 | 16 | `/spooky` | Spooky | ⏭️ | seasonal — low priority |
-| — | `/X_videos/**` | Videos (old) | ⏭️ | out of scope — migration leftovers, kept around temporarily |
+| — | `/X_videos/**` | Videos (old) | ✅ | Retired 2026-06-19 — routes deleted, orphaned PlaylistCard/PlaylistVideo removed, dead `/videos` links pulled from sitemap + PodcastPost "Related Videos". Non-episode video is legacy (see memory). `lib/videos/utils.ts` kept (used by Show/feed). |
 
 ## Admin pages (phase 2 — after public)
 

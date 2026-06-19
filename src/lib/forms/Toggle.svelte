@@ -21,7 +21,7 @@
 		}}
 		data-testid="toggle-on"
 	>
-		<Icon width={16} height={16} name={on_icon} />
+		<Icon width={16} height={16} name={on_icon} weight={0} />
 	</button>
 	<button
 		class={!checked ? 'active' : ''}
@@ -31,7 +31,7 @@
 		}}
 		data-testid="toggle-off"
 	>
-		<Icon width={16} height={16} name={off_icon} />
+		<Icon width={16} height={16} name={off_icon} weight={0} />
 	</button>
 </div>
 
