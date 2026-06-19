@@ -1,12 +1,16 @@
-onlyBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - '@sentry-internal/node-cpu-profiler'
-  - '@sentry/cli'
-  - '@sentry/node-cpu-profiler'
-  - bufferutil
-  - core-js
-  - esbuild
-  - prisma
-  - svelte-preprocess
-  - utf-8-validate
+# pnpm 11 replaced onlyBuiltDependencies with allowBuilds (map of pkg -> bool).
+# Unlisted build-script deps are "unreviewed" and fail install (strictDepBuilds).
+allowBuilds:
+  '@sentry-internal/node-cpu-profiler': true
+  '@sentry/cli': true
+  '@sentry/node-cpu-profiler': true
+  bufferutil: true
+  core-js: true
+  esbuild: true
+  svelte-preprocess: true
+  utf-8-validate: true
+  # prisma is not used by the app build (only scripts/sync-spotify-data.js);
+  # skip its generate step and the prisma@7 / @prisma/client@6 version skew.
+  '@prisma/client': false
+  '@prisma/engines': false
+  prisma: false
