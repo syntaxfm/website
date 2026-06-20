@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from '../query';
 import { db } from '$server/db/client';
-import { shows } from '$server/db/schema';
+import { show as shows } from '$server/db/schema';
 import { and, eq, lte } from 'drizzle-orm';
 
 const query = shows_api_query();

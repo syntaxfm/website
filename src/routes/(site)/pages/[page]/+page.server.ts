@@ -2,7 +2,11 @@ import { error } from '@sveltejs/kit';
 import { processor } from '$utilities/markdown';
 
 export const load = async ({ params }) => {
-	const contentFiles = import.meta.glob('../*.md', { as: 'raw', eager: true });
+	const contentFiles = import.meta.glob('../*.md', {
+		query: '?raw',
+		import: 'default',
+		eager: true
+	});
 
 	const key = `../${params.page}.md`;
 

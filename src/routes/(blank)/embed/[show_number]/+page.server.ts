@@ -1,10 +1,11 @@
-import { cache } from '$server/cache/cache';
 import { error } from '@sveltejs/kit';
+import { db } from '$server/db/client';
+import { get_show_detail_query } from '$server/shows/shows_queries';
 
 export const load = async function ({ params, locals }) {
 	const show_number = parseInt(params.show_number);
-	// Caches and gets show dynamically based on release date
-	const show = await cache.shows.show(show_number);
+	// Gets show dynamically based on release date
+	const show = await db.query.show.findFirst(get_show_detail_query(show_number));
 
 	// Check if this is a future show
 	const now = new Date();

@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { has_auth } from './has_auth';
 import { db } from '$server/db/client';
-import { shows } from '$server/db/schema';
+import { show as shows } from '$server/db/schema';
 import { gt, desc } from 'drizzle-orm';
 
 export const config = {

@@ -100,11 +100,11 @@ Bass!
 		color: var(--c-fg);
 	}
 
-	html::view-transition-old() {
+	html::view-transition-old(*) {
 		animation-name: -ua-view-transition-fade-out;
 	}
 
-	html::view-transition-new() {
+	html::view-transition-new(*) {
 		animation-name: -ua-view-transition-fade-in;
 	}
 

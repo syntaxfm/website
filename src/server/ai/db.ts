@@ -1,6 +1,12 @@
 import { generate_ai_notes } from './openai';
 import { db } from '$server/db/client';
-import { aiShowNotes, aiSummaryEntries, aiTweets, topics, links } from '$server/db/schema';
+import {
+	aiShowNote as aiShowNotes,
+	aiSummaryEntry as aiSummaryEntries,
+	aiTweet as aiTweets,
+	topic as topics,
+	link as links
+} from '$server/db/schema';
 
 type Show = { number: number };
 type Result = Awaited<ReturnType<typeof generate_ai_notes>>;

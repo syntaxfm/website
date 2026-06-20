@@ -1,5 +1,5 @@
 import { db } from '$server/db/client';
-import { roles, userRoles } from '$server/db/schema';
+import { role as roles, userRole as userRoles } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 

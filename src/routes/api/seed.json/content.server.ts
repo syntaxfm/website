@@ -1,15 +1,15 @@
 import { db } from '$server/db/client';
 import {
-	shows,
-	transcripts,
-	transcriptUtterances,
-	transcriptUtteranceWords,
-	aiShowNotes,
-	aiSummaryEntries,
-	aiTweets,
-	links,
-	aiGuests,
-	topics
+	show as shows,
+	transcript as transcripts,
+	transcriptUtterance as transcriptUtterances,
+	transcriptUtteranceWord as transcriptUtteranceWords,
+	aiShowNote as aiShowNotes,
+	aiSummaryEntry as aiSummaryEntries,
+	aiTweet as aiTweets,
+	link as links,
+	aiGuest as aiGuests,
+	topic as topics
 } from '$server/db/schema';
 import { desc, inArray } from 'drizzle-orm';
 

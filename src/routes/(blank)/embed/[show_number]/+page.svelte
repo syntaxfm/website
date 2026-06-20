@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '$/routes/(site)/style.css';
+	import '../../../(site)/style.css';
 	import { format } from 'date-fns';
 	import Icon from '$lib/Icon.svelte';
 	import ListenLinks from '$lib/ListenLinks.svelte';

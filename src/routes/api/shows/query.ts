@@ -1,5 +1,5 @@
 import { desc, lte } from 'drizzle-orm';
-import { shows } from '$server/db/schema';
+import { show as shows } from '$server/db/schema';
 
 export const shows_api_query = () => ({
 	orderBy: desc(shows.number),

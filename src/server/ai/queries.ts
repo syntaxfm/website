@@ -2,14 +2,14 @@ import { PER_PAGE } from '$const';
 import { desc, asc, lte, and, eq } from 'drizzle-orm';
 import type { InferSelectModel } from 'drizzle-orm';
 import {
-	shows,
-	transcripts,
-	transcriptUtterances,
-	aiShowNotes,
-	aiSummaryEntries,
-	links,
-	topics,
-	aiTweets
+	show as shows,
+	transcript as transcripts,
+	transcriptUtterance as transcriptUtterances,
+	aiShowNote as aiShowNotes,
+	aiSummaryEntry as aiSummaryEntries,
+	link as links,
+	topic as topics,
+	aiTweet as aiTweets
 } from '$server/db/schema';
 
 // Query for finding show without AI notes but with transcript

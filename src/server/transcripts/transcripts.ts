@@ -5,10 +5,10 @@ import fs, { readFile } from 'fs/promises';
 import path from 'path';
 import { db } from '$server/db/client';
 import {
-	shows,
-	transcripts,
-	transcriptUtterances,
-	transcriptUtteranceWords
+	show as shows,
+	transcript as transcripts,
+	transcriptUtterance as transcriptUtterances,
+	transcriptUtteranceWord as transcriptUtteranceWords
 } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 import { detectSpeakerNames, getSlimUtterances } from './utils';
