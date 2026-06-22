@@ -45,7 +45,7 @@ Status: ⬜ todo · 🟨 in progress · ✅ done · ⏭️ deferred
 | 5 | `/shows/syntax-podcast` | Podcast landing | ✅ | Consolidated into `/shows` — now a 301 redirect (preserves `?page`/`?perPage`). No standalone page. |
 | 6 | `/guests` | Guests index | ⬜ | |
 | 7 | `/guest/[name_slug]` | Guest detail | ⬜ | |
-| 8 | `/snackpack` | Snackpack index | ⬜ | |
+| 8 | `/snackpack` | Snackpack index | ✅ | Matched LIST \| Newsletter: hero banner + new swag promo band (`NewsletterPromo` built from `swag.png`) + "Past Issues!" feed. `NewsletterArchive` now shows the real issue # + cleaned title + `MMM dd, yyyy` date (parsed from the broadcast subject in the remote, was showing the raw ConvertKit id). Slimmed `+page.server.ts` (dropped the redundant API crawl the page ignored; kept `Broadcast` type + meta). Container queries throughout; nav/platform-links/footer come from the `(site)` layout. |
 | 9 | `/snackpack/[issue_id]` | Snackpack issue | ⬜ | |
 | 10 | `/sickpicks` | Sick picks | ⬜ | |
 | 11 | `/potluck` | Potluck | ⬜ | |

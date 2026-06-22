@@ -3,8 +3,11 @@
 		'apple-podcasts',
 		'arrow-right',
 		'bluesky',
+		'cat',
 		'close',
 		'code',
+		'coffee',
+		'devto',
 		'discord',
 		'down',
 		'download',
@@ -23,6 +26,7 @@
 		'pause',
 		'play',
 		'rewind',
+		'robot',
 		'search',
 		'send',
 		'share',
@@ -46,8 +50,9 @@
 		name: IconName[number];
 		title?: string;
 		aria_hidden?: boolean;
-		height?: number;
-		width?: number;
+		/** A number is treated as `px`; pass a CSS length (e.g. `'1em'`) to size fluidly. */
+		height?: number | string;
+		width?: number | string;
 		weight?: number;
 	}
 
@@ -60,6 +65,9 @@
 		weight = 2
 	}: Props = $props();
 
+	const css_height = $derived(typeof height === 'number' ? `${height}px` : height);
+	const css_width = $derived(typeof width === 'number' ? `${width}px` : width);
+
 	const capitalized_name = $derived(capitalize(name));
 	let has_initialized_title = false;
 	$effect(() => {
@@ -71,7 +79,7 @@
 
 <svg
 	class="icon"
-	style="height: {height}px; width: {width}px; stroke-width: {weight}px;"
+	style="height: {css_height}; width: {css_width}; stroke-width: {weight}px;"
 	aria-hidden={aria_hidden}
 >
 	<use href={`/__spritemap#icon-${name}`} />

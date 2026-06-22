@@ -1,39 +1,58 @@
 <script lang="ts">
+	import { format } from 'date-fns';
 	import Dot from '$lib/utilities/Dot.svelte';
 	import Icon from '../Icon.svelte';
 
 	interface Props {
+		id: number;
+		issue_number: number | null;
 		title: string;
 		date: string;
-		issue: number;
 	}
 
-	let { title, date, issue }: Props = $props();
+	let { id, issue_number, title, date }: Props = $props();
+
+	const formatted_date = $derived(format(new Date(date), 'MMM dd, yyyy'));
 </script>
 
-<a href="/snackpack/{issue}">
-	<article class="newsletter-archive-title stack">
-		<div class="flex">
-			<Icon name="send" height={21} width={21} />
-			<p>Issue #{issue}</p>
-			<Dot />
-			<p>{date}</p>
-		</div>
-		<h3 class="fv-700-i">{title}</h3>
-	</article>
+<a class="newsletter-archive stack" href="/snackpack/{id}">
+	<p class="meta flex">
+		<Icon name="send" height={20} width={20} />
+		{#if issue_number != null}
+			<span class="fv-500-i">Issue #{issue_number}</span>
+			<Dot size={8} />
+		{/if}
+		<span>{formatted_date}</span>
+	</p>
+	<h3 class="title fv-700-i">{title}</h3>
 </a>
 
-<style>
-	.newsletter-archive-title {
+<style lang="postcss">
+	.newsletter-archive {
+		--stack-gap: var(--pad-small);
+
+		container: newsletter-archive / inline-size;
 		border-top: solid 2px var(--c-primary);
-		padding-top: 24px;
-	}
-
-	.flex {
-		align-items: center;
-	}
-
-	a {
+		padding-top: var(--pad-large);
 		color: inherit;
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.meta {
+		--flex-gap: var(--pad-small);
+
+		align-items: center;
+		font-size: clamp(var(--fs-2), 2cqi, var(--fs-4));
+	}
+
+	.title {
+		font-size: clamp(var(--fs-5), 4.1cqi, var(--fs-8));
+		line-height: 1.2;
+		text-wrap: balance;
+	}
+
+	.newsletter-archive:hover .title {
+		color: var(--c-primary);
 	}
 </style>
