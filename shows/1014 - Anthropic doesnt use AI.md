@@ -4,6 +4,10 @@ title: Anthropic doesn’t use AI
 date: 1782126000000
 url: https://traffic.megaphone.fm/FSI3136110403.mp3
 youtube_url: https://www.youtube.com/watch?v=8A2MCNKC_hQ
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 ---
 	
 Scott, Wes, and CJ reunite fresh off a trip to Amsterdam to chat conferences, burnout, and whether Anthropic actually uses AI. They also dig into a packed bag of sick picks and tech news, including HTML streaming in Chrome, an image-to-ASCII generator, and a wild Arch Linux supply chain attack.
