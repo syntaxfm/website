@@ -90,13 +90,15 @@
 			margin-top: clamp(0.5rem, 1.6vw, 0.9rem);
 
 			:global(label) {
-				top: -0.95rem;
-				left: 0.55rem;
-				font-size: var(--fs-2);
-				font-variation-settings: var(--fv-700);
-				letter-spacing: 0.03em;
-				text-transform: uppercase;
+				top: -1.75rem;
+				left: 0.35rem;
+				padding: 0 6px;
+				background: var(--c-white);
 				color: var(--c-black);
+				font-size: var(--fs-4);
+				font-variation-settings: var(--fv-400);
+				letter-spacing: normal;
+				text-transform: none;
 			}
 
 			:global(.input) {
@@ -104,14 +106,33 @@
 			}
 
 			:global(.input input) {
-				min-height: 4.1rem;
-				border-radius: 0;
+				min-height: 4.2rem;
+				border-radius: var(--br-small);
 				border: 3px solid var(--c-black);
 				box-shadow: none;
 				background: var(--c-white);
 				color: var(--c-black);
 				font-size: clamp(var(--fs-3), 1.9vw, var(--fs-4));
 				padding: 0.9rem 1rem;
+			}
+
+			/* Snack Pack subscribe sticker: black, yellow border, hard shadow, tilted. */
+			button {
+				flex: 0 0 auto;
+				rotate: -3deg;
+				padding: 0.3em 0.7em;
+				border: 5px solid var(--c-primary);
+				border-radius: var(--br-small);
+				background: var(--c-black);
+				color: var(--c-white);
+				box-shadow: -8px 8px 0 var(--c-black);
+				font-size: clamp(var(--fs-6), 3.8vw, var(--fs-8));
+				font-variation-settings: var(--fv-700-italic);
+				line-height: 1.1;
+			}
+
+			button:hover {
+				background: oklch(from var(--c-black) calc(l + 0.16) c h);
 			}
 		}
 
@@ -146,7 +167,7 @@
 			padding: 0;
 			align-items: center;
 			justify-content: center;
-			gap: 0.8rem;
+			gap: clamp(1rem, 2.2vw, 1.75rem);
 			flex-wrap: nowrap;
 		}
 

@@ -16,12 +16,14 @@
 		<span class="doodle doodle-robot"><Icon name="robot" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span>
 	</div>
 	<div class="newsletter-banner-inner">
-		<div class="banner-logo-wrap">
-			<NewsletterLogo />
+		<div class="banner-hero">
+			<div class="banner-logo-wrap">
+				<NewsletterLogo />
+			</div>
+			<p class="banner-copy">
+				Be one of the <strong>{count}</strong> coolest people in the world!
+			</p>
 		</div>
-		<p class="banner-copy center">
-			Be one of the <strong>{count}</strong> coolest people in the world!
-		</p>
 		<div class="signup">
 			<div class="signup-paper" aria-hidden="true">
 				<Collage seed="signup-paper-backing" width={1100} height={200} solid="var(--c-black)" />
@@ -103,8 +105,15 @@
 		}
 	}
 
-	.banner-logo-wrap {
+	/* Logo + count form one collage group; the count tucks into the logo's
+	   lower-right negative space (under the "Snack Pack" tag, right of the box). */
+	.banner-hero {
+		position: relative;
 		width: min(92vw, 880px);
+	}
+
+	.banner-logo-wrap {
+		width: 100%;
 
 		:global(img) {
 			display: block;
@@ -142,17 +151,31 @@
 	}
 
 	.banner-copy {
-		margin: clamp(0.3rem, 1vw, 0.6rem) 0 0;
-		max-width: 24ch;
-		text-align: center;
-		font-size: clamp(var(--fs-4), 2.3vw, var(--fs-6));
-		line-height: 1.35;
-		font-variation-settings: var(--fv-500);
+		position: absolute;
+		right: clamp(0px, 2vw, 28px);
+		bottom: clamp(6px, 2.2vw, 40px);
+		width: min(48%, 340px);
+		margin: 0;
+		text-align: left;
+		font-size: clamp(var(--fs-3), 1.4vw, var(--fs-4));
+		line-height: 1.4;
+		font-variation-settings: var(--fv-400);
 		color: var(--c-black);
 	}
 
 	.banner-copy strong {
-		font-variation-settings: var(--fv-900);
+		font-size: 1.45em;
+		font-variation-settings: var(--fv-700-italic);
+	}
+
+	/* No room to overlap on smaller screens — drop the count below the logo. */
+	@media (--below-large) {
+		.banner-copy {
+			position: static;
+			width: auto;
+			max-width: 30ch;
+			margin: 1rem auto 0;
+		}
 	}
 
 	.banner-supporting {
