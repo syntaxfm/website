@@ -9,7 +9,7 @@
 		global?: boolean;
 		confirm?: string;
 		children?: import('svelte').Snippet<[any]>;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { global = true, confirm = '', children, ...rest }: Props = $props();
@@ -55,5 +55,5 @@
 </script>
 
 <form {...rest} use:enhance={form_action()}>
-	{@render children?.({ loading: formLoading, })}
+	{@render children?.({ loading: formLoading })}
 </form>
