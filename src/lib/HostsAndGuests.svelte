@@ -28,7 +28,7 @@
 		{#each hosts as host}
 			<Host
 				host={{
-					name: host.name || '',
+					name: host.name || host.username || '',
 					github: host.username,
 					twitter: host.twitter
 				}}

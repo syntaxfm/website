@@ -11,7 +11,8 @@ export async function GET() {
 			...show,
 			notesFile: show?.md_file,
 			displayNumber: show?.number.toString(),
-			displayDate: format(new Date(show.date), 'MMMM do, yyyy')
+			displayDate: format(new Date(show.date), 'MMMM do, yyyy'),
+			transcript: `/api/transcripts/${show.number}`
 		};
 	});
 

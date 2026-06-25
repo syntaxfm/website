@@ -13,8 +13,8 @@
 			<img src={`https://github.com/${guest.github}.png`} alt={guest.name} />
 			<div>
 				<h1>{guest.name}</h1>
-				{#if guest.twitter}
-					<div>
+				{#if guest.twitter || guest.github || guest.url}
+					<div class="guest_socials">
 						<HostSocialLink host={guest} />
 					</div>
 				{/if}
