@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HostSocialLink from './HostSocialLink.svelte';
+	import HostSocialLink from './TeamSocialLink.svelte';
 	interface Props {
 		guest?: boolean;
 		host: {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import get_show_path from '$/utilities/slug.js';
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import HostSocialLink from '$/lib/team/TeamSocialLink.svelte';
 
 	let { data } = $props();
 	let guests: any[] = $state([]);

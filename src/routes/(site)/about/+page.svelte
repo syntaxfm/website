@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import HostSocialLink from '$/lib/team/TeamSocialLink.svelte';
 	import type { Action } from 'svelte/action';
 	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';

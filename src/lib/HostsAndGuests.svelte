@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Guest } from '@prisma/client';
-	import Host from '$lib/hosts/Host.svelte';
+	import Host from '$/lib/team/Team.svelte';
 	interface Props {
 		guests?: { Guest: Guest }[];
 		hosts?: {
