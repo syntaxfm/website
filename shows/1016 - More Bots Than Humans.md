@@ -3,14 +3,12 @@ number: 1016
 title: More Bots Than Humans
 date: 1782730800000
 url: https://traffic.megaphone.fm/FSI8452010042.mp3
-youtube_url: https://youtube.com/live/rmCmzimg4UY?feature=share
-
+youtube_url: https://www.youtube.com/watch?v=rmCmzimg4UY
 ---
 
 Wes, Scott, and CJ break down the latest web dev news. From AI agents and coding tools to Deno Desktop, Nub, and predictive UX. They also discuss bot-filled social media, remote work debates, and a slick 3D bookstore experience.
 
 ### Show Notes
-
 
 * **[00:00](#t=00:00)** Intro
 * **[00:35](#t=00:35)** Welcome to Syntax!
@@ -40,7 +38,6 @@ Wes, Scott, and CJ break down the latest web dev news. From AI agents and coding
 * [3D Book Store](https://www.reddit.com/r/webdev/comments/1uaw1ky/built_a_3d_bookshop_experience_walk_around_pick/)
 
 ### Hit us up on Socials!
-
 
 Syntax: [X](https://twitter.com/syntaxfm) [Instagram](https://www.instagram.com/syntax_fm/) [Tiktok](https://www.tiktok.com/@syntaxfm) [LinkedIn](https://www.linkedin.com/company/96077407/admin/feed/posts/) [Threads](https://www.threads.net/@syntax_fm)
 
