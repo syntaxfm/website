@@ -1158,11 +1158,11 @@
 				<p class="fs-2">Transcript required to generate AI notes.</p>
 			{:else if !ai_show_note}
 				<form
-					{...fetch_AI_notes.enhance(async ({ submit }) => {
+					{...fetch_AI_notes.enhance(async (form) => {
 						ai_busy = true;
 						clear_feedback();
 						try {
-							await submit();
+							await form.submit();
 							await refresh_show_editor();
 							status_message = 'AI notes generated.';
 						} catch (error) {
@@ -1180,11 +1180,11 @@
 				</form>
 			{:else}
 				<form
-					{...fetch_AI_notes.enhance(async ({ submit }) => {
+					{...fetch_AI_notes.enhance(async (form) => {
 						ai_busy = true;
 						clear_feedback();
 						try {
-							await submit();
+							await form.submit();
 							await refresh_show_editor();
 							status_message = 'AI notes regenerated.';
 						} catch (error) {

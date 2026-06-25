@@ -13,10 +13,10 @@
 </script>
 
 <form
-	{...remote.enhance(async ({ form, submit }) => {
+	{...remote.enhance(async (form) => {
 		try {
-			await submit();
-			form.reset();
+			await form.submit();
+			form.element.reset();
 			toast.success(`Siiiiick ${remote.action} success`);
 		} catch (error) {
 			console.error(error);

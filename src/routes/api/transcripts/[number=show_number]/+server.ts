@@ -1,30 +1,29 @@
 import { error, json } from '@sveltejs/kit';
-import { prisma_client } from '$/server/prisma-client';
-import { getSlimUtterances } from '$/server/transcripts/utils';
+import { asc } from 'drizzle-orm';
+import { db } from '$server/db/client';
+import { getSlimUtterances } from '$server/transcripts/utils';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
 
-	const transcript = await prisma_client.transcript.findUnique({
-		where: { show_number },
-		include: {
+	const transcript = await db.query.transcript.findFirst({
+		where: (transcript, { eq }) => eq(transcript.show_number, show_number),
+		with: {
 			show: {
-				select: {
+				columns: {
 					title: true,
 					number: true,
 					date: true
 				}
 			},
 			utterances: {
-				select: {
+				columns: {
 					speaker: true,
 					transcript_value: true,
 					start: true,
 					end: true
 				},
-				orderBy: {
-					start: 'asc'
-				}
+				orderBy: (utterance) => [asc(utterance.start)]
 			}
 		}
 	});

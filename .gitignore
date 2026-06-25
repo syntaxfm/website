@@ -34,3 +34,4 @@ db_exports/
 scripts/prod_backup.sql
 .warden/
 .design-scratch/
+database_dump.sql
