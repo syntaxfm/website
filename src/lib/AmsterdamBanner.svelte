@@ -2,11 +2,7 @@
 	import syntaxLogo from '../assets/syntax-wordmark-wide.svg';
 </script>
 
-<a
-	href="https://syntax.fm/meetup"
-	target="_blank"
-	class="layout amsterdam-banner"
->
+<a href="https://syntax.fm/meetup" target="_blank" class="layout amsterdam-banner">
 	<div class="banner-content">
 		<div class="text-section">
 			<p class="top-line">
@@ -34,7 +30,8 @@
 		background-position: right center;
 		background-repeat: no-repeat;
 		mask-image:
-			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png), linear-gradient(var(--black), var(--black));
+			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png),
+			linear-gradient(var(--black), var(--black));
 		--mask-size: 20px;
 		--mask-position: calc(100% + 5px);
 		mask-size:
