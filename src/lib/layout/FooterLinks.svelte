@@ -28,10 +28,6 @@
 					Source Code
 				</a>
 			</li>
-			<li><a href="/system/colors">Colors</a></li>
-			<li><a href="/system/layout">Layout</a></li>
-			<li><a href="/system/typography">Typography</a></li>
-			<li><a href="/system/theme">Theme</a></li>
 			<li><a href="/pages/privacy">Privacy Policy</a></li>
 			<li><a href="/pages/terms-of-service">Terms of Service</a></li>
 			<!-- <a href="/system/components">Components</a> -->
