@@ -16,6 +16,7 @@ export const load = async function () {
 											name_slug: true,
 											id: true,
 											github: true,
+											twitter: true,
 											url: true,
 											social: true
 										}

@@ -125,7 +125,8 @@
 						...hosts,
 						...(show.guests || []).map((guest) => ({
 							name: guest.Guest.name,
-							github: guest.Guest.github || ''
+							github: guest.Guest.github || '',
+							twitter: guest.Guest.twitter || ''
 						}))
 					]}
 				/>
