@@ -1,4 +1,5 @@
 import { db } from '$server/db/client';
+import { with_show_card_show } from '$server/shows/shows_queries';
 
 export const load = async function ({ setHeaders, params }) {
 	setHeaders({
@@ -20,8 +21,9 @@ export const load = async function ({ setHeaders, params }) {
 	const show_number = parseInt(params.show_number_or_title);
 	// If its a Show, we need to return the show from the DB
 	return {
-		show: await db.query.shows.findFirst({
-			where: (shows, { eq }) => eq(shows.number, show_number)
+		show: await db.query.show.findFirst({
+			where: (show, { eq }) => eq(show.number, show_number),
+			with: with_show_card_show
 		})
 	};
 };

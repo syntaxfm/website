@@ -9,10 +9,9 @@ export const getGuest = query(v.string(), async (name_slug) => {
 	return db.query.guest.findFirst({
 		where: eq(guest.name_slug, name_slug),
 		with: {
-			show: {
-				orderBy: (showGuest, { desc }) => [desc(showGuest.showId)],
+			showGuests: {
 				with: {
-					show: with_show_card_show
+					show: { with: with_show_card_show }
 				}
 			}
 		}
@@ -20,32 +19,30 @@ export const getGuest = query(v.string(), async (name_slug) => {
 });
 
 export const getAllGuests = query(async () => {
-	const guests = await db.query.guest.findMany({
+	return db.query.guest.findMany({
+		columns: {
+			id: true,
+			name: true,
+			name_slug: true,
+			of: true,
+			github: true,
+			twitter: true,
+			url: true
+		},
 		with: {
-			shows: {
+			showGuests: {
+				columns: {},
 				with: {
 					show: {
-						with: {
-							guests: {
-								with: {
-									guest: {
-										columns: {
-											name: true,
-											of: true,
-											name_slug: true,
-											id: true,
-											github: true,
-											url: true,
-											twitter: true
-										}
-									}
-								}
-							}
+						columns: {
+							number: true,
+							slug: true,
+							title: true
 						}
 					}
 				}
 			}
-		}
+		},
+		orderBy: (g, { asc }) => [asc(g.name)]
 	});
-	return guests;
 });

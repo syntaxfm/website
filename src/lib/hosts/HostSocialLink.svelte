@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
-	import type { Host } from '$server/db/types';
 	interface Props {
-		host: Host;
+		host: {
+			name: string | null;
+			twitter?: string | null;
+			github?: string | null;
+			url?: string | null;
+		};
 	}
 
 	let { host }: Props = $props();

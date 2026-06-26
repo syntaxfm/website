@@ -15,7 +15,7 @@
 
 	let hosts = (
 		show.hosts?.length > 0
-			? show.hosts
+			? show.hosts.map((host) => host.user)
 			: [
 					{ name: 'Wes Bos', username: 'wesbos' },
 					{ name: 'Scott Tolinski', username: 'stolinski' }
@@ -27,9 +27,9 @@
 
 	let allFaces = [
 		...hosts,
-		...(show.guests || []).map((guest) => ({
-			name: guest.Guest.name,
-			github: guest.Guest.github || ''
+		...(show.guests || []).map(({ guest }) => ({
+			name: guest.name,
+			github: guest.github || ''
 		}))
 	];
 
