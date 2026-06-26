@@ -12,7 +12,7 @@ const config = {
 				'media-query-ranges': true,
 				'cascade-layers': false
 			}
-		}),
+		})
 	]
 };
 

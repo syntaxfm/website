@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import HostSocialLink from '$/lib/team/TeamSocialLink.svelte';
 	import type { Action } from 'svelte/action';
 	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
@@ -18,20 +18,25 @@
 			github: 'stolinski',
 			twitter: 'stolinski'
 		},
-		kaitlin: {
-			name: 'Kaitlin Bloom',
-			github: 'bl0om',
-			twitter: 'kaitlinblooom'
+		cj: {
+			name: 'CJ Reynolds',
+			github: 'w3cj',
+			twitter: 'coding_garden'
 		},
 		randy: {
 			name: 'Randy Rektor',
 			github: 'randyrektor',
 			twitter: 'randyrektor'
 		},
-		cj: {
-			name: 'CJ Reynolds',
-			github: 'w3cj',
-			twitter: 'coding_garden'
+		nicki: {
+			name: 'Nicki Bradner',
+			github: 'brandnerniki',
+			twitter: 'nikibrandner1'
+		},
+		kaitlin: {
+			name: 'Kaitlin Bloom',
+			github: 'bl0om',
+			twitter: 'kaitlinblooom'
 		}
 	};
 
@@ -120,7 +125,7 @@
 			</div>
 		</div>
 
-		<div class="team-member" style:--rotate="0.2deg">
+		<div class="team-member" style:--rotate="0deg">
 			<img
 				src={`https://github.com/${hosts.scott.github}.png`}
 				alt={hosts.scott.name}
@@ -139,49 +144,6 @@
 						href="https://leveluptutorials.com">Level Up Tutorials</a
 					>. In his free time Scott is a dedicated Bboy (breakdancer) & enjoys pushing himself
 					athletically through dance, working out and snowboarding.
-				</p>
-			</div>
-		</div>
-		<div class="team-member">
-			<img
-				src={`https://github.com/${hosts.kaitlin.github}.png`}
-				alt={hosts.kaitlin.name}
-				class="avatar"
-				data-lol={number1fan}
-				use:lol
-			/>
-			<h2 class="h4">
-				<span class="first">Kaitlin</span>
-				<span class="last">Bloom</span>
-			</h2>
-			<div class="desc border-on-dark">
-				<HostSocialLink host={hosts.kaitlin} />
-				<p>
-					Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax Newsletter,
-					manages the Syntax social accounts, and generally tries to figure out how Syntax can
-					better reach its audience.
-				</p>
-			</div>
-		</div>
-		<div class="team-member" style:--rotate="1deg">
-			<img
-				use:lol
-				src={`https://github.com/${hosts.randy.github}.png`}
-				alt={hosts.randy.name}
-				class="avatar"
-				data-lol={runonlove}
-			/>
-			<h2 class="h4">
-				<span class="first">Randy</span>
-				<span class="last">Rektor</span>
-			</h2>
-			<div class="desc border-on-dark">
-				<HostSocialLink host={hosts.randy} />
-				<p>
-					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube,
-					and helps keep Syntax's production gears oiled. He is a musician, <a
-						href="https://www.youtube.com/@randyrektor">YouTuber</a
-					>, and a self-proclaimed ‘massive audio geek’.
 				</p>
 			</div>
 		</div>
@@ -204,6 +166,69 @@
 						>Coding Garden</a
 					>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes
 					and hanging out with his dog.
+				</p>
+			</div>
+		</div>
+		<div class="team-member">
+			<img
+				use:lol
+				src={`https://github.com/${hosts.randy.github}.png`}
+				alt={hosts.randy.name}
+				class="avatar"
+				data-lol={runonlove}
+			/>
+			<h2 class="h4">
+				<span class="first">Randy</span>
+				<span class="last">Rektor</span>
+			</h2>
+			<div class="desc border-on-dark">
+				<HostSocialLink host={hosts.randy} />
+				<p>
+					Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube,
+					and helps keep Syntax's production gears oiled. He is a musician, <a
+						href="https://www.youtube.com/@randyrektor">YouTuber</a
+					>, and a self-proclaimed ‘massive audio geek’.
+				</p>
+			</div>
+		</div>
+		<div class="team-member" style:--rotate="0deg">
+			<img
+				use:lol
+				src={`https://github.com/${hosts.nicki.github}.png`}
+				alt={hosts.nicki.name}
+				class="avatar"
+			/>
+			<h2 class="h4">
+				<span class="first">Nicki</span>
+				<span class="last">Bradner</span>
+			</h2>
+			<div class="desc border-on-dark">
+				<HostSocialLink host={hosts.nicki} />
+				<p>
+					Niki Bradner is Syntax's Senior Podcast Producer. She is an Amsterdam based video and audio
+					engineer who studied at SAE Amsterdam. She has experience in fine-tuning podcasts, editing
+					videos, preparing promotion material, as well as mixing and mastering music.
+				</p>
+			</div>
+		</div>
+		<div class="team-member" style:--rotate="1deg">
+			<img
+				use:lol
+				src={`https://github.com/${hosts.kaitlin.github}.png`}
+				alt={hosts.kaitlin.name}
+				class="avatar"
+				data-lol={number1fan}
+			/>
+			<h2 class="h4">
+				<span class="first">Kaitlin</span>
+				<span class="last">Bloom</span>
+			</h2>
+			<div class="desc border-on-dark">
+				<HostSocialLink host={hosts.kaitlin} />
+				<p>
+					Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax Newsletter,
+					manages the Syntax social accounts, and generally tries to figure out how Syntax can
+					better reach its audience.
 				</p>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ShowCard from '$lib/ShowCard.svelte';
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import HostSocialLink from '$/lib/team/TeamSocialLink.svelte';
 
 	let { data } = $props();
 	let { guest } = $derived(data);
