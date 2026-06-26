@@ -3,6 +3,7 @@
 	import { env } from '$env/dynamic/public';
 	import { submit_user_submission } from './submissions.remote';
 	import InlineError from './InlineError.svelte';
+	import { slide_fade } from '$lib/utils/transitions';
 	import type { SUBMISSION_TYPES } from '$server/db/types';
 
 	interface Props {
@@ -17,7 +18,7 @@
 </script>
 
 {#if submit_user_submission.result}
-	<div class="status" class:error={!submit_user_submission.result.success}>
+	<div class="status" class:error={!submit_user_submission.result.success} transition:slide_fade>
 		<p>{submit_user_submission.result.success ? 'Success!' : 'Shoot!'}</p>
 		<p class="fs-caption">{submit_user_submission.result.message}</p>
 	</div>
@@ -106,6 +107,7 @@
 		<Turnstile
 			appearance="interaction-only"
 			siteKey={env.PUBLIC_TURNSTILE_SITE_KEY}
+			responseFieldName="cf_turnstile_response"
 			bind:reset={reset_turnstile}
 		/>
 	</div>

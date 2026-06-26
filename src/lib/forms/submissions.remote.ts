@@ -7,11 +7,11 @@ import { user_submission_schema } from './userSubmissionSchema';
 import { validateToken } from './validateTurnstileToken';
 
 const submission_form_schema = user_submission_schema.extend({
-	'cf-turnstile-response': z.string().optional()
+	cf_turnstile_response: z.string().optional()
 });
 
 export const submit_user_submission = form(submission_form_schema, async (data) => {
-	const { 'cf-turnstile-response': turnstile_token, submission_type, body, name, email } = data;
+	const { cf_turnstile_response: turnstile_token, submission_type, body, name, email } = data;
 
 	const { success, error } = await validateToken(turnstile_token, env.TURNSTILE_SECRET);
 	if (!success) {
