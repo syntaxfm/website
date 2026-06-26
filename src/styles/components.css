@@ -14,3 +14,19 @@
 		color: var(--c-white);
 	}
 }
+
+/*
+ * The signature Syntax "graphic" card: solid border + hard offset shadow.
+ * Frame only (no padding) so callers control their own spacing. Tune the
+ * border/radius/shadow per use by setting the custom properties.
+ */
+.graphic-card {
+	--graphic-card-border: var(--b-medium);
+	--graphic-card-radius: var(--br-large);
+	--graphic-card-shadow: var(--s-graphic-medium);
+
+	background: var(--c-bg);
+	border: var(--graphic-card-border);
+	border-radius: var(--graphic-card-radius);
+	box-shadow: var(--graphic-card-shadow);
+}

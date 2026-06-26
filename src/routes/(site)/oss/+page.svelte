@@ -1,8 +1,6 @@
 <script lang="ts">
 	import UserSubmissionForm from '$lib/forms/UserSubmissionForm.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
-
-	let { form } = $props();
 </script>
 
 <Meta
@@ -52,7 +50,7 @@
 			</div>
 		</div>
 
-		<UserSubmissionForm {form} selected_submission_type="OSS" />
+		<UserSubmissionForm selected_submission_type="OSS" />
 	</div>
 </main>
 

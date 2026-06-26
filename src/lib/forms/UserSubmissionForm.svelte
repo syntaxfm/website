@@ -1,54 +1,61 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import { form_action } from '../form_action';
 	import { Turnstile } from 'svelte-turnstile';
 	import { env } from '$env/dynamic/public';
+	import { submit_user_submission } from './submissions.remote';
 	import InlineError from './InlineError.svelte';
 	import type { SUBMISSION_TYPES } from '$server/db/types';
 
-	let reset: (() => void) | undefined = $state();
 	interface Props {
 		selected_submission_type?: SUBMISSION_TYPES;
 	}
 
-	let { form, selected_submission_type = 'SPOOKY' }: Props = $props();
+	let { selected_submission_type = 'SPOOKY' }: Props = $props();
+
+	let reset_turnstile: (() => void) | undefined = $state();
+
+	const fields = submit_user_submission.fields;
 </script>
 
-{#if form?.error}
-	<div class="error status">
-		<p>Shoot! {form.message}</p>
-		<p class="fs-caption">Error: {form.error}</p>
-	</div>
-{:else if form?.status === 200}
-	<div class="status">
-		<p>Success!</p>
-		<p class="fs-caption">{form.message}</p>
+{#if submit_user_submission.result}
+	<div class="status" class:error={!submit_user_submission.result.success}>
+		<p>{submit_user_submission.result.success ? 'Success!' : 'Shoot!'}</p>
+		<p class="fs-caption">{submit_user_submission.result.message}</p>
 	</div>
 {/if}
 <form
-	action="?"
-	method="post"
-	use:enhance={form_action(undefined, undefined, (data, context) => {
-		if (data.status === 200) {
-			return context?.formElement.reset();
-		}
-		if (data.error) {
-			console.info('Resetting turnstile');
-			reset?.();
+	{...submit_user_submission.enhance(async (form) => {
+		try {
+			await form.submit();
+			if (submit_user_submission.result?.success) {
+				form.element.reset();
+			}
+		} catch (error) {
+			console.error('Submission failed', error);
+		} finally {
+			reset_turnstile?.();
 		}
 	})}
 >
 	<div class="input-group">
 		<label for="submission_type">Submission Type</label>
 		<div class="input">
-			<InlineError displayError={form?.fieldErrors?.['submission_type']} />
-			<select name="submission_type" id="submission_type" value={selected_submission_type}>
-				<option value="POTLUCK">Potluck Question</option>
-				<option value="SPOOKY">👻🎃 Spooky Story Submission</option>
-				<option value="GUEST">Guest Suggestion</option>
-				<option value="FEEDBACK">Show Feedback</option>
-				<option value="OSS">💰 OSS Funding Suggestion</option>
-				<option value="OTHER">Other</option>
+			<select name="submission_type" id="submission_type">
+				<option value="POTLUCK" selected={selected_submission_type === 'POTLUCK'}>
+					Potluck Question
+				</option>
+				<option value="SPOOKY" selected={selected_submission_type === 'SPOOKY'}>
+					👻🎃 Spooky Story Submission
+				</option>
+				<option value="GUEST" selected={selected_submission_type === 'GUEST'}>
+					Guest Suggestion
+				</option>
+				<option value="FEEDBACK" selected={selected_submission_type === 'FEEDBACK'}>
+					Show Feedback
+				</option>
+				<option value="OSS" selected={selected_submission_type === 'OSS'}>
+					💰 OSS Funding Suggestion
+				</option>
+				<option value="OTHER" selected={selected_submission_type === 'OTHER'}>Other</option>
 			</select>
 		</div>
 	</div>
@@ -58,22 +65,20 @@
 			<p class="required">Required</p>
 		</div>
 		<div class="input">
-			<InlineError displayError={form?.fieldErrors?.['body']} />
+			<InlineError displayError={fields.body.issues()?.[0]?.message} />
 			<textarea
 				id="body"
 				name="body"
 				placeholder="What do you have to say? Write as much as you like!"
 				required
 				minlength={25}
-				maxlength={15000}
-			></textarea>
+				maxlength={15000}></textarea>
 		</div>
 	</div>
 
 	<div class="input-group">
 		<label for="name">Name</label>
 		<div class="input">
-			<InlineError displayError={form?.fieldErrors?.['name']} />
 			<input
 				type="text"
 				id="name"
@@ -87,7 +92,7 @@
 	<div class="input-group">
 		<label for="email">Email</label>
 		<div class="input">
-			<InlineError displayError={form?.fieldErrors?.['email']} />
+			<InlineError displayError={fields.email.issues()?.[0]?.message} />
 			<input
 				type="email"
 				id="email"
@@ -98,7 +103,11 @@
 		</div>
 	</div>
 	<div class="input-group turnstile">
-		<Turnstile appearance="interaction-only" siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} bind:reset />
+		<Turnstile
+			appearance="interaction-only"
+			siteKey={env.PUBLIC_TURNSTILE_SITE_KEY}
+			bind:reset={reset_turnstile}
+		/>
 	</div>
 	<button type="submit">Send</button>
 </form>
@@ -107,9 +116,10 @@
 	form {
 		display: grid;
 		gap: 1rem;
-		margin: 2rem;
+		margin: var(--form-margin, 2rem);
 		grid-template-columns: auto 1fr;
 		max-width: 800px;
+		width: 100%;
 
 		@media (--below-med) {
 			grid-template-columns: 1fr;

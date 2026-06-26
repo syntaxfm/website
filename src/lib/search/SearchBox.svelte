@@ -6,6 +6,7 @@
 	import SearchWorker from './search-worker.js?worker';
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
+	import Icon from '$lib/Icon.svelte';
 	import { fade } from 'svelte/transition';
 	import { clickOutDialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
@@ -168,7 +169,9 @@
 				class="search-input"
 			/>
 
-			<button class="close" onclick={close} type="submit">×</button>
+			<button class="close" onclick={close} aria-label="Close search" type="button">
+				<Icon name="close" height={28} width={28} />
+			</button>
 		</header>
 		<div class="results">
 			{#if local_search?.query}
@@ -184,7 +187,7 @@
 				</div>
 			{:else}
 				<div transition:fade={{ duration: 100 }} class="recent-searches">
-					<div>
+					<div class="brand">
 						<!-- prettier-ignore -->
 						<pre style:color={active_color} style="overflow: hidden; width: 201px;">
 ░██████╗██╗░░░██╗███╗░░██╗
@@ -208,8 +211,8 @@
 						</div>
 					</div>
 					<div>
-						<h2 class="h5" id="search-header" class:empty={recent_searches.length === 0}>
-							Recent searches
+						<h2 id="search-header" class:empty={recent_searches.length === 0}>
+							Recent Searches
 						</h2>
 						{#if !recent_searches.length}
 							<p>No recent searches</p>
@@ -237,31 +240,43 @@
 
 <style lang="postcss">
 	header {
-		--border: var(--c-fg);
-
-		border-bottom: var(--b-medium);
+		border-bottom: solid 4px var(--c-primary);
 		display: flex;
+		align-items: center;
+		padding-block: 8px;
 		position: sticky;
 		top: 0;
 		z-index: 10;
 		background-color: var(--c-bg);
 
 		&::before {
-			content: '> ';
-			position: relative;
-			top: 12px;
-			padding-left: 10px;
+			content: '>';
+			padding-left: 16px;
+			font-size: clamp(var(--fs-5), 4vw, var(--fs-7));
+			line-height: 1.2;
+			font-variation-settings: var(--fv-700-italic);
+			color: var(--c-fg);
 		}
-	}
-
-	header:focus-within {
-		--border: var(--c-primary);
 	}
 
 	.close {
 		position: absolute;
 		top: 10px;
 		right: 10px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		background: none;
+		border: none;
+		border-radius: 0;
+		color: var(--c-fg);
+		cursor: pointer;
+	}
+
+	.close:hover {
+		background: none;
+		color: var(--c-primary);
 	}
 
 	dialog {
@@ -270,15 +285,22 @@
 		height: var(--search-height, 50vh);
 		border: var(--b-medium);
 		border-color: var(--c-fg);
-		border-radius: var(--br-medium);
+		border-radius: var(--br-large);
 		position: fixed;
 		inset: 0;
-		margin: auto;
+		margin: clamp(24px, 9vh, 143px) auto auto;
 		max-width: 100%;
 		width: 100%;
 
 		@media (--above-med) {
 			width: clamp(600px, 90vw, 950px);
+			/* hard brutalist offset shadow — --c-fg keeps it visible in dark mode */
+			box-shadow: var(--s-graphic-medium);
+		}
+
+		@media (--below-med) {
+			height: 85dvh;
+			margin: 12px auto auto;
 		}
 	}
 
@@ -309,13 +331,21 @@
 
 	.search-input {
 		width: 100%;
+		appearance: none;
 		border: none;
-		padding: 10px 50px 10px 10px;
-		font-size: var(--fs-4);
-		outline-color: transparent;
+		outline: none;
+		padding: 4px 50px 4px 10px;
+		font-size: clamp(var(--fs-5), 4vw, var(--fs-7));
+		line-height: 1.2;
+		font-variation-settings: var(--fv-700-italic);
 		background-color: transparent;
 		color: var(--c-fg);
 		font-family: var(--ff-body);
+	}
+
+	.search-input::placeholder {
+		color: var(--c-fg-4);
+		font-variation-settings: var(--fv-700-italic);
 	}
 
 	footer {
@@ -343,6 +373,31 @@
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		gap: 20px;
+
+		@media (--below-med) {
+			grid-template-columns: 1fr;
+			padding: 12px;
+			gap: 12px;
+		}
+	}
+
+	/* Allow the grid tracks to shrink below their content's intrinsic width so
+	   nowrap titles truncate instead of blowing the column out. */
+	.recent-searches > * {
+		min-width: 0;
+	}
+
+	/* The ASCII logo + color swatches are decorative — drop them on small screens
+	   so Recent Searches gets the full width. */
+	@media (--below-med) {
+		.brand {
+			display: none;
+		}
+	}
+
+	.recent-searches h2 {
+		font-size: clamp(var(--fs-4), 2.5vw, var(--fs-5));
+		font-variation-settings: var(--fv-700-italic);
 	}
 
 	.color-boxes {
