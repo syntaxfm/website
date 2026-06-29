@@ -122,7 +122,7 @@ async function condense(
 }
 
 export async function generate_ai_notes(
-	show: { number: number; title: string; transcript?: { utterances: DBUtterance[] } | null },
+	show: { number: number; title: string; transcript?: { utterances: Pick<DBUtterance, 'speaker' | 'start' | 'end' | 'transcript_value'>[] } | null },
 	provider: 'openai' | 'anthropic' = 'anthropic'
 ) {
 	if (!show || !show.transcript?.utterances) {

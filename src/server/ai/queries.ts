@@ -27,8 +27,8 @@ export const transcript_without_ai_notes_query = () => ({
 						channel: true,
 						transcript_value: true,
 						speaker: true,
-						speakerName: true,
-						transcriptId: true
+						speaker_name: true,
+						transcript_id: true
 					},
 					orderBy: [asc(transcriptUtterances.start)]
 				}

@@ -10,7 +10,7 @@ type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0
  */
 
 export function getSlimUtterances(
-	utterances: DBUtterance[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
+	utterances: Pick<DBUtterance, 'speaker' | 'start' | 'end' | 'transcript_value'>[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
 	showNumber: number,
 	groupForPunctuation = true
 ): SlimUtterance[] {
