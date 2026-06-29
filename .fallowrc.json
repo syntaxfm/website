@@ -1,0 +1,24 @@
+{
+	"$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+	"ignorePatterns": ["src/generated/**"],
+	"entry": ["scripts/**/*.js"],
+	"ignoreUnresolvedImports": ["/api/57475/script.js"],
+	"rules": {
+		"unused-exports": "warn",
+		"unused-types": "warn",
+		"unused-class-members": "warn",
+		"unused-component-props": "warn",
+		"unused-load-data-keys": "warn",
+		"type-only-dependencies": "warn",
+		"test-only-dependencies": "warn"
+	},
+	"overrides": [
+		{
+			"files": ["src/server/db/**"],
+			"rules": {
+				"unused-exports": "off",
+				"unused-types": "off"
+			}
+		}
+	]
+}

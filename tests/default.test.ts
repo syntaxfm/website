@@ -28,7 +28,7 @@ test('admin action should require login', async ({ request, baseURL }) => {
 	expect(body.status).toBe(302);
 	expect(body.location).toBe('/login');
 
-	const result = await db.query.guests.findMany();
+	const result = await db.query.guest.findMany();
 	expect(result.length).not.toBe(0);
 });
 
