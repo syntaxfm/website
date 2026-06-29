@@ -12,33 +12,6 @@ import {
 	aiTweet as aiTweets
 } from '$server/db/schema';
 
-// Query for finding show without AI notes but with transcript
-// In Drizzle relational queries, we can filter based on relations being null/not null
-export const transcript_without_ai_notes_query = () => ({
-	with: {
-		transcript: {
-			with: {
-				utterances: {
-					columns: {
-						id: true,
-						start: true,
-						end: true,
-						confidence: true,
-						channel: true,
-						transcript_value: true,
-						speaker: true,
-						speaker_name: true,
-						transcript_id: true
-					},
-					orderBy: [asc(transcriptUtterances.start)]
-				}
-			}
-		},
-		aiShowNote: {}
-	},
-	orderBy: [desc(shows.number)]
-});
-
 // AI note with all related data
 export const ai_note_with_friends = () => ({
 	with: {

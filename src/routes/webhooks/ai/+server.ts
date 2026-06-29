@@ -1,9 +1,10 @@
 import { save_ai_notes_to_db } from '$server/ai/db';
 import { generate_ai_notes } from '$server/ai/openai';
-import { transcript_without_ai_notes_query } from '$server/ai/queries';
 import { error, json } from '@sveltejs/kit';
 import { has_auth } from '../transcripts/has_auth';
 import { db } from '$server/db/client';
+import { show as shows, transcriptUtterance as transcriptUtterances } from '$server/db/schema';
+import { asc, desc } from 'drizzle-orm';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
@@ -17,7 +18,30 @@ export const GET = async function transcriptCronHandler({ request }) {
 		error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
-	const show = await db.query.show.findFirst(transcript_without_ai_notes_query());
+	const show = await db.query.show.findFirst({
+		with: {
+			transcript: {
+				with: {
+					utterances: {
+						columns: {
+							id: true,
+							start: true,
+							end: true,
+							confidence: true,
+							channel: true,
+							transcript_value: true,
+							speaker: true,
+							speaker_name: true,
+							transcript_id: true
+						},
+						orderBy: [asc(transcriptUtterances.start)]
+					}
+				}
+			},
+			aiShowNote: {}
+		},
+		orderBy: [desc(shows.number)]
+	});
 
 	if (!show) {
 		return json({ message: 'No shows without AI Show notes found.' });
