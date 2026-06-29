@@ -101,9 +101,11 @@ After you remove dead code, re-save the baseline so it ratchets down:
 pnpm dlx fallow dead-code --format json --quiet --save-baseline .fallow/baseline.json
 ```
 
-Commit `.fallowrc.json` and `.fallow/baseline.json` (the `.fallow/.gitignore`
-keeps `cache.bin`/`graph-cache.bin` out). Goal over time: drive the 72 toward 0,
-then the bare run is the gate and the baseline is just history.
+Commit `.fallowrc.json` (tracked). The `.fallow/` directory is gitignored, so
+the baseline is local to your machine — re-save it after cleanups. If CI or
+teammates should share it, un-ignore `.fallow/baseline.json`. Goal over time:
+drive the remaining findings toward 0, then the bare run is the gate and the
+baseline is just history.
 
 ## Finish with evidence
 

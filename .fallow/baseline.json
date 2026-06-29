@@ -1,13 +1,5 @@
 {
-  "unused_files": [
-    "src/server/ai/summarize.ts",
-    "src/state/storable.ts",
-    "src/utilities/colors.ts",
-    "src/utilities/file_utilities/exists.ts",
-    "src/utilities/file_utilities/get_file_hash.ts",
-    "src/utilities/get_first_paragraph.ts",
-    "src/utilities/replace_special_chars.ts"
-  ],
+  "unused_files": [],
   "unused_exports": [
     "src/hooks.server.ts:auth",
     "src/hooks.server.ts:admin",
@@ -26,6 +18,7 @@
     "src/server/ai/openai.ts:MODEL",
     "src/server/ai/openai.ts:EMBEDDING_MODEL",
     "src/server/ai/openai.ts:CONDENSE_THRESHOLD",
+    "src/server/ai/openai.ts:openai",
     "src/server/ai/openai.ts:condense",
     "src/server/ai/prompts.ts:grammar_prompt",
     "src/server/ai/prompts.ts:midjourney",
@@ -54,27 +47,8 @@
     "src/state/player.ts:Timestamp"
   ],
   "private_type_leaks": [],
-  "unused_dependencies": [
-    "package.json:@planetscale/database",
-    "package.json:@svelte-put/shortcut",
-    "package.json:linkedom",
-    "package.json:npm-run-all2",
-    "package.json:svelte-local-storage-store",
-    "package.json:sveltekit-search-params",
-    "package.json:zx"
-  ],
-  "unused_dev_dependencies": [
-    "package.json:@eslint/eslintrc",
-    "package.json:@storybook/addon-queryparams",
-    "package.json:eslint-config-prettier",
-    "package.json:eslint-plugin-storybook",
-    "package.json:eslint-plugin-svelte",
-    "package.json:postcss-custom-media",
-    "package.json:postcss-html",
-    "package.json:postcss-import-ext-glob",
-    "package.json:postcss-load-config",
-    "package.json:tslib"
-  ],
+  "unused_dependencies": [],
+  "unused_dev_dependencies": [],
   "circular_dependencies": [],
   "re_export_cycles": [],
   "unused_optional_dependencies": [],
@@ -99,14 +73,10 @@
     "src/routes/(site)/snackpack/[issue_id]/+page.server.ts:id"
   ],
   "unresolved_imports": [],
-  "unlisted_dependencies": [
-    "svelte-eslint-parser"
-  ],
+  "unlisted_dependencies": [],
   "duplicate_exports": [],
   "type_only_dependencies": [],
-  "test_only_dependencies": [
-    "package.json:@sveltejs/adapter-vercel"
-  ],
+  "test_only_dependencies": [],
   "boundary_violations": [],
   "boundary_coverage_violations": [],
   "boundary_call_violations": [],
