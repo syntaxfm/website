@@ -9,7 +9,7 @@ const query = shows_api_query();
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
-	const data = await db.query.shows.findFirst({
+	const data = await db.query.show.findFirst({
 		where: and(eq(shows.number, show_number), lte(shows.date, new Date())),
 		with: {
 			...query.with

@@ -4,7 +4,7 @@ import { shows_api_query } from '../query';
 import { db } from '$server/db/client';
 
 export async function GET() {
-	const data = await db.query.shows.findFirst(shows_api_query());
+	const data = await db.query.show.findFirst(shows_api_query());
 	if (data)
 		return json(
 			{

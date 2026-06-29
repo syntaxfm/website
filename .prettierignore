@@ -11,3 +11,9 @@ node_modules
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Show notes are authored content, not code — don't format/check them
+shows/
+
+# Generated code (Prisma client output) — never hand-format
+src/generated/

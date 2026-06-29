@@ -4,7 +4,7 @@ import { shows_api_query } from './query';
 import { db } from '$server/db/client';
 
 export async function GET() {
-	const data = await db.query.shows.findMany(shows_api_query());
+	const data = await db.query.show.findMany(shows_api_query());
 
 	const shows = data.map((show) => {
 		return {

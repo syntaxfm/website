@@ -1,7 +1,8 @@
 // PostgreSQL database client with connection pooling
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import * as schema from './schemas';
+import * as tables from './schema';
+import * as relations from './relations';
 import { env } from '$env/dynamic/private';
 
 // Connection string from environment
@@ -31,6 +32,9 @@ const client = postgres(DATABASE_URL, {
 	debug: env.NODE_ENV === 'development' ? false : false
 });
 
+// Drizzle needs the table definitions and relations combined into one schema object
+const schema = { ...tables, ...relations };
+
 // Create drizzle instance with schema
 export const db = drizzle(client, {
 	schema,
@@ -42,7 +46,6 @@ export const db = drizzle(client, {
 
 // Type exports for convenience
 export type Database = typeof db;
-export { schema };
 
 // Graceful shutdown helper
 export async function closeDatabase() {

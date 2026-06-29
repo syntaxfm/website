@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto';
 
 export async function add_user_to_role(userId: string, roleName: string) {
 	// Find the role by its name
-	const role = await db.query.roles.findFirst({
+	const role = await db.query.role.findFirst({
 		where: eq(roles.name, roleName)
 	});
 
@@ -17,8 +17,8 @@ export async function add_user_to_role(userId: string, roleName: string) {
 	const userRoleId = randomUUID();
 	await db.insert(userRoles).values({
 		id: userRoleId,
-		userId: userId,
-		roleId: role.id
+		user_id: userId,
+		role_id: role.id
 	});
 
 	return { id: userRoleId, userId, roleId: role.id };

@@ -1,5 +1,5 @@
 import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-import type { Show } from '$server/db/schema';
+import type { Show } from '$server/db/types';
 import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
 import path from 'path';
@@ -72,7 +72,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 		await db.insert(transcriptUtterances).values({
 			id: utteranceId,
 			...utterance,
-			transcriptId: transcriptId
+			transcript_id: transcriptId
 		});
 
 		console.log(`Creating Words for Utterance: ${utterance.start} (${words.create.length})`);
@@ -80,7 +80,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 			words.create.map((word) => ({
 				id: randomUUID(),
 				...word,
-				transcriptUtteranceId: utteranceId
+				transcript_utterance_id: utteranceId
 			}))
 		);
 	}
@@ -105,7 +105,7 @@ export async function import_transcripts() {
 			);
 			const show_number = parseInt(file.split(' - ')[0]);
 			// Check if there is already a transcript for this show
-			const existing_transcript = await db.query.transcripts.findFirst({
+			const existing_transcript = await db.query.transcript.findFirst({
 				where: eq(transcripts.show_number, show_number)
 			});
 			if (existing_transcript) {
@@ -113,7 +113,7 @@ export async function import_transcripts() {
 				return;
 			}
 			// Find the show this transcript belongs to
-			const show = await db.query.shows.findFirst({
+			const show = await db.query.show.findFirst({
 				where: eq(shows.number, show_number)
 			});
 			if (!show) {

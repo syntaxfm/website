@@ -17,7 +17,7 @@ export const GET = async function transcriptCronHandler({ request }) {
 		error(401, 'Get outta here - Wrong Cron key or auth header');
 	}
 	// 2. Get the latest show without a transcript
-	const show = await db.query.shows.findFirst(transcript_without_ai_notes_query());
+	const show = await db.query.show.findFirst(transcript_without_ai_notes_query());
 
 	if (!show) {
 		return json({ message: 'No shows without AI Show notes found.' });
