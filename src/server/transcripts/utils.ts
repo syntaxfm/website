@@ -59,7 +59,7 @@ export function getSlimUtterances(
 }
 
 // Format time function, converts seconds into MM:SS or HH:MM:SS
-export function formatTime(secs: number) {
+function formatTime(secs: number) {
 	const seconds = Math.round(secs);
 	const hours = Math.floor(seconds / 3600);
 	const minutes = Math.floor((seconds - hours * 3600) / 60);

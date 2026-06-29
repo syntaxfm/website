@@ -10,15 +10,15 @@ export interface UserWithRoles extends User {
 	roles: string[];
 }
 
-interface Create_User {
+interface CreateUser {
 	github_user: GithubUser;
 }
 
-export async function create_user({ github_user }: Create_User) {
-	const userId = randomUUID();
+async function create_user({ github_user }: CreateUser) {
+	const user_id = randomUUID();
 
 	await db.insert(user).values({
-		id: userId,
+		id: user_id,
 		avatar_url: github_user.avatar_url,
 		email: github_user.email,
 		github_id: github_user.id,
@@ -27,18 +27,18 @@ export async function create_user({ github_user }: Create_User) {
 	});
 
 	// Fetch and return the full user record
-	const newUser = await db.query.user.findFirst({
-		where: eq(user.id, userId)
+	const new_user = await db.query.user.findFirst({
+		where: eq(user.id, user_id)
 	});
 
-	if (!newUser) {
+	if (!new_user) {
 		throw new Error('Failed to create user');
 	}
 
-	return newUser;
+	return new_user;
 }
 
-export async function find_or_create_user({ github_user }: Create_User) {
+export async function find_or_create_user({ github_user }: CreateUser) {
 	const current_user = await db.query.user.findFirst({
 		where: eq(user.github_id, github_user.id)
 	});
@@ -89,7 +89,7 @@ export async function find_first_admin_user(): Promise<UserWithRoles | null> {
 // Because of how roles are done, the find returns an array of objects
 // Here we select from the roles table to populate a user with their roles, but then convert the roles into
 // an array of strings
-export async function find_user_with_roles(user_id: string): Promise<UserWithRoles> {
+async function find_user_with_roles(user_id: string): Promise<UserWithRoles> {
 	const user_with_roles = await db.query.user.findFirst({
 		where: eq(user.id, user_id),
 		with: {

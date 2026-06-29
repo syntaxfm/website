@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 
-export class LocalStore<T> {
+class LocalStore<T> {
 	#value = $state<T>() as T;
 	key = '';
 

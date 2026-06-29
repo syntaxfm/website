@@ -40,7 +40,7 @@ Sentry.init({
 // builds because `dev` is statically false and this branch is tree-shaken out.
 let dev_admin_promise: Promise<UserWithRoles | null> | null = null;
 
-export const auth: Handle = async function ({ event, resolve }) {
+const auth: Handle = async function ({ event, resolve }) {
 	const access_token = event.cookies.get('access_token');
 	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
 	// Get current user from session via access token
@@ -63,7 +63,7 @@ export const auth: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-export const admin: Handle = async function ({ event, resolve }) {
+const admin: Handle = async function ({ event, resolve }) {
 	if (
 		event.route.id?.startsWith('/(site)/admin') &&
 		!event.locals?.user?.roles?.includes('admin')
@@ -74,7 +74,7 @@ export const admin: Handle = async function ({ event, resolve }) {
 };
 
 // This hook is used to pass our  instance to each action, load, and endpoint
-export const headers: Handle = async function ({ event, resolve }) {
+const headers: Handle = async function ({ event, resolve }) {
 	const ip = event.request.headers.get('x-forwarded-for') as string;
 	const country = event.request.headers.get('x-vercel-ip-country') as string;
 	event.locals.session = {
@@ -86,14 +86,14 @@ export const headers: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-export const document_policy: Handle = async function ({ event, resolve }) {
+const document_policy: Handle = async function ({ event, resolve }) {
 	const response = await resolve(event);
 	response.headers.set('Document-Policy', 'js-profiling');
 	return response;
 };
 
 const safe_paths = new Set(['/api/errors', '/api/57475/3v3n7']);
-export const safe_form_data: Handle = async function ({ event, resolve }) {
+const safe_form_data: Handle = async function ({ event, resolve }) {
 	if (safe_paths.has(event.url.pathname)) return resolve(event);
 	try {
 		const result = await form_data({ event, resolve });
@@ -117,4 +117,6 @@ export const handle: Handle = sequence(
 	document_policy
 );
 
+// SvelteKit requires this hook export to be named `handleError` (camelCase).
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError = Sentry.handleErrorWithSentry();

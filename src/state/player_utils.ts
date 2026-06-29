@@ -9,7 +9,7 @@ export interface PlayerState {
 	initial_load: boolean;
 }
 
-export const DB_NAME = 'SyntaxDB';
+const DB_NAME = 'SyntaxDB';
 export const STORE_NAME = 'player_state';
 
 export const open_db = (): Promise<IDBDatabase> => {

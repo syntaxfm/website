@@ -2,9 +2,9 @@ import flexsearch from 'flexsearch';
 import type { Block, Tree } from './types';
 import type { Show } from '$server/db/types';
 
-const Index = flexsearch.Index ?? flexsearch;
+const flex_index = flexsearch.Index ?? flexsearch;
 
-export let inited = false;
+let inited = false;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let indexes: any[];
@@ -19,7 +19,7 @@ export function init(blocks: Block[]) {
 	// we have multiple indexes, so we can rank sections (migration guide comes last)
 	const max_rank = Math.max(...blocks.map((block) => block.rank ?? 0));
 
-	indexes = Array.from({ length: max_rank + 1 }, () => new Index({ tokenize: 'forward' }));
+	indexes = Array.from({ length: max_rank + 1 }, () => new flex_index({ tokenize: 'forward' }));
 
 	for (const block of blocks) {
 		const title = block.breadcrumbs.at(-1);

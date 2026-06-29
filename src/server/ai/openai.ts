@@ -6,22 +6,22 @@ import wait from 'waait';
 import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 import { create_condensed_prompt, summarize_prompt, summarize_prompt_2 } from './prompts';
 import type { AIPodcastSummaryResponse } from './queries';
-import type { SlimUtterance, TranscribedShow } from '../transcripts/types';
+import type { DBUtterance, SlimUtterance, TranscribedShow } from '../transcripts/types';
 import { env } from '$env/dynamic/private';
 
-export const TOKEN_LIMIT = 7000;
-export const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
+const TOKEN_LIMIT = 7000;
+const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
 const TOKEN_INPUT_LIMIT = TOKEN_LIMIT - COMPLETION_TOKEN_IDEAL;
 // export const MODEL = 'gpt-3.5-turbo-16k'; // Was gpt-4 before token limit was increased
 export const MODEL = 'gpt-4';
 export const EMBEDDING_MODEL = 'text-embedding-ada-002';
-export const CONDENSE_THRESHOLD = 100;
+const CONDENSE_THRESHOLD = 100;
 
-export const openai = new OpenAI({
+const openai = new OpenAI({
 	apiKey: env.OPENAI_API_KEY
 });
 
-export async function condense(
+async function condense(
 	transcript: string,
 	show: TranscribedShow,
 	options: {
@@ -122,7 +122,7 @@ export async function condense(
 }
 
 export async function generate_ai_notes(
-	show: { number: number; title: string; transcript?: { utterances: any[] } | null },
+	show: { number: number; title: string; transcript?: { utterances: DBUtterance[] } | null },
 	provider: 'openai' | 'anthropic' = 'anthropic'
 ) {
 	if (!show || !show.transcript?.utterances) {

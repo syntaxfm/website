@@ -5,7 +5,7 @@ export const grammar_prompt = `Apply spelling, grammar and incorrectly transcrib
 
 export const midjourney = `simple vector. visualization of accepting money online, in the style of Netflix movie cover, golden yellow background. black and white , monochrome. painted illustrations, grainy. --v 5 --ar 16:9`;
 
-export const misspellings = `
+const misspellings = `
 Please replace all instances of the following words with the correct spelling:
 
 1. Replace "Century" with "Sentry"

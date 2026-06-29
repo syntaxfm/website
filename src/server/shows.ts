@@ -15,7 +15,7 @@ import {
 	guest as guests,
 	content
 } from '$server/db/schema';
-import { eq, inArray, and } from 'drizzle-orm';
+import { eq, inArray } from 'drizzle-orm';
 
 interface FrontMatterGuest {
 	name: string;
@@ -47,7 +47,7 @@ export async function import_or_update_all_shows() {
 }
 
 export async function import_or_update_all_changed_shows() {
-	const updatedShows: number[] = [];
+	const updated_shows: number[] = [];
 
 	try {
 		// Filter only .md files
@@ -68,7 +68,7 @@ export async function import_or_update_all_changed_shows() {
 			if (!existing_show || existing_show.hash !== hash) {
 				console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
-				updatedShows.push(number);
+				updated_shows.push(number);
 			} else {
 				console.log(`Skipping Show # ${number}`, {
 					existing_show: !!existing_show,
@@ -81,7 +81,7 @@ export async function import_or_update_all_changed_shows() {
 		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
-	return { message: 'Import All Shows', updatedShows };
+	return { message: 'Import All Shows', updatedShows: updated_shows };
 }
 
 async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
@@ -92,7 +92,7 @@ async function get_show_data_from_glob(md_file_contents: string, md_file_path: s
 }
 
 // Takes a string of a .md show notes and adds it to the database and adds the guests
-export async function parse_and_save_show_notes(
+async function parse_and_save_show_notes(
 	notes: string,
 	hash: string,
 	number: number,
@@ -103,11 +103,11 @@ export async function parse_and_save_show_notes(
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
-	const dayOfWeek: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
+	const day_of_week: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
 	const id = get_id_from_show_number(number);
 
 	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
-		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
+		DAYS_OF_WEEK_TYPES[day_of_week] || 'SPECIAL';
 	const show_slug = slug(data.title);
 
 	// Save or update the show
@@ -121,13 +121,13 @@ export async function parse_and_save_show_notes(
 
 		if (existing_show?.content_id) {
 			// Update existing content
-			const updateData = {
+			const update_data = {
 				title: data.title,
 				slug: show_slug,
 				updated_at: new Date(),
 				published_at: date
 			};
-			await db.update(content).set(updateData).where(eq(content.id, existing_show.content_id));
+			await db.update(content).set(update_data).where(eq(content.id, existing_show.content_id));
 			content_id = existing_show.content_id;
 		} else {
 			// Create new content
@@ -181,16 +181,16 @@ export async function parse_and_save_show_notes(
 
 		// Handle hosts connection if they exist in the frontmatter
 		if (data.hosts && Array.isArray(data.hosts)) {
-			const hostUsers = await db.query.user.findMany({
+			const host_users = await db.query.user.findMany({
 				where: inArray(user.username, data.hosts)
 			});
 
-			if (hostUsers.length > 0) {
+			if (host_users.length > 0) {
 				// Upsert host connections (ON CONFLICT DO UPDATE does nothing since unique constraint exists)
 				await db
 					.insert(showToUser)
 					.values(
-						hostUsers.map((host_user) => ({
+						host_users.map((host_user) => ({
 							show_id: id,
 							user_id: host_user.id
 						}))
@@ -220,7 +220,7 @@ export async function parse_and_save_show_notes(
 	} catch (err) {
 		console.error('Error Importing Show:', err, data, show_notes_content);
 		// Throw an error to stop the import process
-		throw new Error('Error Importing Shows');
+		throw new Error('Error Importing Shows', { cause: err });
 	}
 }
 
@@ -263,18 +263,18 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 			});
 
 		if (social) {
-			let socialLinksArray = [];
+			let social_links_array = [];
 			// If social is a string, convert it to an array with one element
 			if (typeof social === 'string') {
-				socialLinksArray = [social];
+				social_links_array = [social];
 			} else if (Array.isArray(social)) {
-				socialLinksArray = social;
+				social_links_array = social;
 			} else {
 				console.error('Unexpected data type for social:', typeof social);
 				return;
 			}
 
-			const socialLink_promises = socialLinksArray.map((social_link) => {
+			const social_link_promises = social_links_array.map((social_link) => {
 				const social_link_id = `${guest_id}_${slug(social_link)}`;
 				return db
 					.insert(socialLink)
@@ -291,7 +291,7 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 					});
 			});
 
-			await Promise.all(socialLink_promises);
+			await Promise.all(social_link_promises);
 		}
 
 		return { id: guest_id, name, name_slug };

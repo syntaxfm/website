@@ -14,7 +14,7 @@ if (!deepgram_api_key) {
 	process.exit(1);
 }
 
-export const deepgram_client = createClient(deepgram_api_key);
+const deepgram_client = createClient(deepgram_api_key);
 
 export async function get_transcript(showNumber: number) {
 	const active_show = await db.query.show.findFirst({

@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import type { CreateChatCompletionRequest } from 'openai';
 
-export const anthropic = new Anthropic({
+const anthropic = new Anthropic({
 	apiKey: process.env.ANTHROPIC_KEY
 });
 
