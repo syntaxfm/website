@@ -5,12 +5,7 @@
 	import AdminActions from '../../../AdminActions.svelte';
 	import AdminSearch from '../../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
-	import {
-		build_url,
-		has_any_filter,
-		read_int,
-		read_string
-	} from '$lib/admin/admin_filters';
+	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
 	import { create_playlist, list_playlists } from './admin_playlists.remote';
 
 	const FILTER_KEYS = ['q'] as const;
@@ -99,7 +94,12 @@
 					placeholder="Search playlists"
 				/>
 				{#if show_clear_filters}
-					<div class="flex" style="--flex-gap: var(--pad-small)">
+					<div
+						class="flex"
+						style="
+
+--flex-gap: var(--pad-small)"
+					>
 						<a class="button small" href="/admin/content/videos/playlists">× Clear</a>
 					</div>
 				{/if}

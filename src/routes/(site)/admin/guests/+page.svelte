@@ -70,11 +70,7 @@
 	<h1 class="h3">Guests</h1>
 
 	<AdminActions>
-		<form
-			class="flex"
-			style:--flex-gap="var(--pad-xsmall)"
-			onsubmit={handle_create_guest}
-		>
+		<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_create_guest}>
 			<input
 				type="text"
 				bind:value={new_guest_name}

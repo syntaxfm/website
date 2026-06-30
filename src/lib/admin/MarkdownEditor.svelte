@@ -141,8 +141,7 @@
 			bind:this={textarea_element}
 			bind:value
 			{rows}
-			spellcheck={false}
-		></textarea>
+			spellcheck={false}></textarea>
 	{:else}
 		<div aria-live="polite">
 			{#if preview_failed}

@@ -65,11 +65,12 @@
 		position: relative;
 		z-index: 1;
 		color: var(--c-black);
+
 		/* No-JS / pre-hydration fallback highlight — clean and readable. The action
 		   draws the per-line torn SVG and adds .has-collage to hide this. */
 		background: var(--c-primary);
 		box-decoration-break: clone;
-		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
 		padding: 0.1em 0;
 	}
 
@@ -118,6 +119,7 @@
 
 	.flex {
 		align-items: center;
+
 		span {
 			display: inline-flex;
 			align-items: center;

@@ -60,7 +60,8 @@
 
 	.thumb-container {
 		position: relative;
-		/*margin-top: -6.5rem;*/
+
+		/* margin-top: -6.5rem; */
 	}
 
 	img {

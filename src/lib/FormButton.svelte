@@ -8,12 +8,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		text,
-		thinking_text,
-		action_path,
-		children
-	}: Props = $props();
+	let { text, thinking_text, action_path, children }: Props = $props();
 
 	let thinking = $state(false);
 </script>

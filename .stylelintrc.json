@@ -24,10 +24,7 @@
 			}
 		}
 	],
-	"plugins": [
-		"stylelint-declaration-strict-value",
-		"stylelint-value-no-unknown-custom-properties"
-	],
+	"plugins": ["stylelint-declaration-strict-value", "stylelint-value-no-unknown-custom-properties"],
 	"rules": {
 		"alpha-value-notation": "number",
 		"csstools/value-no-unknown-custom-properties": [

@@ -57,7 +57,10 @@ export const list_tags = query(list_tags_schema, async (input) => {
 		: undefined;
 
 	const total_rows = search_clause
-		? await db.select({ total: sql<number>`count(*)` }).from(tag).where(search_clause)
+		? await db
+				.select({ total: sql<number>`count(*)` })
+				.from(tag)
+				.where(search_clause)
 		: await db.select({ total: sql<number>`count(*)` }).from(tag);
 
 	const total = Number(total_rows[0]?.total || 0);

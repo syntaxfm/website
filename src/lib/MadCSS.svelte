@@ -19,7 +19,6 @@
 
 <style lang="postcss">
 	.mad-css-banner {
-		background: #f1360d;
 		width: 100%;
 		position: relative;
 		overflow: visible;
@@ -29,20 +28,22 @@
 		background: #000;
 		background-image:
 			linear-gradient(to bottom, #00000080, #0000004d),
-			url(https://madcss.com/assets/madcss-wide-hGTXblif.jpg);
+			url('https://madcss.com/assets/madcss-wide-hGTXblif.jpg');
 		background-size: cover, cover;
 		background-position: center, center;
 		background-repeat: no-repeat, no-repeat;
 		mask-image:
-			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png), linear-gradient(#000, #000);
+			url('/repeating-paper-top.png'), url('/paper-stripe-bottom.png'), linear-gradient(#000, #000);
+
 		--mask-size: 20px;
 		--mask-position: calc(100% + 5px);
+
 		mask-size:
 			auto 20px,
 			auto var(--mask-size),
 			100% 100%;
 		mask-position:
-			center 0px,
+			center 0,
 			center var(--mask-position),
 			center;
 		mask-repeat: repeat-x, repeat-x, no-repeat;
@@ -88,6 +89,7 @@
 		@media (--below-med) {
 			gap: 2px;
 		}
+
 		& > * {
 			margin: 0;
 			line-height: 1;

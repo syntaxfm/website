@@ -107,7 +107,14 @@ function torn_outline(w: number, h: number, rng: Rng): string {
 	const br: [number, number] = [w - rng.range(2, w * 0.04), h - rng.range(2, h * 0.16)];
 	const bl: [number, number] = [rng.range(2, w * 0.08), h - rng.range(2, h * 0.12)];
 
-	const tear = (a: [number, number], b: [number, number], n: number, amp: number, nx: number, ny: number) => {
+	const tear = (
+		a: [number, number],
+		b: [number, number],
+		n: number,
+		amp: number,
+		nx: number,
+		ny: number
+	) => {
 		for (let i = 1; i < n; i++) {
 			const t = Math.min(0.97, Math.max(0.03, (i + rng.range(-0.4, 0.4)) / n));
 			const bx = a[0] + (b[0] - a[0]) * t;
@@ -183,7 +190,7 @@ function halftone(
 		for (let x = -pw / 2; x <= pw / 2; x += gap) {
 			let ramp = (x + pw / 2) / pw;
 			if (flip) ramp = 1 - ramp;
-			const fadeY = Math.min(1, (Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2) * 1.7);
+			const fadeY = Math.min(1, Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2 * 1.7);
 			let t = (ramp * (1 - bias) + bias) * fadeY + rng.range(-0.12, 0.12);
 			t = Math.min(1, Math.max(0, t));
 			const r = maxR * Math.pow(t, 0.9);
@@ -299,7 +306,13 @@ export function generate_collage(
 	const looseScribbles = rng.int(2, 3);
 	for (let i = 0; i < looseScribbles; i++) {
 		strokes.push({
-			d: scribble(width * rng.range(0.18, 0.6), height * rng.range(0.32, 0.62), rng.range(70, 120), rng.int(26, 40), rng),
+			d: scribble(
+				width * rng.range(0.18, 0.6),
+				height * rng.range(0.32, 0.62),
+				rng.range(70, 120),
+				rng.int(26, 40),
+				rng
+			),
 			width: rng.range(1.5, 2.4),
 			stroke: palette.ink,
 			opacity: 1

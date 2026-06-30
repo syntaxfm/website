@@ -337,24 +337,36 @@
 				/>
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: flex-end"
 				>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">From</span>
 						<input
 							type="date"
 							value={date_from}
-							onchange={(e) =>
-								update_url({ date_from: e.currentTarget.value || null, page: null })}
+							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">To</span>
 						<input
 							type="date"
 							value={date_to}
-							onchange={(e) =>
-								update_url({ date_to: e.currentTarget.value || null, page: null })}
+							onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
 					<SelectMenu
@@ -374,7 +386,10 @@
 						onselect={(value) => update_url({ type: value || null, page: null })}
 					/>
 					{#if tag_id}
-						<a class="button small" href={build_url(current_page.url, { tag_id: null, page: null })}>
+						<a
+							class="button small"
+							href={build_url(current_page.url, { tag_id: null, page: null })}
+						>
 							× Tag{active_tag_name ? `: ${active_tag_name}` : ''}
 						</a>
 					{/if}
@@ -392,7 +407,14 @@
 				label="Tags"
 				placeholder="Search tags"
 			/>
-			<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
+			<div
+				class="flex"
+				style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap"
+			>
 				<button
 					type="button"
 					onclick={run_bulk_add_tags}
@@ -411,7 +433,11 @@
 
 			<div
 				class="flex"
-				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: center"
 			>
 				<SelectMenu
 					popover_id="filter-bulk_status"

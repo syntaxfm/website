@@ -57,10 +57,14 @@ export const list_playlists = query(list_playlists_schema, async (input) => {
 	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
 	const offset = (page - 1) * page_size;
 
-	const where_clause = search_text.length > 0 ? ilike(playlist.title, `%${search_text}%`) : undefined;
+	const where_clause =
+		search_text.length > 0 ? ilike(playlist.title, `%${search_text}%`) : undefined;
 
 	const total_rows = where_clause
-		? await db.select({ total: sql<number>`count(*)` }).from(playlist).where(where_clause)
+		? await db
+				.select({ total: sql<number>`count(*)` })
+				.from(playlist)
+				.where(where_clause)
 		: await db.select({ total: sql<number>`count(*)` }).from(playlist);
 
 	const total = Number(total_rows[0]?.total || 0);

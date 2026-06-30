@@ -38,23 +38,13 @@
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
-		read_picklist<ShowStatusFilter>(
-			current_page.url.searchParams,
-			'status',
-			STATUS_FILTERS,
-			'ALL'
-		)
+		read_picklist<ShowStatusFilter>(current_page.url.searchParams, 'status', STATUS_FILTERS, 'ALL')
 	);
 	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
 	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
 	let bulk_status = $derived(
-		read_picklist<ShowStatus>(
-			current_page.url.searchParams,
-			'bulk_status',
-			BULK_STATUSES,
-			'DRAFT'
-		)
+		read_picklist<ShowStatus>(current_page.url.searchParams, 'bulk_status', BULK_STATUSES, 'DRAFT')
 	);
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
@@ -171,29 +161,41 @@
 		{#snippet filters()}
 			<div class="stack" style:--stack-gap="var(--pad-small)">
 				<AdminSearch
-				text={search_text}
-				on_input={(value) => update_url({ q: value || null, page: null })}
-			/>
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+				/>
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: flex-end"
 				>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">From</span>
 						<input
 							type="date"
 							value={date_from}
-							onchange={(e) =>
-								update_url({ date_from: e.currentTarget.value || null, page: null })}
+							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">To</span>
 						<input
 							type="date"
 							value={date_to}
-							onchange={(e) =>
-								update_url({ date_to: e.currentTarget.value || null, page: null })}
+							onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
 					<SelectMenu
@@ -214,7 +216,11 @@
 		{#snippet bulk()}
 			<div
 				class="flex"
-				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: center"
 			>
 				<SelectMenu
 					popover_id="filter-bulk_status"

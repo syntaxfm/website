@@ -27,7 +27,9 @@ try {
 			const actualCount = result[0].count;
 			console.log(`${tableName.padEnd(30)} ${actualCount.toString().padStart(10)} rows`);
 		} catch (e) {
-			console.log(`${tableName.padEnd(30)} ${estimatedRows.toString().padStart(10)} rows (estimated)`);
+			console.log(
+				`${tableName.padEnd(30)} ${estimatedRows.toString().padStart(10)} rows (estimated)`
+			);
 		}
 	}
 
@@ -35,12 +37,12 @@ try {
 
 	// Check specifically for Show/Shows tables
 	console.log('\n🎯 Looking for Show-related tables:');
-	const showTables = tables.filter(t =>
-		t.TABLE_NAME.toLowerCase().includes('show')
-	);
+	const showTables = tables.filter((t) => t.TABLE_NAME.toLowerCase().includes('show'));
 
 	for (const table of showTables) {
-		const [count] = await connection.execute(`SELECT COUNT(*) as count FROM \`${table.TABLE_NAME}\``);
+		const [count] = await connection.execute(
+			`SELECT COUNT(*) as count FROM \`${table.TABLE_NAME}\``
+		);
 		console.log(`  ${table.TABLE_NAME}: ${count[0].count} rows`);
 
 		if (count[0].count > 0) {
@@ -48,7 +50,6 @@ try {
 			console.log(`    Sample data:`, sample[0]);
 		}
 	}
-
 } catch (error) {
 	console.error('❌ Error:', error.message);
 	process.exit(1);

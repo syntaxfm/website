@@ -6,7 +6,6 @@
 
 <style>
 	a {
-		display: inline-block;
 		border: solid 1px var(--c-fg-6);
 		border-radius: var(--br-small);
 		padding: 4px 8px;

@@ -46,6 +46,7 @@
 
 	.form-card {
 		--form-margin: 0;
+
 		padding: var(--pad-large);
 	}
 

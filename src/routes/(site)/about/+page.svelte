@@ -285,8 +285,7 @@
 	@media (--above-med) {
 		.team_grid {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-			column-gap: 2rem;
-			row-gap: 1.4rem;
+			gap: 1.4rem 2rem;
 		}
 
 		.host_card:nth-child(2n) {

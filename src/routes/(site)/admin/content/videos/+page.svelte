@@ -35,12 +35,7 @@
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
-		read_picklist<VideoStatusFilter>(
-			current_page.url.searchParams,
-			'status',
-			STATUS_FILTERS,
-			'ALL'
-		)
+		read_picklist<VideoStatusFilter>(current_page.url.searchParams, 'status', STATUS_FILTERS, 'ALL')
 	);
 	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
 	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
@@ -96,9 +91,18 @@
 				/>
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: flex-end"
 				>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">From</span>
 						<input
 							type="date"
@@ -107,7 +111,12 @@
 								update_url({ date_from: event.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">To</span>
 						<input
 							type="date"

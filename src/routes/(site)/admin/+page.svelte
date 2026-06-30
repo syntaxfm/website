@@ -36,7 +36,14 @@
 <div class="stack" style:--stack-gap="var(--pad-medium)">
 	<h1 class="h3">Dashboard</h1>
 
-	<div class="flex" style="--flex-gap: var(--pad-small); flex-wrap: wrap">
+	<div
+		class="flex"
+		style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap"
+	>
 		<a class="button small" href="/admin/submissions?status=PENDING">
 			<strong>{dashboard.pending_submissions_count}</strong>
 			<span>&nbsp;Pending submissions</span>
@@ -45,14 +52,24 @@
 			<strong>{dashboard.drafts_count}</strong>
 			<span>&nbsp;Drafts</span>
 		</a>
-		<a class="button small" href={`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`}>
+		<a
+			class="button small"
+			href={`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`}
+		>
 			<strong>{dashboard.scheduled_count}</strong>
 			<span>&nbsp;Scheduled</span>
 		</a>
 	</div>
 
 	{#if dashboard.submission_breakdown.length > 0}
-		<div class="flex" style="--flex-gap: var(--pad-xsmall); flex-wrap: wrap">
+		<div
+			class="flex"
+			style="
+
+--flex-gap: var(--pad-xsmall);
+
+ flex-wrap: wrap"
+		>
 			{#each dashboard.submission_breakdown as bucket (bucket.submission_type)}
 				<a
 					class="button small"
@@ -78,11 +95,15 @@
 					<tbody>
 						{#each dashboard.activity as item (item.kind === 'content' ? `c-${item.content_id}-${item.timestamp.getTime()}` : `s-${item.submission_id}`)}
 							<tr>
-								<td class="fs-1">{formatDistance(item.timestamp, new Date(), { addSuffix: true })}</td>
+								<td class="fs-1"
+									>{formatDistance(item.timestamp, new Date(), { addSuffix: true })}</td
+								>
 								<td>
 									{#if item.kind === 'content'}
 										{@const edit_link = content_edit_link(item)}
-										<span class="fs-1">{item.was_published ? 'Published' : 'Updated'} · {item.content_type}</span>
+										<span class="fs-1"
+											>{item.was_published ? 'Published' : 'Updated'} · {item.content_type}</span
+										>
 										&nbsp;
 										{#if edit_link}
 											<a href={edit_link}>{item.title}</a>
@@ -92,7 +113,9 @@
 									{:else}
 										<span class="fs-1">Submission · {item.submission_type}</span>
 										&nbsp;
-										<a href={`/admin/submissions?status=PENDING&submission_type=${item.submission_type}`}>
+										<a
+											href={`/admin/submissions?status=PENDING&submission_type=${item.submission_type}`}
+										>
 											{item.submitter_name || 'Anon'}
 										</a>
 									{/if}

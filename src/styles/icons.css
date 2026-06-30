@@ -1,6 +1,6 @@
 :root {
 	--icon-color-primary: inherit;
-	--icon-color-secondary: currentColor;
+	--icon-color-secondary: currentcolor;
 }
 
 .icon {
@@ -26,7 +26,7 @@ Themes
 -------------------------------- */
 
 .icon-theme-1 {
-	--icon-color-primary: #000000;
+	--icon-color-primary: #000;
 	--icon-color-secondary: inherit;
 }
 
@@ -88,6 +88,7 @@ Caps/Corners
 
 .icon use {
 	--icon-stroke-linecap-butt: butt;
+
 	stroke-miterlimit: 10;
 	stroke-linecap: square;
 	stroke-linejoin: miter;
@@ -95,6 +96,7 @@ Caps/Corners
 
 .stroke-round use {
 	--icon-stroke-linecap-butt: round;
+
 	stroke-linecap: round;
 	stroke-linejoin: round;
 }
@@ -133,6 +135,7 @@ Transformations/Animations
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(360deg);
 	}

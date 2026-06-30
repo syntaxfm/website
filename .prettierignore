@@ -17,3 +17,12 @@ shows/
 
 # Generated code (Prisma client output) — never hand-format
 src/generated/
+
+# Agent skills/docs, editor & agent config, and generated analyzer data — not app source
+.agents/
+.claude/
+.fallow/
+
+# Generated migration artifacts (drizzle-kit manages these) and authored docs
+drizzle/
+docs/

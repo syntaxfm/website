@@ -153,6 +153,7 @@
 		gap: 15px;
 		padding: var(--pad-small) var(--pad-medium);
 		flex-wrap: nowrap;
+
 		a {
 			white-space: nowrap;
 		}
@@ -165,14 +166,17 @@
 		padding: var(--pad-small) var(--pad-medium);
 		flex-wrap: nowrap;
 		border-top: var(--c-fg-1) solid 1px;
+
 		a {
 			white-space: nowrap;
 			font-size: 0.9em;
 			opacity: 0.85;
+
 			&:hover {
 				text-decoration: underline;
 				opacity: 1;
 			}
+
 			&.active {
 				text-decoration: underline;
 				opacity: 1;

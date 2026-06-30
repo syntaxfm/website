@@ -71,10 +71,20 @@
 								</span>
 							</media-seek-backward-button>
 							<media-play-button>
-								<span slot="play" style="--icon_size: 26px;">
+								<span
+									slot="play"
+									style="
+
+--icon_size: 26px;"
+								>
 									<Icon name="play" width={34} height={34} />
 								</span>
-								<span slot="pause" style="--icon_size: 26px;">
+								<span
+									slot="pause"
+									style="
+
+--icon_size: 26px;"
+								>
 									<Icon name="pause" />
 								</span>
 							</media-play-button>

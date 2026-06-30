@@ -20,7 +20,8 @@ function matchEpisode(
 
 	// Strategy 1: Publish date matching (HIGHEST CONFIDENCE)
 	const episode_date = new Date(episodePubdate);
-	const date_diff_days = Math.abs(showDate.getTime() - episode_date.getTime()) / (1000 * 60 * 60 * 24);
+	const date_diff_days =
+		Math.abs(showDate.getTime() - episode_date.getTime()) / (1000 * 60 * 60 * 24);
 
 	if (date_diff_days <= 1) {
 		// Same day or 1 day difference
@@ -43,7 +44,10 @@ function matchEpisode(
 		const title_similarity = getTitleSimilarity(showTitle, episodeTitle);
 		const episode_number_in_title = extractEpisodeNumber(episodeTitle);
 
-		if ((title_similarity > 0.5 && episode_number_in_title === showNumber) || title_similarity > 0.8) {
+		if (
+			(title_similarity > 0.5 && episode_number_in_title === showNumber) ||
+			title_similarity > 0.8
+		) {
 			const date_confidence = 0.8 - date_diff_days * 0.05; // Decreasing confidence with days
 			const title_bonus = title_similarity * 0.1;
 			const number_bonus = episode_number_in_title === showNumber ? 0.1 : 0;

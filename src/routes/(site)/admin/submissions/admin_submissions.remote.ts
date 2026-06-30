@@ -227,4 +227,3 @@ export const bulk_delete_submissions = command(bulk_delete_schema, async (input)
 
 	return { deleted_count: deleted.length };
 });
-

@@ -271,10 +271,7 @@ export const list_shows = query(list_shows_schema, async (input) => {
 		where_clauses.push(
 			inArray(
 				show.content_id,
-				db
-					.select({ id: content.id })
-					.from(content)
-					.where(eq(content.status, status))
+				db.select({ id: content.id }).from(content).where(eq(content.status, status))
 			)
 		);
 	}
@@ -292,7 +289,10 @@ export const list_shows = query(list_shows_schema, async (input) => {
 	const where_clause = where_clauses.length > 0 ? and(...where_clauses) : undefined;
 
 	const total_rows = where_clause
-		? await db.select({ total: sql<number>`count(*)` }).from(show).where(where_clause)
+		? await db
+				.select({ total: sql<number>`count(*)` })
+				.from(show)
+				.where(where_clause)
 		: await db.select({ total: sql<number>`count(*)` }).from(show);
 
 	const total = Number(total_rows[0]?.total || 0);

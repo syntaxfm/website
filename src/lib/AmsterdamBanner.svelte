@@ -2,11 +2,7 @@
 	import syntaxLogo from '../assets/syntax-wordmark-wide.svg';
 </script>
 
-<a
-	href="https://syntax.fm/meetup"
-	target="_blank"
-	class="layout amsterdam-banner"
->
+<a href="https://syntax.fm/meetup" target="_blank" class="layout amsterdam-banner">
 	<div class="banner-content">
 		<div class="text-section">
 			<p class="top-line">
@@ -27,22 +23,27 @@
 		padding: 0;
 		color: var(--white);
 		grid-column: 1 / -1;
+
 		--banner-bg: #e91e8c;
+
 		background-color: var(--banner-bg);
-		background-image: url(/amsterdam-canal.webp);
+		background-image: url('/amsterdam-canal.webp');
 		background-size: auto 100%;
 		background-position: right center;
 		background-repeat: no-repeat;
 		mask-image:
-			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png), linear-gradient(var(--black), var(--black));
+			url('/repeating-paper-top.png'), url('/paper-stripe-bottom.png'),
+			linear-gradient(var(--black), var(--black));
+
 		--mask-size: 20px;
 		--mask-position: calc(100% + 5px);
+
 		mask-size:
 			auto 20px,
 			auto var(--mask-size),
 			100% 100%;
 		mask-position:
-			center 0px,
+			center 0,
 			center var(--mask-position),
 			center;
 		mask-repeat: repeat-x, repeat-x, no-repeat;
@@ -51,6 +52,7 @@
 		text-decoration: none;
 		display: block;
 		cursor: pointer;
+
 		&::after {
 			content: '';
 			position: absolute;

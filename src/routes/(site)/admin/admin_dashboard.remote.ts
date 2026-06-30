@@ -172,9 +172,7 @@ export const get_dashboard = query(async () => {
 		show: row.show,
 		video: row.video,
 		was_published:
-			row.status === 'PUBLISHED' &&
-			row.published_at !== null &&
-			row.published_at >= seven_days_ago
+			row.status === 'PUBLISHED' && row.published_at !== null && row.published_at >= seven_days_ago
 	}));
 
 	const submission_activity: SubmissionActivity[] = recent_submissions.map((row) => ({

@@ -161,7 +161,7 @@ const new_player_state = () => {
 		// The main method for playing a show
 		async start_show(requested_show: Show, play_from_position?: number) {
 			const incoming_show = await load_show(requested_show, false, play_from_position);
-		try {
+			try {
 				// Analytics
 				Sentry.metrics.increment('episode_start', 1, { tags: { episode: incoming_show.number } });
 				Sentry.metrics.increment('all_episode_start', 1);

@@ -76,7 +76,10 @@ export const list_guests = query(list_guests_schema, async (input) => {
 	const where_clause = search_text.length > 0 ? ilike(guest.name, `%${search_text}%`) : undefined;
 
 	const total_rows = where_clause
-		? await db.select({ total: sql<number>`count(*)` }).from(guest).where(where_clause)
+		? await db
+				.select({ total: sql<number>`count(*)` })
+				.from(guest)
+				.where(where_clause)
 		: await db.select({ total: sql<number>`count(*)` }).from(guest);
 
 	const total = Number(total_rows[0]?.total || 0);

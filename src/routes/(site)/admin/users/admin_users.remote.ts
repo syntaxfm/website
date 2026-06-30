@@ -49,7 +49,10 @@ export const list_users = query(list_users_schema, async (input) => {
 		: undefined;
 
 	const total_rows = where_clause
-		? await db.select({ total: sql<number>`count(*)` }).from(user).where(where_clause)
+		? await db
+				.select({ total: sql<number>`count(*)` })
+				.from(user)
+				.where(where_clause)
 		: await db.select({ total: sql<number>`count(*)` }).from(user);
 
 	const total = Number(total_rows[0]?.total || 0);

@@ -115,9 +115,18 @@
 				/>
 				<div
 					class="flex"
-					style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: flex-end"
+					style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: flex-end"
 				>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">From</span>
 						<input
 							type="date"
@@ -126,7 +135,12 @@
 								update_url({ date_from: event.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label class="stack" style="--stack-gap: 2px">
+					<label
+						class="stack"
+						style="
+
+--stack-gap: 2px"
+					>
 						<span class="fs-1">To</span>
 						<input
 							type="date"

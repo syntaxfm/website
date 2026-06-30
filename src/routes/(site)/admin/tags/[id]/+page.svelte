@@ -98,9 +98,8 @@
 
 	{#if detail.total_content_count > detail.limit}
 		<p class="fs-2">
-			Showing first {detail.limit} of {detail.total_content_count}. <a
-				href={`/admin/content?tag_id=${detail.tag.id}`}>Open in content list</a
-			> for full results.
+			Showing first {detail.limit} of {detail.total_content_count}.
+			<a href={`/admin/content?tag_id=${detail.tag.id}`}>Open in content list</a> for full results.
 		</p>
 	{/if}
 

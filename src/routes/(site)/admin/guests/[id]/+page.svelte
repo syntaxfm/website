@@ -162,11 +162,7 @@
 
 			<label class="stack" style:--stack-gap="0.35rem">
 				<span class="fs-2">Title</span>
-				<input
-					type="text"
-					bind:value={of}
-					placeholder="e.g. Senior Engineer at Acme"
-				/>
+				<input type="text" bind:value={of} placeholder="e.g. Senior Engineer at Acme" />
 			</label>
 
 			<label class="stack" style:--stack-gap="0.35rem">
@@ -217,11 +213,7 @@
 				</ul>
 			{/if}
 
-			<form
-				class="flex"
-				style:--flex-gap="var(--pad-xsmall)"
-				onsubmit={handle_add_social_link}
-			>
+			<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_add_social_link}>
 				<input
 					type="url"
 					bind:value={new_social_link}

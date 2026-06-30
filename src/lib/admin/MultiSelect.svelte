@@ -106,7 +106,11 @@
 	{#if is_open}
 		<div
 			class="stack bg-shade-or-tint-light br-small"
-			style="--stack-gap: 1px; max-height: 200px; overflow-y: auto"
+			style="
+
+--stack-gap: 1px;
+
+ max-height: 200px; overflow-y: auto"
 			role="listbox"
 			aria-label={label}
 		>

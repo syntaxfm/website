@@ -67,6 +67,7 @@
 			justify-content: center;
 			position: relative;
 			z-index: 1;
+
 			&.active {
 				color: var(--c-black);
 			}

@@ -211,9 +211,7 @@
 						</div>
 					</div>
 					<div>
-						<h2 id="search-header" class:empty={recent_searches.length === 0}>
-							Recent Searches
-						</h2>
+						<h2 id="search-header" class:empty={recent_searches.length === 0}>Recent Searches</h2>
 						{#if !recent_searches.length}
 							<p>No recent searches</p>
 						{/if}
@@ -294,6 +292,7 @@
 
 		@media (--above-med) {
 			width: clamp(600px, 90vw, 950px);
+
 			/* hard brutalist offset shadow — --c-fg keeps it visible in dark mode */
 			box-shadow: var(--s-graphic-medium);
 		}

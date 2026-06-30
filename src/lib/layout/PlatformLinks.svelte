@@ -14,9 +14,29 @@
 	};
 
 	const PLATFORMS: Platform[] = [
-		{ text: 'Overcast', label: 'Overcast', action: 'Subscribe', image: '/icons/overcast.jpg', bg: '#fc7e0f' },
-		{ text: 'YouTube', label: 'YouTube', action: 'Subscribe', icon: 'youtube', bg: '#f61c0d', fg: '#fff' },
-		{ text: 'Spotify', label: 'Spotify', action: 'Follow us', icon: 'spotify', bg: '#1db954', fg: '#000' },
+		{
+			text: 'Overcast',
+			label: 'Overcast',
+			action: 'Subscribe',
+			image: '/icons/overcast.jpg',
+			bg: '#fc7e0f'
+		},
+		{
+			text: 'YouTube',
+			label: 'YouTube',
+			action: 'Subscribe',
+			icon: 'youtube',
+			bg: '#f61c0d',
+			fg: '#fff'
+		},
+		{
+			text: 'Spotify',
+			label: 'Spotify',
+			action: 'Follow us',
+			icon: 'spotify',
+			bg: '#1db954',
+			fg: '#000'
+		},
 		{
 			text: 'Apple Podcasts',
 			label: 'Apple',

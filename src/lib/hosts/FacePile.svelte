@@ -22,14 +22,17 @@
 <style>
 	.pile {
 		--local-size: var(--face-size, 50px);
+
 		display: flex;
 	}
 
 	span {
 		flex-shrink: 0;
+
 		&:nth-child(2) {
 			translate: calc((var(--local-size) / 3) * -1) 0;
 		}
+
 		&:nth-child(3) {
 			translate: calc((var(--local-size) / 3 * -2)) 0;
 		}

@@ -29,10 +29,12 @@
 	header {
 		padding: 1.5rem 0;
 	}
+
 	.layout-main {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
 		--logo-color: light-dark(var(--c-black), var(--c-primary));
 	}
 </style>

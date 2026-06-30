@@ -10,10 +10,18 @@
 
 <div class="newsletter-banner">
 	<div class="banner-doodles" aria-hidden="true">
-		<span class="doodle doodle-coffee"><Icon name="coffee" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span>
-		<span class="doodle doodle-devto"><Icon name="devto" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span>
-		<span class="doodle doodle-plane"><Icon name="send" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span>
-		<span class="doodle doodle-robot"><Icon name="robot" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span>
+		<span class="doodle doodle-coffee"
+			><Icon name="coffee" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span
+		>
+		<span class="doodle doodle-devto"
+			><Icon name="devto" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span
+		>
+		<span class="doodle doodle-plane"
+			><Icon name="send" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span
+		>
+		<span class="doodle doodle-robot"
+			><Icon name="robot" height={DOODLE_SIZE} width={DOODLE_SIZE} /></span
+		>
 	</div>
 	<div class="newsletter-banner-inner">
 		<div class="banner-hero">

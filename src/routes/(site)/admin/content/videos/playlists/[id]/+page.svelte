@@ -247,7 +247,11 @@
 		<section class="stack" style:--stack-gap="var(--pad-small)">
 			<h2 class="h5">Attach videos</h2>
 
-			<AdminSearch text={video_search_text} on_input={run_video_search} placeholder="Search videos" />
+			<AdminSearch
+				text={video_search_text}
+				on_input={run_video_search}
+				placeholder="Search videos"
+			/>
 
 			{#if is_searching_videos}
 				<p class="fs-2">Searching...</p>

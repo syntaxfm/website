@@ -864,10 +864,7 @@
 				show_note_id: ai_show_note.id,
 				name: new_ai_guest_name.trim()
 			});
-			ai_show_note.guests = [
-				...ai_show_note.guests,
-				{ id: inserted.id, name: inserted.name }
-			];
+			ai_show_note.guests = [...ai_show_note.guests, { id: inserted.id, name: inserted.name }];
 			new_ai_guest_name = '';
 			status_message = 'AI guest added.';
 		} catch (error) {
@@ -891,10 +888,7 @@
 				show_note_id: ai_show_note.id,
 				name: new_topic_name.trim()
 			});
-			ai_show_note.topics = [
-				...ai_show_note.topics,
-				{ id: inserted.id, name: inserted.name }
-			];
+			ai_show_note.topics = [...ai_show_note.topics, { id: inserted.id, name: inserted.name }];
 			new_topic_name = '';
 			status_message = 'Topic added.';
 		} catch (error) {
@@ -1053,7 +1047,9 @@
 				{#if host_search_results.length > 0}
 					<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
 						{#each host_search_results as candidate (candidate.id)}
-							{@const already_attached = attached_hosts.some((host_item) => host_item.id === candidate.id)}
+							{@const already_attached = attached_hosts.some(
+								(host_item) => host_item.id === candidate.id
+							)}
 							<li class="split" style:--split-gap="var(--pad-small)">
 								<div class="stack" style:--stack-gap="0.25rem">
 									<p>{host_label(candidate)}</p>
@@ -1167,7 +1163,8 @@
 							status_message = 'AI notes generated.';
 						} catch (error) {
 							console.error(error);
-							status_error = error instanceof Error ? error.message : 'Unable to generate AI notes.';
+							status_error =
+								error instanceof Error ? error.message : 'Unable to generate AI notes.';
 						} finally {
 							ai_busy = false;
 						}
@@ -1346,11 +1343,7 @@
 										<input type="text" bind:value={link_row.timestamp} />
 									</label>
 									<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-										<button
-											type="button"
-											onclick={() => save_ai_link(link_row)}
-											disabled={ai_busy}
-										>
+										<button type="button" onclick={() => save_ai_link(link_row)} disabled={ai_busy}>
 											Save
 										</button>
 										<button
@@ -1450,11 +1443,7 @@
 										<input type="text" bind:value={topic_row.name} />
 									</label>
 									<div class="flex" style:--flex-gap="var(--pad-xsmall)">
-										<button
-											type="button"
-											onclick={() => save_topic(topic_row)}
-											disabled={ai_busy}
-										>
+										<button type="button" onclick={() => save_topic(topic_row)} disabled={ai_busy}>
 											Save
 										</button>
 										<button

@@ -7,12 +7,7 @@
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import { build_url, read_int, read_string } from '$lib/admin/admin_filters';
-	import {
-		bulk_assign_role,
-		bulk_remove_role,
-		list_roles,
-		list_users
-	} from './admin_users.remote';
+	import { bulk_assign_role, bulk_remove_role, list_roles, list_users } from './admin_users.remote';
 
 	const PAGE_SIZE = 25;
 
@@ -183,7 +178,11 @@
 		{#snippet bulk()}
 			<div
 				class="flex"
-				style="--flex-gap: var(--pad-small); flex-wrap: wrap; align-items: center"
+				style="
+
+--flex-gap: var(--pad-small);
+
+ flex-wrap: wrap; align-items: center"
 			>
 				<SelectMenu
 					popover_id="filter-bulk_role"
@@ -192,18 +191,10 @@
 					options={role_select_options}
 					onselect={(value) => (bulk_role_id = value)}
 				/>
-				<button
-					type="button"
-					onclick={run_bulk_assign}
-					disabled={busy || !bulk_role_id}
-				>
+				<button type="button" onclick={run_bulk_assign} disabled={busy || !bulk_role_id}>
 					Assign role
 				</button>
-				<button
-					type="button"
-					onclick={run_bulk_remove}
-					disabled={busy || !bulk_role_id}
-				>
+				<button type="button" onclick={run_bulk_remove} disabled={busy || !bulk_role_id}>
 					Remove role
 				</button>
 			</div>

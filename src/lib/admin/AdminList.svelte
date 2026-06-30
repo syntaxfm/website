@@ -108,7 +108,9 @@
 	{#if selected_ids.length > 0 && bulk}
 		<div
 			class="stack bg-shade-or-tint-light br-small"
-			style="padding: var(--pad-small); --stack-gap: var(--pad-small)"
+			style="padding: var(--pad-small);
+
+ --stack-gap: var(--pad-small)"
 			aria-label="Bulk actions"
 		>
 			<div class="split" style:--split-gap="var(--pad-small)">

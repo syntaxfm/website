@@ -9,15 +9,15 @@ const preview: Preview = {
 				date: /Date$/i
 			}
 		},
-  backgrounds: {
-      options: {
-        // 👇 Default options
-        system: { name: 'System', value: 'light-dark(white, black)' },
-        dark: { name: 'Dark', value: '#333' },
-        light: { name: 'Light', value: '#F7F9F2' },
-        // 👇 Add your own
-      },
-    },
+		backgrounds: {
+			options: {
+				// 👇 Default options
+				system: { name: 'System', value: 'light-dark(white, black)' },
+				dark: { name: 'Dark', value: '#333' },
+				light: { name: 'Light', value: '#F7F9F2' }
+				// 👇 Add your own
+			}
+		}
 	}
 };
 
