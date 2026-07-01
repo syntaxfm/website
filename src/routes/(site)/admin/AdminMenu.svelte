@@ -133,7 +133,9 @@
 	{#if show_subnav}
 		<div class="admin-submenu flex" transition:slide={{ duration: 200 }}>
 			{#each active_subroutes as subroute (subroute.path + 'admin-subnav')}
-				<a href={resolve(subroute.path)} class:active={active_subroute === subroute}>{subroute.text}</a>
+				<a href={resolve(subroute.path)} class:active={active_subroute === subroute}
+					>{subroute.text}</a
+				>
 			{/each}
 		</div>
 	{/if}

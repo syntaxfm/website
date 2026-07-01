@@ -14,7 +14,7 @@
 		show: Show;
 		display?: 'list' | 'card' | 'highlight';
 		heading?: string;
-		show_date?: any;
+		show_date?: Date;
 	}
 
 	let { show, display = 'card', heading = 'h4', show_date = new Date(show.date) }: Props = $props();

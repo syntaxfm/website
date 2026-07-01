@@ -1,6 +1,16 @@
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
-import type { Show } from '$server/db/types';
+import type {
+	AiShowNote,
+	AiSummaryEntry,
+	AiTweet,
+	Guest,
+	Link,
+	Playlist,
+	Show,
+	Topic,
+	Video
+} from '$server/db/types';
 import { desc, eq, lte } from 'drizzle-orm';
 
 // Reusable query fragments
@@ -84,10 +94,15 @@ export function get_show_detail_query(number: number) {
 
 // Type inference for show detail
 export type ShowDetail = Show & {
-	guests: Array<{ guest: any }>;
+	guests: Array<{ guest: Guest }>;
 	hosts: Array<{
 		user: { id: string; username: string | null; name: string | null; twitter: string | null };
 	}>;
-	videos: any[];
-	aiShowNote: any;
+	videos: Array<{ video: Video & { playlists: Array<{ playlist: Playlist }> } }>;
+	aiShowNote: AiShowNote & {
+		topics: Topic[];
+		links: Link[];
+		summary: AiSummaryEntry[];
+		tweets: AiTweet[];
+	};
 };

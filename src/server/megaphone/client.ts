@@ -13,6 +13,13 @@ interface EpisodeQueryParams {
 	updated_since?: string;
 }
 
+interface MegaphonePagination {
+	page: number;
+	per_page: number;
+	total: number;
+	total_pages: number;
+}
+
 interface CacheEntry {
 	data: MegaphoneEpisode[];
 	timestamp: number;
@@ -74,7 +81,7 @@ class MegaphoneApiClient {
 		return data as T;
 	}
 
-	private extractPaginationFromHeaders(headers: Headers): any {
+	private extractPaginationFromHeaders(headers: Headers): MegaphonePagination | null {
 		const page = headers.get('X-Page');
 		const perPage = headers.get('X-Per-Page');
 		const total = headers.get('X-Total');
@@ -213,7 +220,7 @@ class MegaphoneApiClient {
 		networkId: string,
 		podcastId?: string,
 		params?: EpisodeQueryParams
-	): Promise<{ episodes: MegaphoneEpisode[]; pagination: any }> {
+	): Promise<{ episodes: MegaphoneEpisode[]; pagination: MegaphonePagination | undefined }> {
 		const endpoint = podcastId
 			? `/networks/${networkId}/podcasts/${podcastId}/episodes`
 			: `/networks/${networkId}/episodes`;
@@ -232,7 +239,7 @@ class MegaphoneApiClient {
 		if (Array.isArray(response)) {
 			return {
 				episodes: response,
-				pagination: (response as any).pagination
+				pagination: (response as unknown as { pagination?: MegaphonePagination }).pagination
 			};
 		} else {
 			throw new Error(`Unexpected response format from Megaphone API: ${typeof response}`);

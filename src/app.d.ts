@@ -9,7 +9,7 @@ declare global {
 		interface HTMLAttributes<T> {
 			popover?: string | boolean | null;
 			popovertarget?: string | null;
-			'onclick-outside'?: (event: CustomEvent<any>) => void;
+			'onclick-outside'?: (event: CustomEvent<unknown>) => void;
 		}
 	}
 	interface Window {

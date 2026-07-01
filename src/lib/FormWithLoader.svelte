@@ -10,8 +10,8 @@
 	interface Props {
 		global?: boolean;
 		confirm?: string;
-		children?: import('svelte').Snippet<[any]>;
-		[key: string]: any;
+		children?: import('svelte').Snippet<[{ loading: boolean }]>;
+		[key: string]: unknown;
 	}
 
 	let { global = true, confirm = '', children, ...rest }: Props = $props();
@@ -22,7 +22,7 @@
 
 	export const form_action = (
 		opts?: FormActionMessage,
-		callback?: (data: any | unknown) => any
+		callback?: (data: unknown) => void
 	): SubmitFunction => {
 		return function form_enhance({ cancel }) {
 			if (global) {
@@ -34,9 +34,9 @@
 				}
 			}
 			formLoading = true;
-			return async ({ result }: { result: ActionResult<any, any> }) => {
+			return async ({ result }: { result: ActionResult<Record<string, unknown>> }) => {
 				if (result.type === 'success') {
-					toast.success('Siiiiick ' + result.data.message + ' was a success');
+					toast.success('Siiiiick ' + String(result.data?.message) + ' was a success');
 				} else if (result.type === 'error') {
 					console.log(result);
 					toast.error(`Major bummer: ${result.error.message}`);

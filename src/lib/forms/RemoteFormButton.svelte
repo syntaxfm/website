@@ -1,5 +1,5 @@
-<script lang="ts">
-	import type { RemoteForm } from '@sveltejs/kit';
+<script lang="ts" generics="Input extends RemoteFormInput | void, Output">
+	import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
 	import type { Snippet } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -8,7 +8,7 @@
 		remote,
 		children,
 		...props
-	}: { remote: RemoteForm<any, unknown>; children: Snippet } & HTMLAttributes<HTMLButtonElement> =
+	}: { remote: RemoteForm<Input, Output>; children: Snippet } & HTMLAttributes<HTMLButtonElement> =
 		$props();
 </script>
 

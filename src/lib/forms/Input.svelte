@@ -4,7 +4,7 @@
 		type?: HTMLInputElement['type'];
 		value?: string;
 		id: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { label = '', type = 'text', value = $bindable(''), id, ...rest }: Props = $props();

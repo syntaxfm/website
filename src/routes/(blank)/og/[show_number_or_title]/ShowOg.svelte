@@ -8,7 +8,7 @@
 
 	interface Props {
 		show: LatestShow & { isPage?: boolean };
-		show_date?: any;
+		show_date?: Date | null;
 	}
 
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
