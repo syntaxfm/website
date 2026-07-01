@@ -5,6 +5,7 @@
 	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
+	import type { ResolvedPathname } from '$app/types';
 	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 	if (!isSupported() && browser) {
@@ -35,14 +36,15 @@
 	// let searchParams = new URLSearchParams(window.location.search);
 	//
 
-	function generate_search_params(id: string, value: string) {
+	function generate_search_params(id: string, value: string): ResolvedPathname {
 		const searchParams = new URLSearchParams(page.url.search);
 		if (!value) {
 			searchParams.delete(id);
 		} else {
 			searchParams.set(id, value);
 		}
-		return searchParams.toString();
+		const query = searchParams.toString();
+		return (query ? `${page.url.pathname}?${query}` : page.url.pathname) as ResolvedPathname;
 	}
 
 	function close_popover_when_selected(node: HTMLDivElement) {
@@ -91,9 +93,8 @@
 						onclick={() => onselect(option.value)}>{option.label}</button
 					>
 				{:else}
-					<a
-						class:selected={option.value === value}
-						href={`?${generate_search_params(id, option.value)}`}>{option.label}</a
+					<a class:selected={option.value === value} href={generate_search_params(id, option.value)}
+						>{option.label}</a
 					>
 				{/if}
 			{/each}

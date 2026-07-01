@@ -3,6 +3,8 @@
 	import Dot from '$lib/utilities/Dot.svelte';
 	import { player } from '$state/player';
 	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
+	import { resolve } from '$app/paths';
+	import type { Pathname } from '$app/types';
 	import get_show_path from '$utilities/slug';
 	import no_thumb from './no_thumb.png';
 
@@ -52,7 +54,7 @@
 
 <a
 	class="show-link"
-	href={show_href}
+	href={resolve(show_href as Pathname)}
 	onclick={onselect}
 	data-has-node={data_has_node ? true : undefined}
 	data-sveltekit-preload-data={preload_data ? '' : undefined}

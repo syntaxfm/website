@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import get_show_path from '$utilities/slug.js';
 	let {
 		prev_show,
@@ -24,14 +25,14 @@
 {#if prev_show || next_show}
 	<nav class="prev-next">
 		{#if prev_show}
-			<a class="prev" href={get_show_path(prev_show)}>
+			<a class="prev" href={resolve(get_show_path(prev_show))}>
 				<p class="h3 fv-700-i">← Prev #{prev_show.number}</p>
 				<p class="fs-caption">{prev_show.title}</p>
 			</a>
 		{/if}
 
 		{#if next_show}
-			<a class="next" href={get_show_path(next_show)}>
+			<a class="next" href={resolve(get_show_path(next_show))}>
 				<p class="h3 fv-700-i">Next #{next_show.number} →</p>
 				<p class="fs-caption">{next_show.title}</p>
 			</a>

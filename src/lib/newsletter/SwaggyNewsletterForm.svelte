@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/forms/Input.svelte';
 	import swag from './swag.png';
+	import { resolve } from '$app/paths';
 	let is_hidden = $state(false);
 
 	const FORM_ID = 5465361;
@@ -21,7 +22,7 @@
 	<div class="newsletter-layout">
 		<h5 id="newsletter-form-label">15% off your swag order</h5>
 		<img src={swag} alt="Syntax Swag Photos" />
-		<p>Subscribe to the Syntax<br /><a href="/snackpack">Snack Pack Newsletter</a></p>
+		<p>Subscribe to the Syntax<br /><a href={resolve('/snackpack')}>Snack Pack Newsletter</a></p>
 		<form
 			{action}
 			onsubmit={submit}

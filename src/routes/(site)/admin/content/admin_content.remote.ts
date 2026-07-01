@@ -7,7 +7,6 @@ import {
 	playlistOnVideo,
 	show,
 	showVideo,
-	tag,
 	video
 } from '$server/db/schema';
 import { error } from '@sveltejs/kit';

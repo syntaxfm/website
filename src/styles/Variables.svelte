@@ -27,7 +27,6 @@
 
 	// Parse variables into categories
 	const parseVariables = (css: string) => {
-		const matches = Array.from(css.matchAll(/--([^:]+):\s*([^;]+);/g));
 		const sections: Record<string, VariableSection> = {};
 
 		let currentSection = '';
@@ -146,7 +145,7 @@
 		<section>
 			<h2>Breakpoints</h2>
 			<div class="breakpoints">
-				{#each breakpoints as { name, condition }}
+				{#each breakpoints as { name, condition } (name)}
 					<div class="breakpoint">
 						<code>{name}</code>
 						<span>{condition}</span>
@@ -156,14 +155,14 @@
 		</section>
 	{/if}
 
-	{#each Object.entries(categorizedVars) as [sectionKey, section]}
+	{#each Object.entries(categorizedVars) as [sectionKey, section] (sectionKey)}
 		<section class="main-section">
 			<h2>{section.title}</h2>
 			{#if section.variables.length}
 				<div>
 					{#if section.title === 'COLORS'}
 						<div class="var-grid">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div class="var-box color-box" style:background="var({variable.name})">
 									<span class="color-name">{variable.name}</span>
 								</div>
@@ -171,7 +170,7 @@
 						</div>
 					{:else if section.title === 'TYPOGRAPHY'}
 						<div class="typography-list">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div class="typography-item">
 									<code>{variable.name}</code>
 									{#if variable.name.startsWith('--fs')}
@@ -190,7 +189,7 @@
 						</div>
 					{:else if section.title === 'SHADOWS'}
 						<div class="var-grid">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div class="var-box shadow-box" style:box-shadow="var({variable.name})">
 									<span class="var-name">{variable.name}</span>
 								</div>
@@ -198,7 +197,7 @@
 						</div>
 					{:else if section.title === 'BORDERS'}
 						<div class="var-grid">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div class="var-box border-box" style:border="var({variable.name})">
 									<span class="var-name">{variable.name}</span>
 								</div>
@@ -206,7 +205,7 @@
 						</div>
 					{:else if section.title === 'BORDER RADIUS'}
 						<div class="var-grid">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div
 									class="var-box radius-box"
 									style:border-radius="var({variable.name})"
@@ -218,7 +217,7 @@
 						</div>
 					{:else}
 						<div class="var-grid">
-							{#each section.variables as variable}
+							{#each section.variables as variable (variable.name)}
 								<div class="var-box">
 									<span class="var-name">{variable.name}</span>
 									<span class="var-value">{variable.value}</span>
@@ -230,13 +229,13 @@
 			{/if}
 
 			{#if section.subsections}
-				{#each Object.entries(section.subsections) as [subsectionKey, subsection]}
+				{#each Object.entries(section.subsections) as [subsectionKey, subsection] (subsectionKey)}
 					<section class="subsection">
 						<h3>{subsection.title}</h3>
 						<div>
 							{#if section.title === 'COLORS'}
 								<div class="var-grid">
-									{#each subsection.variables as variable}
+									{#each subsection.variables as variable (variable.name)}
 										<div class="var-box color-box" style:background="var({variable.name})">
 											<span class="color-name">{variable.name}</span>
 										</div>
@@ -244,7 +243,7 @@
 								</div>
 							{:else if section.title === 'TYPOGRAPHY'}
 								<div class="typography-list">
-									{#each subsection.variables as variable}
+									{#each subsection.variables as variable (variable.name)}
 										<div class="typography-item">
 											<code>{variable.name}</code>
 											{#if variable.name.startsWith('--fs')}
@@ -263,7 +262,7 @@
 								</div>
 							{:else}
 								<div class="var-grid">
-									{#each subsection.variables as variable}
+									{#each subsection.variables as variable (variable.name)}
 										<div class="var-box">
 											<span class="var-name">{variable.name}</span>
 											<span class="var-value">{variable.value}</span>
@@ -274,13 +273,13 @@
 						</div>
 
 						{#if subsection.subgroups}
-							{#each Object.entries(subsection.subgroups) as [groupKey, group]}
+							{#each Object.entries(subsection.subgroups) as [groupKey, group] (groupKey)}
 								<section class="subgroup">
 									<h4>{group.title}</h4>
 									<div>
 										{#if section.title === 'COLORS'}
 											<div class="var-grid">
-												{#each group.variables as variable}
+												{#each group.variables as variable (variable.name)}
 													<div class="var-box color-box" style:background="var({variable.name})">
 														<span class="color-name">{variable.name}</span>
 													</div>
@@ -288,7 +287,7 @@
 											</div>
 										{:else if section.title === 'TYPOGRAPHY'}
 											<div class="typography-list">
-												{#each group.variables as variable}
+												{#each group.variables as variable (variable.name)}
 													<div class="typography-item">
 														<code>{variable.name}</code>
 														{#if variable.name.startsWith('--fs')}
@@ -307,7 +306,7 @@
 											</div>
 										{:else}
 											<div class="var-grid">
-												{#each group.variables as variable}
+												{#each group.variables as variable (variable.name)}
 													<div class="var-box">
 														<span class="var-name">{variable.name}</span>
 														<span class="var-value">{variable.value}</span>

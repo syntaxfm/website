@@ -43,9 +43,7 @@
 		slim_transcript,
 		(utterance: Utterance) => {
 			const start = utterance.start;
-			const summary = aiShowNote?.summary?.findLast((summary, i) => {
-				const nextSummary = aiShowNote?.summary?.at(i + 1);
-				const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
+			const summary = aiShowNote?.summary?.findLast((summary) => {
 				const timestamp = tsToS(summary.time);
 				return start >= timestamp;
 			});
@@ -122,7 +120,7 @@
 {/if}
 
 <div class="timeline">
-	{#each Array.from(utterances_by_summary) as [summary, utterances], i}
+	{#each Array.from(utterances_by_summary) as [summary, utterances], i (summary.text)}
 		<section>
 			<header class="topic {placeTopic(summary, utterances)}">
 				<div class="gutter" id={slug(summary.text)}>
@@ -139,7 +137,7 @@
 				</div>
 			</header>
 			<div>
-				{#each utterances as utterance}
+				{#each utterances as utterance (utterance.start)}
 					{@const progress =
 						((($player?.audio?.currentTime || 0) - utterance.start) /
 							(utterance.end - utterance.start)) *

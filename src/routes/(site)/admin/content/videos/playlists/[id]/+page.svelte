@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import AdminSearch from '../../../../AdminSearch.svelte';
 	import {
@@ -94,7 +95,7 @@
 
 		try {
 			await delete_playlist(playlist_detail.id);
-			await goto('/admin/content/videos/playlists');
+			await goto(resolve('/admin/content/videos/playlists'));
 		} catch (error) {
 			console.error(error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete playlist.';
@@ -176,13 +177,14 @@
 {#if !playlist_detail}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<h1 class="h3">Playlist not found</h1>
-		<p><a href="/admin/content/videos/playlists">Back to playlists</a></p>
+		<p><a href={resolve('/admin/content/videos/playlists')}>Back to playlists</a></p>
 	</div>
 {:else}
 	<div class="stack" style:--stack-gap="var(--pad-medium)">
 		<div class="split" style="flex-wrap: wrap">
 			<h1 class="h3">Edit Playlist</h1>
-			<a class="button small" href="/admin/content/videos/playlists">Back to playlists</a>
+			<a class="button small" href={resolve('/admin/content/videos/playlists')}>Back to playlists</a
+			>
 		</div>
 
 		<form

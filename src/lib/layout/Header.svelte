@@ -2,6 +2,7 @@
 	import Logo from '$lib/layout/Logo.svelte';
 	import Nav from '$lib/layout/Nav.svelte';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		page_type?: 'landing' | 'interior';
@@ -14,7 +15,7 @@
 	<header>
 		<div class="layout-main">
 			{#if page_type === 'interior'}
-				<a title="Syntax Podcast Home" href="/">
+				<a title="Syntax Podcast Home" href={resolve('/')}>
 					<Logo height="95px" />
 				</a>
 			{:else}

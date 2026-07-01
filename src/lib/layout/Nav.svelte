@@ -1,14 +1,7 @@
 <script>
 	import { search } from '$state/search.svelte';
+	import { resolve } from '$app/paths';
 	import Icon from '../Icon.svelte';
-
-	const LINKS = [
-		['/shows', 'Shows'],
-		['/about', 'About'],
-		['/snackpack', 'Newsletter'],
-		['/potluck', 'Potluck Qs'],
-		['https://sentry.shop/collections/syntax', 'Shop']
-	];
 
 	let isOpen = $state(false);
 
@@ -73,11 +66,13 @@
 	</button>
 
 	<ul id="primary-nav" class:open={isOpen}>
-		{#each LINKS as [href, text] (href)}
-			<li>
-				<a {href} onclick={close}>{text}</a>
-			</li>
-		{/each}
+		<li><a href={resolve('/shows')} onclick={close}>Shows</a></li>
+		<li><a href={resolve('/about')} onclick={close}>About</a></li>
+		<li><a href={resolve('/snackpack')} onclick={close}>Newsletter</a></li>
+		<li><a href={resolve('/potluck')} onclick={close}>Potluck Qs</a></li>
+		<li>
+			<a href="https://sentry.shop/collections/syntax" rel="external" onclick={close}>Shop</a>
+		</li>
 		<li>
 			<button onclick={openSearch}><Icon name="search" />Search</button>
 		</li>

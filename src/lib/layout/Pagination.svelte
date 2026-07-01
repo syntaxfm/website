@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
 	import { page as pageStore } from '$app/state';
+	import type { ResolvedPathname } from '$app/types';
 	import { PER_PAGE } from '$const';
 	import { quintOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
@@ -12,7 +13,7 @@
 
 	let { count, perPage = PER_PAGE, page = 1 }: Props = $props();
 	let totalPages = $derived(Math.ceil(count / perPage));
-	let generate_search_params = $derived((id: string, value: string | number) => {
+	let generate_search_params = $derived((id: string, value: string | number): ResolvedPathname => {
 		const searchParams = new URLSearchParams(pageStore.url.search);
 
 		if (!value) {
@@ -20,7 +21,10 @@
 		} else {
 			searchParams.set(id, value.toString());
 		}
-		return searchParams.toString();
+		const query = searchParams.toString();
+		return (
+			query ? `${pageStore.url.pathname}?${query}` : pageStore.url.pathname
+		) as ResolvedPathname;
 	});
 	function getNeighboringNumbers(number: number, maxNumber: number): number[] {
 		const start: number = Math.max(1, number - 3);
@@ -36,20 +40,20 @@
 
 <div class="pagination-container">
 	<div class="pagination">
-		<a title="First Page" href="?{generate_search_params('page', '')}">←←</a>
-		<a href="?{generate_search_params('page', page > 1 ? page - 1 : '')}">←</a>
+		<a title="First Page" href={generate_search_params('page', '')}>←←</a>
+		<a href={generate_search_params('page', page > 1 ? page - 1 : '')}>←</a>
 		{#each pageNumbers as pageNumber (pageNumber)}
 			<a
 				in:fade
 				animate:flip={{ duration: 200, easing: quintOut }}
 				class="page-number"
 				class:current={page === pageNumber}
-				href="?{generate_search_params('page', pageNumber)}"
+				href={generate_search_params('page', pageNumber)}
 				>{pageNumber}
 			</a>
 		{/each}
-		<a href="?{generate_search_params('page', page + 1)}">→</a>
-		<a title="Last Page" href="?{generate_search_params('page', totalPages)}">→→</a>
+		<a href={generate_search_params('page', page + 1)}>→</a>
+		<a title="Last Page" href={generate_search_params('page', totalPages)}>→→</a>
 	</div>
 </div>
 

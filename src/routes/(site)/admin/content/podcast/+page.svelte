@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
@@ -137,7 +138,7 @@
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Shows</h1>
 		<AdminActions>
-			<a class="button small" href="/admin/content/podcast/new">New Show</a>
+			<a class="button small" href={resolve('/admin/content/podcast/new')}>New Show</a>
 			<RemoteFormButton class="small" remote={import_all_shows}
 				>Sync Changed/New Shows</RemoteFormButton
 			>
@@ -207,7 +208,7 @@
 						onselect={(value) => update_url({ status: value || null, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" href="/admin/content/podcast">× Clear</a>
+						<a class="button small" href={resolve('/admin/content/podcast')}>× Clear</a>
 					{/if}
 				</div>
 			</div>
@@ -269,8 +270,8 @@
 		{#snippet table_body({ toggle_selected, is_selected })}
 			{#each list_result.items as show_row (show_row.number)}
 				{@const row_id = String(show_row.number)}
-				{@const public_link = `/show/${show_row.number}/${show_row.slug}`}
-				{@const edit_link = `/admin/content/podcast/${show_row.number}`}
+				{@const public_link = resolve(`/show/${show_row.number}/${show_row.slug}`)}
+				{@const edit_link = resolve(`/admin/content/podcast/${show_row.number}`)}
 				<tr>
 					<td>
 						<input

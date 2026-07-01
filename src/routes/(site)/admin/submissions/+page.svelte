@@ -2,6 +2,7 @@
 	import { formatDistance } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -284,7 +285,7 @@
 								})}
 						/>
 						{#if show_clear_filters}
-							<a class="button small" href="/admin/submissions">× Clear</a>
+							<a class="button small" href={resolve('/admin/submissions')}>× Clear</a>
 						{/if}
 					</div>
 				</div>

@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
@@ -76,7 +77,7 @@
 		creating = true;
 		try {
 			const created = await create_article({ title: 'Untitled Article' });
-			await goto(`/admin/content/articles/${created.content_id}`);
+			await goto(resolve(`/admin/content/articles/${created.content_id}`));
 		} catch (error) {
 			console.error(error);
 			create_error = error instanceof Error ? error.message : 'Unable to create article.';
@@ -165,7 +166,7 @@
 						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" href="/admin/content/articles">× Clear</a>
+						<a class="button small" href={resolve('/admin/content/articles')}>× Clear</a>
 					{/if}
 				</div>
 			</div>
@@ -180,7 +181,7 @@
 
 		{#snippet table_body()}
 			{#each list_result.items as article_item (article_item.content_id)}
-				{@const edit_link = `/admin/content/articles/${article_item.content_id}`}
+				{@const edit_link = resolve(`/admin/content/articles/${article_item.content_id}`)}
 				<tr>
 					<td>
 						<div class="stack" style:--stack-gap="var(--pad-xsmall)">

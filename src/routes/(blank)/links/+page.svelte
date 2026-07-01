@@ -3,6 +3,7 @@
 	import Logo from '$lib/layout/Logo.svelte';
 	import NewsletterForm from '$lib/newsletter/NewsletterForm.svelte';
 	import PodcastLinks from '$lib/PodcastLinks.svelte';
+	import { resolve } from '$app/paths';
 	import '../../(site)/style.css';
 
 	const POD_DATA = {
@@ -18,7 +19,7 @@
 
 <div>
 	<div class="logo">
-		<a href="/"><Logo /></a>
+		<a href={resolve('/')}><Logo /></a>
 	</div>
 	<main class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
 		<section>

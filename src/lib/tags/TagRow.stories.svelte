@@ -8,8 +8,22 @@
 	});
 </script>
 
-<Story name="Default" args={{ tags: ['tag1', 'tag2', 'tag3'] }} />
+<Story
+	name="Default"
+	args={{
+		tags: [
+			{ name: 'tag1', slug: 'tag1' },
+			{ name: 'tag2', slug: 'tag2' },
+			{ name: 'tag3', slug: 'tag3' }
+		]
+	}}
+/>
 <Story
 	name="Lots of tags"
-	args={{ tags: ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7', 'tag8', 'tag9', 'tag10'] }}
+	args={{
+		tags: Array.from({ length: 10 }, (_, index) => ({
+			name: `tag${index + 1}`,
+			slug: `tag${index + 1}`
+		}))
+	}}
 />

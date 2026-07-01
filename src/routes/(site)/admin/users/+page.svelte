@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminActions from '../AdminActions.svelte';
 	import AdminSearch from '../AdminSearch.svelte';
@@ -153,7 +154,7 @@
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Users</h1>
 		<AdminActions>
-			<a class="button small" href="/admin/users/roles">Roles</a>
+			<a class="button small" href={resolve('/admin/users/roles')}>Roles</a>
 		</AdminActions>
 	</div>
 
@@ -252,7 +253,7 @@
 							{#if user_row.email}
 								<p class="fs-2">{user_row.email}</p>
 							{/if}
-							<a href={`/admin/users/${user_row.id}`}>Edit</a>
+							<a href={resolve(`/admin/users/${user_row.id}`)}>Edit</a>
 						</div>
 					</td>
 					<td>{format_roles(user_row)}</td>

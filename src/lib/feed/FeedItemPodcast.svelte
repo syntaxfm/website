@@ -4,10 +4,11 @@
 	import type { ShowWithHostsAndGuests } from '$server/db/types';
 	import FeedHosts from '$lib/hosts/FeedHosts.svelte';
 	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
+	import { resolve } from '$app/paths';
 
 	type Feed_show = ShowWithHostsAndGuests & { thumbnail?: string | null };
 	type Feed_content = {
-		tags: Array<{ tag: { name: string } }>;
+		tags: Array<{ tag: { name: string; slug: string | null } }>;
 	};
 
 	const { show, content }: { show: Feed_show; content: Feed_content } = $props();
@@ -31,11 +32,11 @@
 		<img src={thumbnail_src} alt={show.title} />
 	</div>
 	<h4 class="fv-700-i">
-		<a href={`/show/${show.number}/${show.slug}`}>
+		<a href={resolve(`/show/${show.number}/${show.slug}`)}>
 			{show.title}
 		</a>
 	</h4>
-	<TagRow tags={content.tags.map((tag) => tag.tag.name)} />
+	<TagRow tags={content.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug }))} />
 </article>
 
 <style>

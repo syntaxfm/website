@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { formatDistanceToNow } from 'date-fns';
 	import ShareButton from '$lib/share/HairButton.svelte';
 	import Tabs from '$lib/Tabs.svelte';
@@ -25,7 +26,10 @@
 		youtube_video_id ? `https://www.youtube.com/embed/${youtube_video_id}?rel=0` : ''
 	);
 	let tags = $derived(
-		show.meta?.tags?.map((content_tag: { tag: { name: string } }) => content_tag.tag.name) || []
+		show.meta?.tags?.map((content_tag: { tag: { name: string; slug: string | null } }) => ({
+			name: content_tag.tag.name,
+			slug: content_tag.tag.slug
+		})) || []
 	);
 
 	function play_show() {
@@ -125,12 +129,13 @@
 			<a
 				data-sveltekit-noscroll
 				class:active={!page.url.pathname.includes('transcript')}
-				href="/show/{page.params.show_number}/{page.params.slug}">Show Notes</a
+				href={resolve(`/show/${page.params.show_number}/${page.params.slug}`)}>Show Notes</a
 			>
 			<a
 				class:active={page.url.pathname.includes('transcript')}
 				data-sveltekit-noscroll
-				href="/show/{page.params.show_number}/{page.params.slug}/transcript">Transcript</a
+				href={resolve(`/show/${page.params.show_number}/${page.params.slug}/transcript`)}
+				>Transcript</a
 			>
 		</Tabs>
 

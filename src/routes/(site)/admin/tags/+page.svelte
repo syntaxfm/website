@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
@@ -184,7 +185,7 @@
 				/>
 				{#if show_clear_filters}
 					<div>
-						<a class="button small" href="/admin/tags">× Clear</a>
+						<a class="button small" href={resolve('/admin/tags')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -222,7 +223,7 @@
 						/>
 					</td>
 					<td>/{row.slug}</td>
-					<td class="center"><a href={`/admin/tags/${row.id}`}>{row.content_count}</a></td>
+					<td class="center"><a href={resolve(`/admin/tags/${row.id}`)}>{row.content_count}</a></td>
 					<td>
 						<div class="flex" style:--flex-gap="var(--pad-xsmall)">
 							<button

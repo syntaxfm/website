@@ -19,7 +19,7 @@
 	// Always use system and light which are just base styles
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
 
-	function change_theme(this: HTMLButtonElement, e: Event) {
+	function change_theme(this: HTMLButtonElement, _e: Event) {
 		// Set cookie for server side theme change
 		Cookie.set('theme', this.innerText, {
 			expires: 999,
@@ -56,7 +56,7 @@
 		<h4>Theme Picker <button class="close" onclick={theme_maker.close}>×</button></h4>
 
 		<div class="theme-maker-buttons">
-			{#each theme_names as theme_name}
+			{#each theme_names as theme_name (theme_name)}
 				<button onclick={change_theme} class={'theme-preview theme-' + theme_name}>
 					<div class="preview">
 						<div class="circle color"></div>

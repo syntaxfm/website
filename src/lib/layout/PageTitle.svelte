@@ -15,7 +15,7 @@
 		type: 'SIMPLE' | 'CRAZY' | 'NORMAL';
 		date?: string;
 		title: string;
-		tags?: string[];
+		tags?: { name: string; slug: string | null }[];
 		show_name?: string;
 		youtube_url?: string;
 	} = $props();
@@ -29,7 +29,7 @@
 
 <header class="title-type-{type} stack">
 	{#if youtube_url}
-		<a class="youtube-cta" href={youtube_url} target="_blank" rel="noopener">
+		<a class="youtube-cta" href={youtube_url} target="_blank" rel="noopener external">
 			<Icon name="youtube" />
 			<span><span class="link-text">View on YouTube</span> to comment and like!</span>
 		</a>

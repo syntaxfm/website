@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { resolve } from '$app/paths';
 
 	let { data } = $props();
 	let frame: HTMLIFrameElement | null = $state(null);
@@ -42,7 +43,7 @@
 				'EEEE MMM dd, yyyy'
 			)}
 		</p>
-		<a class="issue-back" href="/snackpack">← Back to all issues</a>
+		<a class="issue-back" href={resolve('/snackpack')}>← Back to all issues</a>
 	</header>
 
 	<div class="issue-paper">

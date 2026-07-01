@@ -1,6 +1,7 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
+	import { resolve } from '$app/paths';
 	type NewsletterFormVariant = 'default' | 'snackpack_hero';
 
 	interface Props {
@@ -21,7 +22,7 @@
 <div class="newsletter-layout">
 	{#if show_logo}
 		<div class="newsletter-logo-container">
-			<a href="/snackpack">
+			<a href={resolve('/snackpack')}>
 				<NewsletterLogo />
 			</a>
 		</div>

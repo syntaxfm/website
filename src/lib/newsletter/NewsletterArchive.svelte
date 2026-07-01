@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import Dot from '$lib/utilities/Dot.svelte';
 	import Icon from '../Icon.svelte';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		id: number;
@@ -15,7 +16,7 @@
 	const formatted_date = $derived(format(new Date(date), 'MMM dd, yyyy'));
 </script>
 
-<a class="newsletter-archive stack" href="/snackpack/{id}">
+<a class="newsletter-archive stack" href={resolve(`/snackpack/${id}`)}>
 	<p class="meta flex">
 		<Icon name="send" height={20} width={20} />
 		{#if issue_number != null}

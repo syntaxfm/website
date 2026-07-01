@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
 	import StatusSelect from '$lib/admin/StatusSelect.svelte';
@@ -106,7 +107,7 @@
 
 		try {
 			await delete_video({ content_id: content_item.id, confirm_text });
-			await goto('/admin/content/videos');
+			await goto(resolve('/admin/content/videos'));
 		} catch (error) {
 			console.error('Unable to delete video', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete video.';
@@ -119,7 +120,7 @@
 {#if !content_item}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<h1 class="h3">Video not found</h1>
-		<p><a href="/admin/content">Back to content list</a></p>
+		<p><a href={resolve('/admin/content')}>Back to content list</a></p>
 	</div>
 {:else}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
@@ -149,7 +150,7 @@
 				</dt>
 				<dd>
 					{#if content_item.video?.url}
-						<a href={content_item.video.url} target="_blank" rel="noopener noreferrer">
+						<a href={content_item.video.url} target="_blank" rel="noopener noreferrer external">
 							{content_item.video.url}
 						</a>
 					{:else}
@@ -176,7 +177,7 @@
 			<p>{status_error}</p>
 		{/if}
 
-		<p><a href="/admin/content">Back to content list</a></p>
+		<p><a href={resolve('/admin/content')}>Back to content list</a></p>
 
 		<section class="stack" style:--stack-gap="var(--pad-small)">
 			<h2 class="h5">Danger zone</h2>
@@ -184,7 +185,7 @@
 				<button type="button" onclick={handle_delete_video} disabled={saving || deleting}>
 					{deleting ? 'Deleting...' : 'Delete Video'}
 				</button>
-				<a href="/admin/content/videos">Back to videos</a>
+				<a href={resolve('/admin/content/videos')}>Back to videos</a>
 			</div>
 		</section>
 	</div>

@@ -7,7 +7,7 @@
 <section>
 	<FeedTitle />
 	<div class="stack">
-		{#each await get_feed_content() as content}
+		{#each await get_feed_content() as content (content.id)}
 			<FeedItem {content} />
 		{/each}
 	</div>

@@ -3,7 +3,7 @@ import type { Guest, Host, Show } from '$server/db/types';
 export function get_faces_from_show(
 	show: Show & { guests: { guest: Guest }[] } & { hosts: Host[] }
 ) {
-	let hosts = (
+	const hosts = (
 		show.hosts?.length > 0
 			? show.hosts
 			: [

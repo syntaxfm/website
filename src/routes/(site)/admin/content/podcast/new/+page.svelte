@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '$lib/admin/MarkdownEditor.svelte';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
@@ -50,7 +51,7 @@
 			});
 
 			status_message = `Show #${result.show_number} created.`;
-			await goto(`/admin/content/podcast/${result.show_number}`);
+			await goto(resolve(`/admin/content/podcast/${result.show_number}`));
 		} catch (error) {
 			console.error(error);
 			status_error = error instanceof Error ? error.message : 'Unable to create show.';

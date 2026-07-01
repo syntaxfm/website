@@ -26,7 +26,7 @@ try {
 			const [result] = await connection.execute(`SELECT COUNT(*) as count FROM \`${tableName}\``);
 			const actualCount = result[0].count;
 			console.log(`${tableName.padEnd(30)} ${actualCount.toString().padStart(10)} rows`);
-		} catch (e) {
+		} catch {
 			console.log(
 				`${tableName.padEnd(30)} ${estimatedRows.toString().padStart(10)} rows (estimated)`
 			);

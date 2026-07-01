@@ -12,7 +12,7 @@
 
 <div class="guests-and-hosts">
 	{#if guests?.length > 0}
-		{#each guests as { guest }}
+		{#each guests as { guest } (guest.id)}
 			<Host
 				host={{
 					name: guest.name,
@@ -25,7 +25,7 @@
 		{/each}
 	{/if}
 	{#if hosts.length > 0}
-		{#each hosts as host}
+		{#each hosts as host (host.username)}
 			<Host
 				host={{
 					name: host.name || host.username || '',

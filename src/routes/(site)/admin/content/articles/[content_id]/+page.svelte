@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
@@ -146,7 +147,7 @@
 
 		try {
 			await delete_article({ content_id: article_item.content_id, confirm_text });
-			await goto('/admin/content/articles');
+			await goto(resolve('/admin/content/articles'));
 		} catch (error) {
 			console.error('Unable to delete article', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete article.';
@@ -159,7 +160,7 @@
 {#if !article_item}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<h1 class="h3">Article not found</h1>
-		<p><a href={`/admin/content/${content_id}`}>Back to content shell</a></p>
+		<p><a href={resolve(`/admin/content/${content_id}`)}>Back to content shell</a></p>
 	</div>
 {:else}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
@@ -210,7 +211,7 @@
 			<p>{status_error}</p>
 		{/if}
 
-		<p><a href={`/admin/content/${content_id}`}>Back to content shell</a></p>
+		<p><a href={resolve(`/admin/content/${content_id}`)}>Back to content shell</a></p>
 
 		<section class="stack" style:--stack-gap="var(--pad-small)">
 			<h2 class="h5">Danger zone</h2>
@@ -218,7 +219,7 @@
 				<button type="button" onclick={handle_delete_article} disabled={saving || deleting}>
 					{deleting ? 'Deleting...' : 'Delete Article'}
 				</button>
-				<a href="/admin/content/articles">Back to articles</a>
+				<a href={resolve('/admin/content/articles')}>Back to articles</a>
 			</div>
 		</section>
 	</div>

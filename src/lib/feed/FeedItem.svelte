@@ -4,7 +4,7 @@
 	import FeedItemVideo from './FeedItemVideo.svelte';
 
 	type Feed_content = AllPossibleContent & {
-		tags: Array<{ tag: { name: string } }>;
+		tags: Array<{ tag: { name: string; slug: string | null } }>;
 	};
 
 	const { content }: { content: Feed_content } = $props();

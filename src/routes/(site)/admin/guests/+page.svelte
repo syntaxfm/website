@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminActions from '../AdminActions.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
@@ -56,7 +57,7 @@
 		try {
 			const created = await create_guest({ name: trimmed_name });
 			new_guest_name = '';
-			await goto(`/admin/guests/${created.id}`);
+			await goto(resolve(`/admin/guests/${created.id}`));
 		} catch (error) {
 			console.error('Unable to create guest', error);
 			action_error = error instanceof Error ? error.message : 'Unable to create guest.';
@@ -103,7 +104,7 @@
 				/>
 				{#if show_clear_filters}
 					<div class="flex" style:--flex-gap="var(--pad-small)">
-						<a class="button small" href="/admin/guests">× Clear</a>
+						<a class="button small" href={resolve('/admin/guests')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -130,7 +131,7 @@
 			{#each list_result.items as guest_row (guest_row.id)}
 				<tr>
 					<td>
-						<a href={`/admin/guests/${guest_row.id}`}>{guest_row.name}</a>
+						<a href={resolve(`/admin/guests/${guest_row.id}`)}>{guest_row.name}</a>
 					</td>
 					<td>/{guest_row.name_slug}</td>
 					<td>

@@ -40,7 +40,7 @@
 		</header>
 
 		<div class="shows stack">
-			{#each shows as show}
+			{#each shows as show (show.number)}
 				<ShowCard {show} display="list" />
 			{/each}
 		</div>

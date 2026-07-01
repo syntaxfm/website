@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Github from '$assets/github.svg';
-	import { enhance } from '$app/forms';
 	import { loading } from '$state/loading';
-	import { form_action } from '$lib/form_action';
 	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
 	import { logout } from '../user.remote.js';
 

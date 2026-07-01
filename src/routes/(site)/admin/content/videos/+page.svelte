@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
@@ -70,7 +71,7 @@
 	<div class="split" style="flex-wrap: wrap">
 		<h1 class="h3">Videos</h1>
 		<AdminActions>
-			<a class="button small" href="/admin/content/videos/import">Import New Videos</a>
+			<a class="button small" href={resolve('/admin/content/videos/import')}>Import New Videos</a>
 		</AdminActions>
 	</div>
 
@@ -142,7 +143,7 @@
 						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" href="/admin/content/videos">× Clear</a>
+						<a class="button small" href={resolve('/admin/content/videos')}>× Clear</a>
 					{/if}
 				</div>
 			</div>
@@ -164,7 +165,7 @@
 						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 							<p>{display_title}</p>
 							{#if has_content}
-								<a href={`/admin/content/videos/${video_row.meta?.id}`}>Edit</a>
+								<a href={resolve(`/admin/content/videos/${video_row.meta?.id}`)}>Edit</a>
 							{/if}
 						</div>
 					</td>
@@ -177,7 +178,7 @@
 						{/if}
 					</td>
 					<td>
-						<a href={video_row.url} target="_blank" rel="noopener noreferrer">YouTube</a>
+						<a href={video_row.url} target="_blank" rel="noopener noreferrer external">YouTube</a>
 					</td>
 				</tr>
 			{/each}

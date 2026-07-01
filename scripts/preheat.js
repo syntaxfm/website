@@ -7,7 +7,6 @@ import { expand } from 'dotenv-expand';
 import semver from 'semver';
 import { drizzle } from 'drizzle-orm/mysql2';
 import { mysqlTable, varchar, datetime, int } from 'drizzle-orm/mysql-core';
-import { sql } from 'drizzle-orm';
 
 // Load environment variables
 expand(dotenv.config());

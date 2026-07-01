@@ -178,7 +178,7 @@ const new_player_state = () => {
 
 				// Finally Start Playing
 				this.play();
-			} catch (error) {
+			} catch {
 				console.log('setting initial...');
 				update((state) => ({ ...state, status: 'INITIAL' }));
 			}

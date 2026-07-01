@@ -17,11 +17,6 @@ const with_hosts = {
 	}
 } as const;
 
-const with_guests = {
-	with: {
-		guests: true
-	}
-} as const;
 
 const with_ai_show_note_basic = {
 	columns: {

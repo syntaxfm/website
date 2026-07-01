@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import AdminActions from '../../../AdminActions.svelte';
 	import AdminSearch from '../../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
@@ -47,7 +48,7 @@
 
 		try {
 			const created = await create_playlist({ title: trimmed_title });
-			await goto(`/admin/content/videos/playlists/${created.id}`);
+			await goto(resolve(`/admin/content/videos/playlists/${created.id}`));
 		} catch (error) {
 			console.error(error);
 			create_error = error instanceof Error ? error.message : 'Unable to create playlist.';
@@ -100,7 +101,7 @@
 
 --flex-gap: var(--pad-small)"
 					>
-						<a class="button small" href="/admin/content/videos/playlists">× Clear</a>
+						<a class="button small" href={resolve('/admin/content/videos/playlists')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -117,7 +118,7 @@
 			{#each list_result.items as playlist_row (playlist_row.id)}
 				<tr>
 					<td>
-						<a href={`/admin/content/videos/playlists/${playlist_row.id}`}>
+						<a href={resolve(`/admin/content/videos/playlists/${playlist_row.id}`)}>
 							{playlist_row.title}
 						</a>
 					</td>

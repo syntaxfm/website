@@ -23,6 +23,7 @@
 	<a
 		class="icon"
 		target="_blank"
+		rel="external"
 		title="Watch on Youtube"
 		aria-label="Youtube"
 		style:--c-fg="#F61C0D"

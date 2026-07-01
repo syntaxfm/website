@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { resolve } from '$app/paths';
 	import no_thumb from '../shows/no_thumb.png';
 	import type { RankedContent } from './ranked';
 
@@ -10,7 +11,7 @@
 	let { item, rank }: Props = $props();
 </script>
 
-<a class="flex ranked-item" href={item.href}>
+<a class="flex ranked-item" href={resolve(item.href)}>
 	<span class="rank fs-caption size">{rank}</span>
 
 	<div class="stack ranked-item-info">

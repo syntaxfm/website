@@ -1,5 +1,6 @@
 <script lang="ts">
 	import get_show_path from '$utilities/slug';
+	import { resolve } from '$app/paths';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
 	import { getAllGuests } from '../guest/guests.remote';
@@ -97,7 +98,12 @@
 			{#each visible as guest, index (guest.id)}
 				{@const episodes = episodes_newest_first(guest)}
 				<li class="card">
-					<a class="avatar" href="/guest/{guest.name_slug}" tabindex="-1" aria-hidden="true">
+					<a
+						class="avatar"
+						href={resolve(`/guest/${guest.name_slug}`)}
+						tabindex="-1"
+						aria-hidden="true"
+					>
 						<img
 							src={`https://github.com/${guest.github || 'null'}.png`}
 							alt={guest.name}
@@ -108,7 +114,7 @@
 					</a>
 					<div class="info">
 						<h2 class="name h4">
-							<a href="/guest/{guest.name_slug}">{guest.name}</a>
+							<a href={resolve(`/guest/${guest.name_slug}`)}>{guest.name}</a>
 						</h2>
 						{#if guest.of}
 							<p class="of">{guest.of}</p>
@@ -120,12 +126,13 @@
 						{/if}
 						{#if episodes.length}
 							<div class="episodes">
-								{#each episodes.slice(0, MAX_BADGES) as show}
-									<a class="episode" href={get_show_path(show)} title={show.title}>#{show.number}</a
+								{#each episodes.slice(0, MAX_BADGES) as show (show.number)}
+									<a class="episode" href={resolve(get_show_path(show))} title={show.title}
+										>#{show.number}</a
 									>
 								{/each}
 								{#if episodes.length > MAX_BADGES}
-									<a class="episode more" href="/guest/{guest.name_slug}"
+									<a class="episode more" href={resolve(`/guest/${guest.name_slug}`)}
 										>+{episodes.length - MAX_BADGES}</a
 									>
 								{/if}

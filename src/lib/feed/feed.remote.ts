@@ -73,31 +73,33 @@ export const get_most_popular_content_this_week = query(async (): Promise<Ranked
 	return items;
 });
 
-export const get_trending_tags = query(async (): Promise<string[]> => {
-	const ninety_days_ago = new Date(Date.now() - 1000 * 60 * 60 * 24 * 90);
+export const get_trending_tags = query(
+	async (): Promise<{ name: string; slug: string | null }[]> => {
+		const ninety_days_ago = new Date(Date.now() - 1000 * 60 * 60 * 24 * 90);
 
-	const recent = await db
-		.select({ name: tag.name, uses: count(content_tags.content_id) })
-		.from(content_tags)
-		.innerJoin(tag, eq(tag.id, content_tags.tag_id))
-		.innerJoin(content, eq(content.id, content_tags.content_id))
-		.where(and(eq(content.status, 'PUBLISHED'), gte(content.published_at, ninety_days_ago)))
-		.groupBy(tag.id, tag.name)
-		.orderBy(desc(count(content_tags.content_id)))
-		.limit(20);
+		const recent = await db
+			.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
+			.from(content_tags)
+			.innerJoin(tag, eq(tag.id, content_tags.tag_id))
+			.innerJoin(content, eq(content.id, content_tags.content_id))
+			.where(and(eq(content.status, 'PUBLISHED'), gte(content.published_at, ninety_days_ago)))
+			.groupBy(tag.id, tag.name, tag.slug)
+			.orderBy(desc(count(content_tags.content_id)))
+			.limit(20);
 
-	if (recent.length >= 5) {
-		return recent.map((row) => row.name);
+		if (recent.length >= 5) {
+			return recent.map((row) => ({ name: row.name, slug: row.slug }));
+		}
+
+		// Fallback while the content migration is still backfilling recent tags.
+		const all_time = await db
+			.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
+			.from(content_tags)
+			.innerJoin(tag, eq(tag.id, content_tags.tag_id))
+			.groupBy(tag.id, tag.name, tag.slug)
+			.orderBy(desc(count(content_tags.content_id)))
+			.limit(20);
+
+		return all_time.map((row) => ({ name: row.name, slug: row.slug }));
 	}
-
-	// Fallback while the content migration is still backfilling recent tags.
-	const all_time = await db
-		.select({ name: tag.name, uses: count(content_tags.content_id) })
-		.from(content_tags)
-		.innerJoin(tag, eq(tag.id, content_tags.tag_id))
-		.groupBy(tag.id, tag.name)
-		.orderBy(desc(count(content_tags.content_id)))
-		.limit(20);
-
-	return all_time.map((row) => row.name);
-});
+);

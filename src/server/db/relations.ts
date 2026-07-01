@@ -25,7 +25,6 @@ import {
 	transcriptUtteranceWord,
 	user,
 	userRole,
-	userSubmission,
 	video
 } from './schema';
 

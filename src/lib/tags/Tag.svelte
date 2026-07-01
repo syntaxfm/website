@@ -1,11 +1,17 @@
 <script lang="ts">
-	let { children }: { children: Snippet } = $props();
+	import { resolve } from '$app/paths';
+
+	let { name, slug }: { name: string; slug: string | null } = $props();
 </script>
 
-<a href="/tags/" class="fs-caption">#{@render children()}</a>
+{#if slug}
+	<a href={resolve(`/tags/${slug}`)} class="tag fs-caption">#{name}</a>
+{:else}
+	<span class="tag fs-caption">#{name}</span>
+{/if}
 
 <style>
-	a {
+	.tag {
 		border: solid 1px var(--c-fg-6);
 		border-radius: var(--br-small);
 		padding: 4px 8px;

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { format } from 'date-fns';
 	import {
 		add_user_role,
@@ -136,7 +137,7 @@
 {#if !user_detail}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<h1 class="h3">User not found</h1>
-		<p><a href="/admin/users">Back to users</a></p>
+		<p><a href={resolve('/admin/users')}>Back to users</a></p>
 	</div>
 {:else}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
@@ -205,12 +206,12 @@
 					<li class="split" style:--split-gap="var(--pad-small)">
 						<span class="flex" style:--flex-gap="var(--pad-xsmall)">
 							<span class="fs-2">#{show_row.number}</span>
-							<a href={`/admin/content/podcast/${show_row.number}`}>{show_row.title}</a>
+							<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
 						</span>
 						<span class="flex" style:--flex-gap="var(--pad-small)">
 							<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
 							<a
-								href={`/show/${show_row.number}/${show_row.slug}`}
+								href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -230,7 +231,7 @@
 			<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
 				{#each user_detail.articles_authored as article_row (article_row.id)}
 					<li class="split" style:--split-gap="var(--pad-small)">
-						<a href={`/admin/content/articles/${article_row.id}`}>{article_row.title}</a>
+						<a href={resolve(`/admin/content/articles/${article_row.id}`)}>{article_row.title}</a>
 						<span class="flex" style:--flex-gap="var(--pad-small)">
 							<span class="fs-2">{article_row.status}</span>
 							<span class="fs-2">{format(article_row.updated_at, 'MMM d, yyyy')}</span>
@@ -240,6 +241,6 @@
 			</ul>
 		{/if}
 
-		<p><a href="/admin/users">Back to users</a></p>
+		<p><a href={resolve('/admin/users')}>Back to users</a></p>
 	</div>
 {/if}

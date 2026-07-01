@@ -54,8 +54,8 @@
 </script>
 
 <div class="platform-links">
-	{#each platforms as { href, label, action, icon, image, bg, fg }}
-		<a {href} target="_blank" rel="noopener" class="platform">
+	{#each platforms as { href, label, action, icon, image, bg, fg } (label)}
+		<a {href} target="_blank" rel="noopener external" class="platform">
 			<span class="badge" style:--badge-bg={bg} style:--badge-fg={fg ?? '#fff'}>
 				{#if icon}
 					<Icon name={icon} width={24} height={24} />

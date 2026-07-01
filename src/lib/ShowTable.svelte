@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Show } from '$server/db/types';
+	import { resolve } from '$app/paths';
 	import { format } from 'date-fns';
 
 	interface Props {
@@ -33,17 +34,17 @@
 		</thead>
 		<tbody>
 			{#if shows.length > 0}
-				{#each shows as show}
+				{#each shows as show (show.number)}
 					<tr>
 						<td>{format(show.date, 'E MMM d')}</td>
 						<td>
-							<a href="/{show.number}" target="_blank">
+							<a href={resolve(`/${show.number}`)} target="_blank">
 								{show.number}
 								{show.title}
 								[↗]
 							</a>
 						</td>
-						<td><a href="/admin/content/podcast/{show.number}">Edit</a></td>
+						<td><a href={resolve(`/admin/content/podcast/${show.number}`)}>Edit</a></td>
 					</tr>
 				{/each}
 			{:else}

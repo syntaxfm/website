@@ -105,7 +105,7 @@
 		local_search = null;
 	}
 
-	function navigate(href: string) {
+	function navigate(_href: string) {
 		// search.search_recent.value = (recent: string[]) => [href, ...recent.filter((x) => x !== href)];
 		close();
 	}

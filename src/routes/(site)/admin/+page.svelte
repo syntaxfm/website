@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { format, formatDistance } from 'date-fns';
+	import { resolve } from '$app/paths';
+	import type { Pathname } from '$app/types';
 	import { get_dashboard } from './admin_dashboard.remote';
 
 	const dashboard = await get_dashboard();
@@ -17,7 +19,7 @@
 		show: { number: number; slug: string } | null;
 	};
 
-	function content_edit_link(item: EditLinkInput): string | null {
+	function content_edit_link(item: EditLinkInput): Pathname | null {
 		const content_type = item.content_type ?? item.type;
 		const content_id = item.content_id ?? item.id;
 		if (content_type === 'PODCAST' && item.show) {
@@ -44,17 +46,17 @@
 
  flex-wrap: wrap"
 	>
-		<a class="button small" href="/admin/submissions?status=PENDING">
+		<a class="button small" href={resolve('/admin/submissions?status=PENDING')}>
 			<strong>{dashboard.pending_submissions_count}</strong>
 			<span>&nbsp;Pending submissions</span>
 		</a>
-		<a class="button small" href="/admin/content?status=DRAFT">
+		<a class="button small" href={resolve('/admin/content?status=DRAFT')}>
 			<strong>{dashboard.drafts_count}</strong>
 			<span>&nbsp;Drafts</span>
 		</a>
 		<a
 			class="button small"
-			href={`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`}
+			href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 		>
 			<strong>{dashboard.scheduled_count}</strong>
 			<span>&nbsp;Scheduled</span>
@@ -73,7 +75,9 @@
 			{#each dashboard.submission_breakdown as bucket (bucket.submission_type)}
 				<a
 					class="button small"
-					href={`/admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`}
+					href={resolve(
+						`/admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`
+					)}
 				>
 					{bucket.submission_type}&nbsp;<strong>{bucket.count}</strong>
 				</a>
@@ -106,7 +110,7 @@
 										>
 										&nbsp;
 										{#if edit_link}
-											<a href={edit_link}>{item.title}</a>
+											<a href={resolve(edit_link)}>{item.title}</a>
 										{:else}
 											{item.title}
 										{/if}
@@ -114,7 +118,9 @@
 										<span class="fs-1">Submission · {item.submission_type}</span>
 										&nbsp;
 										<a
-											href={`/admin/submissions?status=PENDING&submission_type=${item.submission_type}`}
+											href={resolve(
+												`/admin/submissions?status=PENDING&submission_type=${item.submission_type}`
+											)}
 										>
 											{item.submitter_name || 'Anon'}
 										</a>
@@ -131,7 +137,9 @@
 	<section class="stack" style:--stack-gap="var(--pad-small)">
 		<div class="split" style:--split-gap="var(--pad-small)">
 			<h2 class="h5">Upcoming</h2>
-			<a href="/admin/content?status=PUBLISHED&date_from={today_iso_date_string}">All upcoming →</a>
+			<a href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
+				>All upcoming →</a
+			>
 		</div>
 		{#if dashboard.upcoming_content.length === 0}
 			<p class="fs-2">Nothing scheduled.</p>
@@ -152,21 +160,26 @@
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
-												href={`/show/${content_row.show.number}/${content_row.show.slug}`}
+												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}
 												target="_blank"
 												rel="noopener noreferrer"
 											>
 												{content_row.title}
 											</a>
-											<a href={`/admin/content/podcast/${content_row.show.number}`}>Edit</a>
+											<a href={resolve(`/admin/content/podcast/${content_row.show.number}`)}>Edit</a
+											>
 										{:else if content_row.type === 'VIDEO' && content_row.video}
-											<a href={content_row.video.url} target="_blank" rel="noopener noreferrer">
+											<a
+												href={content_row.video.url}
+												target="_blank"
+												rel="noopener noreferrer external"
+											>
 												{content_row.title}
 											</a>
-											<a href={`/admin/content/videos/${content_row.id}`}>Edit</a>
+											<a href={resolve(`/admin/content/videos/${content_row.id}`)}>Edit</a>
 										{:else if content_row.type === 'ARTICLE'}
 											<p>{content_row.title}</p>
-											<a href={`/admin/content/articles/${content_row.id}`}>Edit</a>
+											<a href={resolve(`/admin/content/articles/${content_row.id}`)}>Edit</a>
 										{:else}
 											<p>{content_row.title}</p>
 										{/if}
@@ -208,7 +221,7 @@
 							<tr>
 								<td>
 									{#if edit_link}
-										<a href={edit_link}>{draft_row.title}</a>
+										<a href={resolve(edit_link)}>{draft_row.title}</a>
 									{:else}
 										{draft_row.title}
 									{/if}
@@ -244,13 +257,13 @@
 								<td>
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										<a
-											href={`/show/${show_row.number}/${show_row.slug}`}
+											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
 											{show_row.title}
 										</a>
-										<a href={`/admin/content/podcast/${show_row.number}`}>Edit</a>
+										<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>Edit</a>
 									</div>
 								</td>
 								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
@@ -283,13 +296,13 @@
 								<td>
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										<a
-											href={`/show/${show_row.number}/${show_row.slug}`}
+											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
 											{show_row.title}
 										</a>
-										<a href={`/admin/content/podcast/${show_row.number}`}>Edit</a>
+										<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>Edit</a>
 									</div>
 								</td>
 								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
@@ -304,7 +317,7 @@
 	<section class="stack" style:--stack-gap="var(--pad-small)">
 		<div class="split" style:--split-gap="var(--pad-small)">
 			<h2 class="h5">Recently published (last 7 days)</h2>
-			<a href="/admin/content?status=PUBLISHED">All published →</a>
+			<a href={resolve('/admin/content?status=PUBLISHED')}>All published →</a>
 		</div>
 		{#if dashboard.recently_published.length === 0}
 			<p class="fs-2">Nothing published in the last week.</p>
@@ -325,21 +338,26 @@
 									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
-												href={`/show/${content_row.show.number}/${content_row.show.slug}`}
+												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}
 												target="_blank"
 												rel="noopener noreferrer"
 											>
 												{content_row.title}
 											</a>
-											<a href={`/admin/content/podcast/${content_row.show.number}`}>Edit</a>
+											<a href={resolve(`/admin/content/podcast/${content_row.show.number}`)}>Edit</a
+											>
 										{:else if content_row.type === 'VIDEO' && content_row.video}
-											<a href={content_row.video.url} target="_blank" rel="noopener noreferrer">
+											<a
+												href={content_row.video.url}
+												target="_blank"
+												rel="noopener noreferrer external"
+											>
 												{content_row.title}
 											</a>
-											<a href={`/admin/content/videos/${content_row.id}`}>Edit</a>
+											<a href={resolve(`/admin/content/videos/${content_row.id}`)}>Edit</a>
 										{:else if content_row.type === 'ARTICLE'}
 											<p>{content_row.title}</p>
-											<a href={`/admin/content/articles/${content_row.id}`}>Edit</a>
+											<a href={resolve(`/admin/content/articles/${content_row.id}`)}>Edit</a>
 										{:else}
 											<p>{content_row.title}</p>
 										{/if}

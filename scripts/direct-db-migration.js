@@ -385,7 +385,7 @@ function generateSearchVector(row, fields) {
 /**
  * Transform values for PostgreSQL
  */
-function convertValue(value, columnName, tableName, row) {
+function convertValue(value, _columnName, _tableName, _row) {
 	if (value === null || value === undefined) {
 		return null;
 	}

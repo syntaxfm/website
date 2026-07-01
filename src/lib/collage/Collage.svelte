@@ -40,16 +40,16 @@
 		</defs>
 		<g clip-path="url(#{clip_id})">
 			<path d={data.clip} fill={palette.paper} />
-			{#each data.shapes as shape}
+			{#each data.shapes as shape, index (index)}
 				<path d={shape.d} fill={shape.fill} opacity={shape.opacity} />
 			{/each}
-			{#each data.dots as dot}
+			{#each data.dots as dot, index (index)}
 				<circle cx={dot.cx} cy={dot.cy} r={dot.r} fill={dot.fill} />
 			{/each}
-			{#each data.squares as sq}
+			{#each data.squares as sq, index (index)}
 				<rect x={sq.x} y={sq.y} width={sq.size} height={sq.size} fill={sq.fill} />
 			{/each}
-			{#each data.strokes as stroke}
+			{#each data.strokes as stroke, index (index)}
 				<path
 					d={stroke.d}
 					stroke={stroke.stroke}
@@ -59,7 +59,7 @@
 					stroke-linecap="round"
 				/>
 			{/each}
-			{#each data.grit as speck}
+			{#each data.grit as speck, index (index)}
 				<circle cx={speck.cx} cy={speck.cy} r={speck.r} fill={speck.fill} />
 			{/each}
 		</g>

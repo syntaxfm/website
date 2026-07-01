@@ -20,7 +20,7 @@
 					text: 'Syntax podcast ' + show.title,
 					title: show.title
 				});
-			} catch (err) {
+			} catch {
 				// This is here because navigator throws AbortError if the user cancels the share
 				return;
 			}

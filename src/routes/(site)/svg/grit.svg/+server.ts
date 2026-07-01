@@ -41,7 +41,7 @@ function render() {
 	`;
 }
 
-export function GET({ request, url }) {
+export function GET({ url }) {
 	isDark = !!url.searchParams.has('dark');
 	w = parseInt(url.searchParams.get('w') || '1000');
 	h = parseInt(url.searchParams.get('h') || '1000');

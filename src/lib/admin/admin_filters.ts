@@ -1,3 +1,5 @@
+import type { ResolvedPathname } from '$app/types';
+
 type ReadIntOptions = {
 	min?: number;
 	max?: number;
@@ -47,7 +49,7 @@ export function read_int(
 	return clamp_int(parsed, options);
 }
 
-export function build_url(current_url: URL, updates: UrlUpdates): string {
+export function build_url(current_url: URL, updates: UrlUpdates): ResolvedPathname {
 	const next_params = new URLSearchParams(current_url.searchParams);
 
 	for (const [key, value] of Object.entries(updates)) {
@@ -60,7 +62,10 @@ export function build_url(current_url: URL, updates: UrlUpdates): string {
 	}
 
 	const query_string = next_params.toString();
-	return query_string.length > 0 ? `${current_url.pathname}?${query_string}` : current_url.pathname;
+	// current_url.pathname is already base-path-resolved, so the result is a ResolvedPathname.
+	return (
+		query_string.length > 0 ? `${current_url.pathname}?${query_string}` : current_url.pathname
+	) as ResolvedPathname;
 }
 
 export function has_any_filter(

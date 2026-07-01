@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class={'theme-system theme-wrapper zone'}>
+<div class="theme-system theme-wrapper zone">
 	<figure class="zone" style:--transition-name-bg="var(--c-black)" style:--c-fg="var(--c-white)">
 		<span style:--="show-date-{show.number}" class="show-number fv-900 grit">{show.number}</span>
 

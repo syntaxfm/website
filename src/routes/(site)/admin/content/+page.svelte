@@ -2,6 +2,8 @@
 	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
+	import type { Pathname } from '$app/types';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -299,7 +301,7 @@
 		return null;
 	}
 
-	function to_edit_link(content_row: ContentListItem): string | null {
+	function to_edit_link(content_row: ContentListItem): Pathname | null {
 		if (content_row.type === 'ARTICLE') {
 			return `/admin/content/articles/${content_row.id}`;
 		}
@@ -394,7 +396,7 @@
 						</a>
 					{/if}
 					{#if show_clear_filters}
-						<a class="button small" href="/admin/content">× Clear</a>
+						<a class="button small" href={resolve('/admin/content')}>× Clear</a>
 					{/if}
 				</div>
 			</div>
@@ -503,14 +505,14 @@
 					<td>
 						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 							{#if public_link}
-								<a href={public_link} target="_blank" rel="noopener noreferrer">
+								<a href={public_link} target="_blank" rel="noopener noreferrer external">
 									{content_row.title}
 								</a>
 							{:else}
 								<p>{content_row.title}</p>
 							{/if}
 							{#if edit_link}
-								<a href={edit_link}>Edit</a>
+								<a href={resolve(edit_link)}>Edit</a>
 							{/if}
 						</div>
 					</td>

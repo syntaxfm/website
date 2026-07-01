@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { promises as fs } from 'fs';
-import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 import { expand } from 'dotenv-expand';
 import { createConnection } from 'mysql2/promise';

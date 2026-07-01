@@ -1,4 +1,4 @@
 export function capitalize(s: string) {
-	let t = s;
+	const t = s;
 	return t[0].toUpperCase() + t.slice(1);
 }

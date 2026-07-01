@@ -2,7 +2,6 @@ import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import type { Show } from '$server/db/types';
 import { lte, desc } from 'drizzle-orm';
-import type { InferSelectModel } from 'drizzle-orm';
 
 interface Block {
 	breadcrumbs: string[];

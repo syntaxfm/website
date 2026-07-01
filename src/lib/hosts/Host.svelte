@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Host } from '$server/db/types';
+	import { resolve } from '$app/paths';
 	import HostSocialLink from './HostSocialLink.svelte';
 	interface Props {
 		guest?: boolean;
@@ -16,7 +17,7 @@
 		<figcaption>
 			<p>
 				{#if guest}
-					<a href={`/guest/${host.slug}`}>{host.name}</a>
+					<a href={resolve(`/guest/${host.slug}`)}>{host.name}</a>
 				{:else}
 					{host.name}
 				{/if}

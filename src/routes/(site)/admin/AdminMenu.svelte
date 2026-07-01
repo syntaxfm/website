@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { slide } from 'svelte/transition';
+	import { resolve } from '$app/paths';
+	import type { Pathname } from '$app/types';
 
-	let links = [
+	type NavLink = { text: string; path: Pathname; subroutes?: NavLink[] };
+
+	let links: NavLink[] = [
 		{
 			text: 'Dashboard',
 			path: '/admin'
@@ -122,14 +126,14 @@
 <div class="admin-nav-wrapper">
 	<div class="admin-menu flex">
 		{#each links as link (link.path + 'admin-nav')}
-			<a href={link.path} class:active={active_parent === link}>{link.text}</a>
+			<a href={resolve(link.path)} class:active={active_parent === link}>{link.text}</a>
 		{/each}
 	</div>
 
 	{#if show_subnav}
 		<div class="admin-submenu flex" transition:slide={{ duration: 200 }}>
 			{#each active_subroutes as subroute (subroute.path + 'admin-subnav')}
-				<a href={subroute.path} class:active={active_subroute === subroute}>{subroute.text}</a>
+				<a href={resolve(subroute.path)} class:active={active_subroute === subroute}>{subroute.text}</a>
 			{/each}
 		</div>
 	{/if}

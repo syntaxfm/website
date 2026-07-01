@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
+	import type { Pathname } from '$app/types';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { get_tag_detail } from '../admin_tags.remote';
 
@@ -10,7 +12,7 @@
 	type TagDetail = Awaited<ReturnType<typeof get_tag_detail>>;
 	type TagDetailItem = TagDetail['items'][number];
 
-	function to_edit_link(content_row: TagDetailItem): string | null {
+	function to_edit_link(content_row: TagDetailItem): Pathname | null {
 		if (content_row.type === 'ARTICLE') {
 			return `/admin/content/articles/${content_row.id}`;
 		}
@@ -44,7 +46,7 @@
 		<h1 class="h3">{detail.tag.name}</h1>
 		<p class="fs-2">/{detail.tag.slug} · {detail.total_content_count} content item(s)</p>
 		<p>
-			<a href={`/admin/content?tag_id=${detail.tag.id}`}>View in content list</a>
+			<a href={resolve(`/admin/content?tag_id=${detail.tag.id}`)}>View in content list</a>
 		</p>
 	</header>
 
@@ -71,12 +73,17 @@
 					<td>
 						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
 							{#if edit_link}
-								<a href={edit_link}>{content_row.title}</a>
+								<a href={resolve(edit_link)}>{content_row.title}</a>
 							{:else}
 								<p>{content_row.title}</p>
 							{/if}
 							{#if public_link}
-								<a class="fs-2" href={public_link} target="_blank" rel="noopener noreferrer">
+								<a
+									class="fs-2"
+									href={public_link}
+									target="_blank"
+									rel="noopener noreferrer external"
+								>
 									View public
 								</a>
 							{/if}
@@ -99,9 +106,9 @@
 	{#if detail.total_content_count > detail.limit}
 		<p class="fs-2">
 			Showing first {detail.limit} of {detail.total_content_count}.
-			<a href={`/admin/content?tag_id=${detail.tag.id}`}>Open in content list</a> for full results.
+			<a href={resolve(`/admin/content?tag_id=${detail.tag.id}`)}>Open in content list</a> for full results.
 		</p>
 	{/if}
 
-	<p><a href="/admin/tags">Back to tags</a></p>
+	<p><a href={resolve('/admin/tags')}>Back to tags</a></p>
 </div>

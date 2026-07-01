@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { player } from '$state/player';
+	import { resolve } from '$app/paths';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
 	import { format } from 'date-fns';
@@ -56,7 +57,7 @@
 
 <article class={display}>
 	<a
-		href={get_show_path(show)}
+		href={resolve(get_show_path(show))}
 		aria-label="Show #{show.number} posted {format_date(show_date)}, {show.title}"
 		aria-describedby={aria_key}
 	>

@@ -60,7 +60,7 @@ const isEpisodePublished = (content) => {
 
 // Function to extract URLs from markdown content
 const extractUrls = (content) => {
-	const urlRegex = /https?:\/\/[^\s\)]+/g;
+	const urlRegex = /https?:\/\/[^\s)]+/g;
 	return content.match(urlRegex) || [];
 };
 

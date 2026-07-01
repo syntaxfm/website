@@ -1,15 +1,16 @@
 <script lang="ts">
 	import Icon from '../Icon.svelte';
+	import { resolve } from '$app/paths';
 </script>
 
 <section>
 	<div class="flex">
 		<ul>
-			<li><a href="/shows">Podcast</a></li>
+			<li><a href={resolve('/shows')}>Podcast</a></li>
 			<li><a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/sickpicks">Sick Picks</a></li>
-			<li><a href="/guests">Guest List</a></li>
+			<li><a href={resolve('/about')}>About</a></li>
+			<li><a href={resolve('/sickpicks')}>Sick Picks</a></li>
+			<li><a href={resolve('/guests')}>Guest List</a></li>
 			<li>
 				<a
 					target="_blank"
@@ -28,8 +29,8 @@
 					Source Code
 				</a>
 			</li>
-			<li><a href="/pages/privacy">Privacy Policy</a></li>
-			<li><a href="/pages/terms-of-service">Terms of Service</a></li>
+			<li><a href={resolve('/pages/privacy')}>Privacy Policy</a></li>
+			<li><a href={resolve('/pages/terms-of-service')}>Terms of Service</a></li>
 			<!-- <a href="/system/components">Components</a> -->
 		</ul>
 	</div>

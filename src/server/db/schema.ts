@@ -12,14 +12,9 @@ import {
 	boolean,
 	serial,
 	primaryKey,
-	foreignKey,
-	check
+	foreignKey
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
-
-// Import tsvector type for full-text search
-// Note: Drizzle doesn't have native tsvector support yet, so we use sql`...`
-type TsVector = ReturnType<typeof sql>;
 
 // ============================================================================
 // ENUMS

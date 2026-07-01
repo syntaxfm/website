@@ -2,6 +2,7 @@
 	import { player } from '$state/player';
 	import { player_window_status } from '$state/player_window_status';
 	import AlbumArt from './AlbumArt.svelte';
+	import { resolve } from '$app/paths';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
@@ -35,7 +36,7 @@
 		<div style="flex-grow: 1;" class="stack" style:--stack-gap="0.5rem">
 			{#if $player.current_show}
 				<p>
-					<a id="player_show_title" href={get_show_path($player.current_show)}
+					<a id="player_show_title" href={resolve(get_show_path($player.current_show))}
 						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
 					>
 				</p>

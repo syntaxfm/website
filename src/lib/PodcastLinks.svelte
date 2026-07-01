@@ -3,10 +3,11 @@
 </script>
 
 <div>
-	{#each PODCAST_LINKS as { text, href }}
+	{#each PODCAST_LINKS as { text, href } (text)}
 		<a
 			{href}
 			target="_blank"
+			rel="external"
 			class="button subscribe subscribe-{text.toLowerCase().replaceAll(' ', '-')}">{text}</a
 		>
 	{/each}

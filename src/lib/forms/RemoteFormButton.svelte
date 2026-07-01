@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
+	import type { RemoteForm } from '@sveltejs/kit';
 	import type { Snippet } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import type { HTMLAttributes } from 'svelte/elements';

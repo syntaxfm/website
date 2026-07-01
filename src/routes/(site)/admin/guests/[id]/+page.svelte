@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import { format } from 'date-fns';
 	import {
@@ -88,7 +89,7 @@
 
 		try {
 			await delete_guest({ guest_id: loaded_guest.id, confirm_text });
-			await goto('/admin/guests');
+			await goto(resolve('/admin/guests'));
 		} catch (error) {
 			console.error('Unable to delete guest', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete guest.';
@@ -139,7 +140,7 @@
 {#if !loaded_guest}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
 		<h1 class="h3">Guest not found</h1>
-		<p><a href="/admin/guests">Back to guests</a></p>
+		<p><a href={resolve('/admin/guests')}>Back to guests</a></p>
 	</div>
 {:else}
 	<div class="stack" style:--stack-gap="var(--pad-small)">
@@ -202,7 +203,7 @@
 				<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
 					{#each social_links as social_link_row (social_link_row.id)}
 						<li class="split" style:--split-gap="var(--pad-small)">
-							<a href={social_link_row.link} target="_blank" rel="noopener noreferrer">
+							<a href={social_link_row.link} target="_blank" rel="noopener noreferrer external">
 								{social_link_row.link}
 							</a>
 							<button type="button" onclick={() => handle_remove_social_link(social_link_row.id)}>
@@ -237,12 +238,12 @@
 						<li class="split" style:--split-gap="var(--pad-small)">
 							<span class="flex" style:--flex-gap="var(--pad-xsmall)">
 								<span class="fs-2">#{show_row.number}</span>
-								<a href={`/admin/content/podcast/${show_row.number}`}>{show_row.title}</a>
+								<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
 							</span>
 							<span class="flex" style:--flex-gap="var(--pad-small)">
 								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
 								<a
-									href={`/show/${show_row.number}/${show_row.slug}`}
+									href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -261,7 +262,7 @@
 				<button type="button" onclick={handle_delete_guest} disabled={saving || deleting}>
 					{deleting ? 'Deleting...' : 'Delete Guest'}
 				</button>
-				<a href="/admin/guests">Back to guests</a>
+				<a href={resolve('/admin/guests')}>Back to guests</a>
 			</div>
 		</section>
 	</div>

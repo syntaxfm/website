@@ -1,6 +1,7 @@
 <script lang="ts">
 	import UserSubmissionForm from '$lib/forms/UserSubmissionForm.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
+	import { resolve } from '$app/paths';
 </script>
 
 <Meta title="Submit a Spooky Story"></Meta>
@@ -28,20 +29,20 @@
 			<li>Text, video or audio - anything goes!</li>
 			<li>
 				Listen to years past:
-				<a href="/950">#950</a>
-				<a href="/949">#949</a>
-				<a href="/841">#841</a>
-				<a href="/840">#840</a>
-				<a href="/684">#684</a>
-				<a href="/683">#683</a>
-				<a href="/531">#531</a>
-				<a href="/528">#528</a>
-				<a href="/400">#400</a>
-				<a href="/399">#399</a>
-				<a href="/296">#296</a>
-				<a href="/294">#294</a>
-				<a href="/193">#193</a>
-				<a href="/192">#192</a>
+				<a href={resolve('/950')}>#950</a>
+				<a href={resolve('/949')}>#949</a>
+				<a href={resolve('/841')}>#841</a>
+				<a href={resolve('/840')}>#840</a>
+				<a href={resolve('/684')}>#684</a>
+				<a href={resolve('/683')}>#683</a>
+				<a href={resolve('/531')}>#531</a>
+				<a href={resolve('/528')}>#528</a>
+				<a href={resolve('/400')}>#400</a>
+				<a href={resolve('/399')}>#399</a>
+				<a href={resolve('/296')}>#296</a>
+				<a href={resolve('/294')}>#294</a>
+				<a href={resolve('/193')}>#193</a>
+				<a href={resolve('/192')}>#192</a>
 			</li>
 		</ul>
 
