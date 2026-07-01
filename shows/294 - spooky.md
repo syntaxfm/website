@@ -39,7 +39,7 @@ If you want to know what's happening with your errors, track them with [Sentry](
 
 23:06 - WordPress Plugins
 
-23:52 - Loggin Ya In, Ya F'in Dummy
+23:52 - Logging Ya In, Ya F'in Dummy
 
 24:58 - A Hostel Coding Environment
 

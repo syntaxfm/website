@@ -41,7 +41,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * **[38:00](#t=38:00)** Functions
 * **[39:27](#t=39:27)** Color names
 * **[42:02](#t=42:02)** Format of color
-* **[43:50](#t=43:50)** Most popular gardient on the web
+* **[43:50](#t=43:50)** Most popular gradient on the web
 * **[47:27](#t=47:27)** Sponsor: Freshbooks
 * **[47:57](#t=47:57)** We don't know the web
 * **[50:39](#t=50:39)** SIIIIICK ××× PIIIICKS ×××

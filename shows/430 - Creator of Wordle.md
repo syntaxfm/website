@@ -34,7 +34,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * **[07:07:06](#t=07:07:06)** What's your background?
 * [Reddit.com](https://www.reddit.com)
 * **[12:52:23](#t=12:52:23)** Writing just HTML CSS and JavaScript
-* **[15:58:24](#t=15:58:24)** Wordle has 2 external dependancies
+* **[15:58:24](#t=15:58:24)** Wordle has 2 external dependencies
 * **[16:41:06](#t=16:41:06)** Sponsor: Sentry
 * **[17:40:23](#t=17:40:23)** The tech stack of Wordle
 * [Lit Elements](https://lit.dev)

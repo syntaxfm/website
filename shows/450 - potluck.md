@@ -40,7 +40,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * [Syntax 346 - Selling T Shirts](https://syntax.fm/show/346/selling-and-shipping-t-shirts-with-typescript)
 * **[29:15](#t=29:15)** Sponsor: Sanity.io
 * **[30:47](#t=30:47)** Since NextJS has API routes, could you build a full-stack application using just NextJS?
-* **[35:41](#t=35:41)** Do you keep your landing pages and home pages seperate from your app?
+* **[35:41](#t=35:41)** Do you keep your landing pages and home pages separate from your app?
 * **[37:35](#t=37:35)** Where's the line for moving something hosted on a developer server to moving it to production?
 * [CodePen](https://codepen.io)
 * [Replit](https://replit.com)

@@ -40,7 +40,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 30:44 - Module Namespace Exports
 33:11 - Navigator.share() API
 36:34 - Async Hooks
-37:39 - Pipline Operator 
+37:39 - Pipeline Operator 
 39:59 - Top Level Await 
 
 ## Links

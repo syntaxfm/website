@@ -18,7 +18,7 @@ Kyle Prinsloo teaches you everything you need to know about freelancing, includi
 - `--example-name`, represent custom properties
 - called using `var()`
 - Overwrite with a more specific style
-- Use JavaScript to append .style.setPropert(
+- Use JavaScript to append .style.setProperty(
 
 - How are they scoped?
   - Just like normal CSS
