@@ -14,12 +14,12 @@ export async function add_user_to_role(userId: string, roleName: string) {
 	}
 
 	// Create a UserRole entry linking the user and the role
-	const userRoleId = randomUUID();
+	const user_role_id = randomUUID();
 	await db.insert(userRoles).values({
-		id: userRoleId,
+		id: user_role_id,
 		user_id: userId,
 		role_id: role.id
 	});
 
-	return { id: userRoleId, userId, roleId: role.id };
+	return { id: user_role_id, userId, roleId: role.id };
 }

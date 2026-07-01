@@ -74,4 +74,4 @@ export type AllPossibleContent = Content & {
 	video: Video;
 };
 
-export type SUBMISSION_TYPES = (typeof SUBMISSION_TYPE_VALUES.enumValues)[number];
+export type SubmissionTypes = (typeof SUBMISSION_TYPE_VALUES.enumValues)[number];

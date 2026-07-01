@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => {
 			}
 		},
 		define: {
-			__VER__: JSON.stringify(env.npm_package_version)
+			APP_VERSION: JSON.stringify(env.npm_package_version)
 		}
 	};
 });

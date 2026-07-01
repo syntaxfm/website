@@ -26,7 +26,7 @@ export default ts.config(
 			globals: {
 				...globals.browser,
 				...globals.node,
-				__VER__: 'readonly'
+				APP_VERSION: 'readonly'
 			}
 		},
 		rules: {
@@ -67,14 +67,14 @@ export default ts.config(
 				{
 					selector: 'variable',
 					format: ['snake_case'],
-					leadingUnderscore: 'allow',
+					leadingUnderscore: 'allowSingleOrDouble',
 					trailingUnderscore: 'allow'
 				},
 				{
 					selector: 'variable',
 					modifiers: ['const'],
 					format: ['snake_case', 'UPPER_CASE'],
-					leadingUnderscore: 'allow',
+					leadingUnderscore: 'allowSingleOrDouble',
 					trailingUnderscore: 'allow'
 				},
 				{
@@ -97,10 +97,23 @@ export default ts.config(
 				{
 					selector: 'variable',
 					format: ['snake_case', 'UPPER_CASE', 'PascalCase'],
-					leadingUnderscore: 'allow',
+					leadingUnderscore: 'allowSingleOrDouble',
 					trailingUnderscore: 'allow'
 				}
 			]
+		}
+	},
+	{
+		// Drizzle ORM uses camelCase JS bindings for snake_case tables (standard Drizzle convention);
+		// renaming them cascades across every query/import for no benefit, and the table-export names
+		// collide with relation keys. The seed endpoint mirrors these model names. See ADR-0005.
+		files: [
+			'src/server/db/schema.ts',
+			'src/server/db/relations.ts',
+			'src/routes/api/seed.json/content.server.ts'
+		],
+		rules: {
+			'@typescript-eslint/naming-convention': 'off'
 		}
 	}
 );

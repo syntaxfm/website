@@ -221,11 +221,11 @@ async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 		podcastId: env.MEGAPHONE_PODCAST_ID as string
 	};
 
-	for (const showNumber of showNumbers) {
+	for (const show_number of showNumbers) {
 		try {
-			await syncEpisodeSpotifyData(showNumber, credentials);
+			await syncEpisodeSpotifyData(show_number, credentials);
 		} catch (error) {
-			console.error(`🎵 Failed to sync Spotify data for show ${showNumber}:`, error);
+			console.error(`🎵 Failed to sync Spotify data for show ${show_number}:`, error);
 		}
 	}
 }
@@ -1013,8 +1013,8 @@ export const fetch_show_transcript = form(
 	}
 );
 
-// fetch_AI_notes: aiNoteRequestHandler
-export const fetch_AI_notes = form(
+// fetch_ai_notes: aiNoteRequestHandler
+export const fetch_ai_notes = form(
 	v.object({
 		show_number: v.number()
 	}),

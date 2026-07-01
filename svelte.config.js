@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-vercel';
-import atImport from 'postcss-import';
-import postcssPresetEnv from 'postcss-preset-env';
+import at_import from 'postcss-import';
+import postcss_preset_env from 'postcss-preset-env';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -19,8 +19,8 @@ const config = {
 				@custom-media --above-xlarge (width > 1200px);
 			`,
 				plugins: [
-					atImport,
-					postcssPresetEnv({
+					at_import,
+					postcss_preset_env({
 						stage: 2,
 						features: {
 							'nesting-rules': true,

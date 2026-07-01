@@ -37,12 +37,12 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 	}
 
 	// Use the ResizeObserver to watch for changes in size of 'node'
-	const resizeObserver = new ResizeObserver(updatePosition);
-	resizeObserver.observe(node);
+	const resize_observer = new ResizeObserver(updatePosition);
+	resize_observer.observe(node);
 	window.addEventListener('resize', updatePosition);
 	return {
 		destroy() {
-			resizeObserver.disconnect();
+			resize_observer.disconnect();
 			window.removeEventListener('resize', updatePosition);
 		}
 	};

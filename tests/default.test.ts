@@ -41,16 +41,16 @@ test('Got to podcast detail page', async ({ page }) => {
 	await expect(page.locator('h1:has-text("All Episodes")')).toBeVisible();
 
 	// Find the first link under the .list class and save the h4 value as title
-	const titleElement = await page.waitForSelector('.list a .show-title');
-	const title = await titleElement.textContent();
+	const title_element = await page.waitForSelector('.list a .show-title');
+	const title = await title_element.textContent();
 
 	// Click the first link under the .list class
 	await page.click('.list a');
 
 	// Check the next page for an h1 with the same title
-	const h1Element = await page.waitForSelector(`h1:has-text("${title}")`);
-	const h1Text = await h1Element.textContent();
-	expect(h1Text).toBe(title);
+	const h1_element = await page.waitForSelector(`h1:has-text("${title}")`);
+	const h1_text = await h1_element.textContent();
+	expect(h1_text).toBe(title);
 });
 
 test('make sure all pages load without error', async ({ page }) => {
@@ -59,7 +59,7 @@ test('make sure all pages load without error', async ({ page }) => {
 	// Wait for the page to be fully loaded
 	await page.waitForLoadState('load');
 
-	const bodyElement = await page.$('body');
+	const body_element = await page.$('body');
 
-	expect(bodyElement).toBeTruthy();
+	expect(body_element).toBeTruthy();
 });

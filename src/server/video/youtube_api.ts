@@ -156,7 +156,7 @@ export async function import_youtube_playlist(playlist_id: string) {
 	do {
 		// Time to fetch those video details, page by page!
 		const video_response = await fetch(
-			`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist_id}&key=${env.YOUTUBE_API_KEY}&maxResults=50${
+			`https://www.googleapis.com/youtube/v3/playlist_items?part=snippet&playlistId=${playlist_id}&key=${env.YOUTUBE_API_KEY}&maxResults=50${
 				next_page_token ? `&pageToken=${next_page_token}` : ''
 			}`
 		);
@@ -238,32 +238,32 @@ export async function import_youtube_playlist(playlist_id: string) {
 				});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = playlist_items.find((i) => i.snippet.resourceId.videoId === item.id);
+			const playlist_item = playlist_items.find((i) => i.snippet.resourceId.videoId === item.id);
 
 			await db
 				.insert(playlistOnVideo)
 				.values({
 					video_id: item.id,
 					playlist_id: playlist_id,
-					order: playlistItem?.snippet.position || 0
+					order: playlist_item?.snippet.position || 0
 				})
 				.onConflictDoUpdate({
 					target: [playlistOnVideo.video_id, playlistOnVideo.playlist_id],
 					set: {
-						order: playlistItem?.snippet.position || 0
+						order: playlist_item?.snippet.position || 0
 					}
 				});
 
 			// Check for "syntax-shownumber" tags and connect to the corresponding shows
-			const syntaxShowNumberTags = item.snippet.tags?.filter((tag: string) =>
+			const syntax_show_number_tags = item.snippet.tags?.filter((tag: string) =>
 				/^syntax-related-\d+$/.test(tag)
 			);
 
-			if (syntaxShowNumberTags) {
-				for (const tag of syntaxShowNumberTags) {
-					const showNumber = parseInt(tag.split('-')[2]);
+			if (syntax_show_number_tags) {
+				for (const tag of syntax_show_number_tags) {
+					const show_number = parseInt(tag.split('-')[2]);
 					const current_show = await db.query.show.findFirst({
-						where: eq(show.number, showNumber)
+						where: eq(show.number, show_number)
 					});
 
 					if (current_show) {

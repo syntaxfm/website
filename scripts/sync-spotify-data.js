@@ -26,7 +26,8 @@ async function syncSpotifyData() {
 
 	try {
 		// Import the sync function and types
-		const { syncEpisodeSpotifyData } = await import('../src/server/megaphone/sync.ts');
+		const { syncEpisodeSpotifyData: sync_episode_spotify_data } =
+			await import('../src/server/megaphone/sync.ts');
 
 		// Create credentials object
 		const credentials = {
@@ -66,17 +67,17 @@ async function syncSpotifyData() {
 				results.processed++;
 
 				// Use the existing sync function
-				await syncEpisodeSpotifyData(show.number, credentials);
+				await sync_episode_spotify_data(show.number, credentials);
 
 				// Check if it was updated
-				const updatedShow = await prisma.show.findUnique({
+				const updated_show = await prisma.show.findUnique({
 					where: { number: show.number },
 					select: { spotify_id: true }
 				});
 
-				if (updatedShow?.spotify_id) {
+				if (updated_show?.spotify_id) {
 					results.updated++;
-					console.log(`  ✅ Updated with Spotify ID: ${updatedShow.spotify_id}`);
+					console.log(`  ✅ Updated with Spotify ID: ${updated_show.spotify_id}`);
 				} else {
 					results.unmatched.push({
 						number: show.number,

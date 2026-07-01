@@ -13,13 +13,13 @@ interface Block {
 export async function content() {
 	const blocks: (Block & Show)[] = [];
 	const today = new Date();
-	const showsData = await db
+	const shows_data = await db
 		.select()
 		.from(show)
 		.where(lte(show.date, today))
 		.orderBy(desc(show.number));
 
-	showsData.forEach((show) => {
+	shows_data.forEach((show) => {
 		blocks.push({
 			breadcrumbs: [show.title],
 			content: show.show_notes,

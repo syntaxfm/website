@@ -28,10 +28,10 @@ const users = mysqlTable('User', {
 
 async function main() {
 	const args = process.argv.slice(2);
-	const envOnly = args.includes('--env-only');
+	const env_only = args.includes('--env-only');
 
 	try {
-		if (envOnly) {
+		if (env_only) {
 			await checkAndUpdateEnv();
 			execSync('pnpm install', { stdio: 'inherit' });
 			console.log('🥘 Website preheated to 450°F (232°C)');
@@ -53,44 +53,46 @@ async function main() {
 }
 
 async function checkPnpmVersion() {
-	const packageJson = JSON.parse(await fs.readFile('package.json', 'utf8'));
-	const requiredVersion = packageJson.engines.pnpm;
-	const installedVersion = execSync('pnpm --version').toString().trim();
+	const package_json = JSON.parse(await fs.readFile('package.json', 'utf8'));
+	const required_version = package_json.engines.pnpm;
+	const installed_version = execSync('pnpm --version').toString().trim();
 
-	if (!semver.satisfies(installedVersion, requiredVersion)) {
-		throw new Error(`❌ Please install pnpm version ${requiredVersion} or newer before proceeding`);
+	if (!semver.satisfies(installed_version, required_version)) {
+		throw new Error(
+			`❌ Please install pnpm version ${required_version} or newer before proceeding`
+		);
 	}
 	console.log('✅ pnpm Check');
 }
 
 async function checkAndUpdateEnv() {
-	const envPath = '.env';
-	const exampleEnvPath = '.env.example';
+	const env_path = '.env';
+	const example_env_path = '.env.example';
 
 	try {
-		await fs.access(envPath);
+		await fs.access(env_path);
 	} catch {
-		await fs.copyFile(exampleEnvPath, envPath);
+		await fs.copyFile(example_env_path, env_path);
 		console.log('🤝 .env.example copied to .env');
 
-		const mysqlQuery = await promptForMysqlQuery();
-		let envContent = await fs.readFile(envPath, 'utf8');
-		envContent = envContent.replace(
+		const mysql_query = await promptForMysqlQuery();
+		let env_content = await fs.readFile(env_path, 'utf8');
+		env_content = env_content.replace(
 			"DATABASE_URL='REQUIRED__YOU_NEED_A_MYSQL_URL'",
-			`DATABASE_URL='${mysqlQuery}'`
+			`DATABASE_URL='${mysql_query}'`
 		);
-		await fs.writeFile(envPath, envContent);
+		await fs.writeFile(env_path, env_content);
 		console.log('✅ Updated DATABASE_URL in .env');
 	}
 
-	const envVars = dotenv.parse(await fs.readFile(envPath));
-	const exampleEnvVars = dotenv.parse(await fs.readFile(exampleEnvPath));
+	const env_vars = dotenv.parse(await fs.readFile(env_path));
+	const example_env_vars = dotenv.parse(await fs.readFile(example_env_path));
 
-	const missingVars = Object.keys(exampleEnvVars).filter((key) => !(key in envVars));
+	const missing_vars = Object.keys(example_env_vars).filter((key) => !(key in env_vars));
 
-	if (missingVars.length > 0) {
-		const appendContent = missingVars.map((key) => `${key}=${exampleEnvVars[key]}`).join('\n');
-		await fs.appendFile(envPath, '\n' + appendContent);
+	if (missing_vars.length > 0) {
+		const append_content = missing_vars.map((key) => `${key}=${example_env_vars[key]}`).join('\n');
+		await fs.appendFile(env_path, '\n' + append_content);
 		console.log('✅ Added missing variables to .env');
 	}
 
@@ -112,8 +114,8 @@ async function promptForMysqlQuery() {
 }
 
 function checkDatabaseUrl() {
-	const databaseUrl = process.env.DATABASE_URL;
-	if (!databaseUrl || !databaseUrl.startsWith('mysql://')) {
+	const database_url = process.env.DATABASE_URL;
+	if (!database_url || !database_url.startsWith('mysql://')) {
 		throw new Error('❌ Please set DATABASE_URL in .env to be a proper mysql url');
 	}
 	console.log('✅ DATABASE_URL Check');
@@ -264,8 +266,8 @@ async function checkShowTableData() {
 		// Check both possible table names
 		let count = 0;
 		try {
-			const [showsRows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
-			count = showsRows[0].count;
+			const [shows_rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
+			count = shows_rows[0].count;
 			console.log(`[DEBUG] Show table count: ${count}`);
 		} catch (e) {
 			console.log(`[DEBUG] Show table query failed:`, e.message);
@@ -273,8 +275,8 @@ async function checkShowTableData() {
 
 		if (count === 0) {
 			try {
-				const [showRows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
-				count = showRows[0].count;
+				const [show_rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
+				count = show_rows[0].count;
 				console.log(`[DEBUG] Show table count: ${count}`);
 			} catch (e) {
 				console.log(`[DEBUG] Show table query failed:`, e.message);
@@ -297,14 +299,14 @@ async function checkShowTableData() {
 }
 
 async function seedDatabase() {
-	const seedFilePath = './seed/seed.sql';
+	const seed_file_path = './seed/seed.sql';
 	try {
-		const seedContent = await fs.readFile(seedFilePath, 'utf8');
+		const seed_content = await fs.readFile(seed_file_path, 'utf8');
 		const connection = await createMysqlConnection();
 		try {
 			// Disable foreign key checks for seeding
 			await connection.execute('SET FOREIGN_KEY_CHECKS = 0');
-			await connection.query(seedContent);
+			await connection.query(seed_content);
 			await connection.execute('SET FOREIGN_KEY_CHECKS = 1');
 		} finally {
 			await connection.end();

@@ -37,13 +37,13 @@
 	//
 
 	function generate_search_params(id: string, value: string): ResolvedPathname {
-		const searchParams = new URLSearchParams(page.url.search);
+		const search_params = new URLSearchParams(page.url.search);
 		if (!value) {
-			searchParams.delete(id);
+			search_params.delete(id);
 		} else {
-			searchParams.set(id, value);
+			search_params.set(id, value);
 		}
-		const query = searchParams.toString();
+		const query = search_params.toString();
 		return (query ? `${page.url.pathname}?${query}` : page.url.pathname) as ResolvedPathname;
 	}
 

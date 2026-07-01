@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { variable_color_svg } from '$lib/theme/variable_color_svg';
-	import { clickOutside } from '$actions/click_outside';
+	import { click_outside } from '$actions/click_outside';
 	import { invalidate } from '$app/navigation';
 	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
@@ -50,7 +50,7 @@
 {#if $theme_maker.status === 'OPEN'}
 	<section
 		transition:fly={{ x: '100%', opacity: 0 }}
-		use:clickOutside
+		use:click_outside
 		onclick-outside={theme_maker.close}
 	>
 		<h4>Theme Picker <button class="close" onclick={theme_maker.close}>×</button></h4>

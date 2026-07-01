@@ -1,10 +1,10 @@
 import { PUBLIC_GITHUB_ID } from '$env/static/public';
 import { GH_SECRET } from '$env/static/private';
-const tokenURL = 'https://github.com/login/oauth/access_token';
+const token_url = 'https://github.com/login/oauth/access_token';
 
 export async function get_access_token(code: string): Promise<string> {
 	try {
-		const response = await fetch(tokenURL, {
+		const response = await fetch(token_url, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({

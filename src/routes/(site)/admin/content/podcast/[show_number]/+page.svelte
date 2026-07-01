@@ -19,7 +19,7 @@
 		delete_ai_tweet,
 		delete_link,
 		delete_topic,
-		fetch_AI_notes,
+		fetch_ai_notes,
 		get_show_editor,
 		remove_show_guest,
 		remove_show_host,
@@ -1154,7 +1154,7 @@
 				<p class="fs-2">Transcript required to generate AI notes.</p>
 			{:else if !ai_show_note}
 				<form
-					{...fetch_AI_notes.enhance(async (form) => {
+					{...fetch_ai_notes.enhance(async (form) => {
 						ai_busy = true;
 						clear_feedback();
 						try {
@@ -1177,7 +1177,7 @@
 				</form>
 			{:else}
 				<form
-					{...fetch_AI_notes.enhance(async (form) => {
+					{...fetch_ai_notes.enhance(async (form) => {
 						ai_busy = true;
 						clear_feedback();
 						try {

@@ -23,13 +23,13 @@ export async function find_session(
 		})
 		.where(eq(session.session_token, session_token));
 
-	const updatedSession = await db.query.session.findFirst({
+	const updated_session = await db.query.session.findFirst({
 		where: eq(session.session_token, session_token)
 	});
 
-	if (!updatedSession) {
+	if (!updated_session) {
 		throw new Error('Session not found after update');
 	}
 
-	return updatedSession;
+	return updated_session;
 }

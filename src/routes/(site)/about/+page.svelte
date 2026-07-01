@@ -41,9 +41,9 @@
 		const src = node.getAttribute('src');
 		const swapper = node.dataset.lol;
 		function swap() {
-			const toSwap = node.getAttribute('src') === src ? swapper : src;
-			if (!swapper || !toSwap) return;
-			node.setAttribute('src', toSwap);
+			const to_swap = node.getAttribute('src') === src ? swapper : src;
+			if (!swapper || !to_swap) return;
+			node.setAttribute('src', to_swap);
 		}
 		// the node has been mounted in the DOM
 		node.addEventListener('pointerenter', swap);

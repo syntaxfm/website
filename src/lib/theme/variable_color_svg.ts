@@ -12,6 +12,6 @@ export function replace_color(node: HTMLElement) {
 	const style = getComputedStyle(node);
 	const bg = style.getPropertyValue('background-image');
 	const primary = style.getPropertyValue('--c-primary');
-	const newBg = bg.replaceAll(/fill\s*=\s*['"].*?['"]/gi, `fill='${encodeURIComponent(primary)}'`);
-	node.style.backgroundImage = newBg;
+	const new_bg = bg.replaceAll(/fill\s*=\s*['"].*?['"]/gi, `fill='${encodeURIComponent(primary)}'`);
+	node.style.backgroundImage = new_bg;
 }

@@ -39,16 +39,16 @@ function line_path(
 	const notches = () => 2 + Math.floor(rand() * 2); // 2–3 sharp vertices per long edge
 
 	pts.push([left, top + jitter()]);
-	const topN = notches();
-	for (let i = 1; i <= topN; i++) {
-		pts.push([left + ((right - left) * i) / (topN + 1), top + jitter()]);
+	const top_n = notches();
+	for (let i = 1; i <= top_n; i++) {
+		pts.push([left + ((right - left) * i) / (top_n + 1), top + jitter()]);
 	}
 	pts.push([right, top + jitter()]);
 	pts.push([right + Math.abs(jitter()) * 0.7, (top + bottom) / 2]);
 	pts.push([right, bottom + jitter()]);
-	const botN = notches();
-	for (let i = 1; i <= botN; i++) {
-		pts.push([right - ((right - left) * i) / (botN + 1), bottom + jitter()]);
+	const bot_n = notches();
+	for (let i = 1; i <= bot_n; i++) {
+		pts.push([right - ((right - left) * i) / (bot_n + 1), bottom + jitter()]);
 	}
 	pts.push([left, bottom + jitter()]);
 	pts.push([left - Math.abs(jitter()) * 0.7, (top + bottom) / 2]);

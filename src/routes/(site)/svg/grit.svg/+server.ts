@@ -1,4 +1,4 @@
-let isDark = false;
+let is_dark = false;
 let w = 1000;
 let h = 1000;
 let count = 100;
@@ -32,7 +32,7 @@ function render() {
 				return `<path transform="scale(${rando(2, 0.5)} ${rando(2, 0.5)}) rotate(${rando(
 					360
 				)} ${x} ${y}) translate(${x},${y})" d="${grits.at(rando(grits.length))}" fill="${
-					isDark ? `rgba(255,255,255,${rando(1)})` : `rgba(0,0,0,${rando(1)})`
+					is_dark ? `rgba(255,255,255,${rando(1)})` : `rgba(0,0,0,${rando(1)})`
 				}"></path>`;
 			})
 			.join('')}
@@ -42,7 +42,7 @@ function render() {
 }
 
 export function GET({ url }) {
-	isDark = !!url.searchParams.has('dark');
+	is_dark = !!url.searchParams.has('dark');
 	w = parseInt(url.searchParams.get('w') || '1000');
 	h = parseInt(url.searchParams.get('h') || '1000');
 	count = parseInt(url.searchParams.get('count') || '100');

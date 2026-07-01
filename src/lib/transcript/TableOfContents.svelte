@@ -3,15 +3,15 @@
 	import slug from 'speakingurl';
 
 	interface Props {
-		aiShowNote: AINoteWithFriends;
+		ai_show_note: AINoteWithFriends;
 	}
 
-	let { aiShowNote }: Props = $props();
+	let { ai_show_note }: Props = $props();
 </script>
 
 <div>
 	<ul>
-		{#each aiShowNote?.summary || [] as summary (summary.text)}
+		{#each ai_show_note?.summary || [] as summary (summary.text)}
 			<li>
 				<a href="#{slug(summary.text)}">
 					<span class="timestamp fv-900">{summary.time}</span>

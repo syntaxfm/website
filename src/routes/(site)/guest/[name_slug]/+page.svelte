@@ -3,9 +3,9 @@
 	import ShowCard from '$lib/ShowCard.svelte';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
-	import { getGuest } from '../guests.remote';
+	import { get_guest } from '../guests.remote';
 
-	const guest = await getGuest(page.params.name_slug!);
+	const guest = await get_guest(page.params.name_slug!);
 
 	const shows = $derived(
 		[...(guest?.showGuests ?? [])]

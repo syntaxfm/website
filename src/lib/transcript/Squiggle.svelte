@@ -2,7 +2,7 @@
 	const width = 26;
 	const height = 26;
 	const stroke = 6;
-	const halfStroke = stroke / 2;
+	const half_stroke = stroke / 2;
 	interface Props {
 		top?: boolean;
 	}
@@ -20,7 +20,7 @@
 	class={top ? 'top' : 'bottom'}
 >
 	<path
-		d="M {halfStroke} 0 C {halfStroke} {width} {height} 0 {width - halfStroke} {height + stroke}"
+		d="M {half_stroke} 0 C {half_stroke} {width} {height} 0 {width - half_stroke} {height + stroke}"
 		fill="none"
 		stroke-width={stroke}
 	/>

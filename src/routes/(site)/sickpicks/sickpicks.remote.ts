@@ -15,7 +15,7 @@ function cleanUpLines(string: string) {
 
 export const get_sick_picks = query(async () => {
 	// Load ALL shows from the database
-	const showsData = await db.query.show.findMany({
+	const shows_data = await db.query.show.findMany({
 		columns: {
 			number: true,
 			title: true,
@@ -37,15 +37,15 @@ export const get_sick_picks = query(async () => {
 	});
 
 	// Filter out shows that don't have Sick Picks in the show notes somewhere
-	const sickPicks = showsData
+	const sick_picks = shows_data
 		.filter((current_show) => {
 			const lines = current_show.show_notes.split('\n');
 			return lines.some((line) => {
-				const lowerLine = line.toLowerCase();
+				const lower_line = line.toLowerCase();
 				return (
-					lowerLine.match(/s(i+)ck/)?.length &&
-					lowerLine.match('p(i+)ck')?.length &&
-					(lowerLine.startsWith('#') || lowerLine.startsWith('*'))
+					lower_line.match(/s(i+)ck/)?.length &&
+					lower_line.match('p(i+)ck')?.length &&
+					(lower_line.startsWith('#') || lower_line.startsWith('*'))
 				);
 			});
 		})
@@ -69,5 +69,5 @@ export const get_sick_picks = query(async () => {
 				rendered: processor.processSync(current_show.picks.join('\n')).value
 			};
 		});
-	return sickPicks;
+	return sick_picks;
 });

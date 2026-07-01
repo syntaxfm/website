@@ -27,7 +27,7 @@ interface CacheEntry {
 }
 
 // Module-level cache shared across all instances
-const episodeCache: Map<string, CacheEntry> = new Map();
+const episode_cache: Map<string, CacheEntry> = new Map();
 const CACHE_TIMEOUT = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 class MegaphoneApiClient {
@@ -58,9 +58,9 @@ class MegaphoneApiClient {
 		});
 
 		if (!response.ok) {
-			const errorBody = await response.text();
+			const error_body = await response.text();
 			throw new Error(
-				`Megaphone API error: ${response.status} ${response.statusText} - ${errorBody}`
+				`Megaphone API error: ${response.status} ${response.statusText} - ${error_body}`
 			);
 		}
 
@@ -83,15 +83,15 @@ class MegaphoneApiClient {
 
 	private extractPaginationFromHeaders(headers: Headers): MegaphonePagination | null {
 		const page = headers.get('X-Page');
-		const perPage = headers.get('X-Per-Page');
+		const per_page = headers.get('X-Per-Page');
 		const total = headers.get('X-Total');
 
-		if (page && perPage && total) {
+		if (page && per_page && total) {
 			return {
 				page: parseInt(page),
-				per_page: parseInt(perPage),
+				per_page: parseInt(per_page),
 				total: parseInt(total),
-				total_pages: Math.ceil(parseInt(total) / parseInt(perPage))
+				total_pages: Math.ceil(parseInt(total) / parseInt(per_page))
 			};
 		}
 
@@ -112,14 +112,14 @@ class MegaphoneApiClient {
 			: `/networks/${networkId}/episodes`;
 
 		// Convert params to string format for URL
-		const queryParams: Record<string, string> = {};
+		const query_params: Record<string, string> = {};
 		if (params) {
-			if (params.page) queryParams.page = params.page.toString();
-			if (params.per_page) queryParams.per_page = params.per_page.toString();
-			if (params.updated_since) queryParams.updated_since = params.updated_since;
+			if (params.page) query_params.page = params.page.toString();
+			if (params.per_page) query_params.per_page = params.per_page.toString();
+			if (params.updated_since) query_params.updated_since = params.updated_since;
 		}
 
-		const response = await this.request<MegaphoneEpisode[]>(endpoint, queryParams);
+		const response = await this.request<MegaphoneEpisode[]>(endpoint, query_params);
 
 		// The API returns an array directly
 		if (Array.isArray(response)) {
@@ -135,41 +135,41 @@ class MegaphoneApiClient {
 		params?: Omit<EpisodeQueryParams, 'page'>
 	): Promise<MegaphoneEpisode[]> {
 		// Create cache key from parameters
-		const cacheKey = this.createCacheKey(networkId, podcastId, params);
+		const cache_key = this.createCacheKey(networkId, podcastId, params);
 
 		// Check cache first
-		const cached = this.getFromCache(cacheKey);
+		const cached = this.getFromCache(cache_key);
 		if (cached) {
 			return cached;
 		}
 
-		const allEpisodes: MegaphoneEpisode[] = [];
-		let currentPage = 1;
-		const perPage = params?.per_page || 500; // Max per page according to docs
+		const all_episodes: MegaphoneEpisode[] = [];
+		let current_page = 1;
+		const per_page = params?.per_page || 500; // Max per page according to docs
 
 		while (true) {
-			const pageParams: EpisodeQueryParams = {
+			const page_params: EpisodeQueryParams = {
 				...params,
-				page: currentPage,
-				per_page: perPage
+				page: current_page,
+				per_page: per_page
 			};
 
-			const response = await this.getEpisodesWithPagination(networkId, podcastId, pageParams);
+			const response = await this.getEpisodesWithPagination(networkId, podcastId, page_params);
 
-			allEpisodes.push(...response.episodes);
+			all_episodes.push(...response.episodes);
 
 			// Check if there are more pages
-			if (!response.pagination || currentPage >= response.pagination.total_pages) {
+			if (!response.pagination || current_page >= response.pagination.total_pages) {
 				break;
 			}
 
-			currentPage++;
+			current_page++;
 		}
 
 		// Cache the result
-		this.setCache(cacheKey, allEpisodes);
+		this.setCache(cache_key, all_episodes);
 
-		return allEpisodes;
+		return all_episodes;
 	}
 
 	private createCacheKey(
@@ -186,7 +186,7 @@ class MegaphoneApiClient {
 	}
 
 	private getFromCache(cacheKey: string): MegaphoneEpisode[] | null {
-		const entry = episodeCache.get(cacheKey);
+		const entry = episode_cache.get(cacheKey);
 		if (!entry) {
 			return null;
 		}
@@ -194,7 +194,7 @@ class MegaphoneApiClient {
 		// Check if cache entry is still valid
 		const now = Date.now();
 		if (now - entry.timestamp > CACHE_TIMEOUT) {
-			episodeCache.delete(cacheKey);
+			episode_cache.delete(cacheKey);
 			return null;
 		}
 
@@ -202,7 +202,7 @@ class MegaphoneApiClient {
 	}
 
 	private setCache(cacheKey: string, data: MegaphoneEpisode[]): void {
-		episodeCache.set(cacheKey, {
+		episode_cache.set(cacheKey, {
 			data,
 			timestamp: Date.now(),
 			params: cacheKey
@@ -213,7 +213,7 @@ class MegaphoneApiClient {
 	 * Clear all cached data
 	 */
 	clearCache(): void {
-		episodeCache.clear();
+		episode_cache.clear();
 	}
 
 	private async getEpisodesWithPagination(
@@ -226,14 +226,14 @@ class MegaphoneApiClient {
 			: `/networks/${networkId}/episodes`;
 
 		// Convert params to string format for URL
-		const queryParams: Record<string, string> = {};
+		const query_params: Record<string, string> = {};
 		if (params) {
-			if (params.page) queryParams.page = params.page.toString();
-			if (params.per_page) queryParams.per_page = params.per_page.toString();
-			if (params.updated_since) queryParams.updated_since = params.updated_since;
+			if (params.page) query_params.page = params.page.toString();
+			if (params.per_page) query_params.per_page = params.per_page.toString();
+			if (params.updated_since) query_params.updated_since = params.updated_since;
 		}
 
-		const response = await this.request<MegaphoneEpisode[]>(endpoint, queryParams);
+		const response = await this.request<MegaphoneEpisode[]>(endpoint, query_params);
 
 		// The API returns an array directly
 		if (Array.isArray(response)) {

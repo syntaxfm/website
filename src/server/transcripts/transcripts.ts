@@ -23,7 +23,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 	// Create Slim Utterances for Speaker Detection
 	const slim_utterances = getSlimUtterances(utterances, show.number);
 	// Detect Speakers
-	const speakerMap = detectSpeakerNames(slim_utterances);
+	const speaker_map = detectSpeakerNames(slim_utterances);
 
 	// Create Utterances
 	const create_utterances = utterances.map((utterance) => {
@@ -45,7 +45,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 			channel: utterance.channel,
 			confidence: utterance.confidence,
 			speaker: utterance.speaker ?? 99,
-			speakerName: speakerMap.get(utterance.speaker ?? 99),
+			speakerName: speaker_map.get(utterance.speaker ?? 99),
 			words: {
 				create: words
 			}
@@ -56,23 +56,23 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 	console.log(`About to Save to the DB`);
 
 	// 1. Create the Transcript Record
-	const transcriptId = randomUUID();
+	const transcript_id = randomUUID();
 	await db.insert(transcripts).values({
-		id: transcriptId,
+		id: transcript_id,
 		show_number: show.number
 	});
-	console.log(`Created Transcript Record: ${transcriptId}`);
+	console.log(`Created Transcript Record: ${transcript_id}`);
 	console.log(`About to create ${create_utterances.length} utterances`);
 
 	// 2. Create the Utterances
 	async function saveUtterance({ words, ...utterance }: (typeof create_utterances)[0]) {
 		console.log(`Creating Utterance: ${utterance.start}`);
-		const utteranceId = randomUUID();
+		const utterance_id = randomUUID();
 
 		await db.insert(transcriptUtterances).values({
-			id: utteranceId,
+			id: utterance_id,
 			...utterance,
-			transcript_id: transcriptId
+			transcript_id: transcript_id
 		});
 
 		console.log(`Creating Words for Utterance: ${utterance.start} (${words.create.length})`);
@@ -80,7 +80,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 			words.create.map((word) => ({
 				id: randomUUID(),
 				...word,
-				transcript_utterance_id: utteranceId
+				transcript_utterance_id: utterance_id
 			}))
 		);
 	}
@@ -88,7 +88,7 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 	// Only save 100 at a time so we don't hit DB limits
 	await pMap(create_utterances, saveUtterance, { concurrency: 100 });
 
-	return { id: transcriptId, show_number: show.number };
+	return { id: transcript_id, show_number: show.number };
 }
 
 // Import Transcripts from JSON file - used for the initial import
@@ -96,9 +96,9 @@ export async function import_transcripts() {
 	try {
 		const files = await fs.readdir(transcripts_path);
 		// Filter only .md files
-		const transcriptFiles = files.filter((file) => file.endsWith('.json'));
+		const transcript_files = files.filter((file) => file.endsWith('.json'));
 		// Loop over each one and import
-		const transcript_promises = transcriptFiles.map(async (file) => {
+		const transcript_promises = transcript_files.map(async (file) => {
 			console.log(`Importing ${file}`);
 			const transcript: SyncPrerecordedResponse = JSON.parse(
 				await readFile(path.join(transcripts_path, file), 'utf-8')

@@ -4,10 +4,10 @@
 	import { submit_user_submission } from './submissions.remote';
 	import InlineError from './InlineError.svelte';
 	import { slide_fade } from '$lib/utils/transitions';
-	import type { SUBMISSION_TYPES } from '$server/db/types';
+	import type { SubmissionTypes } from '$server/db/types';
 
 	interface Props {
-		selected_submission_type?: SUBMISSION_TYPES;
+		selected_submission_type?: SubmissionTypes;
 	}
 
 	let { selected_submission_type = 'SPOOKY' }: Props = $props();
@@ -66,7 +66,7 @@
 			<p class="required">Required</p>
 		</div>
 		<div class="input">
-			<InlineError displayError={fields.body.issues()?.[0]?.message} />
+			<InlineError display_error={fields.body.issues()?.[0]?.message} />
 			<textarea
 				id="body"
 				name="body"
@@ -93,7 +93,7 @@
 	<div class="input-group">
 		<label for="email">Email</label>
 		<div class="input">
-			<InlineError displayError={fields.email.issues()?.[0]?.message} />
+			<InlineError display_error={fields.email.issues()?.[0]?.message} />
 			<input
 				type="email"
 				id="email"

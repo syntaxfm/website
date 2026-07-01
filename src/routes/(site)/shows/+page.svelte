@@ -12,7 +12,7 @@
 	let view: 'list' | 'grid' = $state('grid');
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
-	let isNoindexPage = $derived(
+	let is_noindex_page = $derived(
 		['order', 'type', 'sort', 'perPage'].some((filter) => params.has(filter))
 	);
 	let page_number = $derived(parseInt(params.get('page') || '1'));
@@ -29,7 +29,7 @@
 ></Meta>
 
 <svelte:head>
-	{#if isNoindexPage}
+	{#if is_noindex_page}
 		<meta name="robots" content="noindex" />
 	{/if}
 </svelte:head>
@@ -64,6 +64,6 @@
 	<Pagination
 		page={parseInt(params.get('page') || '1')}
 		count={(await count_podcasts()) || 69}
-		perPage={parseInt(params.get('perPage') || '') || PER_PAGE}
+		per_page={parseInt(params.get('perPage') || '') || PER_PAGE}
 	/>
 </section>

@@ -20,10 +20,10 @@
 
 	function save_show_for_offline() {
 		save_status = 'SAVING';
-		const mp3Url = show.url;
+		const mp3_url = show.url;
 
 		// Fetch the MP3 file
-		fetch(mp3Url)
+		fetch(mp3_url)
 			.then((response) => response.blob())
 			.then((blob) => {
 				// Make a show without the show notes for the cache
@@ -48,7 +48,7 @@
 				caches
 					.open('mp3-cache')
 					.then((cache) => {
-						cache.put(mp3Url, response);
+						cache.put(mp3_url, response);
 						save_status = 'SAVED';
 						console.log('MP3 file saved for offline listening.');
 					})

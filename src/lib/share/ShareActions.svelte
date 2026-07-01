@@ -13,16 +13,16 @@
 
 	let share_at_ts = $state(false);
 
-	const toHMS = (seconds: number) => {
+	const to_hms = (seconds: number) => {
 		const hours = Math.floor(seconds / 3600);
 		const minutes = Math.floor((seconds % 3600) / 60);
 		const secs = seconds % 60;
 
 		// Formatting to ensure two digits for minutes and seconds
-		const formattedMinutes = minutes.toString().padStart(2, '0');
-		const formattedSeconds = secs.toString().padStart(2, '0');
+		const formatted_minutes = minutes.toString().padStart(2, '0');
+		const formatted_seconds = secs.toString().padStart(2, '0');
 
-		return `${hours}:${formattedMinutes}:${formattedSeconds}`;
+		return `${hours}:${formatted_minutes}:${formatted_seconds}`;
 	};
 
 	function copy(link: string) {
@@ -45,7 +45,7 @@
 
 	let time_stamp = $derived(
 		share_at_ts && $player?.audio?.currentTime
-			? `%3Ft%3D${toHMS(Math.trunc($player.audio?.currentTime))}`
+			? `%3Ft%3D${to_hms(Math.trunc($player.audio?.currentTime))}`
 			: ``
 	);
 	let share_url = $derived(`https%3A//syntax.fm/${show.number}${time_stamp}`);
@@ -57,7 +57,7 @@
 			<input bind:checked={share_at_ts} type="checkbox" />
 			Start at timestamp:
 		</label>
-		<input type="text" value={toHMS(Math.trunc($player?.audio?.currentTime || 0))} />
+		<input type="text" value={to_hms(Math.trunc($player?.audio?.currentTime || 0))} />
 	</p>
 {/if}
 <Toaster />

@@ -5,7 +5,7 @@ import { db } from '$server/db/client';
 import { guest } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 
-export const getGuest = query(v.string(), async (name_slug) => {
+export const get_guest = query(v.string(), async (name_slug) => {
 	return db.query.guest.findFirst({
 		where: eq(guest.name_slug, name_slug),
 		with: {
@@ -18,7 +18,7 @@ export const getGuest = query(v.string(), async (name_slug) => {
 	});
 });
 
-export const getAllGuests = query(async () => {
+export const get_all_guests = query(async () => {
 	return db.query.guest.findMany({
 		columns: {
 			id: true,

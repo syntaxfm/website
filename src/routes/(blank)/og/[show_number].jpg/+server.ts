@@ -2,7 +2,7 @@ import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { Browser } from 'puppeteer-core';
 
-const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const exe_path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 chrome.setGraphicsMode = true;
 
@@ -11,7 +11,7 @@ async function getOptions() {
 		return {
 			product: 'chrome',
 			args: [],
-			executablePath: exePath,
+			executablePath: exe_path,
 			headless: true
 		};
 	}
@@ -61,12 +61,12 @@ export async function GET({ url, params }) {
 	const show = params.show_number;
 
 	console.time(`Taking screenshot of ${show}`);
-	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
+	const photo_buffer = await getScreenshot(`${url.origin}/og/${show}`);
 	console.timeEnd(`Taking screenshot of ${show}`);
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 
-	return new Response(photoBuffer, {
+	return new Response(photo_buffer, {
 		status: 200,
 		headers
 	});

@@ -17,20 +17,20 @@ async function main() {
 		process.exit(1);
 	}
 
-	const prodUrl = new URL(PROD_DB_URL);
-	const localUrl = new URL(LOCAL_DB_URL);
+	const prod_url = new URL(PROD_DB_URL);
+	const local_url = new URL(LOCAL_DB_URL);
 
-	const prodDb = prodUrl.pathname.substr(1);
-	const localDb = localUrl.pathname.substr(1);
+	const prod_db = prod_url.pathname.substr(1);
+	const local_db = local_url.pathname.substr(1);
 
-	if (localDb === prodDb && localUrl.hostname === prodUrl.hostname) {
+	if (local_db === prod_db && local_url.hostname === prod_url.hostname) {
 		console.error('❌ ERROR: Local and prod databases are the same!');
 		console.error('   DATABASE_URL and PROD_DATABASE_URL cannot point to the same database');
 		process.exit(1);
 	}
 
-	console.log(`📦 Production DB: ${prodDb}`);
-	console.log(`🎯 Local DB: ${localDb}`);
+	console.log(`📦 Production DB: ${prod_db}`);
+	console.log(`🎯 Local DB: ${local_db}`);
 	console.log('');
 
 	const readline = (await import('readline')).createInterface({
@@ -49,13 +49,13 @@ async function main() {
 	}
 
 	// Connect to both databases with SSL
-	const prodConn = await createConnection({
+	const prod_conn = await createConnection({
 		uri: PROD_DB_URL,
 		ssl: {
 			rejectUnauthorized: false
 		}
 	});
-	const localConn = await createConnection({
+	const local_conn = await createConnection({
 		uri: LOCAL_DB_URL,
 		ssl: {
 			rejectUnauthorized: false
@@ -64,30 +64,30 @@ async function main() {
 
 	try {
 		console.log('\n1️⃣ Getting table list from production...');
-		const [tables] = await prodConn.execute(
+		const [tables] = await prod_conn.execute(
 			`
 			SELECT TABLE_NAME
 			FROM information_schema.TABLES
 			WHERE TABLE_SCHEMA = ?
 			ORDER BY TABLE_NAME
 		`,
-			[prodDb]
+			[prod_db]
 		);
 
 		console.log(`   Found ${tables.length} tables\n`);
 
 		console.log('2️⃣ Dropping local database tables...');
-		await localConn.execute('SET FOREIGN_KEY_CHECKS = 0');
+		await local_conn.execute('SET FOREIGN_KEY_CHECKS = 0');
 
 		for (const { TABLE_NAME } of tables) {
 			try {
-				await localConn.execute(`DROP TABLE IF EXISTS \`${TABLE_NAME}\``);
+				await local_conn.execute(`DROP TABLE IF EXISTS \`${TABLE_NAME}\``);
 			} catch (e) {
 				console.log(`   Warning: Could not drop ${TABLE_NAME}: ${e.message}`);
 			}
 		}
 
-		await localConn.execute('SET FOREIGN_KEY_CHECKS = 1');
+		await local_conn.execute('SET FOREIGN_KEY_CHECKS = 1');
 		console.log('   ✅ Local tables dropped\n');
 
 		console.log('3️⃣ Copying tables from production to local...');
@@ -95,60 +95,60 @@ async function main() {
 
 		for (const { TABLE_NAME } of tables) {
 			// Handle transcript tables specially - create structure but skip data
-			const skipData =
+			const skip_data =
 				TABLE_NAME === 'TranscriptUtterance' || TABLE_NAME === 'TranscriptUtteranceWord';
 
 			try {
 				// Get CREATE TABLE statement from prod
-				const [createResult] = await prodConn.execute(`SHOW CREATE TABLE \`${TABLE_NAME}\``);
-				const createStatement = createResult[0]['Create Table'];
+				const [create_result] = await prod_conn.execute(`SHOW CREATE TABLE \`${TABLE_NAME}\``);
+				const create_statement = create_result[0]['Create Table'];
 
 				// Create table in local
-				await localConn.execute(createStatement);
+				await local_conn.execute(create_statement);
 
-				if (skipData) {
+				if (skip_data) {
 					console.log(`   ${TABLE_NAME}: Structure created (no data) ✅`);
 					continue;
 				}
 
 				// Get row count
-				const [countResult] = await prodConn.execute(
+				const [count_result] = await prod_conn.execute(
 					`SELECT COUNT(*) as count FROM \`${TABLE_NAME}\``
 				);
-				const rowCount = countResult[0].count;
+				const row_count = count_result[0].count;
 
-				if (rowCount > 0) {
+				if (row_count > 0) {
 					// Copy data in batches to avoid timeout
-					const batchSize = 1000;
+					const batch_size = 1000;
 					let offset = 0;
-					let totalCopied = 0;
+					let total_copied = 0;
 
-					while (offset < rowCount) {
-						const [rows] = await prodConn.execute(
+					while (offset < row_count) {
+						const [rows] = await prod_conn.execute(
 							`SELECT * FROM \`${TABLE_NAME}\` LIMIT ? OFFSET ?`,
-							[batchSize, offset]
+							[batch_size, offset]
 						);
 
 						if (rows.length > 0) {
 							// Disable foreign key checks for faster insert
-							await localConn.execute('SET FOREIGN_KEY_CHECKS = 0');
+							await local_conn.execute('SET FOREIGN_KEY_CHECKS = 0');
 
 							// Build bulk insert
 							const columns = Object.keys(rows[0]);
 							const values = rows
-								.map((row) => `(${columns.map((col) => localConn.escape(row[col])).join(',')})`)
+								.map((row) => `(${columns.map((col) => local_conn.escape(row[col])).join(',')})`)
 								.join(',');
 
-							const insertSQL = `INSERT INTO \`${TABLE_NAME}\` (\`${columns.join('`,`')}\`) VALUES ${values}`;
-							await localConn.execute(insertSQL);
+							const insert_sql = `INSERT INTO \`${TABLE_NAME}\` (\`${columns.join('`,`')}\`) VALUES ${values}`;
+							await local_conn.execute(insert_sql);
 
-							await localConn.execute('SET FOREIGN_KEY_CHECKS = 1');
+							await local_conn.execute('SET FOREIGN_KEY_CHECKS = 1');
 
-							totalCopied += rows.length;
-							process.stdout.write(`\r   ${TABLE_NAME}: ${totalCopied}/${rowCount} rows`);
+							total_copied += rows.length;
+							process.stdout.write(`\r   ${TABLE_NAME}: ${total_copied}/${row_count} rows`);
 						}
 
-						offset += batchSize;
+						offset += batch_size;
 					}
 					console.log(` ✅`);
 				} else {
@@ -173,8 +173,8 @@ async function main() {
 		console.error('❌ Fatal error:', error.message);
 		throw error;
 	} finally {
-		await prodConn.end();
-		await localConn.end();
+		await prod_conn.end();
+		await local_conn.end();
 	}
 }
 

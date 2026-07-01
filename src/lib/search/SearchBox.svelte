@@ -8,7 +8,7 @@
 	import SearchResultList from './SearchResultList.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import { fade } from 'svelte/transition';
-	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
 	import type { Show } from '$server/db/types';
 
@@ -149,7 +149,7 @@
 <dialog
 	bind:this={modal}
 	class="zone"
-	use:clickOutDialog
+	use:click_out_dialog
 	onclick-outside={close}
 	aria-labelledby="search-header"
 >

@@ -20,16 +20,16 @@
 	let { show, display = 'card', heading = 'h4', show_date = new Date(show.date) }: Props = $props();
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
-		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+		const time_formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 		const diff = date.getTime() - baseDate.getTime();
 		const days = (diff / (1000 * 60 * 60 * 24)) * -1;
 		switch (true) {
 			case days < 1:
-				return timeFormatter.format(-Math.round(days * 24), 'hour');
+				return time_formatter.format(-Math.round(days * 24), 'hour');
 			case days < 12:
-				return timeFormatter.format(-Math.floor(days), 'day');
+				return time_formatter.format(-Math.floor(days), 'day');
 			case days < 30:
-				return timeFormatter.format(-Math.floor(days / 7), 'week');
+				return time_formatter.format(-Math.floor(days / 7), 'week');
 			default:
 				return format(date, 'MMMM do, yyyy');
 		}

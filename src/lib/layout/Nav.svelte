@@ -3,10 +3,10 @@
 	import { resolve } from '$app/paths';
 	import Icon from '../Icon.svelte';
 
-	let isOpen = $state(false);
+	let is_open = $state(false);
 
 	function setOpen(next) {
-		isOpen = next;
+		is_open = next;
 		// Lock background scroll while the takeover covers the page.
 		if (typeof document !== 'undefined') {
 			document.body.style.overflow = next ? 'hidden' : '';
@@ -14,7 +14,7 @@
 	}
 
 	function toggle() {
-		setOpen(!isOpen);
+		setOpen(!is_open);
 	}
 
 	function close() {
@@ -31,7 +31,7 @@
 	}
 
 	function handleResize() {
-		if (isOpen && window.innerWidth >= 900) close();
+		if (is_open && window.innerWidth >= 900) close();
 	}
 </script>
 
@@ -41,11 +41,11 @@
 	<button
 		class="nav-toggle"
 		aria-label="Menu"
-		aria-expanded={isOpen}
+		aria-expanded={is_open}
 		aria-controls="primary-nav"
 		onclick={toggle}
 	>
-		{#if isOpen}
+		{#if is_open}
 			<Icon name="close" />
 		{:else}
 			<svg
@@ -65,7 +65,7 @@
 		{/if}
 	</button>
 
-	<ul id="primary-nav" class:open={isOpen}>
+	<ul id="primary-nav" class:open={is_open}>
 		<li><a href={resolve('/shows')} onclick={close}>Shows</a></li>
 		<li><a href={resolve('/about')} onclick={close}>About</a></li>
 		<li><a href={resolve('/snackpack')} onclick={close}>Newsletter</a></li>

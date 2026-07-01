@@ -18,17 +18,17 @@ try {
 	console.log('='.repeat(60));
 
 	for (const table of tables) {
-		const tableName = table.TABLE_NAME;
-		const estimatedRows = table.TABLE_ROWS;
+		const table_name = table.TABLE_NAME;
+		const estimated_rows = table.TABLE_ROWS;
 
 		// Get actual count for important tables
 		try {
-			const [result] = await connection.execute(`SELECT COUNT(*) as count FROM \`${tableName}\``);
-			const actualCount = result[0].count;
-			console.log(`${tableName.padEnd(30)} ${actualCount.toString().padStart(10)} rows`);
+			const [result] = await connection.execute(`SELECT COUNT(*) as count FROM \`${table_name}\``);
+			const actual_count = result[0].count;
+			console.log(`${table_name.padEnd(30)} ${actual_count.toString().padStart(10)} rows`);
 		} catch {
 			console.log(
-				`${tableName.padEnd(30)} ${estimatedRows.toString().padStart(10)} rows (estimated)`
+				`${table_name.padEnd(30)} ${estimated_rows.toString().padStart(10)} rows (estimated)`
 			);
 		}
 	}
@@ -37,9 +37,9 @@ try {
 
 	// Check specifically for Show/Shows tables
 	console.log('\n🎯 Looking for Show-related tables:');
-	const showTables = tables.filter((t) => t.TABLE_NAME.toLowerCase().includes('show'));
+	const show_tables = tables.filter((t) => t.TABLE_NAME.toLowerCase().includes('show'));
 
-	for (const table of showTables) {
+	for (const table of show_tables) {
 		const [count] = await connection.execute(
 			`SELECT COUNT(*) as count FROM \`${table.TABLE_NAME}\``
 		);

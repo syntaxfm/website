@@ -20,7 +20,7 @@
 	import { get_id_from_url } from '$lib/videos/utils';
 
 	let { show, time_start, children } = $props();
-	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
+	let download_name = $derived(`Syntax #${show.number} - ${show.title}`);
 	let youtube_video_id = $derived(show.youtube_url ? get_id_from_url(show.youtube_url) : '');
 	let youtube_embed_url = $derived(
 		youtube_video_id ? `https://www.youtube.com/embed/${youtube_video_id}?rel=0` : ''
@@ -92,7 +92,7 @@
 				class="icon"
 				title="Download Episode"
 				aria-label="Download"
-				download={downloadName}
+				download={download_name}
 				href={show.url}
 			>
 				<Icon name="download" />

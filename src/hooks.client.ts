@@ -31,4 +31,6 @@ Sentry.init({
 });
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`
+// SvelteKit requires this exact export name.
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError = handleErrorWithSentry();

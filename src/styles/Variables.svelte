@@ -26,110 +26,112 @@
 	}
 
 	// Parse variables into categories
-	const parseVariables = (css: string) => {
+	const parse_variables = (css: string) => {
 		const sections: Record<string, VariableSection> = {};
 
-		let currentSection = '';
-		let currentSubsection = '';
-		let currentSubgroup = '';
-		let currentSectionVars: Variable[] = [];
+		let current_section = '';
+		let current_subsection = '';
+		let current_subgroup = '';
+		let current_section_vars: Variable[] = [];
 
 		// First pass: collect all variables and their section context
 		css.split('\n').forEach((line) => {
-			const mainSection = line.match(/\/\*\s+([A-Z][A-Z\s]+[A-Z])\s+\*\//);
+			const main_section = line.match(/\/\*\s+([A-Z][A-Z\s]+[A-Z])\s+\*\//);
 			const subsection = line.match(/\/\*\s+([A-Z][a-z][\w\s]+)\s+\*\//);
 			const subgroup = line.match(/\/\*\*\s+([^*]+)\s+\*\*\//);
-			const varMatch = line.match(/--([^:]+):\s*([^;]+);/);
+			const var_match = line.match(/--([^:]+):\s*([^;]+);/);
 
-			if (mainSection) {
+			if (main_section) {
 				// If we find a new main section, store the previous section's variables
-				if (currentSection && currentSectionVars.length) {
-					if (!sections[currentSection]) {
-						sections[currentSection] = {
-							title: currentSection,
+				if (current_section && current_section_vars.length) {
+					if (!sections[current_section]) {
+						sections[current_section] = {
+							title: current_section,
 							variables: [],
 							subsections: {}
 						};
 					}
-					sections[currentSection].variables.push(...currentSectionVars);
-					currentSectionVars = [];
+					sections[current_section].variables.push(...current_section_vars);
+					current_section_vars = [];
 				}
-				currentSection = mainSection[1];
-				currentSubsection = '';
-				currentSubgroup = '';
-			} else if (subsection && currentSection) {
-				currentSubsection = subsection[1];
-				currentSubgroup = '';
-			} else if (subgroup && currentSection && currentSubsection) {
-				currentSubgroup = subgroup[1];
-			} else if (varMatch) {
-				const [_, name, value] = varMatch;
+				current_section = main_section[1];
+				current_subsection = '';
+				current_subgroup = '';
+			} else if (subsection && current_section) {
+				current_subsection = subsection[1];
+				current_subgroup = '';
+			} else if (subgroup && current_section && current_subsection) {
+				current_subgroup = subgroup[1];
+			} else if (var_match) {
+				const [_, name, value] = var_match;
 				const variable = { name: `--${name}`, value: value.trim() };
 
-				if (currentSubgroup && currentSubsection) {
-					if (!sections[currentSection]) {
-						sections[currentSection] = {
-							title: currentSection,
+				if (current_subgroup && current_subsection) {
+					if (!sections[current_section]) {
+						sections[current_section] = {
+							title: current_section,
 							variables: [],
 							subsections: {}
 						};
 					}
-					if (!sections[currentSection].subsections![currentSubsection]) {
-						sections[currentSection].subsections![currentSubsection] = {
-							title: currentSubsection,
+					if (!sections[current_section].subsections![current_subsection]) {
+						sections[current_section].subsections![current_subsection] = {
+							title: current_subsection,
 							variables: [],
 							subgroups: {}
 						};
 					}
 					if (
-						!sections[currentSection].subsections![currentSubsection].subgroups![currentSubgroup]
+						!sections[current_section].subsections![current_subsection].subgroups![current_subgroup]
 					) {
-						sections[currentSection].subsections![currentSubsection].subgroups![currentSubgroup] = {
-							title: currentSubgroup,
+						sections[current_section].subsections![current_subsection].subgroups![
+							current_subgroup
+						] = {
+							title: current_subgroup,
 							variables: []
 						};
 					}
-					sections[currentSection].subsections![currentSubsection].subgroups![
-						currentSubgroup
+					sections[current_section].subsections![current_subsection].subgroups![
+						current_subgroup
 					].variables.push(variable);
-				} else if (currentSubsection) {
-					if (!sections[currentSection]) {
-						sections[currentSection] = {
-							title: currentSection,
+				} else if (current_subsection) {
+					if (!sections[current_section]) {
+						sections[current_section] = {
+							title: current_section,
 							variables: [],
 							subsections: {}
 						};
 					}
-					if (!sections[currentSection].subsections![currentSubsection]) {
-						sections[currentSection].subsections![currentSubsection] = {
-							title: currentSubsection,
+					if (!sections[current_section].subsections![current_subsection]) {
+						sections[current_section].subsections![current_subsection] = {
+							title: current_subsection,
 							variables: [],
 							subgroups: {}
 						};
 					}
-					sections[currentSection].subsections![currentSubsection].variables.push(variable);
-				} else if (currentSection) {
-					currentSectionVars.push(variable);
+					sections[current_section].subsections![current_subsection].variables.push(variable);
+				} else if (current_section) {
+					current_section_vars.push(variable);
 				}
 			}
 		});
 
 		// Add any remaining variables to their section
-		if (currentSection && currentSectionVars.length) {
-			if (!sections[currentSection]) {
-				sections[currentSection] = {
-					title: currentSection,
+		if (current_section && current_section_vars.length) {
+			if (!sections[current_section]) {
+				sections[current_section] = {
+					title: current_section,
 					variables: [],
 					subsections: {}
 				};
 			}
-			sections[currentSection].variables.push(...currentSectionVars);
+			sections[current_section].variables.push(...current_section_vars);
 		}
 
 		return sections;
 	};
 
-	const categorizedVars = parseVariables(variables);
+	const categorized_vars = parse_variables(variables);
 
 	// Custom media queries (breakpoints)
 	const breakpoints = Array.from(
@@ -155,7 +157,7 @@
 		</section>
 	{/if}
 
-	{#each Object.entries(categorizedVars) as [sectionKey, section] (sectionKey)}
+	{#each Object.entries(categorized_vars) as [sectionKey, section] (sectionKey)}
 		<section class="main-section">
 			<h2>{section.title}</h2>
 			{#if section.variables.length}

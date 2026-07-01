@@ -156,8 +156,8 @@ function dither(
 		for (let x = -pw / 2; x <= pw / 2; x += cell) {
 			let ramp = (x + pw / 2) / pw;
 			if (flip) ramp = 1 - ramp;
-			const fadeY = Math.min(1, Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2 * 1.7);
-			const density = Math.min(1, Math.max(0, ramp * fadeY + rng.range(-0.1, 0.1)));
+			const fade_y = Math.min(1, Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2 * 1.7);
+			const density = Math.min(1, Math.max(0, ramp * fade_y + rng.range(-0.1, 0.1)));
 			if (rng() < density) {
 				const size = cell * rng.range(0.7, 0.98);
 				out.push({ x: cx + x, y: cy + y, size, fill });
@@ -178,7 +178,7 @@ function halftone(
 	out: CollageDot[]
 ): void {
 	const gap = rng.range(7.5, 10);
-	const maxR = gap * 0.66;
+	const max_r = gap * 0.66;
 	const a = (angleDeg * Math.PI) / 180;
 	const ca = Math.cos(a);
 	const sa = Math.sin(a);
@@ -190,10 +190,10 @@ function halftone(
 		for (let x = -pw / 2; x <= pw / 2; x += gap) {
 			let ramp = (x + pw / 2) / pw;
 			if (flip) ramp = 1 - ramp;
-			const fadeY = Math.min(1, Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2 * 1.7);
-			let t = (ramp * (1 - bias) + bias) * fadeY + rng.range(-0.12, 0.12);
+			const fade_y = Math.min(1, Math.min((y + ph / 2) / ph, (ph / 2 - y) / ph) * 2 * 1.7);
+			let t = (ramp * (1 - bias) + bias) * fade_y + rng.range(-0.12, 0.12);
 			t = Math.min(1, Math.max(0, t));
-			const r = maxR * Math.pow(t, 0.9);
+			const r = max_r * Math.pow(t, 0.9);
 			if (r < 0.45) continue;
 			const px = x + rng.range(-1.2, 1.2);
 			const py = y + rng.range(-1.2, 1.2);
@@ -254,8 +254,8 @@ export function generate_collage(
 	const focal = width * rng.range(0.24, 0.4);
 
 	// 1. Big torn scraps (red + black) bedded behind everything, spread across.
-	const scrapCount = rng.int(6, 8);
-	for (let i = 0; i < scrapCount; i++) {
+	const scrap_count = rng.int(6, 8);
+	for (let i = 0; i < scrap_count; i++) {
 		const cx = rng.range(width * 0.04, width * 0.96);
 		const cy = rng.range(height * 0.12, height * 0.88);
 		shapes.push({
@@ -269,22 +269,22 @@ export function generate_collage(
 	const fields = rng.int(6, 8);
 	for (let i = 0; i < fields; i++) {
 		const fx = (i / (fields - 1)) * width * 0.86 + width * 0.07 + rng.range(-40, 40);
-		const fillRed = rng() > 0.68;
+		const fill_red = rng() > 0.68;
 		halftone(
 			fx,
 			height * rng.range(0.4, 0.6),
 			rng.range(150, 260),
 			height * rng.range(0.7, 1),
 			rng.range(-26, 22),
-			fillRed ? palette.accent : palette.ink,
+			fill_red ? palette.accent : palette.ink,
 			rng,
 			dots
 		);
 	}
 
 	// 2b. Square pixel-dither patches for pattern variety against the round halftone.
-	const ditherCount = rng.int(2, 3);
-	for (let i = 0; i < ditherCount; i++) {
+	const dither_count = rng.int(2, 3);
+	for (let i = 0; i < dither_count; i++) {
 		dither(
 			width * rng.range(0.12, 0.9),
 			height * rng.range(0.32, 0.66),
@@ -303,8 +303,8 @@ export function generate_collage(
 		stroke: palette.ink,
 		opacity: 1
 	});
-	const looseScribbles = rng.int(2, 3);
-	for (let i = 0; i < looseScribbles; i++) {
+	const loose_scribbles = rng.int(2, 3);
+	for (let i = 0; i < loose_scribbles; i++) {
 		strokes.push({
 			d: scribble(
 				width * rng.range(0.18, 0.6),
@@ -320,8 +320,8 @@ export function generate_collage(
 	}
 
 	// 4. White scratch streaks raking across.
-	const scratchCount = rng.int(4, 6);
-	for (let i = 0; i < scratchCount; i++) {
+	const scratch_count = rng.int(4, 6);
+	for (let i = 0; i < scratch_count; i++) {
 		const y0 = rng.range(height * 0.25, height * 0.75);
 		const x0 = rng.range(width * 0.25, width * 0.5);
 		const x1 = x0 + rng.range(width * 0.3, width * 0.5);
@@ -337,8 +337,8 @@ export function generate_collage(
 	}
 
 	// 5. Grit speckle over the whole strip.
-	const gritCount = Math.round((width * height) / 1600);
-	for (let i = 0; i < gritCount; i++) {
+	const grit_count = Math.round((width * height) / 1600);
+	for (let i = 0; i < grit_count; i++) {
 		grit.push({
 			cx: rng.range(0, width),
 			cy: rng.range(0, height),

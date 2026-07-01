@@ -16,7 +16,7 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 // RUNS ONCE ON FILE LOAD
 
 Sentry.init({
-	release: `syntax@${__VER__}`,
+	release: `syntax@${APP_VERSION}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
 	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate

@@ -23,10 +23,10 @@ describe('generate_collage', () => {
 
 	it('emits only finite coordinates', () => {
 		const c = generate_collage('finite', 600, 200);
-		const numbersOk = [
+		const numbers_ok = [
 			...c.dots.flatMap((d) => [d.cx, d.cy, d.r]),
 			...c.squares.flatMap((s) => [s.x, s.y, s.size])
 		].every(Number.isFinite);
-		expect(numbersOk).toBe(true);
+		expect(numbers_ok).toBe(true);
 	});
 });

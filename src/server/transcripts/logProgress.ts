@@ -5,7 +5,7 @@ const ts2sec = (ts: string) => {
 	return parseFloat(h) * 60 * 60 + parseFloat(m) * 60 + parseFloat(s);
 };
 
-export const logProgress = (message: string) => {
+export const log_progress = (message: string) => {
 	if (typeof message === 'string') {
 		if (message.startsWith('  Duration')) {
 			const ts = message.split(', ')[0].split(': ')[1];

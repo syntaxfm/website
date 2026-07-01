@@ -4,8 +4,8 @@ interface Attributes {
 	'on:click-outside'?: (event: CustomEvent) => void;
 }
 
-export const clickOutDialog: Action<HTMLElement, void, Attributes> = (node: HTMLElement) => {
-	const handleClick = (event: MouseEvent) => {
+export const click_out_dialog: Action<HTMLElement, void, Attributes> = (node: HTMLElement) => {
+	const handle_click = (event: MouseEvent) => {
 		if (event.target === event.currentTarget) {
 			node.dispatchEvent(
 				new CustomEvent('click-outside', { detail: 'Detects a click outside of an element.' })
@@ -13,11 +13,11 @@ export const clickOutDialog: Action<HTMLElement, void, Attributes> = (node: HTML
 		}
 	};
 
-	node.addEventListener('click', handleClick, true);
+	node.addEventListener('click', handle_click, true);
 
 	return {
 		destroy() {
-			node.removeEventListener('click', handleClick, true);
+			node.removeEventListener('click', handle_click, true);
 		}
 	};
 };

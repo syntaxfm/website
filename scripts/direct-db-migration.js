@@ -431,78 +431,78 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	console.log(`\n📋 Migrating: ${tableName}`);
 
 	// Get PostgreSQL table name
-	const pgTableName = TABLE_NAME_MAPPING[tableName] || tableName.toLowerCase();
+	const pg_table_name = TABLE_NAME_MAPPING[tableName] || tableName.toLowerCase();
 
 	// Get column mapping
-	const columnMap = COLUMN_MAPPING[tableName];
+	const column_map = COLUMN_MAPPING[tableName];
 
 	// Get MySQL columns
-	const [mysqlColumns] = await mysqlConn.query(
+	const [mysql_columns] = await mysqlConn.query(
 		`SELECT COLUMN_NAME FROM information_schema.COLUMNS
        WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = '${tableName}'
        ORDER BY ORDINAL_POSITION`
 	);
 
-	const mysqlColNames = mysqlColumns.map((col) => col.COLUMN_NAME);
+	const mysql_col_names = mysql_columns.map((col) => col.COLUMN_NAME);
 
 	// Incremental sync for transcript tables
-	let whereClause = '';
-	let incrementalMode = false;
+	let where_clause = '';
+	let incremental_mode = false;
 
 	if (INCREMENTAL && TRANSCRIPT_TABLES.includes(tableName)) {
-		const lastMigration = getLastMigrationTime(tableName, migrationState);
-		if (lastMigration) {
-			whereClause = ` WHERE updated_at > '${lastMigration}' OR created_at > '${lastMigration}'`;
-			incrementalMode = true;
-			console.log(`🔄 Incremental sync since: ${lastMigration}`);
+		const last_migration = getLastMigrationTime(tableName, migrationState);
+		if (last_migration) {
+			where_clause = ` WHERE updated_at > '${last_migration}' OR created_at > '${last_migration}'`;
+			incremental_mode = true;
+			console.log(`🔄 Incremental sync since: ${last_migration}`);
 		} else {
 			console.log('📦 First migration (no timestamp found)');
 		}
 	}
 
 	// Get row count (with WHERE clause if incremental)
-	const [countResult] = await mysqlConn.query(
-		`SELECT COUNT(*) as count FROM \`${tableName}\`${whereClause}`
+	const [count_result] = await mysqlConn.query(
+		`SELECT COUNT(*) as count FROM \`${tableName}\`${where_clause}`
 	);
-	const totalRows = countResult[0].count;
+	const total_rows = count_result[0].count;
 
-	console.log(`📊 ${incrementalMode ? 'Changed' : 'Total'} rows: ${totalRows.toLocaleString()}`);
+	console.log(`📊 ${incremental_mode ? 'Changed' : 'Total'} rows: ${total_rows.toLocaleString()}`);
 
-	if (totalRows === 0) {
+	if (total_rows === 0) {
 		console.log('⚠️  No rows to migrate');
 		return;
 	}
 
 	// Check if PostgreSQL table exists
-	const tableExists = await pgClient`
+	const table_exists = await pgClient`
       SELECT EXISTS (
         SELECT FROM information_schema.tables
         WHERE table_schema = 'public'
-        AND table_name = ${pgTableName}
+        AND table_name = ${pg_table_name}
       )
     `;
 
-	if (!tableExists[0].exists) {
-		console.error(`❌ PostgreSQL table '${pgTableName}' does not exist`);
+	if (!table_exists[0].exists) {
+		console.error(`❌ PostgreSQL table '${pg_table_name}' does not exist`);
 		console.error('Run: pnpm db:pg:push first');
-		throw new Error(`Table ${pgTableName} does not exist`);
+		throw new Error(`Table ${pg_table_name} does not exist`);
 	}
 
 	// Check if table already has data (when using --skip-existing)
 	if (SKIP_EXISTING && MODE !== 'upsert') {
-		const pgCountResult = await pgClient`
-      SELECT COUNT(*) as count FROM ${pgClient(pgTableName)}
+		const pg_count_result = await pgClient`
+      SELECT COUNT(*) as count FROM ${pgClient(pg_table_name)}
     `;
-		const existingRows = parseInt(pgCountResult[0].count);
+		const existing_rows = parseInt(pg_count_result[0].count);
 
-		if (existingRows > 0) {
+		if (existing_rows > 0) {
 			// Only skip if counts match (fully migrated)
-			if (existingRows === totalRows) {
-				console.log(`⏭️  Skipping (already complete: ${existingRows.toLocaleString()} rows)`);
+			if (existing_rows === total_rows) {
+				console.log(`⏭️  Skipping (already complete: ${existing_rows.toLocaleString()} rows)`);
 				return;
 			} else {
 				console.log(
-					`⚠️  Partial data found (${existingRows.toLocaleString()}/${totalRows.toLocaleString()} rows)`
+					`⚠️  Partial data found (${existing_rows.toLocaleString()}/${total_rows.toLocaleString()} rows)`
 				);
 				console.log(`🗑️  Re-importing to ensure completeness...`);
 			}
@@ -510,35 +510,35 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	}
 
 	// Clear existing data in PostgreSQL table (refresh mode only)
-	if (MODE === 'refresh' && !incrementalMode) {
+	if (MODE === 'refresh' && !incremental_mode) {
 		console.log(`🗑️  Clearing existing data (refresh mode)...`);
-		await pgClient`TRUNCATE TABLE ${pgClient(pgTableName)} CASCADE`;
+		await pgClient`TRUNCATE TABLE ${pgClient(pg_table_name)} CASCADE`;
 		console.log('✅ Cleared');
-	} else if (MODE === 'upsert' || incrementalMode) {
+	} else if (MODE === 'upsert' || incremental_mode) {
 		console.log(`🔄 Upsert mode: Will insert or update existing records`);
 	}
 
 	// Stream data in batches
 	console.log('📦 Migrating data...');
 	let offset = 0;
-	let totalMigrated = 0;
-	let totalSkipped = 0;
-	const startTime = Date.now();
+	let total_migrated = 0;
+	let total_skipped = 0;
+	const start_time = Date.now();
 
-	while (offset < totalRows) {
+	while (offset < total_rows) {
 		// Fetch batch from MySQL (with WHERE clause if incremental)
 		const [rows] = await mysqlConn.query(
-			`SELECT * FROM \`${tableName}\`${whereClause} LIMIT ${BATCH_SIZE} OFFSET ${offset}`
+			`SELECT * FROM \`${tableName}\`${where_clause} LIMIT ${BATCH_SIZE} OFFSET ${offset}`
 		);
 
 		if (rows.length === 0) break;
 
 		// Convert and insert into PostgreSQL
-		const pgRows = rows.map((row) => {
+		const pg_rows = rows.map((row) => {
 			let converted = {};
-			mysqlColNames.forEach((col) => {
-				const pgCol = columnMap ? columnMap[col] : col;
-				converted[pgCol] = convertValue(row[col], col, tableName, row);
+			mysql_col_names.forEach((col) => {
+				const pg_col = column_map ? column_map[col] : col;
+				converted[pg_col] = convertValue(row[col], col, tableName, row);
 			});
 			// Add computed columns (search vectors, timestamps)
 			converted = addComputedColumns(row, tableName, converted);
@@ -546,66 +546,66 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		});
 
 		// Build column list for PostgreSQL
-		const pgCols = Object.keys(pgRows[0]);
+		const pg_cols = Object.keys(pg_rows[0]);
 
 		// Insert or upsert batch into PostgreSQL
 		try {
-			if (MODE === 'upsert' || incrementalMode) {
+			if (MODE === 'upsert' || incremental_mode) {
 				// Upsert: ON CONFLICT DO UPDATE
 				// Determine the primary key column(s)
-				const pkCol = 'id'; // Most tables use 'id' as primary key
+				const pk_col = 'id'; // Most tables use 'id' as primary key
 
 				// Build the upsert query manually
-				let batchMigrated = 0;
-				for (const pgRow of pgRows) {
+				let batch_migrated = 0;
+				for (const pg_row of pg_rows) {
 					try {
 						await pgClient`
-              INSERT INTO ${pgClient(pgTableName)} ${pgClient([pgRow], ...pgCols)}
-              ON CONFLICT (${pgClient(pkCol)})
+              INSERT INTO ${pgClient(pg_table_name)} ${pgClient([pg_row], ...pg_cols)}
+              ON CONFLICT (${pgClient(pk_col)})
               DO UPDATE SET ${pgClient(
 								Object.fromEntries(
-									pgCols.filter((col) => col !== pkCol).map((col) => [col, pgRow[col]])
+									pg_cols.filter((col) => col !== pk_col).map((col) => [col, pg_row[col]])
 								)
 							)}
             `;
-						batchMigrated++;
+						batch_migrated++;
 					} catch (rowError) {
 						if (SKIP_INVALID_FK && rowError.code === '23503') {
-							totalSkipped++;
+							total_skipped++;
 						} else {
 							throw rowError;
 						}
 					}
 				}
-				totalMigrated += batchMigrated;
+				total_migrated += batch_migrated;
 			} else {
 				// Regular insert
 				await pgClient`
-          INSERT INTO ${pgClient(pgTableName)} ${pgClient(pgRows, ...pgCols)}
+          INSERT INTO ${pgClient(pg_table_name)} ${pgClient(pg_rows, ...pg_cols)}
         `;
-				totalMigrated += rows.length;
+				total_migrated += rows.length;
 			}
 		} catch (error) {
 			// If skip-invalid-fk is enabled and it's a foreign key error, try inserting one by one
 			if (SKIP_INVALID_FK && error.code === '23503') {
 				// 23503 = foreign_key_violation
-				let batchMigrated = 0;
-				for (const pgRow of pgRows) {
+				let batch_migrated = 0;
+				for (const pg_row of pg_rows) {
 					try {
 						await pgClient`
-              INSERT INTO ${pgClient(pgTableName)} ${pgClient([pgRow], ...pgCols)}
+              INSERT INTO ${pgClient(pg_table_name)} ${pgClient([pg_row], ...pg_cols)}
             `;
-						batchMigrated++;
+						batch_migrated++;
 					} catch (rowError) {
 						if (rowError.code === '23503') {
-							totalSkipped++;
+							total_skipped++;
 							// Silently skip this row
 						} else {
 							throw rowError;
 						}
 					}
 				}
-				totalMigrated += batchMigrated;
+				total_migrated += batch_migrated;
 			} else {
 				throw error;
 			}
@@ -614,28 +614,28 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		offset += BATCH_SIZE;
 
 		// Progress
-		const percent = ((totalMigrated / totalRows) * 100).toFixed(1);
-		const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-		const rate = (totalMigrated / elapsed).toFixed(0);
+		const percent = ((total_migrated / total_rows) * 100).toFixed(1);
+		const elapsed = ((Date.now() - start_time) / 1000).toFixed(1);
+		const rate = (total_migrated / elapsed).toFixed(0);
 
-		const progressMsg = `\r   Progress: ${totalMigrated.toLocaleString()}/${totalRows.toLocaleString()} (${percent}%) - ${rate} rows/sec`;
-		const skipMsg = totalSkipped > 0 ? ` [Skipped: ${totalSkipped}]` : '';
-		process.stdout.write(progressMsg + skipMsg);
+		const progress_msg = `\r   Progress: ${total_migrated.toLocaleString()}/${total_rows.toLocaleString()} (${percent}%) - ${rate} rows/sec`;
+		const skip_msg = total_skipped > 0 ? ` [Skipped: ${total_skipped}]` : '';
+		process.stdout.write(progress_msg + skip_msg);
 	}
 
-	const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+	const total_time = ((Date.now() - start_time) / 1000).toFixed(1);
 
 	console.log('\n✨ Table migrated!');
-	console.log(`⏱️  Time: ${totalTime}s`);
-	console.log(`📊 Rows: ${totalMigrated.toLocaleString()}`);
-	if (totalSkipped > 0) {
-		console.log(`⚠️  Skipped: ${totalSkipped.toLocaleString()} (invalid foreign keys)`);
+	console.log(`⏱️  Time: ${total_time}s`);
+	console.log(`📊 Rows: ${total_migrated.toLocaleString()}`);
+	if (total_skipped > 0) {
+		console.log(`⚠️  Skipped: ${total_skipped.toLocaleString()} (invalid foreign keys)`);
 	}
-	console.log(`⚡ Rate: ${(totalMigrated / totalTime).toFixed(0)} rows/sec`);
+	console.log(`⚡ Rate: ${(total_migrated / total_time).toFixed(0)} rows/sec`);
 
 	// Update migration state
 	updateMigrationTime(tableName, migrationState);
-	migrationState[tableName].rowCount = totalMigrated;
+	migrationState[tableName].rowCount = total_migrated;
 	saveMigrationState(migrationState);
 }
 
@@ -765,7 +765,7 @@ async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
 	console.log('🔄 Converting Topics to Tags with content relationships...\n');
 
 	try {
-		const startTime = Date.now();
+		const start_time = Date.now();
 
 		// Clear existing tags and content_tags in refresh mode
 		if (MODE === 'refresh') {
@@ -786,30 +786,30 @@ async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
 			ORDER BY asn.show_number, t.name
 		`);
 
-		const totalTopics = topics.length;
-		console.log(`📊 Total topics: ${totalTopics.toLocaleString()}\n`);
+		const total_topics = topics.length;
+		console.log(`📊 Total topics: ${total_topics.toLocaleString()}\n`);
 
-		if (totalTopics === 0) {
+		if (total_topics === 0) {
 			console.log('⚠️  No topics to migrate');
 			return;
 		}
 
 		// Track stats
-		let tagsCreated = 0;
-		let tagsReused = 0;
-		let linksCreated = 0;
+		let tags_created = 0;
+		let tags_reused = 0;
+		let links_created = 0;
 		let skipped = 0;
 
 		// Cache for tags (slug -> id mapping for deduplication)
-		const tagCache = new Map();
+		const tag_cache = new Map();
 
 		// Pre-load all existing tags from database
 		console.log('🔍 Loading existing tags...');
-		const existingTags = await pgClient`SELECT id, slug FROM tags WHERE slug IS NOT NULL`;
-		for (const row of existingTags) {
-			tagCache.set(row.slug, row.id);
+		const existing_tags = await pgClient`SELECT id, slug FROM tags WHERE slug IS NOT NULL`;
+		for (const row of existing_tags) {
+			tag_cache.set(row.slug, row.id);
 		}
-		console.log(`   Found ${existingTags.length} existing tags\n`);
+		console.log(`   Found ${existing_tags.length} existing tags\n`);
 
 		console.log('🔄 Processing topics and creating tags...');
 
@@ -823,15 +823,15 @@ async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
 			}
 
 			// Clean topic name: remove # prefix, trim whitespace
-			const cleanName = topic.name.trim().replace(/^#+/, '');
+			const clean_name = topic.name.trim().replace(/^#+/, '');
 
-			if (!cleanName) {
+			if (!clean_name) {
 				skipped++;
 				continue;
 			}
 
 			// Generate slug from cleaned name
-			const slug = generateSlug(cleanName);
+			const slug = generateSlug(clean_name);
 
 			if (!slug) {
 				skipped++;
@@ -839,82 +839,82 @@ async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
 			}
 
 			// Check if we've already processed this slug
-			let tagId = tagCache.get(slug);
+			let tag_id = tag_cache.get(slug);
 
-			if (!tagId) {
+			if (!tag_id) {
 				// Check if tag with this slug exists in PostgreSQL
-				const existingTag = await pgClient`
+				const existing_tag = await pgClient`
 					SELECT id FROM tags WHERE slug = ${slug}
 				`;
 
-				if (existingTag.length > 0) {
-					tagId = existingTag[0].id;
-					tagsReused++;
+				if (existing_tag.length > 0) {
+					tag_id = existing_tag[0].id;
+					tags_reused++;
 				} else {
 					// Create new tag
-					const newTag = await pgClient`
+					const new_tag = await pgClient`
 						INSERT INTO tags (id, name, slug)
-						VALUES (gen_random_uuid(), ${cleanName}, ${slug})
+						VALUES (gen_random_uuid(), ${clean_name}, ${slug})
 						RETURNING id
 					`;
-					tagId = newTag[0].id;
-					tagsCreated++;
+					tag_id = new_tag[0].id;
+					tags_created++;
 				}
 
 				// Cache the tag by slug
-				tagCache.set(slug, tagId);
+				tag_cache.set(slug, tag_id);
 			} else {
-				tagsReused++;
+				tags_reused++;
 			}
 
 			// Get show's content_id
-			const showResult = await pgClient`
+			const show_result = await pgClient`
 				SELECT content_id FROM shows WHERE number = ${topic.show_number}
 			`;
 
-			if (showResult.length === 0 || !showResult[0].content_id) {
+			if (show_result.length === 0 || !show_result[0].content_id) {
 				skipped++;
 				continue;
 			}
 
-			const contentId = showResult[0].content_id;
+			const content_id = show_result[0].content_id;
 
 			// Create content_tags relationship (ON CONFLICT DO NOTHING handles duplicates)
 			await pgClient`
 				INSERT INTO content_tags (content_id, tag_id)
-				VALUES (${contentId}, ${tagId})
+				VALUES (${content_id}, ${tag_id})
 				ON CONFLICT DO NOTHING
 			`;
 
-			linksCreated++;
+			links_created++;
 
 			// Progress reporting
 			if ((i + 1) % 100 === 0 || i === topics.length - 1) {
-				const percent = (((i + 1) / totalTopics) * 100).toFixed(1);
-				const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+				const percent = (((i + 1) / total_topics) * 100).toFixed(1);
+				const elapsed = ((Date.now() - start_time) / 1000).toFixed(1);
 				const rate = ((i + 1) / elapsed).toFixed(0);
 
 				process.stdout.write(
-					`\r   Progress: ${(i + 1).toLocaleString()}/${totalTopics.toLocaleString()} (${percent}%) - ${rate} rows/sec [Created: ${tagsCreated} tags, Reused: ${tagsReused} tags]`
+					`\r   Progress: ${(i + 1).toLocaleString()}/${total_topics.toLocaleString()} (${percent}%) - ${rate} rows/sec [Created: ${tags_created} tags, Reused: ${tags_reused} tags]`
 				);
 			}
 		}
 
-		const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+		const total_time = ((Date.now() - start_time) / 1000).toFixed(1);
 
 		console.log('\n\n✨ Table migrated!');
-		console.log(`⏱️  Time: ${totalTime}s`);
-		console.log(`📊 Unique tags created: ${tagsCreated.toLocaleString()}`);
-		console.log(`📊 Content links created: ${linksCreated.toLocaleString()}`);
+		console.log(`⏱️  Time: ${total_time}s`);
+		console.log(`📊 Unique tags created: ${tags_created.toLocaleString()}`);
+		console.log(`📊 Content links created: ${links_created.toLocaleString()}`);
 		if (skipped > 0) {
 			console.log(`⚠️  Skipped: ${skipped.toLocaleString()} (no content_id or empty name)`);
 		}
-		console.log(`⚡ Rate: ${(totalTopics / totalTime).toFixed(0)} rows/sec`);
+		console.log(`⚡ Rate: ${(total_topics / total_time).toFixed(0)} rows/sec`);
 
 		// Update migration state
 		updateMigrationTime('Tag', migrationState);
-		migrationState.Tag.rowCount = tagsCreated;
-		migrationState.Tag.linksCreated = linksCreated;
+		migrationState.Tag.rowCount = tags_created;
+		migrationState.Tag.linksCreated = links_created;
 		saveMigrationState(migrationState);
 	} catch (error) {
 		console.error('❌ Error migrating topics to tags:', error.message);
@@ -936,36 +936,36 @@ async function main() {
 	}
 
 	// Load migration state
-	const migrationState = loadMigrationState();
+	const migration_state = loadMigrationState();
 	console.log(`📁 Migration state loaded from: ${MIGRATION_STATE_FILE}\n`);
 
 	// Determine tables to migrate
-	let tablesToMigrate = TABLE_NAME ? [TABLE_NAME] : DEFAULT_MIGRATION_ORDER;
+	let tables_to_migrate = TABLE_NAME ? [TABLE_NAME] : DEFAULT_MIGRATION_ORDER;
 
 	// Always filter out excluded tables (Session, etc.)
-	tablesToMigrate = tablesToMigrate.filter((t) => !EXCLUDED_TABLES.includes(t));
+	tables_to_migrate = tables_to_migrate.filter((t) => !EXCLUDED_TABLES.includes(t));
 	if (EXCLUDED_TABLES.some((t) => DEFAULT_MIGRATION_ORDER.includes(t))) {
 		console.log(`🚫 Excluding tables: ${EXCLUDED_TABLES.join(', ')}`);
 	}
 
 	// Filter based on --skip-transcripts or --transcripts-only
 	if (SKIP_TRANSCRIPTS) {
-		tablesToMigrate = tablesToMigrate.filter((t) => !TRANSCRIPT_TABLES.includes(t));
+		tables_to_migrate = tables_to_migrate.filter((t) => !TRANSCRIPT_TABLES.includes(t));
 		console.log(`⏭️  Skipping transcript tables: ${TRANSCRIPT_TABLES.join(', ')}`);
 	} else if (TRANSCRIPTS_ONLY) {
-		tablesToMigrate = tablesToMigrate.filter((t) => TRANSCRIPT_TABLES.includes(t));
+		tables_to_migrate = tables_to_migrate.filter((t) => TRANSCRIPT_TABLES.includes(t));
 		console.log(`📋 Migrating ONLY transcript tables: ${TRANSCRIPT_TABLES.join(', ')}`);
 	}
 
 	// Skip TranscriptUtteranceWord by default (unless --include-transcript-words is specified)
 	if (SKIP_TRANSCRIPT_WORDS && !TRANSCRIPTS_ONLY) {
-		tablesToMigrate = tablesToMigrate.filter((t) => t !== 'TranscriptUtteranceWord');
+		tables_to_migrate = tables_to_migrate.filter((t) => t !== 'TranscriptUtteranceWord');
 		console.log(
 			`⏭️  Skipping TranscriptUtteranceWord (large table - use --include-transcript-words to migrate)`
 		);
 	}
 
-	console.log(`📋 Tables to migrate: ${tablesToMigrate.join(', ')}`);
+	console.log(`📋 Tables to migrate: ${tables_to_migrate.join(', ')}`);
 
 	const modes = [];
 	modes.push(`Mode: ${MODE}`);
@@ -987,12 +987,12 @@ async function main() {
 
 	// Connect to both databases
 	console.log('🔌 Connecting to databases...');
-	const mysqlConn = await createConnection({
+	const mysql_conn = await createConnection({
 		uri: MYSQL_URL,
 		ssl: { rejectUnauthorized: false }
 	});
 
-	const pgClient = postgres(POSTGRES_URL, {
+	const pg_client = postgres(POSTGRES_URL, {
 		max: 1,
 		ssl: POSTGRES_URL.includes('localhost') ? false : 'prefer'
 	});
@@ -1000,57 +1000,57 @@ async function main() {
 	console.log('✅ Connected\n');
 
 	try {
-		const overallStartTime = Date.now();
+		const overall_start_time = Date.now();
 
 		// Track if we've populated content table
-		let contentTablePopulated = false;
+		let content_table_populated = false;
 
 		// Migrate each table in order
-		for (const tableName of tablesToMigrate) {
+		for (const table_name of tables_to_migrate) {
 			// Populate content table before Tag migration if needed
-			if (tableName === 'Tag' && !contentTablePopulated && POPULATE_CONTENT) {
+			if (table_name === 'Tag' && !content_table_populated && POPULATE_CONTENT) {
 				// Check if Show or Video was migrated (or if we have existing shows/videos in DB)
-				const showCount = await pgClient`SELECT COUNT(*) as count FROM shows`;
-				const videoCount = await pgClient`SELECT COUNT(*) as count FROM videos`;
+				const show_count = await pg_client`SELECT COUNT(*) as count FROM shows`;
+				const video_count = await pg_client`SELECT COUNT(*) as count FROM videos`;
 
-				if (showCount[0].count > 0 || videoCount[0].count > 0) {
+				if (show_count[0].count > 0 || video_count[0].count > 0) {
 					console.log('\n⚡ Populating content table before Tag migration...');
-					await populateContentTable(pgClient);
-					contentTablePopulated = true;
+					await populateContentTable(pg_client);
+					content_table_populated = true;
 				}
 			}
 
-			if (tableName === 'Tag') {
+			if (table_name === 'Tag') {
 				// Custom migration for Topic -> Tag + ContentTag
-				await migrateTopicsToTags(mysqlConn, pgClient, migrationState);
-			} else if (tableName === 'ContentTag') {
+				await migrateTopicsToTags(mysql_conn, pg_client, migration_state);
+			} else if (table_name === 'ContentTag') {
 				// Skip - already handled by migrateTopicsToTags
 				console.log('\n📋 Skipping ContentTag (already migrated with Tags)');
 			} else {
-				await migrateSingleTable(tableName, mysqlConn, pgClient, migrationState);
+				await migrateSingleTable(table_name, mysql_conn, pg_client, migration_state);
 			}
 		}
 
-		const overallTime = ((Date.now() - overallStartTime) / 1000).toFixed(1);
+		const overall_time = ((Date.now() - overall_start_time) / 1000).toFixed(1);
 
 		console.log('\n\n🎉 All migrations complete!');
-		console.log(`⏱️  Total time: ${overallTime}s`);
+		console.log(`⏱️  Total time: ${overall_time}s`);
 		console.log(`📁 Migration state saved to: ${MIGRATION_STATE_FILE}`);
 
 		// Populate content table if not already done and requested
 		if (
-			!contentTablePopulated &&
+			!content_table_populated &&
 			POPULATE_CONTENT &&
-			(tablesToMigrate.includes('Show') || tablesToMigrate.includes('Video'))
+			(tables_to_migrate.includes('Show') || tables_to_migrate.includes('Video'))
 		) {
-			await populateContentTable(pgClient);
+			await populateContentTable(pg_client);
 		}
 	} catch (error) {
 		console.error('\n❌ Migration failed:', error.message);
 		throw error;
 	} finally {
-		await mysqlConn.end();
-		await pgClient.end();
+		await mysql_conn.end();
+		await pg_client.end();
 	}
 }
 

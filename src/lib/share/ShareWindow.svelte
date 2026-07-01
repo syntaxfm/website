@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '$actions/click_outside_dialog';
 	import { episode_share_status } from '$state/player';
 	import type { Show } from '$server/db/schema';
 	import ShareActions from './ShareActions.svelte';
@@ -33,7 +33,7 @@
 	class="zone"
 	style:--c-bg="var(--c-bg)"
 	style:--c-fg="var(--c-fg)"
-	use:clickOutDialog
+	use:click_out_dialog
 	onclose={close}
 	onclick-outside={close}
 	aria-labelledby="share-header"

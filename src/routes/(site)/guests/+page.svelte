@@ -3,9 +3,9 @@
 	import { resolve } from '$app/paths';
 	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
 	import Meta from '$lib/meta/Meta.svelte';
-	import { getAllGuests } from '../guest/guests.remote';
+	import { get_all_guests } from '../guest/guests.remote';
 
-	const all_guests = await getAllGuests();
+	const all_guests = await get_all_guests();
 	type Guest = (typeof all_guests)[number];
 	type SortMode = 'az' | 'recent' | 'jumble';
 

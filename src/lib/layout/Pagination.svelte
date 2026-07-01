@@ -7,21 +7,21 @@
 	import { fade } from 'svelte/transition';
 	interface Props {
 		count: number;
-		perPage?: number;
+		per_page?: number;
 		page?: number;
 	}
 
-	let { count, perPage = PER_PAGE, page = 1 }: Props = $props();
-	let totalPages = $derived(Math.ceil(count / perPage));
+	let { count, per_page = PER_PAGE, page = 1 }: Props = $props();
+	let total_pages = $derived(Math.ceil(count / per_page));
 	let generate_search_params = $derived((id: string, value: string | number): ResolvedPathname => {
-		const searchParams = new URLSearchParams(pageStore.url.search);
+		const search_params = new URLSearchParams(pageStore.url.search);
 
 		if (!value) {
-			searchParams.delete(id);
+			search_params.delete(id);
 		} else {
-			searchParams.set(id, value.toString());
+			search_params.set(id, value.toString());
 		}
-		const query = searchParams.toString();
+		const query = search_params.toString();
 		return (
 			query ? `${pageStore.url.pathname}?${query}` : pageStore.url.pathname
 		) as ResolvedPathname;
@@ -35,14 +35,14 @@
 		return result;
 	}
 
-	let pageNumbers = $derived(getNeighboringNumbers(page, totalPages));
+	let page_numbers = $derived(getNeighboringNumbers(page, total_pages));
 </script>
 
 <div class="pagination-container">
 	<div class="pagination">
 		<a title="First Page" href={generate_search_params('page', '')}>←←</a>
 		<a href={generate_search_params('page', page > 1 ? page - 1 : '')}>←</a>
-		{#each pageNumbers as pageNumber (pageNumber)}
+		{#each page_numbers as pageNumber (pageNumber)}
 			<a
 				in:fade
 				animate:flip={{ duration: 200, easing: quintOut }}
@@ -53,7 +53,7 @@
 			</a>
 		{/each}
 		<a href={generate_search_params('page', page + 1)}>→</a>
-		<a title="Last Page" href={generate_search_params('page', totalPages)}>→→</a>
+		<a title="Last Page" href={generate_search_params('page', total_pages)}>→→</a>
 	</div>
 </div>
 
