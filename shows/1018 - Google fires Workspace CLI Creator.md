@@ -4,6 +4,10 @@ title: Google fires Workspace CLI Creator
 date: 1783335600000
 url: https://traffic.megaphone.fm/FSI1850985972.mp3
 youtube_url: https://www.youtube.com/live/t0wbFzq1l5Y
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 ---
 	
 Google fires the engineer behind its Workspace CLI tool, OpenAI previews GPT-5.6 with three new model tiers, and Astro 7 lands with a full Rust rewrite. Plus: Coinbase cuts token costs with smarter routing, and more in this week's Syntax Live
