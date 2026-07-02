@@ -1,18 +1,19 @@
 import type { Guest, Host, Show } from '$server/db/types';
 
 export function get_faces_from_show(
-	show: Show & { guests: { guest: Guest }[] } & { hosts: Host[] }
+	show: Show & { guests: { guest: Guest }[] } & { hosts: { user: Host }[] }
 ) {
-	const hosts = (
+	const host_users: Host[] =
 		show.hosts?.length > 0
-			? show.hosts
+			? show.hosts.map((host) => host.user)
 			: [
-					{ name: 'Wes Bos', username: 'wesbos' },
-					{ name: 'Scott Tolinski', username: 'stolinski' }
-				]
-	).map((host) => ({
-		name: host.name || '',
-		github: host.username || '',
+					{ name: 'Wes Bos', username: 'wesbos', twitter: null },
+					{ name: 'Scott Tolinski', username: 'stolinski', twitter: null }
+				];
+
+	const hosts = host_users.map((user) => ({
+		name: user.name || '',
+		github: user.username || '',
 		type: 'host'
 	}));
 

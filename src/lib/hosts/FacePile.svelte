@@ -12,7 +12,7 @@
 </script>
 
 <div class="pile" style:--face-size={size} style:--face-count={faces.length}>
-	{#each faces as face (face.github)}
+	{#each faces as face, index (index)}
 		<span>
 			<img src="https://github.com/{face.github || 'null'}.png" alt={face.name} />
 		</span>

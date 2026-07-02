@@ -15,7 +15,7 @@ export const get_feed_content = query(() => {
 			show: {
 				with: {
 					guests: { with: { guest: true } },
-					hosts: true,
+					hosts: { with: { user: true } },
 					aiShowNote: {
 						with: {
 							topics: true

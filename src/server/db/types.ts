@@ -64,7 +64,9 @@ export type Host = {
 	twitter: string | null;
 };
 
-export type ShowWithHostsAndGuests = Show & { guests: { guest: Guest }[] } & { hosts: Host[] };
+export type ShowWithHostsAndGuests = Show & { guests: { guest: Guest }[] } & {
+	hosts: { user: Host }[];
+};
 
 export type AllPossibleContent = Content & {
 	show: ShowWithHostsAndGuests;
