@@ -33,6 +33,21 @@ The new unified wrapper entity for *all* content types — Shows, Articles, Vide
 
 **Status**: mid-migration. `show`, `article`, and per-type tables still exist and hold type-specific fields, but the canonical content identity is moving to `content`. New work that touches the content layer should go through `content` where possible. See [ADR-0004](./adr/0004-unified-content-model.md).
 
+**Video**:
+A Syntax-owned YouTube upload represented as **Content** with the `VIDEO` type.
+_Avoid_: using Video for an external channel's upload; use **Competitor Video**.
+
+**Competitor**:
+An external YouTube channel explicitly selected by Syntax for ongoing comparison.
+_Avoid_: treating every channel returned by a keyword search as a Competitor.
+
+**Competitor Video**:
+A YouTube upload from a **Competitor** selected for comparison with Syntax **Videos**; it is never **Content**.
+
+**Tracked Keyword**:
+A curated YouTube comparison concept represented by one or more search phrases.
+_Avoid_: Topic, Tag; those terms describe AI artifacts and the site's editorial taxonomy.
+
 ### People and roles
 
 **User**:
@@ -93,6 +108,9 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 ## Relationships
 
 - **Syntax** has many **Shows**.
+- **Syntax** has many **Videos**; a **Competitor Video** never belongs to Syntax.
+- A **Competitor** has many **Competitor Videos**.
+- A **Video** or **Competitor Video** can be associated with many **Tracked Keywords**.
 - A **Show** has many **Hosts** (through `show_to_user`) and many **Guests** (through `show_guest`).
 - A **Show** has one **Transcript**, which has many **Utterances**, which have many **Words**.
 - A **Show** has zero or more AI artifacts (`aiShowNote`, `aiTweet`, etc.).
@@ -116,3 +134,6 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 - `show_type` reads like a current taxonomy but is a back-catalog artifact. **Resolved**: documented above; the column is unreliable for recent episodes.
 - "UserSubmission" implies it's tied to a **User** (the capital-U admin entity); it isn't. The "User" in the name is the colloquial sense (a site visitor), not the `user` table row. Submissions are anonymous and have no FK to `user`.
 - The admin URL segment `/admin/content/podcast` lists **Shows**, not "podcasts." **Resolved**: the URL matches the `content_types` enum value (`PODCAST`), which is machine-canonical; the page heading and navigation label remain "Shows" (the domain term). This is a deliberate asymmetry between URL/enum and display language. Do not rename the URL to match the term without renaming the enum value, and do not rename the enum without a migration ADR.
+- "Video" could mean either a Syntax upload or any YouTube upload. **Resolved**: **Video** means Syntax-owned Content; an external upload used for comparison is a **Competitor Video** and never Content.
+- A channel appearing in keyword search results is not automatically a **Competitor**. **Resolved**: Competitors are explicitly selected by Syntax; search results outside that set are discovery candidates only.
+- "Keyword" could mean a literal query, a site Tag, or an AI-detected topic. **Resolved**: a **Tracked Keyword** is a curated comparison concept that may contain multiple search phrases and remains distinct from both Tags and topics.
