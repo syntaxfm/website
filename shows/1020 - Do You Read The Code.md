@@ -4,6 +4,10 @@ title: Do You Read The Code?
 date: 1783940400000
 url: https://traffic.megaphone.fm/FSI4036355847.mp3
 youtube_url: https://www.youtube.com/watch?v=6F0JvCt2DmE
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 ---
 	
 Auto-accept on, brain off? We're getting into whether anyone actually reads the code they ship anymore — then it's HTTP's first new method in 16 years (meet QUERY) and OpenAI's compute-hungry "Sol Ultra" tier landing in Codex. Bring your hot takes and hang out with us live.
