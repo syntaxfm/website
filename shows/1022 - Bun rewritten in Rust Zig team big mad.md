@@ -35,7 +35,7 @@ CJ and Scott break down the biggest week in web dev: TypeScript 7 ships with a 1
 ### Sick Picks
 
 - Scott: [Reachy Mini](https://huggingface.co/reachy-mini)
-- CJ: [Snowsky Echo Mini[(https://www.fiio.com/echomini)
+- CJ: [Snowsky Echo Mini](https://amzn.to/3R6hK0l)
 
 ### Hit us up on Socials!
 
