@@ -12,6 +12,22 @@
 	player.initialize(show);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
+
+	function capture_media_controller(element: HTMLElement): () => void {
+		$player.media_controller = element as HTMLAudioElement;
+
+		return () => {
+			if ($player.media_controller === element) $player.media_controller = null;
+		};
+	}
+
+	function capture_audio(element: HTMLAudioElement): () => void {
+		$player.audio = element;
+
+		return () => {
+			if ($player.audio === element) $player.audio = null;
+		};
+	}
 </script>
 
 <section class="player {$player_window_status} {$player.status}">
@@ -42,9 +58,9 @@
 				</p>
 			{/if}
 			<media-controller
+				{@attach capture_media_controller}
 				audio
 				nohotkeys
-				bind:this={$player.media_controller}
 				style="
 
 --media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--c-primary);--media-background-color: transparent; --media-control-background: transparent;
@@ -54,12 +70,12 @@
  --media-font-family: var(--ff-body); --media-control-hover-background: transparent; "
 			>
 				<audio
+					{@attach capture_audio}
 					ontimeupdate={player.ontimeupdate}
 					onplay={player.onplay}
 					onended={player.onended}
 					onpause={player.onpause}
 					slot="media"
-					bind:this={$player.audio}
 					preload="metadata"
 					crossorigin="anonymous"
 				></audio>
@@ -72,20 +88,10 @@
 								</span>
 							</media-seek-backward-button>
 							<media-play-button>
-								<span
-									slot="play"
-									style="
-
---icon_size: 26px;"
-								>
+								<span slot="play">
 									<Icon name="play" width={34} height={34} />
 								</span>
-								<span
-									slot="pause"
-									style="
-
---icon_size: 26px;"
-								>
+								<span slot="pause">
 									<Icon name="pause" />
 								</span>
 							</media-play-button>
@@ -135,6 +141,8 @@
 
 	media-controller {
 		flex-grow: 1;
+		min-width: 0;
+		max-width: 100%;
 	}
 
 	.media-range {
@@ -169,7 +177,7 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 10px;
-		width: 100;
+		width: 100%;
 	}
 
 	.window-controls {
@@ -179,6 +187,10 @@
 		display: flex;
 		padding: 5px 10px;
 		background-color: var(--player-bg, var(--c-black));
+
+		:global(button) {
+			padding: 10px;
+		}
 	}
 
 	media-time-range {
@@ -205,6 +217,19 @@
 		gap: 5px;
 	}
 
+	.player-container {
+		padding: 10px 20px;
+		width: 100%;
+		min-width: 0;
+		max-width: 100%;
+		display: flex;
+		gap: 25px;
+	}
+
+	.player-container > .stack {
+		min-width: 0;
+	}
+
 	.player {
 		--player-bg: var(--c-black);
 
@@ -212,12 +237,15 @@
 		position: fixed;
 		bottom: 0;
 		left: 0;
-		width: 100%;
+		right: 0;
+		width: auto;
+		max-width: min(100%, 100vi);
+		overflow: hidden;
 		color: var(--c-white);
 		background-color: var(--player-bg, var(--c-black));
 		background-image: var(--c-bg-grit-dark);
 		background-size: 400px;
-		box-shadow: 0 -5px 10px 0 oklch(var(--c-blacklch) / 0.4);
+		box-shadow: 0 -5px 10px 0 oklch(from var(--c-black) l c h / 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -229,11 +257,11 @@
 		transition: 0.2s ease translate;
 		z-index: 10;
 
-		&.ACTIVE {
+		&[class~='ACTIVE'] {
 			translate: 0 0 0;
 		}
 
-		&.MINI {
+		&[class~='MINI'] {
 			translate: 0 0 0;
 
 			media-controller {
@@ -270,13 +298,6 @@
 		}
 	}
 
-	.player-container {
-		padding: 10px 20px;
-		width: 100%;
-		display: flex;
-		gap: 25px;
-	}
-
 	.media-range-bookmarks {
 		position: relative;
 		width: 100%;
@@ -297,12 +318,6 @@
 		background: transparent;
 		color: var(--c-fg);
 		padding: 0;
-	}
-
-	.window-controls {
-		:global(button) {
-			padding: 10px;
-		}
 	}
 
 	media-seek-backward-button,
