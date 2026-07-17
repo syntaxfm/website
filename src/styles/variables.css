@@ -187,6 +187,7 @@
 	/* GRIT */
 	--c-bg-grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--c-bg-grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
+	--logo-mask-image: url('$assets/Grit Mask@2x.png');
 
 	/* Misc */
 

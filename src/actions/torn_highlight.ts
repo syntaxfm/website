@@ -1,4 +1,4 @@
-import type { Action } from 'svelte/action';
+import type { Attachment } from 'svelte/attachments';
 import { string_hash } from '$lib/utils/string_hash';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -56,82 +56,79 @@ function line_path(
 	return `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join('L')}Z`;
 }
 
-export const torn_highlight: Action<HTMLElement, TornParams> = (node, params) => {
-	const text_el = node.querySelector<HTMLElement>('.collage-text');
-	let svg: SVGSVGElement | null = null;
-	let current = params;
-	let frame = 0;
+export function torn_highlight(params: TornParams): Attachment<HTMLElement> {
+	return (node) => {
+		const text_el = node.querySelector<HTMLElement>('.collage-text');
+		let svg: SVGSVGElement | null = null;
+		let frame = 0;
 
-	function build() {
-		if (!text_el) return;
+		function build(): void {
+			if (!text_el) return;
 
-		// Measure in the un-rotated layout space, then re-apply the tilt to the whole
-		// wrapper so the SVG + text rotate together. No paint happens between, so the
-		// transform toggle is invisible.
-		node.style.transform = 'none';
-		const wrap = node.getBoundingClientRect();
-		const font_size = parseFloat(getComputedStyle(text_el).fontSize) || 16;
-		const pad_x = font_size * 0.4;
-		const pad_y = font_size * 0.22;
-		const amp = font_size * 0.07;
+			// Measure in the un-rotated layout space, then re-apply the tilt to the whole
+			// wrapper so the SVG + text rotate together. No paint happens between, so the
+			// transform toggle is invisible.
+			node.style.transform = 'none';
+			const wrap = node.getBoundingClientRect();
+			const font_size = parseFloat(getComputedStyle(text_el).fontSize) || 16;
+			const pad_x = font_size * 0.4;
+			const pad_y = font_size * 0.22;
+			const amp = font_size * 0.07;
 
-		const range = document.createRange();
-		range.selectNodeContents(text_el);
-		const lines = new Map<number, DOMRect>();
-		for (const rect of range.getClientRects()) {
-			if (rect.width < 1) continue;
-			const key = Math.round(rect.top);
-			if (!lines.has(key)) lines.set(key, rect);
-		}
+			const range = document.createRange();
+			range.selectNodeContents(text_el);
+			const lines = new Map<number, DOMRect>();
+			for (const rect of range.getClientRects()) {
+				if (rect.width < 1) continue;
+				const key = Math.round(rect.top);
+				if (!lines.has(key)) lines.set(key, rect);
+			}
 
-		svg?.remove();
-		svg = document.createElementNS(SVG_NS, 'svg');
-		svg.setAttribute('class', 'collage-bg');
-		svg.setAttribute('aria-hidden', 'true');
-		svg.setAttribute('width', String(node.clientWidth));
-		svg.setAttribute('height', String(node.clientHeight));
-
-		const seed = string_hash(current.text);
-		let i = 0;
-		for (const rect of lines.values()) {
-			const rand = mulberry32(seed + i * 9176 + 13);
-			const d = line_path(
-				rect.left - wrap.left - pad_x,
-				rect.top - wrap.top - pad_y,
-				rect.right - wrap.left + pad_x,
-				rect.bottom - wrap.top + pad_y,
-				amp,
-				rand
-			);
-			const path = document.createElementNS(SVG_NS, 'path');
-			path.setAttribute('d', d);
-			svg.appendChild(path);
-			i++;
-		}
-
-		node.prepend(svg);
-		node.classList.add('has-collage');
-		node.style.transform = `rotate(${current.tilt})`;
-	}
-
-	function schedule() {
-		cancelAnimationFrame(frame);
-		frame = requestAnimationFrame(build);
-	}
-
-	schedule();
-	const ro = new ResizeObserver(schedule);
-	if (node.parentElement) ro.observe(node.parentElement);
-
-	return {
-		update(next: TornParams) {
-			current = next;
-			schedule();
-		},
-		destroy() {
-			cancelAnimationFrame(frame);
-			ro.disconnect();
 			svg?.remove();
+			svg = document.createElementNS(SVG_NS, 'svg');
+			svg.setAttribute('class', 'collage-bg');
+			svg.setAttribute('aria-hidden', 'true');
+			svg.setAttribute('width', String(node.clientWidth));
+			svg.setAttribute('height', String(node.clientHeight));
+
+			const seed = string_hash(params.text);
+			let i = 0;
+			for (const rect of lines.values()) {
+				const rand = mulberry32(seed + i * 9176 + 13);
+				const d = line_path(
+					rect.left - wrap.left - pad_x,
+					rect.top - wrap.top - pad_y,
+					rect.right - wrap.left + pad_x,
+					rect.bottom - wrap.top + pad_y,
+					amp,
+					rand
+				);
+				const path = document.createElementNS(SVG_NS, 'path');
+				path.setAttribute('d', d);
+				svg.appendChild(path);
+				i++;
+			}
+
+			node.prepend(svg);
+			node.classList.add('has-collage');
+			node.style.transform = `rotate(${params.tilt})`;
 		}
+
+		function schedule(): void {
+			cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(build);
+		}
+
+		schedule();
+		const resize_observer = new ResizeObserver(schedule);
+		if (node.parentElement) resize_observer.observe(node.parentElement);
+
+		return () => {
+			cancelAnimationFrame(frame);
+			resize_observer.disconnect();
+			svg?.remove();
+			node.classList.remove('has-collage');
+			node.style.removeProperty('transform');
+		};
 	};
-};
+}
