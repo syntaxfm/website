@@ -1,54 +1,75 @@
 <script lang="ts">
-	import get_slug from 'speakingurl';
+	import { can_auto_update_slug, create_admin_slug, initialize_admin_slug } from './slug_editor';
 
 	interface Props {
 		title?: string;
 		slug?: string;
 		label?: string;
+		id?: string;
 		show_regenerate?: boolean;
+		onchange?: (next_slug: string) => void;
 	}
+
+	const uid = $props.id();
 
 	let {
 		title = $bindable(''),
 		slug = $bindable(''),
 		label = 'Slug',
-		show_regenerate = true
+		id = `${uid}-slug`,
+		show_regenerate = true,
+		onchange
 	}: Props = $props();
 
-	let is_custom_slug = $state(false);
-
-	function create_slug(input: string): string {
-		return get_slug(input, {
-			separator: '-',
-			truncate: 120,
-			symbols: false
-		});
-	}
-
-	let auto_slug = $derived(create_slug(title));
+	let is_custom_slug = $derived(slug !== '' && slug !== create_admin_slug(title));
+	let has_initialized = false;
+	let previous_title = '';
 
 	$effect(() => {
-		title;
-		if (is_custom_slug) {
+		const next_title = title;
+		const next_slug = slug;
+		const next_generated_slug = create_admin_slug(next_title);
+
+		if (!has_initialized) {
+			has_initialized = true;
+			previous_title = next_title;
+			const initialized_slug = initialize_admin_slug(next_slug, next_title);
+			if (initialized_slug !== next_slug) {
+				slug = initialized_slug;
+				onchange?.(initialized_slug);
+			}
 			return;
 		}
 
-		slug = auto_slug;
+		if (next_title === previous_title) {
+			return;
+		}
+
+		const should_auto_update = can_auto_update_slug(next_slug, previous_title);
+		previous_title = next_title;
+
+		if (!should_auto_update || next_slug === next_generated_slug) {
+			return;
+		}
+
+		slug = next_generated_slug;
+		onchange?.(next_generated_slug);
 	});
 
-	function handle_slug_input(event: Event) {
+	function handle_slug_input(event: Event): void {
 		const target = event.currentTarget;
 		if (!(target instanceof HTMLInputElement)) {
 			return;
 		}
 
 		slug = target.value;
-		is_custom_slug = true;
+		onchange?.(slug);
 	}
 
-	function regenerate_slug() {
-		slug = create_slug(title);
-		is_custom_slug = false;
+	function regenerate_slug(): void {
+		slug = create_admin_slug(title);
+		previous_title = title;
+		onchange?.(slug);
 	}
 
 	let helper_text = $derived(
@@ -60,11 +81,11 @@
 	);
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-	<label for="slug-input" class="fs-2">{label}</label>
-	<div class="flex" style:--flex-gap="var(--pad-small)">
+<div class="admin-field">
+	<label for={id}>{label}</label>
+	<div class="admin-control-row">
 		<input
-			id="slug-input"
+			{id}
 			name="slug"
 			type="text"
 			value={slug}
@@ -74,10 +95,10 @@
 			oninput={handle_slug_input}
 		/>
 		{#if show_regenerate}
-			<button type="button" onclick={regenerate_slug}>Regenerate</button>
+			<button type="button" data-intent="quiet" onclick={regenerate_slug}>Regenerate</button>
 		{/if}
 	</div>
 	{#if helper_text}
-		<p class="fs-1">{helper_text}</p>
+		<p class="admin-field-help">{helper_text}</p>
 	{/if}
 </div>

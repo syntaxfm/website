@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminSearch from '../AdminSearch.svelte';
+	import { page as current_page } from '$app/state';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminSearch from '../AdminSearch.svelte';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
 	const FILTER_KEYS = ['q'] as const;
@@ -26,11 +27,13 @@
 	type TagListResult = Awaited<ReturnType<typeof list_tags>>;
 	type TagListItem = TagListResult['items'][number];
 
-	const list_result = await list_tags({
-		search_text,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	const list_result = $derived(
+		await list_tags({
+			search_text,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -89,7 +92,7 @@
 				page_size: PAGE_SIZE
 			}).refresh();
 		} catch (error) {
-			console.error(error);
+			console.error('Unable to create tag', error);
 			action_error = error instanceof Error ? error.message : 'Unable to create tag.';
 		} finally {
 			creating = false;
@@ -121,7 +124,7 @@
 				page_size: PAGE_SIZE
 			}).refresh();
 		} catch (error) {
-			console.error(error);
+			console.error('Unable to update tag', error);
 			action_error = error instanceof Error ? error.message : 'Unable to update tag.';
 		} finally {
 			set_row_busy(row.id, false);
@@ -129,10 +132,6 @@
 	}
 
 	async function remove_tag(row: TagListItem) {
-		if (!window.confirm(`Delete tag "${row.name}"? This cannot be undone.`)) {
-			return;
-		}
-
 		set_row_busy(row.id, true);
 		clear_feedback();
 
@@ -146,26 +145,33 @@
 				page_size: PAGE_SIZE
 			}).refresh();
 		} catch (error) {
-			console.error(error);
+			console.error('Unable to delete tag', error);
 			action_error = error instanceof Error ? error.message : 'Unable to delete tag.';
+			throw error;
 		} finally {
 			set_row_busy(row.id, false);
 		}
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<h1 class="h3">Tags</h1>
+<svelte:head>
+	<title>Tags | Syntax Admin</title>
+</svelte:head>
 
-	<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={create_new_tag}>
+<div class="admin-page stack">
+	<form class="admin-inline-form admin-actions" onsubmit={create_new_tag}>
+		<label class="admin-visually-hidden" for="new-tag-name">Tag name</label>
 		<input
+			id="new-tag-name"
 			type="text"
 			bind:value={new_name}
 			placeholder="New tag name"
 			required
 			disabled={creating}
 		/>
-		<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create Tag'}</button>
+		<button type="submit" data-intent="primary" disabled={creating}>
+			{creating ? 'Creating…' : 'Create tag'}
+		</button>
 	</form>
 
 	<AdminList
@@ -177,15 +183,15 @@
 		visible_ids={list_result.items.map((item) => item.id)}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-field">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 					placeholder="Search tags"
 				/>
 				{#if show_clear_filters}
-					<div>
-						<a class="button small" href={resolve('/admin/tags')}>× Clear</a>
+					<div class="admin-control-row">
+						<a class="button" data-intent="quiet" href={resolve('/admin/tags')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -193,17 +199,17 @@
 
 		{#snippet action_feedback()}
 			{#if action_message}
-				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 			{/if}
 			{#if action_error}
-				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 			{/if}
 		{/snippet}
 
 		{#snippet table_head(_params)}
 			<th>Name</th>
 			<th>Slug</th>
-			<th class="center">Usage count</th>
+			<th>Usage count</th>
 			<th>Actions</th>
 		{/snippet}
 
@@ -213,8 +219,10 @@
 				<tr>
 					<td>
 						<input
+							aria-label={`Rename ${row.name}`}
 							type="text"
 							value={draft.name}
+							disabled={row_busy[row.id]}
 							oninput={(event) => {
 								const target = event.currentTarget;
 								if (!(target instanceof HTMLInputElement)) return;
@@ -223,25 +231,24 @@
 						/>
 					</td>
 					<td>/{row.slug}</td>
-					<td class="center"><a href={resolve(`/admin/tags/${row.id}`)}>{row.content_count}</a></td>
+					<td><a href={resolve(`/admin/tags/${row.id}`)}>{row.content_count}</a></td>
 					<td>
-						<div class="flex" style:--flex-gap="var(--pad-xsmall)">
+						<div class="admin-control-row">
 							<button
-								class="small"
 								type="button"
+								data-intent="primary"
 								onclick={() => save_tag(row)}
 								disabled={row_busy[row.id]}
 							>
-								Save
+								{row_busy[row.id] ? 'Saving…' : 'Save'}
 							</button>
-							<button
-								class="small delete-btn"
-								type="button"
-								onclick={() => remove_tag(row)}
-								disabled={row_busy[row.id]}
-							>
-								Delete
-							</button>
+							<AdminConfirmDialog
+								title={`Delete ${row.name}?`}
+								description="This permanently deletes the tag and cannot be undone."
+								action_label="Delete tag"
+								trigger_label="Delete"
+								onconfirm={() => remove_tag(row)}
+							/>
 						</div>
 					</td>
 				</tr>
@@ -255,36 +262,3 @@
 		{/snippet}
 	</AdminList>
 </div>
-
-<style lang="postcss">
-	td input {
-		width: 100%;
-		background: transparent;
-		border: 1px solid var(--c-fg-1);
-		padding: 4px 8px;
-		font-size: var(--fs-2);
-		color: var(--c-fg);
-		border-radius: var(--br-small);
-	}
-
-	td input:focus {
-		border-color: var(--c-primary);
-		outline: none;
-	}
-
-	.center {
-		text-align: center;
-	}
-
-	.delete-btn {
-		background: transparent;
-		color: var(--c-fg);
-		border: 1px solid var(--c-fg-1);
-	}
-
-	.delete-btn:hover {
-		background: var(--c-red);
-		color: white;
-		border-color: var(--c-red);
-	}
-</style>

@@ -30,7 +30,8 @@ const list_videos_schema = v.object({
 const update_video_meta_schema = v.object({
 	content_id: v.string(),
 	status: v.picklist(VIDEO_STATUS_VALUES),
-	published_at_iso: v.optional(v.nullable(v.string()))
+	published_at_iso: v.optional(v.nullable(v.string())),
+	tag_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1))))
 });
 
 const delete_video_schema = v.object({
@@ -148,6 +149,8 @@ export const list_videos = query(list_videos_schema, async (input) => {
 });
 
 export const get_remote_playlists = query(async () => {
+	assert_admin_user();
+
 	const playlist_data = await db.query.remotePlaylist.findMany({
 		orderBy: (content, { desc }) => [desc(content.created_at)]
 	});
@@ -166,6 +169,8 @@ export const get_remote_playlists = query(async () => {
 });
 
 export const get_playlist = query(v.string(), async (playlist_id) => {
+	assert_admin_user();
+
 	return db.query.playlist.findFirst({
 		where: eq(playlist.id, playlist_id),
 		with: {
@@ -183,6 +188,8 @@ export const get_playlist = query(v.string(), async (playlist_id) => {
 // ======================================================
 
 export const import_remote_playlists = command(async () => {
+	assert_admin_user();
+
 	try {
 		await get_youtube_playlists();
 		return {
@@ -198,6 +205,8 @@ export const import_remote_playlists = command(async () => {
 });
 
 export const import_playlist = command(v.string(), async (playlist_id) => {
+	assert_admin_user();
+
 	try {
 		await import_youtube_playlist(playlist_id);
 		get_remote_playlists().refresh();
@@ -221,19 +230,35 @@ export const update_video_meta = command(update_video_meta_schema, async (input)
 		next_published_at = new Date();
 	}
 
-	const updated_rows = await db
-		.update(content)
-		.set({
-			status: input.status,
-			published_at: next_published_at,
-			updated_at: new Date()
-		})
-		.where(and(eq(content.id, input.content_id), eq(content.type, 'VIDEO')))
-		.returning({ id: content.id });
+	await db.transaction(async (tx) => {
+		const updated_rows = await tx
+			.update(content)
+			.set({
+				status: input.status,
+				published_at: next_published_at,
+				updated_at: new Date()
+			})
+			.where(and(eq(content.id, input.content_id), eq(content.type, 'VIDEO')))
+			.returning({ id: content.id });
 
-	if (updated_rows.length === 0) {
-		error(404, 'Video not found');
-	}
+		if (updated_rows.length === 0) {
+			error(404, 'Video not found');
+		}
+
+		if (input.tag_ids !== undefined) {
+			const tag_ids = [...new Set(input.tag_ids)].sort();
+
+			await tx.delete(content_tags).where(eq(content_tags.content_id, input.content_id));
+			if (tag_ids.length > 0) {
+				await tx.insert(content_tags).values(
+					tag_ids.map((tag_id) => ({
+						content_id: input.content_id,
+						tag_id
+					}))
+				);
+			}
+		}
+	});
 
 	return { success: true };
 });

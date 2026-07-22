@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { page as current_page } from '$app/state';
-	import { resolve } from '$app/paths';
-	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import { format } from 'date-fns';
+	import { onDestroy } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import { page as current_page } from '$app/state';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
+	import SlugEditor from '$lib/admin/SlugEditor.svelte';
+	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
 	import {
 		add_social_link,
 		delete_guest,
@@ -28,15 +32,116 @@
 	);
 	let new_social_link = $state('');
 
-	let saving = $state(false);
-	let deleting = $state(false);
 	let adding_link = $state(false);
-	let status_message = $state('');
 	let status_error = $state('');
 
+	interface GuestPayload {
+		id: string;
+		name: string;
+		name_slug: string;
+		twitter: string | null;
+		github: string | null;
+		url: string | null;
+		of: string | null;
+	}
+
+	const autosave = create_autosave_controller<GuestPayload>(async (payload) => {
+		try {
+			await update_guest(payload);
+		} catch (error) {
+			console.error('Unable to autosave guest', error);
+			throw error;
+		}
+	});
+
+	onDestroy(() => autosave.cleanup());
+
 	function clear_feedback() {
-		status_message = '';
 		status_error = '';
+	}
+
+	function create_guest_payload(): GuestPayload | null {
+		if (!loaded_guest) {
+			return null;
+		}
+
+		return {
+			id: loaded_guest.id,
+			name,
+			name_slug,
+			twitter: twitter.trim() || null,
+			github: github.trim() || null,
+			url: url.trim() || null,
+			of: of.trim() || null
+		};
+	}
+
+	function schedule_save(): void {
+		const payload = create_guest_payload();
+		if (payload) {
+			autosave.schedule(payload);
+		}
+	}
+
+	function handle_slug_change(next_slug: string): void {
+		name_slug = next_slug;
+		schedule_save();
+	}
+
+	function handle_name_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		name = target.value;
+		schedule_save();
+	}
+
+	function handle_title_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		of = target.value;
+		schedule_save();
+	}
+
+	function handle_twitter_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		twitter = target.value;
+		schedule_save();
+	}
+
+	function handle_github_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		github = target.value;
+		schedule_save();
+	}
+
+	function handle_url_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		url = target.value;
+		schedule_save();
+	}
+
+	async function handle_submit(event: SubmitEvent): Promise<void> {
+		event.preventDefault();
+		schedule_save();
+		await autosave.save_now();
 	}
 
 	async function refresh_social_links() {
@@ -44,57 +149,21 @@
 		social_links = (refreshed?.socialLinks ?? []).map((row) => ({ id: row.id, link: row.link }));
 	}
 
-	async function save_guest() {
-		if (!loaded_guest) {
-			status_error = 'Guest not found.';
-			return;
-		}
-
-		saving = true;
-		clear_feedback();
-
-		try {
-			await update_guest({
-				id: loaded_guest.id,
-				name,
-				name_slug,
-				twitter: twitter.trim() || null,
-				github: github.trim() || null,
-				url: url.trim() || null,
-				of: of.trim() || null
-			});
-			status_message = 'Guest updated.';
-		} catch (error) {
-			console.error('Unable to save guest', error);
-			status_error = error instanceof Error ? error.message : 'Unable to save guest.';
-		} finally {
-			saving = false;
-		}
-	}
-
 	async function handle_delete_guest() {
 		if (!loaded_guest) {
-			status_error = 'Guest not found.';
-			return;
+			throw new Error('Guest not found.');
 		}
 
 		clear_feedback();
-		const confirm_text = window.prompt('Type DELETE to confirm deleting this guest');
-		if (confirm_text !== 'DELETE') {
-			status_message = 'Delete cancelled.';
-			return;
-		}
-
-		deleting = true;
+		await autosave.save_now();
 
 		try {
-			await delete_guest({ guest_id: loaded_guest.id, confirm_text });
+			await delete_guest({ guest_id: loaded_guest.id, confirm_text: 'DELETE' });
 			await goto(resolve('/admin/guests'));
 		} catch (error) {
 			console.error('Unable to delete guest', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete guest.';
-		} finally {
-			deleting = false;
+			throw error;
 		}
 	}
 
@@ -137,76 +206,120 @@
 	}
 </script>
 
+<svelte:head>
+	<title
+		>{loaded_guest
+			? `Edit guest: ${loaded_guest.name} | Syntax Admin`
+			: 'Guest not found | Syntax Admin'}</title
+	>
+</svelte:head>
+
 {#if !loaded_guest}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Guest not found</h1>
-		<p><a href={resolve('/admin/guests')}>Back to guests</a></p>
+	<div class="admin-page stack">
+		<p class="admin-feedback" data-tone="negative" role="alert">Guest not found.</p>
 	</div>
 {:else}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Edit Guest</h1>
+	<div class="admin-page stack">
+		<AdminSaveStatus
+			state={autosave.state}
+			error_message={autosave.error_message}
+			onretry={() => autosave.retry()}
+		/>
 
-		<form
-			class="stack readable"
-			style:--stack-gap="var(--pad-small)"
-			onsubmit={(event) => {
-				event.preventDefault();
-				void save_guest();
-			}}
-		>
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Name</span>
-				<input type="text" bind:value={name} required />
-			</label>
+		<form class="admin-editor stack" onsubmit={handle_submit}>
+			<section class="admin-section" aria-labelledby="guest-profile-heading">
+				<h2 id="guest-profile-heading" class="h5">Profile</h2>
 
-			<SlugEditor bind:title={name} bind:slug={name_slug} label="Name slug" />
+				<div class="admin-field">
+					<label for="guest-name">Name</label>
+					<input
+						id="guest-name"
+						name="name"
+						type="text"
+						bind:value={name}
+						oninput={handle_name_input}
+						required
+					/>
+				</div>
 
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Title</span>
-				<input type="text" bind:value={of} placeholder="e.g. Senior Engineer at Acme" />
-			</label>
+				<SlugEditor
+					bind:title={name}
+					bind:slug={name_slug}
+					label="Name slug"
+					onchange={handle_slug_change}
+				/>
 
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Twitter handle</span>
-				<input type="text" bind:value={twitter} placeholder="username (no @)" />
-			</label>
+				<div class="admin-field">
+					<label for="guest-title">Title</label>
+					<input
+						id="guest-title"
+						name="of"
+						type="text"
+						bind:value={of}
+						placeholder="e.g. Senior Engineer at Acme"
+						oninput={handle_title_input}
+					/>
+				</div>
 
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">GitHub handle</span>
-				<input type="text" bind:value={github} placeholder="username" />
-			</label>
+				<div class="admin-field">
+					<label for="guest-twitter">Twitter handle</label>
+					<input
+						id="guest-twitter"
+						name="twitter"
+						type="text"
+						bind:value={twitter}
+						placeholder="username (no @)"
+						oninput={handle_twitter_input}
+					/>
+				</div>
 
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Website URL</span>
-				<input type="url" bind:value={url} placeholder="https://example.com" />
-			</label>
+				<div class="admin-field">
+					<label for="guest-github">GitHub handle</label>
+					<input
+						id="guest-github"
+						name="github"
+						type="text"
+						bind:value={github}
+						placeholder="username"
+						oninput={handle_github_input}
+					/>
+				</div>
 
-			<button type="submit" disabled={saving || deleting}>
-				{saving ? 'Saving...' : 'Save Guest'}
-			</button>
+				<div class="admin-field">
+					<label for="guest-url">Website URL</label>
+					<input
+						id="guest-url"
+						name="url"
+						type="url"
+						bind:value={url}
+						placeholder="https://example.com"
+						oninput={handle_url_input}
+					/>
+				</div>
+			</section>
 		</form>
 
-		{#if status_message}
-			<p class="fs-2" style="color: var(--c-green)">{status_message}</p>
-		{/if}
-
 		{#if status_error}
-			<p class="fs-2" style="color: var(--c-red)">{status_error}</p>
+			<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
 		{/if}
 
-		<section class="stack" style:--stack-gap="var(--pad-small)">
-			<h2 class="h5">Social links</h2>
+		<section class="admin-section" aria-labelledby="social-links-heading">
+			<h2 id="social-links-heading" class="h5">Social links</h2>
 
 			{#if social_links.length === 0}
-				<p class="fs-2">No social links yet.</p>
+				<p class="admin-feedback">No social links yet.</p>
 			{:else}
-				<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
+				<ul class="no-list stack">
 					{#each social_links as social_link_row (social_link_row.id)}
-						<li class="split" style:--split-gap="var(--pad-small)">
+						<li class="admin-row">
 							<a href={social_link_row.link} target="_blank" rel="noopener noreferrer external">
 								{social_link_row.link}
 							</a>
-							<button type="button" onclick={() => handle_remove_social_link(social_link_row.id)}>
+							<button
+								type="button"
+								data-intent="quiet"
+								onclick={() => handle_remove_social_link(social_link_row.id)}
+							>
 								Remove
 							</button>
 						</li>
@@ -214,35 +327,43 @@
 				</ul>
 			{/if}
 
-			<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_add_social_link}>
+			<form class="admin-inline-form" onsubmit={handle_add_social_link}>
+				<label class="admin-visually-hidden" for="new-social-link">Social link URL</label>
 				<input
+					id="new-social-link"
 					type="url"
 					bind:value={new_social_link}
 					placeholder="https://example.com/profile"
 					disabled={adding_link}
 				/>
-				<button type="submit" disabled={adding_link || new_social_link.trim().length === 0}>
-					{adding_link ? 'Adding...' : 'Add link'}
+				<button
+					type="submit"
+					data-intent="primary"
+					disabled={adding_link || new_social_link.trim().length === 0}
+				>
+					{adding_link ? 'Adding…' : 'Add link'}
 				</button>
 			</form>
 		</section>
 
-		<section class="stack" style:--stack-gap="var(--pad-small)">
-			<h2 class="h5">Shows</h2>
+		<section class="admin-section" aria-labelledby="guest-shows-heading">
+			<h2 id="guest-shows-heading" class="h5">Shows</h2>
 
 			{#if loaded_guest.shows.length === 0}
-				<p class="fs-2">No shows yet.</p>
+				<p class="admin-feedback">No shows yet.</p>
 			{:else}
-				<ul class="no-list stack" style:--stack-gap="var(--pad-xsmall)">
+				<ul class="no-list stack">
 					{#each loaded_guest.shows as show_row (show_row.number)}
-						<li class="split" style:--split-gap="var(--pad-small)">
-							<span class="flex" style:--flex-gap="var(--pad-xsmall)">
+						<li class="admin-row">
+							<span class="admin-control-row">
 								<span class="fs-2">#{show_row.number}</span>
 								<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
 							</span>
-							<span class="flex" style:--flex-gap="var(--pad-small)">
+							<span class="admin-control-row">
 								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
 								<a
+									class="button"
+									data-intent="quiet"
 									href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -256,14 +377,15 @@
 			{/if}
 		</section>
 
-		<section class="stack" style:--stack-gap="var(--pad-small)">
-			<h2 class="h5">Danger zone</h2>
-			<div class="flex" style:--flex-gap="var(--pad-small)">
-				<button type="button" onclick={handle_delete_guest} disabled={saving || deleting}>
-					{deleting ? 'Deleting...' : 'Delete Guest'}
-				</button>
-				<a href={resolve('/admin/guests')}>Back to guests</a>
-			</div>
+		<section class="admin-section admin-danger" aria-labelledby="delete-guest-heading">
+			<h2 id="delete-guest-heading" class="h5">Delete guest</h2>
+			<p>Permanently remove this guest and their social links.</p>
+			<AdminConfirmDialog
+				title="Delete guest?"
+				description="This permanently deletes the guest and cannot be undone."
+				action_label="Delete guest"
+				onconfirm={handle_delete_guest}
+			/>
 		</section>
 	</div>
 {/if}

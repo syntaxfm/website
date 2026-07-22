@@ -1,53 +1,100 @@
 <script lang="ts">
-	import AdminActions from '../../../AdminActions.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
 	import { delete_all_transcripts, import_all_transcripts } from '../admin_podcast.remote';
+	import type { PageData } from './$types';
 
-	let { data } = $props();
-	let { transcripts } = $derived(data);
+	type PendingAction = 'import' | 'delete';
+	type FeedbackTone = 'positive' | 'negative';
 
-	type status_type = 'success' | 'error';
+	let { data }: { data: PageData } = $props();
+	let transcripts = $derived(data.transcripts);
+	let pending_action = $state<PendingAction | null>(null);
 	let status_message = $state('');
-	let status_kind = $state<status_type | null>(null);
+	let status_tone = $state<FeedbackTone | null>(null);
 
-	async function handle_import_all_transcripts() {
+	async function handle_import_all_transcripts(): Promise<void> {
+		if (pending_action) {
+			return;
+		}
+
+		pending_action = 'import';
+		status_message = '';
+		status_tone = null;
+
 		try {
-			await import_all_transcripts();
-			status_kind = 'success';
-			status_message = 'Transcripts import completed.';
+			const result = await import_all_transcripts();
+			status_tone = 'positive';
+			status_message = result.message;
 			window.location.reload();
 		} catch (error) {
-			status_kind = 'error';
+			console.error('Unable to import transcripts', error);
+			status_tone = 'negative';
 			status_message = error instanceof Error ? error.message : 'Failed to import transcripts.';
+		} finally {
+			pending_action = null;
 		}
 	}
 
-	async function handle_delete_all_transcripts() {
+	async function handle_delete_all_transcripts(): Promise<void> {
+		if (pending_action) {
+			throw new Error('Another transcript action is already running.');
+		}
+
+		pending_action = 'delete';
+		status_message = '';
+		status_tone = null;
+
 		try {
-			await delete_all_transcripts();
-			status_kind = 'success';
-			status_message = 'Dropped all transcripts.';
+			const result = await delete_all_transcripts();
+			status_tone = 'positive';
+			status_message = result.message;
 			window.location.reload();
 		} catch (error) {
-			status_kind = 'error';
+			console.error('Unable to delete all transcripts', error);
+			status_tone = 'negative';
 			status_message = error instanceof Error ? error.message : 'Failed to delete transcripts.';
+			throw error;
+		} finally {
+			pending_action = null;
 		}
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Transcripts</h1>
-		<AdminActions>
-			<button type="button" onclick={handle_import_all_transcripts}>Import All Transcripts</button>
-			<button class="warning" type="button" onclick={handle_delete_all_transcripts}>
-				Drop All Transcripts
-			</button>
-		</AdminActions>
+<svelte:head>
+	<title>Show Transcripts | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<div class="admin-actions">
+		<button
+			type="button"
+			data-intent="primary"
+			onclick={handle_import_all_transcripts}
+			disabled={pending_action !== null}
+		>
+			{pending_action === 'import' ? 'Importing…' : 'Import all'}
+		</button>
+		{#if pending_action === 'import'}
+			<button type="button" data-intent="danger" disabled>Delete all</button>
+		{:else}
+			<AdminConfirmDialog
+				title="Delete all transcripts?"
+				description="This permanently deletes every imported transcript and all of their utterances."
+				confirm_phrase="DELETE ALL"
+				action_label="Delete all transcripts"
+				trigger_label="Delete all"
+				onconfirm={handle_delete_all_transcripts}
+			/>
+		{/if}
 	</div>
 
 	{#if status_message}
-		<p class={status_kind === 'error' ? 'alert alert-error' : 'alert alert-success'}>
+		<p
+			class="admin-feedback"
+			data-tone={status_tone}
+			role={status_tone === 'negative' ? 'alert' : 'status'}
+		>
 			{status_message}
 		</p>
 	{/if}
@@ -78,7 +125,7 @@
 
 		{#snippet empty()}
 			<tr>
-				<td colspan="3">No Transcripts found</td>
+				<td colspan="3">No transcripts found.</td>
 			</tr>
 		{/snippet}
 	</AdminList>

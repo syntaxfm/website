@@ -340,25 +340,30 @@ export const create_content = command(create_content_schema, async (input) => {
 		error(409, 'Slug already exists');
 	}
 
-	if (!event.locals.user?.id) {
+	const author_id = event.locals.user?.id;
+	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}
 
-	const [created_content] = await db
-		.insert(content)
-		.values({
-			title: input.title,
-			slug: normalized_slug,
-			type: 'ARTICLE',
-			status: 'DRAFT'
-		})
-		.returning({ id: content.id });
+	const created_content = await db.transaction(async (tx) => {
+		const [inserted_content] = await tx
+			.insert(content)
+			.values({
+				title: input.title,
+				slug: normalized_slug,
+				type: 'ARTICLE',
+				status: 'DRAFT'
+			})
+			.returning({ id: content.id });
 
-	await db.insert(article).values({
-		id: created_content.id,
-		body: '',
-		author_id: event.locals.user.id,
-		content_id: created_content.id
+		await tx.insert(article).values({
+			id: inserted_content.id,
+			body: '',
+			author_id,
+			content_id: inserted_content.id
+		});
+
+		return inserted_content;
 	});
 
 	return {

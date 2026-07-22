@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { slide } from 'svelte/transition';
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 
 	type NavLink = { text: string; path: Pathname; subroutes?: NavLink[] };
 
-	let links: NavLink[] = [
+	const links: NavLink[] = [
 		{
 			text: 'Dashboard',
 			path: '/admin'
@@ -69,6 +68,13 @@
 		}
 	];
 
+	function path_matches(link_path: Pathname, current_path: string): boolean {
+		return (
+			current_path === link_path ||
+			(link_path !== '/admin' && current_path.startsWith(`${link_path}/`))
+		);
+	}
+
 	// Derive the active parent link based on current path
 	let active_parent = $derived.by(() => {
 		const current_path = page.url.pathname;
@@ -76,16 +82,16 @@
 		// Find the link that matches the current path or whose subroutes include it
 		return links.find((link) => {
 			// Check if current path is exactly this link
-			if (current_path === link.path) return true;
+			if (path_matches(link.path, current_path)) return true;
 
 			// Check if current path is in any subroutes (recursively)
 			if (link.subroutes) {
 				return link.subroutes.some((subroute) => {
-					if (current_path === subroute.path) return true;
+					if (path_matches(subroute.path, current_path)) return true;
 
 					// Check nested subroutes
 					if (subroute.subroutes) {
-						return subroute.subroutes.some((nested) => current_path === nested.path);
+						return subroute.subroutes.some((nested) => path_matches(nested.path, current_path));
 					}
 
 					return false;
@@ -103,11 +109,11 @@
 		if (!active_parent?.subroutes) return null;
 
 		return active_parent.subroutes.find((subroute) => {
-			if (current_path === subroute.path) return true;
+			if (path_matches(subroute.path, current_path)) return true;
 
 			// Check if current path is in nested subroutes
 			if (subroute.subroutes) {
-				return subroute.subroutes.some((nested) => current_path === nested.path);
+				return subroute.subroutes.some((nested) => path_matches(nested.path, current_path));
 			}
 
 			return false;
@@ -123,70 +129,90 @@
 	let show_nested_subnav = $derived(active_nested_subroutes.length > 0);
 </script>
 
-<div class="admin-nav-wrapper">
-	<div class="admin-menu flex">
+<nav class="admin-nav" aria-label="Admin navigation">
+	<div class="admin-menu">
 		{#each links as link (link.path + 'admin-nav')}
-			<a href={resolve(link.path)} class:active={active_parent === link}>{link.text}</a>
+			<a
+				href={resolve(link.path)}
+				class:active={active_parent === link}
+				aria-current={page.url.pathname === link.path ? 'page' : undefined}>{link.text}</a
+			>
 		{/each}
 	</div>
 
 	{#if show_subnav}
-		<div class="admin-submenu flex" transition:slide={{ duration: 200 }}>
+		<div class="admin-submenu" aria-label={`${active_parent?.text} navigation`}>
 			{#each active_subroutes as subroute (subroute.path + 'admin-subnav')}
-				<a href={resolve(subroute.path)} class:active={active_subroute === subroute}
-					>{subroute.text}</a
+				<a
+					href={resolve(subroute.path)}
+					class:active={active_subroute === subroute}
+					aria-current={page.url.pathname === subroute.path ? 'page' : undefined}>{subroute.text}</a
 				>
 			{/each}
 		</div>
 	{/if}
 
 	{#if show_nested_subnav}
-		<div class="admin-nested-submenu flex" transition:slide={{ duration: 200 }}>
+		<div class="admin-nested-submenu" aria-label={`${active_subroute?.text} navigation`}>
 			{#each active_nested_subroutes as nested (nested.path + 'admin-nested-subnav')}
-				<a href={nested.path} class:active={page.url.pathname === nested.path}>{nested.text}</a>
+				<a
+					href={resolve(nested.path)}
+					class:active={path_matches(nested.path, page.url.pathname)}
+					aria-current={page.url.pathname === nested.path ? 'page' : undefined}>{nested.text}</a
+				>
 			{/each}
 		</div>
 	{/if}
-</div>
+</nav>
 
 <style>
-	.admin-nav-wrapper {
-		border-bottom: var(--c-fg-1) solid 1px;
+	.admin-nav {
+		position: relative;
+		z-index: 2;
+		color: var(--c-fg);
+		background-color: var(--c-bg);
+		border-bottom: 1px solid var(--c-fg-2);
 	}
 
-	.admin-menu {
-		overflow: scroll;
-		gap: 15px;
+	.admin-menu,
+	.admin-submenu,
+	.admin-nested-submenu {
+		display: flex;
+		overflow-x: auto;
+		gap: var(--pad-medium);
 		padding: var(--pad-small) var(--pad-medium);
 		flex-wrap: nowrap;
+		scrollbar-width: thin;
 
 		a {
 			white-space: nowrap;
+			font-size: var(--fs-2);
+			color: var(--c-fg-7);
+			text-underline-offset: var(--pad-xsmall);
+
+			&:hover,
+			&:focus-visible,
+			&.active {
+				color: var(--c-fg);
+				text-decoration: underline;
+				text-decoration-color: var(--c-primary);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--c-primary);
+				outline-offset: 2px;
+			}
 		}
 	}
 
 	.admin-submenu,
 	.admin-nested-submenu {
-		overflow: scroll;
-		gap: 15px;
-		padding: var(--pad-small) var(--pad-medium);
-		flex-wrap: nowrap;
-		border-top: var(--c-fg-1) solid 1px;
+		padding-block: var(--pad-xsmall);
+		background-color: var(--c-fg-05);
+		border-top: 1px solid var(--c-fg-1);
+	}
 
-		a {
-			white-space: nowrap;
-			font-size: 0.9em;
-			opacity: 0.85;
-
-			&:hover {
-				text-decoration: underline;
-				opacity: 1;
-			}
-
-			&.active {
-				text-decoration: underline;
-				opacity: 1;
-			}
-		}
+	.admin-nested-submenu {
+		padding-inline-start: var(--pad-xlarge);
 	}
 </style>

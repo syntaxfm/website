@@ -103,16 +103,18 @@
 	let action_error = $state('');
 	let busy = $state(false);
 
-	const submission_results = await get_submissions({
-		search_text,
-		status: status_filter,
-		submission_type: type_filter,
-		date_from_iso: date_from || undefined,
-		date_to_iso: date_to || undefined,
-		order,
-		page: page_number,
-		page_size: Number.parseInt(page_size_value, 10)
-	});
+	const submission_results = $derived(
+		get_submissions({
+			search_text,
+			status: status_filter,
+			submission_type: type_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			order,
+			page: page_number,
+			page_size: Number.parseInt(page_size_value, 10)
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -185,15 +187,16 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
+<svelte:head>
+	<title>Submissions | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
 	{#await submission_results}
-		<h1 class="h3">Submissions</h1>
-		<p class="fs-2">Loading submissions...</p>
+		<p class="admin-feedback" role="status">Loading submissions...</p>
 	{:then list_result}
 		{@const list_items = list_result.items}
 		{@const visible_ids = list_items.map((item) => item.id)}
-
-		<h1 class="h3">Submissions ({list_result.total})</h1>
 
 		<AdminList
 			total={list_result.total}
@@ -206,26 +209,14 @@
 			{busy}
 		>
 			{#snippet filters()}
-				<div class="stack" style:--stack-gap="var(--pad-small)">
+				<div class="admin-control">
 					<AdminSearch
 						text={search_text}
 						on_input={(value) => update_url({ q: value || null, page: null })}
 						placeholder="Search name, email, or body"
 					/>
-					<div
-						class="flex"
-						style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: flex-end"
-					>
-						<label
-							class="stack"
-							style="
-
---stack-gap: 2px"
-						>
+					<div class="admin-control-row">
+						<label class="admin-field">
 							<span class="fs-1">From</span>
 							<input
 								type="date"
@@ -234,12 +225,7 @@
 									update_url({ date_from: e.currentTarget.value || null, page: null })}
 							/>
 						</label>
-						<label
-							class="stack"
-							style="
-
---stack-gap: 2px"
-						>
+						<label class="admin-field">
 							<span class="fs-1">To</span>
 							<input
 								type="date"
@@ -285,21 +271,16 @@
 								})}
 						/>
 						{#if show_clear_filters}
-							<a class="button small" href={resolve('/admin/submissions')}>× Clear</a>
+							<a class="button small" data-intent="quiet" href={resolve('/admin/submissions')}
+								>× Clear</a
+							>
 						{/if}
 					</div>
 				</div>
 			{/snippet}
 
 			{#snippet bulk()}
-				<div
-					class="flex"
-					style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: center"
-				>
+				<div class="admin-actions">
 					<SelectMenu
 						popover_id="filter-bulk_status"
 						button_text={`Bulk status (${bulk_status})`}
@@ -308,7 +289,12 @@
 						options={BULK_STATUS_OPTIONS}
 						onselect={(value) => update_url({ bulk_status: value || null })}
 					/>
-					<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+					<button
+						type="button"
+						data-intent="primary"
+						onclick={run_bulk_status_update}
+						disabled={busy}
+					>
 						Update status
 					</button>
 				</div>
@@ -316,10 +302,10 @@
 
 			{#snippet action_feedback()}
 				{#if action_message}
-					<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+					<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 				{/if}
 				{#if action_error}
-					<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+					<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 				{/if}
 			{/snippet}
 
@@ -361,7 +347,7 @@
 							/>
 						</td>
 						<td>
-							<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+							<div class="admin-control">
 								<span>{submission.name || 'Anon'}</span>
 								<span class="fs-1">{submission.email || 'No email'}</span>
 							</div>
@@ -397,6 +383,7 @@
 							{#if submission.status === 'COMPLETED'}
 								<button
 									type="button"
+									data-intent="quiet"
 									disabled={busy}
 									onclick={() => {
 										void set_submission_status(submission.id, 'PENDING');
@@ -407,6 +394,7 @@
 							{:else}
 								<button
 									type="button"
+									data-intent="primary"
 									disabled={busy}
 									onclick={() => {
 										void set_submission_status(submission.id, 'COMPLETED');
@@ -427,8 +415,9 @@
 			{/snippet}
 		</AdminList>
 	{:catch}
-		<h1 class="h3">Submissions</h1>
-		<p class="fs-2" style="color: var(--c-red)">Unable to load submissions. Please try again.</p>
+		<p class="admin-feedback" data-tone="negative" role="alert">
+			Unable to load submissions. Please try again.
+		</p>
 	{/await}
 </div>
 

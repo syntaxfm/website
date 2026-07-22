@@ -2,38 +2,42 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import SelectMenu from '$lib/SelectMenu.svelte';
+	import { onDestroy } from 'svelte';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '$lib/admin/MarkdownEditor.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
 	import SlugEditor from '$lib/admin/SlugEditor.svelte';
 	import StatusSelect from '$lib/admin/StatusSelect.svelte';
+	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
 	import {
 		delete_article,
 		get_article_authors,
 		get_article_editor,
 		update_article
 	} from '../admin_articles.remote';
-	import {
-		assign_content_tags,
-		get_tag_options,
-		remove_content_tags
-	} from '../../admin_content.remote';
+	import { get_tag_options } from '../../admin_content.remote';
 
 	type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
 
+	interface ArticlePayload {
+		content_id: string;
+		title: string;
+		slug: string;
+		status: Status;
+		published_at_iso: string | null;
+		body: string;
+		author_id: string;
+		tag_ids?: string[];
+	}
+
+	interface ArticlePayloadOptions {
+		tag_ids?: string[];
+	}
+
 	const content_id = (current_page.params as Record<string, string>).content_id ?? '';
-	const loaded_article_item = await get_article_editor(content_id);
-	const initial_title = loaded_article_item?.meta.title ?? '';
-	const initial_slug = loaded_article_item?.meta.slug ?? '';
-	const initial_status = (loaded_article_item?.meta.status ?? 'DRAFT') as Status;
-	const initial_published_at = loaded_article_item?.meta.published_at
-		? new Date(loaded_article_item.meta.published_at)
-		: null;
-	const initial_author_id = loaded_article_item?.author_id ?? '';
-	const initial_body = loaded_article_item?.body ?? '';
-	const initial_selected_tag_ids =
-		loaded_article_item?.meta.tags.map((content_tag) => content_tag.tag.id) ?? [];
+	const article_item = await get_article_editor(content_id);
 	const authors = await get_article_authors();
 	const author_options = authors.map((author) => ({
 		value: author.id,
@@ -44,182 +48,187 @@
 		name: tag_item.name
 	}));
 
-	let article_item = $state(loaded_article_item);
-	let title = $state(initial_title);
-	let slug = $state(initial_slug);
-	let status = $state<Status>(initial_status);
-	let published_at = $state<Date | null>(initial_published_at);
-	let author_id = $derived.by(() => {
-		const author_id_param = current_page.url.searchParams.get('author_id');
-		if (!author_id_param) {
-			return initial_author_id;
-		}
-
-		return author_options.some((option) => option.value === author_id_param)
-			? author_id_param
-			: initial_author_id;
-	});
-	let selected_author_label = $derived.by(
-		() => author_options.find((option) => option.value === author_id)?.label ?? 'Select author'
+	let title = $state(article_item?.meta.title ?? '');
+	let slug = $state(article_item?.meta.slug ?? '');
+	let status = $state<Status>((article_item?.meta.status ?? 'DRAFT') as Status);
+	let published_at = $state<Date | null>(
+		article_item?.meta.published_at ? new Date(article_item.meta.published_at) : null
 	);
-	let body = $state(initial_body);
-	let selected_tag_ids = $state(initial_selected_tag_ids);
-	let initial_tag_ids = $state([...initial_selected_tag_ids]);
+	let author_id = $state(article_item?.author_id ?? '');
+	let body = $state(article_item?.body ?? '');
+	let selected_tag_ids = $state(
+		article_item?.meta.tags.map((content_tag) => content_tag.tag.id) ?? []
+	);
 
-	let selected_tags_set = $derived(new Set(selected_tag_ids));
-	let initial_tags_set = $derived(new Set(initial_tag_ids));
-
-	let tags_to_add = $derived(selected_tag_ids.filter((tag_id) => !initial_tags_set.has(tag_id)));
-	let tags_to_remove = $derived(initial_tag_ids.filter((tag_id) => !selected_tags_set.has(tag_id)));
-
-	let saving = $state(false);
-	let deleting = $state(false);
-	let status_message = $state('');
-	let status_error = $state('');
-
-	async function save_article() {
-		if (!article_item) {
-			status_error = 'Article not found.';
-			return;
-		}
-
-		if (!author_id) {
-			status_error = 'Author is required.';
-			return;
-		}
-
-		saving = true;
-		status_message = '';
-		status_error = '';
-
-		try {
-			await update_article({
-				content_id: article_item.content_id,
-				title,
-				slug,
-				status,
-				published_at_iso: published_at ? published_at.toISOString() : null,
-				body,
-				author_id
-			});
-
-			if (tags_to_add.length > 0) {
-				await assign_content_tags({
-					content_ids: [article_item.content_id],
-					tag_ids: tags_to_add
-				});
-			}
-
-			if (tags_to_remove.length > 0) {
-				await remove_content_tags({
-					content_ids: [article_item.content_id],
-					tag_ids: tags_to_remove
-				});
-			}
-
-			article_item = await get_article_editor(content_id);
-			initial_tag_ids = [...selected_tag_ids];
-			status_message = 'Article updated.';
-		} catch (error) {
-			console.error(error);
-			status_error = error instanceof Error ? error.message : 'Unable to save article.';
-		} finally {
-			saving = false;
-		}
+	function create_article_payload({ tag_ids }: ArticlePayloadOptions = {}): ArticlePayload {
+		return {
+			content_id,
+			title,
+			slug,
+			status,
+			published_at_iso: published_at ? published_at.toISOString() : null,
+			body,
+			author_id,
+			...(tag_ids !== undefined ? { tag_ids: [...tag_ids] } : {})
+		};
 	}
 
-	async function handle_delete_article() {
-		if (!article_item) {
-			status_error = 'Article not found.';
-			return;
-		}
-
-		status_message = '';
-		status_error = '';
-
-		const confirm_text = window.prompt('Type DELETE to confirm deleting this article');
-		if (confirm_text !== 'DELETE') {
-			status_message = 'Delete cancelled.';
-			return;
-		}
-
-		deleting = true;
-
+	const autosave = create_autosave_controller<ArticlePayload>(async (payload) => {
 		try {
-			await delete_article({ content_id: article_item.content_id, confirm_text });
-			await goto(resolve('/admin/content/articles'));
+			await update_article(payload);
 		} catch (error) {
-			console.error('Unable to delete article', error);
-			status_error = error instanceof Error ? error.message : 'Unable to delete article.';
-		} finally {
-			deleting = false;
+			console.error('Unable to save article', error);
+			throw error;
 		}
+	});
+
+	function schedule_save(options?: ArticlePayloadOptions): void {
+		autosave.schedule(create_article_payload(options));
 	}
+
+	function save_immediately(options?: ArticlePayloadOptions): void {
+		schedule_save(options);
+		void autosave.save_now();
+	}
+
+	function handle_title_input(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLInputElement)) {
+			return;
+		}
+
+		title = target.value;
+		schedule_save();
+	}
+
+	function handle_slug_change(next_slug: string): void {
+		slug = next_slug;
+		schedule_save();
+	}
+
+	function handle_body_change(next_body: string): void {
+		body = next_body;
+		schedule_save();
+	}
+
+	function handle_status_change(next_status: Status): void {
+		status = next_status;
+		if (status === 'PUBLISHED' && !published_at) {
+			published_at = new Date();
+		}
+		save_immediately();
+	}
+
+	function handle_published_at_change(next_published_at: Date | null): void {
+		published_at = next_published_at;
+		save_immediately();
+	}
+
+	function handle_author_change(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLSelectElement)) {
+			return;
+		}
+
+		author_id = target.value;
+		save_immediately();
+	}
+
+	function handle_tags_change(next_tag_ids: string[]): void {
+		selected_tag_ids = [...next_tag_ids];
+		save_immediately({ tag_ids: selected_tag_ids });
+	}
+
+	async function handle_submit(event: SubmitEvent): Promise<void> {
+		event.preventDefault();
+		await autosave.save_now();
+	}
+
+	async function handle_delete_article(): Promise<void> {
+		if (!article_item) {
+			throw new Error('Article not found.');
+		}
+
+		await autosave.save_now();
+		await delete_article({ content_id: article_item.content_id, confirm_text: 'DELETE' });
+		await goto(resolve('/admin/content/articles'));
+	}
+
+	onDestroy(() => autosave.cleanup());
 </script>
 
+<svelte:head>
+	<title>Edit {title || content_id} | Syntax Admin</title>
+</svelte:head>
+
 {#if !article_item}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Article not found</h1>
-		<p><a href={resolve(`/admin/content/${content_id}`)}>Back to content shell</a></p>
+	<div class="admin-page stack">
+		<p class="admin-feedback" data-tone="negative" role="alert">Article not found.</p>
 	</div>
 {:else}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Article Editor</h1>
+	<div class="admin-page stack">
+		<AdminSaveStatus
+			state={autosave.state}
+			error_message={autosave.error_message}
+			onretry={() => autosave.retry()}
+		/>
 
-		<form
-			class="stack readable"
-			style:--stack-gap="var(--pad-small)"
-			onsubmit={(event) => {
-				event.preventDefault();
-				void save_article();
-			}}
-		>
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Title</span>
-				<input type="text" bind:value={title} required />
-			</label>
+		<form class="admin-editor-layout" onsubmit={handle_submit}>
+			<div class="admin-editor-main">
+				<div class="admin-field">
+					<label for="article-title">Title</label>
+					<input
+						id="article-title"
+						name="title"
+						type="text"
+						required
+						bind:value={title}
+						oninput={handle_title_input}
+					/>
+				</div>
 
-			<SlugEditor bind:title bind:slug />
-			<StatusSelect bind:status />
-			<DateTimePicker bind:value={published_at} />
+				<SlugEditor bind:title bind:slug onchange={handle_slug_change} />
+				<MarkdownEditor bind:value={body} onchange={handle_body_change} />
+			</div>
 
-			<label class="stack" style:--stack-gap="0.35rem">
-				<span class="fs-2">Author</span>
-				<SelectMenu
-					popover_id="filter-author_id"
-					button_text={`Author (${selected_author_label})`}
-					button_icon="filter"
-					value={author_id}
-					options={author_options}
+			<aside class="admin-metadata-rail" aria-label="Article metadata">
+				<StatusSelect bind:status onchange={handle_status_change} />
+				<DateTimePicker bind:value={published_at} onchange={handle_published_at_change} />
+
+				<div class="admin-field">
+					<label for="article-author">Author</label>
+					<select
+						id="article-author"
+						name="author_id"
+						required
+						bind:value={author_id}
+						onchange={handle_author_change}
+					>
+						<option value="" disabled>Select author</option>
+						{#each author_options as author (author.value)}
+							<option value={author.value}>{author.label}</option>
+						{/each}
+					</select>
+				</div>
+
+				<MultiSelect
+					options={tag_options}
+					bind:selected_ids={selected_tag_ids}
+					label="Tags"
+					onchange={handle_tags_change}
 				/>
-			</label>
-
-			<MultiSelect options={tag_options} bind:selected_ids={selected_tag_ids} label="Tags" />
-
-			<MarkdownEditor bind:value={body} />
-
-			<button type="submit" disabled={saving || deleting}
-				>{saving ? 'Saving...' : 'Save Article'}</button
-			>
+			</aside>
 		</form>
 
-		{#if status_message}
-			<p>{status_message}</p>
-		{/if}
-
-		{#if status_error}
-			<p>{status_error}</p>
-		{/if}
-
-		<p><a href={resolve(`/admin/content/${content_id}`)}>Back to content shell</a></p>
-
-		<section class="stack" style:--stack-gap="var(--pad-small)">
-			<h2 class="h5">Danger zone</h2>
-			<div class="flex" style:--flex-gap="var(--pad-small)">
-				<button type="button" onclick={handle_delete_article} disabled={saving || deleting}>
-					{deleting ? 'Deleting...' : 'Delete Article'}
-				</button>
-				<a href={resolve('/admin/content/articles')}>Back to articles</a>
+		<section class="admin-section admin-danger">
+			<h2>Delete article</h2>
+			<div class="admin-actions">
+				<AdminConfirmDialog
+					title="Delete article?"
+					description="This permanently deletes the article."
+					action_label="Delete article"
+					onconfirm={handle_delete_article}
+				/>
 			</div>
 		</section>
 	</div>

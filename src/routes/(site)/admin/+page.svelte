@@ -35,17 +35,12 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<h1 class="h3">Dashboard</h1>
+<svelte:head>
+	<title>Dashboard | Syntax Admin</title>
+</svelte:head>
 
-	<div
-		class="flex"
-		style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap"
-	>
+<div class="admin-page stack">
+	<div class="admin-control-row">
 		<a class="button small" href={resolve('/admin/submissions?status=PENDING')}>
 			<strong>{dashboard.pending_submissions_count}</strong>
 			<span>&nbsp;Pending submissions</span>
@@ -64,17 +59,11 @@
 	</div>
 
 	{#if dashboard.submission_breakdown.length > 0}
-		<div
-			class="flex"
-			style="
-
---flex-gap: var(--pad-xsmall);
-
- flex-wrap: wrap"
-		>
+		<div class="admin-control-row">
 			{#each dashboard.submission_breakdown as bucket (bucket.submission_type)}
 				<a
 					class="button small"
+					data-intent="quiet"
 					href={resolve(
 						`/admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`
 					)}
@@ -86,7 +75,7 @@
 	{/if}
 
 	{#if dashboard.activity.length > 0}
-		<section class="stack" style:--stack-gap="var(--pad-small)">
+		<section class="admin-section">
 			<h2 class="h5">Recent activity (last 7 days)</h2>
 			<div class="table-container">
 				<table>
@@ -134,10 +123,13 @@
 		</section>
 	{/if}
 
-	<section class="stack" style:--stack-gap="var(--pad-small)">
-		<div class="split" style:--split-gap="var(--pad-small)">
+	<section class="admin-section">
+		<div class="admin-control-row">
 			<h2 class="h5">Upcoming</h2>
-			<a href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
+			<a
+				class="button"
+				data-intent="quiet"
+				href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 				>All upcoming →</a
 			>
 		</div>
@@ -157,7 +149,7 @@
 						{#each dashboard.upcoming_content as content_row (content_row.id)}
 							<tr>
 								<td>
-									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+									<div class="admin-control">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
 												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}
@@ -201,7 +193,7 @@
 		{/if}
 	</section>
 
-	<section class="stack" style:--stack-gap="var(--pad-small)">
+	<section class="admin-section">
 		<h2 class="h5">Stale drafts (not touched in 14+ days)</h2>
 		{#if dashboard.stale_drafts.length === 0}
 			<p class="fs-2">No stale drafts.</p>
@@ -236,7 +228,7 @@
 		{/if}
 	</section>
 
-	<section class="stack" style:--stack-gap="var(--pad-small)">
+	<section class="admin-section">
 		<h2 class="h5">Shows missing transcript</h2>
 		{#if dashboard.shows_missing_transcript.length === 0}
 			<p class="fs-2">All recent shows have transcripts.</p>
@@ -255,7 +247,7 @@
 							<tr>
 								<td>{show_row.number}</td>
 								<td>
-									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+									<div class="admin-control">
 										<a
 											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
@@ -275,7 +267,7 @@
 		{/if}
 	</section>
 
-	<section class="stack" style:--stack-gap="var(--pad-small)">
+	<section class="admin-section">
 		<h2 class="h5">Shows missing AI notes</h2>
 		{#if dashboard.shows_missing_ai_notes.length === 0}
 			<p class="fs-2">All recent shows with transcripts have AI notes.</p>
@@ -294,7 +286,7 @@
 							<tr>
 								<td>{show_row.number}</td>
 								<td>
-									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+									<div class="admin-control">
 										<a
 											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
@@ -314,10 +306,12 @@
 		{/if}
 	</section>
 
-	<section class="stack" style:--stack-gap="var(--pad-small)">
-		<div class="split" style:--split-gap="var(--pad-small)">
+	<section class="admin-section">
+		<div class="admin-control-row">
 			<h2 class="h5">Recently published (last 7 days)</h2>
-			<a href={resolve('/admin/content?status=PUBLISHED')}>All published →</a>
+			<a class="button" data-intent="quiet" href={resolve('/admin/content?status=PUBLISHED')}
+				>All published →</a
+			>
 		</div>
 		{#if dashboard.recently_published.length === 0}
 			<p class="fs-2">Nothing published in the last week.</p>
@@ -335,7 +329,7 @@
 						{#each dashboard.recently_published as content_row (content_row.id)}
 							<tr>
 								<td>
-									<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+									<div class="admin-control">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
 												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}

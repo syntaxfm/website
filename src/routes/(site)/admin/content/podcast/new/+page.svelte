@@ -22,12 +22,12 @@
 	let status_message = $state('');
 	let status_error = $state('');
 
-	function clear_feedback() {
+	function clear_feedback(): void {
 		status_message = '';
 		status_error = '';
 	}
 
-	async function create_show() {
+	async function create_show(): Promise<void> {
 		if (!show_number_input || !Number.isInteger(show_number_input) || show_number_input < 1) {
 			status_error = 'Show number must be a positive integer.';
 			return;
@@ -53,63 +53,85 @@
 			status_message = `Show #${result.show_number} created.`;
 			await goto(resolve(`/admin/content/podcast/${result.show_number}`));
 		} catch (error) {
-			console.error(error);
+			console.error('Unable to create show', error);
 			status_error = error instanceof Error ? error.message : 'Unable to create show.';
 		} finally {
 			creating = false;
 		}
 	}
+
+	async function handle_submit(event: SubmitEvent): Promise<void> {
+		event.preventDefault();
+		await create_show();
+	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-small)">
-	<h1 class="h3">Create Show</h1>
+<svelte:head>
+	<title>New Show | Syntax Admin</title>
+</svelte:head>
 
-	<form
-		class="stack"
-		style:--stack-gap="var(--pad-small)"
-		onsubmit={(event) => {
-			event.preventDefault();
-			void create_show();
-		}}
-	>
-		<label class="stack" style:--stack-gap="0.35rem">
-			Show number
-			<input type="number" min="1" step="1" bind:value={show_number_input} required />
-		</label>
-
-		<label class="stack" style:--stack-gap="0.35rem">
-			Title
-			<input type="text" bind:value={title} required />
-		</label>
-
-		<SlugEditor bind:title bind:slug show_regenerate={false} />
-		<StatusSelect bind:status />
-		<DateTimePicker bind:value={published_at} label="Published at" show_clear={false} />
-
-		<label class="stack" style:--stack-gap="0.35rem">
-			Audio URL
-			<input type="url" bind:value={url} required />
-		</label>
-
-		<label class="stack" style:--stack-gap="0.35rem">
-			YouTube URL
-			<input
-				type="url"
-				bind:value={youtube_url}
-				placeholder="https://www.youtube.com/watch?v=..."
-			/>
-		</label>
-
-		<MarkdownEditor bind:value={show_notes} label="Show notes" rows={18} />
-
-		<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create Show'}</button>
-	</form>
+<div class="admin-page stack">
+	<div class="admin-actions">
+		<button type="submit" form="new-show-form" data-intent="primary" disabled={creating}>
+			{creating ? 'Creating…' : 'Create Show'}
+		</button>
+	</div>
 
 	{#if status_message}
-		<p>{status_message}</p>
+		<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
 	{/if}
 
 	{#if status_error}
-		<p>{status_error}</p>
+		<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
 	{/if}
+
+	<form id="new-show-form" class="admin-editor stack" onsubmit={handle_submit}>
+		<div class="admin-editor-layout">
+			<div class="admin-editor-main">
+				<div class="admin-field">
+					<label for="show-title">Title</label>
+					<input id="show-title" name="title" type="text" bind:value={title} required />
+				</div>
+
+				<SlugEditor bind:title bind:slug show_regenerate={false} />
+
+				<div class="admin-field">
+					<label for="show-audio-url">Audio URL</label>
+					<input id="show-audio-url" name="url" type="url" bind:value={url} required />
+				</div>
+
+				<div class="admin-field">
+					<label for="show-youtube-url">YouTube URL</label>
+					<input
+						id="show-youtube-url"
+						name="youtube_url"
+						type="url"
+						bind:value={youtube_url}
+						placeholder="https://www.youtube.com/watch?v=..."
+					/>
+				</div>
+
+				<MarkdownEditor bind:value={show_notes} label="Show notes" rows={18} />
+			</div>
+
+			<aside class="admin-metadata-rail" aria-labelledby="show-metadata-heading">
+				<h2 id="show-metadata-heading" class="h5">Metadata</h2>
+				<div class="admin-field">
+					<label for="show-number">Show number</label>
+					<input
+						id="show-number"
+						name="show_number"
+						type="number"
+						min="1"
+						step="1"
+						bind:value={show_number_input}
+						required
+					/>
+				</div>
+
+				<StatusSelect bind:status />
+				<DateTimePicker bind:value={published_at} label="Published at" show_clear={false} />
+			</aside>
+		</div>
+	</form>
 </div>

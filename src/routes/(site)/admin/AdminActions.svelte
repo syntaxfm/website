@@ -4,6 +4,6 @@
 	let { children }: { children?: Snippet } = $props();
 </script>
 
-<div class="flex">
+<div class="admin-actions">
 	{@render children?.()}
 </div>

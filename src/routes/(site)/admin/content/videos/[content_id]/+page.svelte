@@ -1,192 +1,193 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
 	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
 	import StatusSelect from '$lib/admin/StatusSelect.svelte';
-	import {
-		assign_content_tags,
-		get_content_detail,
-		get_tag_options,
-		remove_content_tags
-	} from '../../admin_content.remote';
+	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import { onDestroy } from 'svelte';
+	import { get_content_detail, get_tag_options } from '../../admin_content.remote';
 	import { delete_video, update_video_meta } from '../admin_videos.remote';
 
 	type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
 
+	interface VideoMetaSnapshot {
+		content_id: string;
+		status: Status;
+		published_at_iso: string | null;
+		tag_ids?: string[];
+	}
+
+	interface VideoMetaSnapshotOptions {
+		tag_ids?: string[];
+	}
+
 	const content_id = (page.params as Record<string, string>).content_id ?? '';
-	const loaded_content_item = await get_content_detail(content_id);
-	const initial_selected_tag_ids =
-		loaded_content_item?.tags.map((content_tag) => content_tag.tag.id) ?? [];
-	const initial_status = (loaded_content_item?.status ?? 'DRAFT') as Status;
-	const initial_published_at = loaded_content_item?.published_at
-		? new Date(loaded_content_item.published_at)
+	const content_item = await get_content_detail(content_id);
+	const initial_status = (content_item?.status ?? 'DRAFT') as Status;
+	const initial_published_at = content_item?.published_at
+		? new Date(content_item.published_at)
 		: null;
-
-	let content_item = $state(loaded_content_item);
-	let status = $state<Status>(initial_status);
-	let published_at = $state<Date | null>(initial_published_at);
-	let selected_tag_ids = $state(initial_selected_tag_ids);
-	let initial_tag_ids = $state([...initial_selected_tag_ids]);
-
+	const initial_selected_tag_ids =
+		content_item?.tags.map((content_tag) => content_tag.tag.id) ?? [];
 	const tag_options = (await get_tag_options()).map((tag_item) => ({
 		id: tag_item.id,
 		name: tag_item.name
 	}));
 
-	let saving = $state(false);
-	let deleting = $state(false);
-	let status_message = $state('');
-	let status_error = $state('');
+	let status = $state<Status>(initial_status);
+	let published_at = $state<Date | null>(initial_published_at);
+	let selected_tag_ids = $state(initial_selected_tag_ids);
 
-	let selected_tags_set = $derived(new Set(selected_tag_ids));
-	let initial_tags_set = $derived(new Set(initial_tag_ids));
-
-	let tags_to_add = $derived(selected_tag_ids.filter((tag_id) => !initial_tags_set.has(tag_id)));
-	let tags_to_remove = $derived(initial_tag_ids.filter((tag_id) => !selected_tags_set.has(tag_id)));
-
-	async function save_video() {
-		if (!content_item) {
-			status_error = 'Video not found.';
-			return;
-		}
-
-		saving = true;
-		status_message = '';
-		status_error = '';
-
+	const autosave = create_autosave_controller<VideoMetaSnapshot>(async (snapshot) => {
 		try {
-			await update_video_meta({
-				content_id: content_item.id,
-				status,
-				published_at_iso: published_at ? published_at.toISOString() : null
-			});
-
-			if (tags_to_add.length > 0) {
-				await assign_content_tags({
-					content_ids: [content_item.id],
-					tag_ids: tags_to_add
-				});
-			}
-
-			if (tags_to_remove.length > 0) {
-				await remove_content_tags({
-					content_ids: [content_item.id],
-					tag_ids: tags_to_remove
-				});
-			}
-
-			content_item = await get_content_detail(content_id);
-			initial_tag_ids = [...selected_tag_ids];
-			status_message = 'Video updated.';
+			await update_video_meta(snapshot);
 		} catch (error) {
-			console.error(error);
-			status_error = error instanceof Error ? error.message : 'Unable to save video.';
-		} finally {
-			saving = false;
+			console.error('Unable to autosave video metadata', error);
+			throw error;
 		}
+	});
+
+	onDestroy(() => autosave.cleanup());
+
+	function create_video_meta_snapshot({
+		tag_ids
+	}: VideoMetaSnapshotOptions = {}): VideoMetaSnapshot | null {
+		if (!content_item) {
+			return null;
+		}
+
+		return {
+			content_id: content_item.id,
+			status,
+			published_at_iso: published_at ? published_at.toISOString() : null,
+			...(tag_ids !== undefined ? { tag_ids: [...tag_ids] } : {})
+		};
 	}
 
-	async function handle_delete_video() {
+	function save_snapshot_immediately(options?: VideoMetaSnapshotOptions): void {
+		const snapshot = create_video_meta_snapshot(options);
+		if (!snapshot) {
+			return;
+		}
+
+		autosave.schedule(snapshot);
+		autosave.save_now().catch((error) => {
+			console.error('Unable to flush video autosave', error);
+		});
+	}
+
+	function handle_status_change(next_status: Status): void {
+		status = next_status;
+		if (status === 'PUBLISHED' && !published_at) {
+			published_at = new Date();
+		}
+		save_snapshot_immediately();
+	}
+
+	function handle_published_at_change(next_published_at: Date | null): void {
+		published_at = next_published_at;
+		save_snapshot_immediately();
+	}
+
+	function handle_tag_change(next_selected_tag_ids: string[]): void {
+		selected_tag_ids = [...next_selected_tag_ids];
+		save_snapshot_immediately({ tag_ids: selected_tag_ids });
+	}
+
+	async function handle_submit(event: SubmitEvent): Promise<void> {
+		event.preventDefault();
+		await autosave.save_now();
+	}
+
+	async function handle_delete_video(): Promise<void> {
 		if (!content_item) {
-			status_error = 'Video not found.';
-			return;
+			throw new Error('Video not found');
 		}
 
-		status_message = '';
-		status_error = '';
-
-		const confirm_text = window.prompt('Type DELETE to confirm deleting this video');
-		if (confirm_text !== 'DELETE') {
-			status_message = 'Delete cancelled.';
-			return;
-		}
-
-		deleting = true;
+		await autosave.save_now();
 
 		try {
-			await delete_video({ content_id: content_item.id, confirm_text });
+			await delete_video({ content_id: content_item.id, confirm_text: 'DELETE' });
 			await goto(resolve('/admin/content/videos'));
 		} catch (error) {
 			console.error('Unable to delete video', error);
-			status_error = error instanceof Error ? error.message : 'Unable to delete video.';
-		} finally {
-			deleting = false;
+			throw error;
 		}
 	}
 </script>
 
+<svelte:head>
+	<title
+		>{content_item
+			? `Edit video: ${content_item.title} | Syntax Admin`
+			: 'Video not found | Syntax Admin'}</title
+	>
+</svelte:head>
+
 {#if !content_item}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Video not found</h1>
-		<p><a href={resolve('/admin/content')}>Back to content list</a></p>
+	<div class="admin-page stack">
+		<p class="admin-feedback" data-tone="negative" role="alert">Video not found.</p>
 	</div>
 {:else}
-	<div class="stack" style:--stack-gap="var(--pad-small)">
-		<h1 class="h3">Edit Video</h1>
+	<div class="admin-page stack">
+		<AdminSaveStatus
+			state={autosave.state}
+			error_message={autosave.error_message}
+			onretry={() => autosave.retry()}
+		/>
 
-		<form
-			class="stack readable"
-			style:--stack-gap="var(--pad-small)"
-			onsubmit={(event) => {
-				event.preventDefault();
-				void save_video();
-			}}
-		>
-			<dl class="stack" style:--stack-gap="var(--pad-xsmall)">
-				<dt class="fs-2">
-					Title <span class="fs-1">imported from YouTube</span>
-				</dt>
-				<dd>{content_item.title}</dd>
+		<form class="admin-editor stack" onsubmit={handle_submit}>
+			<div class="admin-editor-layout">
+				<section class="admin-editor-main" aria-labelledby="video-facts-heading">
+					<h2 id="video-facts-heading" class="h5">Video</h2>
+					<p class="admin-source-note">Synced from YouTube</p>
+					<dl class="admin-source-facts">
+						<dt>Title</dt>
+						<dd>{content_item.title}</dd>
 
-				<dt class="fs-2">
-					Slug <span class="fs-1">imported from YouTube</span>
-				</dt>
-				<dd>{content_item.slug}</dd>
+						<dt>Slug</dt>
+						<dd>{content_item.slug}</dd>
 
-				<dt class="fs-2">
-					YouTube URL <span class="fs-1">imported from YouTube</span>
-				</dt>
-				<dd>
-					{#if content_item.video?.url}
-						<a href={content_item.video.url} target="_blank" rel="noopener noreferrer external">
-							{content_item.video.url}
-						</a>
-					{:else}
-						—
-					{/if}
-				</dd>
-			</dl>
+						<dt>YouTube URL</dt>
+						<dd>
+							{#if content_item.video?.url}
+								<a href={content_item.video.url} target="_blank" rel="noopener noreferrer external"
+									>{content_item.video.url}</a
+								>
+							{:else}
+								—
+							{/if}
+						</dd>
+					</dl>
+				</section>
 
-			<StatusSelect bind:status />
-			<DateTimePicker bind:value={published_at} />
-
-			<MultiSelect options={tag_options} bind:selected_ids={selected_tag_ids} label="Tags" />
-
-			<button type="submit" disabled={saving || deleting}
-				>{saving ? 'Saving...' : 'Save Video'}</button
-			>
+				<aside class="admin-metadata-rail" aria-labelledby="content-metadata-heading">
+					<h2 id="content-metadata-heading" class="h5">Content</h2>
+					<StatusSelect {status} onchange={handle_status_change} />
+					<DateTimePicker value={published_at} onchange={handle_published_at_change} />
+					<MultiSelect
+						options={tag_options}
+						selected_ids={selected_tag_ids}
+						label="Tags"
+						onchange={handle_tag_change}
+					/>
+				</aside>
+			</div>
 		</form>
 
-		{#if status_message}
-			<p>{status_message}</p>
-		{/if}
-
-		{#if status_error}
-			<p>{status_error}</p>
-		{/if}
-
-		<p><a href={resolve('/admin/content')}>Back to content list</a></p>
-
-		<section class="stack" style:--stack-gap="var(--pad-small)">
-			<h2 class="h5">Danger zone</h2>
-			<div class="flex" style:--flex-gap="var(--pad-small)">
-				<button type="button" onclick={handle_delete_video} disabled={saving || deleting}>
-					{deleting ? 'Deleting...' : 'Delete Video'}
-				</button>
-				<a href={resolve('/admin/content/videos')}>Back to videos</a>
-			</div>
+		<section class="admin-danger stack" aria-labelledby="delete-video-heading">
+			<h2 id="delete-video-heading" class="h5">Delete video</h2>
+			<p>Permanently remove this video.</p>
+			<AdminConfirmDialog
+				title="Delete video?"
+				description="This permanently deletes the video and cannot be undone."
+				action_label="Delete video"
+				onconfirm={handle_delete_video}
+			/>
 		</section>
 	</div>
 {/if}

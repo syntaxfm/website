@@ -1,20 +1,24 @@
 <script lang="ts">
-	import SelectMenu from '$lib/SelectMenu.svelte';
-
 	type Status = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
 
 	interface Props {
 		status?: Status;
 		label?: string;
 		id?: string;
+		name?: string;
 		disabled?: boolean;
+		onchange?: (next_status: Status) => void;
 	}
+
+	const uid = $props.id();
 
 	let {
 		status = $bindable<Status>('DRAFT'),
 		label = 'Status',
-		id = 'status',
-		disabled = false
+		id,
+		name,
+		disabled = false,
+		onchange
 	}: Props = $props();
 
 	const status_options: { value: Status; label: string }[] = [
@@ -23,26 +27,34 @@
 		{ value: 'ARCHIVED', label: 'Archived' }
 	];
 
-	let selected_status_label = $derived.by(
-		() => status_options.find((option) => option.value === status)?.label ?? 'Draft'
-	);
+	let control_id = $derived(id ?? `${uid}-status`);
+	let field_name = $derived(name ?? id ?? 'status');
 
-	function handle_status_select(next_value: string) {
+	function handle_status_change(event: Event): void {
+		const target = event.currentTarget;
+		if (!(target instanceof HTMLSelectElement)) {
+			return;
+		}
+
+		const next_value = target.value;
 		if (next_value === 'DRAFT' || next_value === 'PUBLISHED' || next_value === 'ARCHIVED') {
 			status = next_value;
+			onchange?.(status);
 		}
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-	<span class="fs-2">{label}</span>
-	<SelectMenu
-		popover_id={`${id}-menu`}
-		button_text={selected_status_label}
+<div class="admin-field">
+	<label for={control_id}>{label}</label>
+	<select
+		id={control_id}
+		name={field_name}
 		value={status}
-		options={status_options}
 		{disabled}
-		onselect={handle_status_select}
-	/>
-	<input type="hidden" name={id} value={status} />
+		onchange={handle_status_change}
+	>
+		{#each status_options as option (option.value)}
+			<option value={option.value}>{option.label}</option>
+		{/each}
+	</select>
 </div>

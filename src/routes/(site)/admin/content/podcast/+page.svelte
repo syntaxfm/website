@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -57,14 +56,16 @@
 	type ShowListResult = Awaited<ReturnType<typeof list_shows>>;
 	type ShowListItem = ShowListResult['items'][number];
 
-	const list_result = await list_shows({
-		search_text,
-		status: status_filter,
-		date_from_iso: date_from || undefined,
-		date_to_iso: date_to || undefined,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	let list_result = $derived(
+		await list_shows({
+			search_text,
+			status: status_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -134,19 +135,24 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Shows</h1>
-		<AdminActions>
-			<a class="button small" href={resolve('/admin/content/podcast/new')}>New Show</a>
-			<RemoteFormButton class="small" remote={import_all_shows}
-				>Sync Changed/New Shows</RemoteFormButton
-			>
-			<RemoteFormButton class="small" remote={refresh_all}>Refresh All Shows</RemoteFormButton>
-			<form action="/webhooks/refresh" method="GET">
-				<button class="small" type="submit">Refresh Webhook</button>
-			</form>
-		</AdminActions>
+<svelte:head>
+	<title>Shows | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<div class="admin-actions">
+		<a class="button small" data-intent="primary" href={resolve('/admin/content/podcast/new')}
+			>New Show</a
+		>
+		<RemoteFormButton class="small" data-intent="primary" remote={import_all_shows}
+			>Sync Changed/New Shows</RemoteFormButton
+		>
+		<RemoteFormButton class="small" data-intent="quiet" remote={refresh_all}
+			>Refresh All Shows</RemoteFormButton
+		>
+		<form class="admin-inline-form" action="/webhooks/refresh" method="GET">
+			<button class="small" type="submit" data-intent="quiet">Refresh Webhook</button>
+		</form>
 	</div>
 
 	<AdminList
@@ -160,25 +166,13 @@
 		{busy}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-control-row">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 				/>
-				<div
-					class="flex"
-					style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: flex-end"
-				>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+				<div class="admin-control-row">
+					<label class="admin-field">
 						<span class="fs-1">From</span>
 						<input
 							type="date"
@@ -186,12 +180,7 @@
 							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+					<label class="admin-field">
 						<span class="fs-1">To</span>
 						<input
 							type="date"
@@ -208,21 +197,16 @@
 						onselect={(value) => update_url({ status: value || null, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" href={resolve('/admin/content/podcast')}>× Clear</a>
+						<a class="button small" data-intent="quiet" href={resolve('/admin/content/podcast')}
+							>× Clear</a
+						>
 					{/if}
 				</div>
 			</div>
 		{/snippet}
 
 		{#snippet bulk()}
-			<div
-				class="flex"
-				style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: center"
-			>
+			<div class="admin-control-row">
 				<SelectMenu
 					popover_id="filter-bulk_status"
 					button_text={`Bulk status (${bulk_status})`}
@@ -231,7 +215,7 @@
 					options={BULK_STATUS_OPTIONS}
 					onselect={(value) => update_url({ bulk_status: value || null })}
 				/>
-				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+				<button type="button" data-intent="quiet" onclick={run_bulk_status_update} disabled={busy}>
 					Update status
 				</button>
 			</div>
@@ -239,10 +223,10 @@
 
 		{#snippet action_feedback()}
 			{#if action_message}
-				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 			{/if}
 			{#if action_error}
-				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 			{/if}
 		{/snippet}
 
@@ -287,7 +271,7 @@
 					</td>
 					<td>#{show_row.number}</td>
 					<td>
-						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+						<div class="admin-row">
 							<a href={public_link} target="_blank" rel="noopener noreferrer">
 								{show_row.title}
 							</a>

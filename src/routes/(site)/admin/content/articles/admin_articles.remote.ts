@@ -34,7 +34,8 @@ const update_article_schema = v.object({
 	status: v.picklist(CONTENT_STATUS_VALUES),
 	published_at_iso: v.optional(v.nullable(v.string())),
 	body: v.string(),
-	author_id: v.string()
+	author_id: v.string(),
+	tag_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1))))
 });
 
 const delete_article_schema = v.object({
@@ -180,7 +181,8 @@ export const list_articles = query(list_articles_schema, async (input) => {
 export const create_article = command(create_article_schema, async (input) => {
 	const event = assert_admin_user();
 
-	if (!event.locals.user?.id) {
+	const author_id = event.locals.user?.id;
+	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}
 
@@ -200,21 +202,25 @@ export const create_article = command(create_article_schema, async (input) => {
 		error(409, 'Slug already exists');
 	}
 
-	const [created_content] = await db
-		.insert(content)
-		.values({
-			title: input.title,
-			slug: normalized_slug,
-			type: 'ARTICLE',
-			status: 'DRAFT'
-		})
-		.returning({ id: content.id });
+	const created_content = await db.transaction(async (tx) => {
+		const [inserted_content] = await tx
+			.insert(content)
+			.values({
+				title: input.title,
+				slug: normalized_slug,
+				type: 'ARTICLE',
+				status: 'DRAFT'
+			})
+			.returning({ id: content.id });
 
-	await db.insert(article).values({
-		id: created_content.id,
-		body: '',
-		author_id: event.locals.user.id,
-		content_id: created_content.id
+		await tx.insert(article).values({
+			id: inserted_content.id,
+			body: '',
+			author_id,
+			content_id: inserted_content.id
+		});
+
+		return inserted_content;
 	});
 
 	return {
@@ -280,24 +286,50 @@ export const update_article = command(update_article_schema, async (input) => {
 		next_published_at = new Date();
 	}
 
-	await db
-		.update(content)
-		.set({
-			title: input.title,
-			slug: normalized_slug,
-			status: input.status,
-			published_at: next_published_at,
-			updated_at: new Date()
-		})
-		.where(eq(content.id, input.content_id));
+	await db.transaction(async (tx) => {
+		const updated_content = await tx
+			.update(content)
+			.set({
+				title: input.title,
+				slug: normalized_slug,
+				status: input.status,
+				published_at: next_published_at,
+				updated_at: new Date()
+			})
+			.where(and(eq(content.id, input.content_id), eq(content.type, 'ARTICLE')))
+			.returning({ id: content.id });
 
-	await db
-		.update(article)
-		.set({
-			body: input.body,
-			author_id: input.author_id
-		})
-		.where(eq(article.content_id, input.content_id));
+		if (updated_content.length === 0) {
+			error(404, 'Article not found');
+		}
+
+		const updated_article = await tx
+			.update(article)
+			.set({
+				body: input.body,
+				author_id: input.author_id
+			})
+			.where(eq(article.content_id, input.content_id))
+			.returning({ id: article.id });
+
+		if (updated_article.length === 0) {
+			error(404, 'Article not found');
+		}
+
+		if (input.tag_ids !== undefined) {
+			const tag_ids = [...new Set(input.tag_ids)].sort();
+
+			await tx.delete(content_tags).where(eq(content_tags.content_id, input.content_id));
+			if (tag_ids.length > 0) {
+				await tx.insert(content_tags).values(
+					tag_ids.map((tag_id) => ({
+						content_id: input.content_id,
+						tag_id
+					}))
+				);
+			}
+		}
+	});
 
 	return {
 		success: true

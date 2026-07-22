@@ -6,8 +6,9 @@ import {
 	aiShowNote,
 	aiSummaryEntry,
 	aiTweet,
-	guest,
 	content,
+	content_tags,
+	guest,
 	link,
 	show,
 	showGuest,
@@ -33,10 +34,9 @@ import {
 	import_or_update_all_shows
 } from '$server/shows';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, gte, ilike, inArray, lte, ne, or, sql } from 'drizzle-orm';
+import { and, desc, eq, gte, ilike, inArray, lte, ne, notInArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { generate_ai_notes } from '$server/ai/openai';
-import { save_ai_notes_to_db } from '$server/ai/db';
 import { import_transcripts } from '$server/transcripts/transcripts';
 import { DAYS_OF_WEEK_TYPES } from '$const';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
@@ -67,7 +67,11 @@ const update_show_editor_schema = v.object({
 	published_at_iso: v.optional(v.nullable(v.string())),
 	show_notes: v.string(),
 	url: v.pipe(v.string(), v.trim(), v.minLength(1)),
-	youtube_url: v.optional(v.nullable(v.string()))
+	youtube_url: v.optional(v.nullable(v.string())),
+	host_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
+	guest_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
+	video_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
+	tag_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1))))
 });
 
 const create_show_editor_schema = v.object({
@@ -508,48 +512,133 @@ export const update_show_editor = command(update_show_editor_schema, async (inpu
 	if (!existing_show) {
 		error(404, 'Show not found');
 	}
+	const content_id = existing_show.content_id;
+
+	const duplicate_slug = await db.query.content.findFirst({
+		where: content_id
+			? and(eq(content.slug, input.slug), ne(content.id, content_id))
+			: eq(content.slug, input.slug),
+		columns: {
+			id: true
+		}
+	});
+
+	if (duplicate_slug) {
+		error(409, 'Slug already exists on another content item');
+	}
+
+	if (input.tag_ids !== undefined && !content_id) {
+		error(409, 'Show is not linked to content; tags cannot be replaced');
+	}
 
 	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
 	if (input.status === 'PUBLISHED' && !next_published_at) {
 		next_published_at = new Date();
 	}
 
-	await db
-		.update(show)
-		.set({
-			title: input.title,
-			slug: input.slug,
-			show_notes: input.show_notes,
-			url: input.url,
-			youtube_url: input.youtube_url || null,
-			date: next_published_at || existing_show.date,
-			updated_at: new Date()
-		})
-		.where(eq(show.number, input.show_number));
-
-	if (existing_show.content_id) {
-		const duplicate_slug = await db.query.content.findFirst({
-			where: and(eq(content.slug, input.slug), ne(content.id, existing_show.content_id)),
-			columns: {
-				id: true
-			}
-		});
-
-		if (duplicate_slug) {
-			error(409, 'Slug already exists on another content item');
-		}
-
-		await db
-			.update(content)
+	await db.transaction(async (tx) => {
+		const updated_show = await tx
+			.update(show)
 			.set({
 				title: input.title,
 				slug: input.slug,
-				status: input.status,
-				published_at: next_published_at,
+				show_notes: input.show_notes,
+				url: input.url,
+				youtube_url: input.youtube_url || null,
+				date: next_published_at || existing_show.date,
 				updated_at: new Date()
 			})
-			.where(eq(content.id, existing_show.content_id));
-	}
+			.where(eq(show.number, input.show_number))
+			.returning({ id: show.id });
+
+		if (updated_show.length === 0) {
+			error(404, 'Show not found');
+		}
+
+		if (content_id) {
+			const updated_content = await tx
+				.update(content)
+				.set({
+					title: input.title,
+					slug: input.slug,
+					status: input.status,
+					published_at: next_published_at,
+					updated_at: new Date()
+				})
+				.where(and(eq(content.id, content_id), eq(content.type, 'PODCAST')))
+				.returning({ id: content.id });
+
+			if (updated_content.length === 0) {
+				error(404, 'Show content not found');
+			}
+		}
+
+		if (input.guest_ids !== undefined) {
+			const guest_ids = [...new Set(input.guest_ids)].sort();
+
+			if (guest_ids.length === 0) {
+				await tx.delete(showGuest).where(eq(showGuest.show_id, existing_show.id));
+			} else {
+				await tx
+					.delete(showGuest)
+					.where(
+						and(eq(showGuest.show_id, existing_show.id), notInArray(showGuest.guest_id, guest_ids))
+					);
+
+				await tx
+					.insert(showGuest)
+					.values(
+						guest_ids.map((guest_id) => ({
+							show_id: existing_show.id,
+							guest_id
+						}))
+					)
+					.onConflictDoNothing();
+			}
+		}
+
+		if (input.host_ids !== undefined) {
+			const host_ids = [...new Set(input.host_ids)].sort();
+
+			await tx.delete(showToUser).where(eq(showToUser.show_id, existing_show.id));
+			if (host_ids.length > 0) {
+				await tx.insert(showToUser).values(
+					host_ids.map((user_id) => ({
+						show_id: existing_show.id,
+						user_id
+					}))
+				);
+			}
+		}
+
+		if (input.video_ids !== undefined) {
+			const video_ids = [...new Set(input.video_ids)].sort();
+
+			await tx.delete(showVideo).where(eq(showVideo.show_id, existing_show.id));
+			if (video_ids.length > 0) {
+				await tx.insert(showVideo).values(
+					video_ids.map((video_id) => ({
+						show_id: existing_show.id,
+						video_id
+					}))
+				);
+			}
+		}
+
+		if (input.tag_ids !== undefined && content_id) {
+			const tag_ids = [...new Set(input.tag_ids)].sort();
+
+			await tx.delete(content_tags).where(eq(content_tags.content_id, content_id));
+			if (tag_ids.length > 0) {
+				await tx.insert(content_tags).values(
+					tag_ids.map((tag_id) => ({
+						content_id,
+						tag_id
+					}))
+				);
+			}
+		}
+	});
 
 	return { success: true };
 });
@@ -1049,15 +1138,61 @@ export const fetch_ai_notes = form(
 			error(400, 'No show, or no transcript for this show');
 		}
 
-		// delete any existing ai notes
-		await db.delete(aiShowNote).where(eq(aiShowNote.show_number, show_number));
-
-		// Get the AI transcript for this show
 		const result = await generate_ai_notes(current_show);
-		// Save to DB
-		console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
-		console.dir(result);
-		await save_ai_notes_to_db(result, current_show);
+
+		await db.transaction(async (tx) => {
+			await tx.delete(aiShowNote).where(eq(aiShowNote.show_number, show_number));
+
+			const [inserted_show_note] = await tx
+				.insert(aiShowNote)
+				.values({
+					show_number,
+					title: result.title,
+					description: result.description,
+					provider: result.provider
+				})
+				.returning({ id: aiShowNote.id });
+
+			if (result.summary.length > 0) {
+				await tx.insert(aiSummaryEntry).values(
+					result.summary.map((entry) => ({
+						show_note_id: inserted_show_note.id,
+						time: entry.time,
+						text: entry.text,
+						description: entry.description || null
+					}))
+				);
+			}
+
+			if (result.tweets.length > 0) {
+				await tx.insert(aiTweet).values(
+					result.tweets.map((tweet) => ({
+						show_note_id: inserted_show_note.id,
+						content: tweet
+					}))
+				);
+			}
+
+			if (result.links.length > 0) {
+				await tx.insert(link).values(
+					result.links.map((result_link) => ({
+						show_note_id: inserted_show_note.id,
+						name: result_link.name,
+						url: result_link.url,
+						timestamp: result_link.timestamp || null
+					}))
+				);
+			}
+
+			if (result.topics.length > 0) {
+				await tx.insert(topic).values(
+					result.topics.map((topic_name) => ({
+						show_note_id: inserted_show_note.id,
+						name: topic_name
+					}))
+				);
+			}
+		});
 
 		return { message: 'AI Notes Created' };
 	}

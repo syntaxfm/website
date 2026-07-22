@@ -6,9 +6,22 @@
 		value?: string;
 		label?: string;
 		rows?: number;
+		id?: string;
+		onchange?: (next_value: string) => void;
 	}
 
-	let { value = $bindable(''), label = 'Body', rows = 16 }: Props = $props();
+	const uid = $props.id();
+	let {
+		value = $bindable(''),
+		label = 'Body',
+		rows = 16,
+		id = `${uid}-input`,
+		onchange
+	}: Props = $props();
+	const edit_tab_id = `${uid}-edit-tab`;
+	const preview_tab_id = `${uid}-preview-tab`;
+	const edit_panel_id = `${uid}-edit-panel`;
+	const preview_panel_id = `${uid}-preview-panel`;
 
 	type EditorTab = 'edit' | 'preview';
 
@@ -16,7 +29,17 @@
 	let preview_html = $state('');
 	let preview_failed = $state(false);
 	let render_token = 0;
-	let textarea_element = $state<HTMLTextAreaElement | null>(null);
+	let textarea_element: HTMLTextAreaElement | null = null;
+
+	function capture_textarea(element: HTMLTextAreaElement): () => void {
+		textarea_element = element;
+
+		return () => {
+			if (textarea_element === element) {
+				textarea_element = null;
+			}
+		};
+	}
 
 	async function render_preview(markdown_value: string) {
 		const current_token = ++render_token;
@@ -42,6 +65,7 @@
 	async function insert_markdown(prefix: string, suffix = '', placeholder = 'text') {
 		if (!textarea_element) {
 			value = `${value}${prefix}${placeholder}${suffix}`;
+			onchange?.(value);
 			if (active_tab === 'preview') {
 				void render_preview(value);
 			}
@@ -56,6 +80,7 @@
 
 		value =
 			value.slice(0, selection_start) + prefix + content_text + suffix + value.slice(selection_end);
+		onchange?.(value);
 
 		const next_cursor_position = selection_start + prefix.length + content_text.length;
 
@@ -68,13 +93,44 @@
 		}
 	}
 
-	function open_edit_tab() {
+	function open_edit_tab(): void {
 		active_tab = 'edit';
 	}
 
-	function open_preview_tab() {
+	function open_preview_tab(): void {
 		active_tab = 'preview';
 		void render_preview(value);
+	}
+
+	function handle_editor_input(): void {
+		onchange?.(value);
+	}
+
+	async function handle_tab_keydown(event: KeyboardEvent): Promise<void> {
+		if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+			return;
+		}
+		const tablist = event.currentTarget;
+		if (!(tablist instanceof HTMLDivElement)) {
+			return;
+		}
+
+		event.preventDefault();
+		const should_open_preview =
+			event.key === 'End' ||
+			((event.key === 'ArrowRight' || event.key === 'ArrowLeft') && active_tab === 'edit');
+		const should_open_edit =
+			event.key === 'Home' ||
+			((event.key === 'ArrowRight' || event.key === 'ArrowLeft') && active_tab === 'preview');
+
+		if (should_open_preview) {
+			open_preview_tab();
+		} else if (should_open_edit) {
+			open_edit_tab();
+		}
+
+		await tick();
+		tablist.querySelector<HTMLButtonElement>('[role="tab"][tabindex="0"]')?.focus();
 	}
 
 	function make_h2() {
@@ -98,37 +154,42 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-small)">
-	<label for="markdown-editor-input" class="fs-2">{label}</label>
+<div class="admin-field admin-markdown-editor">
+	<label for={id}>{label}</label>
 
-	<div
-		class="flex"
-		style:--flex-gap="var(--pad-xsmall)"
-		role="toolbar"
-		aria-label="Markdown formatting"
-	>
-		<button type="button" onclick={make_h2} aria-label="Insert heading level two">H2</button>
-		<button type="button" onclick={make_bold} aria-label="Insert bold markdown">Bold</button>
-		<button type="button" onclick={make_italic} aria-label="Insert italic markdown">Italic</button>
-		<button type="button" onclick={make_link} aria-label="Insert link markdown">Link</button>
-		<button type="button" onclick={make_list_item} aria-label="Insert unordered list item"
-			>UL</button
-		>
+	<div class="admin-toolbar" role="toolbar" aria-label="Markdown formatting">
+		<button type="button" onclick={make_h2} title="Insert heading level two">Heading</button>
+		<button type="button" onclick={make_bold} title="Insert bold markdown">Bold</button>
+		<button type="button" onclick={make_italic} title="Insert italic markdown">Italic</button>
+		<button type="button" onclick={make_link} title="Insert link markdown">Link</button>
+		<button type="button" onclick={make_list_item} title="Insert unordered list item">List</button>
 	</div>
 
 	<div
-		class="flex"
-		style:--flex-gap="var(--pad-xsmall)"
+		class="admin-tabs"
 		role="tablist"
 		aria-label="Markdown editor mode"
+		tabindex="-1"
+		onkeydown={handle_tab_keydown}
 	>
-		<button type="button" role="tab" aria-selected={active_tab === 'edit'} onclick={open_edit_tab}>
+		<button
+			id={edit_tab_id}
+			type="button"
+			role="tab"
+			aria-selected={active_tab === 'edit'}
+			aria-controls={edit_panel_id}
+			tabindex={active_tab === 'edit' ? 0 : -1}
+			onclick={open_edit_tab}
+		>
 			Edit
 		</button>
 		<button
+			id={preview_tab_id}
 			type="button"
 			role="tab"
 			aria-selected={active_tab === 'preview'}
+			aria-controls={preview_panel_id}
+			tabindex={active_tab === 'preview' ? 0 : -1}
 			onclick={open_preview_tab}
 		>
 			Preview
@@ -136,19 +197,38 @@
 	</div>
 
 	{#if active_tab === 'edit'}
-		<textarea
-			id="markdown-editor-input"
-			bind:this={textarea_element}
-			bind:value
-			{rows}
-			spellcheck={false}></textarea>
+		<div
+			id={edit_panel_id}
+			class="admin-editor-panel"
+			role="tabpanel"
+			aria-labelledby={edit_tab_id}
+		>
+			<textarea
+				{id}
+				{@attach capture_textarea}
+				bind:value
+				{rows}
+				spellcheck={false}
+				oninput={handle_editor_input}></textarea>
+		</div>
 	{:else}
-		<div aria-live="polite">
+		<div
+			id={preview_panel_id}
+			class="admin-editor-panel admin-markdown-preview"
+			role="tabpanel"
+			aria-labelledby={preview_tab_id}
+			aria-live="polite"
+			tabindex="0"
+		>
 			{#if preview_failed}
 				<pre>{value}</pre>
 			{:else}
-				<!-- svelte-ignore html -->
-				{@html preview_html}
+				<iframe
+					class="admin-markdown-preview-frame"
+					title="Markdown preview"
+					srcdoc={preview_html}
+					sandbox=""
+				></iframe>
 			{/if}
 		</div>
 	{/if}

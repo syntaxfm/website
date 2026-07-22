@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import { page as current_page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { get_tag_detail } from '../admin_tags.remote';
@@ -41,14 +41,15 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<header class="stack" style:--stack-gap="var(--pad-xsmall)">
-		<h1 class="h3">{detail.tag.name}</h1>
-		<p class="fs-2">/{detail.tag.slug} · {detail.total_content_count} content item(s)</p>
-		<p>
-			<a href={resolve(`/admin/content?tag_id=${detail.tag.id}`)}>View in content list</a>
-		</p>
-	</header>
+<svelte:head>
+	<title>Tag: {detail.tag.name} | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<section class="admin-section" aria-labelledby="tag-details-heading">
+		<h2 id="tag-details-heading" class="h5">Tag details</h2>
+		<p>/{detail.tag.slug} · {detail.total_content_count} content item(s)</p>
+	</section>
 
 	<AdminList
 		total={detail.items.length}
@@ -71,7 +72,7 @@
 				{@const public_link = to_public_link(content_row)}
 				<tr>
 					<td>
-						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+						<div class="admin-field">
 							{#if edit_link}
 								<a href={resolve(edit_link)}>{content_row.title}</a>
 							{:else}
@@ -104,11 +105,9 @@
 	</AdminList>
 
 	{#if detail.total_content_count > detail.limit}
-		<p class="fs-2">
+		<p class="admin-feedback">
 			Showing first {detail.limit} of {detail.total_content_count}.
 			<a href={resolve(`/admin/content?tag_id=${detail.tag.id}`)}>Open in content list</a> for full results.
 		</p>
 	{/if}
-
-	<p><a href={resolve('/admin/tags')}>Back to tags</a></p>
 </div>

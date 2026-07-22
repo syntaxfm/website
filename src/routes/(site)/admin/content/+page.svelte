@@ -5,6 +5,7 @@
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import AdminSearch from '../AdminSearch.svelte';
+	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
 	import MultiSelect from '$lib/admin/MultiSelect.svelte';
@@ -109,16 +110,18 @@
 
 	void load_bulk_tag_options();
 
-	const list_result = await list_content({
-		search_text,
-		status: status_filter,
-		type: type_filter,
-		date_from_iso: date_from || undefined,
-		date_to_iso: date_to || undefined,
-		tag_id: tag_id || undefined,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	let list_result = $derived(
+		await list_content({
+			search_text,
+			status: status_filter,
+			type: type_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			tag_id: tag_id || undefined,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -173,21 +176,15 @@
 			return;
 		}
 		clear_feedback();
-
-		const confirm_text = window.prompt('Type DELETE to confirm deleting selected items');
-		if (confirm_text !== 'DELETE') {
-			action_message = 'Delete cancelled.';
-			return;
-		}
 		busy = true;
 
 		try {
 			const result = await bulk_delete_content({
 				content_ids: selected_content_ids,
-				confirm_text
+				confirm_text: 'DELETE'
 			});
 
-			action_message = `Deleted ${result.deleted_count} item(s). Skipped ${result.skipped_count} non-article item(s).`;
+			action_message = `Deleted ${result.deleted_count} item(s). Skipped ${result.skipped_count} unsupported Content item(s).`;
 			selected_content_ids = [];
 			await list_content({
 				search_text,
@@ -202,6 +199,7 @@
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to delete selected rows. Please try again.';
+			throw error;
 		} finally {
 			busy = false;
 		}
@@ -318,9 +316,11 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<h1 class="h3">Content</h1>
+<svelte:head>
+	<title>Content | Syntax Admin</title>
+</svelte:head>
 
+<div class="admin-page stack">
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
@@ -332,25 +332,13 @@
 		{busy}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-control-row">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 				/>
-				<div
-					class="flex"
-					style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: flex-end"
-				>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+				<div class="admin-control-row">
+					<label class="admin-field">
 						<span class="fs-1">From</span>
 						<input
 							type="date"
@@ -358,12 +346,7 @@
 							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+					<label class="admin-field">
 						<span class="fs-1">To</span>
 						<input
 							type="date"
@@ -390,13 +373,14 @@
 					{#if tag_id}
 						<a
 							class="button small"
+							data-intent="quiet"
 							href={build_url(current_page.url, { tag_id: null, page: null })}
 						>
 							× Tag{active_tag_name ? `: ${active_tag_name}` : ''}
 						</a>
 					{/if}
 					{#if show_clear_filters}
-						<a class="button small" href={resolve('/admin/content')}>× Clear</a>
+						<a class="button small" data-intent="quiet" href={resolve('/admin/content')}>× Clear</a>
 					{/if}
 				</div>
 			</div>
@@ -409,16 +393,10 @@
 				label="Tags"
 				placeholder="Search tags"
 			/>
-			<div
-				class="flex"
-				style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap"
-			>
+			<div class="admin-control-row">
 				<button
 					type="button"
+					data-intent="quiet"
 					onclick={run_bulk_add_tags}
 					disabled={busy || bulk_selected_tag_ids.length === 0}
 				>
@@ -426,6 +404,7 @@
 				</button>
 				<button
 					type="button"
+					data-intent="quiet"
 					onclick={run_bulk_remove_tags}
 					disabled={busy || bulk_selected_tag_ids.length === 0}
 				>
@@ -433,14 +412,7 @@
 				</button>
 			</div>
 
-			<div
-				class="flex"
-				style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: center"
-			>
+			<div class="admin-control-row">
 				<SelectMenu
 					popover_id="filter-bulk_status"
 					button_text={`Bulk status (${bulk_status})`}
@@ -449,19 +421,24 @@
 					options={BULK_STATUS_OPTIONS}
 					onselect={(value) => update_url({ bulk_status: value || null })}
 				/>
-				<button type="button" onclick={run_bulk_status_update} disabled={busy}>
+				<button type="button" data-intent="quiet" onclick={run_bulk_status_update} disabled={busy}>
 					Update status
 				</button>
-				<button type="button" onclick={run_bulk_delete} disabled={busy}>Delete selected</button>
+				<AdminConfirmDialog
+					title="Delete selected content?"
+					description="Selected Articles and Videos will be permanently deleted. All Show and Playlist associations for selected Videos will also be permanently deleted. Unsupported Content types will be skipped."
+					action_label="Delete selected"
+					onconfirm={run_bulk_delete}
+				/>
 			</div>
 		{/snippet}
 
 		{#snippet action_feedback()}
 			{#if action_message}
-				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 			{/if}
 			{#if action_error}
-				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 			{/if}
 		{/snippet}
 
@@ -503,7 +480,7 @@
 						/>
 					</td>
 					<td>
-						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+						<div class="admin-row">
 							{#if public_link}
 								<a href={public_link} target="_blank" rel="noopener noreferrer external">
 									{content_row.title}

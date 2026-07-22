@@ -72,11 +72,10 @@
 			return;
 		}
 
-		const merged = new Set(selected_ids);
-		for (const id of visible_ids) {
-			merged.add(id);
-		}
-		selected_ids = Array.from(merged);
+		selected_ids = [
+			...selected_ids,
+			...visible_ids.filter((visible_id) => !selected_ids.includes(visible_id))
+		];
 	}
 
 	function is_selected(id: string): boolean {
@@ -100,22 +99,16 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
+<div class="admin-list stack">
 	{#if filters}
 		{@render filters()}
 	{/if}
 
 	{#if selected_ids.length > 0 && bulk}
-		<div
-			class="stack bg-shade-or-tint-light br-small"
-			style="padding: var(--pad-small);
-
- --stack-gap: var(--pad-small)"
-			aria-label="Bulk actions"
-		>
-			<div class="split" style:--split-gap="var(--pad-small)">
-				<span class="fs-2 fv-700">Bulk Actions</span>
-				<span class="fs-2 primary">{selected_ids.length} selected</span>
+		<div class="admin-list-bulk" aria-label="Bulk actions">
+			<div class="admin-list-bulk-header">
+				<span class="admin-list-bulk-title">Bulk actions</span>
+				<span class="admin-list-count">{selected_ids.length} selected</span>
 			</div>
 			{@render bulk()}
 		</div>
@@ -126,20 +119,20 @@
 	{/if}
 
 	{#snippet pager()}
-		<div class="split" style:--split-gap="var(--pad-small)" aria-label="Pagination controls">
+		<nav class="admin-list-pagination" aria-label="Pagination">
 			<button type="button" onclick={go_previous} disabled={page <= 1 || busy}>Previous</button>
-			<p class="fs-2">Page {page} of {total_pages} ({total} total)</p>
+			<p>Page {page} of {total_pages} ({total} total)</p>
 			<button type="button" onclick={go_next} disabled={page >= total_pages || busy}>Next</button>
-		</div>
+		</nav>
 	{/snippet}
 
 	{#if total_pages > 1}
 		{@render pager()}
 	{:else}
-		<p class="fs-1">{total} {total === 1 ? 'item' : 'items'}</p>
+		<p class="admin-list-count">{total} {total === 1 ? 'item' : 'items'}</p>
 	{/if}
 
-	<div class="table-container">
+	<div class="admin-table-container table-container">
 		<table>
 			<thead>
 				<tr>

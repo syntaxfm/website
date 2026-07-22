@@ -3,15 +3,23 @@
 		value?: Date | null;
 		label?: string;
 		id?: string;
+		name?: string;
 		show_clear?: boolean;
+		onchange?: (next_value: Date | null) => void;
 	}
+
+	const uid = $props.id();
 
 	let {
 		value = $bindable<Date | null>(null),
 		label = 'Publish at',
-		id = 'publish_at',
-		show_clear = true
+		id,
+		name,
+		show_clear = true,
+		onchange
 	}: Props = $props();
+	let control_id = $derived(id ?? `${uid}-publish-at`);
+	let field_name = $derived(name ?? id ?? 'publish_at');
 
 	function pad_2(number_value: number): string {
 		return String(number_value).padStart(2, '0');
@@ -65,21 +73,28 @@
 		value instanceof Date ? to_local_input_value(new Date(value.getTime())) : ''
 	);
 
-	function set_local_value(next_value: string) {
+	function set_local_value(next_value: string): void {
 		value = from_local_input_value(next_value);
+		onchange?.(value);
 	}
 
-	function clear_value() {
+	function clear_value(): void {
 		value = null;
+		onchange?.(value);
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-xsmall)">
-	<label for={id} class="fs-2">{label}</label>
-	<div class="flex" style:--flex-gap="var(--pad-small)">
-		<input {id} name={id} type="datetime-local" bind:value={() => local_value, set_local_value} />
+<div class="admin-field">
+	<label for={control_id}>{label}</label>
+	<div class="admin-control-row">
+		<input
+			id={control_id}
+			name={field_name}
+			type="datetime-local"
+			bind:value={() => local_value, set_local_value}
+		/>
 		{#if show_clear}
-			<button type="button" onclick={clear_value}>Clear</button>
+			<button type="button" data-intent="quiet" onclick={clear_value}>Clear</button>
 		{/if}
 	</div>
 </div>

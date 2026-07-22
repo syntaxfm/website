@@ -3,35 +3,20 @@
 		text?: string;
 		on_input?: (next_value: string) => void;
 		placeholder?: string;
+		label?: string;
 	}
 
-	let { text = '', on_input, placeholder = 'Search' }: Props = $props();
+	const uid = $props.id();
+	let { text = '', on_input, placeholder = 'Search', label = 'Search' }: Props = $props();
 
-	let value = $state(text);
-
-	function handle_submit(event: Event) {
+	function handle_submit(event: SubmitEvent): void {
 		event.preventDefault();
-		on_input?.(value);
+		on_input?.(text);
 	}
 </script>
 
-<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_submit}>
-	<input type="text" bind:value {placeholder} />
+<form class="admin-search" role="search" onsubmit={handle_submit}>
+	<label class="admin-visually-hidden" for={uid}>{label}</label>
+	<input id={uid} type="search" bind:value={text} {placeholder} />
 	<button type="submit">Search</button>
 </form>
-
-<style lang="postcss">
-	form {
-		width: 100%;
-	}
-
-	input {
-		flex: 1;
-		background: transparent;
-		border: var(--border);
-		padding: 10px;
-		font-size: var(--font-size-base);
-		color: var(--c-fg);
-		border-radius: var(--br-medium);
-	}
-</style>

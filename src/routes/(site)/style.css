@@ -15,7 +15,7 @@
 
 /* The main css entry. Primarily used to import stuff */
 
-@layer reset, bass, utilities, layout, theme;
+@layer reset, bass, base, utilities, layout, theme, admin;
 
 /* Import all css themes */
 @import '../../styles/reset.css';
@@ -27,3 +27,4 @@
 @import '../../styles/layout.css';
 @import '../../styles/buttons.css';
 @import '../../styles/components.css';
+@import '../../styles/admin.css';

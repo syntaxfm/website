@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminActions from '../../../AdminActions.svelte';
 	import AdminSearch from '../../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
@@ -20,13 +19,15 @@
 	let creating = $state(false);
 	let create_error = $state('');
 
-	const list_result = await list_playlists({
-		search_text,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	let list_result = $derived(
+		await list_playlists({
+			search_text,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
-	function update_url(updates: Record<string, string | number | null | undefined>) {
+	function update_url(updates: Record<string, string | number | null | undefined>): void {
 		void goto(build_url(current_page.url, updates), {
 			replaceState: true,
 			keepFocus: true,
@@ -34,7 +35,7 @@
 		});
 	}
 
-	async function create_new_playlist(event: Event) {
+	async function create_new_playlist(event: SubmitEvent): Promise<void> {
 		event.preventDefault();
 		create_error = '';
 
@@ -50,33 +51,41 @@
 			const created = await create_playlist({ title: trimmed_title });
 			await goto(resolve(`/admin/content/videos/playlists/${created.id}`));
 		} catch (error) {
-			console.error(error);
+			console.error('Unable to create playlist', error);
 			create_error = error instanceof Error ? error.message : 'Unable to create playlist.';
+		} finally {
 			creating = false;
 		}
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Playlists</h1>
-		<AdminActions>
-			<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={create_new_playlist}>
-				<input
-					type="text"
-					bind:value={new_playlist_title}
-					placeholder="New playlist title"
-					disabled={creating}
-				/>
-				<button type="submit" disabled={creating}>
-					{creating ? 'Creating...' : 'Create Playlist'}
-				</button>
-			</form>
-		</AdminActions>
-	</div>
+<svelte:head>
+	<title>Video Playlists | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<form class="admin-inline-form admin-actions" onsubmit={create_new_playlist}>
+		<label class="admin-visually-hidden" for="new-playlist-title">Playlist title</label>
+		<input
+			id="new-playlist-title"
+			name="title"
+			type="text"
+			bind:value={new_playlist_title}
+			placeholder="New playlist title"
+			disabled={creating}
+			aria-invalid={create_error ? 'true' : undefined}
+			aria-describedby={create_error ? 'playlist-create-error' : undefined}
+			required
+		/>
+		<button type="submit" data-intent="primary" disabled={creating}>
+			{creating ? 'Creating…' : 'Create playlist'}
+		</button>
+	</form>
 
 	{#if create_error}
-		<p class="fs-2" style="color: var(--c-red)">{create_error}</p>
+		<p id="playlist-create-error" class="admin-feedback" data-tone="negative" role="alert">
+			{create_error}
+		</p>
 	{/if}
 
 	<AdminList
@@ -88,20 +97,17 @@
 		visible_ids={list_result.items.map((item) => item.id)}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-control">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 					placeholder="Search playlists"
 				/>
 				{#if show_clear_filters}
-					<div
-						class="flex"
-						style="
-
---flex-gap: var(--pad-small)"
-					>
-						<a class="button small" href={resolve('/admin/content/videos/playlists')}>× Clear</a>
+					<div class="admin-actions">
+						<a class="button" data-intent="quiet" href={resolve('/admin/content/videos/playlists')}
+							>Clear filters</a
+						>
 					</div>
 				{/if}
 			</div>

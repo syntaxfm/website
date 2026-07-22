@@ -1,5 +1,4 @@
 <script lang="ts">
-	import AdminActions from '../../AdminActions.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { create_role, list_roles } from '../admin_users.remote';
 
@@ -49,26 +48,26 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Roles</h1>
-		<AdminActions>
-			<form
-				class="flex"
-				style:--flex-gap="var(--pad-small)"
-				onsubmit={(event) => {
-					event.preventDefault();
-					void add_role();
-				}}
-			>
-				<label class="stack" style:--stack-gap="0.35rem">
-					Role name
-					<input type="text" bind:value={role_name} placeholder="editor" required />
-				</label>
-				<button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Add role'}</button>
-			</form>
-		</AdminActions>
-	</div>
+<svelte:head>
+	<title>Roles | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<form
+		class="admin-inline-form admin-actions"
+		onsubmit={(event) => {
+			event.preventDefault();
+			void add_role();
+		}}
+	>
+		<label class="admin-field">
+			<span>Role name</span>
+			<input type="text" bind:value={role_name} placeholder="editor" required />
+		</label>
+		<button type="submit" data-intent="primary" disabled={creating}>
+			{creating ? 'Creating...' : 'Add role'}
+		</button>
+	</form>
 
 	<AdminList
 		total={roles.length}
@@ -80,10 +79,10 @@
 	>
 		{#snippet action_feedback()}
 			{#if status_message}
-				<p>{status_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
 			{/if}
 			{#if status_error}
-				<p>{status_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
 			{/if}
 		{/snippet}
 

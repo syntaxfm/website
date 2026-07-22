@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminActions from '../../AdminActions.svelte';
 	import AdminSearch from '../../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -54,15 +53,17 @@
 	let creating = $state(false);
 	let create_error = $state('');
 
-	const list_result = await list_articles({
-		search_text,
-		status: status_filter,
-		date_from_iso: date_from || undefined,
-		date_to_iso: date_to || undefined,
-		order,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	let list_result = $derived(
+		await list_articles({
+			search_text,
+			status: status_filter,
+			date_from_iso: date_from || undefined,
+			date_to_iso: date_to || undefined,
+			order,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -86,18 +87,19 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Articles</h1>
-		<AdminActions>
-			<button type="button" onclick={create_new_article} disabled={creating}>
-				{creating ? 'Creating...' : 'Create Article'}
-			</button>
-		</AdminActions>
+<svelte:head>
+	<title>Articles | Syntax Admin</title>
+</svelte:head>
+
+<div class="admin-page stack">
+	<div class="admin-actions">
+		<button type="button" data-intent="primary" onclick={create_new_article} disabled={creating}>
+			{creating ? 'Creating...' : 'Create Article'}
+		</button>
 	</div>
 
 	{#if create_error}
-		<p class="fs-2" style="color: var(--c-red)">{create_error}</p>
+		<p class="admin-feedback" data-tone="negative" role="alert">{create_error}</p>
 	{/if}
 
 	<AdminList
@@ -109,25 +111,13 @@
 		visible_ids={list_result.items.map((item) => item.content_id)}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-control-row">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 				/>
-				<div
-					class="flex"
-					style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: flex-end"
-				>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+				<div class="admin-control-row">
+					<label class="admin-field">
 						<span class="fs-1">From</span>
 						<input
 							type="date"
@@ -136,12 +126,7 @@
 								update_url({ date_from: event.currentTarget.value || null, page: null })}
 						/>
 					</label>
-					<label
-						class="stack"
-						style="
-
---stack-gap: 2px"
-					>
+					<label class="admin-field">
 						<span class="fs-1">To</span>
 						<input
 							type="date"
@@ -166,7 +151,9 @@
 						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" href={resolve('/admin/content/articles')}>× Clear</a>
+						<a class="button small" data-intent="quiet" href={resolve('/admin/content/articles')}
+							>× Clear</a
+						>
 					{/if}
 				</div>
 			</div>
@@ -184,7 +171,7 @@
 				{@const edit_link = resolve(`/admin/content/articles/${article_item.content_id}`)}
 				<tr>
 					<td>
-						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+						<div class="admin-row">
 							<p>{article_item.meta.title}</p>
 							<a href={edit_link}>Edit</a>
 						</div>

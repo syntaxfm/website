@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminSearch from '../AdminSearch.svelte';
-	import AdminActions from '../AdminActions.svelte';
+	import { page as current_page } from '$app/state';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminSearch from '../AdminSearch.svelte';
 	import { create_guest, list_guests } from './admin_guests.remote';
 
 	const FILTER_KEYS = ['q'] as const;
@@ -23,11 +22,13 @@
 	let new_guest_name = $state('');
 	let creating_guest = $state(false);
 
-	const list_result = await list_guests({
-		search_text,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	const list_result = $derived(
+		await list_guests({
+			search_text,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -67,23 +68,25 @@
 	}
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<h1 class="h3">Guests</h1>
+<svelte:head>
+	<title>Guests | Syntax Admin</title>
+</svelte:head>
 
-	<AdminActions>
-		<form class="flex" style:--flex-gap="var(--pad-xsmall)" onsubmit={handle_create_guest}>
-			<input
-				type="text"
-				bind:value={new_guest_name}
-				placeholder="New guest name"
-				required
-				disabled={creating_guest}
-			/>
-			<button type="submit" disabled={creating_guest}>
-				{creating_guest ? 'Creating...' : 'Create Guest'}
-			</button>
-		</form>
-	</AdminActions>
+<div class="admin-page stack">
+	<form class="admin-inline-form admin-actions" onsubmit={handle_create_guest}>
+		<label class="admin-visually-hidden" for="new-guest-name">Guest name</label>
+		<input
+			id="new-guest-name"
+			type="text"
+			bind:value={new_guest_name}
+			placeholder="New guest name"
+			required
+			disabled={creating_guest}
+		/>
+		<button type="submit" data-intent="primary" disabled={creating_guest}>
+			{creating_guest ? 'Creating…' : 'Create guest'}
+		</button>
+	</form>
 
 	<AdminList
 		total={list_result.total}
@@ -96,15 +99,15 @@
 		{busy}
 	>
 		{#snippet filters()}
-			<div class="stack" style:--stack-gap="var(--pad-small)">
+			<div class="admin-field">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 					placeholder="Search guests"
 				/>
 				{#if show_clear_filters}
-					<div class="flex" style:--flex-gap="var(--pad-small)">
-						<a class="button small" href={resolve('/admin/guests')}>× Clear</a>
+					<div class="admin-control-row">
+						<a class="button" data-intent="quiet" href={resolve('/admin/guests')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -112,10 +115,10 @@
 
 		{#snippet action_feedback()}
 			{#if action_message}
-				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 			{/if}
 			{#if action_error}
-				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 			{/if}
 		{/snippet}
 

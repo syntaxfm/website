@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import AdminActions from '../AdminActions.svelte';
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminList from '$lib/admin/AdminList.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -41,11 +40,13 @@
 
 	void load_role_options();
 
-	const list_result = await list_users({
-		search_text: search_text || undefined,
-		page: page_number,
-		page_size: PAGE_SIZE
-	});
+	const list_result = $derived(
+		await list_users({
+			search_text: search_text || undefined,
+			page: page_number,
+			page_size: PAGE_SIZE
+		})
+	);
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -150,14 +151,11 @@
 	);
 </script>
 
-<div class="stack" style:--stack-gap="var(--pad-medium)">
-	<div class="split" style="flex-wrap: wrap">
-		<h1 class="h3">Users</h1>
-		<AdminActions>
-			<a class="button small" href={resolve('/admin/users/roles')}>Roles</a>
-		</AdminActions>
-	</div>
+<svelte:head>
+	<title>Users | Syntax Admin</title>
+</svelte:head>
 
+<div class="admin-page stack">
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
@@ -177,14 +175,7 @@
 		{/snippet}
 
 		{#snippet bulk()}
-			<div
-				class="flex"
-				style="
-
---flex-gap: var(--pad-small);
-
- flex-wrap: wrap; align-items: center"
-			>
+			<div class="admin-inline-form admin-actions">
 				<SelectMenu
 					popover_id="filter-bulk_role"
 					button_text={`Role (${bulk_role_label})`}
@@ -192,10 +183,20 @@
 					options={role_select_options}
 					onselect={(value) => (bulk_role_id = value)}
 				/>
-				<button type="button" onclick={run_bulk_assign} disabled={busy || !bulk_role_id}>
+				<button
+					type="button"
+					data-intent="primary"
+					onclick={run_bulk_assign}
+					disabled={busy || !bulk_role_id}
+				>
 					Assign role
 				</button>
-				<button type="button" onclick={run_bulk_remove} disabled={busy || !bulk_role_id}>
+				<button
+					type="button"
+					data-intent="danger"
+					onclick={run_bulk_remove}
+					disabled={busy || !bulk_role_id}
+				>
 					Remove role
 				</button>
 			</div>
@@ -203,10 +204,10 @@
 
 		{#snippet action_feedback()}
 			{#if action_message}
-				<p class="fs-2" style="color: var(--c-green)">{action_message}</p>
+				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
 			{/if}
 			{#if action_error}
-				<p class="fs-2" style="color: var(--c-red)">{action_error}</p>
+				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
 			{/if}
 		{/snippet}
 
@@ -245,7 +246,7 @@
 						/>
 					</td>
 					<td>
-						<div class="stack" style:--stack-gap="var(--pad-xsmall)">
+						<div class="admin-control">
 							<p>{user_row.username || '-'}</p>
 							{#if user_row.name}
 								<p class="fs-2">{user_row.name}</p>
@@ -253,7 +254,9 @@
 							{#if user_row.email}
 								<p class="fs-2">{user_row.email}</p>
 							{/if}
-							<a href={resolve(`/admin/users/${user_row.id}`)}>Edit</a>
+							<a class="button" data-intent="quiet" href={resolve(`/admin/users/${user_row.id}`)}
+								>Edit</a
+							>
 						</div>
 					</td>
 					<td>{format_roles(user_row)}</td>
