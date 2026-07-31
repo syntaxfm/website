@@ -36,12 +36,19 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 		}
 	}
 
-	// Use the ResizeObserver to watch for changes in size of 'node'
+	function handleToggle(event: ToggleEvent) {
+		if (event.newState === 'open') updatePosition();
+	}
+
+	const target = document.getElementById(id);
+	target?.addEventListener('toggle', handleToggle as EventListener);
+
 	const resizeObserver = new ResizeObserver(updatePosition);
 	resizeObserver.observe(node);
 	window.addEventListener('resize', updatePosition);
 	return {
 		destroy() {
+			target?.removeEventListener('toggle', handleToggle as EventListener);
 			resizeObserver.disconnect();
 			window.removeEventListener('resize', updatePosition);
 		}
