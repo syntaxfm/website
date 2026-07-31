@@ -34,7 +34,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 * [Netlify environmental variables](https://docs.netlify.com/configure-builds/environment-variables/)
 * **[14:37](#t=14:37)** Timeouts
 * **[15:47](#t=15:47)** Sass is expensive
-* **[17:26](#t=17:26)** Infastructure as code
+* **[17:26](#t=17:26)** Infrastructure as code
 * **[19:02](#t=19:02)** Search
 * [Algolia](https://www.algolia.com)
 

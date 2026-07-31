@@ -36,7 +36,7 @@ Auth0 is the easiest way for developers to add authentication and secure their a
 
 23:33 - What is the use of preventDefault method?
 
-26:15 - What is a spread opperator?
+26:15 - What is a spread operator?
 
 27:35 - What is the output of below spread operator array?
 * `[...'John Resig']`

@@ -36,7 +36,7 @@ Web scraping 101! Dive into the world of web scraping with Scott and Wes as they
 * **[36:26](#t=36:26)** File downloading.
 * **[38:20](#t=38:20)** Working with protected routes.
 * [Proxyman](https://proxyman.io/).
-* **[40:41](#t=40:41)** Programatically retrieve authentication keys because they are short-lived.
+* **[40:41](#t=40:41)** Programmatically retrieve authentication keys because they are short-lived.
 * [Fetch Cookie](https://www.npmjs.com/package/fetch-cookie).
 * **[43:20](#t=43:20)** Deal-breakers.
 * [Mechanical Turk](https://en.wikipedia.org/wiki/Mechanical_Turk).

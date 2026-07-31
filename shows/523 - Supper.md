@@ -42,7 +42,7 @@ Today’s episode was sponsored by Gatsby, the fastest frontend for the headless
 - **[06:14](#t=06:14)** Why did you choose to write in Lua?
 - [Lua](https://www.lua.org)
 - [Luajit](http://luajit.org/luajit.html)
-- **[13:26](#t=13:26)** What is adapative UI in Neovim?
+- **[13:26](#t=13:26)** What is adaptive UI in Neovim?
 - **[17:38](#t=17:38)** Lunarvim and alternatives
 - [Fvim](https://github.com/yatli/fvim)
 - [LunarVim](https://www.lunarvim.org)

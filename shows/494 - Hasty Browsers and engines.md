@@ -5,7 +5,7 @@ date: 1659960000726
 url: https://traffic.megaphone.fm/FSI8578730387.mp3
 ---
 
-In this Hasty Treat, Scott and Wes talk about the various web browers that might show up in your analytics and whether you need to worry about supporting them or not.
+In this Hasty Treat, Scott and Wes talk about the various web browsers that might show up in your analytics and whether you need to worry about supporting them or not.
 
 ## Sentry - Sponsor
 

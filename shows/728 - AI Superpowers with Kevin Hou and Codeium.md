@@ -35,7 +35,7 @@ In this supper club, Scott and Wes welcome Kevin Hou, Head of Product Engineerin
 * **[32:09](#t=32:09)** Do AI models get worse over time? How does Codeium validate that it's not?
 * [Open AI Evals](https://github.com/openai/evals)
 * **[35:39](#t=35:39)** How is Codeium THAT fast?
-* **[36:49](#t=36:49)** What programming langauges does Codeium use?
+* **[36:49](#t=36:49)** What programming languages does Codeium use?
 * **[38:55](#t=38:55)** Codeium Playground.
 * [Codeium Playground](https://codeium.com/playground)
 * **[39:15](#t=39:15)** Caching as a performance improvement.

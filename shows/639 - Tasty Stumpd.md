@@ -25,7 +25,7 @@ In this episode of Syntax, Wes and Scott try to stump each other with questions 
 * **[13:20:19](#t=13:20:19)** What is a type erase in TypeScript?
 * **[14:21:23](#t=14:21:23)** In TypeScript which syntax can be used to define a user defined type guard?
 * **[16:02:12](#t=16:02:12)** What is a closure in JavaScript?
-* **[17:40:00](#t=17:40:00)** Which node.js module provides asynchronus file I/O?
+* **[17:40:00](#t=17:40:00)** Which node.js module provides asynchronous file I/O?
 * **[18:54:08](#t=18:54:08)** What does memory safety mean?
 * **[21:57:11](#t=21:57:11)** What does http2 introduce to improve speed?
 * **[23:58:05](#t=23:58:05)** What are strategies for optimizing HTML5 video?

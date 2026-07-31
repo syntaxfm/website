@@ -22,7 +22,7 @@ If you want to know what’s happening with your code, track errors and monitor 
 * **[02:11:02](#t=02:11:02)** Sponsor: Sentry
 * **[03:54:18](#t=03:54:18)** Twitter ask for One Liners
 * **[04:24:05](#t=04:24:05)** Math random
-`const getPsuedoID =() => Math.floor(Math.random() * 1e15);`
+`const getPseudoID =() => Math.floor(Math.random() * 1e15);`
 * **[05:43:09](#t=05:43:09)** Random color
 * [Paul Irish random color](https://www.paulirish.com/2009/random-hex-color-code-snippets/)
 `'#'+Math.floor(Math.random()*16777215).toString(16);`

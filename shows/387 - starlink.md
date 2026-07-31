@@ -19,7 +19,7 @@ Get a 30 day free trial of Freshbooks at [freshbooks.com/syntax](https://freshbo
 * Remote work
   * Opens up job opportunities for many residents who can't relocate due to family
 * Home values
-  * Big city folk moving into rural areas and driving prices up is another issue alltogether
+  * Big city folk moving into rural areas and driving prices up is another issue altogether
 * Smart rural home
 
 05:46 - Previous setup

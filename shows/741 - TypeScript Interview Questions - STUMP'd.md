@@ -25,7 +25,7 @@ Wes and Scott tackle TypeScript trivia, from combining string literal types to u
 * [Module .d.ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
 * **[16:25](#t=16:25)** Name one difference between a type and an interface.
 * [Types vs Interfaces](https://www.typescriptlang.org/play#example/types-vs-interfaces)
-* **[19:15](#t=19:15)** What is a tripple-slash directive and why would you use them?
+* **[19:15](#t=19:15)** What is a triple-slash directive and why would you use them?
 * [Tripple-Slash Directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html)
 * **[20:52](#t=20:52)** What is a TypeScript record and what is it used for?
 * [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)

@@ -41,7 +41,7 @@ Auth0 is the easiest way for developers to add authentication and secure their a
 * **[29:44](#t=29:44)** TypeScript
 * **[34:28](#t=34:28)** Sponsor: Sanity
 * **[35:07](#t=35:07)** Server comeback
-* **[36:21](#t=36:21)** Checkouts and payment processers
+* **[36:21](#t=36:21)** Checkouts and payment processors
 * [Lemon Squeezy](https://www.lemonsqueezy.com)
 * **[43:05](#t=43:05)** Sponsor: Auth0
 * **[44:18](#t=44:18)** Temporal API
