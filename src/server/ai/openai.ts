@@ -4,6 +4,7 @@ import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi, type CreateChatCompletionRequest } from 'openai';
 import wait from 'waait';
 import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
+import { orca_completion } from './orcarouter';
 import { create_condensed_prompt, summarize_prompt, summarize_prompt_2 } from './prompts';
 import type { AIPodcastSummaryResponse, transcript_without_ai_notes_query } from './queries';
 import type { SlimUtterance, TranscribedShow } from '../transcripts/types';
@@ -122,7 +123,7 @@ export async function condense(
 
 export async function generate_ai_notes(
 	show: Prisma.ShowGetPayload<typeof transcript_without_ai_notes_query>,
-	provider: 'openai' | 'anthropic' = 'anthropic'
+	provider: 'openai' | 'anthropic' | 'orcarouter' = 'anthropic'
 ) {
 	if (!show || !show.transcript?.utterances) {
 		throw new Error(`No transcript found for show ${show.number}`);
@@ -138,8 +139,8 @@ export async function generate_ai_notes(
 			utterances: slim_utterance
 		},
 		{
-			// anthropic doesnt need to condense
-			skip: provider === 'anthropic'
+			// anthropic and orcarouter dont need to condense
+			skip: provider === 'anthropic' || provider === 'orcarouter'
 		}
 	);
 	const condensed_transcript = formatAsTranscript(slim_utterances_with_condensed);
@@ -176,6 +177,15 @@ export async function generate_ai_notes(
 		console.log(`JSON Part: ${json_part}`);
 		const aparsed = JSON.parse(json_part) as AIPodcastSummaryResponse;
 		return { ...aparsed, provider: 'anthropic' };
+	}
+	if (provider === 'orcarouter') {
+		console.log(`Using orcarouter for ${show.number}`);
+		const orca_result = await orca_completion(input);
+		console.log(orca_result.data);
+		const maybe_json = orca_result.data.choices.at(0)?.message?.content;
+		console.log(maybe_json);
+		const parsed = JSON.parse(maybe_json || '') as AIPodcastSummaryResponse;
+		return { ...parsed, provider: 'orcarouter' };
 	}
 	// OpenAI
 	console.log(`Using openai for ${show.number}`);

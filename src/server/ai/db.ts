@@ -30,7 +30,7 @@ export async function save_ai_notes_to_db(result: Result, show: Show) {
 					timestamp: link.timestamp
 				}))
 			},
-			provider: 'anthropic'
+			provider: result.provider
 		}
 	});
 }
