@@ -104,14 +104,15 @@ These are the available media queries:
 
 ### Where to get your own Environment Variables
 
-| Variable                     | Where to get it                                                         | Notes                                                                                           |
-| ---------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| PUBLIC_GITHUB_ID, GH_SECRET  | [Github Oauth Apps](https://github.com/settings/developers)             | Create new OAuth App, set `http://localhost:5173/api/oauth/github/callback` as the redirect URL |
-| DEEPGRAM_SECRET              | [Deepgram](https://console.deepgram.com/)                               |                                                                                                 |
-| SENTRY_AUTH_TOKEN            | [Sentry](https://docs.sentry.io/product/accounts/auth-tokens/)          |                                                                                                 |
-| OPENAI_API_KEY               | [Open AI](https://platform.openai.com/account/api-keys)                 |                                                                                                 |
-| UPSPLASH_TOKEN, UPSPLASH_URL | [https://upstash.com/](https://upstash.com/)                            | Create a redis DB after sign up in the console                                                  |
-| YOUTUBE_API_KEY              | [Google API Console](https://console.cloud.google.com/apis/credentials) | Create an API key, visit the library and enable "YouTube Data API v3"                           |
+| Variable                     | Where to get it                                                         | Notes                                                                                                                                      |
+| ---------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| PUBLIC_GITHUB_ID, GH_SECRET  | [Github Oauth Apps](https://github.com/settings/developers)             | Create new OAuth App, set `http://localhost:5173/api/oauth/github/callback` as the redirect URL                                            |
+| DEEPGRAM_SECRET              | [Deepgram](https://console.deepgram.com/)                               |                                                                                                                                            |
+| SENTRY_AUTH_TOKEN            | [Sentry](https://docs.sentry.io/product/accounts/auth-tokens/)          |                                                                                                                                            |
+| OPENAI_API_KEY               | [Open AI](https://platform.openai.com/account/api-keys)                 |                                                                                                                                            |
+| ORCAROUTER_API_KEY           | [OrcaRouter](https://www.orcarouter.ai)                                 | OpenAI-compatible gateway (key starts with `sk-orca-`). AI show notes can be generated via OrcaRouter by passing `provider: 'orcarouter'`. |
+| UPSPLASH_TOKEN, UPSPLASH_URL | [https://upstash.com/](https://upstash.com/)                            | Create a redis DB after sign up in the console                                                                                             |
+| YOUTUBE_API_KEY              | [Google API Console](https://console.cloud.google.com/apis/credentials) | Create an API key, visit the library and enable "YouTube Data API v3"                                                                      |
 
 # Our Contributors
 
