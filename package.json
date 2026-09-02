@@ -45,7 +45,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.15.0",
-		"mysql2": "^3.14.1",
+		"mysql2": "^3.22.0",
 		"postcss": "^8.5.6",
 		"postcss-custom-media": "^11.0.6",
 		"postcss-import": "^16.1.1",
