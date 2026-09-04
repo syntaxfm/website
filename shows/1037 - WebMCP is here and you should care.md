@@ -8,6 +8,20 @@ Hosts:
   - stolinski
   - wesbos
 
+guest:
+  - name: Sarah Drasner
+    github: sdras
+    twitter: @sarah_edo
+    of: Google Chrome
+    url: https://www.google.com/chrome/
+    social: https://sarah.dev/
+  - name: Dominic Farolino
+    github: domfarolino
+    twitter: @domfarolino
+    of: Google Chrome
+    url: https://www.google.com/chrome/
+    social: https://domfarolino.com/
+
 ---
 	
 Scott and Wes talk about WebMCP with Sarah Drasner and Dominic Farolino from the Chrome team, which is the new W3C standard that lets your site hand real tools to an agent. They cover the security model, headless and multi-tab agents, and how to wire it into an app you've already shipped.
