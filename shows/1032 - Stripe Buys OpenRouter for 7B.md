@@ -4,7 +4,9 @@ title: Stripe Buys OpenRouter for $7B
 date: 1787569200000
 url: https://traffic.megaphone.fm/FSI9558460816.mp3
 youtube_url: https://www.youtube.com/live/55BvQCzdI_g
-
+hosts:
+  - stolinski
+  - w3cj
 ---
 	
 Scott and CJ break down Stripe's $7B acquisition of OpenRouter, the SvelteKit 3 release candidate, and their first look at TanStack Charts. Plus Zed's new Delta editor, stealing reasoning traces from proprietary LLM APIs, why dark mode toggles only need two states, and all 43 quintillion Rubik's cube states in your browser.
