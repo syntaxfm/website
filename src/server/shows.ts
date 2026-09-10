@@ -23,11 +23,15 @@ export async function import_or_update_all_shows() {
 
 		// Read and process each .md file
 		for (const md_file_path in md_files) {
-			const { number, hash, md_file_contents } = await get_show_data_from_glob(
-				md_files[md_file_path],
-				md_file_path
-			);
-			await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
+			try {
+				const { number, hash, md_file_contents } = await get_show_data_from_glob(
+					md_files[md_file_path],
+					md_file_path
+				);
+				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
+			} catch (err) {
+				throw new Error(`Failed to import ${md_file_path}`, { cause: err });
+			}
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
@@ -46,10 +50,17 @@ export async function import_or_update_all_changed_shows() {
 
 		// Read and process each .md file
 		for (const md_file_path in md_files) {
-			const { number, hash, md_file_contents } = await get_show_data_from_glob(
-				md_files[md_file_path],
-				md_file_path
-			);
+			let number: number;
+			let hash: string;
+			let md_file_contents: string;
+			try {
+				({ number, hash, md_file_contents } = await get_show_data_from_glob(
+					md_files[md_file_path],
+					md_file_path
+				));
+			} catch (err) {
+				throw new Error(`Failed to import ${md_file_path}`, { cause: err });
+			}
 
 			const existing_show = await prisma.show.findUnique({
 				where: { number: number }
@@ -80,8 +91,11 @@ export async function import_or_update_all_changed_shows() {
 
 async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
 	const hash = await get_hash_from_content(md_file_contents);
-	const cleaned_path = md_file_path.replace('/shows/', '');
-	const number = parseInt(cleaned_path.split(' - ')[0]);
+	const filename = md_file_path.split('/').pop() ?? '';
+	const number = parseInt(filename, 10);
+	if (Number.isNaN(number)) {
+		throw new Error(`Could not determine show number from ${md_file_path}`);
+	}
 	return { number, hash, md_file_contents };
 }
 
@@ -93,7 +107,9 @@ export async function parse_and_save_show_notes(
 	md_file: string
 ) {
 	// Parse the front matter
-	const { data, content } = matter(notes);
+	// YAML treats an unquoted @ as invalid, even though it is a common handle format.
+	const parseable_notes = notes.replace(/^(\s*twitter:\s*)@([^\s#]+)(\s*(?:#.*)?)$/gm, '$1$2$3');
+	const { data, content } = matter(parseable_notes);
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
@@ -104,13 +120,14 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
-		// Prepare the hosts connection if hosts exist in the frontmatter
+		// Accept both spellings because older and newer show files use different casing.
+		const hosts = data.hosts ?? data.Hosts;
 		let hostsConnection = {};
-		if (data.hosts && Array.isArray(data.hosts)) {
+		if (hosts && Array.isArray(hosts)) {
 			const hostUsers = await prisma.user.findMany({
 				where: {
 					username: {
-						in: data.hosts
+						in: hosts
 					}
 				}
 			});
@@ -180,6 +197,9 @@ export async function parse_and_save_show_notes(
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
 		const { social, name, ...guest_without_socials } = guest;
+		if (typeof guest_without_socials.twitter === 'string') {
+			guest_without_socials.twitter = guest_without_socials.twitter.replace(/^@/, '');
+		}
 		const name_slug = slug(name);
 
 		const guest_record = await prisma.$transaction(async (prisma) => {
