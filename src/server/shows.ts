@@ -5,6 +5,7 @@ import { left_pad } from '$utilities/left_pad';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
+import * as Sentry from '@sentry/sveltekit';
 import { prisma_client as prisma } from '$/server/prisma-client';
 import { cache } from './cache/cache';
 
@@ -35,6 +36,7 @@ export async function import_or_update_all_shows() {
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
+		Sentry.captureException(err);
 		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
@@ -82,6 +84,7 @@ export async function import_or_update_all_changed_shows() {
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
+		Sentry.captureException(err);
 		error(500, 'Error Importing Shows');
 	}
 	cache.shows.drop_shows_list_cache();
