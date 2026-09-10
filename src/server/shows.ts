@@ -123,8 +123,7 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
-		// Accept both spellings because older and newer show files use different casing.
-		const hosts = data.hosts ?? data.Hosts;
+		const hosts = data.hosts;
 		let hostsConnection = {};
 		if (hosts && Array.isArray(hosts)) {
 			const hostUsers = await prisma.user.findMany({
