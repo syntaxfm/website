@@ -5,22 +5,22 @@
 <a
 	href="https://syntax.fm/meetup"
 	target="_blank"
-	class="layout amsterdam-banner"
+	rel="noopener noreferrer"
+	class="layout meetup-banner"
 >
 	<div class="banner-content">
 		<div class="text-section">
 			<p class="top-line">
 				<img src={syntaxLogo} alt="Syntax" class="syntax-logo" />
-				<img src="/js-nation-logo.png" alt="JS Nation" class="js-logo" />
 			</p>
-			<h2 class="title">AMSTERDAM MEETUP</h2>
-			<p class="date">JUNE 10TH &nbsp;6-9PM</p>
+			<h2 class="title">SAN FRANCISCO MEETUP</h2>
+			<p class="date">OCT 27TH &nbsp;5-7PM</p>
 		</div>
 	</div>
 </a>
 
 <style lang="postcss">
-	.amsterdam-banner {
+	.meetup-banner {
 		width: 100%;
 		position: relative;
 		overflow: hidden;
@@ -29,12 +29,13 @@
 		grid-column: 1 / -1;
 		--banner-bg: #e91e8c;
 		background-color: var(--banner-bg);
-		background-image: url(/amsterdam-canal.webp);
+		background-image: url('https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=85,width=1200,height=1200/uploads/gg/edf698e2-7bbd-4dce-9b9a-67268ba7f00c.jpg');
 		background-size: auto 100%;
 		background-position: right center;
 		background-repeat: no-repeat;
 		mask-image:
-			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png), linear-gradient(var(--black), var(--black));
+			url(/repeating-paper-top.png), url(/paper-stripe-bottom.png),
+			linear-gradient(var(--black), var(--black));
 		--mask-size: 20px;
 		--mask-position: calc(100% + 5px);
 		mask-size:
@@ -93,15 +94,6 @@
 
 		@media (--below-med) {
 			height: 1.1rem;
-		}
-	}
-
-	.js-logo {
-		height: 2.6rem;
-		width: auto;
-
-		@media (--below-med) {
-			height: 1rem;
 		}
 	}
 
