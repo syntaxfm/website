@@ -1,13 +1,12 @@
 ---
 number: 1037
-title: WebMCP is here (and you should care)
+title: "WebMCP is here (and you should care)"
 date: 1788951600000
 url: https://traffic.megaphone.fm/FSI4063165063.mp3
 youtube_url: https://www.youtube.com/watch?v=xtVvkRTH5ck
 Hosts:
   - stolinski
   - wesbos
-
 guest:
   - name: Sarah Drasner
     github: sdras
@@ -21,7 +20,6 @@ guest:
     of: Google Chrome
     url: https://www.google.com/chrome/
     social: https://domfarolino.com/
-
 ---
 	
 Scott and Wes talk about WebMCP with Sarah Drasner and Dominic Farolino from the Chrome team, which is the new W3C standard that lets your site hand real tools to an agent. They cover the security model, headless and multi-tab agents, and how to wire it into an app you've already shipped.
@@ -52,15 +50,11 @@ Scott and Wes talk about WebMCP with Sarah Drasner and Dominic Farolino from the
 
 ### Sick Picks
 
-- Scott:
-- Wes:
 - Dominic: [Steven Pinker: The Sense of Style](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/1846145503)
 - Sarah: [Vintage Story](https://www.vintagestory.at/)
 
 ### Shameless Plugs
 
-- Scott:
-- Wes:
 - Dominic: [X account](https://x.com/domfarolino)
 - Sarah: 25% discount with code *Community25* at [AGNTCon](https://events.linuxfoundation.org/agntcon-mcpcon-north-america/)
 
