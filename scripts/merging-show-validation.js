@@ -1,6 +1,7 @@
 import { exec } from 'child_process';
 import fs from 'fs/promises';
 import { promisify } from 'util';
+import matter from 'gray-matter';
 // import path from 'path';
 const execAsync = promisify(exec);
 
@@ -95,9 +96,19 @@ const validateTimestamps = (content) => {
 	return invalidTimestamps;
 };
 
+const validateFrontMatter = (content) => {
+	try {
+		matter(content);
+		return null;
+	} catch (error) {
+		return error.message;
+	}
+};
+
 // Function to process a single markdown file for broken links
 const processFile = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
+	const frontMatterError = validateFrontMatter(content);
 	const urls = extractUrls(content);
 	const published = isEpisodePublished(content);
 
@@ -113,13 +124,9 @@ const processFile = async (filePath) => {
 	const checkPromises = urlsToCheck.map(isUrlValid);
 	const results = await Promise.all(checkPromises);
 	const brokenLinks = urlsToCheck.filter((_, index) => !results[index]);
-
 	const invalidTimestamps = validateTimestamps(content);
 
-	return {
-		brokenLinks,
-		invalidTimestamps
-	};
+	return { brokenLinks, invalidTimestamps, frontMatterError };
 };
 
 // Function to get new files added in the PR within ./shows directory
@@ -149,9 +156,10 @@ const main = async () => {
 		console.log('No new markdown files to check in ./shows.');
 	} else {
 		for (const file of mdFiles) {
-			const { brokenLinks, invalidTimestamps } = await processFile(file);
-			if (brokenLinks.length > 0 || invalidTimestamps.length > 0) {
+			const { brokenLinks, invalidTimestamps, frontMatterError } = await processFile(file);
+			if (brokenLinks.length > 0 || invalidTimestamps.length > 0 || frontMatterError) {
 				errorMessages.push(`Issues found in ${file}:`);
+				if (frontMatterError) errorMessages.push(`- Invalid YAML front matter: ${frontMatterError}`);
 				brokenLinks.forEach((link) => errorMessages.push(`- Broken link: ${link}`));
 				invalidTimestamps.forEach((timestamp) =>
 					errorMessages.push(`- Invalid timestamp: ${timestamp}`)
