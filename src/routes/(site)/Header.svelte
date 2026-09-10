@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Logo from '$lib/Logo.svelte';
+	import MeetupBanner from '$lib/MeetupBanner.svelte';
 	import Search from '$lib/search/Search.svelte';
 	import MobileNav from './MobileNav.svelte';
 	import { page } from '$app/stores';
@@ -10,6 +11,7 @@
 	let { transparent = false }: Props = $props();
 </script>
 
+<MeetupBanner />
 <header class="layout full" class:transparent style:--fg="var(--fg-1)">
 	<div class="header-container content">
 		<div class="logo">
