@@ -108,6 +108,8 @@
 		font-family: var(--body-font-family);
 		padding: 8px 14px;
 		cursor: pointer;
+		/* --body-font-size is never defined, maybe --font-size-base? */
+		/* also, this declaration 'overrides' line 105 */
 		font-size: var(--body-font-size);
 		color: var(--fg);
 		border-radius: 4px;
