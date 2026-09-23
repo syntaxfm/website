@@ -24,7 +24,10 @@ const MIGRATION_STATE_FILE = path.join(__dirname, 'migration-state.json');
 
 expand(dotenv.config());
 
-const MYSQL_URL = process.env.PROD_DATABASE_URL || process.env.DATABASE_URL;
+// Source is the live v2 MySQL database; target is the Postgres database to write into. Both are
+// read from dedicated variables (not DATABASE_URL / PROD_DATABASE_URL, which local dev uses) so a
+// stray .env value can't redirect writes. Pass the target explicitly on the command line.
+const MYSQL_URL = process.env.MYSQL_DATABASE_URL;
 const POSTGRES_URL = process.env.POSTGRES_DATABASE_URL;
 
 // Parse command line arguments
@@ -37,7 +40,10 @@ const TRANSCRIPTS_ONLY = args.includes('--transcripts-only'); // Migrate only tr
 const SKIP_TRANSCRIPT_WORDS = !args.includes('--include-transcript-words'); // Skip TranscriptUtteranceWord by default
 const INCREMENTAL = args.includes('--incremental'); // Incremental sync for transcripts
 const POPULATE_CONTENT = !args.includes('--skip-populate-content'); // Run content population after migration by default
-const MODE = args.find((arg) => arg.startsWith('--mode='))?.split('=')[1] || 'refresh'; // refresh | upsert
+// refresh: truncate + reload | upsert: overwrite by id | insert-missing: add rows Postgres lacks,
+// never update or delete (content rows are only created for shows/videos without one)
+const MODE = args.find((arg) => arg.startsWith('--mode='))?.split('=')[1] || 'refresh';
+const INSERT_MISSING = MODE === 'insert-missing';
 const BATCH_SIZE = 5000;
 
 // Transcript table names (for --skip-transcripts and --transcripts-only)
@@ -102,18 +108,8 @@ const COLUMN_MAPPING = {
 	},
 	UserRole: {
 		id: 'id',
-		userId: 'user_id',
+		userId: 'profile_id',
 		roleId: 'role_id'
-	},
-	Session: {
-		id: 'id',
-		user_id: 'user_id',
-		session_token: 'session_token',
-		access_token: 'access_token',
-		ip: 'ip',
-		country: 'country',
-		created_at: 'created_at',
-		updated_at: 'updated_at'
 	},
 	Show: {
 		id: 'id',
@@ -133,7 +129,7 @@ const COLUMN_MAPPING = {
 	},
 	_ShowToUser: {
 		A: 'show_id', // Prisma implicit many-to-many uses A and B
-		B: 'user_id'
+		B: 'profile_id'
 	},
 	Guest: {
 		id: 'id',
@@ -273,12 +269,11 @@ const COLUMN_MAPPING = {
 
 // MySQL to PostgreSQL table name mapping
 const TABLE_NAME_MAPPING = {
-	User: 'users',
+	User: 'profiles',
 	Role: 'roles',
-	UserRole: 'user_roles',
-	Session: 'sessions',
+	UserRole: 'profile_roles',
 	Show: 'shows',
-	_ShowToUser: 'show_to_user',
+	_ShowToUser: 'show_to_profile',
 	Guest: 'guests',
 	ShowGuest: 'show_guests',
 	SocialLink: 'social_links',
@@ -488,8 +483,11 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		throw new Error(`Table ${pg_table_name} does not exist`);
 	}
 
+	const should_upsert =
+		!INSERT_MISSING && (MODE === 'upsert' || incremental_mode || tableName === 'User');
+
 	// Check if table already has data (when using --skip-existing)
-	if (SKIP_EXISTING && MODE !== 'upsert') {
+	if (SKIP_EXISTING && !should_upsert) {
 		const pg_count_result = await pgClient`
       SELECT COUNT(*) as count FROM ${pgClient(pg_table_name)}
     `;
@@ -510,25 +508,38 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	}
 
 	// Clear existing data in PostgreSQL table (refresh mode only)
-	if (MODE === 'refresh' && !incremental_mode) {
+	if (MODE === 'refresh' && !incremental_mode && tableName !== 'User') {
 		console.log(`🗑️  Clearing existing data (refresh mode)...`);
 		await pgClient`TRUNCATE TABLE ${pgClient(pg_table_name)} CASCADE`;
 		console.log('✅ Cleared');
-	} else if (MODE === 'upsert' || incremental_mode) {
+	} else if (should_upsert) {
 		console.log(`🔄 Upsert mode: Will insert or update existing records`);
+	} else if (INSERT_MISSING) {
+		console.log(`➕ Insert-missing mode: existing rows are left untouched`);
 	}
+
+	// Ids already in Postgres, so insert-missing only sends rows it lacks
+	const existing_ids =
+		INSERT_MISSING && mysql_col_names.includes('id')
+			? new Set(
+					(await pgClient`SELECT id::text AS id FROM ${pgClient(pg_table_name)}`).map((r) => r.id)
+				)
+			: null;
+	// Stable order so LIMIT/OFFSET pages neither skip nor repeat rows
+	const order_clause = mysql_col_names.includes('id') ? ' ORDER BY `id`' : '';
 
 	// Stream data in batches
 	console.log('📦 Migrating data...');
 	let offset = 0;
 	let total_migrated = 0;
 	let total_skipped = 0;
+	let total_already_present = 0;
 	const start_time = Date.now();
 
 	while (offset < total_rows) {
 		// Fetch batch from MySQL (with WHERE clause if incremental)
 		const [rows] = await mysqlConn.query(
-			`SELECT * FROM \`${tableName}\`${where_clause} LIMIT ${BATCH_SIZE} OFFSET ${offset}`
+			`SELECT * FROM \`${tableName}\`${where_clause}${order_clause} LIMIT ${BATCH_SIZE} OFFSET ${offset}`
 		);
 
 		if (rows.length === 0) break;
@@ -550,7 +561,42 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 
 		// Insert or upsert batch into PostgreSQL
 		try {
-			if (MODE === 'upsert' || incremental_mode) {
+			if (INSERT_MISSING) {
+				const missing_rows = existing_ids
+					? pg_rows.filter((row) => !existing_ids.has(String(row.id)))
+					: pg_rows;
+				total_already_present += pg_rows.length - missing_rows.length;
+				// Stay under Postgres' 65,535 bind-parameter limit
+				const chunk_size = Math.floor(60000 / pg_cols.length);
+				const insert_missing = (chunk) => pgClient`
+					INSERT INTO ${pgClient(pg_table_name)} ${pgClient(chunk, ...pg_cols)}
+					ON CONFLICT DO NOTHING
+				`;
+				for (let i = 0; i < missing_rows.length; i += chunk_size) {
+					const chunk = missing_rows.slice(i, i + chunk_size);
+					try {
+						const result = await insert_missing(chunk);
+						total_migrated += result.count;
+						total_already_present += chunk.length - result.count;
+					} catch (chunk_error) {
+						if (!SKIP_INVALID_FK || chunk_error.code !== '23503') throw chunk_error;
+						// MySQL never enforced FKs; retry row by row and skip orphans
+						for (const row of chunk) {
+							try {
+								const result = await insert_missing([row]);
+								total_migrated += result.count;
+								total_already_present += 1 - result.count;
+							} catch (row_error) {
+								if (row_error.code !== '23503') throw row_error;
+								total_skipped++;
+								console.log(
+									`\n   Skipped orphan row (${row_error.constraint_name}): ${row.id ?? JSON.stringify(row)}`
+								);
+							}
+						}
+					}
+				}
+			} else if (should_upsert) {
 				// Upsert: ON CONFLICT DO UPDATE
 				// Determine the primary key column(s)
 				const pk_col = 'id'; // Most tables use 'id' as primary key
@@ -614,11 +660,12 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		offset += BATCH_SIZE;
 
 		// Progress
-		const percent = ((total_migrated / total_rows) * 100).toFixed(1);
+		const processed = Math.min(offset, total_rows);
+		const percent = ((processed / total_rows) * 100).toFixed(1);
 		const elapsed = ((Date.now() - start_time) / 1000).toFixed(1);
-		const rate = (total_migrated / elapsed).toFixed(0);
+		const rate = (processed / elapsed).toFixed(0);
 
-		const progress_msg = `\r   Progress: ${total_migrated.toLocaleString()}/${total_rows.toLocaleString()} (${percent}%) - ${rate} rows/sec`;
+		const progress_msg = `\r   Progress: ${processed.toLocaleString()}/${total_rows.toLocaleString()} (${percent}%) - ${rate} rows/sec`;
 		const skip_msg = total_skipped > 0 ? ` [Skipped: ${total_skipped}]` : '';
 		process.stdout.write(progress_msg + skip_msg);
 	}
@@ -628,15 +675,67 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	console.log('\n✨ Table migrated!');
 	console.log(`⏱️  Time: ${total_time}s`);
 	console.log(`📊 Rows: ${total_migrated.toLocaleString()}`);
+	if (total_already_present > 0) {
+		console.log(`⏭️  Already present: ${total_already_present.toLocaleString()}`);
+	}
 	if (total_skipped > 0) {
 		console.log(`⚠️  Skipped: ${total_skipped.toLocaleString()} (invalid foreign keys)`);
 	}
 	console.log(`⚡ Rate: ${(total_migrated / total_time).toFixed(0)} rows/sec`);
 
+	// insert-missing doesn't apply updates, so it must not advance --incremental's watermark
+	if (INSERT_MISSING) return;
+
 	// Update migration state
 	updateMigrationTime(tableName, migrationState);
 	migrationState[tableName].rowCount = total_migrated;
 	saveMigrationState(migrationState);
+}
+
+// Non-destructive counterpart to populateContentTable: only creates content rows for shows and
+// videos that don't have one yet. Slugs follow the same convention (source slug, -N on collision).
+async function populateMissingContent(pgClient) {
+	console.log('\n\n📦 Creating content rows for shows/videos without one...');
+
+	const taken = new Set((await pgClient`SELECT slug FROM content`).map((row) => row.slug));
+	const unique_slug = (base) => {
+		let candidate = base;
+		for (let n = 1; taken.has(candidate); n++) candidate = `${base}-${n}`;
+		taken.add(candidate);
+		return candidate;
+	};
+
+	const shows = await pgClient`
+		SELECT id, title, slug, created_at, date FROM shows WHERE content_id IS NULL ORDER BY number
+	`;
+	for (const show_item of shows) {
+		await pgClient.begin(async (tx) => {
+			const [new_content] = await tx`
+				INSERT INTO content (title, slug, type, status, created_at, updated_at, published_at)
+				VALUES (${show_item.title}, ${unique_slug(show_item.slug)}, 'PODCAST', 'PUBLISHED',
+					${show_item.created_at}, NOW(), ${show_item.date})
+				RETURNING id
+			`;
+			await tx`UPDATE shows SET content_id = ${new_content.id} WHERE id = ${show_item.id}`;
+		});
+	}
+
+	const videos = await pgClient`
+		SELECT id, title, slug, published_at FROM videos WHERE content_id IS NULL ORDER BY published_at
+	`;
+	for (const video_item of videos) {
+		await pgClient.begin(async (tx) => {
+			const [new_content] = await tx`
+				INSERT INTO content (title, slug, type, status, created_at, updated_at, published_at)
+				VALUES (${video_item.title}, ${unique_slug(video_item.slug)}, 'VIDEO', 'PUBLISHED',
+					NOW(), NOW(), ${video_item.published_at})
+				RETURNING id
+			`;
+			await tx`UPDATE videos SET content_id = ${new_content.id} WHERE id = ${video_item.id}`;
+		});
+	}
+
+	console.log(`✅ Created content for ${shows.length} shows and ${videos.length} videos`);
 }
 
 async function populateContentTable(pgClient) {
@@ -925,8 +1024,8 @@ async function migrateTopicsToTags(mysqlConn, pgClient, migrationState) {
 async function main() {
 	console.log(`🚀 Direct MySQL → PostgreSQL Migration\n`);
 
-	if (!MYSQL_URL) {
-		console.error('❌ ERROR: MySQL DATABASE_URL is not set');
+	if (!MYSQL_URL?.startsWith('mysql://')) {
+		console.error('❌ ERROR: MYSQL_DATABASE_URL must be set to the source mysql:// URL');
 		process.exit(1);
 	}
 
@@ -1015,7 +1114,7 @@ async function main() {
 
 				if (show_count[0].count > 0 || video_count[0].count > 0) {
 					console.log('\n⚡ Populating content table before Tag migration...');
-					await populateContentTable(pg_client);
+					await (INSERT_MISSING ? populateMissingContent : populateContentTable)(pg_client);
 					content_table_populated = true;
 				}
 			}
@@ -1043,7 +1142,7 @@ async function main() {
 			POPULATE_CONTENT &&
 			(tables_to_migrate.includes('Show') || tables_to_migrate.includes('Video'))
 		) {
-			await populateContentTable(pg_client);
+			await (INSERT_MISSING ? populateMissingContent : populateContentTable)(pg_client);
 		}
 	} catch (error) {
 		console.error('\n❌ Migration failed:', error.message);
