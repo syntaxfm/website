@@ -59,7 +59,8 @@ These are enforced by convention now; a Warden rule set may be added later to ma
 ### Install and dev
 
 - Install deps: `pnpm install`
-- Prepare env-dependent setup: `pnpm preheat`
+- One-command setup (`.env`, deps, Docker Postgres, copy of prod data, migrations): `pnpm preheat`
+- Replace local DB with a fresh copy of prod: `pnpm db:pull`
 - Start dev server: `pnpm dev`
 - Start Vite directly: `pnpm vite-dev`
 
@@ -216,7 +217,7 @@ Quick form for new work post-cutover:
 2. `pnpm drizzle-kit generate` — review generated SQL.
 3. `pnpm drizzle-kit migrate` locally; test.
 4. Commit migration files in `drizzle/`.
-5. Production migrations run automatically via `scripts/preheat.js`.
+5. Production is **not** migrated automatically; `scripts/preheat.js` only touches the local Docker DB. Local dev must never point `DATABASE_URL`/`POSTGRES_DATABASE_URL` at prod; prod is only read via `PROD_DATABASE_URL` by `pnpm preheat`/`pnpm db:pull`.
 
 Major schema decisions (text IDs, no CHECK constraints, unified content model) live in [`docs/adr/`](./docs/adr/) — read those before proposing structural changes.
 

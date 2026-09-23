@@ -1,16 +1,23 @@
-version: '3.8'
-
+# Local Postgres for development. `pnpm preheat` starts this and restores prod data into it.
+# Keep the major version in sync with production: pg_dump runs inside this container and
+# can only dump servers at or below its own version.
 services:
   db:
-    image: postgres
-    restart: always
+    image: postgres:18
+    restart: unless-stopped
     ports:
       - 5434:5432
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: local
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U root -d local']
+      interval: 2s
+      timeout: 5s
+      retries: 30
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      # Postgres 18+ images store data under /var/lib/postgresql/<major>/docker.
+      - pgdata18:/var/lib/postgresql
 volumes:
-  pgdata:
+  pgdata18:

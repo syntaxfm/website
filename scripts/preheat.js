@@ -1,337 +1,328 @@
 #!/usr/bin/env node
-import { promises as fs } from 'fs';
-import { execSync } from 'child_process';
-import { createConnection } from 'mysql2/promise';
-import dotenv from 'dotenv';
-import { expand } from 'dotenv-expand';
-import semver from 'semver';
-import { drizzle } from 'drizzle-orm/mysql2';
-import { mysqlTable, varchar, datetime, int } from 'drizzle-orm/mysql-core';
+// One-command local setup: .env, dependencies, Docker Postgres, production data, migrations.
+//
+//   pnpm preheat   Full setup. Copies prod into the local DB only if the local DB is empty.
+//   pnpm db:pull   Replace the local DB with a fresh copy of prod, then apply pending migrations.
+//
+// Uses only Node built-ins so it can run on a fresh clone, before `pnpm install`.
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { createInterface } from 'node:readline/promises';
+import { parseEnv } from 'node:util';
 
-// Load environment variables
-expand(dotenv.config());
+const MIN_NODE_MAJOR = 22;
+const LOCAL_DB = 'local';
+const LOCAL_DB_USER = 'root';
+const LOCAL_DATABASE_URL = 'postgresql://root:mysecretpassword@localhost:5434/local';
+const MIGRATIONS_DIR = 'drizzle/pg-migrations';
+// Production predates drizzle-kit migration tracking: its schema was built by the
+// MySQL → Postgres migration script and matches the migrations up to and including this tag.
+// Only used when a restored database has no drizzle.__drizzle_migrations table.
+const UNTRACKED_PROD_BASELINE = '0001_puzzling_talos';
 
-// Define minimal user schema for this script
-// This is just here so that Node won't get mad. We could make this in TS if we want later and run via tsx or something. I just didn't want to add another dep.
-const users = mysqlTable('User', {
-	id: varchar('id', { length: 191 }).primaryKey(),
-	avatar_url: varchar('avatar_url', { length: 255 }),
-	created_at: datetime('created_at').notNull().default(new Date()),
-	email: varchar('email', { length: 191 }),
-	github_id: int('github_id').notNull().unique(),
-	updated_at: datetime('updated_at').notNull(),
-	username: varchar('username', { length: 191 }),
-	theme: varchar('theme', { length: 50 }).notNull().default('system'),
-	name: varchar('name', { length: 191 }),
-	twitter: varchar('twitter', { length: 191 })
-});
+const args = new Set(process.argv.slice(2));
+const pull_only = args.has('--pull');
+const assume_yes = args.has('--yes') || args.has('-y');
+
+class SetupError extends Error {}
 
 async function main() {
-	const args = process.argv.slice(2);
-	const env_only = args.includes('--env-only');
+	check_node();
+	check_pnpm();
+	check_docker();
 
-	try {
-		if (env_only) {
-			await checkAndUpdateEnv();
-			execSync('pnpm install', { stdio: 'inherit' });
-			console.log('🥘 Website preheated to 450°F (232°C)');
-			return;
+	const env = await ensure_env();
+
+	if (!pull_only) {
+		step('Installing dependencies');
+		run('pnpm', ['install']);
+	}
+
+	step('Starting local Postgres (docker compose)');
+	run('docker', ['compose', 'up', '--detach', '--wait', 'db']);
+	ok('Postgres is up on localhost:5434');
+
+	const has_data = local_has_tables();
+
+	if (pull_only || !has_data) {
+		if (!env.PROD_DATABASE_URL) {
+			throw new SetupError(
+				'PROD_DATABASE_URL is not set in .env. The local DB is built from a copy of prod —\n' +
+					'   grab a read-only connection string from PlanetScale and re-run.'
+			);
 		}
-
-		await checkPnpmVersion();
-		await checkAndUpdateEnv();
-		checkDatabaseUrl();
-		await ensureDrizzleMigrationSetup();
-		await createUpdateSchema();
-		await checkShowTableData();
-		console.log('🥘 Website preheated to 450°F (232°C)');
-		execSync('pnpm vite dev', { stdio: 'inherit' });
-	} catch (error) {
-		console.error('Error:', error.message);
-		process.exit(1);
-	}
-}
-
-async function checkPnpmVersion() {
-	const package_json = JSON.parse(await fs.readFile('package.json', 'utf8'));
-	const required_version = package_json.engines.pnpm;
-	const installed_version = execSync('pnpm --version').toString().trim();
-
-	if (!semver.satisfies(installed_version, required_version)) {
-		throw new Error(
-			`❌ Please install pnpm version ${required_version} or newer before proceeding`
-		);
-	}
-	console.log('✅ pnpm Check');
-}
-
-async function checkAndUpdateEnv() {
-	const env_path = '.env';
-	const example_env_path = '.env.example';
-
-	try {
-		await fs.access(env_path);
-	} catch {
-		await fs.copyFile(example_env_path, env_path);
-		console.log('🤝 .env.example copied to .env');
-
-		const mysql_query = await promptForMysqlQuery();
-		let env_content = await fs.readFile(env_path, 'utf8');
-		env_content = env_content.replace(
-			"DATABASE_URL='REQUIRED__YOU_NEED_A_MYSQL_URL'",
-			`DATABASE_URL='${mysql_query}'`
-		);
-		await fs.writeFile(env_path, env_content);
-		console.log('✅ Updated DATABASE_URL in .env');
+		if (has_data && !(await confirm('This replaces your local database. Continue?'))) {
+			throw new SetupError('Cancelled');
+		}
+		pull_prod(env.PROD_DATABASE_URL);
+	} else {
+		ok('Local database already has data (run pnpm db:pull to refresh from prod)');
 	}
 
-	const env_vars = dotenv.parse(await fs.readFile(env_path));
-	const example_env_vars = dotenv.parse(await fs.readFile(example_env_path));
+	baseline_untracked_migrations();
 
-	const missing_vars = Object.keys(example_env_vars).filter((key) => !(key in env_vars));
-
-	if (missing_vars.length > 0) {
-		const append_content = missing_vars.map((key) => `${key}=${example_env_vars[key]}`).join('\n');
-		await fs.appendFile(env_path, '\n' + append_content);
-		console.log('✅ Added missing variables to .env');
-	}
-
-	console.log('✅ .env');
-}
-
-async function promptForMysqlQuery() {
-	const readline = (await import('readline')).createInterface({
-		input: process.stdin,
-		output: process.stdout
+	step('Applying migrations');
+	run('pnpm', ['exec', 'drizzle-kit', 'migrate'], {
+		// drizzle.config.ts prefers POSTGRES_DATABASE_URL; make sure it can only see the local DB.
+		env: { ...process.env, DATABASE_URL: LOCAL_DATABASE_URL, POSTGRES_DATABASE_URL: '' }
 	});
 
-	return new Promise((resolve) => {
-		readline.question('Please enter the MySQL query string: ', (answer) => {
-			readline.close();
-			resolve(answer.trim());
-		});
+	console.log('\n🥘 Website preheated to 450°F (232°C)');
+	if (!pull_only) console.log('   Run pnpm dev → http://localhost:5173');
+}
+
+// ─── Tooling checks ──────────────────────────────────────────────────────────
+
+function check_node() {
+	const major = Number(process.versions.node.split('.')[0]);
+	if (major < MIN_NODE_MAJOR) {
+		throw new SetupError(`Node ${MIN_NODE_MAJOR}+ required (found ${process.versions.node})`);
+	}
+	ok(`Node ${process.versions.node}`);
+}
+
+function check_pnpm() {
+	const result = spawnSync('pnpm', ['--version'], { encoding: 'utf8' });
+	if (result.status !== 0) {
+		throw new SetupError('pnpm not found. Run `corepack enable` or `brew install pnpm`.');
+	}
+	ok(`pnpm ${result.stdout.trim()}`);
+}
+
+function check_docker() {
+	const result = spawnSync('docker', ['info'], { stdio: 'ignore' });
+	if (result.error) {
+		throw new SetupError('Docker not found. Install Docker Desktop or OrbStack.');
+	}
+	if (result.status !== 0) throw new SetupError('Docker is installed but not running. Start it.');
+	ok('Docker');
+}
+
+// ─── .env ────────────────────────────────────────────────────────────────────
+
+async function ensure_env() {
+	step('Checking .env');
+	if (!existsSync('.env')) {
+		copyFileSync('.env.example', '.env');
+		ok('Copied .env.example → .env');
+	}
+
+	let env = read_env();
+
+	// Local dev must always talk to the Docker DB.
+	if (!is_local_postgres(env.DATABASE_URL)) {
+		set_env_var('DATABASE_URL', LOCAL_DATABASE_URL);
+		ok('DATABASE_URL → local Docker Postgres');
+	}
+
+	// Pre-v3 .env files: PROD_DATABASE_URL was MySQL, and prod Postgres lived in
+	// POSTGRES_DATABASE_URL — which the app prefers over DATABASE_URL, so dev hit prod.
+	if (env.PROD_DATABASE_URL && !is_postgres(env.PROD_DATABASE_URL)) {
+		set_env_var('PROD_DATABASE_URL', '');
+		env = read_env();
+		ok('Cleared legacy MySQL PROD_DATABASE_URL');
+	}
+	if (env.POSTGRES_DATABASE_URL && !is_local_postgres(env.POSTGRES_DATABASE_URL)) {
+		if (env.PROD_DATABASE_URL && env.PROD_DATABASE_URL !== env.POSTGRES_DATABASE_URL) {
+			throw new SetupError(
+				'POSTGRES_DATABASE_URL points at a remote database and overrides DATABASE_URL.\n' +
+					'   Remove it from .env so local dev uses the Docker DB.'
+			);
+		}
+		set_env_var('PROD_DATABASE_URL', env.POSTGRES_DATABASE_URL);
+		remove_env_var('POSTGRES_DATABASE_URL');
+		ok('Moved remote POSTGRES_DATABASE_URL → PROD_DATABASE_URL (dev no longer hits prod)');
+	}
+
+	add_missing_example_vars();
+	env = read_env();
+
+	if (!env.PROD_DATABASE_URL && process.stdin.isTTY) {
+		const answer = await prompt('Production Postgres URL (read-only is fine): ');
+		if (answer) {
+			set_env_var('PROD_DATABASE_URL', answer);
+			env = read_env();
+		}
+	}
+
+	if (env.PROD_DATABASE_URL) {
+		if (!is_postgres(env.PROD_DATABASE_URL)) {
+			throw new SetupError('PROD_DATABASE_URL must be a postgres:// or postgresql:// URL');
+		}
+		if (is_local_postgres(env.PROD_DATABASE_URL)) {
+			throw new SetupError('PROD_DATABASE_URL points at localhost — it should be production');
+		}
+	}
+
+	ok('.env');
+	return env;
+}
+
+function read_env() {
+	return parseEnv(readFileSync('.env', 'utf8'));
+}
+
+function set_env_var(key, value) {
+	const content = readFileSync('.env', 'utf8');
+	const line = `${key}='${value}'`;
+	const pattern = new RegExp(`^${key}=.*$`, 'm');
+	const next = pattern.test(content)
+		? content.replace(pattern, () => line)
+		: `${content.replace(/\n?$/, '\n')}${line}\n`;
+	writeFileSync('.env', next);
+}
+
+function remove_env_var(key) {
+	const content = readFileSync('.env', 'utf8');
+	writeFileSync('.env', content.replace(new RegExp(`^${key}=.*\\n?`, 'm'), ''));
+}
+
+function add_missing_example_vars() {
+	const example_content = readFileSync('.env.example', 'utf8');
+	const example = parseEnv(example_content);
+	const current = read_env();
+	const missing = Object.keys(example).filter((key) => !(key in current));
+	if (missing.length === 0) return;
+
+	const lines = example_content.split('\n').filter((line) => {
+		const key = line.split('=')[0].trim();
+		return missing.includes(key);
 	});
+	const content = readFileSync('.env', 'utf8');
+	writeFileSync('.env', `${content.replace(/\n?$/, '\n')}${lines.join('\n')}\n`);
+	ok(`Added missing vars from .env.example: ${missing.join(', ')}`);
 }
 
-function checkDatabaseUrl() {
-	const database_url = process.env.DATABASE_URL;
-	if (!database_url || !database_url.startsWith('mysql://')) {
-		throw new Error('❌ Please set DATABASE_URL in .env to be a proper mysql url');
-	}
-	console.log('✅ DATABASE_URL Check');
+function is_postgres(url) {
+	return /^postgres(ql)?:\/\//.test(url ?? '');
 }
 
-async function ensureDrizzleMigrationSetup() {
-	const connection = await createMysqlConnection();
-	try {
-		// Check if __drizzle_migrations table exists
-		const [tables] = await connection.execute(`
-			SELECT TABLE_NAME
-			FROM information_schema.TABLES
-			WHERE TABLE_SCHEMA = DATABASE()
-			AND TABLE_NAME = '__drizzle_migrations'
-		`);
-
-		if (tables.length === 0) {
-			// Table doesn't exist, create it
-			console.log('🔧 Setting up Drizzle migrations...');
-			await connection.execute(`
-				CREATE TABLE \`__drizzle_migrations\` (
-					\`id\` SERIAL PRIMARY KEY,
-					\`hash\` text NOT NULL,
-					\`created_at\` bigint
-				)
-			`);
-			console.log('✅ Created __drizzle_migrations table');
-		}
-
-		// Check if initial migration is marked as applied
-		const [migrations] = await connection.execute(`
-			SELECT * FROM \`__drizzle_migrations\`
-			WHERE \`hash\` = '0000_graceful_shaman'
-		`);
-
-		if (migrations.length === 0) {
-			// Mark initial migration as applied (Prisma -> Drizzle transition)
-			console.log('�� Marking initial migration as applied (Prisma → Drizzle transition)...');
-			await connection.execute(`
-				INSERT INTO \`__drizzle_migrations\` (\`hash\`, \`created_at\`)
-				VALUES ('0000_graceful_shaman', UNIX_TIMESTAMP() * 1000)
-			`);
-			console.log('✅ Initial migration marked as applied');
-		} else {
-			console.log('✅ Drizzle migrations');
-		}
-	} catch (error) {
-		throw new Error(`❌ Failed to set up Drizzle migrations: ${error.message}`);
-	} finally {
-		await connection.end();
-	}
+function is_local_postgres(url) {
+	if (!is_postgres(url)) return false;
+	const { hostname } = new URL(url);
+	return hostname === 'localhost' || hostname === '127.0.0.1';
 }
 
-async function createUpdateSchema() {
-	const connection = await createMysqlConnection();
-	try {
-		// Check if Shows table exists (main indicator that schema is set up)
-		const [tables] = await connection.execute(`
-			SELECT TABLE_NAME
-			FROM information_schema.TABLES
-			WHERE TABLE_SCHEMA = DATABASE()
-			AND TABLE_NAME = 'Show'
-		`);
+// ─── Database ────────────────────────────────────────────────────────────────
 
-		if (tables.length > 0) {
-			console.log('✅ Database schema exists');
-			return;
-		}
+function pull_prod(prod_url) {
+	step(`Copying production data from ${new URL(prod_url).hostname}`);
+	const started = Date.now();
 
-		// No schema found - need to restore from production first
-		console.log('❌ No database schema found!');
-		console.log('   Run: node scripts/restore_from_prod.js');
-		process.exit(1);
-	} catch (error) {
-		throw new Error(`❌ Unable to verify DB schema: ${error.message}`);
-	} finally {
-		await connection.end();
-	}
-}
+	compose_exec(['dropdb', '-U', LOCAL_DB_USER, '--if-exists', '--force', LOCAL_DB]);
+	compose_exec(['createdb', '-U', LOCAL_DB_USER, LOCAL_DB]);
+	// The dump recreates the public schema itself.
+	psql('drop schema public cascade');
 
-async function createHostUsers() {
-	const connection = await createMysqlConnection();
-	const db = drizzle(connection);
-
-	try {
-		const hosts = [
-			{
-				username: 'wesbos',
-				name: 'Wes Bos',
-				github_id: 176013,
-				avatar_url: 'https://avatars.githubusercontent.com/u/176013?v=4',
-				email: 'wes@wesbos.com',
-				twitter: 'wesbos'
-			},
-			{
-				username: 'stolinski',
-				name: 'Scott Tolinski',
-				github_id: 669383,
-				avatar_url: 'https://avatars.githubusercontent.com/u/669383?v=4',
-				email: 'scott.tolinski@gmail.com',
-				twitter: 'stolinski'
-			},
-			{
-				username: 'w3cj',
-				name: 'CJ',
-				github_id: 14241866,
-				avatar_url: 'https://avatars.githubusercontent.com/u/14241866?v=4',
-				email: 'cj@null.computer',
-				twitter: 'CodingGarden'
-			}
-		];
-
-		for (const host of hosts) {
-			await db
-				.insert(users)
-				.values({
-					id: `user_${host.username}`,
-					username: host.username,
-					name: host.name,
-					github_id: host.github_id,
-					avatar_url: host.avatar_url,
-					email: host.email,
-					twitter: host.twitter,
-					updated_at: new Date()
-				})
-				.onDuplicateKeyUpdate({
-					set: {
-						username: host.username,
-						name: host.name,
-						avatar_url: host.avatar_url,
-						email: host.email,
-						twitter: host.twitter,
-						updated_at: new Date()
-					}
-				});
-		}
-		console.log('✅ Host users created/updated');
-	} catch (error) {
-		console.error('❌ Error creating host users:', error);
-	} finally {
-		await connection.end();
-	}
-}
-
-async function checkShowTableData() {
-	const connection = await createMysqlConnection();
-	try {
-		// Check both possible table names
-		let count = 0;
-		try {
-			const [shows_rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
-			count = shows_rows[0].count;
-			console.log(`[DEBUG] Show table count: ${count}`);
-		} catch (e) {
-			console.log(`[DEBUG] Show table query failed:`, e.message);
-		}
-
-		if (count === 0) {
-			try {
-				const [show_rows] = await connection.execute('SELECT COUNT(*) as count FROM `Show`');
-				count = show_rows[0].count;
-				console.log(`[DEBUG] Show table count: ${count}`);
-			} catch (e) {
-				console.log(`[DEBUG] Show table query failed:`, e.message);
-			}
-		}
-
-		if (count > 0) {
-			console.log('✅ Data Check');
-		} else {
-			console.log('❌ Data Check - Seeding database...');
-			await seedDatabase();
-			console.log('✅ Database seeded');
-		}
-
-		// Always ensure host users exist
-		await createHostUsers();
-	} finally {
-		await connection.end();
-	}
-}
-
-async function seedDatabase() {
-	const seed_file_path = './seed/seed.sql';
-	try {
-		const seed_content = await fs.readFile(seed_file_path, 'utf8');
-		const connection = await createMysqlConnection();
-		try {
-			// Disable foreign key checks for seeding
-			await connection.execute('SET FOREIGN_KEY_CHECKS = 0');
-			await connection.query(seed_content);
-			await connection.execute('SET FOREIGN_KEY_CHECKS = 1');
-		} finally {
-			await connection.end();
-		}
-	} catch (error) {
-		if (error.code === 'ENOENT') {
-			console.log('⚠️  No seed file found at ./seed/seed.sql - skipping seed');
-		} else if (error.code === 'ER_DUP_ENTRY') {
-			console.log('⚠️  Some seed data already exists - skipping');
-		} else {
-			throw error;
-		}
-	}
-}
-
-async function createMysqlConnection() {
-	const url = new URL(process?.env?.DATABASE_URL);
-	return await createConnection({
-		host: url.hostname,
-		port: parseInt(url.port),
-		user: url.username,
-		password: url.password,
-		database: url.pathname.substr(1),
-		multipleStatements: true
+	// pg_dump runs inside the container so its version matches the server and nobody needs
+	// Postgres client tools installed. The URL is passed via env to keep it out of argv.
+	const pipeline = [
+		'pg_dump --format=custom --no-owner --no-privileges',
+		'--schema=public --schema=drizzle "$PROD_DATABASE_URL"',
+		`| pg_restore --no-owner --no-privileges --exit-on-error -U ${LOCAL_DB_USER} -d ${LOCAL_DB}`
+	].join(' ');
+	compose_exec(['-e', 'PROD_DATABASE_URL', 'db', 'bash', '-o', 'pipefail', '-c', pipeline], {
+		env: { ...process.env, PROD_DATABASE_URL: prod_url },
+		with_service: false
 	});
+
+	const size = psql(`select pg_size_pretty(pg_database_size('${LOCAL_DB}'))`);
+	ok(`Restored ${size} in ${((Date.now() - started) / 1000).toFixed(1)}s`);
 }
 
-main();
+function local_has_tables() {
+	return (
+		Number(psql(`select count(*) from information_schema.tables where table_schema = 'public'`)) > 0
+	);
+}
+
+// drizzle-kit migrate replays every migration unless it finds them recorded in
+// drizzle.__drizzle_migrations. If a restored DB has tables but no tracking table, record the
+// migrations its schema already reflects so only newer ones run.
+function baseline_untracked_migrations() {
+	const tracked = psql(`select to_regclass('drizzle.__drizzle_migrations') is not null`) === 't';
+	if (tracked || !local_has_tables()) return;
+
+	const { entries } = JSON.parse(readFileSync(`${MIGRATIONS_DIR}/meta/_journal.json`, 'utf8'));
+	const baseline_index = entries.findIndex((entry) => entry.tag === UNTRACKED_PROD_BASELINE);
+	if (baseline_index === -1) {
+		throw new SetupError(`Baseline migration ${UNTRACKED_PROD_BASELINE} not found in journal`);
+	}
+
+	const values = entries.slice(0, baseline_index + 1).map((entry) => {
+		const sql = readFileSync(`${MIGRATIONS_DIR}/${entry.tag}.sql`, 'utf8');
+		const hash = createHash('sha256').update(sql).digest('hex');
+		return `('${hash}', ${entry.when})`;
+	});
+
+	psql(`
+		create schema if not exists drizzle;
+		create table drizzle.__drizzle_migrations (id serial primary key, hash text not null, created_at bigint);
+		insert into drizzle.__drizzle_migrations (hash, created_at) values ${values.join(', ')};
+	`);
+	ok(`Marked migrations through ${UNTRACKED_PROD_BASELINE} as applied`);
+}
+
+function psql(sql) {
+	return compose_exec(
+		['psql', '-U', LOCAL_DB_USER, '-d', LOCAL_DB, '-X', '-A', '-t', '-q', '-v', 'ON_ERROR_STOP=1'],
+		{ input: sql, capture: true }
+	).trim();
+}
+
+function compose_exec(command, { env, input, capture = false, with_service = true } = {}) {
+	const argv = ['compose', 'exec', '-T', ...(with_service ? ['db'] : []), ...command];
+	return run('docker', argv, { env, input, capture });
+}
+
+// ─── Utilities ───────────────────────────────────────────────────────────────
+
+function run(cmd, argv, { env, input, capture = false } = {}) {
+	const result = spawnSync(cmd, argv, {
+		env: env ?? process.env,
+		input,
+		encoding: 'utf8',
+		stdio: [input === undefined ? 'inherit' : 'pipe', capture ? 'pipe' : 'inherit', 'inherit']
+	});
+	if (result.error) throw result.error;
+	if (result.status !== 0) {
+		const shown = [cmd, ...argv.filter((arg) => !arg.includes('://'))].slice(0, 8).join(' ');
+		throw new SetupError(`\`${shown}\` exited with ${result.status}`);
+	}
+	return result.stdout ?? '';
+}
+
+async function prompt(question) {
+	const rl = createInterface({ input: process.stdin, output: process.stdout });
+	try {
+		return (await rl.question(question)).trim();
+	} finally {
+		rl.close();
+	}
+}
+
+async function confirm(question) {
+	if (assume_yes) return true;
+	if (!process.stdin.isTTY) {
+		throw new SetupError('Refusing to overwrite the local database without --yes');
+	}
+	return /^y(es)?$/i.test(await prompt(`⚠️  ${question} (y/N) `));
+}
+
+function step(message) {
+	console.log(`\n▸ ${message}`);
+}
+
+function ok(message) {
+	console.log(`✅ ${message}`);
+}
+
+main().catch((error) => {
+	if (error instanceof SetupError) {
+		console.error(`\n❌ ${error.message}`);
+	} else {
+		console.error('\n❌ preheat failed', error);
+	}
+	process.exit(1);
+});

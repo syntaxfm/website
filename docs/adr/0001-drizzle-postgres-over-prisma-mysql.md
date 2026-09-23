@@ -6,7 +6,7 @@ Accepted. v3 migration completed in November 2025.
 
 ## Decision
 
-The application uses **Drizzle ORM** against **PostgreSQL**. The previous stack was Prisma against MySQL (PlanetScale). Schema source of truth is `src/server/db/schema.ts`. Migrations are tracked in the `__drizzle_migrations` table and applied automatically by `scripts/preheat.js` on dev startup and production deploy.
+The application uses **Drizzle ORM** against **PostgreSQL**. The previous stack was Prisma against MySQL (PlanetScale). Schema source of truth is `src/server/db/schema.ts`. Migrations live in `drizzle/pg-migrations/` and are applied with `drizzle-kit migrate`, tracked in `drizzle.__drizzle_migrations`.
 
 ## Why
 
@@ -17,7 +17,7 @@ The application uses **Drizzle ORM** against **PostgreSQL**. The previous stack 
 ## Trade-offs
 
 - **Drizzle's generated client is less ergonomic than Prisma's** for some join shapes. We accepted this for the schema-level control.
-- **Migration tracking is hand-rolled in `preheat.js`** rather than provided by the ORM. See `scripts/preheat.js → ensureDrizzleMigrationSetup()`.
+- **Production predates migration tracking.** Its schema was built by `scripts/direct-db-migration.js`, not by replaying migrations, so it has no `drizzle.__drizzle_migrations` table and migration `0001` cannot run on a fresh database. `scripts/preheat.js` baselines restored local copies through `0001_puzzling_talos` before running `drizzle-kit migrate`.
 - **Some Drizzle features are still gaps** (e.g. `tsvector` type support). We use `sql\`\`` for those columns.
 
 ## Deferred
