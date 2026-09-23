@@ -64,6 +64,7 @@ function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 // ======================================================
 
 export const get_all_videos = query(() => {
+	assert_admin_user();
 	return db.query.playlist.findMany({
 		orderBy: (playlist, { desc }) => [desc(playlist.created_at)],
 		with: {

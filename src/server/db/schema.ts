@@ -39,13 +39,14 @@ export const SUBMISSION_TYPE_VALUES = pgEnum('user_submission_type', [
 ]);
 
 // ============================================================================
-// USER & AUTH TABLES
+// PROFILES & AUTHORIZATION TABLES
 // ============================================================================
 
-export const user = pgTable(
-	'users',
+export const profile = pgTable(
+	'profiles',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
+		central_user_id: text('central_user_id').unique(),
 		github_id: integer('github_id').notNull().unique(),
 		username: varchar('username', { length: 255 }),
 		name: varchar('name', { length: 255 }),
@@ -57,8 +58,9 @@ export const user = pgTable(
 		updated_at: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
 	},
 	(table) => [
-		index('users_email_idx').on(table.email),
-		uniqueIndex('users_github_id_idx').on(table.github_id)
+		index('profiles_email_idx').on(table.email),
+		uniqueIndex('profiles_central_user_id_idx').on(table.central_user_id),
+		uniqueIndex('profiles_github_id_idx').on(table.github_id)
 	]
 );
 
@@ -71,40 +73,21 @@ export const role = pgTable(
 	(table) => [uniqueIndex('roles_name_idx').on(table.name)]
 );
 
-export const userRole = pgTable(
-	'user_roles',
+export const profileRole = pgTable(
+	'profile_roles',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
-		user_id: uuid('user_id')
+		profile_id: uuid('profile_id')
 			.notNull()
-			.references(() => user.id, { onDelete: 'cascade' }),
+			.references(() => profile.id, { onDelete: 'cascade' }),
 		role_id: uuid('role_id')
 			.notNull()
 			.references(() => role.id, { onDelete: 'cascade' })
 	},
 	(table) => [
-		index('user_roles_user_id_idx').on(table.user_id),
-		index('user_roles_role_id_idx').on(table.role_id),
-		uniqueIndex('user_roles_user_role_idx').on(table.user_id, table.role_id)
-	]
-);
-
-export const session = pgTable(
-	'sessions',
-	{
-		id: serial('id').primaryKey(),
-		user_id: uuid('user_id').references(() => user.id, { onDelete: 'cascade' }),
-		session_token: varchar('session_token', { length: 255 }).notNull().unique(),
-		access_token: varchar('access_token', { length: 255 }).unique(),
-		ip: varchar('ip', { length: 50 }),
-		country: varchar('country', { length: 100 }),
-		created_at: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
-		updated_at: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
-	},
-	(table) => [
-		index('sessions_user_id_idx').on(table.user_id),
-		uniqueIndex('sessions_session_token_idx').on(table.session_token),
-		uniqueIndex('sessions_access_token_idx').on(table.access_token)
+		index('profile_roles_profile_id_idx').on(table.profile_id),
+		index('profile_roles_role_id_idx').on(table.role_id),
+		uniqueIndex('profile_roles_profile_role_idx').on(table.profile_id, table.role_id)
 	]
 );
 
@@ -149,20 +132,20 @@ export const show = pgTable(
 	]
 );
 
-export const showToUser = pgTable(
-	'show_to_user',
+export const showToProfile = pgTable(
+	'show_to_profile',
 	{
 		show_id: text('show_id')
 			.notNull()
 			.references(() => show.id, { onDelete: 'cascade' }),
-		user_id: uuid('user_id')
+		profile_id: uuid('profile_id')
 			.notNull()
-			.references(() => user.id, { onDelete: 'cascade' })
+			.references(() => profile.id, { onDelete: 'cascade' })
 	},
 	(table) => [
-		primaryKey({ columns: [table.show_id, table.user_id] }),
-		index('show_to_user_show_id_idx').on(table.show_id),
-		index('show_to_user_user_id_idx').on(table.user_id)
+		primaryKey({ columns: [table.show_id, table.profile_id] }),
+		index('show_to_profile_show_id_idx').on(table.show_id),
+		index('show_to_profile_profile_id_idx').on(table.profile_id)
 	]
 );
 
@@ -503,7 +486,7 @@ export const article = pgTable(
 		body: text('content').notNull(),
 		author_id: uuid('author_id')
 			.notNull()
-			.references(() => user.id, { onDelete: 'set null' }),
+			.references(() => profile.id, { onDelete: 'set null' }),
 		content_id: uuid('content_id')
 			.notNull()
 			.unique()

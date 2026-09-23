@@ -51,11 +51,14 @@ _Avoid_: Topic, Tag; those terms describe AI artifacts and the site's editorial 
 ### People and roles
 
 **User**:
-An authenticated identity (GitHub OAuth). In current state, only admins log in — there are no public end-user accounts (no commenters, no subscribers as users). Wes Bos and Scott Tolinski log in as Users with admin roles.
+A centrally authenticated Syntax identity owned by `auth.syntax.fm`. The immutable central User ID is the authentication subject. This application stores no User, provider account, or session records. In current state, only admins use authenticated website features — there are no public end-user accounts (no commenters, no subscribers as Users).
 _Avoid_: Account, member.
 
+**Profile**:
+Application-owned editorial and authorization data for a person, stored in the `profiles` table. A Profile keeps the historical UUID used by Shows and Articles and may map to one central **User** through `central_user_id`. Roles belong to the Profile and are resolved only after central authentication. A User without a mapped Profile is authenticated but has no website roles.
+
 **Host**:
-A **User** linked to a **Show** via the `show_to_user` join table. Not a separate entity — Host is a relationship, not a record. Drizzle relations expose this as `hosts: many(showToUser)`.
+A **Profile** linked to a **Show** via the `show_to_profile` join table. Not a separate entity — Host is a relationship, not a record. Drizzle relations expose this as `hosts: many(showToProfile)`.
 
 **Guest**:
 A third-party who appears on a **Show** as an interviewee. Stored in the `guest` table; linked via `show_guest`. A Guest is **not** a User — guests have profiles and social links but no auth identity.
@@ -111,7 +114,7 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 - **Syntax** has many **Videos**; a **Competitor Video** never belongs to Syntax.
 - A **Competitor** has many **Competitor Videos**.
 - A **Video** or **Competitor Video** can be associated with many **Tracked Keywords**.
-- A **Show** has many **Hosts** (through `show_to_user`) and many **Guests** (through `show_guest`).
+- A **Show** has many **Hosts** (through `show_to_profile`) and many **Guests** (through `show_guest`).
 - A **Show** has one **Transcript**, which has many **Utterances**, which have many **Words**.
 - A **Show** has zero or more AI artifacts (`aiShowNote`, `aiTweet`, etc.).
 - A **Show**, **Article**, **Video**, etc. is (eventually) wrapped by one **Content** row of the corresponding `content_type`. See [ADR-0004](./adr/0004-unified-content-model.md).
@@ -122,7 +125,7 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 > **Domain expert:** "Sure — those pages render a **Show**. Add the fields to the `show` table for now. Once a **Show** is wrapped by a **Content** row, we'll lift the SEO fields up to **Content** so Articles and Videos inherit the same shape."
 
 > **Dev:** "Can a Guest log in to edit their own profile?"
-> **Domain expert:** "No. A **Guest** is not a **User**. Only Hosts (who are Users with admin roles) log in. If we ever let returning Guests sign in, that would be a new feature and a new mapping — and we'd want an ADR for it."
+> **Domain expert:** "No. A **Guest** is not a **User** or a **Profile**. Hosts may have Profiles, and a Profile can map to a central User for admin access. Letting returning Guests sign in would be a new feature and a new mapping."
 
 > **Dev:** "What's a Supper Club episode?"
 > **Domain expert:** "A back-catalog **Show** with a guest. We don't really use the **show_type** labels for new episodes — current ones are just Mon or Wed releases."
@@ -130,7 +133,7 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 ## Flagged ambiguities
 
 - "Show" historically meant both the podcast (Syntax) and a single episode. **Resolved**: a row in the `show` table is a **Show** (an episode); the podcast itself is **Syntax**.
-- "User" used to imply public accounts. **Resolved**: no public accounts exist; every **User** is effectively an admin. If/when public accounts are added, this entry must be re-resolved.
+- "User" used to mean the website's combined GitHub login and editorial row. **Resolved**: User now means only the central Syntax identity; Profile means the website-owned editorial and role record. Authentication does not imply an admin role.
 - `show_type` reads like a current taxonomy but is a back-catalog artifact. **Resolved**: documented above; the column is unreliable for recent episodes.
 - "UserSubmission" implies it's tied to a **User** (the capital-U admin entity); it isn't. The "User" in the name is the colloquial sense (a site visitor), not the `user` table row. Submissions are anonymous and have no FK to `user`.
 - The admin URL segment `/admin/content/podcast` lists **Shows**, not "podcasts." **Resolved**: the URL matches the `content_types` enum value (`PODCAST`), which is machine-canonical; the page heading and navigation label remain "Shows" (the domain term). This is a deliberate asymmetry between URL/enum and display language. Do not rename the URL to match the term without renaming the enum value, and do not rename the enum without a migration ADR.

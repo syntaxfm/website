@@ -267,9 +267,9 @@ export const newTable = pgTable('new_table', {
 pnpm db:pg:generate
 ```
 
-This creates a migration file in `drizzle/migrations/`:
+This creates a migration file in `drizzle/pg-migrations/`:
 ```sql
--- drizzle/migrations/0001_add_new_table.sql
+-- drizzle/pg-migrations/0001_add_new_table.sql
 CREATE TABLE "new_table" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "name" text NOT NULL

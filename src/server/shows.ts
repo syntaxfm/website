@@ -9,9 +9,9 @@ import { db } from '$server/db/client';
 import {
 	show,
 	showGuest,
-	showToUser,
+	showToProfile,
 	socialLink,
-	user,
+	profile,
 	guest as guests,
 	content
 } from '$server/db/schema';
@@ -181,22 +181,22 @@ async function parse_and_save_show_notes(
 
 		// Handle hosts connection if they exist in the frontmatter
 		if (data.hosts && Array.isArray(data.hosts)) {
-			const host_users = await db.query.user.findMany({
-				where: inArray(user.username, data.hosts)
+			const host_profiles = await db.query.profile.findMany({
+				where: inArray(profile.username, data.hosts)
 			});
 
-			if (host_users.length > 0) {
+			if (host_profiles.length > 0) {
 				// Upsert host connections (ON CONFLICT DO UPDATE does nothing since unique constraint exists)
 				await db
-					.insert(showToUser)
+					.insert(showToProfile)
 					.values(
-						host_users.map((host_user) => ({
+						host_profiles.map((host_profile) => ({
 							show_id: id,
-							user_id: host_user.id
+							profile_id: host_profile.id
 						}))
 					)
 					.onConflictDoUpdate({
-						target: [showToUser.show_id, showToUser.user_id],
+						target: [showToProfile.show_id, showToProfile.profile_id],
 						set: { show_id: id }
 					});
 			}

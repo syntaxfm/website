@@ -340,7 +340,7 @@ export const create_content = command(create_content_schema, async (input) => {
 		error(409, 'Slug already exists');
 	}
 
-	const author_id = event.locals.user?.id;
+	const author_id = event.locals.user?.profile_id;
 	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}

@@ -15,7 +15,7 @@ export const get_feed_content = query(() => {
 			show: {
 				with: {
 					guests: { with: { guest: true } },
-					hosts: { with: { user: true } },
+					hosts: { with: { profile: true } },
 					aiShowNote: {
 						with: {
 							topics: true
@@ -55,7 +55,7 @@ export const get_most_popular_content_this_week = query(async (): Promise<Ranked
 			.map(({ guest }) => guest?.name)
 			.filter((name): name is string => Boolean(name));
 		const hosts = show.hosts
-			.map(({ user }) => user?.name)
+			.map(({ profile }) => profile?.name)
 			.filter((name): name is string => Boolean(name));
 
 		items.push({

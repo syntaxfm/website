@@ -11,11 +11,12 @@ import {
 	link,
 	playlist,
 	playlistOnVideo,
+	profile,
+	profileRole,
 	role,
-	session,
 	show,
 	showGuest,
-	showToUser,
+	showToProfile,
 	showVideo,
 	socialLink,
 	tag,
@@ -23,8 +24,6 @@ import {
 	transcript,
 	transcriptUtterance,
 	transcriptUtteranceWord,
-	user,
-	userRole,
 	video
 } from './schema';
 
@@ -105,7 +104,7 @@ export const showRelations = relations(show, ({ one, many }) => ({
 		references: [content.id]
 	}),
 	guests: many(showGuest),
-	hosts: many(showToUser),
+	hosts: many(showToProfile),
 	videos: many(showVideo),
 	transcript: one(transcript, {
 		fields: [show.number],
@@ -132,14 +131,14 @@ export const showGuestRelations = relations(showGuest, ({ one }) => ({
 	})
 }));
 
-export const showToUserRelations = relations(showToUser, ({ one }) => ({
+export const showToProfileRelations = relations(showToProfile, ({ one }) => ({
 	show: one(show, {
-		fields: [showToUser.show_id],
+		fields: [showToProfile.show_id],
 		references: [show.id]
 	}),
-	user: one(user, {
-		fields: [showToUser.user_id],
-		references: [user.id]
+	profile: one(profile, {
+		fields: [showToProfile.profile_id],
+		references: [profile.id]
 	})
 }));
 
@@ -211,20 +210,12 @@ export const playlistOnVideoRelations = relations(playlistOnVideo, ({ one }) => 
 }));
 
 // ============================================================================
-// USER & AUTH RELATIONS
+// PROFILE & AUTHORIZATION RELATIONS
 // ============================================================================
 
-export const userRelations = relations(user, ({ many }) => ({
-	sessions: many(session),
-	roles: many(userRole),
-	hostedShows: many(showToUser)
-}));
-
-export const sessionRelations = relations(session, ({ one }) => ({
-	user: one(user, {
-		fields: [session.user_id],
-		references: [user.id]
-	})
+export const profileRelations = relations(profile, ({ many }) => ({
+	roles: many(profileRole),
+	hostedShows: many(showToProfile)
 }));
 
 // ============================================================================
@@ -232,16 +223,16 @@ export const sessionRelations = relations(session, ({ one }) => ({
 // ============================================================================
 
 export const roleRelations = relations(role, ({ many }) => ({
-	userRoles: many(userRole)
+	profileRoles: many(profileRole)
 }));
 
-export const userRoleRelations = relations(userRole, ({ one }) => ({
-	user: one(user, {
-		fields: [userRole.user_id],
-		references: [user.id]
+export const profileRoleRelations = relations(profileRole, ({ one }) => ({
+	profile: one(profile, {
+		fields: [profileRole.profile_id],
+		references: [profile.id]
 	}),
 	role: one(role, {
-		fields: [userRole.role_id],
+		fields: [profileRole.role_id],
 		references: [role.id]
 	})
 }));
@@ -271,9 +262,9 @@ export const articleRelations = relations(article, ({ one }) => ({
 		fields: [article.content_id],
 		references: [content.id]
 	}),
-	author: one(user, {
+	author: one(profile, {
 		fields: [article.author_id],
-		references: [user.id]
+		references: [profile.id]
 	})
 }));
 

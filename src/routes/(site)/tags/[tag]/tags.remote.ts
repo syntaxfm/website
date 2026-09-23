@@ -30,7 +30,7 @@ export const get_content_by_tag = query(v.string(), async (slug) => {
 					show: {
 						with: {
 							guests: { with: { guest: true } },
-							hosts: { with: { user: true } },
+							hosts: { with: { profile: true } },
 							aiShowNote: { with: { topics: true } }
 						}
 					},

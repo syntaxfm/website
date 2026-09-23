@@ -29,6 +29,31 @@ This file tracks all schema changes made during and after the PostgreSQL migrati
 
 ---
 
+## 2026-07-24 - Central Syntax Auth profile split
+
+**Type**: Breaking
+**Status**: Pending deployment
+**Affects**: `users`, `user_roles`, `show_to_user`, `sessions`
+
+### Changes
+- Renamed the local editorial `users` table to `profiles` and added a unique nullable `central_user_id` mapping.
+- Renamed role and Show Host joins to profile terminology while preserving existing UUID relationships.
+- Removed the app-local `sessions` table; central Better Auth is the only session authority.
+- Backfilled the currently available central identity by audited GitHub account ID.
+
+### Application Code Changes
+- Authentication now forwards the shared cookie to `auth.syntax.fm` and resolves app roles through the Profile mapping.
+- Local GitHub OAuth, callback, access-token cookie, and session code were removed.
+
+### Rollback Plan
+- Restore the previous application before applying this migration. After migration, table renames can be reversed, but deleted local sessions are intentionally not recoverable.
+
+### Deployment Notes
+- Apply `drizzle/pg-migrations/0002_syntax_auth.sql` before deploying the application.
+- Map additional central User IDs to Profiles before those Users need website roles.
+
+---
+
 ## 2025-11-02 - Initial PostgreSQL Schema
 
 **Type**: Migration

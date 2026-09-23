@@ -181,7 +181,7 @@ export const list_articles = query(list_articles_schema, async (input) => {
 export const create_article = command(create_article_schema, async (input) => {
 	const event = assert_admin_user();
 
-	const author_id = event.locals.user?.id;
+	const author_id = event.locals.user?.profile_id;
 	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}
@@ -251,7 +251,7 @@ export const get_article_editor = query(v.string(), async (content_id) => {
 export const get_article_authors = query(async () => {
 	assert_admin_user();
 
-	return db.query.user.findMany({
+	return db.query.profile.findMany({
 		columns: {
 			id: true,
 			name: true,

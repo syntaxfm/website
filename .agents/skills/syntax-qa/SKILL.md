@@ -80,24 +80,22 @@ or component that calls them rather than curling them directly.
    inbound payloads with Valibot, so confirm a bad payload is rejected, not
    silently accepted.
 5. Public remote modules to keep in mind: `shows`, `guests`, `sickpicks`,
-   `newsletter`, `submissions`, `feed`, `user`. Admin ones live under
+   `newsletter`, `submissions`, and `feed`. Admin ones live under
    `src/routes/(site)/admin/**`.
 
 ## Local Auth for QA
 
-Auth is GitHub OAuth + a cookie session (`access_token`) resolved in
-`src/hooks.server.ts`. There is **no CLI token flow** — do not invent one.
+Auth is the shared Better Auth session owned by `auth.syntax.fm`. The exact
+incoming Cookie header is validated centrally in `src/hooks.server.ts`; there
+is **no local session or CLI token flow** — do not invent one.
 
 - **Public pages** need no auth.
-- **Admin (`/admin/**`)** is gated to users with the `admin` role. In dev there
-  is a bypass: `hooks.server.ts` resolves the first admin user in the local DB
-  and attaches it, so `/admin` is reachable locally **without** completing
-  OAuth. This branch is tree-shaken out of production builds.
-- If `/admin` redirects you to `/login` locally, your local Postgres has no user
-  holding the `admin` role. Seed one (e.g. via Drizzle Studio: add a `user`, add
-  the `admin` role, link them in `userRole`). On real OAuth login, the crew
-  usernames in `find_or_create_user` are auto-promoted to `admin`.
-- Keep any seeded/local credentials out of committed docs and final reports.
+- **Admin (`/admin/**`)** requires both a valid central User and an explicitly
+  mapped Profile holding the `admin` role. There is no development bypass.
+- Plain localhost cannot receive the shared `.syntax.fm` cookie. Authenticated
+  QA must use a controlled HTTPS development subdomain or tunnel under
+  `syntax.fm`; that host is inside the production authentication trust boundary.
+- Keep central User IDs and any QA credentials out of final reports.
 
 ## UI QA
 

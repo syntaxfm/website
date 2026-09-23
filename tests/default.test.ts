@@ -1,4 +1,3 @@
-import { db } from '$server/db/client';
 import { expect, test } from '@playwright/test';
 
 test('index page has expected h1', async ({ page }) => {
@@ -15,21 +14,13 @@ test('Got about page', async ({ page }) => {
 	await expect(page.locator('h1:has-text("About Syntax")')).toBeVisible();
 });
 
-test('admin action should require login', async ({ request, baseURL }) => {
-	const response = await request.post(`/admin/shows?/delete_all_shows`, {
-		headers: {
-			'Content-Type': 'multipart/form-data',
-			Origin: `${baseURL}`
-		}
-	});
+test('admin route should require central login', async ({ request }) => {
+	const response = await request.get('/admin', { maxRedirects: 0 });
+	const location = new URL(response.headers().location);
 
-	expect(response.ok()).toBeTruthy();
-	const body = await response.json();
-	expect(body.status).toBe(302);
-	expect(body.location).toBe('/login');
-
-	const result = await db.query.guest.findMany();
-	expect(result.length).not.toBe(0);
+	expect(response.status()).toBe(302);
+	expect(location.origin).toBe('https://auth.syntax.fm');
+	expect(location.pathname).toBe('/sign-in');
 });
 
 test('Got to podcast detail page', async ({ page }) => {

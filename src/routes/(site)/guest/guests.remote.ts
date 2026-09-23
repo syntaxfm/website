@@ -45,7 +45,7 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 			show: {
 				with: {
 					guests: { with: { guest: true } },
-					hosts: { with: { user: true } },
+					hosts: { with: { profile: true } },
 					aiShowNote: { with: { topics: true } }
 				}
 			},

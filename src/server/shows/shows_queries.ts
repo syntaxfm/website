@@ -16,7 +16,7 @@ import { desc, eq, lte } from 'drizzle-orm';
 // Reusable query fragments
 const with_hosts = {
 	with: {
-		user: {
+		profile: {
 			columns: {
 				id: true,
 				username: true,
@@ -26,7 +26,6 @@ const with_hosts = {
 		}
 	}
 } as const;
-
 
 const with_ai_show_note_basic = {
 	columns: {

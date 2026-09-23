@@ -1,5 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
-import type { UserWithRoles } from '$server/auth/users';
+import type { AuthenticatedUser } from '$server/auth/authorization';
+import type { SyntaxAuthSession } from '$server/auth/syntax_auth';
 // Import the relevant types
 
 // for information about these interfaces
@@ -23,12 +24,13 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
+			auth_session: SyntaxAuthSession | null;
 			form_data: Record<string, unknown>;
-			session: {
-				ip: string;
-				country: string;
+			request_metadata: {
+				ip: string | null;
+				country: string | null;
 			};
-			user: UserWithRoles | null;
+			user: AuthenticatedUser | null;
 			theme: string;
 		}
 

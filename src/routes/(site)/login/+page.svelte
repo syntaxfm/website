@@ -1,29 +1,11 @@
 <script lang="ts">
-	import Github from '$assets/github.svg';
-	import { loading } from '$state/loading';
-	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
-	import { logout } from '../user.remote.js';
-
 	let { data } = $props();
-	const { user } = data;
 </script>
 
-<section class="content">
-	<div class="card">
-		<h1 class="h3">Login</h1>
-		{#if user}
-			<p>Hell yea, You are currently Logged In</p>
-			<RemoteFormButton remote={logout}>Logout</RemoteFormButton>
-		{:else}
-			<p>If you are not on the Syntax team, this login will do nothing for you.</p>
-			<a
-				class="button"
-				onclick={() => loading.setLoading(true)}
-				href="/api/oauth/github"
-				rel="external"
-			>
-				<img width="20" src={Github} alt="Github Logo" /> Login With Github</a
-			>
-		{/if}
-	</div>
-</section>
+<h1 class="h3">Account</h1>
+{#if data.user}
+	<p>Signed in as {data.user.name}</p>
+{/if}
+<form method="POST" action="/logout">
+	<button>Sign out</button>
+</form>

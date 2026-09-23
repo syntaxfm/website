@@ -15,6 +15,13 @@
       "when": 1761960009374,
       "tag": "0001_puzzling_talos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784922192109,
+      "tag": "0002_syntax_auth",
+      "breakpoints": true
     }
   ]
 }

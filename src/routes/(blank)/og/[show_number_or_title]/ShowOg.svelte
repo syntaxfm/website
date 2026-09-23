@@ -13,25 +13,26 @@
 
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
-	let hosts = (
-		show.hosts?.length > 0
-			? show.hosts.map((host) => host.user)
+	let hosts = $derived(
+		(show.hosts?.length > 0
+			? show.hosts.map((host) => host.profile)
 			: [
 					{ name: 'Wes Bos', username: 'wesbos' },
 					{ name: 'Scott Tolinski', username: 'stolinski' }
 				]
-	).map((host) => ({
-		name: host.name || '',
-		github: host.username || ''
-	}));
+		).map((host) => ({
+			name: host.name || '',
+			github: host.username || ''
+		}))
+	);
 
-	let all_faces = [
+	let all_faces = $derived([
 		...hosts,
 		...(show.guests || []).map(({ guest }) => ({
 			name: guest.name,
 			github: guest.github || ''
 		}))
-	];
+	]);
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');

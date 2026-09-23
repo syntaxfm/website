@@ -2,13 +2,15 @@
 // https://kit.svelte.dev/docs/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-import { redirect, type Handle } from '@sveltejs/kit';
+import { nodeProfilingIntegration } from '@sentry/profiling-node';
+import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
-import { find_first_admin_user, find_user_by_access_token } from './server/auth/users';
-import type { UserWithRoles } from './server/auth/users';
+
 import { dev } from '$app/environment';
-import { nodeProfilingIntegration } from '@sentry/profiling-node';
+
+import { get_admin_guard_response, get_authenticated_user } from '$server/auth/authorization';
+import { append_set_cookie_headers, get_syntax_auth } from '$server/auth/syntax_auth';
 
 // import { ADMIN_LOGIN } from '$env/static/private';
 
@@ -35,55 +37,38 @@ Sentry.init({
 // * HOOKS
 // RUNS ON EVERY REQUEST
 
-// Dev-only: resolve a real admin user once per process so /admin (and its remote
-// functions) are reachable locally without completing GitHub OAuth. Inert in prod
-// builds because `dev` is statically false and this branch is tree-shaken out.
-let dev_admin_promise: Promise<UserWithRoles | null> | null = null;
-
 const auth: Handle = async function ({ event, resolve }) {
-	const access_token = event.cookies.get('access_token');
 	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
-	// Get current user from session via access token
-	if (access_token) {
-		const user = await find_user_by_access_token(access_token);
-		if (user) {
-			event.locals.user = user;
+	event.locals.user = null;
+	event.locals.auth_session = null;
+
+	let set_cookie_headers: string[] = [];
+	if (event.url.pathname !== '/logout') {
+		const auth_result = await get_syntax_auth(event.request.headers.get('cookie'), event.fetch);
+		set_cookie_headers = auth_result.set_cookie_headers;
+
+		if (auth_result.auth) {
+			event.locals.user = await get_authenticated_user(auth_result.auth.user);
+			event.locals.auth_session = auth_result.auth.session;
 		}
 	}
 
-	if (dev && !event.locals.user) {
-		dev_admin_promise ??= find_first_admin_user();
-		const dev_admin = await dev_admin_promise;
-		if (dev_admin) {
-			event.locals.user = dev_admin;
+	if (event.route.id?.startsWith('/(site)/admin')) {
+		const guard_response = get_admin_guard_response(event.locals.user, event.url);
+		if (guard_response) {
+			return append_set_cookie_headers(guard_response, set_cookie_headers);
 		}
 	}
 
-	const response = await resolve(event);
-	return response;
+	return append_set_cookie_headers(await resolve(event), set_cookie_headers);
 };
 
-const admin: Handle = async function ({ event, resolve }) {
-	if (
-		event.route.id?.startsWith('/(site)/admin') &&
-		!event.locals?.user?.roles?.includes('admin')
-	) {
-		throw redirect(302, '/login');
-	}
-	return resolve(event);
-};
-
-// This hook is used to pass our  instance to each action, load, and endpoint
-const headers: Handle = async function ({ event, resolve }) {
-	const ip = event.request.headers.get('x-forwarded-for') as string;
-	const country = event.request.headers.get('x-vercel-ip-country') as string;
-	event.locals.session = {
-		...event.locals.session,
-		ip,
-		country
+const request_metadata: Handle = async function ({ event, resolve }) {
+	event.locals.request_metadata = {
+		ip: event.request.headers.get('x-forwarded-for'),
+		country: event.request.headers.get('x-vercel-ip-country')
 	};
-	const response = await resolve(event);
-	return response;
+	return resolve(event);
 };
 
 const document_policy: Handle = async function ({ event, resolve }) {
@@ -110,9 +95,8 @@ const safe_form_data: Handle = async function ({ event, resolve }) {
 // Wraps requests in this sequence of hooks
 export const handle: Handle = sequence(
 	Sentry.sentryHandle(),
-	headers,
+	request_metadata,
 	auth,
-	admin,
 	safe_form_data,
 	document_policy
 );

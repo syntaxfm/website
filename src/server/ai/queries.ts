@@ -95,7 +95,7 @@ export const SHOW_QUERY = (
 			},
 			hosts: {
 				with: {
-					user: {
+					profile: {
 						columns: {
 							id: true,
 							username: true,
@@ -125,7 +125,7 @@ export type LatestShow = InferSelectModel<typeof shows> & {
 		};
 	}>;
 	hosts: Array<{
-		user: {
+		profile: {
 			id: string;
 			username: string | null;
 			name: string | null;

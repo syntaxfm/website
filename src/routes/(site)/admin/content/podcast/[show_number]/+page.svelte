@@ -176,7 +176,7 @@
 	let host_search_results = $state<HostUser[]>([]);
 
 	let attached_hosts = $state<HostUser[]>(
-		(show?.hosts ?? []).map((host_row: { user: HostUser }) => host_row.user)
+		(show?.hosts ?? []).map((host_row: { profile: HostUser }) => host_row.profile)
 	);
 
 	const initial_ai_show_note: AiShowNoteData | null = show?.aiShowNote

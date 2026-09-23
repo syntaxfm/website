@@ -10,16 +10,16 @@ import {
 	content_tags,
 	guest,
 	link,
+	profile,
 	show,
 	showGuest,
-	showToUser,
+	showToProfile,
 	showVideo,
 	socialLink,
 	topic,
 	transcript,
 	transcriptUtterance,
 	transcriptUtteranceWord,
-	user,
 	video
 } from '$server/db/schema';
 import {
@@ -398,7 +398,7 @@ export const get_show_editor = query(v.number(), async (show_number) => {
 			},
 			hosts: {
 				with: {
-					user: true
+					profile: true
 				}
 			},
 			videos: {
@@ -600,12 +600,12 @@ export const update_show_editor = command(update_show_editor_schema, async (inpu
 		if (input.host_ids !== undefined) {
 			const host_ids = [...new Set(input.host_ids)].sort();
 
-			await tx.delete(showToUser).where(eq(showToUser.show_id, existing_show.id));
+			await tx.delete(showToProfile).where(eq(showToProfile.show_id, existing_show.id));
 			if (host_ids.length > 0) {
-				await tx.insert(showToUser).values(
-					host_ids.map((user_id) => ({
+				await tx.insert(showToProfile).values(
+					host_ids.map((profile_id) => ({
 						show_id: existing_show.id,
-						user_id
+						profile_id
 					}))
 				);
 			}
@@ -749,7 +749,7 @@ export const remove_show_video = command(show_video_schema, async ({ show_id, vi
 });
 
 // ============================================================================
-// HOST PANEL — search and attach Users to a Show
+// HOST PANEL — search and attach Profiles to a Show
 // ============================================================================
 
 export const search_users_for_host = query(user_search_schema, async ({ search_text }) => {
@@ -759,13 +759,13 @@ export const search_users_for_host = query(user_search_schema, async ({ search_t
 
 	const where_clause = normalized_search
 		? or(
-				ilike(user.username, `%${normalized_search}%`),
-				ilike(user.name, `%${normalized_search}%`),
-				ilike(user.email, `%${normalized_search}%`)
+				ilike(profile.username, `%${normalized_search}%`),
+				ilike(profile.name, `%${normalized_search}%`),
+				ilike(profile.email, `%${normalized_search}%`)
 			)
 		: undefined;
 
-	return db.query.user.findMany({
+	return db.query.profile.findMany({
 		where: where_clause,
 		columns: {
 			id: true,
@@ -773,7 +773,7 @@ export const search_users_for_host = query(user_search_schema, async ({ search_t
 			name: true,
 			email: true
 		},
-		orderBy: (user_item, { asc }) => [asc(user_item.username)],
+		orderBy: (profile_item, { asc }) => [asc(profile_item.username)],
 		limit: 25
 	});
 });
@@ -782,10 +782,10 @@ export const add_show_host = command(show_host_schema, async ({ show_id, user_id
 	assert_admin_user();
 
 	await db
-		.insert(showToUser)
+		.insert(showToProfile)
 		.values({
 			show_id,
-			user_id
+			profile_id: user_id
 		})
 		.onConflictDoNothing();
 
@@ -796,8 +796,8 @@ export const remove_show_host = command(show_host_schema, async ({ show_id, user
 	assert_admin_user();
 
 	await db
-		.delete(showToUser)
-		.where(and(eq(showToUser.show_id, show_id), eq(showToUser.user_id, user_id)));
+		.delete(showToProfile)
+		.where(and(eq(showToProfile.show_id, show_id), eq(showToProfile.profile_id, user_id)));
 
 	return { success: true };
 });

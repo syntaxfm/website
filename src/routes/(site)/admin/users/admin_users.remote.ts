@@ -1,6 +1,14 @@
 import { command, getRequestEvent, query } from '$app/server';
 import { db } from '$server/db/client';
-import { article, content, role, show, showToUser, user, userRole } from '$server/db/schema';
+import {
+	article,
+	content,
+	profile,
+	profileRole,
+	role,
+	show,
+	showToProfile
+} from '$server/db/schema';
 import { error } from '@sveltejs/kit';
 import { and, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
@@ -42,22 +50,22 @@ export const list_users = query(list_users_schema, async (input) => {
 
 	const where_clause = normalized_search
 		? or(
-				ilike(user.username, `%${normalized_search}%`),
-				ilike(user.name, `%${normalized_search}%`),
-				ilike(user.email, `%${normalized_search}%`)
+				ilike(profile.username, `%${normalized_search}%`),
+				ilike(profile.name, `%${normalized_search}%`),
+				ilike(profile.email, `%${normalized_search}%`)
 			)
 		: undefined;
 
 	const total_rows = where_clause
 		? await db
 				.select({ total: sql<number>`count(*)` })
-				.from(user)
+				.from(profile)
 				.where(where_clause)
-		: await db.select({ total: sql<number>`count(*)` }).from(user);
+		: await db.select({ total: sql<number>`count(*)` }).from(profile);
 
 	const total = Number(total_rows[0]?.total || 0);
 
-	const items = await db.query.user.findMany({
+	const items = await db.query.profile.findMany({
 		where: where_clause,
 		with: {
 			roles: {
@@ -66,7 +74,7 @@ export const list_users = query(list_users_schema, async (input) => {
 				}
 			}
 		},
-		orderBy: (user_item, { asc }) => [asc(user_item.username)],
+		orderBy: (profile_item, { asc }) => [asc(profile_item.username)],
 		limit: page_size,
 		offset
 	});
@@ -83,8 +91,8 @@ export const list_users = query(list_users_schema, async (input) => {
 export const get_user_detail = query(v.string(), async (user_id) => {
 	assert_admin_user();
 
-	const result = await db.query.user.findFirst({
-		where: eq(user.id, user_id),
+	const result = await db.query.profile.findFirst({
+		where: eq(profile.id, user_id),
 		with: {
 			roles: {
 				with: {
@@ -105,9 +113,9 @@ export const get_user_detail = query(v.string(), async (user_id) => {
 			title: show.title,
 			date: show.date
 		})
-		.from(showToUser)
-		.innerJoin(show, eq(show.id, showToUser.show_id))
-		.where(eq(showToUser.user_id, user_id))
+		.from(showToProfile)
+		.innerJoin(show, eq(show.id, showToProfile.show_id))
+		.where(eq(showToProfile.profile_id, user_id))
 		.orderBy(desc(show.date));
 
 	const articles_authored = await db
@@ -147,9 +155,9 @@ export const add_user_role = command(user_role_schema, async ({ user_id, role_id
 	assert_admin_user();
 
 	await db
-		.insert(userRole)
+		.insert(profileRole)
 		.values({
-			user_id,
+			profile_id: user_id,
 			role_id
 		})
 		.onConflictDoNothing();
@@ -161,8 +169,8 @@ export const remove_user_role = command(user_role_schema, async ({ user_id, role
 	assert_admin_user();
 
 	await db
-		.delete(userRole)
-		.where(and(eq(userRole.user_id, user_id), eq(userRole.role_id, role_id)));
+		.delete(profileRole)
+		.where(and(eq(profileRole.profile_id, user_id), eq(profileRole.role_id, role_id)));
 
 	return { success: true };
 });
@@ -174,9 +182,9 @@ export const bulk_assign_role = command(bulk_user_role_schema, async ({ user_ids
 		return { count: 0 };
 	}
 
-	const values = user_ids.map((user_id) => ({ user_id, role_id }));
+	const values = user_ids.map((profile_id) => ({ profile_id, role_id }));
 
-	await db.insert(userRole).values(values).onConflictDoNothing();
+	await db.insert(profileRole).values(values).onConflictDoNothing();
 
 	return { count: user_ids.length };
 });
@@ -189,8 +197,8 @@ export const bulk_remove_role = command(bulk_user_role_schema, async ({ user_ids
 	}
 
 	await db
-		.delete(userRole)
-		.where(and(inArray(userRole.user_id, user_ids), eq(userRole.role_id, role_id)));
+		.delete(profileRole)
+		.where(and(inArray(profileRole.profile_id, user_ids), eq(profileRole.role_id, role_id)));
 
 	return { success: true };
 });
