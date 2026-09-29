@@ -8,6 +8,9 @@ import * as Sentry from '@sentry/sveltekit';
 Sentry.init({
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tunnel: '/api/errors',
+	// Envelopes with replay data are sent as binary, which fetch sends without a Content-Type, and
+	// SvelteKit reads a request without one as having no body.
+	transportOptions: { headers: { 'Content-Type': 'application/x-sentry-envelope' } },
 	tracesSampleRate: 1.0,
 
 	// This sets the sample rate to be 10%. You may want this to be 100% while
