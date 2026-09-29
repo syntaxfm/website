@@ -2,6 +2,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { find_profile } = vi.hoisted(() => ({ find_profile: vi.fn() }));
 
+vi.mock('$app/environment', () => ({ dev: false }));
+
 vi.mock('$server/db/client', () => ({
 	db: {
 		query: {
@@ -63,6 +65,18 @@ describe('get_admin_guard_response', () => {
 		expect(response?.status).toBe(302);
 		expect(location.origin).toBe('https://auth.syntax.fm');
 		expect(location.pathname).toBe('/sign-in');
+		expect(location.searchParams.get('return_to')).toBe(return_to.href);
+	});
+
+	it('redirects to local Syntax Auth in development builds', async () => {
+		vi.resetModules();
+		vi.doMock('$app/environment', () => ({ dev: true }));
+		const development = await import('./authorization');
+		const return_to = new URL('http://localhost:5740/admin');
+		const response = development.get_admin_guard_response(null, return_to);
+		const location = new URL(response?.headers.get('Location') ?? '');
+
+		expect(location.origin).toBe('http://localhost:37960');
 		expect(location.searchParams.get('return_to')).toBe(return_to.href);
 	});
 

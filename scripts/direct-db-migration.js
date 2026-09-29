@@ -10,8 +10,7 @@
  * - Full-text search vector generation
  * - Upsert mode for repeatable migrations
  */
-import dotenv from 'dotenv';
-import { expand } from 'dotenv-expand';
+import 'varlock/auto-load';
 import { createConnection } from 'mysql2/promise';
 import postgres from 'postgres';
 import fs from 'fs';
@@ -21,8 +20,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const MIGRATION_STATE_FILE = path.join(__dirname, 'migration-state.json');
-
-expand(dotenv.config());
 
 // Source is the live v2 MySQL database; target is the Postgres database to write into. Both are
 // read from dedicated variables (not DATABASE_URL / PROD_DATABASE_URL, which local dev uses) so a

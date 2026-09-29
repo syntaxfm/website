@@ -18,20 +18,26 @@ This site is built on SvelteKit.
   - Preferably, use homebrew to install:
     - `brew install pnpm`
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [OrbStack](https://orbstack.dev/) and have it running.
-- A read-only **production Postgres connection string** (core team: from PlanetScale).
+- A read-only **production Postgres connection string** (core team: loaded from 1Password automatically).
 
 This site uses PostgreSQL via [Drizzle ORM](https://orm.drizzle.team/). See [`docs/adr/0001-drizzle-postgres-over-prisma-mysql.md`](./docs/adr/0001-drizzle-postgres-over-prisma-mysql.md) for the rationale behind this stack.
 
 ## Getting Started
 
 ```sh
-pnpm preheat   # prompts for the prod connection string on first run
+pnpm preheat   # asks about 1Password on first run (core team), then sets everything up
 pnpm dev       # http://localhost:5173
 ```
 
-`pnpm preheat` creates `.env`, installs dependencies, starts Postgres in Docker (`localhost:5434`), copies production data into it (~15s), and applies any pending migrations. It is safe to re-run; it only copies prod when the local database is empty.
+`pnpm preheat` installs dependencies, starts Postgres in Docker (`localhost:5434`), copies production data into it (~15s), and applies any pending migrations. It is safe to re-run; it only copies prod when the local database is empty.
 
 The local database is a disposable copy. Production is only ever read.
+
+### Environment variables
+
+Env vars are declared in [`.env.schema`](./.env.schema) and loaded with [varlock](https://varlock.dev). The defaults there are enough to run locally. Put your own values in `.env.local` (gitignored).
+
+Core team: answer yes when `pnpm preheat` asks about 1Password. It installs the [1Password CLI](https://www.1password.dev/cli/get-started/) if needed, checks you can open the Syntax.fm vault, and saves `USE_1PASSWORD=true` to `.env.local`. Secrets then load from the vault (see [`.env.1password`](./.env.1password)). Use `pnpm exec varlock load` to check what resolved.
 
 ### Scripts
 
@@ -91,9 +97,9 @@ These are the available media queries:
 | UPSPLASH_TOKEN, UPSPLASH_URL | [https://upstash.com/](https://upstash.com/)                            | Create a redis DB after sign up in the console                        |
 | YOUTUBE_API_KEY              | [Google API Console](https://console.cloud.google.com/apis/credentials) | Create an API key, visit the library and enable "YouTube Data API v3" |
 
-Admin authentication uses the shared session from `auth.syntax.fm`. Plain localhost cannot receive
-the `.syntax.fm` cookie; use a controlled HTTPS development subdomain or tunnel under `syntax.fm`
-for authenticated QA.
+Admin authentication uses the shared session from `auth.syntax.fm`. In development, `pnpm dev`
+starts the shared local Syntax Auth on `http://localhost:37960` (Docker required). Sign in with
+**Continue as Local Developer**; `pnpm preheat` makes that account an admin in your local database.
 
 # Our Contributors
 

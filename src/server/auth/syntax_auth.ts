@@ -1,4 +1,8 @@
-const SYNTAX_AUTH_ORIGIN = 'https://auth.syntax.fm';
+import { dev } from '$app/environment';
+
+// Dev uses the shared local Syntax Auth (@syntaxfm/auth-local). Production is fixed in code so no
+// environment setting can point it anywhere else.
+const SYNTAX_AUTH_ORIGIN = dev ? 'http://localhost:37960' : 'https://auth.syntax.fm';
 const SYNTAX_SESSION_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/get-session`;
 const SYNTAX_SIGN_OUT_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/sign-out`;
 
@@ -126,11 +130,21 @@ export async function get_syntax_auth(
 	}
 }
 
+function is_local_dev_url(url: URL): boolean {
+	return url.protocol === 'http:' && (url.hostname === 'localhost' || url.hostname === '127.0.0.1');
+}
+
 export function is_trusted_syntax_url(url: URL): boolean {
+	if (url.username !== '' || url.password !== '') {
+		return false;
+	}
+
+	if (dev && is_local_dev_url(url)) {
+		return true;
+	}
+
 	return (
 		url.protocol === 'https:' &&
-		url.username === '' &&
-		url.password === '' &&
 		(url.hostname === 'syntax.fm' || url.hostname.endsWith('.syntax.fm'))
 	);
 }

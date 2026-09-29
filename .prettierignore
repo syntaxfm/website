@@ -5,7 +5,8 @@ node_modules
 /package
 .env
 .env.*
-!.env.example
+!.env.schema
+!.env.1password
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

@@ -59,7 +59,8 @@ These are enforced by convention now; a Warden rule set may be added later to ma
 ### Install and dev
 
 - Install deps: `pnpm install`
-- One-command setup (`.env`, deps, Docker Postgres, copy of prod data, migrations): `pnpm preheat`
+- One-command setup (deps, Docker Postgres, copy of prod data, migrations): `pnpm preheat`
+- Env vars: declared in `.env.schema` (varlock); personal overrides in `.env.local`; core team secrets load from 1Password via `.env.1password` when `USE_1PASSWORD=true`
 - Replace local DB with a fresh copy of prod: `pnpm db:pull`
 - Start dev server: `pnpm dev`
 - Start Vite directly: `pnpm vite-dev`

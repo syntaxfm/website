@@ -3,9 +3,10 @@ import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { codecovSvelteKitPlugin } from '@codecov/sveltekit-plugin';
+import { syntax_auth } from '@syntaxfm/auth-local';
 import { loadEnv } from 'vite';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 
 	return {
@@ -13,6 +14,14 @@ export default defineConfig(({ mode }) => {
 			port: 5740
 		},
 		plugins: [
+			// Dev server only: production gets its env from the host (Vercel), not a varlock boot, and
+			// tests need no secrets (so they never wait on 1Password). Imported lazily because loading
+			// the module resolves the env as a side effect.
+			command === 'serve' &&
+				!process.env.VITEST &&
+				import('@varlock/vite-integration').then(({ varlockVitePlugin }) => varlockVitePlugin()),
+			// Dev only (apply: 'serve'): starts the shared local Syntax Auth on localhost:37960.
+			syntax_auth(),
 			sentrySvelteKit({
 				sourceMapsUploadOptions: {
 					org: 'syntax-fm',

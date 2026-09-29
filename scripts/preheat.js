@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// One-command local setup: .env, dependencies, Docker Postgres, production data, migrations.
+// One-command local setup: dependencies, Docker Postgres, production data, migrations.
+// Env comes from .env.schema via varlock (see .env.schema for 1Password + .env.local).
 //
 //   pnpm preheat   Full setup. Copies prod into the local DB only if the local DB is empty.
 //   pnpm db:pull   Replace the local DB with a fresh copy of prod, then apply pending migrations.
@@ -7,7 +8,7 @@
 // Uses only Node built-ins so it can run on a fresh clone, before `pnpm install`.
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { createInterface } from 'node:readline/promises';
 import { parseEnv } from 'node:util';
 
@@ -20,6 +21,11 @@ const MIGRATIONS_DIR = 'drizzle/pg-migrations';
 // MySQL → Postgres migration script and matches the migrations up to and including this tag.
 // Only used when a restored database has no drizzle.__drizzle_migrations table.
 const UNTRACKED_PROD_BASELINE = '0001_puzzling_talos';
+// Keep in sync with @initOp in .env.schema and the op:// references in .env.1password.
+const OP_ACCOUNT = 'sentry.1password.com';
+const OP_VAULT = '4bk5tuz4wmhcgb6lqu56rt4h64'; // Syntax.fm
+// Local Syntax Auth's "Continue as Local Developer" account always has this central user ID.
+const LOCAL_DEVELOPER_ID = 'local-developer';
 
 const args = new Set(process.argv.slice(2));
 const pull_only = args.has('--pull');
@@ -32,12 +38,15 @@ async function main() {
 	check_pnpm();
 	check_docker();
 
-	const env = await ensure_env();
+	clean_legacy_env();
+	await setup_1password();
 
 	if (!pull_only) {
 		step('Installing dependencies');
 		run('pnpm', ['install']);
 	}
+
+	validate_env();
 
 	step('Starting local Postgres (docker compose)');
 	run('docker', ['compose', 'up', '--detach', '--wait', 'db']);
@@ -46,16 +55,11 @@ async function main() {
 	const has_data = local_has_tables();
 
 	if (pull_only || !has_data) {
-		if (!env.PROD_DATABASE_URL) {
-			throw new SetupError(
-				'PROD_DATABASE_URL is not set in .env. The local DB is built from a copy of prod —\n' +
-					'   grab a read-only connection string from PlanetScale and re-run.'
-			);
-		}
+		const prod_url = await resolve_prod_database_url();
 		if (has_data && !(await confirm('This replaces your local database. Continue?'))) {
 			throw new SetupError('Cancelled');
 		}
-		pull_prod(env.PROD_DATABASE_URL);
+		pull_prod(prod_url);
 	} else {
 		ok('Local database already has data (run pnpm db:pull to refresh from prod)');
 	}
@@ -67,6 +71,8 @@ async function main() {
 		// drizzle.config.ts prefers POSTGRES_DATABASE_URL; make sure it can only see the local DB.
 		env: { ...process.env, DATABASE_URL: LOCAL_DATABASE_URL, POSTGRES_DATABASE_URL: '' }
 	});
+
+	grant_local_developer_admin();
 
 	console.log('\n🥘 Website preheated to 450°F (232°C)');
 	if (!pull_only) console.log('   Run pnpm dev → http://localhost:5173');
@@ -99,28 +105,27 @@ function check_docker() {
 	ok('Docker');
 }
 
-// ─── .env ────────────────────────────────────────────────────────────────────
+// ─── Env ─────────────────────────────────────────────────────────────────────
 
-async function ensure_env() {
-	step('Checking .env');
-	if (!existsSync('.env')) {
-		copyFileSync('.env.example', '.env');
-		ok('Copied .env.example → .env');
-	}
+// Pre-varlock setups kept everything in .env, which varlock still loads. Make sure none of it
+// can point local dev at production.
+function clean_legacy_env() {
+	if (!existsSync('.env')) return;
+	step('Checking legacy .env');
 
-	let env = read_env();
+	let env = read_env('.env');
 
 	// Local dev must always talk to the Docker DB.
-	if (!is_local_postgres(env.DATABASE_URL)) {
-		set_env_var('DATABASE_URL', LOCAL_DATABASE_URL);
+	if (env.DATABASE_URL && !is_local_postgres(env.DATABASE_URL)) {
+		set_env_var('.env', 'DATABASE_URL', LOCAL_DATABASE_URL);
 		ok('DATABASE_URL → local Docker Postgres');
 	}
 
 	// Pre-v3 .env files: PROD_DATABASE_URL was MySQL, and prod Postgres lived in
 	// POSTGRES_DATABASE_URL — which the app prefers over DATABASE_URL, so dev hit prod.
 	if (env.PROD_DATABASE_URL && !is_postgres(env.PROD_DATABASE_URL)) {
-		set_env_var('PROD_DATABASE_URL', '');
-		env = read_env();
+		set_env_var('.env', 'PROD_DATABASE_URL', '');
+		env = read_env('.env');
 		ok('Cleared legacy MySQL PROD_DATABASE_URL');
 	}
 	if (env.POSTGRES_DATABASE_URL && !is_local_postgres(env.POSTGRES_DATABASE_URL)) {
@@ -130,68 +135,159 @@ async function ensure_env() {
 					'   Remove it from .env so local dev uses the Docker DB.'
 			);
 		}
-		set_env_var('PROD_DATABASE_URL', env.POSTGRES_DATABASE_URL);
-		remove_env_var('POSTGRES_DATABASE_URL');
+		set_env_var('.env', 'PROD_DATABASE_URL', env.POSTGRES_DATABASE_URL);
+		remove_env_var('.env', 'POSTGRES_DATABASE_URL');
 		ok('Moved remote POSTGRES_DATABASE_URL → PROD_DATABASE_URL (dev no longer hits prod)');
 	}
 
-	add_missing_example_vars();
-	env = read_env();
-
-	if (!env.PROD_DATABASE_URL && process.stdin.isTTY) {
-		const answer = await prompt('Production Postgres URL (read-only is fine): ');
-		if (answer) {
-			set_env_var('PROD_DATABASE_URL', answer);
-			env = read_env();
-		}
-	}
-
-	if (env.PROD_DATABASE_URL) {
-		if (!is_postgres(env.PROD_DATABASE_URL)) {
-			throw new SetupError('PROD_DATABASE_URL must be a postgres:// or postgresql:// URL');
-		}
-		if (is_local_postgres(env.PROD_DATABASE_URL)) {
-			throw new SetupError('PROD_DATABASE_URL points at localhost — it should be production');
-		}
-	}
-
 	ok('.env');
-	return env;
 }
 
-function read_env() {
-	return parseEnv(readFileSync('.env', 'utf8'));
+// ─── 1Password ───────────────────────────────────────────────────────────────
+
+// USE_1PASSWORD in .env.local switches .env.1password on (see .env.schema). Asked once per machine.
+async function setup_1password() {
+	step('Checking 1Password');
+	let use_1password = existsSync('.env.local') ? read_env('.env.local').USE_1PASSWORD : undefined;
+
+	if (use_1password === undefined) {
+		if (!process.stdin.isTTY) {
+			ok('Skipping 1Password (not interactive) — set USE_1PASSWORD in .env.local');
+			return;
+		}
+		const answer = await prompt(
+			'Load secrets from the Syntax.fm 1Password vault? Core team only (y/N) '
+		);
+		use_1password = String(/^y(es)?$/i.test(answer));
+		set_env_var('.env.local', 'USE_1PASSWORD', use_1password);
+	}
+
+	if (use_1password !== 'true') {
+		ok('Using local defaults (USE_1PASSWORD=false in .env.local)');
+		return;
+	}
+
+	await ensure_op_cli();
+	check_op_vault_access();
+	ok('Syntax.fm vault is reachable');
 }
 
-function set_env_var(key, value) {
-	const content = readFileSync('.env', 'utf8');
+async function ensure_op_cli() {
+	const version = spawnSync('op', ['--version'], { encoding: 'utf8' });
+	if (!version.error && version.status === 0) {
+		ok(`1Password CLI ${version.stdout.trim()}`);
+		return;
+	}
+
+	const has_brew = spawnSync('brew', ['--version'], { stdio: 'ignore' }).status === 0;
+	if (has_brew && process.stdin.isTTY) {
+		const answer = await prompt('1Password CLI not found. Install it with Homebrew? (Y/n) ');
+		if (!/^n/i.test(answer)) {
+			run('brew', ['install', '1password-cli']);
+			ok('Installed 1Password CLI');
+			return;
+		}
+	}
+
+	throw new SetupError(
+		'1Password CLI not found. Install it (https://www.1password.dev/cli/get-started/)\n' +
+			'   or set USE_1PASSWORD=false in .env.local, then re-run.'
+	);
+}
+
+function check_op_vault_access() {
+	console.log('   Approve the 1Password prompt if one appears…');
+	// op waits for the app to be unlocked/approved; don't hang forever if nobody does.
+	const result = spawnSync('op', ['vault', 'get', OP_VAULT, '--account', OP_ACCOUNT], {
+		encoding: 'utf8',
+		timeout: 60_000
+	});
+	if (result.status === 0) return;
+	if (result.error?.code === 'ETIMEDOUT') {
+		throw new SetupError(
+			'Timed out waiting for 1Password. Unlock the 1Password app, approve the prompt, then re-run.'
+		);
+	}
+
+	const error = result.stderr ?? '';
+	if (/couldn't connect to the 1Password desktop app|No accounts configured/i.test(error)) {
+		throw new SetupError(
+			"The 1Password CLI can't reach the 1Password app. Open 1Password, unlock it, and turn on\n" +
+				'   Settings → Developer → "Integrate with 1Password CLI", then re-run.'
+		);
+	}
+	if (/no account found/i.test(error)) {
+		throw new SetupError(
+			`${OP_ACCOUNT} isn't signed in to your 1Password app. Add your Sentry account\n` +
+				'   in the 1Password app, then re-run.'
+		);
+	}
+	throw new SetupError(
+		`Can't open the Syntax.fm vault in ${OP_ACCOUNT}:\n   ${error.trim()}\n` +
+			'   Ask a Syntax team admin for vault access, or set USE_1PASSWORD=false in .env.local.'
+	);
+}
+
+// ─── Env validation ──────────────────────────────────────────────────────────
+
+// Resolves every var in .env.schema (including 1Password) so problems surface now, not in pnpm dev.
+function validate_env() {
+	step('Validating env (.env.schema)');
+	const result = spawnSync('pnpm', ['exec', 'varlock', 'load', '--agent'], { encoding: 'utf8' });
+	if (result.status !== 0) {
+		console.error(result.stdout, result.stderr);
+		throw new SetupError('Env is invalid — see the errors above');
+	}
+	ok('Env is valid');
+}
+
+// Resolved through varlock, so it comes from 1Password when USE_1PASSWORD=true.
+async function resolve_prod_database_url() {
+	step('Resolving PROD_DATABASE_URL');
+	let url = run('pnpm', ['exec', 'varlock', 'printenv', 'PROD_DATABASE_URL'], {
+		capture: true
+	}).trim();
+
+	if (!url && process.stdin.isTTY) {
+		url = await prompt('Production Postgres URL (read-only is fine): ');
+		if (url) set_env_var('.env.local', 'PROD_DATABASE_URL', url);
+	}
+
+	if (!url) {
+		throw new SetupError(
+			'PROD_DATABASE_URL is not set. The local DB is built from a copy of prod —\n' +
+				'   core team: set USE_1PASSWORD=true in .env.local, or put a read-only\n' +
+				'   PlanetScale connection string in .env.local as PROD_DATABASE_URL.'
+		);
+	}
+	if (!is_postgres(url)) {
+		throw new SetupError('PROD_DATABASE_URL must be a postgres:// or postgresql:// URL');
+	}
+	if (is_local_postgres(url)) {
+		throw new SetupError('PROD_DATABASE_URL points at localhost — it should be production');
+	}
+
+	ok('PROD_DATABASE_URL');
+	return url;
+}
+
+function read_env(file) {
+	return parseEnv(readFileSync(file, 'utf8'));
+}
+
+function set_env_var(file, key, value) {
+	const content = existsSync(file) ? readFileSync(file, 'utf8') : '';
 	const line = `${key}='${value}'`;
 	const pattern = new RegExp(`^${key}=.*$`, 'm');
 	const next = pattern.test(content)
 		? content.replace(pattern, () => line)
 		: `${content.replace(/\n?$/, '\n')}${line}\n`;
-	writeFileSync('.env', next);
+	writeFileSync(file, next.replace(/^\n/, ''));
 }
 
-function remove_env_var(key) {
-	const content = readFileSync('.env', 'utf8');
-	writeFileSync('.env', content.replace(new RegExp(`^${key}=.*\\n?`, 'm'), ''));
-}
-
-function add_missing_example_vars() {
-	const example_content = readFileSync('.env.example', 'utf8');
-	const example = parseEnv(example_content);
-	const current = read_env();
-	const missing = Object.keys(example).filter((key) => !(key in current));
-	if (missing.length === 0) return;
-
-	const lines = example_content.split('\n').filter((line) => {
-		const key = line.split('=')[0].trim();
-		return missing.includes(key);
-	});
-	const content = readFileSync('.env', 'utf8');
-	writeFileSync('.env', `${content.replace(/\n?$/, '\n')}${lines.join('\n')}\n`);
-	ok(`Added missing vars from .env.example: ${missing.join(', ')}`);
+function remove_env_var(file, key) {
+	const content = readFileSync(file, 'utf8');
+	writeFileSync(file, content.replace(new RegExp(`^${key}=.*\\n?`, 'm'), ''));
 }
 
 function is_postgres(url) {
@@ -229,6 +325,22 @@ function pull_prod(prod_url) {
 
 	const size = psql(`select pg_size_pretty(pg_database_size('${LOCAL_DB}'))`);
 	ok(`Restored ${size} in ${((Date.now() - started) / 1000).toFixed(1)}s`);
+}
+
+// Lets "Continue as Local Developer" into /admin. Only ever runs against the local Docker DB.
+// github_id is required and unique; real GitHub IDs start at 1, so 0 can't collide.
+function grant_local_developer_admin() {
+	psql(`
+		insert into roles (name) values ('admin') on conflict (name) do nothing;
+		insert into profiles (central_user_id, github_id, username, name)
+		values ('${LOCAL_DEVELOPER_ID}', 0, '${LOCAL_DEVELOPER_ID}', 'Local Developer')
+		on conflict (central_user_id) do nothing;
+		insert into profile_roles (profile_id, role_id)
+		select profiles.id, roles.id from profiles, roles
+		where profiles.central_user_id = '${LOCAL_DEVELOPER_ID}' and roles.name = 'admin'
+		on conflict (profile_id, role_id) do nothing;
+	`);
+	ok(`${LOCAL_DEVELOPER_ID} is an admin locally`);
 }
 
 function local_has_tables() {

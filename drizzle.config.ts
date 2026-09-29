@@ -1,7 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import 'varlock/auto-load';
 
 export default defineConfig({
 	schema: './src/server/db/schema.ts',

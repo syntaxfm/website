@@ -1,9 +1,6 @@
 #!/usr/bin/env node
-import dotenv from 'dotenv';
-import { expand } from 'dotenv-expand';
+import 'varlock/auto-load';
 import postgres from 'postgres';
-
-expand(dotenv.config());
 
 const POSTGRES_URL = process.env.POSTGRES_DATABASE_URL;
 
