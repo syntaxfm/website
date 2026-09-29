@@ -2,8 +2,8 @@
 number: 1043
 title: I’m Using GPUI For Everything
 date: 1790766000000
-url: https://traffic.megaphone.fm/FSI3001131665.mp3
-youtube_url: https://www.youtube.com/watch?v=SgC0wjBwMQ8
+url: https://traffic.megaphone.fm/FSI9920896492.mp3
+youtube_url: https://www.youtube.com/watch?v=SdJXHYuRr48
 ---
 	
 Scott and Wes ditch Electron and Tauri for GPUI, the GPU accelerated Rust UI framework from the Zed team. They get into its React-like API, styling that feels a lot like Tailwind, GPUI Kit components, the community fork drama, and the tiny desktop apps Scott has built with it.
