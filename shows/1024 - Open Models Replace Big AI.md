@@ -4,6 +4,10 @@ title: Open Models Replace Big AI
 date: 1785150000000
 url: https://traffic.megaphone.fm/FSI2079334345.mp3
 youtube_url: https://www.youtube.com/live/hZCBtPDe8-g
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 
 ---
 	

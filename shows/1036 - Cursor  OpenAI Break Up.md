@@ -4,7 +4,7 @@ title: Cursor & OpenAI Break Up
 date: 1788778800000
 url: https://traffic.megaphone.fm/FSI8532175718.mp3
 youtube_url: https://www.youtube.com/live/12gJ0SD0guY
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

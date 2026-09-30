@@ -4,6 +4,10 @@ title: Cloudflare Wallets
 date: 1786359600000
 url: https://traffic.megaphone.fm/FSI4605200008.mp3
 youtube_url: https://www.youtube.com/live/KNF4KqqRzrY
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 
 ---
 	

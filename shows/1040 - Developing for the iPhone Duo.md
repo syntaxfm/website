@@ -4,7 +4,7 @@ title: Developing for the iPhone Duo
 date: 1789988400000
 url: https://traffic.megaphone.fm/FSI3562075802.mp3
 youtube_url: https://www.youtube.com/live/-czzyDaV9PA
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

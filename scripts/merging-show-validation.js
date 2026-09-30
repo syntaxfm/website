@@ -96,13 +96,26 @@ const validateTimestamps = (content) => {
 	return invalidTimestamps;
 };
 
+const KNOWN_FRONT_MATTER_KEYS = ['number', 'title', 'date', 'url', 'youtube_url', 'hosts', 'guest'];
+
 const validateFrontMatter = (content) => {
+	let data;
 	try {
-		matter(content);
-		return null;
+		({ data } = matter(content));
 	} catch (error) {
 		return error.message;
 	}
+	// Keys are case sensitive, so `Hosts:` would be silently ignored on import
+	const miscasedKeys = Object.keys(data).filter(
+		(key) =>
+			!KNOWN_FRONT_MATTER_KEYS.includes(key) && KNOWN_FRONT_MATTER_KEYS.includes(key.toLowerCase())
+	);
+	if (miscasedKeys.length > 0) {
+		return miscasedKeys
+			.map((key) => `"${key}" should be lowercase "${key.toLowerCase()}"`)
+			.join(', ');
+	}
+	return null;
 };
 
 // Function to process a single markdown file for broken links
@@ -159,7 +172,7 @@ const main = async () => {
 			const { brokenLinks, invalidTimestamps, frontMatterError } = await processFile(file);
 			if (brokenLinks.length > 0 || invalidTimestamps.length > 0 || frontMatterError) {
 				errorMessages.push(`Issues found in ${file}:`);
-				if (frontMatterError) errorMessages.push(`- Invalid YAML front matter: ${frontMatterError}`);
+				if (frontMatterError) errorMessages.push(`- Invalid front matter: ${frontMatterError}`);
 				brokenLinks.forEach((link) => errorMessages.push(`- Broken link: ${link}`));
 				invalidTimestamps.forEach((timestamp) =>
 					errorMessages.push(`- Invalid timestamp: ${timestamp}`)
