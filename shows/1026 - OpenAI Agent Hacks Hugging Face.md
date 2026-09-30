@@ -4,7 +4,7 @@ title: OpenAI Agent Hacks Hugging Face
 date: 1785754800000
 url: https://traffic.megaphone.fm/FSI4904506842.mp3
 youtube_url: https://www.youtube.com/watch?v=A_Mr8ZBOZDI
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

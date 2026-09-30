@@ -4,7 +4,7 @@ title: What are normies using AI for?
 date: 1790161200000
 url: https://traffic.megaphone.fm/FSI6628878575.mp3
 youtube_url: https://www.youtube.com/watch?v=KQJLw6YNA4I
-Hosts:
+hosts:
   - stolinski
   - wesbos
 

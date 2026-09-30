@@ -123,7 +123,9 @@ export async function parse_and_save_show_notes(
 		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
 	// Save or update the show
 	try {
-		const hosts = data.hosts;
+		// Accept any casing of the key (e.g. `Hosts:`) so hosts are never silently dropped
+		const hosts_key = Object.keys(data).find((key) => key.toLowerCase() === 'hosts');
+		const hosts = hosts_key ? data[hosts_key] : undefined;
 		let hostsConnection = {};
 		if (hosts && Array.isArray(hosts)) {
 			const hostUsers = await prisma.user.findMany({

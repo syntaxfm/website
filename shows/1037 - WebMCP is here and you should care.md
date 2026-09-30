@@ -4,7 +4,7 @@ title: "WebMCP is here (and you should care)"
 date: 1788951600000
 url: https://traffic.megaphone.fm/FSI4063165063.mp3
 youtube_url: https://www.youtube.com/watch?v=xtVvkRTH5ck
-Hosts:
+hosts:
   - stolinski
   - wesbos
 guest:

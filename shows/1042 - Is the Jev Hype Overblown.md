@@ -4,7 +4,7 @@ title: Is the Jev Hype Overblown?
 date: 1790593200000
 url: https://traffic.megaphone.fm/FSI8312173039.mp3
 youtube_url: https://www.youtube.com/watch?v=rsp5wJSM7K0
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

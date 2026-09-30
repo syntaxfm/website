@@ -4,7 +4,7 @@ title: AI Assistant Hacks Gym
 date: 1786964400000
 url: https://traffic.megaphone.fm/FSI3334102653.mp3
 youtube_url: https://www.youtube.com/watch?v=HrNLEG8bvJM
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

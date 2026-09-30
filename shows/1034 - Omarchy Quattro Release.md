@@ -4,7 +4,7 @@ title: Omarchy Quattro Release
 date: 1788174000000
 url: https://traffic.megaphone.fm/FSI4566452979.mp3
 youtube_url: https://www.youtube.com/live/EGv6INolB2c
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj

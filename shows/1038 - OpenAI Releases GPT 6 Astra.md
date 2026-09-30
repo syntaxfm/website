@@ -4,7 +4,7 @@ title: OpenAI Releases GPT 6 Astra
 date: 1789038000000
 url: https://traffic.megaphone.fm/FSI1154569409.mp3
 youtube_url: https://www.youtube.com/live/8u_mKdAJ1wM
-Hosts:
+hosts:
 - wesbos
 - w3cj
 ---
