@@ -167,7 +167,7 @@ importers:
         version: 7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.0))(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.1))
       '@syntaxfm/auth-local':
         specifier: github:syntaxfm/auth#path:/packages/auth-local
-        version: https://codeload.github.com/syntaxfm/auth/tar.gz/818112b401e4ae368399bd1d3665a82bd411d7fd#path:/packages/auth-local
+        version: https://codeload.github.com/syntaxfm/auth/tar.gz/4a8400bf74ab0b5ed84a3aeaa0d27021acc97b7a#path:/packages/auth-local
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -2469,8 +2469,8 @@ packages:
       svelte: ^5.46.4
       vite: ^8.0.0-beta.7 || ^8.0.0
 
-  '@syntaxfm/auth-local@https://codeload.github.com/syntaxfm/auth/tar.gz/818112b401e4ae368399bd1d3665a82bd411d7fd#path:/packages/auth-local':
-    resolution: {gitHosted: true, integrity: sha512-RPVFep5qnKj4Uv7opsSjHi+FqOBWeSF7+iMJpo/sh8AeBtpQzXNTJjvSEl6nkM5ZIoGnzUiZVZwEgPo2b1y3aA==, path: /packages/auth-local, tarball: https://codeload.github.com/syntaxfm/auth/tar.gz/818112b401e4ae368399bd1d3665a82bd411d7fd}
+  '@syntaxfm/auth-local@https://codeload.github.com/syntaxfm/auth/tar.gz/4a8400bf74ab0b5ed84a3aeaa0d27021acc97b7a#path:/packages/auth-local':
+    resolution: {gitHosted: true, path: /packages/auth-local, tarball: https://codeload.github.com/syntaxfm/auth/tar.gz/4a8400bf74ab0b5ed84a3aeaa0d27021acc97b7a}
     version: 1.0.0
     engines: {node: '>=22'}
     hasBin: true
@@ -7881,7 +7881,7 @@ snapshots:
       vite: 8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.1)
       vitefu: 1.1.3(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.1))
 
-  '@syntaxfm/auth-local@https://codeload.github.com/syntaxfm/auth/tar.gz/818112b401e4ae368399bd1d3665a82bd411d7fd#path:/packages/auth-local': {}
+  '@syntaxfm/auth-local@https://codeload.github.com/syntaxfm/auth/tar.gz/4a8400bf74ab0b5ed84a3aeaa0d27021acc97b7a#path:/packages/auth-local': {}
 
   '@testing-library/dom@10.4.0':
     dependencies:
