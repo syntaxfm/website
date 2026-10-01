@@ -216,7 +216,7 @@ function check_op_vault_access() {
 				'   Settings → Developer → "Integrate with 1Password CLI", then re-run.'
 		);
 	}
-	if (/no account found/i.test(error)) {
+	if (/no account found|found no accounts for filter/i.test(error)) {
 		throw new SetupError(
 			`${OP_ACCOUNT} isn't signed in to your 1Password app. Add your Sentry account\n` +
 				'   in the 1Password app, then re-run.'
