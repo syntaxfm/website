@@ -2,11 +2,7 @@
 <!-- USE FeedItem.svelte instead -->
 
 <script lang="ts">
-	import no_thumb from '../shows/no_thumb.png';
-	import Dot from '$lib/utilities/Dot.svelte';
-	import TagRow from '../tags/TagRow.svelte';
-	import type { Guest, Host, Show, Video } from '$server/db/types';
-	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
+	import type { Video } from '$server/db/types';
 
 	type Props = {
 		video: Video;
@@ -30,20 +26,3 @@
 	<p>{show?.aiShowNote?.description}</p>
 	<TagRow tags={show?.aiShowNote?.topics.map((topic) => topic.name)} /> -->
 </article>
-
-<style>
-	img {
-		border-radius: 20px;
-		border: solid 12px var(--c-primary);
-		width: 100%;
-	}
-
-	.number {
-		font-size: 160px;
-		color: var(--c-primary);
-		margin: 0;
-		line-height: 0;
-		display: block;
-		text-align: right;
-	}
-</style>

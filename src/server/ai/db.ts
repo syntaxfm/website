@@ -22,13 +22,13 @@ export async function save_ai_notes_to_db(result: Result, show: Show) {
 				description: result.description,
 				provider: 'anthropic'
 			})
-			.$returningId();
+			.returning({ id: aiShowNotes.id });
 
 		// Insert all related data in parallel
 		await Promise.all([
 			tx.insert(aiSummaryEntries).values(
 				result.summary.map((entry) => ({
-					showNote: ai_show_note.id,
+					show_note_id: ai_show_note.id,
 					time: entry.time,
 					text: entry.text,
 					description: entry.description || null
@@ -36,19 +36,19 @@ export async function save_ai_notes_to_db(result: Result, show: Show) {
 			),
 			tx.insert(aiTweets).values(
 				result.tweets.map((tweet) => ({
-					showNote: ai_show_note.id,
+					show_note_id: ai_show_note.id,
 					content: tweet
 				}))
 			),
 			tx.insert(topics).values(
 				result.topics.map((topic) => ({
-					showNote: ai_show_note.id,
+					show_note_id: ai_show_note.id,
 					name: topic
 				}))
 			),
 			tx.insert(links).values(
 				result.links.map((link) => ({
-					showNote: ai_show_note.id,
+					show_note_id: ai_show_note.id,
 					name: link.name,
 					url: link.url,
 					timestamp: link.timestamp || null

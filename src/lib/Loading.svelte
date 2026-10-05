@@ -12,7 +12,7 @@
 					fill="#FABF46"
 				/>
 				<path
-					id="logo_dot"
+					id="logo-dot"
 					d="M1366.31 1031.2L1370.78 1159.08L1227.52 1164.08L1223.06 1036.21L1366.31 1031.2Z"
 					fill="#FABF46"
 				/>
@@ -27,7 +27,7 @@
 	.loader {
 		z-index: 10;
 		position: fixed;
-		background: #000e;
+		background: color-mix(in srgb, var(--c-black) 93.3%, transparent);
 		inset: 0;
 		display: flex;
 		justify-content: center;
@@ -44,7 +44,7 @@
 		margin: 0 auto;
 	}
 
-	:global(#logo_dot) {
+	:global(#logo-dot) {
 		animation: spin 1s infinite;
 		transform-origin: 93% 91%;
 	}

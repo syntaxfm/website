@@ -4,7 +4,7 @@
 
 	interface Props {
 		guests?: { guest: Guest }[];
-		hosts?: HostType[];
+		hosts?: { profile: HostType }[];
 	}
 
 	let { guests = [], hosts = [] }: Props = $props();
@@ -25,12 +25,12 @@
 		{/each}
 	{/if}
 	{#if hosts.length > 0}
-		{#each hosts as host (host.username)}
+		{#each hosts as { profile } (profile.username)}
 			<Host
 				host={{
-					name: host.name || host.username || '',
-					github: host.username,
-					twitter: host.twitter
+					name: profile.name || profile.username || '',
+					github: profile.username,
+					twitter: profile.twitter
 				}}
 			/>
 		{/each}

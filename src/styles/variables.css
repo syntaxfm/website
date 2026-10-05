@@ -117,6 +117,10 @@
 	--c-sentry-footer-bg:
 		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 
+	/* Optional theme divider color. `initial` is the guaranteed-invalid value, so
+	   consumers fall back (e.g. no border) unless a theme sets it. */
+	--line: initial;
+
 	/* TYPOGRAPHY */
 
 	/* Font Families */
@@ -134,6 +138,15 @@
 	--fs-7: 35px;
 	--fs-8: 41px;
 	--fs-9: 50px;
+
+	/* Component-specific sizes, kept exact and outside the scale above.
+	   Relative units resolve where used: em against the parent text,
+	   cqw against the show cover's container width. */
+	--fs-album-disc: 68px;
+	--fs-newsletter-heading: 1.45em;
+	--fs-newsletter-wordmark: 86px;
+	--fs-show-cover-number: 20cqw;
+	--fs-required-marker: 8px;
 
 	/* Font Variations */
 	--fv-100: 'wght' 100;

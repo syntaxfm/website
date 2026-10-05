@@ -86,10 +86,10 @@
 		overflow: hidden;
 		backdrop-filter: blur(10px);
 		color: var(--c-fg);
-		padding: var(--default-padding);
+		padding: 0;
 		overflow-y: scroll;
-		border-left: var(--border);
-		box-shadow: var(--shadow-6);
+		border-left: var(--border, none);
+		box-shadow: none;
 		z-index: 10;
 	}
 

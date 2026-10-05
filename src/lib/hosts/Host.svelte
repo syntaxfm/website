@@ -1,10 +1,14 @@
 <script lang="ts">
-	import type { Host } from '$server/db/types';
 	import { resolve } from '$app/paths';
 	import HostSocialLink from './HostSocialLink.svelte';
 	interface Props {
 		guest?: boolean;
-		host: Host;
+		host: {
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			slug?: string | null;
+		};
 	}
 
 	let { guest = false, host }: Props = $props();
@@ -32,7 +36,9 @@
 
 <style lang="postcss">
 	.person {
-		border: 1px solid var(--line);
+		--host-border: 1px solid var(--line);
+
+		border: var(--host-border, none);
 		border-radius: 50px;
 		position: relative;
 		border-left: 0;

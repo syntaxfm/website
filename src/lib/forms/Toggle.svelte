@@ -60,7 +60,7 @@
 			border-radius: 50%;
 			padding: 0;
 			width: var(--size);
-			color: var(--fg);
+			color: var(--c-fg);
 			height: var(--size);
 			display: flex;
 			align-items: center;

@@ -5,6 +5,7 @@
 	import { PER_PAGE } from '$const';
 	import { quintOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import { SvelteURLSearchParams } from 'svelte/reactivity';
 	interface Props {
 		count: number;
 		per_page?: number;
@@ -14,7 +15,7 @@
 	let { count, per_page = PER_PAGE, page = 1 }: Props = $props();
 	let total_pages = $derived(Math.ceil(count / per_page));
 	let generate_search_params = $derived((id: string, value: string | number): ResolvedPathname => {
-		const search_params = new URLSearchParams(pageStore.url.search);
+		const search_params = new SvelteURLSearchParams(pageStore.url.search);
 
 		if (!value) {
 			search_params.delete(id);

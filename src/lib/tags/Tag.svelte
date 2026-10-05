@@ -18,6 +18,6 @@
 		display: inline-block;
 		text-transform: lowercase;
 		text-decoration: none;
-		color: var(--fg);
+		color: var(--c-fg);
 	}
 </style>

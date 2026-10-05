@@ -1,5 +1,5 @@
-const postcss_preset_env = require('postcss-preset-env');
-const at_import = require('postcss-import');
+import at_import from 'postcss-import';
+import postcss_preset_env from 'postcss-preset-env';
 
 const config = {
 	plugins: [
@@ -16,4 +16,4 @@ const config = {
 	]
 };
 
-module.exports = config;
+export default config;

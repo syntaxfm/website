@@ -8,7 +8,7 @@ import { log_progress } from './logProgress';
 
 import wes_flagger from './audio/wes-flagger.mp3';
 import scott_flagger from './audio/scott-flagger.mp3';
-import type { Show } from '$server/db/schema';
+import type { Show } from '$server/db/types';
 
 const flag_paths = [wes_flagger, scott_flagger];
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import type { Show } from '$server/db/schema';
+	import type { Show } from '$server/db/types';
 	import toast, { Toaster } from 'svelte-french-toast';
 
 	interface Props {

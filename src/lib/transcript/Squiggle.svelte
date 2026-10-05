@@ -35,7 +35,7 @@
 		--y: 0;
 
 		translate: var(--x) var(--y);
-		stroke: var(--highlight);
+		stroke: var(--highlight, currentcolor);
 		width: 26px;
 
 		&.top {

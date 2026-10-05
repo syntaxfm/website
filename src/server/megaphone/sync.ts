@@ -350,16 +350,17 @@ export async function syncEpisodeSpotifyData(
 export async function checkDuplicateSpotifyIds(): Promise<
 	Array<{ spotifyId: string; shows: Array<{ number: number; title: string }> }>
 > {
-	const duplicates = await db.execute<{ spotify_id: string; count: number }>(sql`
-		SELECT spotify_id, COUNT(*) as count
-		FROM \`Show\`
-		WHERE spotify_id IS NOT NULL
-		GROUP BY spotify_id
-		HAVING count > 1
+	// postgres-js resolves to the row array itself (no `.rows` wrapper).
+	const duplicates = await db.execute<{ spotify_id: string }>(sql`
+		SELECT ${show.spotify_id} AS spotify_id
+		FROM ${show}
+		WHERE ${show.spotify_id} IS NOT NULL
+		GROUP BY ${show.spotify_id}
+		HAVING COUNT(*) > 1
 	`);
 
 	const duplicate_details = [];
-	for (const duplicate of duplicates.rows) {
+	for (const duplicate of duplicates) {
 		const shows_data = await db.query.show.findMany({
 			where: eq(show.spotify_id, duplicate.spotify_id),
 			columns: {

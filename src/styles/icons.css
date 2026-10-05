@@ -1,6 +1,8 @@
 :root {
 	--icon-color-primary: inherit;
 	--icon-color-secondary: currentcolor;
+	--icon-sm: 0.8em;
+	--icon-lg: 1.2em;
 }
 
 .icon {
@@ -14,9 +16,14 @@
 }
 
 .icon use {
+	--icon-stroke-linecap-butt: butt;
+
 	/* icon secondary color */
 	fill: var(--icon-color-secondary);
 	stroke: var(--icon-color-secondary);
+	stroke-miterlimit: 10;
+	stroke-linecap: square;
+	stroke-linejoin: miter;
 }
 
 /* --------------------------------
@@ -35,10 +42,6 @@ Themes
 Sizes
 
 -------------------------------- */
-:root {
-	--icon-sm: 0.8em;
-	--icon-lg: 1.2em;
-}
 
 /* relative units */
 .icon-sm {
@@ -47,15 +50,6 @@ Sizes
 
 .icon-lg {
 	font-size: var(--icon-lg);
-}
-
-/* absolute units */
-.icon-16 {
-	font-size: 16px;
-}
-
-.icon-32 {
-	font-size: 32px;
 }
 
 /* --------------------------------
@@ -78,20 +72,6 @@ Stroke
 
 .stroke-4 {
 	stroke-width: 4px;
-}
-
-/* --------------------------------
-
-Caps/Corners
-
--------------------------------- */
-
-.icon use {
-	--icon-stroke-linecap-butt: butt;
-
-	stroke-miterlimit: 10;
-	stroke-linecap: square;
-	stroke-linejoin: miter;
 }
 
 .stroke-round use {

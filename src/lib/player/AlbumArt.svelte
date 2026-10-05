@@ -2,7 +2,7 @@
 	import { PUBLIC_URL } from '$env/static/public';
 	import Album from './Album.svelte';
 	import { player } from '$state/player';
-	import type { Show } from '$server/db/schema';
+	import type { Show } from '$server/db/types';
 
 	interface Props {
 		is_link?: boolean;
@@ -44,7 +44,7 @@
 	.cd {
 		position: absolute;
 		inset: 0;
-		font-size: 68px;
+		font-size: var(--fs-album-disc);
 		animation:
 			spin 0.5s linear 5,
 			slide-in 1s ease-in-out 2 alternate;

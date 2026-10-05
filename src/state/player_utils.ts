@@ -1,7 +1,14 @@
-import type { Show } from '$server/db/schema';
+import type { Show } from '$server/db/types';
+
+/**
+ * The fields the player reads from a show: `url` to play it, `number`/`title`/`slug` for the
+ * title link, share button and media session, and `id` to replay the album-art spin. Callers
+ * with a full database `Show` satisfy it as-is; list cards pass only these fields and have no `id`.
+ */
+export type PlayerShow = Pick<Show, 'number' | 'title' | 'slug' | 'url'> & { id?: Show['id'] };
 
 export interface PlayerState {
-	current_show: null | Show;
+	current_show: null | PlayerShow;
 	audio: null | HTMLAudioElement;
 	media_controller: null | HTMLAudioElement;
 	duration: number;

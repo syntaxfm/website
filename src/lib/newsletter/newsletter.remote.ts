@@ -45,12 +45,16 @@ type BroadCastResponse = {
 };
 
 async function getBroadcastsPage(after?: string) {
+	const api_key = env.CONVERT_KIT_V4_API_KEY;
+	if (!api_key) {
+		return undefined;
+	}
 	const params = new URLSearchParams();
 	if (after) {
 		params.append('after', after);
 	}
 	const headers = new Headers();
-	headers.append('X-Kit-Api-Key', env.CONVERT_KIT_V4_API_KEY);
+	headers.append('X-Kit-Api-Key', api_key);
 	const response = await fetch(`https://api.convertkit.com/v4/broadcasts?${params.toString()}`, {
 		headers
 	});

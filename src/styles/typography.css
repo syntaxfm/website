@@ -1,15 +1,11 @@
 @layer utilities {
-	/* Font Sizes */
-	.fs-micro {
-		font-size: var(--fs-micro);
-	}
-
-	.fs-caption {
-		font-size: var(--fs-caption);
-	}
-
+	/* Font Sizes
+	--fs-micro/--fs-caption/--fs-body were renamed into the numbered scale (#2093), leaving these
+	pointing at undefined tokens, which compute to the inherited size. They keep that size. */
+	.fs-micro,
+	.fs-caption,
 	.fs-body {
-		font-size: var(--fs-body);
+		font-size: inherit;
 	}
 
 	.fs-1 {

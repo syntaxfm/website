@@ -2,25 +2,16 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { formatDistanceToNow } from 'date-fns';
-	import ShareButton from '$lib/share/HairButton.svelte';
 	import Tabs from '$lib/Tabs.svelte';
 	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
-	import ListenLinks from '../ListenLinks.svelte';
-	import SaveOffline from '../player/SaveOffline.svelte';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
-	import { replace_color } from '../theme/variable_color_svg';
-	import { player } from '$state/player';
-	import { time_param_to_seconds } from '$utilities/time_param_to_seconds';
-	import Icon from '../Icon.svelte';
 	import SwaggyNewsletterForm from '../newsletter/SwaggyNewsletterForm.svelte';
-	import TagRow from '../tags/TagRow.svelte';
 	import PageTitle from '../layout/PageTitle.svelte';
 	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
 	import { get_id_from_url } from '$lib/videos/utils';
 
-	let { show, time_start, children } = $props();
-	let download_name = $derived(`Syntax #${show.number} - ${show.title}`);
+	let { show, children } = $props();
 	let youtube_video_id = $derived(show.youtube_url ? get_id_from_url(show.youtube_url) : '');
 	let youtube_embed_url = $derived(
 		youtube_video_id ? `https://www.youtube.com/embed/${youtube_video_id}?rel=0` : ''
@@ -31,20 +22,6 @@
 			slug: content_tag.tag.slug
 		})) || []
 	);
-
-	function play_show() {
-		if ($player.current_show?.number !== show.number || $player.status === 'INITIAL') {
-			player.start_show(show, time_param_to_seconds(time_start));
-		} else if ($player.status === 'PLAYING') {
-			player.pause();
-		} else {
-			player.play();
-		}
-	}
-
-	function variable_svg(node: HTMLElement) {
-		replace_color(node);
-	}
 </script>
 
 {#if youtube_embed_url}

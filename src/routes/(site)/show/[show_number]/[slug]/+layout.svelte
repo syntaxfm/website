@@ -6,9 +6,9 @@
 	import PodcastPost from '$lib/articles/PodcastPost.svelte';
 
 	let { data, children } = $props();
-	let { show, time_start } = $derived(data);
+	let { show } = $derived(data);
 
-	// TODO figure out what this is doing
+	// Timestamp links in the show notes (`#t=mm:ss`) play this show from that time.
 	async function handleClick(e: Event) {
 		const { target } = e;
 		if (target instanceof HTMLAnchorElement && target.matches(`a[href*='#t=']`)) {
@@ -19,14 +19,14 @@
 			if ($player.current_show?.number !== show.number) {
 				await player.start_show(show, timestamp);
 			} else {
-				// Jump to timestamp
-
+				// Jump to timestamp, then resume if this show is only loaded or paused
 				player.update_time(timestamp);
+				if ($player.status !== 'PLAYING') player.play();
 			}
 		}
 	}
 
-	const showSchema = {
+	let show_schema = $derived({
 		'@context': 'https://schema.org/',
 		'@type': 'PodcastEpisode',
 		url: page.url,
@@ -44,13 +44,21 @@
 			name: 'Syntax',
 			url: 'https://syntax.fm'
 		}
-	};
+	});
+	// Escape `<` and `&` as JSON unicode escapes: the text can never close the script element and
+	// is left untouched by Svelte's text escaping, while JSON parsers decode it back to the same data.
+	let show_schema_json = $derived(
+		JSON.stringify(show_schema, null, 2).replaceAll('<', '\\u003c').replaceAll('&', '\\u0026')
+	);
 </script>
 
+<!-- Capture phase: claim the click before SvelteKit's router treats it as hash navigation -->
+<svelte:document onclickcapture={handleClick} />
+
 <svelte:head>
-	{@html `<script type="application/ld+json">\n${JSON.stringify(showSchema, null, 2)}\n</script>`}
+	<svelte:element this={"script"} type="application/ld+json">{show_schema_json}</svelte:element>
 </svelte:head>
 
-<PodcastPost {show} {time_start}>
+<PodcastPost {show}>
 	{@render children()}
 </PodcastPost>

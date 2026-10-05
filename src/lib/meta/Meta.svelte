@@ -4,7 +4,6 @@
 
 	let title = `Syntax - Web Development Podcast`;
 
-	$inspect(page.data.meta);
 	let meta = $derived({
 		//·defaults
 		description: `Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 2 times a week!`,

@@ -33,7 +33,7 @@
 		method="post"
 		data-sv-form={FORM_ID}
 		data-uid="05d939b74d"
-		class={{ center: true, readable: true, 'form--snackpack_hero': variant === 'snackpack_hero' }}
+		class={{ center: true, readable: true, 'form-snackpack-hero': variant === 'snackpack_hero' }}
 		target="_blank"
 		aria-label={variant === 'snackpack_hero' ? 'Subscribe to the Snack Pack newsletter' : undefined}
 		aria-labelledby={variant === 'default' ? 'newsletter-form-label' : undefined}
@@ -44,7 +44,7 @@
 			</h5>
 		{/if}
 
-		<div class={{ newsletter: true, 'newsletter--snackpack_hero': variant === 'snackpack_hero' }}>
+		<div class={{ newsletter: true, 'newsletter-snackpack-hero': variant === 'snackpack_hero' }}>
 			<Input required type="email" label="Email" id="email_address" />
 			<button class="button-graphic large" type="submit">
 				{variant === 'snackpack_hero' ? 'Subscribe!' : 'Subscribe'}
@@ -85,7 +85,7 @@
 			}
 		}
 
-		.form--snackpack_hero {
+		.form-snackpack-hero {
 			max-width: min(96vw, 980px);
 			text-align: initial;
 			margin-top: clamp(0.5rem, 1.6vw, 0.9rem);
@@ -163,7 +163,7 @@
 			}
 		}
 
-		.newsletter--snackpack_hero {
+		.newsletter-snackpack-hero {
 			margin: 0;
 			padding: 0;
 			align-items: center;
@@ -187,7 +187,7 @@
 				max-width: 300px;
 			}
 
-			.newsletter--snackpack_hero {
+			.newsletter-snackpack-hero {
 				flex-wrap: wrap;
 			}
 		}

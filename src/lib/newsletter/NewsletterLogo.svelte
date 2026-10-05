@@ -379,6 +379,6 @@
 		font-variation-settings:
 			'wght' 600,
 			'ital' 1;
-		font-size: 86px;
+		font-size: var(--fs-newsletter-wordmark);
 	}
 </style>

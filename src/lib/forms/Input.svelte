@@ -33,10 +33,10 @@
 	}
 
 	input {
-		font-size: var(--font-size-base);
+		font-size: inherit;
 		padding: 8px 14px;
 		border: none;
-		box-shadow: inset 0 0 0 3px oklch(var(--c-blacklch) / 0.2);
+		box-shadow: none;
 		border-radius: 4px;
 		width: 100%;
 	}

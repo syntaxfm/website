@@ -17,7 +17,7 @@
 		display: grid;
 		place-items: center;
 		padding: var(--pad-large) var(--pad-medium);
-		background: var(--swag) center / cover no-repeat var(--c-black);
+		background: var(--swag, none) center / cover no-repeat var(--c-black);
 	}
 
 	.promo-headline {

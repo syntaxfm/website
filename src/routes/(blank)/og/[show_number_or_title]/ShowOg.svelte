@@ -166,7 +166,7 @@
 	h1 {
 		margin: 0;
 		line-height: 1;
-		font-size: 50px;
+		font-size: var(--fs-9);
 		width: 100%;
 		font-variation-settings: var(--fv-700-italic);
 		transform: rotate(-1deg);
@@ -195,7 +195,7 @@
 		right: 0;
 		top: 0;
 		transform: translate(6.9%, -22%);
-		font-size: 20cqw;
+		font-size: var(--fs-show-cover-number);
 		color: var(--c-yellow);
 		line-height: 1;
 		z-index: -1;

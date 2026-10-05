@@ -1,9 +1,12 @@
 <script lang="ts">
-	let { show_notes }: { show_notes: string } = $props();
+	import MarkdownContent from '$lib/content/MarkdownContent.svelte';
+	import type { ContentTree } from '$lib/content/content_tree';
+
+	let { show_notes }: { show_notes: ContentTree } = $props();
 </script>
 
 <div class="show-notes">
-	{@html show_notes}
+	<MarkdownContent content={show_notes} />
 </div>
 
 <style>
@@ -13,7 +16,7 @@
 		gap: 16px;
 
 		:global(a) {
-			color: var(--fg);
+			color: var(--c-fg);
 			text-decoration: underline;
 			text-decoration-style: solid;
 			text-decoration-color: var(--c-primary);

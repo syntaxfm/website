@@ -37,7 +37,7 @@
 	.social-icon {
 		display: inline-block;
 
-		--icon_size: 12px;
+		--icon-size: 12px;
 	}
 
 	a {

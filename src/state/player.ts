@@ -1,10 +1,15 @@
 import * as Sentry from '@sentry/sveltekit';
-import type { Show } from '$server/db/schema';
 import { get, writable } from 'svelte/store';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_cached_or_network_show } from './player_offline';
-import { load_state_from_indexed_db, open_db, STORE_NAME, type PlayerState } from './player_utils';
+import {
+	load_state_from_indexed_db,
+	open_db,
+	STORE_NAME,
+	type PlayerShow,
+	type PlayerState
+} from './player_utils';
 
 export interface Timestamp {
 	label: string;
@@ -71,11 +76,12 @@ const new_player_state = () => {
 	}
 
 	// Prepares the player for the initial page load. Only called once.
-	async function initialize(latest_show: Show) {
+	// `latest_show` is undefined when there is no published show to fall back to.
+	async function initialize(latest_show: PlayerShow | undefined) {
 		const saved_state = await load_state_from_indexed_db();
 		if (saved_state?.current_show) {
 			load_show(saved_state.current_show, true);
-		} else {
+		} else if (latest_show) {
 			load_show(latest_show, true);
 		}
 	}
@@ -83,7 +89,7 @@ const new_player_state = () => {
 	// Load show gets player state loaded and audio into playable state
 	// This is automatically run if you call start_show
 	async function load_show(
-		requested_show: Show,
+		requested_show: PlayerShow,
 		is_initial_load = false,
 		play_from_position?: number
 	) {
@@ -159,12 +165,12 @@ const new_player_state = () => {
 		onended,
 
 		// The main method for playing a show
-		async start_show(requested_show: Show, play_from_position?: number) {
+		async start_show(requested_show: PlayerShow, play_from_position?: number) {
 			const incoming_show = await load_show(requested_show, false, play_from_position);
 			try {
 				// Analytics
-				Sentry.metrics.increment('episode_start', 1, { tags: { episode: incoming_show.number } });
-				Sentry.metrics.increment('all_episode_start', 1);
+				Sentry.metrics.count('episode_start', 1, { attributes: { episode: incoming_show.number } });
+				Sentry.metrics.count('all_episode_start', 1);
 
 				// Load incomming show into media session
 				// Side note: the mediaSession API is neat

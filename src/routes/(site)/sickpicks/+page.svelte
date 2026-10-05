@@ -51,7 +51,7 @@
 				{/if}
 			</header>
 
-			<ShowNotes show_notes={String(show.rendered)} />
+			<ShowNotes show_notes={show.notes} />
 		</article>
 	{:else}
 		<p>No matching sick picks.</p>

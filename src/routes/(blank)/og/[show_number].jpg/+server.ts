@@ -66,7 +66,8 @@ export async function GET({ url, params }) {
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 
-	return new Response(photo_buffer, {
+	// Copy into an ArrayBuffer-backed view: BodyInit rejects views that may wrap a SharedArrayBuffer.
+	return new Response(new Uint8Array(photo_buffer), {
 		status: 200,
 		headers
 	});

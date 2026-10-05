@@ -3,6 +3,7 @@
 	import ShowEpisodes from '$lib/shows/ShowEpisodes.svelte';
 	import { count_podcasts, get_all_podcasts } from '$server/shows/shows.remote';
 	import { page } from '$app/state';
+	import { afterNavigate } from '$app/navigation';
 	import { PER_PAGE } from '$const';
 	import Pagination from '$lib/layout/Pagination.svelte';
 	import SelectMenu from '$lib/SelectMenu.svelte';
@@ -17,10 +18,20 @@
 	);
 	let page_number = $derived(parseInt(params.get('page') || '1'));
 
-	$effect(() => {
-		page.url.searchParams;
+	// The query reads filters from the request URL, so re-fetch whenever the URL changes.
+	afterNavigate(() => {
 		get_all_podcasts().refresh();
 	});
+
+	type Podcast = Awaited<ReturnType<typeof get_all_podcasts>>[number];
+
+	function to_episode(podcast: Podcast) {
+		return {
+			...podcast,
+			show: 'Syntax Podcast',
+			youtube_url: podcast.youtube_url ?? undefined
+		};
+	}
 </script>
 
 <Meta
@@ -59,7 +70,7 @@
 		/>
 	</div>
 
-	<ShowEpisodes type={view} shows={await get_all_podcasts()} />
+	<ShowEpisodes type={view} shows={(await get_all_podcasts()).map(to_episode)} />
 
 	<Pagination
 		page={parseInt(params.get('page') || '1')}

@@ -60,12 +60,17 @@ interface YouTubePlaylistItemResponse {
 }
 
 export async function get_youtube_playlists(): Promise<void> {
+	const api_key = env.YOUTUBE_API_KEY;
+	if (!api_key) {
+		throw new Error('YOUTUBE_API_KEY must be set to import YouTube playlists');
+	}
+
 	const base_url = 'https://www.googleapis.com/youtube/v3/playlists';
 	const params = new URLSearchParams({
 		part: 'snippet,contentDetails',
 		channelId: YOUTUBE_CHANNEL_ID,
 		maxResults: '50',
-		key: env.YOUTUBE_API_KEY
+		key: api_key
 	});
 
 	let next_page_token: string | null = null;
@@ -270,13 +275,13 @@ export async function import_youtube_playlist(playlist_id: string) {
 						await db
 							.insert(showVideo)
 							.values({
-								showId: current_show.id,
-								videoId: item.id
+								show_id: current_show.id,
+								video_id: item.id
 							})
 							.onConflictDoUpdate({
-								target: [showVideo.showId, showVideo.videoId],
+								target: [showVideo.show_id, showVideo.video_id],
 								set: {
-									showId: current_show.id
+									show_id: current_show.id
 								}
 							});
 					}

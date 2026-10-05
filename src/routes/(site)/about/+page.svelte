@@ -72,8 +72,8 @@
 	const count = await count_podcasts();
 </script>
 
-<main class="about_page">
-	<section class="about_intro stack">
+<main class="about-page">
+	<section class="about-intro stack">
 		<h1 class="h3 fv-700-i">About Syntax</h1>
 		<p>Syntax is a Podcast about Web Development.</p>
 
@@ -99,17 +99,17 @@
 	</section>
 
 	<section aria-label="Syntax team">
-		<div class="team_grid">
-			<article class="host_card">
-				<div class="profile_box">
+		<div class="team-grid">
+			<article class="host-card">
+				<div class="profile-box">
 					<img
-						class="host_portrait"
+						class="host-portrait"
 						use:lol
 						src={`https://github.com/${hosts.wes.github}.png`}
 						alt={hosts.wes.name}
 						data-lol={emo}
 					/>
-					<h2 class="host_name">
+					<h2 class="host-name">
 						<span class="h4 fv-800-i">Wes</span>
 						<span class="h6">Bos</span>
 					</h2>
@@ -123,16 +123,16 @@
 				</div>
 			</article>
 
-			<article class="host_card">
-				<div class="profile_box">
+			<article class="host-card">
+				<div class="profile-box">
 					<img
-						class="host_portrait"
+						class="host-portrait"
 						src={`https://github.com/${hosts.scott.github}.png`}
 						alt={hosts.scott.name}
 						use:lol
 						data-lol={bboy}
 					/>
-					<h2 class="host_name">
+					<h2 class="host-name">
 						<span class="h4 fv-800-i">Scott</span>
 						<span class="h6">Tolinski</span>
 					</h2>
@@ -146,16 +146,16 @@
 				</div>
 			</article>
 
-			<article class="host_card">
-				<div class="profile_box">
+			<article class="host-card">
+				<div class="profile-box">
 					<img
-						class="host_portrait"
+						class="host-portrait"
 						src={`https://github.com/${hosts.kaitlin.github}.png`}
 						alt={hosts.kaitlin.name}
 						data-lol={number1fan}
 						use:lol
 					/>
-					<h2 class="host_name">
+					<h2 class="host-name">
 						<span class="h4 fv-800-i">Kaitlin</span>
 						<span class="h6">Bloom</span>
 					</h2>
@@ -168,16 +168,16 @@
 				</div>
 			</article>
 
-			<article class="host_card">
-				<div class="profile_box">
+			<article class="host-card">
+				<div class="profile-box">
 					<img
-						class="host_portrait"
+						class="host-portrait"
 						use:lol
 						src={`https://github.com/${hosts.randy.github}.png`}
 						alt={hosts.randy.name}
 						data-lol={runonlove}
 					/>
-					<h2 class="host_name">
+					<h2 class="host-name">
 						<span class="h4 fv-800-i">Randy</span>
 						<span class="h6">Rektor</span>
 					</h2>
@@ -191,16 +191,16 @@
 				</div>
 			</article>
 
-			<article class="host_card">
-				<div class="profile_box">
+			<article class="host-card">
+				<div class="profile-box">
 					<img
-						class="host_portrait"
+						class="host-portrait"
 						use:lol
 						src={`https://github.com/${hosts.cj.github}.png`}
 						alt={hosts.cj.name}
 						data-lol={cj}
 					/>
-					<h2 class="host_name">
+					<h2 class="host-name">
 						<span class="h4 fv-800-i">CJ</span>
 						<span class="h6">Reynolds</span>
 					</h2>
@@ -218,36 +218,36 @@
 </main>
 
 <style lang="postcss">
-	.about_page {
+	.about-page {
 		margin-bottom: 2rem;
 	}
 
-	.about_intro {
+	.about-intro {
 		margin-bottom: 2rem;
 	}
 
-	.team_grid {
+	.team-grid {
 		display: grid;
 		gap: 1.5rem;
 		grid-template-columns: 1fr;
 	}
 
-	.host_card {
+	.host-card {
 		position: relative;
 		padding-top: 2.75rem;
 	}
 
-	.profile_box {
+	.profile-box {
 		position: relative;
 		padding: 1rem;
 		border: var(--b-medium);
 		border-radius: var(--br-medium);
 		background-color: var(--c-bg);
-		background-image: var(--c-bg-grit);
+		background-image: var(--c-bg-grit, none);
 		box-shadow: var(--s-graphic-medium);
 	}
 
-	.host_portrait {
+	.host-portrait {
 		position: absolute;
 		top: 0;
 		right: 1rem;
@@ -261,34 +261,34 @@
 		box-shadow: 0 0 0 1px color-mix(in lch, var(--c-fg), transparent 78%);
 	}
 
-	.host_name {
+	.host-name {
 		display: grid;
 		gap: 0;
 		margin: 0 0 0.25rem;
 	}
 
-	.profile_box :global(p) {
+	.profile-box :global(p) {
 		margin-bottom: 0;
 	}
 
 	@media (--below-med) {
-		.host_card {
+		.host-card {
 			padding-top: 2.35rem;
 		}
 
-		.host_portrait {
+		.host-portrait {
 			width: 5.5rem;
 			height: 5.5rem;
 		}
 	}
 
 	@media (--above-med) {
-		.team_grid {
+		.team-grid {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 			gap: 1.4rem 2rem;
 		}
 
-		.host_card:nth-child(2n) {
+		.host-card:nth-child(2n) {
 			margin-top: 2.5rem;
 		}
 	}

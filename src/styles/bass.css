@@ -41,7 +41,7 @@ Bass!
 	p,
 	li {
 		line-height: 1.7;
-		font-size: var(--fs-body);
+		font-size: inherit;
 		color: var(--c-fg);
 	}
 
@@ -118,6 +118,10 @@ Bass!
 		text-decoration: none;
 	}
 
+	a {
+		color: var(--c-fg);
+	}
+
 	:is(p, li) a,
 	.a {
 		text-decoration: underline;
@@ -156,10 +160,6 @@ Bass!
 	a[href^='http']:not(.social-icon)::after {
 		content: '↗';
 		margin-left: 8px;
-	}
-
-	a {
-		color: var(--c-fg);
 	}
 
 	table {

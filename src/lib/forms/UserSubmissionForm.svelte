@@ -195,7 +195,7 @@
 
 	.required {
 		color: var(--c-red);
-		font-size: 8px;
+		font-size: var(--fs-required-marker);
 		text-transform: uppercase;
 		margin: 0;
 		text-align: right;

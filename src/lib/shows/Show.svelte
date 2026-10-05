@@ -42,13 +42,12 @@
 	);
 	let can_play_show = $derived(Boolean(show.url));
 
-	type PlayerShow = Parameters<typeof player.start_show>[0];
-
 	function on_play_overlay_click(event: MouseEvent) {
 		event.preventDefault();
 		event.stopPropagation();
-		if (!can_play_show) return;
-		void player.start_show(show as PlayerShow);
+		const { number, title, slug, url } = show;
+		if (!url) return;
+		void player.start_show({ number, title, slug, url });
 	}
 </script>
 
@@ -113,10 +112,6 @@
 		max-width: 300px;
 	}
 
-	.show-grid-view .thumbnail-wrap {
-		margin-bottom: 0.5rem;
-	}
-
 	.thumbnail-wrap {
 		position: relative;
 		overflow: hidden;
@@ -124,6 +119,10 @@
 		img {
 			display: block;
 		}
+	}
+
+	.show-grid-view .thumbnail-wrap {
+		margin-bottom: 0.5rem;
 	}
 
 	.thumbnail-play-overlay {
@@ -136,6 +135,13 @@
 		background: color-mix(in lch, var(--c-black), transparent 55%);
 		border: 0;
 		transition: opacity 0.2s ease;
+	}
+
+	.thumbnail-play-overlay:focus-visible {
+		opacity: 1;
+		pointer-events: auto;
+		outline: 2px solid var(--c-primary);
+		outline-offset: -2px;
 	}
 
 	.thumbnail-wrap:hover .thumbnail-play-overlay,
@@ -152,13 +158,6 @@
 		border-radius: 9999px;
 		background: color-mix(in lch, var(--c-black), transparent 30%);
 		color: var(--c-white);
-	}
-
-	.thumbnail-play-overlay:focus-visible {
-		opacity: 1;
-		pointer-events: auto;
-		outline: 2px solid var(--c-primary);
-		outline-offset: -2px;
 	}
 
 	.flex {

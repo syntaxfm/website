@@ -309,7 +309,7 @@
 
 	.results {
 		padding: 10px 5px;
-		min-height: var(--search-height);
+		min-height: var(--search-height, auto);
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;

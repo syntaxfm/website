@@ -1,4 +1,4 @@
-import { processor } from '$utilities/markdown';
+import { markdown_to_content } from '$lib/content/markdown_to_content.server';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import { lte, desc } from 'drizzle-orm';
@@ -66,7 +66,7 @@ export const get_sick_picks = query(async () => {
 			// Markdown render the picks
 			return {
 				...current_show,
-				rendered: processor.processSync(current_show.picks.join('\n')).value
+				notes: markdown_to_content(current_show.picks.join('\n'))
 			};
 		});
 	return sick_picks;

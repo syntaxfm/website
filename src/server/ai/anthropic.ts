@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import type { CreateChatCompletionRequest } from 'openai';
+import type { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
 
 const anthropic = new Anthropic({
 	apiKey: process.env.ANTHROPIC_KEY
@@ -10,7 +10,7 @@ const anthropic = new Anthropic({
 // 	['user', Anthropic.HUMAN_PROMPT]
 // ]);
 
-export function convert_openai_to_anthropic(completion: CreateChatCompletionRequest) {
+export function convert_openai_to_anthropic(completion: ChatCompletionCreateParamsNonStreaming) {
 	const messages = completion.messages.map((message) => {
 		return `${Anthropic.HUMAN_PROMPT} ${message.content}`;
 	});

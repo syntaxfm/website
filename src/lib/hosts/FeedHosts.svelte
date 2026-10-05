@@ -28,6 +28,5 @@
 <style>
 	div {
 		display: flex;
-		flex-direction: auto 1fr;
 	}
 </style>

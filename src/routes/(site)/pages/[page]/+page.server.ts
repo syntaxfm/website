@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
-import { processor } from '$utilities/markdown';
+import { markdown_to_content } from '$lib/content/markdown_to_content.server';
 
 export const load = async ({ params }) => {
-	const content_files = import.meta.glob('../*.md', {
+	const content_files = import.meta.glob<string>('../*.md', {
 		query: '?raw',
 		import: 'default',
 		eager: true
@@ -13,11 +13,9 @@ export const load = async ({ params }) => {
 	if (content_files[key]) {
 		// Parse the title. We could move this into front matter if we wanted more control over these pages, but I don't think we need it.
 		const title = content_files[key].split('\n')[0].replaceAll('#', '').trim();
-		const content = (await processor.process(content_files[key])).value;
-
 		return {
 			props: {
-				html: content
+				content: markdown_to_content(content_files[key])
 			},
 			meta: {
 				title

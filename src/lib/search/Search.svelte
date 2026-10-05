@@ -21,7 +21,7 @@
 
 <style lang="postcss">
 	.button-reset {
-		box-shadow: inset 0 0 0 3px rgb(255 255 255 / 0.0786987545689);
+		box-shadow: inset 0 0 0 3px rgb(255 255 255 / 0.0787);
 		border-radius: 20px;
 		color: var(--c-fg);
 	}

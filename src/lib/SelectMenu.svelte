@@ -7,6 +7,7 @@
 	import { page } from '$app/state';
 	import type { ResolvedPathname } from '$app/types';
 	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+	import { SvelteURLSearchParams } from 'svelte/reactivity';
 
 	if (!isSupported() && browser) {
 		apply();
@@ -37,7 +38,7 @@
 	//
 
 	function generate_search_params(id: string, value: string): ResolvedPathname {
-		const search_params = new URLSearchParams(page.url.search);
+		const search_params = new SvelteURLSearchParams(page.url.search);
 		if (!value) {
 			search_params.delete(id);
 		} else {

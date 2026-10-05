@@ -172,7 +172,7 @@
 	}
 
 	.banner-copy strong {
-		font-size: 1.45em;
+		font-size: var(--fs-newsletter-heading);
 		font-variation-settings: var(--fv-700-italic);
 	}
 

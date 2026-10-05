@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { click_out_dialog } from '$actions/click_outside_dialog';
 	import { episode_share_status } from '$state/player';
-	import type { Show } from '$server/db/schema';
+	import type { Show } from '$server/db/types';
 	import ShareActions from './ShareActions.svelte';
 	let modal: HTMLDialogElement = $state(null!);
 	interface Props {

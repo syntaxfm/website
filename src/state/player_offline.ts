@@ -1,4 +1,4 @@
-import type { Show } from '$server/db/schema';
+import type { PlayerShow } from './player_utils';
 
 export async function check_for_cached_mp3(path: string) {
 	if (typeof caches !== 'undefined') {
@@ -15,7 +15,7 @@ export async function check_for_cached_mp3(path: string) {
 }
 
 // takes in a show and returns either a cached or network mp3.
-export async function get_cached_or_network_show(show: Show): Promise<Show> {
+export async function get_cached_or_network_show(show: PlayerShow): Promise<PlayerShow> {
 	const cached_show_response = await check_for_cached_mp3(show.url);
 	if (cached_show_response) {
 		const meta = cached_show_response.headers.get('Metadata');

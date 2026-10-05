@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '../Icon.svelte';
 	import { check_for_cached_mp3 } from '$state/player_offline';
-	import type { Show } from '$server/db/schema';
+	import type { Show } from '$server/db/types';
 
 	interface Props {
 		show: Show;
@@ -63,7 +63,7 @@
 </script>
 
 <button onclick={save_show_for_offline} title="Save for offline">
-	<div class={save_status}>
+	<div class={save_status.toLowerCase()}>
 		<Icon name="thumbtack" />
 	</div>
 </button>
@@ -87,24 +87,24 @@
 			0.2s rotate linear(0, -0.1, 0.75, 1);
 	}
 
-	.INITIAL {
+	.initial {
 		opacity: 0;
 		pointer-events: none;
 	}
 
-	.UNSAVED {
+	.unsaved {
 		pointer-events: all;
 	}
 
-	.SAVING {
+	.saving {
 		animation: pulse 1s infinite;
 	}
 
-	button:has(.SAVED) {
+	button:has(.saved) {
 		border: 1px solid var(--c-primary);
 	}
 
-	.SAVED {
+	.saved {
 		rotate: -46deg;
 		translate: 1.5px 1px;
 	}

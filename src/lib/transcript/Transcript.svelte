@@ -10,14 +10,14 @@
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
 	import type { SlimUtterance } from '$server/transcripts/types';
 	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-	import type { Show } from '$server/db/schema';
+	import type { PlayerShow } from '$state/player_utils';
 
 	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
 		transcript: TranscriptWithUtterances;
 		ai_show_note: AINoteWithFriends | null;
-		show: Show;
+		show: PlayerShow;
 	}
 
 	let { transcript, ai_show_note, show }: Props = $props();
@@ -186,6 +186,21 @@
 		--highlight: var(--past);
 	}
 
+	.marker {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr;
+		align-items: start;
+		background: linear-gradient(0deg, var(--highlight) 0%, var(--highlight) 50%);
+		background-size: 6px 100%;
+		background-repeat: repeat-y;
+		background-position: center;
+
+		& > * {
+			grid-column: 1;
+		}
+	}
+
 	.current {
 		--highlight: var(--c-primary);
 
@@ -287,21 +302,6 @@
 		}
 	}
 
-	.marker {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr;
-		align-items: start;
-		background: linear-gradient(0deg, var(--highlight) 0%, var(--highlight) 50%);
-		background-size: 6px 100%;
-		background-repeat: repeat-y;
-		background-position: center;
-
-		& > * {
-			grid-column: 1;
-		}
-	}
-
 	.gutter {
 		position: sticky;
 		top: 100px;
@@ -348,6 +348,6 @@
 
 	.speaker {
 		font-size: var(--fs-3);
-		color: var(--c-black-1-accent);
+		color: var(--c-black-1-accent, currentcolor);
 	}
 </style>

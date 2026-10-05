@@ -43,22 +43,7 @@ export default defineConfig(({ mode, command }) => {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
 		css: {
-			devSourcemap: true,
-			preprocessorOptions: {
-				postcss: {
-					additionalData: `
-				@custom-media --below-small (width < 400px);
-				@custom-media --below-med (width < 700px);
-				@custom-media --below-large (width < 900px);
-				@custom-media --below-xlarge (width < 1200px);
-
-				@custom-media --above-small (width > 400px);
-				@custom-media --above-med (width > 700px);
-				@custom-media --above-large (width > 900px);
-				@custom-media --above-xlarge (width > 1200px);
-				`
-				}
-			}
+			devSourcemap: true
 		},
 		define: {
 			APP_VERSION: JSON.stringify(env.npm_package_version)

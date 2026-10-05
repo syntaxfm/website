@@ -122,8 +122,8 @@
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
-		background: var(--badge-bg);
-		color: var(--badge-fg);
+		background: var(--badge-bg, transparent);
+		color: var(--badge-fg, var(--c-white));
 		overflow: hidden;
 
 		img {
