@@ -4,7 +4,7 @@ title: Who can actually max out 5 AI subscriptions?
 date: 1791370800000
 url: https://traffic.megaphone.fm/FSI3285705008.mp3
 youtube_url: https://www.youtube.com/watch?v=jPvZubLUDNc
-Hosts:
+hosts:
   - stolinski
   - wesbos
 
