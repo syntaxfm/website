@@ -75,7 +75,7 @@ async function main() {
 	grant_local_developer_admin();
 
 	console.log('\n🥘 Website preheated to 450°F (232°C)');
-	if (!pull_only) console.log('   Run pnpm dev → http://localhost:5173');
+	if (!pull_only) console.log('   Run pnpm dev → http://localhost:5740');
 }
 
 // ─── Tooling checks ──────────────────────────────────────────────────────────

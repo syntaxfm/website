@@ -20,8 +20,13 @@ export default defineConfig(({ mode, command }) => {
 			command === 'serve' &&
 				!process.env.VITEST &&
 				import('@varlock/vite-integration').then(({ varlockVitePlugin }) => varlockVitePlugin()),
-			// Dev only (apply: 'serve'): starts the shared local Syntax Auth on localhost:37960.
-			syntax_auth(),
+			// Dev only (apply: 'serve'): starts the shared local Syntax Auth on localhost:37960 and serves
+			// sign-in at /__syntax_auth/ on whatever address the site is opened at. It reads
+			// SYNTAX_AUTH_PUBLIC_ORIGINS from the shell itself; passing it here makes a value in .env.local
+			// count too.
+			syntax_auth({
+				public_origins: (env.SYNTAX_AUTH_PUBLIC_ORIGINS ?? '').split(/[\s,]+/).filter(Boolean)
+			}),
 			sentrySvelteKit({
 				sourceMapsUploadOptions: {
 					org: 'syntax-fm',

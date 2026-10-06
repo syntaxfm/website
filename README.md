@@ -101,6 +101,26 @@ Admin authentication uses the shared session from `auth.syntax.fm`. In developme
 starts the shared local Syntax Auth on `http://localhost:37960` (Docker required). Sign in with
 **Continue as Local Developer**; `pnpm preheat` makes that account an admin in your local database.
 
+Admin pages and `/login` send a signed-out browser to `/__syntax_auth/sign-in` on the address it
+is already using, so local sign-in works wherever you open the site, with no hosts-file,
+certificate, or source changes:
+
+- **This computer:** `http://localhost:5740` works out of the box.
+- **Another device on your network or tailnet:** run `pnpm dev --host`, then open this computer's
+  LAN or Tailscale IP, such as `http://100.101.102.103:5740`. IP addresses and `localhost` work by
+  default. To use a name instead (such as a MagicDNS name), list its origin in
+  `SYNTAX_AUTH_PUBLIC_ORIGINS`, in `.env.local` or for one run:
+  `SYNTAX_AUTH_PUBLIC_ORIGINS=http://mini.example.ts.net:5740 pnpm dev --host`.
+- **Your own HTTPS name:** put an HTTPS proxy you manage in front of `http://localhost:5740`, have it
+  pass the browser's `Host` header through (Caddy's `reverse_proxy` does by default), and list its
+  https origin, such as `SYNTAX_AUTH_PUBLIC_ORIGINS=https://dev.example`. The site never reads
+  forwarded-protocol headers or redirects to HTTPS itself, and sign-in, sign-out, and their
+  redirects stay on the name you opened. Separate several origins with commas or spaces.
+
+If local Syntax Auth is stopped, refuses, or doesn't answer within 5 seconds, admin pages, `/login`,
+and sign-out answer with a page naming the problem and the fix: restart `pnpm dev`. Public pages
+keep working signed out.
+
 # Our Contributors
 
 <a href="https://github.com/syntaxfm/website/graphs/contributors">

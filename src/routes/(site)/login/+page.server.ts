@@ -1,26 +1,16 @@
 import { redirect } from '@sveltejs/kit';
 
-import { build_syntax_sign_in_url, is_trusted_syntax_url } from '$server/auth/syntax_auth';
+import { get_sign_in_redirect, get_sign_in_return_to } from '$server/auth/syntax_auth';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = ({ locals, url }) => {
+export const load: PageServerLoad = ({ locals, url, setHeaders }) => {
 	if (locals.user) {
 		return {};
 	}
 
-	let return_to = new URL('/', url);
-	const requested_return_to = url.searchParams.get('return_to');
-	if (requested_return_to) {
-		try {
-			const candidate = new URL(requested_return_to, url);
-			if (is_trusted_syntax_url(candidate)) {
-				return_to = candidate;
-			}
-		} catch {
-			// Invalid URLs fall back to this application's home page.
-		}
-	}
-
-	redirect(302, build_syntax_sign_in_url(return_to));
+	const return_to = get_sign_in_return_to(url.searchParams.get('return_to'), url);
+	const { location, headers } = get_sign_in_redirect(return_to);
+	setHeaders(headers);
+	redirect(302, location);
 };
