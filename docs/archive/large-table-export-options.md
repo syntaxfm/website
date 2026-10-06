@@ -1,5 +1,19 @@
 # Large Table Export Options
 
+> **Archived and partly superseded. Not a current procedure.** Written during the MySQL →
+> Postgres move. Lines marked `# removed:` name scripts and commands that no longer exist
+> (`pnpm db:export`, `pnpm db:pg:push`, `scripts/export-parallel.js`,
+> `scripts/export-large-table-fast.js`). What still exists is `scripts/direct-db-migration.js`,
+> which now reads its source from `MYSQL_DATABASE_URL` and its target from
+> `POSTGRES_DATABASE_URL`, skips `TranscriptUtteranceWord` unless given
+> `--include-transcript-words`, and by default (`--mode=refresh`) **empties each target table
+> before loading it**. Set both URLs for one command in your shell, never in `.env` or
+> `.env.local`, and never point the target at production without a reviewed plan.
+>
+> Current references: [`schema-workflow.md`](../schema-workflow.md) for schema changes and local
+> resets, the [README](../../README.md) for local setup. The speed trade-offs below remain
+> accurate background.
+
 TranscriptUtteranceWord is massive and takes forever to export. Here are your options, ranked by speed:
 
 ## 🚀 Option 1: Skip It Entirely (FASTEST - 0 seconds)
@@ -8,7 +22,7 @@ TranscriptUtteranceWord is massive and takes forever to export. Here are your op
 
 ```bash
 # Already the default!
-pnpm db:export
+# removed: pnpm db:export (see the banner at the top)
 ```
 
 TranscriptUtteranceWord is automatically skipped. The transcript data (TranscriptUtterance) should be sufficient to regenerate word-level data if needed.
@@ -54,7 +68,7 @@ node scripts/direct-db-migration.js TranscriptUtteranceWord
 **Example:**
 ```bash
 # Set up both databases
-POSTGRES_DATABASE_URL="postgresql://..." pnpm db:pg:push
+# removed: pnpm db:pg:push (see the banner at the top)
 
 # Direct migration
 node scripts/direct-db-migration.js TranscriptUtteranceWord
@@ -73,13 +87,13 @@ node scripts/direct-db-migration.js TranscriptUtteranceWord
 
 ```bash
 # Make script executable
-chmod +x scripts/export-parallel.js
+# removed: scripts/export-parallel.js
 
 # Export with 4 workers (default)
-node scripts/export-parallel.js TranscriptUtteranceWord
+# removed: scripts/export-parallel.js TranscriptUtteranceWord
 
 # Export with 8 workers (faster on good connections)
-node scripts/export-parallel.js TranscriptUtteranceWord 8
+# removed: scripts/export-parallel.js TranscriptUtteranceWord 8
 ```
 
 **Speed:** 2-4x faster than sequential export
@@ -98,7 +112,7 @@ node scripts/export-parallel.js TranscriptUtteranceWord 8
 **Example:**
 ```bash
 # 4 parallel workers
-node scripts/export-parallel.js TranscriptUtteranceWord 4
+# removed: scripts/export-parallel.js TranscriptUtteranceWord 4
 
 # Output:
 # 📦 Chunk size: 612,500 rows per worker
@@ -117,10 +131,10 @@ node scripts/export-parallel.js TranscriptUtteranceWord 4
 
 ```bash
 # Make script executable
-chmod +x scripts/export-large-table-fast.js
+# removed: scripts/export-large-table-fast.js
 
 # Export using MySQL native methods
-node scripts/export-large-table-fast.js TranscriptUtteranceWord
+# removed: scripts/export-large-table-fast.js TranscriptUtteranceWord
 ```
 
 **Speed:** 10-100x faster than row-by-row
@@ -184,10 +198,10 @@ For a table with 2.5 million rows:
 ### For Most Users:
 ```bash
 # 1. Skip TranscriptUtteranceWord initially
-pnpm db:export
+# removed: pnpm db:export (see the banner at the top)
 
 # 2. Set up PostgreSQL
-pnpm db:pg:push
+# removed: pnpm db:pg:push (see the banner at the top)
 
 # 3. Import everything else from CSV
 # ... import CSVs ...
@@ -199,13 +213,13 @@ node scripts/direct-db-migration.js TranscriptUtteranceWord
 ### If You Need CSV Files:
 ```bash
 # Use parallel export
-node scripts/export-parallel.js TranscriptUtteranceWord 8
+# removed: scripts/export-parallel.js TranscriptUtteranceWord 8
 ```
 
 ### If Direct Migration Doesn't Work:
 ```bash
 # Use parallel export then import
-node scripts/export-parallel.js TranscriptUtteranceWord 4
+# removed: scripts/export-parallel.js TranscriptUtteranceWord 4
 
 # Then import to PostgreSQL
 \COPY transcript_utterance_words FROM 'db_exports/TranscriptUtteranceWord.csv' ...
@@ -217,13 +231,14 @@ node scripts/export-parallel.js TranscriptUtteranceWord 4
 
 ### For Direct Migration:
 
-Add to `.env`:
-```bash
-# Source (MySQL)
-PROD_DATABASE_URL="mysql://..."
+Historically this went in `.env` with the source as `PROD_DATABASE_URL`. Today the script reads
+`MYSQL_DATABASE_URL` (source) and `POSTGRES_DATABASE_URL` (target), `PROD_DATABASE_URL` must be
+the production Postgres URL used by `pnpm preheat`, and a persisted `POSTGRES_DATABASE_URL`
+would redirect the app. Set both for the one command instead:
 
-# Target (PostgreSQL)
-POSTGRES_DATABASE_URL="postgresql://..."
+```bash
+MYSQL_DATABASE_URL="mysql://..." POSTGRES_DATABASE_URL="postgresql://..." \
+	node scripts/direct-db-migration.js --mode=insert-missing
 ```
 
 ### For Parallel Export:
@@ -272,10 +287,10 @@ Don't want to read all this? Here's the fastest path:
 
 ```bash
 # 1. Export everything except huge tables
-pnpm db:export
+# removed: pnpm db:export (see the banner at the top)
 
 # 2. Set up PostgreSQL
-pnpm db:pg:push
+# removed: pnpm db:pg:push (see the banner at the top)
 
 # 3. Import CSVs (all the small/medium tables)
 

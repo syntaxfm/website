@@ -37,7 +37,8 @@ Number ADRs sequentially. Keep them short — one paragraph is often enough. See
 - Stack: SvelteKit 2 + Svelte 5 + TypeScript + Vite.
 - Runtime target: Vercel Node.js 22.x (`svelte.config.js`).
 - Package manager: `pnpm`.
-- Database: PostgreSQL via Drizzle ORM. Schema in `src/server/db/schema.ts`. See [ADR-0001](./docs/adr/0001-drizzle-postgres-over-prisma-mysql.md).
+- Database: PostgreSQL via Drizzle ORM. Schema in `src/server/db/schema.ts`. See [ADR-0001](./docs/adr/0001-drizzle-postgres-over-prisma-mysql.md). Local dev uses the Docker Postgres from `docker-compose.yml` on port 5434.
+- Auth: central Syntax Auth (`auth.syntax.fm`; local Syntax Auth in dev); roles live on local Profiles. See [ADR-0007](./docs/adr/0007-central-syntax-auth.md) and the README's "Admin sign-in" section.
 - Legacy MySQL access path still exists at `src/server/db/x-*.ts` for the migration window — do not import from `x-*` in new code.
 - Route groups: `src/routes/(site)` and `src/routes/(blank)`.
 
@@ -45,7 +46,7 @@ Number ADRs sequentially. Keep them short — one paragraph is often enough. See
 
 These are the rules that an agent operating in this repo should default to. They exist because they have been violated and the cleanup has cost real time.
 
-- **No scratch files at the repo root.** No `test.ts`, `tmp.js`, `scratch.md`, `notes.md`, `output.json`. Use `/scratch/` (gitignored) or work in your shell — not the tree.
+- **No scratch files at the repo root.** No `test.ts`, `tmp.js`, `scratch.md`, `notes.md`, `output.json`. Work in your shell or outside the repo — not the tree. (`/scratch/` is not gitignored; database dumps go in the gitignored `db_exports/`.)
 - **No unsolicited documentation files.** Do not create planning docs, decision logs, "summary of changes" markdown, or analysis files unless the user asked for them. ADRs and CONTEXT.md updates are the exception, and only when criteria above are met.
 - **Clean up after yourself in the same session.** If you write a test script to verify something, delete it before the turn ends unless it has lasting value as a real test in `tests/` or `src/**/*.test.ts`. No `.bak`, no `.old`, no `_v2` copies left around.
 - **Prefer Edit over Write.** When changing an existing file, edit it — don't rewrite it whole. Don't introduce new files in the repo root.
@@ -60,9 +61,10 @@ These are enforced by convention now; a Warden rule set may be added later to ma
 
 - Install deps: `pnpm install`
 - One-command setup (deps, Docker Postgres, copy of prod data, migrations): `pnpm preheat`
-- Env vars: declared in `.env.schema` (varlock); personal overrides in `.env.local`; core team secrets load from 1Password via `.env.1password` when `USE_1PASSWORD=true`
-- Replace local DB with a fresh copy of prod: `pnpm db:pull`
-- Start dev server: `pnpm dev`
+- Env vars: declared in `.env.schema` (varlock); personal overrides in `.env.local` (gitignored); core team secrets load live from 1Password via `.env.1password` when `USE_1PASSWORD=true` (each new process may prompt). `USE_1PASSWORD=false` with your own values in `.env.local` is equally supported. Keep `POSTGRES_DATABASE_URL` unset locally; it overrides `DATABASE_URL`.
+- Replace local DB with a fresh copy of prod: `pnpm db:pull` (asks before replacing; `--yes` when not interactive)
+- Start dev server: `pnpm dev` → http://localhost:5740 (also starts local Syntax Auth; Docker required). Network access is opt-in with `pnpm dev --host`.
+- `pnpm dev` never runs preheat or migrations; nothing in local tooling migrates or writes to production.
 - Start Vite directly: `pnpm vite-dev`
 
 ### Build and preview
@@ -111,8 +113,9 @@ Run one Vitest test:
 
 - Drizzle Studio: `pnpm drizzle-kit studio`
 - Generate migration: `pnpm drizzle-kit generate`
-- Apply migrations: `pnpm drizzle-kit migrate`
-- Push schema (dev/staging): see `docs/schema-workflow.md`
+- Apply pending migrations to the local DB: `pnpm preheat` (forces the local Docker DB), or `pnpm drizzle-kit migrate` only after checking `POSTGRES_DATABASE_URL` is unset and no `.env`/`.env.local`/shell value overrides the local `DATABASE_URL`
+- Reset the local DB: `pnpm db:pull`; for anything lower-level, see `docs/schema-workflow.md`
+- Don't use `pnpm db:push` / `drizzle-kit push` on a shared database: pushed changes leave no migration (see `docs/schema-workflow.md`)
 
 ## Code style and conventions
 
@@ -216,9 +219,9 @@ Quick form for new work post-cutover:
 
 1. Edit `src/server/db/schema.ts`.
 2. `pnpm drizzle-kit generate` — review generated SQL.
-3. `pnpm drizzle-kit migrate` locally; test.
-4. Commit migration files in `drizzle/`.
-5. Production is **not** migrated automatically; `scripts/preheat.js` only touches the local Docker DB. Local dev must never point `DATABASE_URL`/`POSTGRES_DATABASE_URL` at prod; prod is only read via `PROD_DATABASE_URL` by `pnpm preheat`/`pnpm db:pull`.
+3. Apply it locally with `pnpm preheat`; test.
+4. Commit the migration SQL, snapshot, and journal in `drizzle/pg-migrations/`, plus an entry in `docs/schema-changelog.md`.
+5. Production is **not** migrated automatically: not by `pnpm preheat`, `pnpm db:pull`, `pnpm dev`, the build, or a deploy. `scripts/preheat.js` only touches the local Docker DB. Local dev must never point `DATABASE_URL`/`POSTGRES_DATABASE_URL` at prod; prod is only read via `PROD_DATABASE_URL` by `pnpm preheat`/`pnpm db:pull`. Agents never run migrations against production.
 
 Major schema decisions (text IDs, no CHECK constraints, unified content model) live in [`docs/adr/`](./docs/adr/) — read those before proposing structural changes.
 

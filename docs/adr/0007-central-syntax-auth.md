@@ -17,3 +17,18 @@ Replacing the existing Profile UUIDs with Better Auth text IDs would rewrite his
 - New administrators must be mapped to a Profile by central User ID before app roles take effect.
 - A central User and a local Profile are deliberately separate concepts and IDs.
 - The website depends on `auth.syntax.fm` for signed-in requests, so central failures are treated as signed out and never bypassed with cached identity data.
+
+## Development
+
+Development uses the same identity-to-Profile boundary, with a shared local Auth service on
+loopback and browser sign-in/out on the website's own address. Localhost is the default; network
+listening is opt-in and developer-managed HTTP/HTTPS names require explicit origins. Production's
+Auth address remains fixed in code and cannot be replaced by these settings.
+
+`pnpm preheat` idempotently maps `local-developer` to a local Profile with the admin role. This
+bootstrap, database restore, and migrations target the local Docker database only. Development
+session validation has a deadline covering headers and body reading; sign-out bounds its header
+wait and discards the body. Failed admin remote writes return an error without executing,
+redirecting, retrying, or replaying the command. See the
+[developer guide](../../README.md#admin-sign-in) and
+[shared consumer contract](../../../auth/CONSUMING_AUTH.md).

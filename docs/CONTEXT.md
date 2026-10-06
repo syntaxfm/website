@@ -9,7 +9,7 @@ This is a glossary, not a spec. It captures only domain language that is ambiguo
 ### Content
 
 **Show**:
-A single episode of the Syntax podcast. Rows in the `show` table. Component and route language matches: `ShowCard`, `/show/[show_number]/[slug]`, `src/lib/shows/`.
+A single episode of the Syntax podcast. Rows in the `shows` table (Drizzle model `show`). Component and route language matches: `ShowCard`, `/show/[show_number]/[slug]`, `src/lib/shows/`.
 _Avoid_: Episode (in code/identifiers; use "Show"). Acceptable in user-facing copy where "episode" reads more naturally.
 
 **Syntax**:
@@ -26,12 +26,12 @@ Historical classification of back-catalog episodes. Four values:
 **Important**: These labels apply to the back catalog only. The podcast now runs a Mon/Wed schedule with no strong format distinction between episodes; new shows don't necessarily fit these buckets. `src/utilities/format_show_type.ts` derives a display label from release day-of-week as a fallback when the column doesn't reflect modern reality.
 
 **Article**:
-A long-form written post, stored in the `article` table. Distinct from a **Show** and from **content** (see below).
+A long-form written post, stored in the `articles` table (Drizzle model `article`; its body is the `content` column, exposed as `body`). Its author is a **Profile** (`author_id`). Distinct from a **Show** and from **content** (see below).
 
 **Content**:
 The new unified wrapper entity for *all* content types — Shows, Articles, Videos, Tools, Newsletters, Events. Rows in the `content` table; type discriminated by the `content_types` enum (`PODCAST`, `ARTICLE`, `VIDEO`, `TOOL`, `NEWSLETTER`, `EVENT`).
 
-**Status**: mid-migration. `show`, `article`, and per-type tables still exist and hold type-specific fields, but the canonical content identity is moving to `content`. New work that touches the content layer should go through `content` where possible. See [ADR-0004](./adr/0004-unified-content-model.md).
+**Status**: mid-migration. `shows`, `articles`, and per-type tables still exist and hold type-specific fields, but the canonical content identity is moving to `content`. New work that touches the content layer should go through `content` where possible. See [ADR-0004](./adr/0004-unified-content-model.md).
 
 **Video**:
 A Syntax-owned YouTube upload represented as **Content** with the `VIDEO` type.
@@ -51,17 +51,20 @@ _Avoid_: Topic, Tag; those terms describe AI artifacts and the site's editorial 
 ### People and roles
 
 **User**:
-A centrally authenticated Syntax identity owned by `auth.syntax.fm`. The immutable central User ID is the authentication subject. This application stores no User, provider account, or session records. In current state, only admins use authenticated website features — there are no public end-user accounts (no commenters, no subscribers as Users).
+A centrally authenticated Syntax identity owned by `auth.syntax.fm`. The immutable central User ID is the authentication subject. This application stores no User, provider account, or session records, and has no `users` table (the old one became `profiles`). See [ADR-0007](./adr/0007-central-syntax-auth.md). In current state, only admins use authenticated website features — there are no public end-user accounts (no commenters, no subscribers as Users).
 _Avoid_: Account, member.
 
 **Profile**:
-Application-owned editorial and authorization data for a person, stored in the `profiles` table. A Profile keeps the historical UUID used by Shows and Articles and may map to one central **User** through `central_user_id`. Roles belong to the Profile and are resolved only after central authentication. A User without a mapped Profile is authenticated but has no website roles.
+Application-owned editorial and authorization data for a person, stored in the `profiles` table (Drizzle model `profile`). Roles are rows in `roles`, attached through `profile_roles`. A Profile keeps the historical UUID used by Shows and Articles and may map to one central **User** through `central_user_id`. Roles belong to the Profile and are resolved only after central authentication. A User without a mapped Profile is authenticated but has no website roles.
 
 **Host**:
-A **Profile** linked to a **Show** via the `show_to_profile` join table. Not a separate entity — Host is a relationship, not a record. Drizzle relations expose this as `hosts: many(showToProfile)`.
+A **Profile** linked to a **Show** via the `show_to_profile` join table (Drizzle model `showToProfile`). Not a separate entity — Host is a relationship, not a record. Drizzle relations expose this as `hosts: many(showToProfile)`.
+
+**Local Developer**:
+The development-only central **User** that local Syntax Auth signs in through "Continue as Local Developer". Its central User ID is `local-developer`; `pnpm preheat` maps it to a local **Profile** with the `admin` role in the local database only; nothing maps it in production.
 
 **Guest**:
-A third-party who appears on a **Show** as an interviewee. Stored in the `guest` table; linked via `show_guest`. A Guest is **not** a User — guests have profiles and social links but no auth identity.
+A third-party who appears on a **Show** as an interviewee. Stored in the `guests` table (Drizzle model `guest`); linked via `show_guests` (`showGuest`). A Guest is **not** a User — guests have profiles and social links but no auth identity.
 
 ### AI-generated content
 
@@ -89,11 +92,11 @@ AI artifacts have no status column and no approval gate. They are generated whol
 ### Submissions
 
 **UserSubmission**:
-Audience-submitted Q&A-style content from public-facing forms — questions, topic suggestions, and nominations the audience wants the hosts to discuss on a Show. The "User" in the name refers to a site visitor (lowercase-u, audience member), **not** to a row in the `user` table. Confirmed in `src/server/db/schema.ts`: `user_submissions` has no `user_id` column and no FK to `user`, and `userSubmission` has no Drizzle relations defined. The row carries a self-reported `name` and `email` (both nullable `varchar`), so a submitter may identify themselves, but that identity never resolves to a **User** record. The naming collides with this codebase's capital-U **User** (an authenticated admin identity); read it as "submission from someone using the site."
+Audience-submitted Q&A-style content from public-facing forms — questions, topic suggestions, and nominations the audience wants the hosts to discuss on a Show. Stored in the `user_submissions` table (Drizzle model `userSubmission`). The "User" in the name refers to a site visitor (lowercase-u, audience member), **not** to a central **User** or a **Profile**. Confirmed in `src/server/db/schema.ts`: `user_submissions` has no user or profile column and no foreign keys, and `userSubmission` has no Drizzle relations defined. The row carries a self-reported `name` and `email` (both nullable `varchar`), so a submitter may identify themselves, but that identity never resolves to a **User** or **Profile**. The naming collides with this codebase's capital-U **User** (a centrally authenticated identity); read it as "submission from someone using the site."
 
 A submission is **not** a curated Guest, Tool, Article, or any other entity — it's a piece of audience input that may inform what gets discussed on a Show. `submission_type` is the form it came from (`POTLUCK`, `SPOOKY`, `GUEST`, `FEEDBACK`, `OSS`, `OTHER`).
 
-_Avoid_: treating a `submission_type=GUEST` row as a **Guest** record. The `GUEST` type means "audience-suggested guest pitch," not "Guest entity." There is no foreign key from `userSubmission` to `guest`.
+_Avoid_: treating a `submission_type=GUEST` row as a **Guest** record. The `GUEST` type means "audience-suggested guest pitch," not "Guest entity." There is no foreign key from `user_submissions` to `guests`.
 
 Status flow: `PENDING → APPROVED → COMPLETED` or `REJECTED`. **COMPLETED** means "the question has been answered" (typically on a Show) — it's the filter that hides handled items. There is no enforced link from a COMPLETED submission back to the Show that answered it; it's editorial bookkeeping.
 
@@ -122,7 +125,7 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 ## Example dialogue
 
 > **Dev:** "I want to add SEO meta tags to every episode page."
-> **Domain expert:** "Sure — those pages render a **Show**. Add the fields to the `show` table for now. Once a **Show** is wrapped by a **Content** row, we'll lift the SEO fields up to **Content** so Articles and Videos inherit the same shape."
+> **Domain expert:** "Sure — those pages render a **Show**. Add the fields to the `shows` table for now. Once a **Show** is wrapped by a **Content** row, we'll lift the SEO fields up to **Content** so Articles and Videos inherit the same shape."
 
 > **Dev:** "Can a Guest log in to edit their own profile?"
 > **Domain expert:** "No. A **Guest** is not a **User** or a **Profile**. Hosts may have Profiles, and a Profile can map to a central User for admin access. Letting returning Guests sign in would be a new feature and a new mapping."
@@ -132,10 +135,10 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 
 ## Flagged ambiguities
 
-- "Show" historically meant both the podcast (Syntax) and a single episode. **Resolved**: a row in the `show` table is a **Show** (an episode); the podcast itself is **Syntax**.
+- "Show" historically meant both the podcast (Syntax) and a single episode. **Resolved**: a row in the `shows` table (model `show`) is a **Show** (an episode); the podcast itself is **Syntax**.
 - "User" used to mean the website's combined GitHub login and editorial row. **Resolved**: User now means only the central Syntax identity; Profile means the website-owned editorial and role record. Authentication does not imply an admin role.
 - `show_type` reads like a current taxonomy but is a back-catalog artifact. **Resolved**: documented above; the column is unreliable for recent episodes.
-- "UserSubmission" implies it's tied to a **User** (the capital-U admin entity); it isn't. The "User" in the name is the colloquial sense (a site visitor), not the `user` table row. Submissions are anonymous and have no FK to `user`.
+- "UserSubmission" implies it's tied to a **User** (the capital-U admin entity); it isn't. The "User" in the name is the colloquial sense (a site visitor), not a central User or a Profile. Submissions are anonymous and have no FK to `profiles` or anything else.
 - The admin URL segment `/admin/content/podcast` lists **Shows**, not "podcasts." **Resolved**: the URL matches the `content_types` enum value (`PODCAST`), which is machine-canonical; the page heading and navigation label remain "Shows" (the domain term). This is a deliberate asymmetry between URL/enum and display language. Do not rename the URL to match the term without renaming the enum value, and do not rename the enum without a migration ADR.
 - "Video" could mean either a Syntax upload or any YouTube upload. **Resolved**: **Video** means Syntax-owned Content; an external upload used for comparison is a **Competitor Video** and never Content.
 - A channel appearing in keyword search results is not automatically a **Competitor**. **Resolved**: Competitors are explicitly selected by Syntax; search results outside that set are discovery candidates only.

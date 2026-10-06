@@ -1,562 +1,170 @@
 # Schema Evolution Workflow
 
-This guide covers how to make schema changes to the Drizzle/Postgres database.
+How to change the Drizzle/Postgres schema, and how to manage the local database while you do.
 
-> **Note**: This document originally covered the MySQL → PostgreSQL transition. The cutover is complete — Postgres is now primary. The "Post-Cutover" section near the bottom is the workflow that applies today. The earlier "Transition Period" sections are kept for reference until the legacy MySQL access path (`src/server/db/x-*.ts`) is fully removed.
+> **History**: this file used to describe the MySQL → PostgreSQL transition (`pnpm db:pg:*`
+> commands, `scripts/verify-pg-schema.js`, dual-schema edits). That cutover is complete and those
+> commands and scripts no longer exist. The record lives in [`archive/`](./archive/README.md).
 
-## Current State
+## Current state
 
-**Primary Database**: PostgreSQL (production)
-**Migration tool**: Drizzle Kit (`pnpm drizzle-kit generate` / `migrate`)
-**Schema source of truth**: `src/server/db/schema.ts`
-**Legacy MySQL access**: `src/server/db/x-*.ts` — do not import in new code; kept only for migration reconciliation.
+| What                     | Where                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------- |
+| Schema source of truth   | `src/server/db/schema.ts` (relations in `src/server/db/relations.ts`)                    |
+| Migrations               | `drizzle/pg-migrations/` (SQL, `meta/` snapshots and `_journal.json`)                    |
+| Migration tool           | `drizzle-kit` via `drizzle.config.ts`, tracked in `drizzle.__drizzle_migrations`         |
+| Local database           | Docker Postgres 18 from `docker-compose.yml`, `localhost:5434`, database `local`         |
+| Local setup and refresh  | `pnpm preheat` / `pnpm db:pull` (`scripts/preheat.js`; see the README)                   |
+| Legacy MySQL access path | `src/server/db/x-*.ts` and `drizzle/*.sql` — do not use in new code                      |
 
----
+Drizzle model names and table names differ: the model `show` is the `shows` table, `profile` is
+`profiles`, `article` is `articles`, `showToProfile` is `show_to_profile`. See
+[`CONTEXT.md`](./CONTEXT.md) for what each one means.
 
-## During Transition Period (MySQL Primary)
+### Which database a command touches
 
-While MySQL is still your production database, you need to maintain BOTH schemas in sync.
+- The app and `drizzle-kit` use `POSTGRES_DATABASE_URL` if it is set, otherwise `DATABASE_URL`
+  (default: the local Docker database). **Keep `POSTGRES_DATABASE_URL` unset locally**; a value in
+  `.env`, `.env.local`, or your shell redirects `pnpm dev`, `pnpm drizzle-kit …`, and the `db:*`
+  scripts to that database. `pnpm exec varlock load` shows whether it is set, with the value masked.
+- `pnpm preheat` and `pnpm db:pull` always run migrations against the local database, whatever
+  the env says. Use them when you want that guarantee.
+- `PROD_DATABASE_URL` is read only by `pnpm preheat` / `pnpm db:pull`, only with `pg_dump`, and
+  only to copy production into an empty or explicitly replaced local database.
 
-### Workflow for Schema Changes
+### Production
 
-#### Step 1: Plan the Change
+`pnpm preheat` and `pnpm db:pull` migrate only the local Docker database. `pnpm dev`, the build,
+and a deploy (Vercel runs `pnpm build`) do not run migrations automatically. Other database tools
+use the configured application URL, so a remote override can target production. Applying a
+migration to production is a separate, deliberate step taken by a maintainer with production
+access after review, in the order the change's [changelog](./schema-changelog.md) entry gives
+relative to the app deploy. This document has no recipe for it, and agents never do it.
 
-**Ask yourself:**
-- Is this an **additive change** (new table/column)? → Safe, easy rollback
-- Is this a **breaking change** (rename/delete column)? → Needs careful planning
-- Does this affect the migration script? → Update transformations
+Production predates migration tracking: see
+[ADR-0001](./adr/0001-drizzle-postgres-over-prisma-mysql.md) for how local copies are baselined.
 
-**Types of Changes:**
+## Standard workflow
 
-**Additive (Low Risk):**
-- Adding new tables
-- Adding new nullable columns
-- Adding new indexes
+1. **Plan the change.** Additive changes (new tables, nullable columns, indexes) are low risk.
+   Renames, drops, type changes, and new `NOT NULL` constraints are breaking; see
+   [Breaking changes](#breaking-changes). Read the [ADRs](./adr/README.md) first for structural
+   changes (text IDs, no CHECK constraints, the `content` model).
+2. **Edit `src/server/db/schema.ts`** (and `relations.ts` if relations change).
+3. **Generate a migration:** `pnpm db:generate` (same as `pnpm drizzle-kit generate`). It compares
+   the schema with the latest snapshot in `drizzle/pg-migrations/meta/`; it doesn't connect to a
+   database.
+4. **Review the SQL** in the new `drizzle/pg-migrations/NNNN_*.sql`. drizzle-kit can turn a rename
+   into a drop and add; fix it by hand to a rename where needed. Data backfills go here too.
+5. **Apply it locally:** `pnpm preheat`. It skips the production copy when the local database
+   already has data, then runs `drizzle-kit migrate` with `DATABASE_URL` set to the local database
+   and `POSTGRES_DATABASE_URL` cleared.
+6. **Test** with `pnpm dev`, `pnpm check`, and the relevant tests.
+7. **Commit** the schema change, the migration SQL, its snapshot, and `_journal.json` together,
+   and add an entry to [`schema-changelog.md`](./schema-changelog.md) with deployment notes.
 
-**Breaking (High Risk):**
-- Renaming columns
-- Deleting columns
-- Changing column types
-- Changing NOT NULL constraints
+### Don't `push` shared databases
 
----
+`pnpm db:push` (also `pnpm i-changed-the-schema`) runs `drizzle-kit push`, which changes a
+database to match the schema **without writing a migration**. Production's content model and
+search columns arrived that way and had to be reconciled after the fact by
+`0003_reconcile_pushed_schema`. Never push to production or any shared database. Locally it is
+only for throwaway experiments, and its target is whatever `POSTGRES_DATABASE_URL` or
+`DATABASE_URL` resolves to. Afterwards, reset the local database (below) before generating the real
+migration.
 
-#### Step 2: Update PostgreSQL Schema
+### Breaking changes
 
-**File**: `src/server/db/schema.ts`
+Use three steps so the deployed app and the database never disagree:
 
-```typescript
-// Example: Adding a new column
-export const show = pgTable('shows', {
-  // ... existing columns
+1. **Expand:** add the new column or table alongside the old one, and backfill it in the migration.
+2. **Switch:** change the app to read and write the new shape; deploy.
+3. **Contract:** drop the old column in a later migration.
 
-  // NEW: Add SEO metadata
-  meta_description: text('meta_description'),
-  meta_keywords: text('meta_keywords'),
+### Rolling back
 
-  // NEW: Add view tracking
-  view_count: integer('view_count').default(0),
-});
+drizzle-kit has no down migrations. Roll a schema change back with a new forward migration that
+undoes it. Locally, you can also reset the database.
+
+## Resetting the local database
+
+These commands target the repository's Compose `db` service, not an application connection URL.
+Before any reset, inspect `docker compose config` and `docker compose ps db` to confirm the
+project, container, and volume belong to this work; checkouts with the same Compose project name
+can share them. Get explicit approval before replacing populated data. The resets are
+**destructive**: local content, Profiles, and experiments not in the replacement are lost.
+
+**Normal reset:** `pnpm db:pull`. It drops and recreates the `local` database inside the
+container, restores a fresh production copy, baselines and applies migrations, and re-grants the
+Local Developer admin role. It asks before replacing data (`--yes` to skip the question when not
+running in a terminal).
+
+**Back up first** if you might want the current contents. `db_exports/` is gitignored:
+
+```sh
+mkdir -p db_exports
+docker compose exec -T db pg_dump -U root -d local --format=custom --no-owner --no-privileges \
+	--schema=public --schema=drizzle > db_exports/local-backup.dump
 ```
 
-**For breaking changes**, add temporary compatibility:
-```typescript
-// Example: Renaming a column (transition period)
-export const show = pgTable('shows', {
-  // OLD column (keep during transition)
-  // show_notes: text('show_notes').notNull(),
+To restore it, empty the local database with the manual reset below, then load it the same way
+`pnpm preheat` loads a production copy (the dump recreates `public` itself):
 
-  // NEW column (add first)
-  content: text('content').notNull(),
-});
+```sh
+docker compose exec -T db psql -U root -d local -v ON_ERROR_STOP=1 -c 'DROP SCHEMA public CASCADE'
+docker compose exec -T db pg_restore -U root -d local --no-owner --no-privileges --exit-on-error \
+	< db_exports/local-backup.dump
 ```
 
----
+The backup holds whatever the local database held, including any copied production data; keep
+it in `db_exports/` and delete it when you're done.
 
-#### Step 3: Push to Test PostgreSQL
+**Manual empty reset**, if you need the database empty rather than refilled. Run from the repo
+root, and first check that `docker compose ps db` lists this checkout's container. These commands
+run inside the container against its own server, with no connection URL, so no environment
+variable can redirect them anywhere else:
 
-```bash
-# Test on local/staging PostgreSQL first
-pnpm db:pg:push
+```sh
+# DESTRUCTIVE: deletes every table, row, and migration record in the local database.
+docker compose exec -T db dropdb -U root --if-exists --force local
+docker compose exec -T db createdb -U root local
 ```
 
-**Verify:**
-- Schema applies successfully
-- No constraint violations
-- Indexes created properly
+`createdb` gives a clean database owned by `root` (the user the app connects as), with Postgres's
+default `public` schema, so no ownership or grant fixes are needed. Dropping only the `public`
+schema is not a reset: it leaves `drizzle.__drizzle_migrations` behind, so `drizzle-kit migrate`
+would then skip every migration. The migrations can't build the schema from nothing either (see
+[ADR-0001](./adr/0001-drizzle-postgres-over-prisma-mysql.md)), so to get a working database again,
+restore a backup as above or run `pnpm preheat`, which fills an empty database from production.
 
----
+**Full wipe**, including the Docker volume:
 
-#### Step 4: Update MySQL Schema
-
-Since MySQL is still primary, you need to mirror the change:
-
-**Option A: Using Prisma (if still using Prisma for MySQL)**
-```bash
-# Update prisma/schema.prisma
-pnpm db:push  # Push to MySQL
+```sh
+# DESTRUCTIVE: removes the Compose project's containers and non-external volumes.
+# Confirm every affected resource belongs to this work; never wipe a shared project.
+docker compose down --volumes
 ```
 
-**Option B: Manual SQL (if migrated away from Prisma)**
-```sql
--- Apply equivalent change to MySQL
-ALTER TABLE Show
-  ADD COLUMN meta_description TEXT,
-  ADD COLUMN meta_keywords TEXT,
-  ADD COLUMN view_count INT DEFAULT 0;
-```
-
----
-
-#### Step 5: Update Migration Script Transformations
-
-If the change affects how data is transformed during migration, update the script.
-
-**File**: `scripts/direct-db-migration.js`
-
-```javascript
-// Add transformation for new columns
-function addComputedColumns(row, tableName, pgRow) {
-  // Existing transformations...
-
-  if (tableName === 'Show') {
-    pgRow.search_vector = generateSearchVector(row, ['title', 'slug', 'show_notes']);
-
-    // NEW: Set default values for new columns during migration
-    pgRow.view_count = pgRow.view_count || 0;
-    pgRow.meta_description = pgRow.meta_description || null;
-  }
-
-  return pgRow;
-}
-```
-
-**For column renames:**
-```javascript
-function transformRow(mysqlRow, tableName) {
-  const pgRow = { ...mysqlRow };
-
-  // Map old MySQL column name to new PostgreSQL column name
-  if (tableName === 'Show') {
-    if (mysqlRow.show_notes) {
-      pgRow.content = mysqlRow.show_notes;
-      delete pgRow.show_notes;
-    }
-  }
-
-  return pgRow;
-}
-```
-
----
-
-#### Step 6: Test Migration with New Schema
-
-```bash
-# Full test migration to verify script works with new schema
-pnpm db:migrate:direct --skip-transcripts --mode=refresh --skip-invalid-fk
-
-# Verify new columns migrated correctly
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
-```
-
-**Check:**
-- New columns populated correctly
-- Transformations work
-- No errors during migration
-
----
-
-#### Step 7: Update Application Code
-
-Only update app code AFTER both databases have the new schema:
-
-```typescript
-// src/routes/(site)/show/[show_number]/[slug]/+page.server.ts
-export async function load({ params }) {
-  const show = await db.query.show.findFirst({
-    where: eq(show.number, Number(params.show_number))
-  });
-
-  // Now safe to use new columns
-  return {
-    show,
-    metaDescription: show.meta_description || show.title
-  };
-}
-```
-
----
-
-#### Step 8: Document the Change
-
-Add to your migration log:
-
-**File**: `docs/schema-changelog.md`
-
-```markdown
-## 2025-11-02 - Add SEO Metadata
-
-**Type**: Additive
-**Status**: ✅ Applied to both MySQL + PostgreSQL
-
-### Changes
-- Added `meta_description` (text, nullable) to shows
-- Added `meta_keywords` (text, nullable) to shows
-- Added `view_count` (integer, default 0) to shows
-
-### Migration Script Changes
-- Updated `addComputedColumns()` to set defaults for new columns
-
-### Deployment Notes
-- Backwards compatible (new columns nullable)
-- No application code changes required immediately
-```
-
----
-
-### Breaking Changes Workflow
-
-For breaking changes (renames, deletions), use a **3-phase approach**:
-
-#### Phase 1: Add New Column (keep old)
-```typescript
-export const show = pgTable('shows', {
-  show_notes: text('show_notes').notNull(), // OLD - keep
-  content: text('content'),                  // NEW - add
-});
-```
-
-**Migration script**: Copy data from old → new
-```javascript
-if (tableName === 'Show') {
-  pgRow.content = mysqlRow.show_notes; // Copy to new column
-}
-```
-
-#### Phase 2: Update Application Code
-Update all app code to use `content` instead of `show_notes`
-
-#### Phase 3: Remove Old Column (after cutover to PostgreSQL)
-```typescript
-export const show = pgTable('shows', {
-  // show_notes: text('show_notes').notNull(), // REMOVED
-  content: text('content').notNull(),
-});
-```
-
----
-
-## After PostgreSQL Cutover (PostgreSQL Primary)
-
-Once you've switched to PostgreSQL as primary, workflow simplifies:
-
-### Standard Workflow
-
-#### 1. Update Schema
-```typescript
-// src/server/db/schema.ts
-export const newTable = pgTable('new_table', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  name: text('name').notNull(),
-});
-```
-
-#### 2. Generate Migration
-```bash
-pnpm db:pg:generate
-```
-
-This creates a migration file in `drizzle/pg-migrations/`:
-```sql
--- drizzle/pg-migrations/0001_add_new_table.sql
-CREATE TABLE "new_table" (
-  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  "name" text NOT NULL
-);
-```
-
-#### 3. Review Migration
-Check the generated SQL to ensure it's correct.
-
-#### 4. Test Locally
-```bash
-pnpm db:pg:push  # Test on local PostgreSQL
-```
-
-#### 5. Apply to Staging
-```bash
-# On staging environment
-pnpm db:pg:migrate
-```
-
-#### 6. Deploy to Production
-```bash
-# On production environment
-pnpm db:pg:migrate
-
-# Or use Drizzle Kit in CI/CD
-npx drizzle-kit migrate
-```
-
----
-
-## Migration Script Maintenance
-
-As your schema evolves, keep the migration script updated:
-
-### When to Update the Script
-
-**Add transformations when:**
-- Adding computed columns (search vectors, defaults)
-- Renaming columns (old → new mapping)
-- Changing data types (conversion logic)
-- Adding new tables (include in table list)
-
-**Example**: Adding a new table
-```javascript
-// scripts/direct-db-migration.js
-
-// Add to table order (respecting foreign keys)
-const orderedTables = [
-  'Role', 'User', 'Show', 'Guest',
-  'NewTable', // <-- Add here in correct dependency order
-  'Session', 'UserRole',
-  // ...
-];
-
-// Add table mapping
-const TABLE_NAME_MAP = {
-  NewMySQLTable: 'new_table',  // MySQL -> PostgreSQL name mapping
-};
-```
-
----
-
-## Testing Schema Changes
-
-### Local Testing Checklist
-
-Before applying any schema change to production:
-
-- [ ] Schema applies to local PostgreSQL without errors
-- [ ] Migration script runs successfully with new schema
-- [ ] Verification script passes
-- [ ] Application code works with new schema
-- [ ] Existing queries still work (backwards compatibility)
-- [ ] New queries use new schema correctly
-
-### Testing Commands
-
-```bash
-# 1. Reset local PostgreSQL to clean state
-psql "$POSTGRES_DATABASE_URL" -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
-
-# 2. Push new schema
-pnpm db:pg:push
-
-# 3. Test migration
-pnpm db:migrate:direct --skip-transcripts --mode=refresh --skip-invalid-fk
-
-# 4. Verify
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
-
-# 5. Test application
-pnpm dev
-# Navigate to affected pages, test functionality
-```
-
----
-
-## Schema Version Control
-
-### Recommended Git Workflow
-
-```bash
-# 1. Create feature branch for schema change
-git checkout -b schema/add-seo-metadata
-
-# 2. Make schema changes
-# - Update src/server/db/schema.ts
-# - Update scripts/direct-db-migration.js (if needed)
-# - Update app code
-
-# 3. Test thoroughly locally
-
-# 4. Document change
-# - Update docs/schema-changelog.md
-# - Update docs/archive/postgres-migration-guide.md (if workflow changes)
-
-# 5. Commit with clear message
-git add src/server/db/schema.ts scripts/direct-db-migration.js
-git commit -m "schema: add SEO metadata fields to shows table
-
-- Add meta_description, meta_keywords, view_count to shows
-- Update migration script to set defaults
-- Backwards compatible (nullable columns)"
-
-# 6. Push and create PR
-git push origin schema/add-seo-metadata
-```
-
-### Migration State Tracking
-
-The migration script maintains state in `scripts/migration-state.json`:
-
-```json
-{
-  "Show": {
-    "lastMigration": "2025-11-02T10:30:00.000Z",
-    "rowCount": 850,
-    "schemaVersion": "1.2.0"  // Consider adding version tracking
-  }
-}
-```
-
-**Consider adding**: Schema version to track which version was last migrated.
-
----
-
-## Common Scenarios
-
-### Adding a New Table
-
-1. ✅ Add to `schema.ts`
-2. ✅ Add to `orderedTables` in migration script
-3. ✅ Run `pnpm db:pg:push`
-4. ✅ Test migration
-5. ✅ Add to MySQL (during transition period)
-
-### Adding a New Column
-
-**Nullable column (safe):**
-1. ✅ Add to `schema.ts` with `.nullable()` or default value
-2. ✅ Run `pnpm db:pg:push`
-3. ✅ Migration script handles automatically
-4. ✅ Add to MySQL
-
-**NOT NULL column (requires data):**
-1. ✅ Add to `schema.ts` as nullable first
-2. ✅ Update migration script to populate value
-3. ✅ Test migration
-4. ✅ Change to NOT NULL after data populated
-5. ✅ Mirror in MySQL
-
-### Renaming a Column
-
-Use 3-phase approach:
-1. **Phase 1**: Add new column, keep old → Update migration script to copy data
-2. **Phase 2**: Update all app code to use new column
-3. **Phase 3**: Remove old column (after PostgreSQL cutover)
-
-### Deleting a Table
-
-**During transition:**
-1. ❌ **Don't delete** from MySQL (still primary)
-2. ✅ Remove from PostgreSQL schema
-3. ✅ Remove from migration script `orderedTables`
-4. ✅ Update app code to not use table
-
-**After cutover:**
-1. ✅ Generate migration with `pnpm db:pg:generate`
-2. ✅ Review DROP TABLE migration
-3. ✅ Backup data if needed
-4. ✅ Apply migration
-
----
-
-## Rollback Strategy
-
-### During Transition (MySQL Primary)
-
-**Easy rollback**: Just point app back to MySQL
-```bash
-# In .env
-DATABASE_URL="mysql://..."  # Switch back to MySQL
-# POSTGRES_DATABASE_URL stays for background syncing
-```
-
-### After Cutover (PostgreSQL Primary)
-
-**Database rollback**: Use Drizzle migrations
-```bash
-# Rollback last migration
-pnpm db:pg:migrate --rollback
-
-# Or restore from backup
-pg_restore -d syntax_production backup.dump
-```
-
-**Application rollback**: Git revert + redeploy
-```bash
-git revert <commit-hash>
-git push
-# Trigger deployment
-```
-
----
-
-## Best Practices
-
-### Do's ✅
-
-- ✅ Test schema changes locally first
-- ✅ Make additive changes when possible (new columns nullable)
-- ✅ Document every schema change
-- ✅ Keep migration script in sync with schema
-- ✅ Use transactions for multi-step changes
-- ✅ Backup before major changes
-- ✅ Version your schema changes in git
-
-### Don'ts ❌
-
-- ❌ Don't make breaking changes without 3-phase approach
-- ❌ Don't skip testing migrations after schema changes
-- ❌ Don't apply production changes without staging test
-- ❌ Don't forget to update BOTH databases during transition
-- ❌ Don't change primary keys or unique constraints lightly
-- ❌ Don't delete data without backups
-
----
-
-## Quick Reference
-
-### Transition Period Commands
-
-```bash
-# 1. Update PostgreSQL schema
-pnpm db:pg:push
-
-# 2. Update MySQL schema
-pnpm db:push  # (or manual SQL)
-
-# 3. Test migration with new schema
-pnpm db:migrate:direct --skip-transcripts --mode=upsert --skip-invalid-fk
-
-# 4. Verify
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
-```
-
-### Post-Cutover Commands
-
-```bash
-# 1. Update schema
-# Edit src/server/db/schema.ts
-
-# 2. Generate migration
-pnpm db:pg:generate
-
-# 3. Apply to production
-pnpm db:pg:migrate
-```
-
----
-
-## Next Steps
-
-1. **Maintain** `docs/schema-changelog.md` as schema changes happen
-2. **Add schema version** to migration state tracking
-3. **Set up staging environment** to test schema changes
-4. **Document your specific tables** and their relationships for reference
-
-Your schema evolution is now managed, repeatable, and safe! 🎉
+The next `pnpm preheat` creates a new volume and copies production again.
+
+Never run `psql "$SOME_URL" -c 'DROP SCHEMA …'` or reset scripts that take their target from
+`POSTGRES_DATABASE_URL` or `DATABASE_URL`: an inherited or leftover value can point them at a
+remote database. `scripts/reset-pg-schema.js` is one of those (it also tells you to run a
+`db:pg:push` that no longer exists); don't use it.
+
+## Legacy MySQL reconciliation
+
+`scripts/direct-db-migration.js` (`pnpm db:migrate:direct`) copies data from the old MySQL
+database into Postgres. It reads its source from `MYSQL_DATABASE_URL` and its target from
+`POSTGRES_DATABASE_URL`, and its default `--mode=refresh` **empties the target tables first**;
+`--mode=insert-missing` only adds missing rows. Set both variables for that one command in your
+shell, never in `.env.local` (where `POSTGRES_DATABASE_URL` would also redirect the app). The
+procedure is in [`archive/postgres-migration-guide.md`](./archive/postgres-migration-guide.md).
+
+## Checklist
+
+- [ ] `schema.ts` and the generated migration agree, and the SQL is reviewed
+- [ ] Applied locally with `pnpm preheat`; app and checks pass
+- [ ] Breaking changes follow expand → switch → contract
+- [ ] Migration SQL, snapshot, and journal committed together
+- [ ] `schema-changelog.md` entry written, including the production order relative to deploy

@@ -1,6 +1,12 @@
 # Schema Changelog
 
-This file tracks all schema changes made during and after the PostgreSQL migration.
+This file tracks all schema changes made during and after the PostgreSQL migration. How to make a
+change: [`schema-workflow.md`](./schema-workflow.md).
+
+Production is never migrated by local tooling, builds, or deploys. Each entry's **Deployment Notes**
+say when a maintainer applies its migration to production relative to the app deploy. The
+**Status** line records what was known when the entry was written; check production itself before
+relying on it.
 
 ## Format
 
@@ -26,6 +32,28 @@ This file tracks all schema changes made during and after the PostgreSQL migrati
 ### Deployment Notes
 - Any special considerations
 ```
+
+---
+
+## 2026-09-23 - Reconcile pushed schema
+
+**Type**: Constraint (history reconciliation)
+**Status**: Migration committed; production state not recorded here
+**Affects**: `articles`; migration snapshot for `content`, `articles`, `tags`, `content_tags`, `search_vector` columns and indexes
+
+### Changes
+- `0003_reconcile_pushed_schema`'s snapshot records the content model, search vectors, and indexes that reached production through `drizzle-kit push` without a migration.
+- Its SQL only renames `articles_author_id_users_id_fk` to `articles_author_id_profiles_id_fk`, the one difference a post-0002 database still had.
+
+### Migration Script Changes
+- `direct-db-migration.js` gained `--mode=insert-missing` and reads `MYSQL_DATABASE_URL` / `POSTGRES_DATABASE_URL` explicitly.
+
+### Rollback Plan
+- Rename the constraint back. The snapshot change has no database effect.
+
+### Deployment Notes
+- Applies after `0002_syntax_auth`. Local copies get it from `pnpm preheat` / `pnpm db:pull`.
+- Don't use `drizzle-kit push` on shared databases again; see [`schema-workflow.md`](./schema-workflow.md).
 
 ---
 
@@ -88,9 +116,8 @@ This file tracks all schema changes made during and after the PostgreSQL migrati
 - [ADR-0002](./adr/0002-text-ids-not-uuids.md), [ADR-0003](./adr/0003-no-check-constraints.md) — Key pragmatic decisions
 
 ### Deployment Notes
-- MySQL remains primary during transition period
-- PostgreSQL synced daily/weekly using migration script
-- No application code changes required yet
+- At the time: MySQL remained primary during the transition, and PostgreSQL was synced with the migration script. The cutover has since completed; Postgres is primary.
+- Production's schema was built by the migration script, not by replaying migrations, so it has no migration history for `0000`/`0001`; see [ADR-0001](./adr/0001-drizzle-postgres-over-prisma-mysql.md).
 
 ---
 

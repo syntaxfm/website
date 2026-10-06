@@ -1,5 +1,7 @@
 # Plan — Flesh out `/admin` into a CMS-grade editorial experience
 
+> **Terminology update (central Syntax Auth):** the local `users`, `user_roles`, and `show_to_user` tables are now `profiles`, `profile_roles`, and `show_to_profile` (Drizzle `profile`, `profileRole`, `showToProfile`); authentication moved to central Syntax Auth ([ADR-0007](../adr/0007-central-syntax-auth.md)). Some function names (`search_users_for_host`, `/admin/users`) keep the old wording. Schema line numbers below are from 2026-05-15 and have drifted.
+
 This plan was produced in a grill-with-docs session on 2026-05-15. It is intended to be picked up by a fresh-context agent. Read every section before writing code. The architectural choices in this plan were the result of explicit user decisions; do not relitigate them.
 
 ---
@@ -159,13 +161,13 @@ Tables involved: `guest`, `socialLink`. See `src/server/db/schema.ts:178` and `:
 
 #### 4b. Hosts on a Show
 
-Table involved: `showToUser` (the `show_to_user` join). See `src/server/db/schema.ts:157`.
+Table involved: `showToProfile` (the `show_to_profile` join; formerly `show_to_user`). See `src/server/db/schema.ts`.
 
 - Extend `admin_podcast.remote.ts`:
-  - `search_users_for_host` (lists Users — there's no role filter today since all users are admins; just return all users).
-  - `add_show_host`, `remove_show_host` (write `showToUser`).
+  - `search_users_for_host` (lists Profiles; no role filter).
+  - `add_show_host`, `remove_show_host` (write `showToProfile`).
 - Add a Hosts panel to `src/routes/(site)/admin/content/podcast/[show_number]/+page.svelte` directly below the Guests section. Same search-and-attach UI shape as the Guests/Videos sections in that file.
-- Update `get_show_editor` to include `hosts: { with: { user: true } }` in the relation query.
+- Update `get_show_editor` to include `hosts: { with: { profile: true } }` in the relation query.
 
 #### 4c. AI artifact panels
 
@@ -285,6 +287,6 @@ If you find a real need to deviate, surface it to the user before doing it — d
 These are not blockers, but if they come up during implementation they should be flagged to the user before proceeding:
 
 1. Does the `/admin/content/videos` list need actions beyond view-only? (User said videos are YouTube-source-of-truth.)
-2. Should host removal warn that a host has authored shows? (Probably no — show records aren't affected by removing a Host from `show_to_user`.)
+2. Should host removal warn that a host has authored shows? (Probably no — show records aren't affected by removing a Host from `show_to_profile`.)
 3. Confirm `fetch_AI_notes` cascades correctly — verify aiShowNote children delete via FK before regeneration.
 4. The "of" field on the `guest` table (job title at company) has no label convention — confirm the label with the user when building the guest editor form.

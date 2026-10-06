@@ -17,7 +17,8 @@ The application uses **Drizzle ORM** against **PostgreSQL**. The previous stack 
 ## Trade-offs
 
 - **Drizzle's generated client is less ergonomic than Prisma's** for some join shapes. We accepted this for the schema-level control.
-- **Production predates migration tracking.** Its schema was built by `scripts/direct-db-migration.js`, not by replaying migrations, so it has no `drizzle.__drizzle_migrations` table and migration `0001` cannot run on a fresh database. `scripts/preheat.js` baselines restored local copies through `0001_puzzling_talos` before running `drizzle-kit migrate`.
+- **Production predates migration tracking.** Its schema was built by `scripts/direct-db-migration.js`, not by replaying migrations, so it has no `drizzle.__drizzle_migrations` table and migration `0001` cannot run on a fresh database. `scripts/preheat.js` baselines restored local copies through `0001_puzzling_talos` before running `drizzle-kit migrate`; it only ever migrates the local Docker database, never production.
+- **Some production schema arrived via `drizzle-kit push`.** The content model and search columns were pushed without migrations; `0003_reconcile_pushed_schema` records them in the migration snapshots. Shared databases are no longer pushed; see `docs/schema-workflow.md`.
 - **Some Drizzle features are still gaps** (e.g. `tsvector` type support). We use `sql\`\`` for those columns.
 
 ## Deferred

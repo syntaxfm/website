@@ -1,12 +1,25 @@
 # PostgreSQL Migration Guide
 
+> **Archived. The cutover is complete; this is history, not a current procedure.** Postgres is
+> primary. Lines marked `# removed:` name commands and scripts that no longer exist
+> (`pnpm db:pg:push`, `scripts/verify-pg-schema.js`); the schema file is now
+> `src/server/db/schema.ts`, not `pg-schema.ts`. `scripts/direct-db-migration.js` still exists but
+> reads its source from `MYSQL_DATABASE_URL` and its target from `POSTGRES_DATABASE_URL`, and its
+> default `--mode=refresh` **empties each target table before loading it**; `--mode=insert-missing`
+> only adds rows Postgres lacks. Set both URLs for one command in your shell, never in `.env` or
+> `.env.local`.
+>
+> Current references: [`schema-workflow.md`](../schema-workflow.md) (schema changes, migrations,
+> local resets), the [README](../../README.md) (local setup), and
+> [ADR-0001](../adr/0001-drizzle-postgres-over-prisma-mysql.md).
+
 ## Overview
 
 This guide covers the comprehensive PostgreSQL schema optimization and migration system for the Syntax podcast website. The system supports repeatable migrations from MySQL to PostgreSQL with intelligent features for handling large transcript data.
 
 ## What Was Changed
 
-### 1. Schema Optimizations (`src/server/db/pg-schema.ts`)
+### 1. Schema Optimizations (then `src/server/db/pg-schema.ts`, now `src/server/db/schema.ts`)
 
 #### ID Column Decision: Kept as Text ✅
 - **`show.id`**, **`video.id`**, **`playlist.id`**: **Kept as `text` type**
@@ -151,13 +164,13 @@ Used for incremental sync to determine which records changed since last migratio
 
 ```bash
 # Full verification (compares MySQL vs PostgreSQL)
-pnpm scripts/verify-pg-schema.js
+# removed: scripts/verify-pg-schema.js
 
 # Skip transcript count checks (faster)
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
+# removed: scripts/verify-pg-schema.js --skip-transcript-counts
 
 # Verify only transcript tables
-pnpm scripts/verify-pg-schema.js --transcripts-only
+# removed: scripts/verify-pg-schema.js --transcripts-only
 ```
 
 ### What It Checks
@@ -176,19 +189,19 @@ pnpm scripts/verify-pg-schema.js --transcripts-only
 
 ```bash
 # 1. Push schema to PostgreSQL
-pnpm db:pg:push
+# removed: pnpm db:pg:push (see the banner at the top)
 
 # 2. Initial migration - core data only (fast: 5-15 minutes)
 pnpm db:migrate:direct --skip-transcripts --mode=refresh --skip-invalid-fk
 
 # 3. Verify core data
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
+# removed: scripts/verify-pg-schema.js --skip-transcript-counts
 
 # 4. Migrate transcripts (slow: 2-5 hours, run separately)
 pnpm db:migrate:direct --transcripts-only --mode=upsert --skip-invalid-fk
 
 # 5. Full verification
-pnpm scripts/verify-pg-schema.js
+# removed: scripts/verify-pg-schema.js
 ```
 
 **Why split core + transcripts?**
@@ -197,20 +210,20 @@ pnpm scripts/verify-pg-schema.js
 - If transcript migration fails, you don't lose core data progress
 - You can test the app with core data while transcripts migrate in background
 
-**Note:** If you have existing PostgreSQL data with old schema changes, run `pnpm db:pg:push` first to align the schema.
+**Note (historical):** with existing PostgreSQL data on an older schema, `pnpm db:pg:push` (since removed) was run first to align the schema.
 
 ### Phase 2: Transition Period (Weeks 2-8)
 
 **Daily: Sync core data (fast)**
 ```bash
 pnpm db:migrate:direct --skip-transcripts --mode=upsert
-pnpm scripts/verify-pg-schema.js --skip-transcript-counts
+# removed: scripts/verify-pg-schema.js --skip-transcript-counts
 ```
 
 **Weekly: Incremental transcript sync**
 ```bash
 pnpm db:migrate:direct --transcripts-only --incremental --mode=upsert
-pnpm scripts/verify-pg-schema.js --transcripts-only
+# removed: scripts/verify-pg-schema.js --transcripts-only
 ```
 
 ### Phase 3: Final Cutover (Week 9+)
@@ -220,7 +233,7 @@ pnpm scripts/verify-pg-schema.js --transcripts-only
 pnpm db:migrate:direct --mode=upsert --skip-invalid-fk
 
 # Full verification
-pnpm scripts/verify-pg-schema.js
+# removed: scripts/verify-pg-schema.js
 
 # Switch application to PostgreSQL
 # Archive MySQL database
@@ -303,7 +316,7 @@ const results = await db.query(`
 ### "Table does not exist" Error
 ```bash
 # Push schema first
-pnpm db:pg:push
+# removed: pnpm db:pg:push (see the banner at the top)
 ```
 
 ### "Foreign key violation" Errors
@@ -344,7 +357,7 @@ pnpm db:migrate:direct Transcript --mode=refresh
 3. ✅ **Full-text search** built-in (no need for external search service)
 4. ✅ **Expression indexes** for case-insensitive search
 5. ✅ **Partial indexes** for filtered queries (e.g., pending submissions only)
-6. ✅ **CHECK constraints** for data integrity at DB level
+6. ~~CHECK constraints~~ — dropped; see [ADR-0003](../adr/0003-no-check-constraints.md)
 7. ✅ **Timestamp with timezone** for proper time handling
 8. ✅ **Incremental sync** capability for large tables
 9. ✅ **Repeatable migrations** with upsert mode
@@ -365,7 +378,7 @@ pnpm db:migrate:direct Transcript --mode=refresh
 **Key Files:**
 - Schema definition: `src/server/db/schema.ts`
 - Migration script: `scripts/direct-db-migration.js`
-- Verification: `scripts/verify-pg-schema.js`
+- Verification: `scripts/verify-pg-schema.js` (removed)
 - Migration state: `scripts/migration-state.json`
 
 **Documentation:**
