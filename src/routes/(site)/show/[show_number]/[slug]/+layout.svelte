@@ -17,7 +17,7 @@
 
 	let { data, children } = $props();
 	let { show, time_start } = $derived(data);
-	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
+	let download_name = $derived(`Syntax #${show.number} - ${show.title}`);
 	let has_youtube = $derived(Boolean(get_youtube_id(show.youtube_url)));
 
 	async function handleClick(e: Event) {
@@ -47,7 +47,7 @@
 		replace_color(node);
 	}
 
-	const showSchema = {
+	let show_schema = $derived({
 		'@context': 'https://schema.org/',
 		'@type': 'PodcastEpisode',
 		url: $page.url,
@@ -65,11 +65,15 @@
 			name: 'Syntax',
 			url: 'https://syntax.fm'
 		}
-	};
+	});
+	// The closing tag is split so it doesn't end this <script> block
+	let show_schema_html = $derived(
+		`<script type="application/ld+json">${JSON.stringify(show_schema, null, 2)}</` + `script>`
+	);
 </script>
 
 <svelte:head>
-	{@html `<script type="application/ld+json">\n${JSON.stringify(showSchema, null, 2)}\n</script>`}
+	{@html show_schema_html}
 </svelte:head>
 {#snippet show_details()}
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
@@ -152,7 +156,7 @@
 				class="icon"
 				title="Download Episode"
 				aria-label="Download"
-				download={downloadName}
+				download={download_name}
 				href={show.url}
 			>
 				<Icon name="download" />
