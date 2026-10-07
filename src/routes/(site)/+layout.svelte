@@ -3,8 +3,10 @@
 	import 'media-chrome';
 	import 'youtube-video-element';
 	import { Toaster } from 'svelte-french-toast';
-	import { onNavigate } from '$app/navigation';
+	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
 	import Player from '$lib/player/Player.svelte';
+	import YoutubeMiniPlayer from '$lib/videos/YoutubeMiniPlayer.svelte';
+	import { youtube_player } from '$state/youtube_player';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '$lib/Loading.svelte';
@@ -18,6 +20,14 @@
 
 	let { data, children } = $props();
 	let { user, user_theme, latest } = $derived(data);
+
+	beforeNavigate(() => {
+		youtube_player.before_navigate();
+	});
+
+	afterNavigate(() => {
+		youtube_player.after_navigate();
+	});
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -55,6 +65,7 @@
 
 	{#if browser}
 		<Player initial_show={latest[0]} />
+		<YoutubeMiniPlayer />
 	{/if}
 
 	<Toaster />

@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { preventDefault } from 'svelte/legacy';
-
+	import { goto } from '$app/navigation';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
+	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
 	import FacePile from './FacePile.svelte';
 	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
+	import YoutubeEmbed from './videos/YoutubeEmbed.svelte';
 	import type { ShowCard } from '$/server/shows/shows_queries';
 
 	interface Props {
@@ -24,6 +26,8 @@
 		heading = 'h4',
 		show_date = new Date(show.date)
 	}: Props = $props();
+
+	let has_youtube = $derived(Boolean(get_youtube_id(show.youtube_url)));
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
 		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
@@ -59,9 +63,17 @@
 			{ name: 'Scott Tolinski', github: 'stolinski' }
 		];
 	}
+
+	function handle_card_click(e: MouseEvent) {
+		if (!(e.target instanceof Element)) return;
+		if (e.target.closest('a, button, .youtube-embed-wrap, youtube-video')) return;
+		goto(get_show_path(show));
+	}
 </script>
 
-<article class={display}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<article class="{display} {has_youtube ? 'has-youtube' : ''}" onclick={handle_card_click}>
 	<a
 		href={get_show_path(show)}
 		aria-label="Show #{show.number} posted {format_date(show_date)}, {show.title}"
@@ -76,9 +88,11 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
-			>{show.number}</span
-		>
+		{#if !has_youtube}
+			<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
+				>{show.number}</span
+			>
+		{/if}
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
@@ -143,6 +157,15 @@
 			</div>
 		</div>
 	</a>
+
+	{#if has_youtube}
+		<div class="video-column">
+			<span style:--transition-name="show-date-{show.number}" class="show-number-small fst-900 grit"
+				>#{show.number}</span
+			>
+			<YoutubeEmbed {show} />
+		</div>
+	{/if}
 </article>
 
 <style lang="postcss">
@@ -156,11 +179,22 @@
 		position: relative;
 		overflow: hidden;
 		align-items: start;
+		cursor: pointer;
+
+		&.has-youtube {
+			gap: 0.75rem;
+			@media (--above-med) {
+				grid-template-columns: 1fr 1fr;
+				gap: 2rem;
+			}
+		}
+
 		& a {
 			color: var(--fg);
 			display: flex;
 			gap: 10px;
 			height: 100%;
+			min-width: 0;
 		}
 
 		.details {
@@ -168,6 +202,7 @@
 			flex-grow: 1;
 			grid-template-rows: auto auto 1fr auto auto;
 			gap: 1rem;
+			min-width: 0;
 			& > * {
 				margin: 0;
 				position: relative;
@@ -199,8 +234,9 @@
 		&.list {
 			border: solid 1px var(--subtle);
 			margin-bottom: 20px;
-			padding: 20px 0;
+			padding: 20px;
 			margin-inline: auto;
+			width: 100%;
 		}
 
 		.description {
@@ -215,9 +251,8 @@
 			padding: 10px;
 
 			.details {
-				/* since we're hiding the description row at these dimensions (which was 100% height),
-				   need a new row to become 100% height -- the show title */
-				grid-template-rows: auto 1fr auto auto;
+				grid-template-rows: unset;
+				gap: 0.75rem;
 			}
 			.description {
 				display: none;
@@ -236,6 +271,38 @@
 				text-align: right;
 				align-self: center;
 			}
+		}
+	}
+
+	.video-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0;
+		width: 100%;
+		min-width: 0;
+
+		@media (--above-med) {
+			gap: 0.5rem;
+		}
+	}
+
+	.show-number-small {
+		font-size: var(--font-size-lg);
+		color: var(--primary);
+		line-height: 1;
+		text-align: right;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+
+		@media (--below-med) {
+			top: 10px;
+			right: 10px;
+		}
+
+		@media (--above-med) {
+			position: static;
 		}
 	}
 
