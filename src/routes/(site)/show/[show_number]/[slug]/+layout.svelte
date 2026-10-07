@@ -9,7 +9,6 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
-	import { youtube_player } from '$state/youtube_player';
 	import YoutubeEmbed from '$lib/videos/YoutubeEmbed.svelte';
 	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
@@ -27,24 +26,16 @@
 			e.preventDefault();
 			const href = target.getAttribute('href');
 			const timestamp = href ? tsToS(href.replace('#t=', '')) : 0;
-			if ($youtube_player.active_show?.number === show.number) {
-				await youtube_player.seek(show, timestamp);
-				return;
-			}
-			// If we aren't already playing this episode, load it up and then jump it
-			if ($player.current_show?.number !== show.number) {
-				await player.start_show(show, timestamp);
-			} else {
-				// Jump to timestamp
-
-				player.update_time(timestamp);
-			}
+			// Show note timestamps are on the audio timeline, play_timestamp picks video or audio accordingly
+			await player.play_timestamp(show, timestamp);
 		}
 	}
 
 	function play_show() {
 		if ($player.current_show?.number !== show.number || $player.status === 'INITIAL') {
-			player.start_show(show, time_param_to_seconds(time_start));
+			const start_time = time_param_to_seconds(time_start);
+			// Without a ?t= param, resume from the saved position
+			player.start_show(show, start_time > 0 ? start_time : undefined);
 		} else if ($player.status === 'PLAYING') {
 			player.pause();
 		} else {
@@ -80,27 +71,30 @@
 <svelte:head>
 	{@html `<script type="application/ld+json">\n${JSON.stringify(showSchema, null, 2)}\n</script>`}
 </svelte:head>
+{#snippet show_details()}
+	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
+		{format(new Date(show.date), 'MMMM do, yyyy')}
+		×
+		<span class="topics">
+			{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
+				<span class="topic">{topic.name.startsWith('#') ? '' : '#'}{topic.name}</span>
+			{/each}
+		</span>
+	</p>
+
+	<h1 style:--transition-name="show-title-{show.number}">
+		<span class="spa-ran-wrap">{show.title}</span>
+	</h1>
+
+	{#if show.aiShowNote?.description}
+		<p class="description"><span>{show.aiShowNote?.description}</span></p>
+	{/if}
+{/snippet}
+
 <header class:has-youtube={has_youtube}>
 	{#if has_youtube}
 		<div class="header-left">
-			<p class="show-page-date" style:--transition-name="show-date-{show.number}">
-				{format(new Date(show.date), 'MMMM do, yyyy')}
-				×
-				<span class="topics">
-					{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
-						<span class="topic">{topic.name.startsWith('#') ? '' : '#'}{topic.name}</span>
-					{/each}
-				</span>
-			</p>
-
-			<h1 style:--transition-name="show-title-{show.number}">
-				<span class="spa-ran-wrap">{show.title}</span>
-			</h1>
-
-			{#if show.aiShowNote?.description}
-				<p class="description"><span>{show.aiShowNote?.description}</span></p>
-			{/if}
-
+			{@render show_details()}
 			<HostsAndGuests hosts={show.hosts} guests={show.guests} />
 		</div>
 
@@ -120,23 +114,7 @@
 			style:--transition-name="show-date-{show.number}"
 			class="show-number fst-900 grit">{show.number}</span
 		>
-		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
-			{format(new Date(show.date), 'MMMM do, yyyy')}
-			×
-			<span class="topics">
-				{#each show.aiShowNote?.topics?.slice(0, 5) || [] as topic}
-					<span class="topic">{topic.name.startsWith('#') ? '' : '#'}{topic.name}</span>
-				{/each}
-			</span>
-		</p>
-
-		<h1 style:--transition-name="show-title-{show.number}">
-			<span class="spa-ran-wrap">{show.title}</span>
-		</h1>
-
-		{#if show.aiShowNote?.description}
-			<p class="description"><span>{show.aiShowNote?.description}</span></p>
-		{/if}
+		{@render show_details()}
 	{/if}
 </header>
 
@@ -242,6 +220,13 @@
 			:global(.guests-and-hosts) {
 				margin-bottom: 0;
 			}
+
+			/* leave room for the absolutely positioned show number */
+			.show-page-date {
+				@media (--below-med) {
+					padding-right: calc(var(--font-size-xl) * 3.5);
+				}
+			}
 		}
 
 		.header-right {
@@ -261,12 +246,11 @@
 			color: var(--primary);
 			line-height: 1;
 			text-align: right;
-			position: absolute;
-			top: 0;
-			right: 0;
 
-			@media (--above-med) {
-				position: static;
+			@media (--below-med) {
+				position: absolute;
+				top: 0;
+				right: 0;
 			}
 		}
 

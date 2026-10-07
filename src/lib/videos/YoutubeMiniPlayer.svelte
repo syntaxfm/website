@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
 	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
 	import { player_window_status } from '$state/player_window_status';
 	import get_show_path from '$utilities/slug';
@@ -9,91 +8,39 @@
 	let video_el: YoutubeVideoElementLike | null = $state(null);
 
 	let active_show = $derived($youtube_player.active_show);
-	let show_mini_player = $derived(
-		Boolean(active_show && $youtube_player.status !== 'IDLE' && $youtube_player.in_mini_player)
-	);
+	let active_show_number = $derived(active_show?.number);
+	// Stays mounted (hidden) while any video is active so popping out and docking back
+	// don't tear down and reload the YouTube iframe
+	let is_mounted = $derived(Boolean(active_show && $youtube_player.status !== 'IDLE'));
+	let in_mini_player = $derived($youtube_player.in_mini_player);
 	let is_minimized = $derived($youtube_player.is_minimized);
 	let is_dismissed = $derived($youtube_player.is_dismissed);
 	let min_max_verb = $derived(is_minimized ? 'Maximize' : 'Minimize');
 	let watch_url = $derived(active_show ? get_youtube_watch_url(active_show.youtube_url) : null);
 
+	// Pick up playback when the mini-player opens or switches shows, hand it back when it closes.
+	// Keyed on the show number, not the show object, so store updates don't re-seek.
 	$effect(() => {
 		const el = video_el;
-		const show = active_show;
-		if (!el || !show || !show_mini_player) return;
-
-		const state = get(youtube_player);
-		const resume_time = state.current_time;
-		youtube_player.set_active_element(el);
-		void (async () => {
-			try {
-				if (el.loadComplete) {
-					await el.loadComplete;
-				}
-				if (resume_time > 0 && Math.abs((el.currentTime || 0) - resume_time) > 1) {
-					el.currentTime = resume_time;
-				}
-				if (get(youtube_player).status === 'PLAYING') {
-					await el.play();
-				}
-			} catch {
-				// ignore
-			}
-		})();
-
-		let last_duration = 0;
-		let last_time = -1;
-		const sync_interval = setInterval(() => {
-			const current = get(youtube_player);
-			if (current.active_element !== el) return;
-
-			const dur = el.duration;
-			if (typeof dur === 'number' && Number.isFinite(dur) && dur > 0 && dur !== last_duration) {
-				last_duration = dur;
-				el.dispatchEvent(new Event('durationchange'));
-			}
-
-			const ct = el.currentTime;
-			if (typeof ct === 'number' && !Number.isNaN(ct) && ct > 0 && Math.abs(ct - last_time) > 0.05) {
-				last_time = ct;
-				youtube_player.update_time(show.number, ct, el);
-				el.dispatchEvent(new Event('timeupdate'));
-			}
-		}, 250);
-
-		return () => {
-			clearInterval(sync_interval);
-			if (typeof el.currentTime === 'number' && el.currentTime > 0) {
-				youtube_player.update_time(show.number, el.currentTime);
-			}
-		};
+		if (!el || active_show_number == null || !in_mini_player) return;
+		youtube_player.attach_mini_player(el);
+		return () => youtube_player.detach_mini_player(el);
 	});
 
 	function handle_play() {
-		if (active_show) {
-			youtube_player.set_mini_player_playing(video_el);
-			if (video_el && video_el.duration > 0) {
-				video_el.dispatchEvent(new Event('durationchange'));
-			}
-		}
-	}
-
-	function handle_timeupdate() {
-		if (active_show && video_el && typeof video_el.currentTime === 'number') {
-			youtube_player.update_time(active_show.number, video_el.currentTime, video_el);
-		}
+		if (video_el) youtube_player.set_mini_player_playing(video_el);
 	}
 
 	function handle_pause() {
-		if (active_show) {
-			youtube_player.set_paused(active_show.number, video_el);
-		}
+		if (active_show && video_el) youtube_player.set_paused(active_show.number, video_el);
 	}
 </script>
 
-{#if show_mini_player && active_show && watch_url}
+{#if is_mounted && active_show && watch_url}
 	<aside
 		class="youtube-mini-player"
+		class:HIDDEN={!in_mini_player}
+		inert={!in_mini_player}
 		class:MINI={is_minimized}
 		class:DISMISSED={is_dismissed}
 		class:audio-player-open={$player_window_status !== 'HIDDEN'}
@@ -108,7 +55,7 @@
 				<button
 					type="button"
 					class="mini-player-minimize"
-					onclick={() => youtube_player.toggle_minimize()}
+					onclick={youtube_player.toggle_minimize}
 					aria-label={`${min_max_verb} Video Player`}
 					title={`${min_max_verb} Video Player`}
 				>
@@ -117,7 +64,7 @@
 				<button
 					type="button"
 					class="mini-player-close"
-					onclick={() => youtube_player.dismiss_mini_player()}
+					onclick={youtube_player.dismiss_mini_player}
 					aria-label="Close Video Player"
 					title="Close Video Player"
 				>
@@ -133,8 +80,6 @@
 				src={watch_url}
 				onplay={handle_play}
 				onplaying={handle_play}
-				ontimeupdate={handle_timeupdate}
-				onseeked={handle_timeupdate}
 				onpause={handle_pause}
 			></youtube-video>
 		</div>
@@ -157,7 +102,8 @@
 		transition: bottom 0.2s ease;
 
 		&.audio-player-open {
-			bottom: 110px;
+			/* --player-height is set by Player.svelte and follows its minimized state */
+			bottom: calc(var(--player-height, 110px) + 20px);
 		}
 
 		&.MINI {
@@ -170,6 +116,12 @@
 			.mini-player-minimize :global(svg) {
 				rotate: 180deg;
 			}
+		}
+
+		&.HIDDEN {
+			/* Not display: none, the YouTube iframe needs to stay rendered to stay ready */
+			visibility: hidden;
+			pointer-events: none;
 		}
 
 		&.DISMISSED {
@@ -239,4 +191,3 @@
 		aspect-ratio: 16 / 9;
 	}
 </style>
-

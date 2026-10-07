@@ -30,7 +30,9 @@
 		| 'instagram'
 		| 'threads'
 		| 'thumbtack'
-		| 'youtube';
+		| 'youtube'
+		| 'headphones'
+		| 'video';
 </script>
 
 <script lang="ts">
@@ -368,6 +370,41 @@
 			fill="currentColor"
 		/></svg
 	>
+{/if}
+{#if name === 'headphones'}
+	<svg
+		style="width: var(--icon_size, 16px);"
+		viewBox="0 0 24 24"
+		aria-hidden={aria_hidden}
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<title>{title}</title>
+		<path
+			d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"
+		/>
+	</svg>
+{/if}
+{#if name === 'video'}
+	<svg
+		style="width: var(--icon_size, 16px);"
+		viewBox="0 0 24 24"
+		aria-hidden={aria_hidden}
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<title>{title}</title>
+		<path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+		<rect x="2" y="6" width="14" height="12" rx="2" />
+	</svg>
 {/if}
 {#if name === 'facebook'}
 	<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon_size, 16px);" viewBox="0 0 24 24"
