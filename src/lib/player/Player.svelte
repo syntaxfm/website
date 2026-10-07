@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { player } from '$state/player';
 	import { player_window_status } from '$state/player_window_status';
+	import { get_youtube_id } from '$utilities/youtube';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
@@ -20,10 +21,27 @@
 	});
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
+	let has_video = $derived(Boolean(get_youtube_id($player.current_show?.youtube_url)));
+	let is_video = $derived($player.media_kind === 'VIDEO');
+	let media_kind_label = $derived(is_video ? 'Switch to Audio' : 'Switch to Video');
+	let player_height = $state(0);
+
+	// Lets the YouTube mini-player sit on top of the player in both its full and minimized sizes
+	$effect(() => {
+		document.documentElement.style.setProperty('--player-height', `${player_height}px`);
+	});
 </script>
 
-<section class="player {$player_window_status} {$player.status}">
+<section class="player {$player_window_status} {$player.status}" bind:offsetHeight={player_height}>
 	<div class="window-controls">
+		{#if has_video}
+			<button
+				onclick={() => player.set_media_kind(is_video ? 'AUDIO' : 'VIDEO')}
+				aria-label={media_kind_label}
+				title={media_kind_label}
+				><Icon name={is_video ? 'headphones' : 'video'} title={media_kind_label} /></button
+			>
+		{/if}
 		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
 		<button
 			class="minimize"
@@ -58,6 +76,7 @@
 				<audio
 					ontimeupdate={player.ontimeupdate}
 					onplay={player.onplay}
+					ondurationchange={player.ondurationchange}
 					onended={player.onended}
 					onpause={player.onpause}
 					slot="media"

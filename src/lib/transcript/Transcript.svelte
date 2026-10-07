@@ -53,21 +53,31 @@
 		}
 	);
 
-	let currentUtterance = $derived(slim_transcript.find((utterance, index) => {
-		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= utterance.start && current_time <= nextUtteranceStart;
-	}));
+	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.
+	let audio_timeline_time = $derived(
+		$player.current_show ? player.get_audio_timeline_time() : null
+	);
+	let current_time = $derived(audio_timeline_time ?? 0);
 
-	let currentTopic = $derived(aiShowNote?.summary.find((summary, index) => {
-		const nextSummary = aiShowNote?.summary[index + 1];
-		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
-		const topicStart = tsToS(summary.time);
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= topicStart && current_time <= topicEnd;
-	}));
+	let currentUtterance = $derived(
+		slim_transcript.find((utterance, index) => {
+			const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
+			return current_time >= utterance.start && current_time <= nextUtteranceStart;
+		})
+	);
 
-	let playing_show_is_this_show = $derived($player.current_show?.number === transcript.show_number);
+	let currentTopic = $derived(
+		aiShowNote?.summary.find((summary, index) => {
+			const nextSummary = aiShowNote?.summary[index + 1];
+			const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
+			const topicStart = tsToS(summary.time);
+			return current_time >= topicStart && current_time <= topicEnd;
+		})
+	);
+
+	let playing_show_is_this_show = $derived(
+		$player.current_show?.number === transcript.show_number && audio_timeline_time !== null
+	);
 
 	// const words = transcript.utterances
 	// 	.map((utt) => utt.words)
@@ -101,7 +111,6 @@
 	});
 	let placeTopic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
 		const summaryEnd = utterances.at(-1)?.end || Infinity;
-		const current_time = $player?.audio?.currentTime || 0;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (currentTopic?.id === summary.id) {
 			return 'current';
@@ -137,9 +146,7 @@
 			<div>
 				{#each utterances as utterance}
 					{@const progress =
-						((($player?.audio?.currentTime || 0) - utterance.start) /
-							(utterance.end - utterance.start)) *
-						100}
+						((current_time - utterance.start) / (utterance.end - utterance.start)) * 100}
 					<div
 						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
@@ -149,10 +156,8 @@
 						<div class="gutter">
 							<button
 								class="button-nunya"
-								onclick={async () => {
-									await player.start_show(show);
-									player.update_time(utterance.start);
-								}}>{format_time(utterance.start)}</button
+								onclick={() => player.play_timestamp(show, utterance.start)}
+								>{format_time(utterance.start)}</button
 							>
 							<p class="speaker fst-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}

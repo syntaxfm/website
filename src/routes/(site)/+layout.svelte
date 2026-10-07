@@ -21,8 +21,11 @@
 	let { data, children } = $props();
 	let { user, user_theme, latest } = $derived(data);
 
-	beforeNavigate(() => {
+	beforeNavigate((navigation) => {
+		if (navigation.willUnload) return;
 		youtube_player.before_navigate();
+		// afterNavigate doesn't run for cancelled or failed navigations
+		navigation.complete.catch(() => youtube_player.after_navigate());
 	});
 
 	afterNavigate(() => {

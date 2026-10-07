@@ -20,12 +20,7 @@
 		show_date?: any;
 	}
 
-	let {
-		show,
-		display = 'card',
-		heading = 'h4',
-		show_date = new Date(show.date)
-	}: Props = $props();
+	let { show, display = 'card', heading = 'h4', show_date = new Date(show.date) }: Props = $props();
 
 	let has_youtube = $derived(Boolean(get_youtube_id(show.youtube_url)));
 
@@ -64,16 +59,29 @@
 		];
 	}
 
+	// Video cards have space outside the main link (next to the video), make it clickable too.
+	// Keyboard and screen reader users already have the link.
 	function handle_card_click(e: MouseEvent) {
 		if (!(e.target instanceof Element)) return;
-		if (e.target.closest('a, button, .youtube-embed-wrap, youtube-video')) return;
-		goto(get_show_path(show));
+		if (e.target.closest('a, button, .youtube-embed-wrap')) return;
+		// Don't navigate away when someone is selecting text
+		if (window.getSelection()?.toString()) return;
+		const path = get_show_path(show);
+		if (e.metaKey || e.ctrlKey || e.shiftKey) {
+			window.open(path, '_blank', 'noopener');
+			return;
+		}
+		goto(path);
 	}
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<article class="{display} {has_youtube ? 'has-youtube' : ''}" onclick={handle_card_click}>
+<article
+	class={display}
+	class:has-youtube={has_youtube}
+	onclick={has_youtube ? handle_card_click : undefined}
+>
 	<a
 		href={get_show_path(show)}
 		aria-label="Show #{show.number} posted {format_date(show_date)}, {show.title}"
@@ -179,10 +187,10 @@
 		position: relative;
 		overflow: hidden;
 		align-items: start;
-		cursor: pointer;
 
 		&.has-youtube {
 			gap: 0.75rem;
+			cursor: pointer;
 			@media (--above-med) {
 				grid-template-columns: 1fr 1fr;
 				gap: 2rem;
@@ -234,9 +242,13 @@
 		&.list {
 			border: solid 1px var(--subtle);
 			margin-bottom: 20px;
-			padding: 20px;
+			padding: 20px 0;
 			margin-inline: auto;
-			width: 100%;
+
+			&.has-youtube {
+				padding: 20px;
+				width: 100%;
+			}
 		}
 
 		.description {
@@ -251,8 +263,18 @@
 			padding: 10px;
 
 			.details {
+				/* since we're hiding the description row at these dimensions (which was 100% height),
+				   need a new row to become 100% height -- the show title */
+				grid-template-rows: auto 1fr auto auto;
+			}
+			&.has-youtube .details {
+				/* the video sits below on mobile, so no row needs to stretch */
 				grid-template-rows: unset;
 				gap: 0.75rem;
+			}
+			/* leave room for the absolutely positioned show number */
+			&.has-youtube .date {
+				padding-right: calc(var(--font-size-lg) * 3.5);
 			}
 			.description {
 				display: none;
@@ -292,17 +314,11 @@
 		color: var(--primary);
 		line-height: 1;
 		text-align: right;
-		position: absolute;
-		top: 20px;
-		right: 20px;
 
 		@media (--below-med) {
+			position: absolute;
 			top: 10px;
 			right: 10px;
-		}
-
-		@media (--above-med) {
-			position: static;
 		}
 	}
 
