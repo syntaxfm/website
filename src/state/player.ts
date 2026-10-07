@@ -182,7 +182,7 @@ const new_player_state = () => {
 
 			// Finally Start Playing
 			if (autoplay) play_audio();
-		} catch (error) {
+		} catch {
 			console.log('setting initial...');
 			update((state) => ({ ...state, status: 'INITIAL' }));
 		}
