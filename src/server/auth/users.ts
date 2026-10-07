@@ -26,15 +26,33 @@ export async function find_or_create_user({ github_user }: Create_User) {
 	const user = await prisma_client.user.findUnique({
 		where: {
 			github_id: github_user.id
+		},
+		include: {
+			roles: {
+				select: {
+					role: {
+						select: {
+							name: true
+						}
+					}
+				}
+			}
 		}
 	});
+	const is_admin = ['wesbos', 'stolinski', 'bl0om', 'w3cj', 'randyrektor'].includes(
+		github_user.login
+	);
 	if (user) {
+		const has_admin_role = user.roles.some(({ role }) => role.name === 'admin');
+		if (is_admin && !has_admin_role) {
+			await add_user_to_role(user.id, 'admin');
+		}
 		return user;
 	} else {
 		const new_user = await create_user({ github_user });
 		// if it's syntax crew. Upgrade that shit
-		if (['wesbos', 'stolinski', 'bl0om', 'w3cj', 'randyrektor'].includes(github_user.login)) {
-			add_user_to_role(new_user.id, 'admin');
+		if (is_admin) {
+			await add_user_to_role(new_user.id, 'admin');
 		}
 		return new_user;
 	}
