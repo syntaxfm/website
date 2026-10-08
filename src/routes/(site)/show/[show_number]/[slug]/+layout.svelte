@@ -9,13 +9,16 @@
 	import Tabs from '$lib/Tabs.svelte';
 	import ShareWindow from '$lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
+	import YoutubeEmbed from '$lib/videos/YoutubeEmbed.svelte';
+	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
 	import SaveOffline from '$lib/player/SaveOffline.svelte';
 	import { tsToS } from '$/utilities/format_time.js';
 
 	let { data, children } = $props();
 	let { show, time_start } = $derived(data);
-	let downloadName = $derived(`Syntax #${show.number} - ${show.title}`);
+	let download_name = $derived(`Syntax #${show.number} - ${show.title}`);
+	let has_youtube = $derived(Boolean(get_youtube_id(show.youtube_url)));
 
 	async function handleClick(e: Event) {
 		const { target } = e;
@@ -23,20 +26,16 @@
 			e.preventDefault();
 			const href = target.getAttribute('href');
 			const timestamp = href ? tsToS(href.replace('#t=', '')) : 0;
-			// If we aren't already playing this episode, load it up and then jump it
-			if ($player.current_show?.number !== show.number) {
-				await player.start_show(show, timestamp);
-			} else {
-				// Jump to timestamp
-
-				player.update_time(timestamp);
-			}
+			// Show note timestamps are on the audio timeline, play_timestamp picks video or audio accordingly
+			await player.play_timestamp(show, timestamp);
 		}
 	}
 
 	function play_show() {
 		if ($player.current_show?.number !== show.number || $player.status === 'INITIAL') {
-			player.start_show(show, time_param_to_seconds(time_start));
+			const start_time = time_param_to_seconds(time_start);
+			// Without a ?t= param, resume from the saved position
+			player.start_show(show, start_time > 0 ? start_time : undefined);
 		} else if ($player.status === 'PLAYING') {
 			player.pause();
 		} else {
@@ -48,7 +47,7 @@
 		replace_color(node);
 	}
 
-	const showSchema = {
+	let show_schema = $derived({
 		'@context': 'https://schema.org/',
 		'@type': 'PodcastEpisode',
 		url: $page.url,
@@ -66,19 +65,17 @@
 			name: 'Syntax',
 			url: 'https://syntax.fm'
 		}
-	};
+	});
+	// The closing tag is split so it doesn't end this <script> block
+	let show_schema_html = $derived(
+		`<script type="application/ld+json">${JSON.stringify(show_schema, null, 2)}</` + `script>`
+	);
 </script>
 
 <svelte:head>
-	{@html `<script type="application/ld+json">\n${JSON.stringify(showSchema, null, 2)}\n</script>`}
+	{@html show_schema_html}
 </svelte:head>
-<header>
-	<span
-		title="Show #{show.number}"
-		aria-label="Show #{show.number}"
-		style:--transition-name="show-date-{show.number}"
-		class="show-number fst-900 grit">{show.number}</span
-	>
+{#snippet show_details()}
 	<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 		{format(new Date(show.date), 'MMMM do, yyyy')}
 		×
@@ -96,11 +93,40 @@
 	{#if show.aiShowNote?.description}
 		<p class="description"><span>{show.aiShowNote?.description}</span></p>
 	{/if}
+{/snippet}
+
+<header class:has-youtube={has_youtube}>
+	{#if has_youtube}
+		<div class="header-left">
+			{@render show_details()}
+			<HostsAndGuests hosts={show.hosts} guests={show.guests} />
+		</div>
+
+		<div class="header-right">
+			<span
+				title="Show #{show.number}"
+				aria-label="Show #{show.number}"
+				style:--transition-name="show-date-{show.number}"
+				class="show-number-small fst-900 grit">#{show.number}</span
+			>
+			<YoutubeEmbed {show} is_show_page={true} />
+		</div>
+	{:else}
+		<span
+			title="Show #{show.number}"
+			aria-label="Show #{show.number}"
+			style:--transition-name="show-date-{show.number}"
+			class="show-number fst-900 grit">{show.number}</span
+		>
+		{@render show_details()}
+	{/if}
 </header>
 
-<div>
-	<HostsAndGuests hosts={show.hosts} guests={show.guests} />
-</div>
+{#if !has_youtube}
+	<div>
+		<HostsAndGuests hosts={show.hosts} guests={show.guests} />
+	</div>
+{/if}
 
 <div class="show-actions-wrap">
 	<div class="show-actions zone" style="--fg: var(--fg-root);">
@@ -130,7 +156,7 @@
 				class="icon"
 				title="Download Episode"
 				aria-label="Download"
-				download={downloadName}
+				download={download_name}
 				href={show.url}
 			>
 				<Icon name="download" />
@@ -177,6 +203,59 @@
 		header {
 			grid-column: content / content;
 			position: relative;
+
+			&.has-youtube {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 0.75rem;
+				align-items: start;
+				margin-bottom: 2rem;
+
+				@media (--above-med) {
+					grid-template-columns: 1fr 1fr;
+					gap: 2rem;
+				}
+			}
+		}
+
+		.header-left {
+			min-width: 0;
+
+			:global(.guests-and-hosts) {
+				margin-bottom: 0;
+			}
+
+			/* leave room for the absolutely positioned show number */
+			.show-page-date {
+				@media (--below-med) {
+					padding-right: calc(var(--font-size-xl) * 3.5);
+				}
+			}
+		}
+
+		.header-right {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0;
+			width: 100%;
+
+			@media (--above-med) {
+				gap: 0.5rem;
+			}
+		}
+
+		.show-number-small {
+			font-size: var(--font-size-xl);
+			color: var(--primary);
+			line-height: 1;
+			text-align: right;
+
+			@media (--below-med) {
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
 		}
 
 		h1 {

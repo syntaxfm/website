@@ -1,4 +1,5 @@
 import type { Show } from '@prisma/client';
+import type { MediaKind } from './media_timeline';
 
 export interface PlayerState {
 	current_show: null | Show;
@@ -7,6 +8,8 @@ export interface PlayerState {
 	duration: number;
 	status: 'INITIAL' | 'LOADED' | 'LOADING' | 'PAUSED' | 'PLAYING';
 	initial_load: boolean;
+	// Whether the current show is playing from the audio file or the YouTube video
+	media_kind: MediaKind;
 }
 
 export const DB_NAME = 'SyntaxDB';

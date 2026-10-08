@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { preventDefault } from 'svelte/legacy';
-
+	import { goto } from '$app/navigation';
 	import { player } from '$state/player';
 	import { format_show_type } from '$utilities/format_show_type';
 	import get_show_path from '$utilities/slug';
+	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
 	import FacePile from './FacePile.svelte';
 	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
+	import YoutubeEmbed from './videos/YoutubeEmbed.svelte';
 	import type { ShowCard } from '$/server/shows/shows_queries';
 
 	interface Props {
@@ -18,24 +20,21 @@
 		show_date?: any;
 	}
 
-	let {
-		show,
-		display = 'card',
-		heading = 'h4',
-		show_date = new Date(show.date)
-	}: Props = $props();
+	let { show, display = 'card', heading = 'h4', show_date = new Date(show.date) }: Props = $props();
+
+	let has_youtube = $derived(Boolean(get_youtube_id(show.youtube_url)));
 
 	function format_date(date: Date, baseDate: Date = new Date()) {
-		const timeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+		const time_formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 		const diff = date.getTime() - baseDate.getTime();
 		const days = (diff / (1000 * 60 * 60 * 24)) * -1;
 		switch (true) {
 			case days < 1:
-				return timeFormatter.format(-Math.round(days * 24), 'hour');
+				return time_formatter.format(-Math.round(days * 24), 'hour');
 			case days < 12:
-				return timeFormatter.format(-Math.floor(days), 'day');
+				return time_formatter.format(-Math.floor(days), 'day');
 			case days < 30:
-				return timeFormatter.format(-Math.floor(days / 7), 'week');
+				return time_formatter.format(-Math.floor(days / 7), 'week');
 			default:
 				return format(date, 'MMMM do, yyyy');
 		}
@@ -59,9 +58,30 @@
 			{ name: 'Scott Tolinski', github: 'stolinski' }
 		];
 	}
+
+	// Video cards have space outside the main link (next to the video), make it clickable too.
+	// Keyboard and screen reader users already have the link.
+	function handle_card_click(e: MouseEvent) {
+		if (!(e.target instanceof Element)) return;
+		if (e.target.closest('a, button, .youtube-embed-wrap')) return;
+		// Don't navigate away when someone is selecting text
+		if (window.getSelection()?.toString()) return;
+		const path = get_show_path(show);
+		if (e.metaKey || e.ctrlKey || e.shiftKey) {
+			window.open(path, '_blank', 'noopener');
+			return;
+		}
+		goto(path);
+	}
 </script>
 
-<article class={display}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<article
+	class={display}
+	class:has-youtube={has_youtube}
+	onclick={has_youtube ? handle_card_click : undefined}
+>
 	<a
 		href={get_show_path(show)}
 		aria-label="Show #{show.number} posted {format_date(show_date)}, {show.title}"
@@ -76,9 +96,11 @@
 				<Icon name="play" />
 			</button>
 		{/if}
-		<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
-			>{show.number}</span
-		>
+		{#if !has_youtube}
+			<span style:--transition-name="show-date-{show.number}" class="show-number fst-900 grit"
+				>{show.number}</span
+			>
+		{/if}
 
 		<div class="details">
 			<p class="date" style:--transition-name="show-date-{show.number}">
@@ -143,6 +165,15 @@
 			</div>
 		</div>
 	</a>
+
+	{#if has_youtube}
+		<div class="video-column">
+			<span style:--transition-name="show-date-{show.number}" class="show-number-small fst-900 grit"
+				>#{show.number}</span
+			>
+			<YoutubeEmbed {show} />
+		</div>
+	{/if}
 </article>
 
 <style lang="postcss">
@@ -156,11 +187,22 @@
 		position: relative;
 		overflow: hidden;
 		align-items: start;
+
+		&.has-youtube {
+			gap: 0.75rem;
+			cursor: pointer;
+			@media (--above-med) {
+				grid-template-columns: 1fr 1fr;
+				gap: 2rem;
+			}
+		}
+
 		& a {
 			color: var(--fg);
 			display: flex;
 			gap: 10px;
 			height: 100%;
+			min-width: 0;
 		}
 
 		.details {
@@ -168,6 +210,7 @@
 			flex-grow: 1;
 			grid-template-rows: auto auto 1fr auto auto;
 			gap: 1rem;
+			min-width: 0;
 			& > * {
 				margin: 0;
 				position: relative;
@@ -201,6 +244,11 @@
 			margin-bottom: 20px;
 			padding: 20px 0;
 			margin-inline: auto;
+
+			&.has-youtube {
+				padding: 20px;
+				width: 100%;
+			}
 		}
 
 		.description {
@@ -219,6 +267,15 @@
 				   need a new row to become 100% height -- the show title */
 				grid-template-rows: auto 1fr auto auto;
 			}
+			&.has-youtube .details {
+				/* the video sits below on mobile, so no row needs to stretch */
+				grid-template-rows: unset;
+				gap: 0.75rem;
+			}
+			/* leave room for the absolutely positioned show number */
+			&.has-youtube .date {
+				padding-right: calc(var(--font-size-lg) * 3.5);
+			}
 			.description {
 				display: none;
 				mask-image: none;
@@ -236,6 +293,32 @@
 				text-align: right;
 				align-self: center;
 			}
+		}
+	}
+
+	.video-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0;
+		width: 100%;
+		min-width: 0;
+
+		@media (--above-med) {
+			gap: 0.5rem;
+		}
+	}
+
+	.show-number-small {
+		font-size: var(--font-size-lg);
+		color: var(--primary);
+		line-height: 1;
+		text-align: right;
+
+		@media (--below-med) {
+			position: absolute;
+			top: 10px;
+			right: 10px;
 		}
 	}
 
