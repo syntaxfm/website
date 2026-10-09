@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: pnpm-setup
         uses: pnpm/action-setup@v4
@@ -34,7 +34,7 @@ jobs:
           version: 10
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -45,5 +45,5 @@ jobs:
       - name: Setup DB
         run: pnpm db:generate
 
-      - name: Run Svelte Check
+      - name: Run Stylelint
         run: pnpm stylelint
