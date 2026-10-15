@@ -4,7 +4,7 @@ title: Deno Is Dead
 date: 1792407600000
 url: https://traffic.megaphone.fm/FSI8730245538.mp3
 youtube_url: https://www.youtube.com/watch?v=Ov_KPnwuu0U
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj
