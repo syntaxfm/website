@@ -33,7 +33,8 @@
 		| 'youtube'
 		| 'headphones'
 		| 'video'
-		| 'fullscreen';
+		| 'fullscreen'
+		| 'undock';
 </script>
 
 <script lang="ts">
@@ -545,6 +546,25 @@
 	>
 		<title>{title}</title>
 		<path d="M1.75 5.5V1.75H5.5M10.5 1.75h3.75V5.5M14.25 10.5v3.75H10.5M5.5 14.25H1.75V10.5" />
+	</svg>
+{/if}
+
+<!-- A small window with an arrow out of it, the video leaving the player bar for the page -->
+{#if name === 'undock'}
+	<svg
+		style="width: var(--icon_size, 16px);"
+		viewBox="0 0 16 16"
+		aria-hidden={aria_hidden}
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.5"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<title>{title}</title>
+		<path d="M6.5 2.25H2.75a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.5" />
+		<path d="M9.5 1.75h4.75V6.5M14.25 1.75 8 8" />
 	</svg>
 {/if}
 
