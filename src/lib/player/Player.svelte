@@ -9,6 +9,7 @@
 	import ShareButton from '../share/HairButton.svelte';
 	import { onMount } from 'svelte';
 	import { MediaQuery } from 'svelte/reactivity';
+	import { enter_fullscreen, open_show_page } from '$lib/videos/video_actions';
 	import type { Show } from '@prisma/client';
 
 	interface Props {
@@ -27,6 +28,8 @@
 	let is_video = $derived($player.media_kind === 'VIDEO');
 	let media_kind_label = $derived(is_video ? 'Switch to Audio' : 'Switch to Video');
 	let player_height = $state(0);
+	// The title stops short of the action bar, which sits over the top right of the player
+	let window_controls_width = $state(0);
 	// Only takes up room in the bar while the video is docked
 	let has_video_dock = $derived(
 		$youtube_player.status !== 'IDLE' &&
@@ -53,8 +56,12 @@
 	});
 </script>
 
-<section class="player {$player_window_status} {$player.status}" bind:offsetHeight={player_height}>
-	<div class="window-controls">
+<section
+	class="player {$player_window_status} {$player.status}"
+	bind:offsetHeight={player_height}
+	style:--window-controls-width="{window_controls_width}px"
+>
+	<div class="window-controls" bind:offsetWidth={window_controls_width}>
 		{#if has_video}
 			<button
 				onclick={() => player.set_media_kind(is_video ? 'AUDIO' : 'VIDEO')}
@@ -113,7 +120,8 @@
 					<media-control-bar class="media-bar">
 						<div class="media-top">
 							{#if is_stacked_video_bar}
-								<div class="video-dock" bind:this={dock_el}></div>
+								<!-- Too small for the video's own buttons, they go in the window controls instead -->
+								<div class="video-dock" data-actions="external" bind:this={dock_el}></div>
 							{/if}
 							<div class="media-controls">
 								<media-seek-backward-button>
@@ -160,6 +168,21 @@
 							<media-mute-button></media-mute-button>
 							<media-volume-range></media-volume-range>
 						</div>
+						{#if is_stacked_video_bar && $player.current_show}
+							<!-- The docked video is too small for its own buttons -->
+							<div class="video-actions">
+								<button
+									onclick={open_show_page}
+									aria-label={`Watch episode ${$player.current_show.number} on its page`}
+									title="Watch on episode page"><Icon name="undock" /></button
+								>
+								<button
+									onclick={enter_fullscreen}
+									aria-label="Full screen video"
+									title="Full screen"><Icon name="fullscreen" /></button
+								>
+							</div>
+						{/if}
 					</media-control-bar>
 				{/if}
 			</media-controller>
@@ -331,7 +354,7 @@
 					'title'
 					'controls';
 				gap: 10px;
-				padding: 40px 10px 10px;
+				padding: 10px;
 
 				/* Shown from --above-med, but the video takes its place here */
 				> :global(.art-wrapper) {
@@ -342,9 +365,14 @@
 					display: contents;
 				}
 
+				/* At the top beside the action bar like on desktop, cut off with an ellipsis before it */
 				.player-content > p {
 					grid-area: title;
 					margin: 0;
+					padding-right: var(--window-controls-width);
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				media-controller {
@@ -356,14 +384,32 @@
 
 				.media-bar {
 					width: 100%;
-					grid-template-columns: auto 1fr auto;
-					grid-template-rows: auto 10px auto auto;
+					grid-template-columns: auto auto 1fr auto;
+					/* The flexible rows take the space left by the taller video, keeping the controls packed together */
+					grid-template-rows: 1fr auto auto auto 1fr;
 					grid-template-areas:
-						'top top top'
-						'. . .'
-						'range range rate'
-						'volume time .';
+						'video . . .'
+						'video controls range rate'
+						'video . time .'
+						'video actions volume .'
+						'video . . .';
 					gap: 0 8px;
+				}
+
+				.video-actions {
+					/* Same column as the play buttons, so the same width, centered under them */
+					grid-area: actions;
+					justify-self: stretch;
+					justify-content: center;
+					display: flex;
+					gap: 6px;
+
+					/* Compact like the share button, without the default button padding */
+					button {
+						display: grid;
+						place-items: center;
+						padding: 0;
+					}
 				}
 
 				.media-range {
@@ -373,6 +419,7 @@
 				.media-sound {
 					grid-area: volume;
 					display: flex;
+					justify-content: flex-end;
 					align-items: center;
 					min-width: 0;
 				}
@@ -382,14 +429,17 @@
 				}
 
 				.media-top {
-					grid-area: top;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					gap: 10px;
+					display: contents;
+				}
+
+				.video-dock {
+					grid-area: video;
+					width: 120px;
+					margin-right: 4px;
 				}
 
 				.media-controls {
+					grid-area: controls;
 					align-items: center;
 					gap: 8px;
 				}
@@ -400,16 +450,23 @@
 					display: inline-flex;
 				}
 
+				/* The seek bar's track sits mid-row, so this pulls the text up to about 2px under it */
 				.time-with-duration {
 					grid-area: time;
 					display: inline-flex;
 					justify-self: end;
-					margin-top: -4px;
+					line-height: 1;
+					margin-top: -8px;
 				}
 
 				media-mute-button,
 				media-volume-range {
 					flex-shrink: 0;
+				}
+
+				/* Half media-chrome's default 100px */
+				media-volume-range {
+					width: 50px;
 				}
 
 				.media-range > media-time-display:not(.time-with-duration),

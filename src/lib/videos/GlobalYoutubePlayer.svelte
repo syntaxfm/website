@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { tick } from 'svelte';
-	import { goto } from '$app/navigation';
 	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
 	import { player } from '$state/player';
 	import { player_window_status } from '$state/player_window_status';
-	import get_show_path from '$utilities/slug';
 	import Icon from '$lib/Icon.svelte';
 	import YoutubeVideo from './YoutubeVideo.svelte';
+	import { enter_fullscreen, open_show_page } from './video_actions';
 
 	// The one <youtube-video> that plays every episode. It never moves in the DOM (that would reload the iframe),
 	// it's positioned over the playing episode's slot on the page, or over the dock in the bottom player bar.
@@ -24,6 +22,10 @@
 	let placement = $derived($youtube_player.target === 'SLOT' && slot_el ? 'SLOT' : 'DOCK');
 	let target_el = $derived(placement === 'SLOT' ? slot_el : dock_el);
 	let is_on_show_page = $derived(placement === 'SLOT' && youtube_player.is_show_page_slot(slot_el));
+	// A dock marked data-actions="external" shows these buttons itself, there's no room on a small video
+	let has_actions = $derived(
+		placement === 'DOCK' ? dock_el?.dataset.actions !== 'external' : is_on_show_page
+	);
 	let is_hidden = $derived(
 		$youtube_player.status === 'IDLE' ||
 			!target_el ||
@@ -101,37 +103,9 @@
 		else player.play();
 	}
 
-	// The show page's embed can register a little after navigation finishes
-	const SLOT_RETRY_MS = 100;
-	const SLOT_RETRIES = 20;
-
-	// Moves the video out of the bar and onto the episode's embed at the top of its show page
-	async function open_show_page() {
-		const show = active_show;
-		if (!show) return;
-		const path = get_show_path(show);
-		if (location.pathname !== path) await goto(path);
-		await tick();
-		for (let attempt = 0; attempt < SLOT_RETRIES; attempt++) {
-			if (await youtube_player.play_on_show_page(show)) return;
-			await new Promise((resolve) => setTimeout(resolve, SLOT_RETRY_MS));
-		}
-		// No embed on the page, the video keeps playing in the bar
-	}
-
 	function dock() {
 		player_window_status.set('ACTIVE');
 		youtube_player.dock();
-	}
-
-	function enter_fullscreen() {
-		const el = element as
-			| (YoutubeVideoElementLike & { webkitRequestFullscreen?: () => void })
-			| null;
-		if (!el) return;
-		// Safari on iPad only has the prefixed version. iPhone can't full screen anything but <video>.
-		if (el.requestFullscreen) void el.requestFullscreen().catch(() => {});
-		else el.webkitRequestFullscreen?.();
 	}
 
 	function handle_play() {
@@ -176,14 +150,14 @@
 					title={`#${active_show.number} - ${active_show.title}`}
 				></button>
 			{/if}
-			{#if active_show && (placement === 'DOCK' || is_on_show_page)}
+			{#if active_show && has_actions}
 				<div class="video-actions">
 					{#if placement === 'DOCK'}
 						<button
 							type="button"
 							onclick={open_show_page}
 							aria-label={`Watch episode ${active_show.number} on its page`}
-							title="Watch on episode page"><Icon name="expand" /></button
+							title="Watch on episode page"><Icon name="undock" /></button
 						>
 					{:else}
 						<button
