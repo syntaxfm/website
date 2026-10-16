@@ -32,7 +32,8 @@
 		| 'thumbtack'
 		| 'youtube'
 		| 'headphones'
-		| 'video';
+		| 'video'
+		| 'fullscreen';
 </script>
 
 <script lang="ts">
@@ -528,6 +529,23 @@
 			fill="var(--fg)"
 		/></svg
 	>
+{/if}
+
+{#if name === 'fullscreen'}
+	<svg
+		style="width: var(--icon_size, 16px);"
+		viewBox="0 0 16 16"
+		aria-hidden={aria_hidden}
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.5"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<title>{title}</title>
+		<path d="M1.75 5.5V1.75H5.5M10.5 1.75h3.75V5.5M14.25 10.5v3.75H10.5M5.5 14.25H1.75V10.5" />
+	</svg>
 {/if}
 
 <style>

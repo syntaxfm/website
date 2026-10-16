@@ -188,10 +188,10 @@ const new_player_state = () => {
 		}
 	}
 
-	// Plays a show's YouTube video, inline if its embed is in view, otherwise in the mini-player.
+	// Plays a show's YouTube video, over its embed if that's in view, otherwise docked in the player bar.
 	// Positions are on the video timeline.
 	// resume_in_place: keep playing wherever the video already is (bottom bar play/resume).
-	// Otherwise playback moves to the show's embed when it's in view (e.g. a card's "Play" button).
+	// Otherwise the video moves over the show's embed when it's in view (e.g. a card's "Play" button).
 	async function start_video(
 		requested_show: Show,
 		play_from_position?: number,
@@ -235,7 +235,7 @@ const new_player_state = () => {
 	 */
 	async function play_timestamp(show: Show, seconds: number) {
 		if (should_play_video(show)) {
-			if (await timelines_match(show, youtube_player.find_embed(show.number))) {
+			if (await timelines_match(show, youtube_player.find_video(show))) {
 				await start_video(show, seconds);
 				return;
 			}
@@ -302,14 +302,14 @@ const new_player_state = () => {
 				media_kind: 'VIDEO'
 			}));
 		}
-		// A video started from its own inline controls
+		// A video started from an embed's overlay
 		if (is_new_show && status === 'PLAYING') {
 			track_episode_start(active_show);
 		}
 		if (status === 'PLAYING' && state.audio && !state.audio.paused) {
 			state.audio.pause();
 		}
-		// With no video element mounted, the bottom bar drives the audio element,
+		// Before the video element mounts, the bottom bar drives the audio element,
 		// whose onplay hands back to the video
 		attach_media(active_element ?? state.audio);
 
@@ -384,7 +384,7 @@ const new_player_state = () => {
 			const was_playing = state.status === 'PLAYING';
 			const from_time =
 				kind === 'VIDEO' ? (state.audio?.currentTime ?? 0) : youtube_player.get_current_time();
-			const position = (await timelines_match(show, youtube_player.find_embed(show.number)))
+			const position = (await timelines_match(show, youtube_player.find_video(show)))
 				? from_time
 				: undefined;
 

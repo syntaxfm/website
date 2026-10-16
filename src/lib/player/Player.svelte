@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { player } from '$state/player';
 	import { player_window_status } from '$state/player_window_status';
+	import { youtube_player } from '$state/youtube_player';
 	import { get_youtube_id } from '$utilities/youtube';
 	import AlbumArt from './AlbumArt.svelte';
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
 	import { onMount } from 'svelte';
+	import { MediaQuery } from 'svelte/reactivity';
 	import type { Show } from '@prisma/client';
 
 	interface Props {
@@ -25,10 +27,29 @@
 	let is_video = $derived($player.media_kind === 'VIDEO');
 	let media_kind_label = $derived(is_video ? 'Switch to Audio' : 'Switch to Video');
 	let player_height = $state(0);
+	// Only takes up room in the bar while the video is docked
+	let has_video_dock = $derived(
+		$youtube_player.status !== 'IDLE' &&
+			($youtube_player.target === 'DOCK' || !$youtube_player.slot_el) &&
+			$player_window_status === 'ACTIVE'
+	);
+	let dock_el: HTMLDivElement | null = $state(null);
+	// Same as --stacked-video-bar in variables.css. max-width rather than range syntax, which older Safari's
+	// matchMedia doesn't understand. On small screens the dock sits beside the play buttons, otherwise at the
+	// start of the bar.
+	const stacked_video_bar = new MediaQuery('(max-width: 809px)');
+	let is_stacked_video_bar = $derived(has_video_dock && stacked_video_bar.current);
 
-	// Lets the YouTube mini-player sit on top of the player in both its full and minimized sizes
 	$effect(() => {
 		document.documentElement.style.setProperty('--player-height', `${player_height}px`);
+		// Episode slots behind the bar count as out of view, so the video docks
+		youtube_player.set_bottom_inset($player_window_status === 'HIDDEN' ? 0 : player_height);
+	});
+
+	// The global YouTube player is positioned over this while docked
+	$effect(() => {
+		if (!dock_el) return;
+		return youtube_player.register_dock(dock_el);
 	});
 </script>
 
@@ -54,12 +75,16 @@
 		>
 	</div>
 
-	<div class="player-container">
+	<div class="player-container" class:has-video-dock={has_video_dock}>
 		{#if $player_window_status === 'ACTIVE'}
 			<AlbumArt />
 		{/if}
 
-		<div style="flex-grow: 1;">
+		{#if has_video_dock && !is_stacked_video_bar}
+			<div class="video-dock" bind:this={dock_el}></div>
+		{/if}
+
+		<div class="player-content">
 			{#if $player.current_show}
 				<p>
 					<a id="player_show_title" href={get_show_path($player.current_show)}
@@ -86,38 +111,52 @@
 				></audio>
 				{#if $player_window_status === 'ACTIVE'}
 					<media-control-bar class="media-bar">
-						<div class="media-controls">
-							<media-seek-backward-button>
-								<span slot="icon">
-									<Icon name="back-30" />
-								</span>
-							</media-seek-backward-button>
-							<media-play-button>
-								<span slot="play" style="--icon_size: 26px;">
-									<Icon name="play" />
-								</span>
-								<span slot="pause" style="--icon_size: 26px;">
-									<Icon name="pause" />
-								</span>
-							</media-play-button>
-							<media-seek-forward-button>
-								<span slot="icon">
-									<Icon name="forward-30" />
-								</span>
-							</media-seek-forward-button>
+						<div class="media-top">
+							{#if is_stacked_video_bar}
+								<div class="video-dock" bind:this={dock_el}></div>
+							{/if}
+							<div class="media-controls">
+								<media-seek-backward-button>
+									<span slot="icon">
+										<Icon name="back-30" />
+									</span>
+								</media-seek-backward-button>
+								<media-play-button>
+									<span slot="play" style="--icon_size: 26px;">
+										<Icon name="play" />
+									</span>
+									<span slot="pause" style="--icon_size: 26px;">
+										<Icon name="pause" />
+									</span>
+								</media-play-button>
+								<media-seek-forward-button>
+									<span slot="icon">
+										<Icon name="forward-30" />
+									</span>
+								</media-seek-forward-button>
+							</div>
 						</div>
+						<!-- The stacked bar swaps in its own rate button and combined time, the others are hidden with CSS -->
 						<div class="media-range">
-							<media-time-display></media-time-display>
+							<media-time-display aria-hidden={is_stacked_video_bar}></media-time-display>
 							<div class="media-range-bookmarks">
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
 								></media-time-range>
 							</div>
-							<media-duration-display></media-duration-display>
+							<media-duration-display aria-hidden={is_stacked_video_bar}></media-duration-display>
+							<media-playback-rate-button class="docked-rate" aria-hidden={!is_stacked_video_bar}
+							></media-playback-rate-button>
+							<media-time-display
+								class="time-with-duration"
+								showduration
+								aria-hidden={!is_stacked_video_bar}
+							></media-time-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button></media-playback-rate-button>
+							<media-playback-rate-button aria-hidden={is_stacked_video_bar}
+							></media-playback-rate-button>
 							<media-mute-button></media-mute-button>
 							<media-volume-range></media-volume-range>
 						</div>
@@ -169,6 +208,11 @@
 			grid-column: controls / controls;
 			grid-row: 1;
 		}
+	}
+
+	/* Only lays anything out on mobile with the video docked, the video sits beside the controls */
+	.media-top {
+		display: contents;
 	}
 
 	.media-control-bar {
@@ -234,6 +278,7 @@
 		&.ACTIVE {
 			translate: 0 0 0;
 		}
+
 		&.MINI {
 			translate: 0 0 0;
 
@@ -275,7 +320,124 @@
 		padding: 10px 20px;
 		width: 100%;
 		display: flex;
+		align-items: center;
 		gap: 25px;
+
+		&.has-video-dock {
+			@media (--stacked-video-bar) {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				grid-template-areas:
+					'title'
+					'controls';
+				gap: 10px;
+				padding: 40px 10px 10px;
+
+				/* Shown from --above-med, but the video takes its place here */
+				> :global(.art-wrapper) {
+					display: none;
+				}
+
+				.player-content {
+					display: contents;
+				}
+
+				.player-content > p {
+					grid-area: title;
+					margin: 0;
+				}
+
+				media-controller {
+					grid-area: controls;
+					display: block;
+					width: 100%;
+					min-width: 0;
+				}
+
+				.media-bar {
+					width: 100%;
+					grid-template-columns: auto 1fr auto;
+					grid-template-rows: auto 10px auto auto;
+					grid-template-areas:
+						'top top top'
+						'. . .'
+						'range range rate'
+						'volume time .';
+					gap: 0 8px;
+				}
+
+				.media-range {
+					display: contents;
+				}
+
+				.media-sound {
+					grid-area: volume;
+					display: flex;
+					align-items: center;
+					min-width: 0;
+				}
+
+				.media-range-bookmarks {
+					grid-area: range;
+				}
+
+				.media-top {
+					grid-area: top;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 10px;
+				}
+
+				.media-controls {
+					align-items: center;
+					gap: 8px;
+				}
+
+				.docked-rate {
+					grid-area: rate;
+					align-self: center;
+					display: inline-flex;
+				}
+
+				.time-with-duration {
+					grid-area: time;
+					display: inline-flex;
+					justify-self: end;
+					margin-top: -4px;
+				}
+
+				media-mute-button,
+				media-volume-range {
+					flex-shrink: 0;
+				}
+
+				.media-range > media-time-display:not(.time-with-duration),
+				media-duration-display,
+				.media-sound media-playback-rate-button {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.player-content {
+		flex-grow: 1;
+		min-width: 0;
+	}
+
+	.time-with-duration,
+	.docked-rate {
+		display: none;
+	}
+
+	.video-dock {
+		flex-shrink: 0;
+		align-self: center;
+		width: 200px;
+		aspect-ratio: 16 / 9;
+		border-radius: var(--brad);
+		background: var(--black);
 	}
 
 	.media-range-bookmarks {
