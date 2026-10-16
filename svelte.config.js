@@ -17,6 +17,7 @@ const config = {
 				@custom-media --above-med (width > 700px);
 				@custom-media --above-large (width > 900px);
 				@custom-media --above-xlarge (width > 1200px);
+				@custom-media --stacked-video-bar (max-width: 809px);
 			`,
 				plugins: [
 					atImport,
