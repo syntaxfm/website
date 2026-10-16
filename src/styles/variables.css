@@ -5,6 +5,7 @@
 	@custom-media --below-med (width < 700px);
 	@custom-media --below-large (width < 900px);
 	@custom-media --below-xlarge (width < 1200px);
+
 	/* The player bar stacks a docked video beside its controls. Also in svelte.config.js and
 	   vite.config.ts for component styles, and matched in JS by Player.svelte. */
 	@custom-media --stacked-video-bar (max-width: 809px);
