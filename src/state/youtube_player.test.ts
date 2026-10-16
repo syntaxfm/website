@@ -10,13 +10,15 @@ function create_mock_video(initial_time = 0) {
 		duration: 3600,
 		paused: false,
 		isConnected: true,
+		loadComplete: Promise.resolve(),
+		api: { loadVideoById: vi.fn() },
 		dispatchEvent: vi.fn(),
 		play: vi.fn().mockResolvedValue(undefined),
 		pause: vi.fn().mockResolvedValue(undefined)
 	} as unknown as YoutubeVideoElementLike & { isConnected: boolean };
 }
 
-function create_mock_container(top = 100, bottom = 300, width = 400) {
+function create_mock_slot(top = 100, bottom = 300, width = 400) {
 	return {
 		isConnected: true,
 		getBoundingClientRect: () => ({
@@ -30,13 +32,8 @@ function create_mock_container(top = 100, bottom = 300, width = 400) {
 	} as unknown as HTMLElement;
 }
 
-function register(
-	show_number: number,
-	video_el: YoutubeVideoElementLike,
-	container_el = create_mock_container(),
-	is_show_page = false
-) {
-	return youtube_player.register_embed({ show_number, video_el, container_el, is_show_page });
+function register_slot(show_number: number, slot_el = create_mock_slot(), is_show_page = false) {
+	return youtube_player.register_slot({ show_number, slot_el, is_show_page });
 }
 
 const show_790 = {
@@ -58,236 +55,249 @@ describe('youtube_player store', () => {
 		youtube_player.close();
 	});
 
-	it('plays the inline embed when it is in view', async () => {
-		const inline_el = create_mock_video(0);
-		const unregister = register(790, inline_el);
+	it('first play over a slot starts once the global element mounts', async () => {
+		const slot_el = create_mock_slot();
+		const unregister = register_slot(790, slot_el);
 
-		await youtube_player.start_show(show_790, 30);
-
-		const state = get(youtube_player);
-		expect(state.active_show?.number).toBe(790);
-		expect(state.status).toBe('PLAYING');
-		expect(state.in_mini_player).toBe(false);
-		expect(state.active_element).toBe(inline_el);
-		expect(inline_el.currentTime).toBe(30);
-		expect(inline_el.play).toHaveBeenCalled();
-
-		unregister();
-	});
-
-	it('plays in the mini-player when the embed is hidden (zero size)', async () => {
-		const hidden_el = create_mock_video(0);
-		const unregister = register(790, hidden_el, create_mock_container(0, 0, 0));
-
-		await youtube_player.start_show(show_790);
-
-		const state = get(youtube_player);
-		expect(state.in_mini_player).toBe(true);
-		expect(state.active_element).toBeNull();
-		expect(hidden_el.play).not.toHaveBeenCalled();
-
-		unregister();
-	});
-
-	it('show page: pops out when scrolled away and docks back when scrolled into view', () => {
-		const inline_el = create_mock_video(42.5);
-		const mini_el = create_mock_video(42.5);
-		const unregister = register(790, inline_el, undefined, true);
-
-		youtube_player.set_playing(show_790, inline_el);
-		expect(get(youtube_player).origin_element).toBe(inline_el);
-
-		inline_el.currentTime = 65;
-		youtube_player.set_embed_visibility(inline_el, false);
-		// The resulting pause event from the inline element must not pause playback
-		youtube_player.set_paused(790, inline_el);
+		await youtube_player.play_in_slot(show_790, slot_el);
 
 		let state = get(youtube_player);
-		expect(state.in_mini_player).toBe(true);
 		expect(state.status).toBe('PLAYING');
-		expect(state.current_time).toBe(65);
-		expect(inline_el.pause).toHaveBeenCalled();
+		expect(state.video_id).toBe('dj6tUUTDXAo');
+		expect(state.target).toBe('SLOT');
+		expect(state.slot_el).toBe(slot_el);
 
-		youtube_player.attach_mini_player(mini_el);
-		mini_el.currentTime = 95.5;
-
-		youtube_player.set_embed_visibility(inline_el, true);
+		const el = create_mock_video();
+		const unregister_element = youtube_player.register_element(el);
+		await Promise.resolve();
+		await Promise.resolve();
 
 		state = get(youtube_player);
-		expect(state.in_mini_player).toBe(false);
-		expect(state.status).toBe('PLAYING');
-		expect(state.active_element).toBe(inline_el);
-		expect(state.current_time).toBe(95.5);
-		expect(mini_el.pause).toHaveBeenCalled();
+		expect(state.active_element).toBe(el);
+		expect(el.play).toHaveBeenCalled();
 
+		unregister_element();
 		unregister();
 	});
 
-	it('list card: keeps the mini-player when scrolled back into view until the card is played', async () => {
-		const card_el = create_mock_video(10);
-		const mini_el = create_mock_video(10);
-		const unregister = register(790, card_el);
+	it('prewarms only before anything has loaded, without playing', () => {
+		youtube_player.prewarm(show_790);
+		youtube_player.prewarm(show_760);
 
-		youtube_player.set_playing(show_790, card_el);
-		card_el.currentTime = 30;
-		youtube_player.set_embed_visibility(card_el, false);
-		youtube_player.attach_mini_player(mini_el);
-		mini_el.currentTime = 50;
-
-		// Scrolling the card back into view doesn't take playback back
-		youtube_player.set_embed_visibility(card_el, true);
-		let state = get(youtube_player);
-		expect(state.in_mini_player).toBe(true);
-		expect(state.active_element).toBe(mini_el);
-
-		// The card's Play button moves playback back into the card from the mini-player's position
-		await youtube_player.start_show(show_790);
-		state = get(youtube_player);
-		expect(state.in_mini_player).toBe(false);
-		expect(state.active_element).toBe(card_el);
-		expect(card_el.currentTime).toBe(50);
-		expect(mini_el.pause).toHaveBeenCalled();
-
-		unregister();
+		const state = get(youtube_player);
+		expect(state.video_id).toBe('dj6tUUTDXAo');
+		expect(state.status).toBe('IDLE');
+		expect(state.active_show).toBeNull();
 	});
 
-	it('keeps the mini-player going across navigation and hands off between episodes', () => {
-		const show_page_el = create_mock_video(50);
-		const mini_el = create_mock_video(50);
+	it('plays a prewarmed video in the same element without switching videos', async () => {
+		youtube_player.prewarm(show_790);
+		const el = create_mock_video();
+		const unregister_element = youtube_player.register_element(el);
+		const slot_el = create_mock_slot();
+		const unregister = register_slot(790, slot_el);
 
-		const unregister_show_page = register(790, show_page_el, undefined, true);
-		youtube_player.set_playing(show_790, show_page_el);
+		await youtube_player.play_in_slot(show_790, slot_el);
 
-		// Navigate from /show/790 to /shows
-		show_page_el.currentTime = 72;
+		expect(get(youtube_player).video_id).toBe('dj6tUUTDXAo');
+		expect(el.play).toHaveBeenCalled();
+
+		unregister();
+		unregister_element();
+	});
+
+	it('docks when the slot scrolls out of view and stays docked until the card is played', async () => {
+		const el = create_mock_video();
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		const slot_el = create_mock_slot();
+		const other_slot_el = create_mock_slot();
+		const unregister = register_slot(790, slot_el);
+		const unregister_other = register_slot(790, other_slot_el);
+
+		await youtube_player.play_in_slot(show_790, slot_el);
+
+		youtube_player.set_slot_visibility(slot_el, false);
+		expect(get(youtube_player).target).toBe('DOCK');
+
+		// Another slot for the same episode doesn't take it
+		youtube_player.set_slot_visibility(other_slot_el, true);
+		expect(get(youtube_player).target).toBe('DOCK');
+
+		// Scrolling back doesn't bring it back
+		youtube_player.set_slot_visibility(slot_el, true);
+		expect(get(youtube_player).target).toBe('DOCK');
+
+		// Jumping to a timestamp doesn't either
+		await youtube_player.start_show(show_790, 300);
+		expect(get(youtube_player).target).toBe('DOCK');
+
+		// Playing the card does, continuing from where it is
+		el.currentTime = 320;
+		await youtube_player.play_in_slot(show_790, slot_el);
+		const state = get(youtube_player);
+		expect(state.target).toBe('SLOT');
+		expect(state.slot_el).toBe(slot_el);
+		expect(el.currentTime).toBe(320);
+		// Moving never pauses, it's the same element
+		expect(el.pause).not.toHaveBeenCalled();
+
+		unregister_other();
+		unregister();
+		unregister_element();
+	});
+
+	it('keeps playing in the dock when the page with the slot goes away', async () => {
+		const el = create_mock_video();
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		const slot_el = create_mock_slot();
+		const unregister = register_slot(790, slot_el);
+		await youtube_player.play_in_slot(show_790, slot_el);
+
 		youtube_player.before_navigate();
-		show_page_el.isConnected = false;
+		unregister();
+
+		let state = get(youtube_player);
+		expect(state.status).toBe('PLAYING');
+		expect(state.target).toBe('DOCK');
+		expect(state.slot_el).toBeNull();
+		expect(el.pause).not.toHaveBeenCalled();
+
+		// The episode's show page mounting doesn't take it out of the dock
+		const show_page_slot = create_mock_slot();
+		const unregister_show_page = register_slot(790, show_page_slot, true);
+		state = get(youtube_player);
+		expect(state.slot_el).toBeNull();
+		expect(state.target).toBe('DOCK');
+
 		unregister_show_page();
-		youtube_player.after_navigate();
+		unregister_element();
+	});
+
+	it('switches episodes in the same element via video_id', async () => {
+		const el = create_mock_video(120);
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		const slot_790 = create_mock_slot();
+		const slot_760 = create_mock_slot();
+		const unregister_790 = register_slot(790, slot_790);
+		const unregister_760 = register_slot(760, slot_760);
+
+		await youtube_player.play_in_slot(show_790, slot_790);
+		vi.mocked(el.play).mockClear();
+		await youtube_player.play_in_slot(show_760, slot_760);
 
 		let state = get(youtube_player);
-		expect(state.in_mini_player).toBe(true);
-		expect(state.status).toBe('PLAYING');
-		expect(state.current_time).toBe(72);
-		expect(state.origin_element).toBeNull();
-
-		youtube_player.attach_mini_player(mini_el);
-		mini_el.currentTime = 110;
-
-		// A card for the same episode scrolling into view doesn't hijack the mini-player
-		const card_790_el = create_mock_video(0);
-		youtube_player.dock_to_inline(790, card_790_el);
-		expect(get(youtube_player).in_mini_player).toBe(true);
-
-		// Playing that card continues from the mini-player's position
-		youtube_player.set_playing(show_790, card_790_el);
-		state = get(youtube_player);
-		expect(state.in_mini_player).toBe(false);
-		expect(state.origin_element).toBe(card_790_el);
-		expect(state.current_time).toBe(110);
-		expect(card_790_el.currentTime).toBe(110);
-		expect(mini_el.pause).toHaveBeenCalled();
-
-		// Playing a different episode starts it fresh
-		youtube_player.enter_mini_player_from_scroll(790, card_790_el);
-		const card_760_el = create_mock_video(0);
-		youtube_player.set_playing(show_760, card_760_el);
-
-		state = get(youtube_player);
-		expect(state.in_mini_player).toBe(false);
 		expect(state.active_show?.number).toBe(760);
-		expect(state.origin_element).toBe(card_760_el);
-		expect(state.current_time).toBe(0);
-	});
-
-	it('the show page embed takes over playback of its episode when it mounts', async () => {
-		const mini_el = create_mock_video(0);
-		await youtube_player.start_show(show_790, 20);
-		youtube_player.attach_mini_player(mini_el);
-		mini_el.currentTime = 40;
-
-		const show_page_el = create_mock_video(0);
-		const unregister = register(790, show_page_el, undefined, true);
-
-		const state = get(youtube_player);
-		expect(state.in_mini_player).toBe(false);
-		expect(state.active_element).toBe(show_page_el);
-		expect(state.current_time).toBe(40);
-
-		unregister();
-	});
-
-	it('pauses without restarting and resumes from the same position', async () => {
-		const inline_el = create_mock_video(0);
-		const unregister = register(790, inline_el, undefined, true);
-		await youtube_player.start_show(show_790, 120);
-
-		inline_el.currentTime = 185;
-		youtube_player.pause();
-
-		let state = get(youtube_player);
-		expect(state.status).toBe('PAUSED');
-		expect(state.current_time).toBe(185);
-		expect(inline_el.pause).toHaveBeenCalled();
-
-		await youtube_player.play();
-		state = get(youtube_player);
-		expect(state.status).toBe('PLAYING');
-		expect(inline_el.currentTime).toBe(185);
-		expect(inline_el.play).toHaveBeenCalledTimes(2);
-
-		unregister();
-	});
-
-	it('resuming with nothing mounted opens the mini-player', async () => {
-		const inline_el = create_mock_video(0);
-		const unregister = register(790, inline_el);
-		await youtube_player.start_show(show_790, 10);
-		inline_el.currentTime = 30;
-		youtube_player.pause();
-
-		// Navigated away while paused
-		inline_el.isConnected = false;
-		unregister();
-
-		await youtube_player.play();
-		const state = get(youtube_player);
-		expect(state.status).toBe('PLAYING');
-		expect(state.in_mini_player).toBe(true);
-		expect(state.current_time).toBe(30);
-	});
-
-	it('minimizes, dismisses, and resumes minimized', async () => {
-		const mini_el = create_mock_video(60);
-
-		await youtube_player.start_show(show_790, 60);
-		youtube_player.attach_mini_player(mini_el);
-
-		let state = get(youtube_player);
-		expect(state.in_mini_player).toBe(true);
-		expect(state.is_minimized).toBe(false);
-
-		youtube_player.toggle_minimize();
-		expect(get(youtube_player).is_minimized).toBe(true);
+		expect(state.video_id).toBe('VIdM5VSlJVw');
+		expect(state.slot_el).toBe(slot_760);
+		expect(state.active_element).toBe(el);
+		// The wrapper loads it with loadVideoById, the store doesn't play the old video
+		expect(el.play).not.toHaveBeenCalled();
+		// Until the new video plays, the element still reports the old one
+		expect(youtube_player.find_video(show_760)).toBeNull();
+		youtube_player.on_element_pause();
 		expect(get(youtube_player).status).toBe('PLAYING');
-		youtube_player.toggle_minimize();
-		expect(get(youtube_player).is_minimized).toBe(false);
 
-		mini_el.currentTime = 95;
-		youtube_player.dismiss_mini_player();
+		youtube_player.on_element_playing();
+		expect(el.dispatchEvent).toHaveBeenCalledWith(
+			expect.objectContaining({ type: 'durationchange' })
+		);
+		expect(youtube_player.find_video(show_760)).toBe(el);
+
 		state = get(youtube_player);
-		expect(state.status).toBe('PAUSED');
-		expect(state.is_minimized).toBe(true);
-		expect(state.is_dismissed).toBe(true);
-		expect(state.current_time).toBe(95);
-		expect(mini_el.pause).toHaveBeenCalled();
+		expect(state.status).toBe('PLAYING');
 
+		unregister_760();
+		unregister_790();
+		unregister_element();
+	});
+
+	it('starts from outside a slot: over the slot if in view, otherwise docked', async () => {
+		const el = create_mock_video();
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+
+		await youtube_player.start_show(show_790);
+		expect(get(youtube_player).target).toBe('DOCK');
+
+		const hidden_slot = create_mock_slot(0, 0, 0);
+		const unregister_hidden = register_slot(760, hidden_slot);
+		await youtube_player.start_show(show_760);
+		expect(get(youtube_player).target).toBe('DOCK');
+		expect(get(youtube_player).slot_el).toBe(hidden_slot);
+		unregister_hidden();
+
+		const visible_slot = create_mock_slot();
+		const unregister_visible = register_slot(760, visible_slot);
+		await youtube_player.start_show(show_760);
+		expect(get(youtube_player).target).toBe('SLOT');
+		expect(get(youtube_player).slot_el).toBe(visible_slot);
+
+		unregister_visible();
+		unregister_element();
+	});
+
+	it('pauses and resumes without restarting', async () => {
+		const el = create_mock_video();
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		await youtube_player.start_show(show_790);
+
+		el.currentTime = 95;
+		youtube_player.pause();
+		let state = get(youtube_player);
+		expect(state.status).toBe('PAUSED');
+		expect(state.current_time).toBe(95);
+		expect(el.pause).toHaveBeenCalled();
+
+		vi.mocked(el.play).mockClear();
 		await youtube_player.play();
 		state = get(youtube_player);
 		expect(state.status).toBe('PLAYING');
-		expect(state.in_mini_player).toBe(true);
-		expect(state.is_minimized).toBe(true);
-		expect(state.is_dismissed).toBe(false);
-		expect(mini_el.play).toHaveBeenCalled();
+		expect(el.play).toHaveBeenCalled();
+		expect(el.currentTime).toBe(95);
+
+		unregister_element();
+	});
+
+	it('pause from YouTube controls updates state', async () => {
+		const el = create_mock_video();
+		// The element mounts once there's a video to show
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		await youtube_player.start_show(show_790);
+
+		el.currentTime = 30;
+		youtube_player.on_element_pause();
+		expect(get(youtube_player).status).toBe('PAUSED');
+		expect(get(youtube_player).current_time).toBe(30);
+
+		youtube_player.on_element_play();
+		expect(get(youtube_player).status).toBe('PLAYING');
+
+		unregister_element();
+	});
+
+	it('close resets but keeps the dock', () => {
+		const dock_el = create_mock_slot();
+		const unregister_dock = youtube_player.register_dock(dock_el);
+		youtube_player.prewarm(show_790);
+
+		youtube_player.close();
+
+		const state = get(youtube_player);
+		expect(state.video_id).toBeNull();
+		expect(state.status).toBe('IDLE');
+		expect(state.dock_el).toBe(dock_el);
+
+		unregister_dock();
+		expect(get(youtube_player).dock_el).toBeNull();
 	});
 });
