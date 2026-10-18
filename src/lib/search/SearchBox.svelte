@@ -311,6 +311,7 @@
 		bottom: 0;
 		text-align: right;
 		p {
+			/* --font-size-smallest is never defined, maybe --font-size-xs? */
 			font-size: var(--font-size-smallest);
 			color: white;
 			font-style: italic;

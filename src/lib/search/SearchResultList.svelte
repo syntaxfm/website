@@ -162,6 +162,7 @@
 	}
 
 	a strong {
+		/* --sk-text-2 is undefined */
 		color: var(--sk-text-2);
 	}
 

@@ -21,7 +21,9 @@
 		padding: 1rem;
 		font-size: 1.2rem;
 		text-transform: uppercase;
+		/* --sk-back-2 is never defined, maybe --black-2? */
 		background-color: var(--sk-back-2);
+		/* --sk-border-radius is never defined */
 		border-radius: 0 0 var(--sk-border-radius) var(--sk-border-radius);
 		pointer-events: all;
 		margin: 0;
