@@ -1,10 +1,8 @@
-import { redirect } from '@sveltejs/kit';
-
 // * Server Side Middleware
-// https://kit.svelte.dev/docs/hooks
+// https://svelte.dev/docs/kit/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-
+import { redirect } from '@sveltejs/kit';
 import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { find_user_by_access_token } from './server/auth/users';
@@ -24,7 +22,7 @@ export const redis =
 		: null;
 console.log(`🤓 Cache Status... ${cache_status}`);
 
-// import { ADMIN_LOGIN } from '$env/static/private';
+// import { ADMIN_LOGIN } from '$app/env/private';
 
 // * START UP
 // RUNS ONCE ON FILE LOAD

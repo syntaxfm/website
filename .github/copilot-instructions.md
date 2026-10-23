@@ -64,7 +64,7 @@ Svelte Runes
 
 UI and Styling
 
-- Use css vars defined in `src/variables.css` for css vars.
+- Use css vars defined in `src/styles/variables.css` for css vars.
 - Prefer css vars for any property where they exist. Colors specifically cannot be defined without css vars.
 - Use Svelte's built-in transition and animation features.
 - Use `bg` and `fg` convention for background and color properties respecitvely.
@@ -76,14 +76,20 @@ SvelteKit Project Structure
   - src/
     - lib/
     - routes/
-  	- assets/
-  	- server/
-  	- actions/
+    - assets/
+    - server/
+    - actions/
+    - state/
+    - utilities/
     - app.html
+    - env.ts
+    - params.ts
   - static/
-  - svelte.config.js
-  - vite.config.js
+  - vite.config.ts
   ```
+- SvelteKit config lives in the `sveltekit()` plugin in `vite.config.ts`; there is no `svelte.config.js`.
+- Import with the `package.json` subpath imports (`#lib/*`, `#server/*`, `#state/*`, `#utilities/*`, `#actions/*`, `#assets/*`, `#styles/*`, `#const`) and include the file extension (`.js` for `.ts` files).
+- Declare environment variables in `src/env.ts` and import them from `$app/env/private` or `$app/env/public`.
 
 Component Development
 
@@ -126,7 +132,7 @@ State Management
   	import { counter } from './counter.svelte.ts';
   </script>
 
-  <button on:click={() => counter.increment()}>
+  <button onclick={() => counter.increment()}>
   	Count: {counter.count}
   </button>
   ```
@@ -142,7 +148,7 @@ Server-Side Rendering (SSR) and Static Site Generation (SSG)
 
 - Leverage SvelteKit's SSR capabilities for dynamic content.
 - Implement SSG for static pages using prerender option.
-- Use the adapter-auto for automatic deployment configuration.
+- Deploys to Vercel with adapter-vercel (Node.js 22 runtime).
 
 Performance Optimization
 
@@ -186,7 +192,7 @@ Key Conventions
 
 1. Embrace Svelte's simplicity and avoid over-engineering solutions.
 2. Use SvelteKit for full-stack applications with SSR and API routes.
-3. Prioritize Web Vitals (LCP, FID, CLS) for performance optimization.
+3. Prioritize Web Vitals (LCP, INP, CLS) for performance optimization.
 4. Use environment variables for configuration management.
 5. Follow Svelte's best practices for component composition and state management.
 6. Ensure cross-browser compatibility by testing on multiple platforms.

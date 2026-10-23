@@ -1,5 +1,5 @@
 // * Client side Middleware
-// https://kit.svelte.dev/docs/hooks
+// https://svelte.dev/docs/kit/hooks
 
 import { dev } from '$app/env';
 import { handleErrorWithSentry } from '@sentry/sveltekit';

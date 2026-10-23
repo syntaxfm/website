@@ -4,11 +4,11 @@ A tasty treats podcast for Web Developers.
 
 This is the site that runs [Syntax.fm](https://syntax.fm) — go there to listen to it!
 
-This site is built on SvelteKit.
+This site is built on SvelteKit 3.
 
 ## Requirements
 
-- Node 22.0.0 or higher
+- Node 22.17.0 or higher
 
 ## Prerequisite
 
@@ -70,18 +70,20 @@ That's it!
 
 Just about all major code folders live in `/src` with the exception of `/shows` - the md source of truth for all podcast episodes as well as `/prisma` for our db connections and schema.
 
-|              |                                                                                               | Alias      |
-| ------------ | --------------------------------------------------------------------------------------------- | ---------- |
-| `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements            | $actions   |
-| `/assets`    | Static assets that are used via @import                                                       | $assets    |
-| `/server`    | All database and server-side only reusable code                                               | $server    |
-| `/lib`       | (SK Paradigm) Components and files that are used in more than one route                       | $lib       |
-| `/params`    | (SK Paradigm) This is a SvelteKit specific folder to add validation on parameter based routes |            |
-| `/routes`    | (SK Paradigm) File System based routing                                                       |            |
-| `/state`     | Global State containers and resolvers                                                         | $state     |
-| `/styles`    | CSS                                                                                           |
-| `/utilities` | Global Utility functions                                                                      | $utilities |
-| `/`          | Root                                                                                          | $          |
+|              |                                                                                    | Import         |
+| ------------ | ---------------------------------------------------------------------------------- | -------------- |
+| `/actions`   | Svelte Actions, these are reusable functions that act as lifecycle on DOM elements | `#actions/*`   |
+| `/assets`    | Images and other assets imported by code and CSS                                   | `#assets/*`    |
+| `/server`    | All database and server-side only reusable code                                    | `#server/*`    |
+| `/lib`       | (SK Paradigm) Components and files that are used in more than one route            | `#lib/*`       |
+| `/routes`    | (SK Paradigm) File System based routing                                            |                |
+| `/state`     | Global State containers and resolvers                                              | `#state/*`     |
+| `/styles`    | CSS                                                                                | `#styles/*`    |
+| `/utilities` | Global Utility functions                                                           | `#utilities/*` |
+| `params.ts`  | (SK Paradigm) Validation for parameter based routes, e.g. `[number=show_number]`   |                |
+| `env.ts`     | Declares every environment variable the app reads                                  |                |
+
+Imports are [subpath imports](https://nodejs.org/api/packages.html#subpath-imports) defined in `package.json`. They map paths literally, so include the file extension, using `.js` for `.ts` files (e.g. `#server/prisma-client.js`). In CSS, `#` means a fragment, so `url()`s use relative paths instead.
 
 ### Stylin'
 
@@ -96,6 +98,7 @@ These are the available media queries:
 @custom-media --above-med (width > 700px);
 @custom-media --above-large (width > 900px);
 @custom-media --above-xlarge (width > 1200px);
+@custom-media --stacked-video-bar (max-width: 809px);
 
 // Usage
 @media (--above-med) {
@@ -103,6 +106,8 @@ These are the available media queries:
 ```
 
 ### Where to get your own Environment Variables
+
+Any new environment variable must also be declared in `src/env.ts`, or SvelteKit won't expose it. Read them via `$app/env/private` or `$app/env/public`.
 
 | Variable                     | Where to get it                                                         | Notes                                                                                           |
 | ---------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |

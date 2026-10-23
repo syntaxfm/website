@@ -65,7 +65,7 @@
 	"type": "module",
 	"packageManager": "pnpm@12.8.1",
 	"engines": {
-		"node": "^22",
+		"node": "^22.17",
 		"pnpm": ">=12"
 	},
 	"dependencies": {

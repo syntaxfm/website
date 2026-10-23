@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Core Commands
 
 - `pnpm dev` - Start development server with preheat script
-- `pnpm build` - Build production application (runs svelte build + file copying)
+- `pnpm build` - Build production application (`vite build`)
 - `pnpm check` - Run TypeScript type checking
 - `pnpm lint` - Run prettier + eslint + stylelint
 - `pnpm test` - Run Playwright tests
@@ -30,8 +30,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Technology Stack
 
-- **Frontend**: SvelteKit with Svelte 5, TypeScript
-- **Backend**: Node.js with SvelteKit server-side rendering
+- **Frontend**: SvelteKit 3 with Svelte 5, TypeScript 6, Vite 8
+- **Backend**: Node.js (22.17+) with SvelteKit server-side rendering
 - **Database**: MySQL with Prisma ORM (PlanetScale)
 - **Caching**: Redis (Upstash)
 - **Deployment**: Vercel with Node.js 22.x runtime
@@ -46,12 +46,27 @@ src/
 │   ├── (blank)/       # Clean layout for embeds
 │   └── api/           # API endpoints
 ├── lib/               # Reusable components
-├── server/            # Server-side logic and utilities
+├── server/            # Server-side logic and utilities (server-only)
 ├── state/             # Svelte stores for client state
 ├── styles/            # CSS architecture with themes
 ├── actions/           # Svelte actions
-└── utilities/         # Shared utilities
+├── utilities/         # Shared utilities (safe on client and server)
+├── env.ts             # Declares every environment variable the app reads
+└── params.ts          # Route param matchers
 ```
+
+SvelteKit 3 treats any `server` directory as server-only, so code that client components import (e.g. `src/utilities/transcripts.ts`) must live outside `src/server/`.
+
+### Imports
+
+Paths use `package.json` subpath imports (SvelteKit's `config.alias` is deprecated): `#lib/*`, `#server/*`, `#state/*`, `#utilities/*`, `#actions/*`, `#assets/*`, `#styles/*`, plus `#const` and `#hooks.server`.
+
+- Subpath imports map literally, so include the file extension. Use `.js` for `.ts` files: `import { prisma_client } from '#server/prisma-client.js'`, `import Icon from '#lib/Icon.svelte'`.
+- `#` means a fragment in CSS, so CSS `url()`s use relative paths: `url('../assets/Grit Mask@2x.png')`.
+
+### Environment Variables
+
+Every variable must be declared in `src/env.ts` with `defineEnvVars`. Undeclared variables aren't available. Import them from `$app/env/private` (server) or `$app/env/public` (`PUBLIC_` vars). Mark build-time values with `static: true`; runtime ones use a `schema`.
 
 ### Database Schema
 
@@ -110,16 +125,15 @@ The application manages podcast content with these key models:
 
 ### Audio Player
 
-- Advanced web audio player with offline support
+- Audio player built on media-chrome, which also controls the YouTube player for episodes with video
 - Media Session API integration
 - Position saving and resume functionality
-- Service worker for offline playback
+- Offline episodes saved with the Cache API, player state in IndexedDB
 
 ### Search System
 
-- Client-side search using FlexSearch
-- Web workers for non-blocking search
-- Fuzzy search across shows, guests, and transcripts
+- Client-side search using FlexSearch, in a web worker so it doesn't block the page
+- Prefix search over episode titles and show notes (`/content.json`)
 
 ### Admin Dashboard
 
@@ -132,8 +146,7 @@ The application manages podcast content with these key models:
 
 - Redis caching for database queries
 - IndexedDB for offline data storage
-- Aggressive caching strategies
-- Service worker for offline functionality
+- CDN caching via `cache-control` headers on show pages and APIs
 
 ## Development Workflow
 
@@ -169,47 +182,51 @@ The application manages podcast content with these key models:
 
 ### State Management
 
-```typescript
-// For complex state, use classes
-class PlayerState {
-	currentShow = $state<Show | null>(null);
-	isPlaying = $state(false);
+Existing global state (`player`, `youtube_player`, etc.) uses Svelte stores in `src/state/*.ts`. For new complex state, use a class in a `.svelte.ts` file:
 
-	play() {
-		this.isPlaying = true;
+```typescript
+// src/state/counter.svelte.ts
+class Counter {
+	count = $state(0);
+
+	increment() {
+		this.count += 1;
 	}
 }
 
-export const playerState = new PlayerState();
+export const counter = new Counter();
 ```
 
 ### Database Queries
 
 ```typescript
-// Use the cached prisma client
-import { prisma } from '$server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
+import { super_cache_mang } from '#server/cache/cache_mang.js';
 
-// Cache database queries
-const shows = await prisma.show.findMany({
-	where: { show_type: 'TASTY' },
-	orderBy: { number: 'desc' }
-});
+// Wrap queries in super_cache_mang to cache them in Redis
+const shows = await super_cache_mang('tasty_shows', () =>
+	prisma_client.show.findMany({
+		where: { show_type: 'TASTY' },
+		orderBy: { number: 'desc' }
+	})
+);
 ```
 
 ### Component Structure
 
 ```svelte
 <script lang="ts">
-	import { playerState } from '$state/player.svelte';
+	import type { Show } from '@prisma/client';
+	import { player } from '#state/player.js';
 
-	let { show } = $props<{ show: Show }>();
-	let isPlaying = $derived(playerState.currentShow?.id === show.id);
+	let { show }: { show: Show } = $props();
+	let is_current = $derived($player.current_show?.number === show.number);
 </script>
 
 <div class="show-card">
 	<h3>{show.title}</h3>
-	<button onclick={() => playerState.play(show)}>
-		{isPlaying ? 'Pause' : 'Play'}
+	<button onclick={() => player.start_show(show)}>
+		{is_current ? 'Playing' : 'Play'}
 	</button>
 </div>
 ```
