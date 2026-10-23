@@ -1,0 +1,12 @@
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  '@sentry/cli': true
+  '@sentry/profiling-node': true
+  '@sveltejs/kit': true
+  bufferutil: true
+  core-js: true
+  esbuild: true
+  prisma: true
+  svelte-preprocess: true
+  utf-8-validate: true
