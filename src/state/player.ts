@@ -122,9 +122,10 @@ const new_player_state = () => {
 	}
 
 	// Prepares the player for the initial page load. Only called once.
-	async function initialize(latest_show: Show) {
+	async function initialize(latest_show?: Show) {
 		const saved_state = await load_state_from_indexed_db();
 		const show = saved_state?.current_show ?? latest_show;
+		if (!show) return;
 		await load_show(show, true);
 		update((state) => ({ ...state, media_kind: should_play_video(show) ? 'VIDEO' : 'AUDIO' }));
 	}

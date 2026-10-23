@@ -13,7 +13,7 @@
 	import type { Show } from '@prisma/client';
 
 	interface Props {
-		initial_show: Show;
+		initial_show?: Show;
 	}
 
 	let { initial_show }: Props = $props();
