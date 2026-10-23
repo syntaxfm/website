@@ -1,8 +1,9 @@
-import { sentrySvelteKit } from '@sentry/sveltekit';
+import { sentrySvelteKit } from '@sentry/sveltekit/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { codecovSvelteKitPlugin } from '@codecov/sveltekit-plugin';
 import { loadEnv } from 'vite';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
@@ -10,11 +11,9 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			sentrySvelteKit({
-				sourceMapsUploadOptions: {
-					org: 'syntax-fm',
-					project: 'website',
-					authToken: env.SENTRY_AUTH_TOKEN
-				}
+				org: 'syntax-fm',
+				project: 'website',
+				authToken: env.SENTRY_AUTH_TOKEN
 			}),
 			sveltekit(),
 			codecovSvelteKitPlugin({
@@ -27,33 +26,16 @@ export default defineConfig(({ mode }) => {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
 		css: {
-			devSourcemap: true,
-			preprocessorOptions: {
-				postcss: {
-					additionalData: `
-				@custom-media --below-small (width < 400px);
-				@custom-media --below-med (width < 700px);
-				@custom-media --below-large (width < 900px);
-				@custom-media --below-xlarge (width < 1200px);
-
-				@custom-media --above-small (width > 400px);
-				@custom-media --above-med (width > 700px);
-				@custom-media --above-large (width > 900px);
-				@custom-media --above-xlarge (width > 1200px);
-				@custom-media --stacked-video-bar (max-width: 809px);
-				`
-				}
-			}
+			devSourcemap: true
 		},
 		ssr: {
 			external: ['@sentry/profiling-node']
 		},
-		esbuild: {
-			exclude: '@sentry/profiling-node'
-		},
 		resolve: {
 			alias: {
-				'.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js'
+				'.prisma/client/index-browser': fileURLToPath(
+					new URL('./node_modules/@prisma/client/index-browser.js', import.meta.url)
+				)
 			}
 		},
 		define: {

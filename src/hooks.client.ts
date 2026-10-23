@@ -26,7 +26,8 @@ Sentry.init({
 			blockAllMedia: false
 		})
 	],
-	profilesSampleRate: 1.0,
+	profileSessionSampleRate: 1.0,
+	profileLifecycle: 'trace',
 	environment: dev ? 'development' : 'production'
 });
 

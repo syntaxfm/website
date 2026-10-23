@@ -107,8 +107,8 @@ const new_player_state = () => {
 	function track_episode_start(show: Show) {
 		try {
 			// Analytics
-			Sentry.metrics.increment('episode_start', 1, { tags: { episode: show.number } });
-			Sentry.metrics.increment('all_episode_start', 1);
+			Sentry.metrics.count('episode_start', 1, { attributes: { episode: show.number } });
+			Sentry.metrics.count('all_episode_start', 1);
 
 			// Load incomming show into media session
 			// Side note: the mediaSession API is neat
