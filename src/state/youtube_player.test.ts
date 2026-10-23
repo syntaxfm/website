@@ -69,12 +69,10 @@ describe('youtube_player store', () => {
 
 		const el = create_mock_video();
 		const unregister_element = youtube_player.register_element(el);
-		await Promise.resolve();
-		await Promise.resolve();
 
 		state = get(youtube_player);
 		expect(state.active_element).toBe(el);
-		expect(el.play).toHaveBeenCalled();
+		await vi.waitFor(() => expect(el.play).toHaveBeenCalled());
 
 		unregister_element();
 		unregister();
@@ -281,6 +279,42 @@ describe('youtube_player store', () => {
 
 		youtube_player.on_element_play();
 		expect(get(youtube_player).status).toBe('PLAYING');
+
+		unregister_element();
+	});
+
+	it('restarts a video that played to the end', async () => {
+		const el = create_mock_video();
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		await youtube_player.start_show(show_790);
+
+		el.currentTime = 3600;
+		// The element fires pause, then ended
+		youtube_player.on_element_pause();
+		youtube_player.on_element_ended();
+		expect(get(youtube_player).status).toBe('PAUSED');
+		expect(youtube_player.get_current_time()).toBe(0);
+
+		await youtube_player.play();
+		expect(el.currentTime).toBe(0);
+		expect(el.play).toHaveBeenCalled();
+
+		unregister_element();
+	});
+
+	it('hands the show to the failure handler when the video errors', async () => {
+		const on_failure = vi.fn();
+		youtube_player.on_failure(on_failure);
+		const el = create_mock_video();
+		youtube_player.prewarm(show_790);
+		const unregister_element = youtube_player.register_element(el);
+		await youtube_player.start_show(show_790);
+
+		el.currentTime = 42;
+		youtube_player.on_element_error();
+		expect(on_failure).toHaveBeenCalledWith(show_790, 42);
+		expect(get(youtube_player).status).toBe('IDLE');
 
 		unregister_element();
 	});

@@ -140,6 +140,8 @@
 				onplay={handle_play}
 				onplaying={handle_playing}
 				onpause={youtube_player.on_element_pause}
+				onended={youtube_player.on_element_ended}
+				onerror={youtube_player.on_element_error}
 			/>
 			{#if placement === 'DOCK' && active_show}
 				<button

@@ -2,6 +2,7 @@ import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
 import { get_youtube_id } from '#utilities/youtube.js';
 import { get_saved_position, record_duration, save_position } from './media_timeline';
+import { mark_youtube_unavailable } from './media_preference';
 
 // The subset of the YouTube IFrame API player we call directly
 interface YoutubeIframeApi {
@@ -51,6 +52,11 @@ export interface YoutubePlayerState {
 const VIEWPORT_TOLERANCE = 4;
 const TICK_INTERVAL = 250;
 const SWITCHING_TIMEOUT = 10000;
+// How long the player gets to load before we give up on YouTube and play the audio
+const LOAD_TIMEOUT = 10000;
+const YOUTUBE_API_SCRIPT = 'youtube.com/iframe_api';
+
+export type YoutubeFailureHandler = (show: Show, video_time: number) => void;
 
 function element_time(el: YoutubeVideoElementLike | null | undefined): number | null {
 	if (!el) return null;
@@ -67,16 +73,17 @@ function safe_pause(el: YoutubeVideoElementLike | null | undefined) {
 	}
 }
 
-async function seek_and_play(el: YoutubeVideoElementLike, time: number) {
-	try {
-		if (el.loadComplete) await el.loadComplete;
-		if (time > 0 && Math.abs((el.currentTime || 0) - time) > 1) {
-			el.currentTime = time;
-		}
-		await el.play();
-	} catch {
-		// Autoplay can be blocked by the browser, the user can still hit play
-	}
+// Resolves false if the player hasn't loaded within LOAD_TIMEOUT
+async function wait_for_load(el: YoutubeVideoElementLike): Promise<boolean> {
+	if (!el.loadComplete || el.isLoaded) return true;
+	let timeout: ReturnType<typeof setTimeout> | undefined;
+	const timed_out = new Promise<false>((resolve) => {
+		timeout = setTimeout(() => resolve(false), LOAD_TIMEOUT);
+	});
+	const loaded = el.loadComplete.then(() => true);
+	const result = await Promise.race([loaded, timed_out]);
+	clearTimeout(timeout);
+	return result;
 }
 
 function create_youtube_player() {
@@ -104,6 +111,61 @@ function create_youtube_player() {
 	// After loadVideoById the element reports the previous video's duration and time until the new one plays
 	let is_switching_video = false;
 	let switching_timer: ReturnType<typeof setTimeout> | undefined;
+	// The video played to the end, so the next play starts it over
+	let has_ended = false;
+	let failure_handler: YoutubeFailureHandler | null = null;
+
+	/**
+	 * The video can't play (YouTube blocked or too slow to load, the video is private, region locked, etc).
+	 * Stops it and hands the show to the failure handler, which plays the audio instead.
+	 */
+	function fail() {
+		const state = get(store);
+		const show = state.active_show;
+		if (!show || state.status === 'IDLE') return;
+		const time = live_time(state);
+		close();
+		failure_handler?.(show, time);
+	}
+
+	function on_failure(handler: YoutubeFailureHandler) {
+		failure_handler = handler;
+	}
+
+	// Seeks unless time is null, then plays. Gives up on the video if the player never loads.
+	async function seek_and_play(el: YoutubeVideoElementLike, time: number | null) {
+		try {
+			if (!(await wait_for_load(el))) {
+				// The API script never loaded, it's blocked (or the network is), so stop trying videos
+				if (typeof window !== 'undefined' && !('YT' in window)) mark_youtube_unavailable();
+				if (get(store).active_element === el) fail();
+				return;
+			}
+			if (time != null && Math.abs((el.currentTime || 0) - time) > 1) {
+				el.currentTime = time;
+			}
+			await el.play();
+		} catch {
+			// Autoplay can be blocked by the browser, the user can still hit play
+		}
+	}
+
+	// A blocked API script fails without an event from <youtube-video>, its error only reaches window
+	if (typeof window !== 'undefined') {
+		window.addEventListener(
+			'error',
+			(event) => {
+				if (
+					event.target instanceof HTMLScriptElement &&
+					event.target.src.includes(YOUTUBE_API_SCRIPT)
+				) {
+					mark_youtube_unavailable();
+					fail();
+				}
+			},
+			true
+		);
+	}
 
 	// The new video may never play (autoplay blocked, unavailable), so switching gives up after a while
 	function set_switching_video(value: boolean) {
@@ -140,6 +202,7 @@ function create_youtube_player() {
 	});
 
 	function live_time(state: YoutubePlayerState) {
+		if (has_ended) return 0;
 		if (is_switching_video) return state.current_time;
 		return element_time(state.active_element) ?? state.current_time;
 	}
@@ -323,6 +386,7 @@ function create_youtube_player() {
 
 		if (state.status !== 'IDLE' && state.active_show?.number !== show.number) save_now(state);
 		if (element && !is_loaded) set_switching_video(true);
+		has_ended = false;
 
 		update((s) => ({
 			...s,
@@ -398,6 +462,7 @@ function create_youtube_player() {
 
 	// EVENTS FROM THE ELEMENT
 	function on_element_play() {
+		has_ended = false;
 		const state = get(store);
 		if (state.active_show && state.status !== 'PLAYING') {
 			update((s) => ({ ...s, status: 'PLAYING' }));
@@ -419,6 +484,19 @@ function create_youtube_player() {
 		update((s) => ({ ...s, status: 'PAUSED', current_time: time }));
 	}
 
+	// The element fires pause just before ended, so this overwrites the position saved at the end
+	function on_element_ended() {
+		const state = get(store);
+		if (!state.active_show || state.status === 'IDLE' || is_switching_video) return;
+		has_ended = true;
+		save_position(state.active_show.number, 'VIDEO', 0, true);
+		update((s) => ({ ...s, status: 'PAUSED', current_time: 0 }));
+	}
+
+	function on_element_error() {
+		fail();
+	}
+
 	// CONTROLS
 	async function play() {
 		const state = get(store);
@@ -432,7 +510,7 @@ function create_youtube_player() {
 			status: 'PLAYING',
 			target: s.slot_el && is_slot_in_view(s.slot_el) ? s.target : 'DOCK'
 		}));
-		await seek_and_play(state.active_element, 0);
+		await seek_and_play(state.active_element, has_ended ? 0 : null);
 	}
 
 	function pause() {
@@ -470,6 +548,11 @@ function create_youtube_player() {
 		update((s) => ({ ...s, current_time: live_time(s) }));
 	}
 
+	// Saves the position right away, for when the page is going away
+	function save() {
+		save_now(get(store));
+	}
+
 	function get_current_time() {
 		return live_time(get(store));
 	}
@@ -491,11 +574,15 @@ function create_youtube_player() {
 		on_element_play,
 		on_element_playing,
 		on_element_pause,
+		on_element_ended,
+		on_element_error,
+		on_failure,
 		play,
 		pause,
 		seek,
 		close,
 		before_navigate,
+		save,
 		get_current_time
 	};
 }

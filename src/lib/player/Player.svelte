@@ -54,7 +54,15 @@
 		if (!dock_el) return;
 		return youtube_player.register_dock(dock_el);
 	});
+
+	function save_if_hidden() {
+		if (document.visibilityState === 'hidden') player.save_now();
+	}
 </script>
+
+<!-- Positions are only saved every few seconds while playing, so save when the tab closes or goes to the background -->
+<svelte:window onpagehide={player.save_now} />
+<svelte:document onvisibilitychange={save_if_hidden} />
 
 <section
 	class="player {$player_window_status} {$player.status}"

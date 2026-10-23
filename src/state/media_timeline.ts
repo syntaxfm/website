@@ -1,6 +1,7 @@
 // Audio and YouTube versions of an episode don't always share a timeline (different intros, cuts, etc).
 // This module tracks each version's duration and saved position separately so we never apply
 // an audio timestamp to a video (or vice versa) unless we know the two line up.
+import { get_local_storage } from '#utilities/storage.js';
 import { get_youtube_id } from '#utilities/youtube.js';
 
 export type MediaKind = 'AUDIO' | 'VIDEO';
@@ -19,8 +20,6 @@ interface EpisodeDurations {
 const durations = new Map<number, EpisodeDurations>();
 const last_saved = new Map<string, number>();
 
-const has_storage = () => typeof localStorage !== 'undefined';
-
 function position_key(show_number: number, kind: MediaKind) {
 	// Audio keeps the original key so existing listening positions survive
 	return kind === 'AUDIO'
@@ -35,13 +34,11 @@ function durations_key(show_number: number) {
 function get_durations(show_number: number): EpisodeDurations {
 	const cached = durations.get(show_number);
 	if (cached) return cached;
-	let stored: EpisodeDurations = {};
-	if (has_storage()) {
-		try {
-			stored = JSON.parse(localStorage.getItem(durations_key(show_number)) ?? '{}');
-		} catch {
-			stored = {};
-		}
+	let stored: EpisodeDurations;
+	try {
+		stored = JSON.parse(get_local_storage()?.getItem(durations_key(show_number)) ?? '{}');
+	} catch {
+		stored = {};
 	}
 	durations.set(show_number, stored);
 	return stored;
@@ -54,9 +51,7 @@ export function record_duration(show_number: number, kind: MediaKind, seconds: n
 	if (current[field] === seconds) return;
 	const next = { ...current, [field]: seconds };
 	durations.set(show_number, next);
-	if (has_storage()) {
-		localStorage.setItem(durations_key(show_number), JSON.stringify(next));
-	}
+	get_local_storage()?.setItem(durations_key(show_number), JSON.stringify(next));
 }
 
 /**
@@ -121,18 +116,28 @@ export async function timelines_match(
 	return timelines_match_cached(show.number) ?? false;
 }
 
+// This version's own saved position, without borrowing the other version's
+function get_own_position(show_number: number, kind: MediaKind): number {
+	const position = parseFloat(get_local_storage()?.getItem(position_key(show_number, kind)) ?? '');
+	return Number.isFinite(position) && position > 0 ? position : 0;
+}
+
 export function get_saved_position(show_number: number, kind: MediaKind): number {
-	if (!has_storage()) return 0;
-	const own = parseFloat(localStorage.getItem(position_key(show_number, kind)) ?? '');
-	if (Number.isFinite(own) && own > 0) return own;
+	const own = get_own_position(show_number, kind);
+	if (own > 0) return own;
 	// No position for this version yet, but if the timelines match we can borrow the other one's
 	if (timelines_match_cached(show_number)) {
-		const other = parseFloat(
-			localStorage.getItem(position_key(show_number, kind === 'AUDIO' ? 'VIDEO' : 'AUDIO')) ?? ''
-		);
-		if (Number.isFinite(other) && other > 0) return other;
+		return get_own_position(show_number, kind === 'AUDIO' ? 'VIDEO' : 'AUDIO');
 	}
 	return 0;
+}
+
+/**
+ * Was this show last listened to as audio? True when there's an audio position and no video one,
+ * e.g. listeners from before video playback existed.
+ */
+export function is_mid_audio(show_number: number): boolean {
+	return get_own_position(show_number, 'AUDIO') > 0 && get_own_position(show_number, 'VIDEO') === 0;
 }
 
 /**
@@ -145,12 +150,13 @@ export function save_position(
 	seconds: number,
 	force = false
 ) {
-	if (!has_storage() || !Number.isFinite(seconds) || seconds < 0) return;
+	const storage = get_local_storage();
+	if (!storage || !Number.isFinite(seconds) || seconds < 0) return;
 	const key = position_key(show_number, kind);
 	const previous = last_saved.get(key);
 	if (!force && previous != null && Math.abs(seconds - previous) < SAVE_INTERVAL) return;
 	last_saved.set(key, seconds);
-	localStorage.setItem(key, seconds.toString());
+	storage.setItem(key, seconds.toString());
 }
 
 // Test helper

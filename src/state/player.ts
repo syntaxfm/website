@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/sveltekit';
 import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
+import toast from 'svelte-french-toast';
 import { load_media_session } from '#utilities/media/load_media_session.js';
 import { get_youtube_id } from '#utilities/youtube.js';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
@@ -9,6 +10,7 @@ import { load_state_from_indexed_db, open_db, STORE_NAME, type PlayerState } fro
 import { media_preference, should_play_video } from './media_preference';
 import {
 	get_saved_position,
+	is_mid_audio,
 	record_duration,
 	save_position as save_media_position,
 	timelines_match,
@@ -36,6 +38,11 @@ interface MediaControllerElement extends HTMLElement {
 
 function is_media_controller(el: unknown): el is MediaControllerElement {
 	return el instanceof HTMLElement && 'handleMediaUpdated' in el;
+}
+
+// Shows someone was partway through listening to keep playing as audio, so they pick up where they left off
+function plays_as_video(show: Show) {
+	return should_play_video(show) && !is_mid_audio(show.number);
 }
 
 const new_player_state = () => {
@@ -127,7 +134,7 @@ const new_player_state = () => {
 		const show = saved_state?.current_show ?? latest_show;
 		if (!show) return;
 		await load_show(show, true);
-		update((state) => ({ ...state, media_kind: should_play_video(show) ? 'VIDEO' : 'AUDIO' }));
+		update((state) => ({ ...state, media_kind: plays_as_video(show) ? 'VIDEO' : 'AUDIO' }));
 	}
 
 	// Load show gets player state loaded and audio into playable state
@@ -200,6 +207,7 @@ const new_player_state = () => {
 	) {
 		const is_active = is_video_active_for(requested_show);
 		const is_resume = resume_in_place && is_active && play_from_position == null;
+		if (get(player_state).media_kind === 'AUDIO') save_position(true);
 		// Switch media kind before pausing audio so onpause doesn't treat this as the user pausing
 		update((state) => ({
 			...state,
@@ -223,11 +231,23 @@ const new_player_state = () => {
 		update((state) => {
 			if (state.audio) {
 				attach_media(state.audio);
-				state.audio.play();
+				// Autoplay can be blocked, e.g. when playback starts long after the click
+				state.audio.play().catch(() => update((s) => ({ ...s, status: 'PAUSED' })));
 			}
 			state.status = 'PLAYING';
 			return state;
 		});
+	}
+
+	// The video can't play, so play the audio instead. The position carries over when the timelines match.
+	youtube_player.on_failure((show, video_time) => {
+		toast.error("Couldn't load the video, playing the audio instead");
+		void start_audio(show, timelines_match_cached(show.number) ? video_time : undefined);
+	});
+
+	// The bottom bar is set to a video that can't play anymore (YouTube failed to load)
+	function should_fall_back_to_audio({ media_kind, current_show }: PlayerState) {
+		return media_kind === 'VIDEO' && Boolean(current_show) && !should_play_video(current_show);
 	}
 
 	/**
@@ -254,8 +274,10 @@ const new_player_state = () => {
 	// EVENTS
 	function onplay() {
 		const current_state = get(player_state);
-		// The bottom bar was pointed at the audio element, but this show plays as video
-		if (current_state.media_kind === 'VIDEO' && current_state.current_show) {
+		if (should_fall_back_to_audio(current_state)) {
+			update((state) => ({ ...state, media_kind: 'AUDIO' }));
+		} else if (current_state.media_kind === 'VIDEO' && current_state.current_show) {
+			// The bottom bar was pointed at the audio element, but this show plays as video
 			void start_video(current_state.current_show, undefined, { resume_in_place: true });
 			return;
 		}
@@ -339,14 +361,19 @@ const new_player_state = () => {
 			if (play_from_position != null) {
 				return play_timestamp(requested_show, play_from_position);
 			}
-			if (should_play_video(requested_show)) {
+			if (plays_as_video(requested_show)) {
 				return start_video(requested_show);
 			}
 			return start_audio(requested_show);
 		},
 
 		play() {
-			const { current_show, media_kind } = get(player_state);
+			const state = get(player_state);
+			const { current_show, media_kind } = state;
+			if (should_fall_back_to_audio(state) && current_show) {
+				void start_audio(current_show);
+				return;
+			}
 			if (media_kind === 'VIDEO' && current_show) {
 				void start_video(current_show, undefined, { resume_in_place: true });
 				return;
@@ -404,6 +431,13 @@ const new_player_state = () => {
 		 * Current position on the audio timeline, or null if the video is playing and
 		 * we don't know that its timeline matches the audio (transcripts, timestamps).
 		 */
+		// Saves the position right away, for when the page is going away (tab closed, app backgrounded)
+		save_now() {
+			const { media_kind } = get(player_state);
+			if (media_kind === 'AUDIO') save_position(true);
+			else youtube_player.save();
+		},
+
 		get_audio_timeline_time(): number | null {
 			const { current_show, media_kind, audio } = get(player_state);
 			if (!current_show) return null;

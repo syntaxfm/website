@@ -10,6 +10,8 @@
 		onplay?: () => void;
 		onplaying?: () => void;
 		onpause?: () => void;
+		onended?: () => void;
+		onerror?: () => void;
 		ondurationchange?: () => void;
 	}
 
@@ -20,6 +22,8 @@
 		onplay,
 		onplaying,
 		onpause,
+		onended,
+		onerror,
 		ondurationchange
 	}: Props = $props();
 
@@ -63,6 +67,8 @@
 	{onplay}
 	{onplaying}
 	{onpause}
+	{onended}
+	{onerror}
 	{ondurationchange}
 ></youtube-video>
 

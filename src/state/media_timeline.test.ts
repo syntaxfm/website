@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
 	get_saved_position,
+	is_mid_audio,
 	record_duration,
 	reset_media_timeline,
 	save_position,
@@ -82,5 +83,26 @@ describe('media_timeline', () => {
 		record_duration(6, 'VIDEO', 1200);
 		reset_media_timeline();
 		expect(timelines_match_cached(6)).toBe(true);
+	});
+
+	it('knows a show is mid audio until it has a video position', () => {
+		expect(is_mid_audio(7)).toBe(false);
+		save_position(7, 'AUDIO', 2400, true);
+		expect(is_mid_audio(7)).toBe(true);
+		save_position(7, 'VIDEO', 30, true);
+		expect(is_mid_audio(7)).toBe(false);
+	});
+
+	it('works without storage when the browser blocks it', () => {
+		Object.defineProperty(globalThis, 'localStorage', {
+			configurable: true,
+			get() {
+				throw new DOMException('The operation is insecure.', 'SecurityError');
+			}
+		});
+		expect(() => save_position(8, 'AUDIO', 100, true)).not.toThrow();
+		expect(get_saved_position(8, 'AUDIO')).toBe(0);
+		expect(is_mid_audio(8)).toBe(false);
+		Reflect.deleteProperty(globalThis, 'localStorage');
 	});
 });
