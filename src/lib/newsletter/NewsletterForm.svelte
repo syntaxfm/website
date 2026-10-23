@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	import Input from '$lib/forms/Input.svelte';
-	let is_hidden = $state(false);
+	let _is_hidden = $state(false);
 
 	interface Props {
 		show_logo?: boolean;
@@ -18,7 +18,7 @@
 
 	$effect(() => {
 		if (typeof document !== 'undefined') {
-			is_hidden = document.cookie.includes('newsletter_visible');
+			_is_hidden = document.cookie.includes('newsletter_visible');
 		}
 	});
 </script>

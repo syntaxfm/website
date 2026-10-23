@@ -181,7 +181,7 @@ export async function import_playlist(playlist_id: string) {
 			});
 
 			// Find the corresponding playlist item to get the position
-			const playlistItem = videos.find((i) => i.snippet.resourceId.videoId === item.id);
+			const playlist_item = videos.find((i) => i.snippet.resourceId.videoId === item.id);
 
 			await prisma_client.playlistOnVideo.upsert({
 				where: {
@@ -196,19 +196,19 @@ export async function import_playlist(playlist_id: string) {
 				create: {
 					video_id: video.id,
 					playlist_id: playlist.id,
-					order: playlistItem?.snippet.position || 0
+					order: playlist_item?.snippet.position || 0
 				}
 			});
 			// Check for "syntax-shownumber" tags and connect to the corresponding shows
-			const syntaxShowNumberTags = item.snippet.tags?.filter((tag: string) =>
+			const syntax_show_number_tags = item.snippet.tags?.filter((tag: string) =>
 				/^syntax-related-\d+$/.test(tag)
 			);
 
-			if (syntaxShowNumberTags) {
-				for (const tag of syntaxShowNumberTags) {
-					const showNumber = parseInt(tag.split('-')[2]);
+			if (syntax_show_number_tags) {
+				for (const tag of syntax_show_number_tags) {
+					const show_number = parseInt(tag.split('-')[2]);
 					const show = await prisma_client.show.findUnique({
-						where: { number: showNumber }
+						where: { number: show_number }
 					});
 
 					if (show) {

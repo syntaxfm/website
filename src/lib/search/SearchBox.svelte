@@ -8,7 +8,7 @@
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
-	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
 	import type { Show } from '@prisma/client';
 
@@ -139,7 +139,7 @@
 	class="zone"
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
-	use:clickOutDialog
+	use:click_out_dialog
 	onclick-outside={close}
 	aria-labelledby="search-header"
 >

@@ -4,7 +4,7 @@
 	import { loading } from '$state/loading';
 	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
-	let formLoading = $state(false);
+	let form_loading = $state(false);
 	interface Props {
 		global?: boolean;
 		confirm?: string;
@@ -31,7 +31,7 @@
 					return cancel();
 				}
 			}
-			formLoading = true;
+			form_loading = true;
 			return async ({ result }: { result: ActionResult<any, any> }) => {
 				if (result.type === 'success') {
 					toast.success('Siiiiick ' + result.data.message + ' was a success');
@@ -44,7 +44,7 @@
 				}
 				await invalidateAll();
 				await applyAction(result);
-				formLoading = false;
+				form_loading = false;
 				if (global) {
 					loading.setLoading(false);
 				}
@@ -55,5 +55,5 @@
 </script>
 
 <form {...rest} use:enhance={form_action()}>
-	{@render children?.({ loading: formLoading, })}
+	{@render children?.({ loading: form_loading, })}
 </form>

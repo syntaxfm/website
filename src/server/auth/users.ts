@@ -7,11 +7,11 @@ export interface UserWithRoles extends User {
 	roles: string[];
 }
 
-interface Create_User {
+interface CreateUser {
 	github_user: GithubUser;
 }
 
-export function create_user({ github_user }: Create_User) {
+export function create_user({ github_user }: CreateUser) {
 	return prisma_client.user.create({
 		data: {
 			avatar_url: github_user.avatar_url,
@@ -22,7 +22,7 @@ export function create_user({ github_user }: Create_User) {
 	});
 }
 
-export async function find_or_create_user({ github_user }: Create_User) {
+export async function find_or_create_user({ github_user }: CreateUser) {
 	const user = await prisma_client.user.findUnique({
 		where: {
 			github_id: github_user.id

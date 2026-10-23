@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { PUBLIC_URL } from '$env/static/public';
 
 	let title = `Syntax - Web Development Podcast`;
 

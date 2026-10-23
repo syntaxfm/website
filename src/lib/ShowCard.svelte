@@ -6,6 +6,7 @@
 	import get_show_path from '$utilities/slug';
 	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
+	import { untrack } from 'svelte';
 	import FacePile from './FacePile.svelte';
 	import Icon from './Icon.svelte';
 	import Badge from './badges/Badge.svelte';
@@ -39,25 +40,27 @@
 				return format(date, 'MMMM do, yyyy');
 		}
 	}
-	export const aria_key = `show${show.number}-description`;
+	export const aria_key = untrack(() => `show${show.number}-description`);
 
 	let hosts: {
 		name: string;
 		github: string;
 	}[] = $state([]);
-	if ((show?.hosts?.length || 0) > 0) {
-		show.hosts?.forEach((host) => {
-			hosts.push({
-				name: host.name || '',
-				github: host.username || ''
+	untrack(() => {
+		if ((show?.hosts?.length || 0) > 0) {
+			show.hosts?.forEach((host) => {
+				hosts.push({
+					name: host.name || '',
+					github: host.username || ''
+				});
 			});
-		});
-	} else {
-		hosts = [
-			{ name: 'Wes Bos', github: 'wesbos' },
-			{ name: 'Scott Tolinski', github: 'stolinski' }
-		];
-	}
+		} else {
+			hosts = [
+				{ name: 'Wes Bos', github: 'wesbos' },
+				{ name: 'Scott Tolinski', github: 'stolinski' }
+			];
+		}
+	});
 
 	// Video cards have space outside the main link (next to the video), make it clickable too.
 	// Keyboard and screen reader users already have the link.

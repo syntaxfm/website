@@ -37,15 +37,15 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 	});
 
 	// Filter out shows that don't have Sick Picks in the show notes somewhere
-	const sickPicks = shows
+	const sick_picks = shows
 		.filter((show) => {
 			const lines = show.show_notes.split('\n');
 			return lines.some((line) => {
-				const lowerLine = line.toLowerCase();
+				const lower_line = line.toLowerCase();
 				return (
-					lowerLine.match(/s(i+)ck/)?.length &&
-					lowerLine.match('p(i+)ck')?.length &&
-					(lowerLine.startsWith('#') || lowerLine.startsWith('*'))
+					lower_line.match(/s(i+)ck/)?.length &&
+					lower_line.match('p(i+)ck')?.length &&
+					(lower_line.startsWith('#') || lower_line.startsWith('*'))
 				);
 			});
 		})
@@ -80,6 +80,6 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 		meta: {
 			title: 'Sick Picks'
 		},
-		sickPicks
+		sickPicks: sick_picks
 	};
 };

@@ -2,7 +2,7 @@ import type { Show } from '@prisma/client';
 import flexsearch from 'flexsearch';
 import type { Block, Tree } from './types';
 
-const Index = flexsearch.Index ?? flexsearch;
+const flex_index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;
 
@@ -19,7 +19,7 @@ export function init(blocks: Block[]) {
 	// we have multiple indexes, so we can rank sections (migration guide comes last)
 	const max_rank = Math.max(...blocks.map((block) => block.rank ?? 0));
 
-	indexes = Array.from({ length: max_rank + 1 }, () => new Index({ tokenize: 'forward' }));
+	indexes = Array.from({ length: max_rank + 1 }, () => new flex_index({ tokenize: 'forward' }));
 
 	for (const block of blocks) {
 		const title = block.breadcrumbs.at(-1);

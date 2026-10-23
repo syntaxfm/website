@@ -39,6 +39,7 @@
 
 <script lang="ts">
 	import { capitalize } from '$utilities/capitalize';
+	import { untrack } from 'svelte';
 
 	interface Props {
 		name: IconName;
@@ -47,7 +48,7 @@
 	}
 
 	let { name, title = $bindable(''), aria_hidden = true }: Props = $props();
-	if (!title && title !== false) title = capitalize(name);
+	if (!title && title !== false) title = capitalize(untrack(() => name));
 </script>
 
 {#if name === 'play'}

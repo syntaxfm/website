@@ -44,7 +44,7 @@ export async function import_or_update_all_shows() {
 }
 
 export async function import_or_update_all_changed_shows() {
-	const updatedShows: number[] = [];
+	const updated_shows: number[] = [];
 
 	try {
 		// Filter only .md files
@@ -74,7 +74,7 @@ export async function import_or_update_all_changed_shows() {
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 				// Remove cache of updated show
 				cache.shows.drop_show_cache(number);
-				updatedShows.push(number);
+				updated_shows.push(number);
 			} else {
 				console.log(`Skipping Show # ${number}`, {
 					existing_show: !!existing_show,
@@ -89,7 +89,7 @@ export async function import_or_update_all_changed_shows() {
 	}
 	cache.shows.drop_shows_list_cache();
 	console.log('🤖 Pod Sync Complete ✅');
-	return { message: 'Import All Shows', updatedShows };
+	return { message: 'Import All Shows', updatedShows: updated_shows };
 }
 
 async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
@@ -116,19 +116,19 @@ export async function parse_and_save_show_notes(
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
-	const dayOfWeek: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
+	const day_of_week: number = date.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ...)
 	const id = get_id_from_show_number(number);
 
 	const show_type: 'HASTY' | 'TASTY' | 'SUPPER' | 'SPECIAL' =
-		DAYS_OF_WEEK_TYPES[dayOfWeek] || 'SPECIAL';
+		DAYS_OF_WEEK_TYPES[day_of_week] || 'SPECIAL';
 	// Save or update the show
 	try {
 		// Accept any casing of the key (e.g. `Hosts:`) so hosts are never silently dropped
 		const hosts_key = Object.keys(data).find((key) => key.toLowerCase() === 'hosts');
 		const hosts = hosts_key ? data[hosts_key] : undefined;
-		let hostsConnection = {};
+		let hosts_connection = {};
 		if (hosts && Array.isArray(hosts)) {
-			const hostUsers = await prisma.user.findMany({
+			const host_users = await prisma.user.findMany({
 				where: {
 					username: {
 						in: hosts
@@ -136,10 +136,10 @@ export async function parse_and_save_show_notes(
 				}
 			});
 
-			if (hostUsers.length > 0) {
-				hostsConnection = {
+			if (host_users.length > 0) {
+				hosts_connection = {
 					hosts: {
-						connect: hostUsers.map((user) => ({ id: user.id }))
+						connect: host_users.map((user) => ({ id: user.id }))
 					}
 				};
 			}
@@ -158,7 +158,7 @@ export async function parse_and_save_show_notes(
 				hash: hash,
 				md_file,
 				show_type, // Assign the calculated show_type
-				...hostsConnection
+				...hosts_connection
 			},
 			create: {
 				id,
@@ -172,7 +172,7 @@ export async function parse_and_save_show_notes(
 				hash: hash,
 				md_file,
 				show_type, // Assign the calculated show_type
-				...hostsConnection
+				...hosts_connection
 			}
 		});
 
@@ -207,8 +207,8 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 		const name_slug = slug(name);
 
 		const guest_record = await prisma.$transaction(async (prisma) => {
-			const existingGuest = await prisma.guest.findUnique({ where: { name_slug } });
-			if (existingGuest) {
+			const existing_guest = await prisma.guest.findUnique({ where: { name_slug } });
+			if (existing_guest) {
 				return await prisma.guest.update({
 					where: { name_slug },
 					data: { ...guest_without_socials, name, name_slug }
@@ -226,11 +226,11 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 
 		// now do the same for showGuest
 		await prisma.$transaction(async (prisma) => {
-			const existingShowGuest = await prisma.showGuest.findUnique({
+			const existing_show_guest = await prisma.showGuest.findUnique({
 				where: { showId_guestId: { showId: show_id, guestId: guest_record.id } }
 			});
 
-			if (existingShowGuest) {
+			if (existing_show_guest) {
 				return; // if the show guest already exists, we do nothing
 			} else {
 				await prisma.showGuest.create({
@@ -240,24 +240,24 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 		});
 
 		if (social) {
-			let socialLinks = [];
+			let social_links = [];
 			// If social is a string, convert it to an array with one element
 			if (typeof social === 'string') {
-				socialLinks = [social];
+				social_links = [social];
 			} else if (Array.isArray(social)) {
-				socialLinks = social;
+				social_links = social;
 			} else {
 				console.error('Unexpected data type for social:', typeof social);
 				return;
 			}
-			const socialLink_promises = socialLinks.map((social_link) =>
+			const social_link_promises = social_links.map((social_link) =>
 				prisma.socialLink.upsert({
 					where: { link_guest_id: { link: social_link, guest_id: guest_record.id } },
 					update: { link: social_link, guest: { connect: { id: guest_record.id } } },
 					create: { link: social_link, guest: { connect: { id: guest_record.id } } }
 				})
 			);
-			await Promise.all(socialLink_promises);
+			await Promise.all(social_link_promises);
 		}
 		return guest_record;
 	} catch (err) {

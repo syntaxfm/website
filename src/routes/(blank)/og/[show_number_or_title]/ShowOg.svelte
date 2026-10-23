@@ -3,7 +3,7 @@
 	import type { LatestShow } from '$server/ai/queries';
 	import { format_show_type } from '$utilities/format_show_type';
 	import { format } from 'date-fns';
-	import { tick } from 'svelte';
+	import { tick, untrack } from 'svelte';
 
 	interface Props {
 		show: LatestShow & { isPage?: boolean };
@@ -12,19 +12,20 @@
 
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
-	let hosts = (
-		show.hosts?.length > 0 ? show.hosts : [
+	let hosts = untrack(() =>
+		(show.hosts?.length > 0 ? show.hosts : [
 			{ name: 'Wes Bos', username: 'wesbos' },
 			{ name: 'Scott Tolinski', username: 'stolinski' }
 		]
-	).map((host) => ({
-		name: host.name || '',
-		github: host.username || ''
-	}));
+		).map((host) => ({
+			name: host.name || '',
+			github: host.username || ''
+		}))
+	);
 
-	let allFaces = [
+	let all_faces = [
 		...hosts,
-		...(show.guests || []).map((guest) => ({
+		...untrack(() => show.guests || []).map((guest) => ({
 			name: guest.Guest.name,
 			github: guest.Guest.github || ''
 		}))
@@ -34,47 +35,47 @@
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');
 		// Find out how many lines this text needs to be.
-		let lineLimit = 1;
+		let line_limit = 1;
 		const text = node.innerText;
 		if (text.length > 20 && text.length < 50) {
-			lineLimit = 2;
+			line_limit = 2;
 		} else if (text.length >= 50 && text.length < 80) {
-			lineLimit = 3;
+			line_limit = 3;
 		} else if (text.length >= 80) {
-			lineLimit = 3;
+			line_limit = 3;
 		}
-		let fontSize = 0.5;
+		let font_size = 0.5;
 		let increment = 0.1;
-		node.style.fontSize = `${fontSize}cqw`;
+		node.style.fontSize = `${font_size}cqw`;
 
 		function sizeText() {
 			// We use tick here instead of await wait(), same technique, no async required since the action was complaining about returning a promise
 			tick();
-			node.style.fontSize = `${fontSize}cqw`;
-			const lineHeight = parseInt(getComputedStyle(node).lineHeight, 10);
+			node.style.fontSize = `${font_size}cqw`;
+			const line_height = parseInt(getComputedStyle(node).lineHeight, 10);
 			const height = node.offsetHeight;
 			const width = node.offsetWidth;
-			const lines = height / lineHeight;
+			const lines = height / line_height;
 			// Handle overflow for single word titles "Syntax"
 			const overflowing = width > window.innerWidth;
 			if (overflowing) {
-				fontSize = Math.min(fontSize - increment * 30, 12);
-				node.style.fontSize = `${fontSize}cqw`;
+				font_size = Math.min(font_size - increment * 30, 12);
+				node.style.fontSize = `${font_size}cqw`;
 				node.classList.add('finish-sizing-text');
 				return;
-			} else if (lines <= lineLimit + 1) {
+			} else if (lines <= line_limit + 1) {
 				// Keep incrementing until we get to the right number of lines.
-				fontSize += increment;
-				// console.log('incrementing', fontSize);
+				font_size += increment;
+				// console.log('incrementing', font_size);
 				sizeText();
-			} else if (lines >= lineLimit + 1) {
+			} else if (lines >= line_limit + 1) {
 				// We overshot it, back off by 1 increment.
-				fontSize -= increment;
-				node.style.fontSize = `${fontSize}cqw`;
-				// console.log('backing off', fontSize);
+				font_size -= increment;
+				node.style.fontSize = `${font_size}cqw`;
+				// console.log('backing off', font_size);
 				// Add a class so Puppeteer can tell when the text is sized.
 				node.classList.add('finish-sizing-text');
-				// node.insertAdjacentHTML('beforebegin', `<small>${fontSize - increment}</small>`);
+				// node.insertAdjacentHTML('beforebegin', `<small>${font_size - increment}</small>`);
 			}
 		}
 
@@ -107,7 +108,7 @@
 		<div class="brand-footer">
 			<FacePile
 				size="120px"
-				faces={allFaces}
+				faces={all_faces}
 			/>
 			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">

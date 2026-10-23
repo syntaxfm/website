@@ -23,11 +23,11 @@ async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 		podcastId: env.MEGAPHONE_PODCAST_ID
 	};
 
-	for (const showNumber of showNumbers) {
+	for (const show_number of showNumbers) {
 		try {
-			await syncEpisodeSpotifyData(showNumber, credentials);
+			await syncEpisodeSpotifyData(show_number, credentials);
 		} catch (error) {
-			console.error(`🎵 Failed to sync Spotify data for show ${showNumber}:`, error);
+			console.error(`🎵 Failed to sync Spotify data for show ${show_number}:`, error);
 		}
 	}
 }

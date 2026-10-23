@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Show } from '@prisma/client';
+	import { untrack } from 'svelte';
 	import Icon from '../Icon.svelte';
 	import { check_for_cached_mp3 } from '$state/player_offline';
 
@@ -10,7 +11,7 @@
 	let { show }: Props = $props();
 
 	let save_status: 'INITIAL' | 'UNSAVED' | 'SAVING' | 'SAVED' = $state('INITIAL');
-	check_for_cached_mp3(show.url).then((response) => {
+	check_for_cached_mp3(untrack(() => show.url)).then((response) => {
 		if (response) {
 			save_status = 'SAVED';
 		} else {
@@ -20,10 +21,10 @@
 
 	function save_show_for_offline() {
 		save_status = 'SAVING';
-		const mp3Url = show.url;
+		const mp3_url = show.url;
 
 		// Fetch the MP3 file
-		fetch(mp3Url)
+		fetch(mp3_url)
 			.then((response) => response.blob())
 			.then((blob) => {
 				// Make a show without the show notes for the cache
@@ -48,7 +49,7 @@
 				caches
 					.open('mp3-cache')
 					.then((cache) => {
-						cache.put(mp3Url, response);
+						cache.put(mp3_url, response);
 						save_status = 'SAVED';
 						console.log('MP3 file saved for offline listening.');
 					})

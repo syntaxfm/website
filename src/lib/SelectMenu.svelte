@@ -27,19 +27,19 @@
 		button_text,
 		popover_id,
 		value = '',
-		onselect
+		onselect: _onselect
 	}: Props = $props();
-	let id = popover_id.replace('filter-', '');
+	let id = $derived(popover_id.replace('filter-', ''));
 	// let searchParams = new URLSearchParams(window.location.search);
 
 	let generate_search_params = $derived((id: string, value: string) => {
-		const searchParams = new URLSearchParams($page.url.search);
+		const search_params = new URLSearchParams($page.url.search);
 		if (!value) {
-			searchParams.delete(id);
+			search_params.delete(id);
 		} else {
-			searchParams.set(id, value);
+			search_params.set(id, value);
 		}
-		return searchParams.toString();
+		return search_params.toString();
 	});
 
 	function closePopoverWhenSelected(node: HTMLDivElement) {

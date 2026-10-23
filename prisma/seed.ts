@@ -10,11 +10,11 @@ const options = {
 const prisma = new PrismaClient();
 
 async function main() {
-	const { values } = parseArgs({ options });
+	parseArgs({ options });
 
 	// Check if roles already exist, if not, create them
-	const existingRoles = await prisma.role.findMany();
-	if (existingRoles.length === 0) {
+	const existing_roles = await prisma.role.findMany();
+	if (existing_roles.length === 0) {
 		await prisma.role.createMany({
 			data: [{ name: 'admin' }, { name: 'user' }, { name: 'author' }]
 		});

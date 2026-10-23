@@ -6,12 +6,12 @@
 		aiShowNote: AINoteWithFriends;
 	}
 
-	let { aiShowNote }: Props = $props();
+	let { aiShowNote: ai_show_note }: Props = $props();
 </script>
 
 <div class="toc">
 	<ul>
-		{#each aiShowNote?.summary || [] as summary}
+		{#each ai_show_note?.summary || [] as summary}
 			<li>
 				<a href="#{slug(summary.text)}">
 					<span class="timestamp fst-900">{summary.time}</span>

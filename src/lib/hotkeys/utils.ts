@@ -20,7 +20,7 @@ export function formatShortcut(
 }
 
 export function formatSingleShortcut(shortcut: Partial<ShortcutTrigger>): string {
-	let formattedShortcut = '';
+	let formatted_shortcut = '';
 
 	// replace the space key with "Space"
 	if (shortcut.key === ' ') {
@@ -29,9 +29,9 @@ export function formatSingleShortcut(shortcut: Partial<ShortcutTrigger>): string
 
 	if (shortcut.modifier) {
 		if (typeof shortcut.modifier === 'string') {
-			formattedShortcut = shortcut.modifier;
+			formatted_shortcut = shortcut.modifier;
 		} else if (Array.isArray(shortcut.modifier[0])) {
-			formattedShortcut = shortcut.modifier
+			formatted_shortcut = shortcut.modifier
 				.map((mod) => {
 					if (Array.isArray(mod)) {
 						return mod.join('+');
@@ -40,13 +40,13 @@ export function formatSingleShortcut(shortcut: Partial<ShortcutTrigger>): string
 				})
 				.join(' or ');
 		} else {
-			formattedShortcut = (shortcut.modifier as string[]).join('+');
+			formatted_shortcut = (shortcut.modifier as string[]).join('+');
 		}
 
-		formattedShortcut += '+' + shortcut.key;
-		return formattedShortcut;
+		formatted_shortcut += '+' + shortcut.key;
+		return formatted_shortcut;
 	}
 
-	formattedShortcut += shortcut.key;
-	return formattedShortcut;
+	formatted_shortcut += shortcut.key;
+	return formatted_shortcut;
 }

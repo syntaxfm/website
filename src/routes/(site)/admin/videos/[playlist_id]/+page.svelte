@@ -8,7 +8,7 @@
 	}
 
 	let { data }: Props = $props();
-	const { playlist, videos } = data;
+	let { playlist, videos } = $derived(data);
 
 	let search_text = $state('');
 

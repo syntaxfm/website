@@ -6,13 +6,13 @@
 	let { playlists } = $derived(data);
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
-	let isNoindexPage = $derived(
+	let is_noindex_page = $derived(
 		['order', 'type', 'sort', 'perPage'].some((filter) => $page.url.searchParams.has(filter))
 	);
 </script>
 
 <svelte:head>
-	{#if isNoindexPage}
+	{#if is_noindex_page}
 		<meta name="robots" content="noindex" />
 	{/if}
 </svelte:head>

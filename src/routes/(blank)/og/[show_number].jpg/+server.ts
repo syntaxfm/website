@@ -1,8 +1,8 @@
 import { dev } from '$app/environment';
 import chrome from '@sparticuz/chromium';
-import puppeteer, { Browser } from 'puppeteer-core';
+import puppeteer, { type Browser } from 'puppeteer-core';
 import { redis } from '$/hooks.server.js';
-const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const exe_path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 chrome.setGraphicsMode = true;
 
@@ -11,7 +11,7 @@ async function getOptions() {
 		return {
 			product: 'chrome',
 			args: [],
-			executablePath: exePath,
+			executablePath: exe_path,
 			headless: true
 		};
 	}
@@ -70,17 +70,17 @@ export async function GET({ url, params }) {
 		});
 	}
 	console.time(`Taking screenshot of ${show}`);
-	const photoBuffer = await getScreenshot(`${url.origin}/og/${show}`);
+	const photo_buffer = await getScreenshot(`${url.origin}/og/${show}`);
 	console.timeEnd(`Taking screenshot of ${show}`);
 	const end = performance.now();
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 	// Store buffer in cache
 	console.log(`caching ${show} in redis`);
-	redis?.set(`show-og-${show}`, photoBuffer.toString(), {
+	redis?.set(`show-og-${show}`, photo_buffer.toString(), {
 		ex: 60 * 60 * 5
 	});
 
-	return new Response(new Uint8Array(photoBuffer), {
+	return new Response(new Uint8Array(photo_buffer), {
 		status: 200,
 		headers
 	});

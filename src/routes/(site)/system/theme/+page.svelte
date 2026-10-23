@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
-	const { show } = data;
+	let { show } = $derived(data);
 
 	onMount(() => {
 		theme_maker.open();

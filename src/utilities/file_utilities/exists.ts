@@ -4,7 +4,7 @@ export async function exists(path: string) {
   try {
     await access(path);
     return true;
-  } catch (err) {
+  } catch {
     return false;
   }
 }

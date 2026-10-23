@@ -118,4 +118,5 @@ export const handle: Handle = sequence(
 	document_policy
 );
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError = Sentry.handleErrorWithSentry();

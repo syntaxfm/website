@@ -31,4 +31,5 @@ Sentry.init({
 });
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError = handleErrorWithSentry();

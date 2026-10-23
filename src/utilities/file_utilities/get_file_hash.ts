@@ -7,9 +7,9 @@ const pipeline = promisify(stream.pipeline);
 
 export async function get_file_hash(file_path: string) {
 	const hash = createHash('sha256');
-	const readStream = createReadStream(file_path);
+	const read_stream = createReadStream(file_path);
 
-	await pipeline(readStream, hash);
+	await pipeline(read_stream, hash);
 
 	return hash.digest('hex');
 }

@@ -5,7 +5,7 @@
 	import { form_action } from '$lib/form_action';
 
 	let { data } = $props();
-	const { user } = data;
+	let { user } = $derived(data);
 </script>
 
 <section class="content">

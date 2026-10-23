@@ -22,33 +22,34 @@
 
 	let { transcript, ai_show_note, show }: Props = $props();
 
-	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
-		// .filter((utterance) => utterance.speakerId !== 99)
-		.filter((utterance) => {
-			// Remove the flagging utterances
-			const scott = new RegExp(/purple cheese before meeting/gi);
-			if (utterance.transcript?.match(scott)) return false;
-			if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
-			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
-			if (utterance.transcript?.match(wes)) return false;
-			return true;
-		});
+	let slim_transcript: SlimUtterance[] = $derived(
+		getSlimUtterances(transcript.utterances, 1)
+			// .filter((utterance) => utterance.speakerId !== 99)
+			.filter((utterance) => {
+				// Remove the flagging utterances
+				const scott = new RegExp(/purple cheese before meeting/gi);
+				if (utterance.transcript?.match(scott)) return false;
+				if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
+				const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
+				if (utterance.transcript?.match(wes)) return false;
+				return true;
+			})
+	);
 	// group Utterances by their summary
 	type SummaryTitle = { time: string; text: string; id?: number };
 	const def: SummaryTitle = { time: '00:00', text: '' };
 	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
 	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	const utterances_by_summary: UtteranceMap = Map.groupBy(
-		slim_transcript,
-		(utterance: Utterance) => {
+	let utterances_by_summary: UtteranceMap = $derived(
+		Map.groupBy(slim_transcript, (utterance: Utterance) => {
 			const start = utterance.start;
 			const summary = ai_show_note?.summary?.findLast((summary) => {
 				const timestamp = tsToS(summary.time);
 				return start >= timestamp;
 			});
 			return summary || def;
-		}
+		})
 	);
 
 	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.
