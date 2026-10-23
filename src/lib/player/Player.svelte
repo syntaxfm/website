@@ -151,6 +151,7 @@
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
+									style:--media-box-display="none"
 								></media-time-range>
 							</div>
 							<media-duration-display aria-hidden={is_stacked_video_bar}></media-duration-display>

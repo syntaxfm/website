@@ -59,6 +59,7 @@
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
+									style:--media-box-display="none"
 								></media-time-range>
 							</div>
 							<media-duration-display></media-duration-display>
