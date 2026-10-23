@@ -70,7 +70,7 @@
 	--red-10: oklch(5% 0.221 var(--red-hue));
 	--red: var(--red-5);
 	--black-hue: none;
-	--blacklch: 0% none var(--black-hue);
+	--blacklch: 0% 0 var(--black-hue);
 	--black-1: oklch(97% 0 var(--black-hue));
 	--black-2: oklch(90% 0 var(--black-hue));
 	--black-3: oklch(83% 0 var(--black-hue));
@@ -83,7 +83,7 @@
 	--black-10: oklch(var(--blacklch));
 	--black: var(--black-10);
 	--blackish: var(--black-8);
-	--white: oklch(100% none none);
+	--white: oklch(100% 0 none);
 
 	/* --purple: #362d59; */
 	--purple-hue: 291.04;
