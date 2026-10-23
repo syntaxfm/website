@@ -80,7 +80,7 @@ export async function GET({ url, params }) {
 		ex: 60 * 60 * 5
 	});
 
-	return new Response(photoBuffer, {
+	return new Response(new Uint8Array(photoBuffer), {
 		status: 200,
 		headers
 	});
