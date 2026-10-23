@@ -10,7 +10,13 @@ function get_deepgram_client() {
 	if (!deepgram_api_key) {
 		throw new Error('Please set the DEEPGRAM_SECRET environment variable.');
 	}
-	return new DeepgramClient({ apiKey: deepgram_api_key });
+	return new DeepgramClient({
+		apiKey: deepgram_api_key,
+		// The SDK gives up after 60s by default, long episodes take longer to upload and transcribe.
+		// Leaves room for the flagger audio within the 300s function limit, which a retry wouldn't fit in.
+		timeoutInSeconds: 240,
+		maxRetries: 0
+	});
 }
 
 export async function get_transcript(showNumber: number) {
