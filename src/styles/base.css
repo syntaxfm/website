@@ -23,7 +23,7 @@
 			local('MD IO Variable Regular'),
 			local('MDIOVariable-Regular');
 		font-weight: 100 900;
-		font-style: normal italic;
+		font-style: normal;
 	}
 
 	.fst-100 {
@@ -333,7 +333,7 @@ a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
 	padding: 0;
 	border: 0;
 	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
+	clip-path: inset(50%);
 	white-space: nowrap;
 }
 

@@ -194,7 +194,7 @@ export async function parse_and_save_show_notes(
 	} catch (err) {
 		console.error('Error Importing Show:', err, data, content);
 		// Throw an error to stop the import process
-		throw new Error('Error Importing Shows');
+		throw new Error('Error Importing Shows', { cause: err });
 	}
 }
 

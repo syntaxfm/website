@@ -9,12 +9,11 @@
 	const audio = untrack(() => audio_prop);
 
 	const audio_ctx = new (window.AudioContext || window.webkitAudioContext)();
-	let audio_source = null;
 	let is_animating = true;
 	let analyser: AnalyserNode;
 
 	audio.play();
-	audio_source = audio_ctx.createMediaElementSource(audio);
+	const audio_source = audio_ctx.createMediaElementSource(audio);
 	analyser = audio_ctx.createAnalyser();
 	audio_source.connect(analyser);
 	analyser.connect(audio_ctx.destination);

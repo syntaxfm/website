@@ -66,8 +66,7 @@
 				placeholder="What do you have to say? Write as much as you like!"
 				required
 				minlength={25}
-				maxlength={15000}
-			></textarea>
+				maxlength={15000}></textarea>
 		</div>
 	</div>
 
