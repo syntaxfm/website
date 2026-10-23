@@ -3,7 +3,7 @@
 
 import * as Sentry from '@sentry/sveltekit';
 import { redirect } from '@sveltejs/kit';
-import { sequence, type Handle } from '@sveltejs/kit/hooks';
+import { sequence, type Handle, type HandleServerError } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { find_user_by_access_token } from './server/auth/users';
 import { building, dev } from '$app/env';
@@ -36,7 +36,8 @@ Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	profileSessionSampleRate: 1.0,
+	// Profiles 10% of server sessions, profiling every request adds latency and uses up Sentry quota
+	profileSessionSampleRate: 0.1,
 	profileLifecycle: 'trace',
 	environment: dev ? 'development' : 'production',
 	integrations: [
@@ -120,5 +121,22 @@ export const handle: Handle = sequence(
 	document_policy
 );
 
+// Reports 500s and unexpected errors to Sentry. Sentry's handleErrorWithSentry is async, and SvelteKit can't wait
+// on an async handleError while rendering a component, so errors there would only ever say "Internal Error".
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const handleError = Sentry.handleErrorWithSentry();
+export const handleError: HandleServerError = (input) => {
+	if (input.kind === 'validation') return;
+	if (input.kind !== 'unknown' && input.error.status < 500) return;
+	if (input.kind === 'unknown') console.error(input.error);
+
+	const error_id = Sentry.captureException(input.error, {
+		mechanism: { type: 'auto.function.sveltekit.handle_error', handled: true }
+	});
+	void Sentry.flush(2000);
+
+	if (input.kind !== 'unknown') return { error_id };
+	return {
+		message: "Something broke on our end. We've been notified and we're on it.",
+		error_id
+	};
+};

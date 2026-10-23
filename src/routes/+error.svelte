@@ -24,6 +24,9 @@
 		{:else}
 			<p class="error">Something went wrong. Don't worry, we use Sentry!</p>
 		{/if}
+		{#if page?.error?.error_id}
+			<p class="error-id">Error ID: <code>{page.error.error_id}</code></p>
+		{/if}
 	</div>
 </Layout>
 

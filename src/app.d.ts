@@ -16,7 +16,10 @@ declare global {
 	}
 
 	namespace App {
-		// interface Error {}
+		interface Error {
+			// Sentry event id for errors reported from handleError, to quote when reporting the problem
+			error_id?: string;
+		}
 		interface Locals {
 			prisma: PrismaClient;
 			form_data: Record<string, unknown>;
