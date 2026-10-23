@@ -9,7 +9,7 @@ export async function GET() {
 		},
 		{
 			headers: {
-				'cache-control': `public s-maxage=${60 * 60 * 5}`
+				'cache-control': `public, s-maxage=${60 * 60 * 5}`
 			}
 		}
 	);
