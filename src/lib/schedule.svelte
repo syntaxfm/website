@@ -2,17 +2,17 @@
 	<p class="lines thrice">Served Fresh Twice Weekly</p>
 	<div>
 		<a href="/shows?type=hasty">
-			<p class="tag length">15m</p>
+			<p class="tag length">~60m</p>
 			<p class="tag day">Monday</p>
 			<div>
 				<p class="tag">HASTY TREAT</p>
 			</div>
-			<p class="desc">Quick n' Informative</p>
+			<p class="desc">News &amp; Updates</p>
 		</a>
 	</div>
 	<div>
 		<a href="/shows?type=tasty">
-			<p class="tag length">60m</p>
+			<p class="tag length">~45m</p>
 			<p class="tag day">Wednesday</p>
 			<div>
 				<p class="tag">TASTY TREAT</p>
