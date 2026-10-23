@@ -1,4 +1,4 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export const load = async () => {
 	const next_shows = await prisma_client.show.findMany({

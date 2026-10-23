@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { anchor } from '$actions/anchor';
+	import { anchor } from '#actions/anchor.js';
 	import type { IconName } from './Icon.svelte';
 	import Icon from './Icon.svelte';
 	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover

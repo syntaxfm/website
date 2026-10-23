@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Github from '$assets/github.svg';
+	import Github from '#assets/github.svg';
 	import DropdownMenu from '#lib/DropdownMenu.svelte';
 	import { enhance } from '$app/forms';
-	import { loading } from '$state/loading';
+	import { loading } from '#state/loading.js';
 	import { form_action } from '#lib/form_action.js';
 	import type { User } from '@prisma/client';
 

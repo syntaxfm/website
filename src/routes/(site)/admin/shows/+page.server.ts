@@ -1,14 +1,14 @@
-import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
+import { import_or_update_all_changed_shows, import_or_update_all_shows } from '#server/shows.js';
 import { error } from '@sveltejs/kit';
-import { get_transcript } from '$server/transcripts/deepgram';
-import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
+import { get_transcript } from '#server/transcripts/deepgram.js';
+import { aiNoteRequestHandler } from '#server/ai/requestHandlers.js';
 import {
 	syncAllEpisodesSpotifyData,
 	syncEpisodeSpotifyData,
 	type MegaphoneCredentials
-} from '$server/megaphone/sync';
+} from '#server/megaphone/sync.js';
 import type { PageServerLoad } from './$types';
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
 

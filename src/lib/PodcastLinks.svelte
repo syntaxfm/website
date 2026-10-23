@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PODCAST_LINKS } from '$const';
+	import { PODCAST_LINKS } from '#const';
 </script>
 
 <div>

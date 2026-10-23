@@ -6,7 +6,7 @@
 	import { beforeNavigate, onNavigate } from '$app/navigation';
 	import Player from '#lib/player/Player.svelte';
 	import GlobalYoutubePlayer from '#lib/videos/GlobalYoutubePlayer.svelte';
-	import { youtube_player } from '$state/youtube_player';
+	import { youtube_player } from '#state/youtube_player.js';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
 	import Loading from '#lib/Loading.svelte';

@@ -1,7 +1,7 @@
 import { applyAction, type ActionResult } from '$app/forms';
 import { refreshAll } from '$app/navigation';
 import toast from 'svelte-french-toast';
-import { loading } from '$state/loading';
+import { loading } from '#state/loading.js';
 
 type FormActionMessage = {
 	message?: string;

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
-	import { player } from '$state/player';
-	import { player_window_status } from '$state/player_window_status';
+	import { youtube_player, type YoutubeVideoElementLike } from '#state/youtube_player.js';
+	import { player } from '#state/player.js';
+	import { player_window_status } from '#state/player_window_status.js';
 	import Icon from '#lib/Icon.svelte';
 	import YoutubeVideo from './YoutubeVideo.svelte';
 	import { enter_fullscreen, open_show_page } from './video_actions';

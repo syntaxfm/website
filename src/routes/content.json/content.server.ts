@@ -1,4 +1,4 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 import type { Show } from '@prisma/client';
 
 interface Block {

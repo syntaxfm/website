@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import { import_transcripts } from '$server/transcripts/transcripts';
+import { prisma_client } from '#server/prisma-client.js';
+import { import_transcripts } from '#server/transcripts/transcripts.js';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

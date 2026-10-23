@@ -1,6 +1,6 @@
 <script lang="ts">
 	let modal: HTMLDialogElement = $state(null!);
-	import { click_out_dialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '#actions/click_outside_dialog.js';
 	import type { Hotkeys } from './types';
 	import { formatShortcut } from './utils';
 

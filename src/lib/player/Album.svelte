@@ -1,5 +1,5 @@
 <script lang="ts">
-	import white_grit from '$assets/whitegrit.png';
+	import white_grit from '#assets/whitegrit.png';
 </script>
 
 <div class="album" style="background-image: url({white_grit});">

@@ -38,7 +38,7 @@
 		box-shadow: 0 0 1px 5px rgba(255, 255, 255, 0.1);
 		color: var(--fg-root);
 		background-color: var(--bg-root);
-		background-image: url($assets/whitegrit.png);
+		background-image: url(../assets/whitegrit.png);
 		background-size: 269px, 30%;
 	}
 	.tag {
@@ -50,7 +50,7 @@
 		display: block;
 		margin: 0;
 		display: inline-block;
-		mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image: url('../assets/Grit Mask@2x.png');
 		mask-repeat: repeat;
 		mask-size: 250px;
 		position: relative;

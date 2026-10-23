@@ -124,7 +124,7 @@
 		letter-spacing: -0.04em;
 		line-height: 1.4;
 		margin-block: 0.2em;
-		mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image: url('../assets/Grit Mask@2x.png');
 		mask-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;

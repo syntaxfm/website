@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { processor } from '$/utilities/markdown';
+import { processor } from '#utilities/markdown.js';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const content_files = import.meta.glob<string>('../*.md', {

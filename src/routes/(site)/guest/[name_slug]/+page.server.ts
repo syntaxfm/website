@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import { get_show_card_query } from '$/server/shows/shows_queries';
+import { prisma_client } from '#server/prisma-client.js';
+import { get_show_card_query } from '#server/shows/shows_queries.js';
 
 export const load = async function ({ params }) {
 	const show_card_query = get_show_card_query();

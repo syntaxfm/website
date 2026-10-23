@@ -1,6 +1,6 @@
-import { PER_PAGE } from '$const';
+import { PER_PAGE } from '#const';
 import { redirect } from '@sveltejs/kit';
-import { cache } from '$/server/cache/cache';
+import { cache } from '#server/cache/cache.js';
 
 export const load = async function ({ url, setHeaders }) {
 	setHeaders({

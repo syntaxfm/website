@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
-	import { player } from '$state/player';
+	import { player } from '#state/player.js';
 	import type { Show } from '@prisma/client';
 	import toast, { Toaster } from 'svelte-french-toast';
 

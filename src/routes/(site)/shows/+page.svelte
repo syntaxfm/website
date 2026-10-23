@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { PER_PAGE } from '$const';
+	import { PER_PAGE } from '#const';
 	import Pagination from '#lib/Pagination.svelte';
 	import SelectMenu from '#lib/SelectMenu.svelte';
 	import ShowCard from '#lib/ShowCard.svelte';

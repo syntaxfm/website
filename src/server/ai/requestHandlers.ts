@@ -2,7 +2,7 @@ import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './openai';
 import { save_ai_notes_to_db } from './db';
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function aiNoteRequestHandler({ locals }: RequestEvent) {
 	const show_number = parseInt(locals.form_data.show_number?.toString() || '');

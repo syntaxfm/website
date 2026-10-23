@@ -1,5 +1,5 @@
 import { Prisma, type Show } from '@prisma/client';
-import { cache_status, redis } from '$/hooks.server';
+import { cache_status, redis } from '#hooks.server';
 import { get_show_cache_s } from '../../utilities/get_show_cache_ms';
 import type { DMMF } from '@prisma/client/runtime/library';
 

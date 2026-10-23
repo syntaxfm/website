@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/sveltekit';
 import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
-import { load_media_session } from '$utilities/media/load_media_session';
-import { get_youtube_id } from '$utilities/youtube';
+import { load_media_session } from '#utilities/media/load_media_session.js';
+import { get_youtube_id } from '#utilities/youtube.js';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_cached_or_network_show } from './player_offline';
 import { load_state_from_indexed_db, open_db, STORE_NAME, type PlayerState } from './player_utils';

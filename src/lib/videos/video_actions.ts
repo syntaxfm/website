@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { goto } from '$app/navigation';
-import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
-import get_show_path from '$utilities/slug';
+import { youtube_player, type YoutubeVideoElementLike } from '#state/youtube_player.js';
+import get_show_path from '#utilities/slug.js';
 
 // Actions on the global YouTube video, shared by its own overlay buttons and the player bar's
 

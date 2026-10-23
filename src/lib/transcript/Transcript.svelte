@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { getSlimUtterances } from '$utilities/transcripts';
-	import { player } from '$state/player';
-	import format_time, { tsToS } from '$utilities/format_time';
+	import { getSlimUtterances } from '#utilities/transcripts.js';
+	import { player } from '#state/player.js';
+	import format_time, { tsToS } from '#utilities/format_time.js';
 	import 'core-js/full/map/group-by';
 	import slug from 'speakingurl';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
-	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import type { SlimUtterance } from '$server/transcripts/types';
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '#server/ai/queries.js';
+	import type { SlimUtterance } from '#server/transcripts/types.js';
 	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { Show } from '@prisma/client';
 

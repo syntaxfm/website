@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ShowCard from '$/lib/ShowCard.svelte';
+	import ShowCard from '#lib/ShowCard.svelte';
 
 	let { data } = $props();
 	let { video } = $derived(data);

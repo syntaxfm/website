@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
-	import AdminSearch from '$/lib/AdminSearch.svelte';
+	import AdminActions from '#lib/AdminActions.svelte';
+	import AdminSearch from '#lib/AdminSearch.svelte';
 	import { dev } from '$app/env';
 	import { enhance } from '$app/forms';
 	import FormWithLoader from '#lib/FormWithLoader.svelte';

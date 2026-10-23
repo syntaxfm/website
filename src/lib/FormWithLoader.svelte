@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { applyAction, enhance, type ActionResult, type SubmitFunction } from '$app/forms';
 	import { refreshAll } from '$app/navigation';
-	import { loading } from '$state/loading';
+	import { loading } from '#state/loading.js';
 	import toast from 'svelte-french-toast';
 	let form_loading = $state(false);
 	interface Props {

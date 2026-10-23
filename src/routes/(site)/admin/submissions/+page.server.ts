@@ -1,4 +1,4 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 import { Prisma, UserSubmissionStatus, UserSubmissionType } from '@prisma/client';
 import type { Actions, PageServerLoad } from './$types';
 

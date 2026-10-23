@@ -1,6 +1,6 @@
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { user_submission_action } from '$/lib/forms/UserSubmissionAction';
+import { user_submission_action } from '#lib/forms/UserSubmissionAction.js';
 export const load: PageServerLoad = async function () {
 	return {
 		meta: {

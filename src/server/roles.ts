@@ -1,4 +1,4 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function add_user_to_role(userId: string, roleName: string) {
 	// Find the role by its name

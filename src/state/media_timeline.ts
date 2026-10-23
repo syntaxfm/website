@@ -1,7 +1,7 @@
 // Audio and YouTube versions of an episode don't always share a timeline (different intros, cuts, etc).
 // This module tracks each version's duration and saved position separately so we never apply
 // an audio timestamp to a video (or vice versa) unless we know the two line up.
-import { get_youtube_id } from '$utilities/youtube';
+import { get_youtube_id } from '#utilities/youtube.js';
 
 export type MediaKind = 'AUDIO' | 'VIDEO';
 

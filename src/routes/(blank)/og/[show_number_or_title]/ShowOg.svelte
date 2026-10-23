@@ -1,7 +1,7 @@
 <script lang="ts">
-	import FacePile from '$/lib/FacePile.svelte';
-	import type { LatestShow } from '$server/ai/queries';
-	import { format_show_type } from '$utilities/format_show_type';
+	import FacePile from '#lib/FacePile.svelte';
+	import type { LatestShow } from '#server/ai/queries.js';
+	import { format_show_type } from '#utilities/format_show_type.js';
 	import { format } from 'date-fns';
 	import { tick, untrack } from 'svelte';
 

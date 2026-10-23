@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { shows_api_query } from '../query.js';
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function GET() {
 	const data = await prisma_client.show.findFirst(shows_api_query());

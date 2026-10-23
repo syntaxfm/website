@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import get_show_path from '$/utilities/slug';
+import { prisma_client } from '#server/prisma-client.js';
+import get_show_path from '#utilities/slug.js';
 import { error, redirect } from '@sveltejs/kit';
 
 export async function load(event) {

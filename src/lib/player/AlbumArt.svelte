@@ -2,7 +2,7 @@
 	import { PUBLIC_URL } from '$app/env/public';
 	import type { Show } from '@prisma/client';
 	import Album from './Album.svelte';
-	import { player } from '$/state/player';
+	import { player } from '#state/player.js';
 
 	interface Props {
 		is_link?: boolean;

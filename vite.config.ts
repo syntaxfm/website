@@ -50,18 +50,7 @@ export default defineConfig(({ mode }) => {
 						}
 					})
 				],
-				adapter: adapter({ runtime: 'nodejs22.x' }),
-				alias: {
-					$: 'src',
-					$actions: 'src/actions',
-					$assets: 'src/assets',
-					$const: 'src/const.ts',
-					$server: 'src/server',
-					$shows: 'shows',
-					$state: 'src/state',
-					$styles: 'src/styles',
-					$utilities: 'src/utilities'
-				}
+				adapter: adapter({ runtime: 'nodejs22.x' })
 			}),
 
 			codecovSvelteKitPlugin({

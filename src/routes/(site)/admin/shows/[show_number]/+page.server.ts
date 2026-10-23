@@ -2,12 +2,12 @@ import type { AiShowNote } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
-import { cache } from '$/server/cache/cache';
-import { prisma_client } from '$/server/prisma-client';
+import { cache } from '#server/cache/cache.js';
+import { prisma_client } from '#server/prisma-client.js';
 
 import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
 
-import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '$/server/megaphone/sync';
+import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '#server/megaphone/sync.js';
 
 type AiShowNoteUpdate = Pick<AiShowNote, 'title' | 'description'>;
 

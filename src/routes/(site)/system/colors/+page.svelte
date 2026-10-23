@@ -1,7 +1,7 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
 	import ColorsInJs from './colors-in-js.svelte';
-	import { oklchToRgba, rgbaToHex } from '$/utilities/colors';
+	import { oklchToRgba, rgbaToHex } from '#utilities/colors.js';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
 	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX' = $state('HEX');

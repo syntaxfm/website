@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
-import { processor } from '$/utilities/markdown';
-import { prisma_client } from '$/server/prisma-client';
+import { processor } from '#utilities/markdown.js';
+import { prisma_client } from '#server/prisma-client.js';
 
 function cleanUpLines(string: string) {
 	return string

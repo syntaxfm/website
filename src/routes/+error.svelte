@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Layout from './(site)/+layout.svelte';
-	import type { UserWithRoles } from '$/server/auth/users';
+	import type { UserWithRoles } from '#server/auth/users.js';
 
 	interface Props {
 		// error page does not automatically infer layout data...

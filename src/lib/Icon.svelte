@@ -38,7 +38,7 @@
 </script>
 
 <script lang="ts">
-	import { capitalize } from '$utilities/capitalize';
+	import { capitalize } from '#utilities/capitalize.js';
 	import { untrack } from 'svelte';
 
 	interface Props {

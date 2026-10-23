@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import { SHOW_QUERY } from '$server/ai/queries.js';
+import { prisma_client } from '#server/prisma-client.js';
+import { SHOW_QUERY } from '#server/ai/queries.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function ({ setHeaders, params }) {

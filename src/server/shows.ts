@@ -1,12 +1,12 @@
-import { DAYS_OF_WEEK_TYPES } from '$const';
-import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
-import { import_all_md_files_from_glob } from '$utilities/file_utilities/get_md_from_folder';
-import { left_pad } from '$utilities/left_pad';
+import { DAYS_OF_WEEK_TYPES } from '#const';
+import { get_hash_from_content } from '#utilities/file_utilities/get_hash_from_content.js';
+import { import_all_md_files_from_glob } from '#utilities/file_utilities/get_md_from_folder.js';
+import { left_pad } from '#utilities/left_pad.js';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
 import * as Sentry from '@sentry/sveltekit';
-import { prisma_client as prisma } from '$/server/prisma-client';
+import { prisma_client as prisma } from '#server/prisma-client.js';
 import { cache } from './cache/cache';
 
 interface FrontMatterGuest {

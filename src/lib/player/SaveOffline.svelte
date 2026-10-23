@@ -2,7 +2,7 @@
 	import type { Show } from '@prisma/client';
 	import { untrack } from 'svelte';
 	import Icon from '../Icon.svelte';
-	import { check_for_cached_mp3 } from '$state/player_offline';
+	import { check_for_cached_mp3 } from '#state/player_offline.js';
 
 	interface Props {
 		show: Show;

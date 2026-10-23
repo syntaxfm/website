@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 // import env from svelte kit environment
 import { CONVERT_KIT_V4_API_KEY, CONVERT_KIT_SECRET } from '$app/env/private';
-import { super_cache_mang } from '$/server/cache/cache_mang';
+import { super_cache_mang } from '#server/cache/cache_mang.js';
 
 const numberformatter = new Intl.NumberFormat('en-US');
 

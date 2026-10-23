@@ -1,6 +1,6 @@
-import { prisma_client } from '$/server/prisma-client';
-import { transcript_with_utterances } from '$server/ai/queries';
-import { get_show_cache_s } from '$utilities/get_show_cache_ms';
+import { prisma_client } from '#server/prisma-client.js';
+import { transcript_with_utterances } from '#server/ai/queries.js';
+import { get_show_cache_s } from '#utilities/get_show_cache_ms.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function ({ setHeaders, params, parent }) {

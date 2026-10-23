@@ -181,5 +181,5 @@
 
 	/* Sentry footer gradient */
 	--sentry-footer-bg:
-		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+		url('../assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 }

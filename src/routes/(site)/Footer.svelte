@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CURRENT_YEAR } from '$const';
+	import { CURRENT_YEAR } from '#const';
 	import Icon from '#lib/Icon.svelte';
 	import ProducedBySentry from '#lib/ProducedBySentry.svelte';
 </script>

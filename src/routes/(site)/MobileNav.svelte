@@ -1,5 +1,5 @@
 <script lang="ts">
-	import white_grit from '$assets/whitegrit.png';
+	import white_grit from '#assets/whitegrit.png';
 	import { fly } from 'svelte/transition';
 	let is_active = $state(false);
 

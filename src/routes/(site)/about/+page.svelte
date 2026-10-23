@@ -2,13 +2,13 @@
 	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
 	import type { Action } from 'svelte/action';
 	import { fly } from 'svelte/transition';
-	import emo from '$assets/emo.jpg';
-	import bboy from '$assets/bboy.jpg';
-	import number1fan from '$assets/kaitlin.jpg';
-	import runonlove from '$assets/runonlove.jpg';
-	import cj from '$assets/cj.jpg';
-	import niki from '$assets/niki.jpeg';
-	import komatsu from '$assets/komatsu.jpeg';
+	import emo from '#assets/emo.jpg';
+	import bboy from '#assets/bboy.jpg';
+	import number1fan from '#assets/kaitlin.jpg';
+	import runonlove from '#assets/runonlove.jpg';
+	import cj from '#assets/cj.jpg';
+	import niki from '#assets/niki.jpeg';
+	import komatsu from '#assets/komatsu.jpeg';
 	let hosts = {
 		wes: {
 			name: 'Wes Bos',

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { YoutubeVideoElementLike } from '$state/youtube_player';
+	import type { YoutubeVideoElementLike } from '#state/youtube_player.js';
 
 	interface Props {
 		video_id: string;

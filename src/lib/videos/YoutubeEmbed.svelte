@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Show } from '@prisma/client';
-	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
-	import { record_duration } from '$state/media_timeline';
-	import { get_youtube_watch_url } from '$utilities/youtube';
+	import { youtube_player, type YoutubeVideoElementLike } from '#state/youtube_player.js';
+	import { record_duration } from '#state/media_timeline.js';
+	import { get_youtube_watch_url } from '#utilities/youtube.js';
 	import Icon from '#lib/Icon.svelte';
 
 	interface Props {

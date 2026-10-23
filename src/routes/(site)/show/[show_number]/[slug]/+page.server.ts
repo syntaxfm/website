@@ -1,4 +1,4 @@
-import { get_show_cache_s } from '$utilities/get_show_cache_ms';
+import { get_show_cache_s } from '#utilities/get_show_cache_ms.js';
 
 export const load = async function ({ setHeaders, parent }) {
 	const { show } = await parent();

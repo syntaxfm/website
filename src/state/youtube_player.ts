@@ -1,6 +1,6 @@
 import type { Show } from '@prisma/client';
 import { get, writable } from 'svelte/store';
-import { get_youtube_id } from '$utilities/youtube';
+import { get_youtube_id } from '#utilities/youtube.js';
 import { get_saved_position, record_duration, save_position } from './media_timeline';
 
 // The subset of the YouTube IFrame API player we call directly

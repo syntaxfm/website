@@ -1,7 +1,7 @@
 <!-- <script lang="ts">
 	import type { Hotkeys } from '#lib/hotkeys/types.js';
 	import { getHotkeyTrigger } from '#lib/hotkeys/utils.js';
-	import { player } from '$state/player';
+	import { player } from '#state/player.js';
 	import { shortcut } from '@svelte-put/shortcut';
 	import HotkeyDialog from './HotkeyDialog.svelte';
 

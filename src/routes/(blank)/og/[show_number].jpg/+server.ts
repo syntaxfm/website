@@ -1,7 +1,7 @@
 import { dev } from '$app/env';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { type Browser } from 'puppeteer-core';
-import { redis } from '$/hooks.server.js';
+import { redis } from '#hooks.server';
 const exe_path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 chrome.setGraphicsMode = true;

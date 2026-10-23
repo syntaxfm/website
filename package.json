@@ -119,6 +119,14 @@
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",
-		"#lib/*": "./src/lib/*"
+		"#lib/*": "./src/lib/*",
+		"#actions/*": "./src/actions/*",
+		"#assets/*": "./src/assets/*",
+		"#const": "./src/const.ts",
+		"#hooks.server": "./src/hooks.server.ts",
+		"#server/*": "./src/server/*",
+		"#state/*": "./src/state/*",
+		"#styles/*": "./src/styles/*",
+		"#utilities/*": "./src/utilities/*"
 	}
 }

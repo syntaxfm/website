@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
 	import { page as pageStore } from '$app/state';
-	import { PER_PAGE } from '$const';
+	import { PER_PAGE } from '#const';
 	import { quintOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AINoteWithFriends } from '$server/ai/queries';
+	import type { AINoteWithFriends } from '#server/ai/queries.js';
 	import slug from 'speakingurl';
 
 	interface Props {

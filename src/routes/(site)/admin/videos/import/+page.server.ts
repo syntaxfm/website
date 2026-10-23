@@ -1,5 +1,5 @@
-import { prisma_client } from '$/server/prisma-client';
-import { get_remote_playlists, import_playlist } from '$/server/video/youtube_api';
+import { prisma_client } from '#server/prisma-client.js';
+import { get_remote_playlists, import_playlist } from '#server/video/youtube_api.js';
 import { fail } from '@sveltejs/kit';
 
 export const load = async () => {

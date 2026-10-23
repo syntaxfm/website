@@ -1,10 +1,10 @@
-import { save_ai_notes_to_db } from '$server/ai/db';
-import { generate_ai_notes } from '$server/ai/openai';
-import { transcript_without_ai_notes_query } from '$server/ai/queries';
+import { save_ai_notes_to_db } from '#server/ai/db.js';
+import { generate_ai_notes } from '#server/ai/openai.js';
+import { transcript_without_ai_notes_query } from '#server/ai/queries.js';
 import { error } from '@sveltejs/kit';
 import { has_auth } from '../transcripts/has_auth';
 import type { RequestEvent } from './$types';
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export const config = {
 	maxDuration: 300 // vercel timeout

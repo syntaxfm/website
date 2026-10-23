@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import ShowCard from '#lib/ShowCard.svelte';
-	import { theme_maker } from '$state/theme';
+	import { theme_maker } from '#state/theme.js';
 	import { onMount } from 'svelte';
 
 	let { data } = $props();

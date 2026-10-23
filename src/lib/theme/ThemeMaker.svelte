@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { variable_color_svg } from '$/lib/theme/variable_color_svg';
-	import { click_outside } from '$actions/click_outside';
+	import { variable_color_svg } from '#lib/theme/variable_color_svg.js';
+	import { click_outside } from '#actions/click_outside.js';
 	import { invalidate } from '$app/navigation';
-	import { theme_maker } from '$state/theme';
+	import { theme_maker } from '#state/theme.js';
 	import Cookie from 'js-cookie';
 	import { fly } from 'svelte/transition';
 
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
-	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
+	const themes = import.meta.glob('../../styles/themes/*.css', { eager: true });
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {

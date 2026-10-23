@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 import { CONVERT_KIT_SECRET } from '$app/env/private';
 import type { Broadcast } from '../proxy+page.server';
 import { parseHTML } from 'linkedom';
-import { super_cache_mang } from '$/server/cache/cache_mang';
+import { super_cache_mang } from '#server/cache/cache_mang.js';
 
 export const load: PageServerLoad = async function ({ setHeaders, params }) {
 	// 1. Fetch a broadcast by this ID

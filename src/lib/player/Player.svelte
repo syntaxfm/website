@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { player } from '$state/player';
-	import { player_window_status } from '$state/player_window_status';
-	import { youtube_player } from '$state/youtube_player';
-	import { get_youtube_id } from '$utilities/youtube';
+	import { player } from '#state/player.js';
+	import { player_window_status } from '#state/player_window_status.js';
+	import { youtube_player } from '#state/youtube_player.js';
+	import { get_youtube_id } from '#utilities/youtube.js';
 	import AlbumArt from './AlbumArt.svelte';
-	import get_show_path from '$utilities/slug';
+	import get_show_path from '#utilities/slug.js';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
 	import { onMount } from 'svelte';

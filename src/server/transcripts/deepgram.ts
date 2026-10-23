@@ -1,5 +1,5 @@
 import { createClient } from '@deepgram/sdk';
-import { prisma_client as prisma } from '$/server/prisma-client';
+import { prisma_client as prisma } from '#server/prisma-client.js';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
 import { addFlaggerAudio } from './flagger';

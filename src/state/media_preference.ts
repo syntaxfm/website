@@ -1,5 +1,5 @@
 import { get, writable } from 'svelte/store';
-import { get_youtube_id } from '$utilities/youtube';
+import { get_youtube_id } from '#utilities/youtube.js';
 import type { MediaKind } from './media_timeline';
 
 const STORAGE_KEY = 'media_preference';

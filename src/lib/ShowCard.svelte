@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { preventDefault } from 'svelte/legacy';
 	import { goto } from '$app/navigation';
-	import { player } from '$state/player';
-	import { format_show_type } from '$utilities/format_show_type';
-	import get_show_path from '$utilities/slug';
-	import { get_youtube_id } from '$utilities/youtube';
+	import { player } from '#state/player.js';
+	import { format_show_type } from '#utilities/format_show_type.js';
+	import get_show_path from '#utilities/slug.js';
+	import { get_youtube_id } from '#utilities/youtube.js';
 	import { format } from 'date-fns';
 	import { untrack } from 'svelte';
 	import FacePile from './FacePile.svelte';
@@ -12,7 +12,7 @@
 	import Badge from './badges/Badge.svelte';
 	import Badges from './badges/Badges.svelte';
 	import YoutubeEmbed from './videos/YoutubeEmbed.svelte';
-	import type { ShowCard } from '$/server/shows/shows_queries';
+	import type { ShowCard } from '#server/shows/shows_queries.js';
 
 	interface Props {
 		show: ShowCard;
@@ -231,7 +231,7 @@
 		&.highlight {
 			--bg: var(--bg-root);
 			--fg: var(--fg-root);
-			/* background-image: linear-gradient(to top, #00000000, var(--bg)), url('$assets/whitegrit.png');
+			/* background-image: linear-gradient(to top, #00000000, var(--bg)), url('../assets/whitegrit.png');
        */
 
 			border-radius: var(--brad);
