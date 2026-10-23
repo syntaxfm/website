@@ -6,7 +6,6 @@ allowBuilds:
   '@sentry/profiling-node': true
   '@sveltejs/kit': true
   bufferutil: true
-  core-js: true
   esbuild: true
   prisma: true
   svelte-preprocess: true

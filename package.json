@@ -82,7 +82,6 @@
 		"@sveltejs/adapter-vercel": "^7.0.1",
 		"@upstash/redis": "^1.35.1",
 		"chroma-js": "^3.2.0",
-		"core-js": "^3.44.0",
 		"date-fns": "^4.4.0",
 		"flexsearch": "^0.8.212",
 		"gpt-3-encoder": "^1.1.4",

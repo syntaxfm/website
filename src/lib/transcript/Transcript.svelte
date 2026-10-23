@@ -2,7 +2,6 @@
 	import { getSlimUtterances } from '#utilities/transcripts.js';
 	import { player } from '#state/player.js';
 	import format_time, { tsToS } from '#utilities/format_time.js';
-	import 'core-js/full/map/group-by';
 	import slug from 'speakingurl';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';

@@ -205,9 +205,6 @@ importers:
       chroma-js:
         specifier: ^3.2.0
         version: 3.2.0
-      core-js:
-        specifier: ^3.44.0
-        version: 3.51.0
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
@@ -2299,9 +2296,6 @@ packages:
   cookie@2.0.1:
     resolution: {integrity: sha512-yuToqVvRrj6pfDXREyQAAv8SkAEk/8GS3jQRTiUMm66TVtBYmqQeoEjL2Lmq8Rpo6271vH76InTChTitEAm65w==}
     engines: {node: '>=22'}
-
-  core-js@3.51.0:
-    resolution: {integrity: sha512-7bDKx/5jm5MxzsXxc93g6Z2+4ZsuT/MddrfRmTDJNAkWsYWHU8EVNEsBiIEWnMAMCHMmRfUEjkuo3jeNBOIHRw==}
 
   cosmiconfig@9.0.2:
     resolution: {integrity: sha512-gtTZxTDau1wL7Y7zifc2dd8jHSK/k6BTx/2Xp/BpdlAdnlYWFVt7qhJqgwi7637yRwRQ3qL4ZidbB4I8tA5VOg==}
@@ -6569,8 +6563,6 @@ snapshots:
     optional: true
 
   cookie@2.0.1: {}
-
-  core-js@3.51.0: {}
 
   cosmiconfig@9.0.2(typescript@6.0.3):
     dependencies:
