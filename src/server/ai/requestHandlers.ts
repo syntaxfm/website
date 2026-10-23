@@ -1,7 +1,7 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
 import { generate_ai_notes } from './notes';
-import { save_ai_notes_to_db } from './db';
+import { replace_ai_notes_in_db } from './db';
 import { prisma_client } from '#server/prisma-client.js';
 
 export async function aiNoteRequestHandler({ locals }: RequestEvent) {
@@ -23,18 +23,10 @@ export async function aiNoteRequestHandler({ locals }: RequestEvent) {
 	}
 	// Get the AI transcript for this show
 	const result = await generate_ai_notes(show);
-	// delete any existing ai notes
-	await prisma_client.aiShowNote.deleteMany({
-		where: {
-			show: {
-				number: show_number
-			}
-		}
-	});
-	// Save to DB
+	// Replace any existing ai notes
 	console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
 	console.dir(result);
-	await save_ai_notes_to_db(result, show);
+	await replace_ai_notes_in_db(result, show);
 
 	return { message: 'AI Notes Created' };
 }

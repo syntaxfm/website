@@ -58,7 +58,9 @@ export async function generate_ai_notes(
 			response_format: {
 				type: 'json_schema',
 				json_schema: { name: 'ai_notes', strict: true, schema: ai_notes_json_schema }
-			}
+			},
+			// OpenRouter otherwise routes to providers that drop response_format, and the reply isn't JSON
+			provider: { require_parameters: true }
 		})
 	});
 
