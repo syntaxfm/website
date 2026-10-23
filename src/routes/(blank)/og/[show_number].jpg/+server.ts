@@ -64,7 +64,7 @@ export async function GET({ url, params }) {
 	// Check if we have a cached version
 	const cache: string = redis ? (await redis.get(`show-og-${show}`)) || '' : '';
 	if (cache) {
-		console.log(`serving cached version of ${show}`, cache);
+		console.log(`serving cached version of ${show}`, `${cache.slice(0, 20)}…`);
 		return new Response(Buffer.from(cache, 'base64'), {
 			status: 200,
 			headers
