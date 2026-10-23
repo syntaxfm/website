@@ -9,17 +9,15 @@ chrome.setGraphicsMode = true;
 async function getOptions() {
 	if (dev) {
 		return {
-			product: 'chrome',
 			args: [],
 			executablePath: exe_path,
 			headless: true
 		};
 	}
 	return {
-		product: 'chrome',
-		args: chrome.args,
+		args: await puppeteer.defaultArgs({ args: chrome.args, headless: 'shell' }),
 		executablePath: await chrome.executablePath(),
-		headless: !!chrome.headless
+		headless: 'shell' as const
 	};
 }
 
@@ -37,11 +35,14 @@ async function getScreenshot(url: string) {
 
 	console.log(`creating new page`);
 	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
-	await page.goto(url);
-	await page.waitForSelector('.finish-sizing-text');
-	const buffer = await page.screenshot({ type: 'jpeg' });
-	return buffer;
+	try {
+		await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+		await page.goto(url);
+		await page.waitForSelector('.finish-sizing-text');
+		return await page.screenshot({ type: 'jpeg' });
+	} finally {
+		await page.close();
+	}
 }
 
 export const config = {
