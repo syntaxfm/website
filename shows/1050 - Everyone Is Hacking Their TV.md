@@ -4,7 +4,7 @@ title: Everyone Is Hacking Their TV
 date: 1793012400000
 url: https://traffic.megaphone.fm/FSI2480265141.mp3
 youtube_url: https://www.youtube.com/watch/qKyFi6j1XpA
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj
