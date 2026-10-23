@@ -39,7 +39,7 @@
 		"@types/speakingurl": "^13.0.6",
 		"@typescript-eslint/eslint-plugin": "^8.72.0",
 		"@typescript-eslint/parser": "^8.72.0",
-		"dotenv": "^16.6.1",
+		"dotenv": "^18.0.8",
 		"dotenv-expand": "^13.0.0",
 		"eslint": "^10.13.0",
 		"globals": "^17.13.0",
@@ -105,14 +105,14 @@
 		"sk-form-data": "^2.0.2",
 		"speakingurl": "^14.0.1",
 		"svelte-french-toast": "1.2.0",
-		"svelte-local-storage-store": "^0.6.4",
+		"svelte-persisted-store": "^0.12.0",
 		"svelte-turnstile": "^0.11.0",
-		"sveltekit-search-params": "^2.1.2",
+		"sveltekit-search-params": "^4.0.1",
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.9.1",
-		"zod": "^3.25.75"
+		"zod": "^4.6.7"
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"

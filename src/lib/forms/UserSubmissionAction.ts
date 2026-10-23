@@ -25,7 +25,7 @@ export const user_submission_action: Action = async function ({ locals }) {
 	const parsed = user_submission_schema.safeParse(data);
 	if (!parsed.success) {
 		if (parsed.error instanceof z.ZodError) {
-			const errors = parsed.error.flatten();
+			const errors = z.flattenError(parsed.error);
 			return fail(400, {
 				message: 'Failed to validate form',
 				error: 'See above for details',

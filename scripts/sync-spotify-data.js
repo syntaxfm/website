@@ -15,7 +15,7 @@ import { dirname, join } from 'path';
 // Load environment variables
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
-config({ path: join(_dirname, '..', '.env') });
+config({ path: join(_dirname, '..', '.env'), quiet: true });
 
 const prisma = new PrismaClient();
 

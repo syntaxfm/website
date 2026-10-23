@@ -4,13 +4,7 @@
 	import { queryParameters } from 'sveltekit-search-params';
 	import SelectMenu from '$/lib/SelectMenu.svelte';
 	import FormWithLoader from '$/lib/FormWithLoader.svelte';
-	const store = queryParameters<{
-		submission_type?: string;
-		status?: string;
-		perPage?: string;
-		order?: 'ASC' | 'DESC';
-		page: string;
-	}>();
+	const params = queryParameters();
 
 	interface Props {
 		data: PageData;
@@ -28,11 +22,11 @@
 		<SelectMenu
 			popover_id="filter-submission_type"
 			onselect={(e) => {
-				$store.submission_type = e.detail;
+				params.submission_type = e.detail;
 			}}
-			button_text={`Type ${$store.submission_type ? `(${$store.submission_type})` : ''}`}
+			button_text={`Type ${params.submission_type ? `(${params.submission_type})` : ''}`}
 			button_icon="filter"
-			value={$store.submission_type || ''}
+			value={params.submission_type || ''}
 			options={[
 				{ value: '', label: 'All' },
 				...Object.keys(user_submission_type).map((key) => ({ value: key, label: key }))
@@ -41,11 +35,11 @@
 		<SelectMenu
 			popover_id="filter-status"
 			onselect={(e) => {
-				$store.status = e.detail;
+				params.status = e.detail;
 			}}
-			button_text={`Status ${$store.status ? `(${$store.status})` : ''}`}
+			button_text={`Status ${params.status ? `(${params.status})` : ''}`}
 			button_icon="filter"
-			value={$store.status || ''}
+			value={params.status || ''}
 			options={[
 				{ value: '', label: 'All' },
 				...Object.keys(user_submission_status).map((key) => ({ value: key, label: key }))
@@ -54,11 +48,11 @@
 		<SelectMenu
 			popover_id="filter-perPage"
 			onselect={(e) => {
-				$store.perPage = e.detail;
+				params.perPage = e.detail;
 			}}
 			value_as_label
 			button_text="Per Page"
-			value={$store.perPage?.toString() || '100'}
+			value={params.perPage?.toString() || '100'}
 			options={[
 				{ value: '10', label: '10' },
 				{ value: '20', label: '20' },
@@ -69,9 +63,9 @@
 		<SelectMenu
 			popover_id="filter-order"
 			onselect={(e) => {
-				$store.order = e.detail;
+				params.order = e.detail;
 			}}
-			value={$store.order || 'desc'}
+			value={params.order || 'desc'}
 			button_text="Sort"
 			button_icon="sort"
 			options={[

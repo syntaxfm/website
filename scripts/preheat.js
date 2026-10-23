@@ -9,7 +9,7 @@ import semver from 'semver';
 import { PrismaClient } from '@prisma/client';
 
 // Load environment variables
-expand(dotenv.config());
+expand(dotenv.config({ quiet: true }));
 
 async function main() {
 	const args = process.argv.slice(2);

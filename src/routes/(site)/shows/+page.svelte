@@ -9,12 +9,7 @@
 	let { data } = $props();
 	let { shows } = $derived(data);
 
-	const store = queryParameters<{
-		type?: string;
-		perPage?: string;
-		order?: string;
-		page: string;
-	}>();
+	const params = queryParameters();
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
 	let is_noindex_page = $derived(
@@ -35,11 +30,11 @@
 			<SelectMenu
 				popover_id="filter-type"
 				onselect={(e) => {
-					$store.type = e.detail;
+					params.type = e.detail;
 				}}
 				button_text="Type"
 				button_icon="filter"
-				value={$store.type || ''}
+				value={params.type || ''}
 				options={[
 					{ value: '', label: 'All' },
 					{ value: 'hasty', label: 'Hasty' },
@@ -51,11 +46,11 @@
 			<SelectMenu
 				popover_id="filter-perPage"
 				onselect={(e) => {
-					$store.perPage = e.detail;
+					params.perPage = e.detail;
 				}}
 				value_as_label
 				button_text="Per Page"
-				value={$store.perPage?.toString() || '10'}
+				value={params.perPage?.toString() || '10'}
 				options={[
 					{ value: '10', label: '10' },
 					{ value: '20', label: '20' },
@@ -65,9 +60,9 @@
 			<SelectMenu
 				popover_id="filter-order"
 				onselect={(e) => {
-					$store.order = e.detail;
+					params.order = e.detail;
 				}}
-				value={$store.order || 'desc'}
+				value={params.order || 'desc'}
 				button_text="Sort"
 				button_icon="sort"
 				options={[
@@ -80,9 +75,9 @@
 	</div>
 
 	<Pagination
-		page={parseInt($store.page || '1')}
+		page={parseInt(params.page || '1')}
 		count={data.count || 69}
-		perPage={parseInt($store.perPage || PER_PAGE.toString())}
+		perPage={parseInt(params.perPage || PER_PAGE.toString())}
 	/>
 
 	<div class="shows">
@@ -92,9 +87,9 @@
 	</div>
 
 	<Pagination
-		page={parseInt($store.page || '1')}
+		page={parseInt(params.page || '1')}
 		count={data.count || 69}
-		perPage={parseInt($store.perPage || PER_PAGE.toString())}
+		perPage={parseInt(params.perPage || PER_PAGE.toString())}
 	/>
 </section>
 
