@@ -1,5 +1,5 @@
 import { import_or_update_all_changed_shows } from '../../../server/shows';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { has_auth } from '../transcripts/has_auth';
 
@@ -10,5 +10,5 @@ export const GET: RequestHandler = async function ({ request }) {
 	}
 	console.log('🤖 Pod Sync Requested via /webhooks/refresh');
 	const data = await import_or_update_all_changed_shows();
-	return json(data);
+	return Response.json(data);
 };

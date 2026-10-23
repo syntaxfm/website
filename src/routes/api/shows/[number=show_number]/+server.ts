@@ -1,4 +1,4 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from '../query.js';
 import { prisma_client } from '$/server/prisma-client';
@@ -23,7 +23,7 @@ export async function GET({ params }) {
 		}
 	});
 	if (data) {
-		return json(
+		return Response.json(
 			{
 				...data,
 				notesFile: data?.md_file,

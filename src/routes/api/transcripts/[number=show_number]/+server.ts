@@ -1,4 +1,4 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { prisma_client } from '$/server/prisma-client';
 import { getSlimUtterances } from '$utilities/transcripts';
 
@@ -35,7 +35,7 @@ export async function GET({ params }) {
 
 	const grouped_utterances = getSlimUtterances(transcript.utterances, show_number);
 
-	return json(
+	return Response.json(
 		{
 			show_title: transcript.show.title,
 			show_number: transcript.show.number,

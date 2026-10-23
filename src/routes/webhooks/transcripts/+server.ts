@@ -1,4 +1,4 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { RequestEvent } from './$types';
 import { get_transcript } from '$server/transcripts/deepgram';
 import { has_auth } from './has_auth';
@@ -27,7 +27,7 @@ export const GET = async function transcriptCronHandler({ request }: RequestEven
 	});
 
 	if (!show) {
-		return json({ message: 'No shows without transcripts found.' });
+		return Response.json({ message: 'No shows without transcripts found.' });
 	}
 
 	console.log(`🤖 Found a show that needs a transcript: show ${show.number} - ${show.title}`);
@@ -38,7 +38,7 @@ export const GET = async function transcriptCronHandler({ request }: RequestEven
 	const seconds = (duration % 60000) / 1000;
 	const message = `Transcript Cron Ran for Show #${show.number} ${show.title}. Took ${minutes}m ${seconds}s`;
 	console.log(message);
-	return json({
+	return Response.json({
 		message
 	});
 };

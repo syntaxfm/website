@@ -1,4 +1,3 @@
-import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from './query.js';
 import { prisma_client } from '$/server/prisma-client';
@@ -17,7 +16,7 @@ export async function GET() {
 	});
 
 	if (data)
-		return json(shows, {
+		return Response.json(shows, {
 			headers: {
 				'Access-Control-Allow-Origin': '*'
 			}
