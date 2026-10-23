@@ -120,7 +120,7 @@
 		"unified": "^11.0.5",
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.6.0",
-		"zod": "^3.25.75",
+		"zod": "^4.6.6",
 		"zx": "^7.2.4"
 	},
 	"prisma": {
