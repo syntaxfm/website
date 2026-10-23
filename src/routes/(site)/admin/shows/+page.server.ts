@@ -9,7 +9,8 @@ import {
 } from '$server/megaphone/sync';
 import type { PageServerLoad } from './$types';
 import { prisma_client } from '$/server/prisma-client';
-import { env } from '$env/dynamic/private';
+
+import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
@@ -18,9 +19,9 @@ export const config = {
 // Helper function to sync Spotify data for specific shows
 async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 	const credentials: MegaphoneCredentials = {
-		apiToken: env.MEGAPHONE_API_TOKEN,
-		networkId: env.MEGAPHONE_NETWORK_ID,
-		podcastId: env.MEGAPHONE_PODCAST_ID
+		apiToken: MEGAPHONE_API_TOKEN,
+		networkId: MEGAPHONE_NETWORK_ID,
+		podcastId: MEGAPHONE_PODCAST_ID
 	};
 
 	for (const show_number of showNumbers) {
@@ -78,9 +79,9 @@ export const actions = {
 
 		try {
 			const credentials: MegaphoneCredentials = {
-				apiToken: env.MEGAPHONE_API_TOKEN,
-				networkId: env.MEGAPHONE_NETWORK_ID,
-				podcastId: env.MEGAPHONE_PODCAST_ID
+				apiToken: MEGAPHONE_API_TOKEN,
+				networkId: MEGAPHONE_NETWORK_ID,
+				podcastId: MEGAPHONE_PODCAST_ID
 			};
 			await syncAllEpisodesSpotifyData(credentials);
 		} catch (error) {

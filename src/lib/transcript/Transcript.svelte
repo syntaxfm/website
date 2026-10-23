@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getSlimUtterances } from '$server/transcripts/utils';
+	import { getSlimUtterances } from '$utilities/transcripts';
 	import { player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';

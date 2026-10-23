@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { GITHUB_AUTH_URL } from '$const';
-import { PUBLIC_GITHUB_ID } from '$env/static/public';
+import { PUBLIC_GITHUB_ID } from '$app/env/public';
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma_client } from '$/server/prisma-client';
 

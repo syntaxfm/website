@@ -3,7 +3,7 @@
 	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
 	import { record_duration } from '$state/media_timeline';
 	import { get_youtube_watch_url } from '$utilities/youtube';
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 
 	interface Props {
 		show: Show;

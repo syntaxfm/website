@@ -1,13 +1,15 @@
+import { redirect } from '@sveltejs/kit';
+
 // * Server Side Middleware
 // https://kit.svelte.dev/docs/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-import { redirect, type Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { find_user_by_access_token } from './server/auth/users';
-import { building, dev } from '$app/environment';
-import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
+import { building, dev } from '$app/env';
+import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$app/env/private';
 import { Redis } from '@upstash/redis';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';

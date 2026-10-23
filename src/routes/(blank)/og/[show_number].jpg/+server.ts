@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { type Browser } from 'puppeteer-core';
 import { redis } from '$/hooks.server.js';
@@ -77,12 +77,8 @@ export async function GET({ url, params }) {
 	console.log(`time to render ${show}:`, (end - start) / 1000);
 	// Store buffer in cache
 	console.log(`caching ${show} in redis`);
-	redis?.set(`show-og-${show}`, Buffer.from(photo_buffer).toString('base64'), {
-		ex: 60 * 60 * 5
-	});
 
-	return new Response(new Uint8Array(photo_buffer), {
-		status: 200,
-		headers
-	});
+	redis?.set(`show-og-${show}`, Buffer.from(photo_buffer).toString('base64'), { ex: 60 * 60 * 5 });
+
+	return new Response(new Uint8Array(photo_buffer), { status: 200, headers });
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PodcastHero from '$lib/PodcastHero.svelte';
-	import ShowCard from '$lib/ShowCard.svelte';
+	import PodcastHero from '#lib/PodcastHero.svelte';
+	import ShowCard from '#lib/ShowCard.svelte';
 
 	let { data } = $props();
 	let { latest } = $derived(data);

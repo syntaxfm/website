@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NewsletterLogo from './NewsletterLogo.svelte';
-	import Input from '$lib/forms/Input.svelte';
+	import Input from '#lib/forms/Input.svelte';
 	let _is_hidden = $state(false);
 
 	interface Props {

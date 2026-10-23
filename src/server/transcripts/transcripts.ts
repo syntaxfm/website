@@ -5,7 +5,7 @@ import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
 import path from 'path';
 import { prisma_client as prisma } from '$/server/prisma-client';
-import { detectSpeakerNames, getSlimUtterances } from './utils';
+import { detectSpeakerNames, getSlimUtterances } from '$utilities/transcripts';
 import pMap from 'p-map';
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');
 

@@ -1,3 +1,7 @@
+import adapter from '@sveltejs/adapter-vercel';
+import preprocess from 'svelte-preprocess';
+import postcssPresetEnv from 'postcss-preset-env';
+import atImport from 'postcss-import';
 import { sentrySvelteKit } from '@sentry/sveltekit/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
@@ -15,7 +19,51 @@ export default defineConfig(({ mode }) => {
 				project: 'website',
 				authToken: env.SENTRY_AUTH_TOKEN
 			}),
-			sveltekit(),
+
+			sveltekit({
+				preprocess: [
+					preprocess({
+						postcss: {
+							prependData: `
+				@custom-media --below-small (width < 400px);
+				@custom-media --below-med (width < 700px);
+				@custom-media --below-large (width < 900px);
+				@custom-media --below-xlarge (width < 1200px);
+				@custom-media --above-small (width > 400px);
+				@custom-media --above-med (width > 700px);
+				@custom-media --above-large (width > 900px);
+				@custom-media --above-xlarge (width > 1200px);
+				@custom-media --stacked-video-bar (max-width: 809px);
+			`,
+
+							plugins: [
+								atImport,
+								postcssPresetEnv({
+									stage: 2,
+									features: {
+										'nesting-rules': true,
+										'custom-media-queries': true,
+										'media-query-ranges': true
+									}
+								})
+							]
+						}
+					})
+				],
+				adapter: adapter({ runtime: 'nodejs22.x' }),
+				alias: {
+					$: 'src',
+					$actions: 'src/actions',
+					$assets: 'src/assets',
+					$const: 'src/const.ts',
+					$server: 'src/server',
+					$shows: 'shows',
+					$state: 'src/state',
+					$styles: 'src/styles',
+					$utilities: 'src/utilities'
+				}
+			}),
+
 			codecovSvelteKitPlugin({
 				enableBundleAnalysis: env.CODECOV_TOKEN !== undefined,
 				bundleName: 'website',

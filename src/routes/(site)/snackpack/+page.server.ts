@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 // import env from svelte kit environment
-import { env } from '$env/dynamic/private';
+import { CONVERT_KIT_V4_API_KEY, CONVERT_KIT_SECRET } from '$app/env/private';
 import { super_cache_mang } from '$/server/cache/cache_mang';
 
 const numberformatter = new Intl.NumberFormat('en-US');
@@ -46,10 +46,13 @@ async function getBroadcastsPage(after?: string) {
 		params.append('after', after);
 	}
 	const headers = new Headers();
-	headers.append('X-Kit-Api-Key', env.CONVERT_KIT_V4_API_KEY);
+
+	headers.append('X-Kit-Api-Key', CONVERT_KIT_V4_API_KEY);
+
 	const response = await fetch(`https://api.convertkit.com/v4/broadcasts?${params.toString()}`, {
 		headers
 	});
+
 	return response.json() as Promise<BroadCastResponse | undefined>;
 }
 
@@ -77,11 +80,7 @@ async function fetchBroadcastList() {
 					const title = subject.toLowerCase();
 					const is_snackpack_issue = title.includes('snack pack') || title.includes('issue #');
 					if (is_published && is_snackpack_issue) {
-						results.push({
-							id,
-							published_at: published_at || created_at,
-							subject
-						});
+						results.push({ id, published_at: published_at || created_at, subject });
 					}
 				}
 			);
@@ -102,12 +101,12 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 	});
 
 	const subs = await super_cache_mang('snackpack:subs', () =>
-		fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`)
+		fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${CONVERT_KIT_SECRET}`)
 			.then((res) => res.json())
 			.catch(console.error)
 	);
 
-	const issues: BroadcastSkinny[] = env.CONVERT_KIT_SECRET
+	const issues: BroadcastSkinny[] = CONVERT_KIT_SECRET
 		? await super_cache_mang('snackpack:issues', () => fetchBroadcastList())
 		: [
 				{

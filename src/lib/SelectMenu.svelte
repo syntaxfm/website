@@ -3,8 +3,8 @@
 	import type { IconName } from './Icon.svelte';
 	import Icon from './Icon.svelte';
 	// Polyfill for Popover. Remove once Firefox supports it. https://caniuse.com/?search=popover
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { browser } from '$app/env';
+	import { page } from '$app/state';
 	import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 	if (!isSupported() && browser) {
@@ -33,7 +33,7 @@
 	// let searchParams = new URLSearchParams(window.location.search);
 
 	let generate_search_params = $derived((id: string, value: string) => {
-		const search_params = new URLSearchParams($page.url.search);
+		const search_params = new URLSearchParams(page.url.search);
 		if (!value) {
 			search_params.delete(id);
 		} else {

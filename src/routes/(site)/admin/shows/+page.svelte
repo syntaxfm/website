@@ -1,10 +1,10 @@
 <script lang="ts">
 	import AdminActions from '$/lib/AdminActions.svelte';
 	import AdminSearch from '$/lib/AdminSearch.svelte';
-	import { dev } from '$app/environment';
+	import { dev } from '$app/env';
 	import { enhance } from '$app/forms';
-	import FormWithLoader from '$lib/FormWithLoader.svelte';
-	import { form_action } from '$lib/form_action';
+	import FormWithLoader from '#lib/FormWithLoader.svelte';
+	import { form_action } from '#lib/form_action.js';
 	import { format } from 'date-fns';
 
 	let { data } = $props();
@@ -73,14 +73,10 @@
 						.toLowerCase()
 						.includes(search_text.toLowerCase())) as show}
 					<tr>
+						<td><a href="/admin/shows/{show.number}">#{show.number}</a></td>
+
 						<td>
-							<a href="/admin/shows/{show.number}">#{show.number}</a>
-						</td>
-						<td>
-							<a href="/{show.number}" target="_blank">
-								{show.title}
-								[↗]</a
-							>
+							<a href="/{show.number}" target="_blank">{show.title} [↗]</a>
 							<br />
 							<span class="text-xs">
 								{show.date.getTime() > Date.now() ? 'Scheduled' : 'Published'}

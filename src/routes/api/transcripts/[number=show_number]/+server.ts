@@ -1,6 +1,6 @@
 import { error, json } from '@sveltejs/kit';
 import { prisma_client } from '$/server/prisma-client';
-import { getSlimUtterances } from '$/server/transcripts/utils';
+import { getSlimUtterances } from '$utilities/transcripts';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);

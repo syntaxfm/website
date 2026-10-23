@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
+	import { applyAction, enhance, type ActionResult, type SubmitFunction } from '$app/forms';
+	import { refreshAll } from '$app/navigation';
 	import { loading } from '$state/loading';
-	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
 	import toast from 'svelte-french-toast';
 	let form_loading = $state(false);
 	interface Props {
@@ -42,7 +41,7 @@
 					toast.error(`Something went wrong. Check the console`);
 					console.log(result);
 				}
-				await invalidateAll();
+				await refreshAll();
 				await applyAction(result);
 				form_loading = false;
 				if (global) {

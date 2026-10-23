@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
-	import ShowCard from '$lib/ShowCard.svelte';
+	import ShowCard from '#lib/ShowCard.svelte';
 	import { theme_maker } from '$state/theme';
 	import { onMount } from 'svelte';
 
@@ -10,7 +10,10 @@
 	onMount(() => {
 		theme_maker.open();
 	});
-	afterNavigate(() => {
+
+	afterNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		theme_maker.open();
 	});
 </script>
@@ -54,6 +57,8 @@
 	<h3>Grid With Cards</h3>
 	<div class="grid">
 		<ShowCard display="highlight" {show} />
-		<ShowCard {show} /><ShowCard {show} /><ShowCard {show} />
+		<ShowCard {show} />
+		<ShowCard {show} />
+		<ShowCard {show} />
 	</div>
 {/if}

@@ -4,29 +4,31 @@
 	import 'youtube-video-element';
 	import { Toaster } from 'svelte-french-toast';
 	import { beforeNavigate, onNavigate } from '$app/navigation';
-	import Player from '$lib/player/Player.svelte';
-	import GlobalYoutubePlayer from '$lib/videos/GlobalYoutubePlayer.svelte';
+	import Player from '#lib/player/Player.svelte';
+	import GlobalYoutubePlayer from '#lib/videos/GlobalYoutubePlayer.svelte';
 	import { youtube_player } from '$state/youtube_player';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
-	import Loading from '$lib/Loading.svelte';
-	import { browser } from '$app/environment';
-	import SearchBox from '$lib/search/SearchBox.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import AdminMenu from '$lib/AdminMenu.svelte';
-	import ThemeMaker from '../../params/ThemeMaker.svelte';
-	import { page } from '$app/stores';
-	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
+	import Loading from '#lib/Loading.svelte';
+	import { browser } from '$app/env';
+	import SearchBox from '#lib/search/SearchBox.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
+	import AdminMenu from '#lib/AdminMenu.svelte';
+	import ThemeMaker from '#lib/theme/ThemeMaker.svelte';
+	import { page } from '$app/state';
+	import PageLoadingIndicator from '#lib/page_loading_indicator.svelte';
 
 	let { data, children } = $props();
 	let { user, user_theme, latest } = $derived(data);
 
 	beforeNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
 		if (navigation.willUnload) return;
 		youtube_player.before_navigate();
 	});
 
 	onNavigate(async (navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
 		if (!document.startViewTransition) return;
 
 		return new Promise((oldStateCaptureResolve) => {
@@ -43,7 +45,7 @@
 <PageLoadingIndicator />
 
 <div class={'theme-' + user_theme + ' theme-wrapper'}>
-	{#if $page.url.pathname !== '/'}
+	{#if page.url.pathname !== '/'}
 		<Header />
 	{/if}
 

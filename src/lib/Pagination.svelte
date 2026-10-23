@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
-	import { page as pageStore } from '$app/stores';
+	import { page as pageStore } from '$app/state';
 	import { PER_PAGE } from '$const';
 	import { quintOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
@@ -13,7 +13,7 @@
 	let { count, perPage: per_page = PER_PAGE, page = 1 }: Props = $props();
 	let total_pages = $derived(Math.ceil(count / per_page));
 	let generate_search_params = $derived((id: string, value: string | number) => {
-		const search_params = new URLSearchParams($pageStore.url.search);
+		const search_params = new URLSearchParams(pageStore.url.search);
 		if (!value) {
 			search_params.delete(id);
 		} else {

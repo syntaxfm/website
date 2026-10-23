@@ -4,7 +4,9 @@ import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { cache } from '$/server/cache/cache';
 import { prisma_client } from '$/server/prisma-client';
-import { env } from '$env/dynamic/private';
+
+import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
+
 import { syncEpisodeSpotifyData, type MegaphoneCredentials } from '$/server/megaphone/sync';
 
 type AiShowNoteUpdate = Pick<AiShowNote, 'title' | 'description'>;
@@ -40,9 +42,9 @@ export const actions = {
 
 			// Create credentials object
 			const credentials: MegaphoneCredentials = {
-				apiToken: env.MEGAPHONE_API_TOKEN,
-				networkId: env.MEGAPHONE_NETWORK_ID,
-				podcastId: env.MEGAPHONE_PODCAST_ID
+				apiToken: MEGAPHONE_API_TOKEN,
+				networkId: MEGAPHONE_NETWORK_ID,
+				podcastId: MEGAPHONE_PODCAST_ID
 			};
 
 			// Call the sync function for this specific episode

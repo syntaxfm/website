@@ -1,13 +1,13 @@
 <script lang="ts">
-	import PlaylistCard from '$lib/videos/PlaylistCard.svelte';
-	import { page } from '$app/stores';
+	import PlaylistCard from '#lib/videos/PlaylistCard.svelte';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 	let { playlists } = $derived(data);
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
 	let is_noindex_page = $derived(
-		['order', 'type', 'sort', 'perPage'].some((filter) => $page.url.searchParams.has(filter))
+		['order', 'type', 'sort', 'perPage'].some((filter) => page.url.searchParams.has(filter))
 	);
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ComponentWindow from '$lib/ComponentWindow.svelte';
+	import ComponentWindow from '#lib/ComponentWindow.svelte';
 	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
 	import type { Component } from 'svelte';
 

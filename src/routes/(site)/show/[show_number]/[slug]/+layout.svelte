@@ -2,17 +2,17 @@
 	import ShareButton from '$/lib/share/HairButton.svelte';
 	import { replace_color } from '$/lib/theme/variable_color_svg.js';
 	import { time_param_to_seconds } from '$/utilities/time_param_to_seconds.js';
-	import { page } from '$app/stores';
-	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
-	import Icon from '$lib/Icon.svelte';
-	import ListenLinks from '$lib/ListenLinks.svelte';
-	import Tabs from '$lib/Tabs.svelte';
-	import ShareWindow from '$lib/share/ShareWindow.svelte';
+	import { page } from '$app/state';
+	import HostsAndGuests from '#lib/HostsAndGuests.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import ListenLinks from '#lib/ListenLinks.svelte';
+	import Tabs from '#lib/Tabs.svelte';
+	import ShareWindow from '#lib/share/ShareWindow.svelte';
 	import { player } from '$state/player';
-	import YoutubeEmbed from '$lib/videos/YoutubeEmbed.svelte';
+	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
 	import { get_youtube_id } from '$utilities/youtube';
 	import { format } from 'date-fns';
-	import SaveOffline from '$lib/player/SaveOffline.svelte';
+	import SaveOffline from '#lib/player/SaveOffline.svelte';
 	import { tsToS } from '$/utilities/format_time.js';
 
 	let { data, children } = $props();
@@ -50,7 +50,7 @@
 	let show_schema = $derived({
 		'@context': 'https://schema.org/',
 		'@type': 'PodcastEpisode',
-		url: $page.url,
+		url: page.url,
 		name: show.title,
 		datePublished: format(show.date, 'yyyy-LL-dd'),
 		// TODO: add duration once we are saving it
@@ -176,14 +176,14 @@
 
 <Tabs>
 	<a
-		data-sveltekit-noscroll
-		class:active={!$page.url.pathname.includes('transcript')}
-		href="/show/{$page.params.show_number}/{$page.params.slug}">Show Notes</a
+		data-sveltekit-reset="false"
+		class:active={!page.url.pathname.includes('transcript')}
+		href="/show/{page.params.show_number}/{page.params.slug}">Show Notes</a
 	>
 	<a
-		class:active={$page.url.pathname.includes('transcript')}
-		data-sveltekit-noscroll
-		href="/show/{$page.params.show_number}/{$page.params.slug}/transcript">Transcript</a
+		class:active={page.url.pathname.includes('transcript')}
+		data-sveltekit-reset="false"
+		href="/show/{page.params.show_number}/{page.params.slug}/transcript">Transcript</a
 	>
 </Tabs>
 
@@ -192,10 +192,7 @@
 <!-- Please submit a PR if you have a good fix here :) - Scott -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<section class="layout full" onclick={handleClick}>
-	{@render children?.()}
-</section>
-
+<section class="layout full" onclick={handleClick}>{@render children?.()}</section>
 <ShareWindow {show} />
 
 <style lang="postcss">

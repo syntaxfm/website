@@ -1,4 +1,4 @@
-import { formatAsTranscript, getSlimUtterances } from '$server/transcripts/utils';
+import { formatAsTranscript, getSlimUtterances } from '$utilities/transcripts';
 import type { Prisma } from '@prisma/client';
 import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi, type CreateChatCompletionRequest } from 'openai';

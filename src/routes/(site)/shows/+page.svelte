@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { PER_PAGE } from '$const';
-	import Pagination from '$lib/Pagination.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import ShowCard from '$lib/ShowCard.svelte';
+	import Pagination from '#lib/Pagination.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import ShowCard from '#lib/ShowCard.svelte';
 	import { queryParameters } from 'sveltekit-search-params';
 
 	let { data } = $props();
@@ -13,7 +13,7 @@
 
 	// We tell google to ignore filters, BUT not ?page=2...Infinity
 	let is_noindex_page = $derived(
-		['order', 'type', 'sort', 'perPage'].some((filter) => $page.url.searchParams.has(filter))
+		['order', 'type', 'sort', 'perPage'].some((filter) => page.url.searchParams.has(filter))
 	);
 </script>
 

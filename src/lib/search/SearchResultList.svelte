@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { preventDefault } from 'svelte/legacy';
 
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import { player } from '$state/player';
 	import { search_recent } from '$state/search';
 	import { createEventDispatcher } from 'svelte';

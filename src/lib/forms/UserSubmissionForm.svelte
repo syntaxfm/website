@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { form_action } from '../form_action';
 	import { Turnstile } from 'svelte-turnstile';
-	import { env } from '$env/dynamic/public';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import InlineError from './InlineError.svelte';
 	import { UserSubmissionType } from '@prisma/client';
 	import type { ActionData } from '../../routes/(site)/oss/$types';
@@ -98,7 +98,7 @@
 		</div>
 	</div>
 	<div class="input-group turnstile">
-		<Turnstile appearance="interaction-only" siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} bind:reset />
+		<Turnstile appearance="interaction-only" siteKey={PUBLIC_TURNSTILE_SITE_KEY} bind:reset />
 	</div>
 	<button type="submit">Send</button>
 </form>

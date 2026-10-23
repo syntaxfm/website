@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -35,7 +36,7 @@
 
 <nav>
 	{#each LINKS as link}
-		<a class:active={$page.url.pathname === link.link} href={link.link}>{link.name}</a>
+		<a class:active={page.url.pathname === link.link} href={link.link}>{link.name}</a>
 	{/each}
 </nav>
 

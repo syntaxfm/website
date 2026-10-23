@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_URL } from '$env/static/public';
+import { PUBLIC_URL } from '$app/env/public';
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
 	const robots_txt = `User-agent: *

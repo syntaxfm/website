@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Input from '$lib/forms/Input.svelte';
+	import Input from '#lib/forms/Input.svelte';
 	import swag from './swag.png';
 	let is_hidden = $state(false);
 

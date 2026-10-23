@@ -9,7 +9,7 @@
 	import ShareButton from '../share/HairButton.svelte';
 	import { onMount } from 'svelte';
 	import { MediaQuery } from 'svelte/reactivity';
-	import { enter_fullscreen, open_show_page } from '$lib/videos/video_actions';
+	import { enter_fullscreen, open_show_page } from '#lib/videos/video_actions.js';
 	import type { Show } from '@prisma/client';
 
 	interface Props {
