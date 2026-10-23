@@ -69,8 +69,7 @@
 		"pnpm": ">=12"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.6.8",
-		"@deepgram/sdk": "^4.11.2",
+		"@deepgram/sdk": "^5.15.0",
 		"@ffmpeg.wasm/core-mt": "0.13.2",
 		"@ffmpeg.wasm/main": "^0.13.1",
 		"@leveluptuts/svelte-side-menu": "^1.1.0",
@@ -84,12 +83,10 @@
 		"chroma-js": "^3.2.0",
 		"date-fns": "^4.4.0",
 		"flexsearch": "^0.8.212",
-		"gpt-3-encoder": "^1.1.4",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.5",
 		"linkedom": "^0.18.11",
 		"media-chrome": "^4.19.3",
-		"openai": "^3.3.0",
 		"p-map": "^7.0.3",
 		"puppeteer-core": "25.11.0",
 		"rehype-autolink-headings": "^7.1.0",
@@ -108,7 +105,6 @@
 		"sveltekit-search-params": "^4.0.1",
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
-		"waait": "^1.0.5",
 		"youtube-video-element": "^1.9.0",
 		"zod": "^4.6.7"
 	},

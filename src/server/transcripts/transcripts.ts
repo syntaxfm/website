@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type { SyncPrerecordedResponse } from '@deepgram/sdk';
+import type {
+	ListenV1Response,
+	ListenV1ResponseResultsUtterancesItem as Utterance
+} from '@deepgram/sdk';
 import type { Show } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import fs, { readFile } from 'fs/promises';
@@ -9,9 +12,15 @@ import { detectSpeakerNames, getSlimUtterances } from '#utilities/transcripts.js
 import pMap from 'p-map';
 const transcripts_path = path.join(process.cwd(), 'src/assets/transcripts-flagged');
 
-type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
-
-export async function save_transcript_to_db(show: Show, utterances: Utterance[]) {
+export async function save_transcript_to_db(show: Show, deepgram_utterances: Utterance[]) {
+	const utterances = deepgram_utterances.map((utterance) => ({
+		...utterance,
+		start: utterance.start ?? 0,
+		end: utterance.end ?? 0,
+		transcript: utterance.transcript ?? '',
+		channel: utterance.channel ?? 0,
+		confidence: utterance.confidence ?? 0
+	}));
 	// Create Slim Utterances for Speaker Detection
 	const slim_utterances = getSlimUtterances(utterances, show.number);
 	// Detect Speakers
@@ -19,15 +28,15 @@ export async function save_transcript_to_db(show: Show, utterances: Utterance[])
 
 	// Create Utterances
 	const create_utterances = utterances.map((utterance) => {
-		const words = utterance.words?.map((word) => {
+		const words = (utterance.words ?? []).map((word) => {
 			return {
-				start: word.start,
-				end: word.end,
-				punctuated_word: word.punctuated_word || word.word,
-				word: word.word,
-				speaker_confidence: word.confidence,
+				start: word.start ?? 0,
+				end: word.end ?? 0,
+				punctuated_word: word.punctuated_word || word.word || '',
+				word: word.word ?? '',
+				speaker_confidence: word.confidence ?? 0,
 				speaker: word.speaker ?? 99,
-				confidence: word.confidence
+				confidence: word.confidence ?? 0
 			};
 		});
 		return {
@@ -92,7 +101,7 @@ export async function import_transcripts() {
 		// Loop over each one and import
 		const transcript_promises = transcriptFiles.map(async (file) => {
 			console.log(`Importing ${file}`);
-			const transcript: SyncPrerecordedResponse = JSON.parse(
+			const transcript: ListenV1Response = JSON.parse(
 				await readFile(path.join(transcripts_path, file), 'utf-8')
 			);
 			const show_number = parseInt(file.split(' - ')[0]);

@@ -1,6 +1,6 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { transcript_with_utterances } from './queries';
-import { generate_ai_notes } from './openai';
+import { generate_ai_notes } from './notes';
 import { save_ai_notes_to_db } from './db';
 import { prisma_client } from '#server/prisma-client.js';
 
@@ -21,6 +21,8 @@ export async function aiNoteRequestHandler({ locals }: RequestEvent) {
 	if (!show?.transcript) {
 		error(400, 'No show, or no transcript for this show');
 	}
+	// Get the AI transcript for this show
+	const result = await generate_ai_notes(show);
 	// delete any existing ai notes
 	await prisma_client.aiShowNote.deleteMany({
 		where: {
@@ -29,9 +31,6 @@ export async function aiNoteRequestHandler({ locals }: RequestEvent) {
 			}
 		}
 	});
-
-	// Get the AI transcript for this show
-	const result = await generate_ai_notes(show);
 	// Save to DB
 	console.log(`🤖 Saving AI Notes to DB for Show ${show_number}`);
 	console.dir(result);

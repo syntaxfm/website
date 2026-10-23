@@ -44,36 +44,6 @@ export type TranscriptWithUtterances = Prisma.TranscriptGetPayload<
 >;
 export type AINoteWithFriends = Prisma.AiShowNoteGetPayload<typeof ai_note_with_friends>;
 
-type SummaryItem = {
-	time: string;
-	text: string;
-	description: string;
-};
-
-type Link = {
-	name: string;
-	url: string;
-	timestamp: string;
-};
-
-type SpeakerTime = {
-	name: string;
-	time: string;
-};
-
-export type AIPodcastSummaryResponse = {
-	title: string;
-	description: string;
-	notes: string;
-	summary: SummaryItem[];
-	tweets: string[];
-	listener_tweets: string[];
-	topics: string[];
-	links: Link[];
-	speaker_times: SpeakerTime[];
-	guests: string[];
-};
-
 export type QueryInputs = {
 	take?: number;
 	order?: 'asc' | 'desc';

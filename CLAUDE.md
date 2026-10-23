@@ -82,7 +82,7 @@ The application manages podcast content with these key models:
 ### Content Management
 
 - Show notes are stored as markdown files in the `/shows/` directory
-- AI-generated content (summaries, tweets, show notes) using OpenAI/Anthropic
+- AI-generated content (summaries, tweets, show notes) using Claude Sonnet 5.5 through OpenRouter in `src/server/ai/notes.ts`
 - Automated transcription via Deepgram
 - Multi-layer caching with Redis for performance
 

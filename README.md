@@ -107,14 +107,15 @@ These are the available media queries:
 
 ### Where to get your own Environment Variables
 
-Any new environment variable must also be declared in `src/env.ts`, or SvelteKit won't expose it. Read them via `$app/env/private` or `$app/env/public`.
+Variables read through `$app/env/private` or `$app/env/public` must also be declared in `src/env.ts`, or SvelteKit won't expose them. Server-only code that reads `process.env` directly (`OPENROUTER_API_KEY`, `DEEPGRAM_SECRET`, `CRON_SECRET`) doesn't need a declaration.
 
 | Variable                     | Where to get it                                                         | Notes                                                                                           |
 | ---------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | PUBLIC_GITHUB_ID, GH_SECRET  | [Github Oauth Apps](https://github.com/settings/developers)             | Create new OAuth App, set `http://localhost:5173/api/oauth/github/callback` as the redirect URL |
 | DEEPGRAM_SECRET              | [Deepgram](https://console.deepgram.com/)                               |                                                                                                 |
 | SENTRY_AUTH_TOKEN            | [Sentry](https://docs.sentry.io/product/accounts/auth-tokens/)          |                                                                                                 |
-| OPENAI_API_KEY               | [Open AI](https://platform.openai.com/account/api-keys)                 |                                                                                                 |
+| OPENROUTER_API_KEY           | [OpenRouter](https://openrouter.ai/settings/keys)                       | Used for AI show notes (Claude Sonnet 5.5)                                                      |
+| CRON_SECRET                  | Any random string                                                       | Only needed to call `/webhooks/*` directly; admin buttons work without it                       |
 | UPSPLASH_TOKEN, UPSPLASH_URL | [https://upstash.com/](https://upstash.com/)                            | Create a redis DB after sign up in the console                                                  |
 | YOUTUBE_API_KEY              | [Google API Console](https://console.cloud.google.com/apis/credentials) | Create an API key, visit the library and enable "YouTube Data API v3"                           |
 

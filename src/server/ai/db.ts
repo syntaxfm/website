@@ -1,10 +1,9 @@
-import { generate_ai_notes } from './openai';
+import type { AiNotes } from './notes';
 import { prisma_client } from '#server/prisma-client.js';
 
 type Show = { number: number };
-type Result = Awaited<ReturnType<typeof generate_ai_notes>>;
 
-export async function save_ai_notes_to_db(result: Result, show: Show) {
+export async function save_ai_notes_to_db(result: AiNotes, show: Show) {
 	return prisma_client.aiShowNote.create({
 		data: {
 			show: {
