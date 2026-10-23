@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import Icon from '$lib/Icon.svelte';
-	import { searching } from '$state/search';
+	import { browser } from '$app/env';
+	import Icon from '#lib/Icon.svelte';
+	import { searching } from '#state/search.js';
 	const shortcut = !browser || navigator.platform === 'MacIntel' ? '⌘' : 'Ctrl';
 </script>
 

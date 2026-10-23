@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { loading } from '$state/loading';
+	import { loading } from '#state/loading.js';
 	import { fade } from 'svelte/transition';
 </script>
 

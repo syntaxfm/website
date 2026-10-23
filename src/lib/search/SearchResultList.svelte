@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { preventDefault } from 'svelte/legacy';
 
-	import Icon from '$lib/Icon.svelte';
-	import { player } from '$state/player';
-	import { search_recent } from '$state/search';
+	import Icon from '#lib/Icon.svelte';
+	import { player } from '#state/player.js';
+	import { search_recent } from '#state/search.js';
 	import { createEventDispatcher } from 'svelte';
 	import type { Tree, Block } from './types';
 	import type { Show } from '@prisma/client';

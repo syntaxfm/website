@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
-	import { loading } from '$state/loading';
-	import type { ActionResult, SubmitFunction } from '@sveltejs/kit';
+	import { applyAction, enhance, type ActionResult, type SubmitFunction } from '$app/forms';
+	import { refreshAll } from '$app/navigation';
+	import { loading } from '#state/loading.js';
 	import toast from 'svelte-french-toast';
-	let formLoading = $state(false);
+	let form_loading = $state(false);
 	interface Props {
 		global?: boolean;
 		confirm?: string;
 		children?: import('svelte').Snippet<[any]>;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { global = true, confirm = '', children, ...rest }: Props = $props();
@@ -31,7 +30,7 @@
 					return cancel();
 				}
 			}
-			formLoading = true;
+			form_loading = true;
 			return async ({ result }: { result: ActionResult<any, any> }) => {
 				if (result.type === 'success') {
 					toast.success('Siiiiick ' + result.data.message + ' was a success');
@@ -42,9 +41,9 @@
 					toast.error(`Something went wrong. Check the console`);
 					console.log(result);
 				}
-				await invalidateAll();
+				await refreshAll();
 				await applyAction(result);
-				formLoading = false;
+				form_loading = false;
 				if (global) {
 					loading.setLoading(false);
 				}
@@ -55,5 +54,5 @@
 </script>
 
 <form {...rest} use:enhance={form_action()}>
-	{@render children?.({ loading: formLoading, })}
+	{@render children?.({ loading: form_loading })}
 </form>

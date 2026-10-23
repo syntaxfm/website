@@ -5,6 +5,10 @@
 	@custom-media --below-med (width < 700px);
 	@custom-media --below-large (width < 900px);
 	@custom-media --below-xlarge (width < 1200px);
+
+	/* The player bar stacks a docked video beside its controls. Also in vite.config.ts for
+	   component styles, and matched in JS by Player.svelte. */
+	@custom-media --stacked-video-bar (max-width: 809px);
 	@custom-media --above-small (width >400px);
 	@custom-media --above-med (width > 700px);
 	@custom-media --above-large (width > 900px);
@@ -66,7 +70,7 @@
 	--red-10: oklch(5% 0.221 var(--red-hue));
 	--red: var(--red-5);
 	--black-hue: none;
-	--blacklch: 0% none var(--black-hue);
+	--blacklch: 0% 0 var(--black-hue);
 	--black-1: oklch(97% 0 var(--black-hue));
 	--black-2: oklch(90% 0 var(--black-hue));
 	--black-3: oklch(83% 0 var(--black-hue));
@@ -79,7 +83,7 @@
 	--black-10: oklch(var(--blacklch));
 	--black: var(--black-10);
 	--blackish: var(--black-8);
-	--white: oklch(100% none none);
+	--white: oklch(100% 0 none);
 
 	/* --purple: #362d59; */
 	--purple-hue: 291.04;
@@ -124,7 +128,8 @@
 	/* Shadow */
 	--shadow-strength: 10%;
 	--shadow-color: 220 40% 2%;
-	--shadow-6: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+	--shadow-6:
+		0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
 		0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
 		0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
 		0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
@@ -175,6 +180,6 @@
 	--hero-gradient-2: var(--black);
 
 	/* Sentry footer gradient */
-	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
-		linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+	--sentry-footer-bg:
+		url('../assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 }

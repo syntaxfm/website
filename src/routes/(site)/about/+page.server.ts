@@ -1,4 +1,4 @@
-import { cache } from '$/server/cache/cache';
+import { cache } from '#server/cache/cache.js';
 
 export const load = async function () {
 	return {

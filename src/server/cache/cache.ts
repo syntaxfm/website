@@ -5,7 +5,7 @@ import {
 	latest_shows,
 	list_shows,
 	show
-} from '$server/shows/shows';
+} from '#server/shows/shows.js';
 
 export const cache = {
 	shows: {

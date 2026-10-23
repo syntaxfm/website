@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import optionsHandler from '../../optionsHandler';
+import options_handler from '../../optionsHandler';
 
-export const OPTIONS = optionsHandler();
+export const OPTIONS = options_handler();
 export const POST: RequestHandler = async ({ request, locals }) => {
 	// 1. Make a copy of the headers so we can modify them. This is necessary because the headers are immutable.
 	const req = new Request(request);

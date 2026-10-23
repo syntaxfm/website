@@ -1,5 +1,5 @@
 <script>
-	import UserSubmissionForm from '$/lib/forms/UserSubmissionForm.svelte';
+	import UserSubmissionForm from '#lib/forms/UserSubmissionForm.svelte';
 	/**
 	 * @typedef {Object} Props
 	 * @property {any} form

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import '$/routes/(site)/style.css';
+	import '../../../(site)/style.css';
 	import { format } from 'date-fns';
-	import Icon from '$/lib/Icon.svelte';
-	import ListenLinks from '$/lib/ListenLinks.svelte';
-	import AlbumArt from '$/lib/player/AlbumArt.svelte';
-	import ShareButton from '$/lib/share/HairButton.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import ListenLinks from '#lib/ListenLinks.svelte';
+	import AlbumArt from '#lib/player/AlbumArt.svelte';
+	import ShareButton from '#lib/share/HairButton.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import ShareActions from '$/lib/share/ShareActions.svelte';
+	import ShareActions from '#lib/share/ShareActions.svelte';
 	import { fade } from 'svelte/transition';
-	import { episode_share_status } from '$/state/player.js';
-	import { browser } from '$app/environment';
+	import { episode_share_status } from '#state/player.js';
+	import { browser } from '$app/env';
 
 	let { data } = $props();
 	let { show } = $derived(data);
@@ -28,9 +28,8 @@
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 			{format(new Date(show.date), 'MMMM do, yyyy')}
 		</p>
-		<h1>
-			<span class="spa-ran-wrap">{show.title} </span>
-		</h1>
+
+		<h1><span class="spa-ran-wrap">{show.title}</span></h1>
 
 		<div class="player-container">
 			<AlbumArt is_link={true} {show} />
@@ -38,12 +37,13 @@
 			{#if browser}
 				<media-controller
 					audio
+					hotkeys="noshift+/"
 					style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 				>
 					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url}></audio>
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
-							<media-play-button>
+							<media-play-button notooltip>
 								<span slot="play" style="--icon_size: 32px;">
 									<Icon name="play" />
 								</span>
@@ -58,12 +58,13 @@
 								<media-time-range
 									style:--media-range-bar-color="var(--white)"
 									style:--media-range-thumb-background="var(--primary)"
+									style:--media-box-display="none"
 								></media-time-range>
 							</div>
 							<media-duration-display></media-duration-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button></media-playback-rate-button>
+							<media-playback-rate-button notooltip></media-playback-rate-button>
 						</div>
 					</media-control-bar>
 				</media-controller>
@@ -106,7 +107,8 @@
 		overflow: hidden;
 		padding: 20px;
 		background-size: contain;
-		background-image: var(--bg-grit-dark),
+		background-image:
+			var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
 	p {

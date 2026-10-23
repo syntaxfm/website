@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
+	import AdminActions from '#lib/AdminActions.svelte';
 	import { enhance } from '$app/forms';
-	import { form_action } from '$lib/form_action';
+	import { form_action } from '#lib/form_action.js';
 
 	let { data } = $props();
 	let { cache = [] } = $derived(data);

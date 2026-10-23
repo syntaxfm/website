@@ -1,19 +1,26 @@
-import { createClient } from '@deepgram/sdk';
-import { prisma_client as prisma } from '$/server/prisma-client';
+import { DeepgramClient } from '@deepgram/sdk';
+import { prisma_client as prisma } from '#server/prisma-client.js';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
 import { addFlaggerAudio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
 
-const deepgram_api_key = process.env.DEEPGRAM_SECRET;
-if (!deepgram_api_key) {
-	console.error('Please set the DEEPGRAM_SECRET environment variable.');
-	process.exit(1);
+function get_deepgram_client() {
+	const deepgram_api_key = process.env.DEEPGRAM_SECRET;
+	if (!deepgram_api_key) {
+		throw new Error('Please set the DEEPGRAM_SECRET environment variable.');
+	}
+	return new DeepgramClient({
+		apiKey: deepgram_api_key,
+		// The SDK gives up after 60s by default, long episodes take longer to upload and transcribe.
+		// Leaves room for the flagger audio within the 300s function limit, which a retry wouldn't fit in.
+		timeoutInSeconds: 240,
+		maxRetries: 0
+	});
 }
 
-export const deepgram_client = createClient(deepgram_api_key);
-
 export async function get_transcript(showNumber: number) {
+	const deepgram_client = get_deepgram_client();
 	const show = await prisma.show.findUnique({
 		where: { number: showNumber },
 		include: {
@@ -34,21 +41,23 @@ export async function get_transcript(showNumber: number) {
 	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
 
 	try {
-		const transcript = await deepgram_client.listen.prerecorded.transcribeFile(show_buffer, {
+		const transcript = await deepgram_client.listen.v1.media.transcribeFile(show_buffer, {
 			punctuate: true,
-			model: 'nova-2-ea',
+			model: 'nova-3',
 			language: 'en-US',
 			detect_entities: true,
 			diarize: true,
 			smart_format: true,
 			paragraphs: true, // Not very good
 			utterances: true,
-			detect_topics: false, // not very good
-			keywords
+			keyterm: keywords
 		});
 
 		console.log(`Transcript for show #${show.number} - ${show.title} fetched.`);
-		await save_transcript_to_db(show, transcript.result?.results.utterances || []);
+		if (!('results' in transcript)) {
+			throw new Error(`Deepgram returned no results for show #${show.number}.`);
+		}
+		await save_transcript_to_db(show, transcript.results.utterances ?? []);
 
 		console.log(`Transcript for show #${show.number} - ${show.title} saved.`);
 	} catch (e) {

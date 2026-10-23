@@ -1,15 +1,14 @@
 // * Server Side Middleware
-// https://kit.svelte.dev/docs/hooks
+// https://svelte.dev/docs/kit/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-import { redirect, type Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+import { redirect } from '@sveltejs/kit';
+import { sequence, type Handle, type HandleServerError } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 import { find_user_by_access_token } from './server/auth/users';
-import { dev } from '$app/environment';
-import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$env/static/private';
+import { building, dev } from '$app/env';
+import { UPSPLASH_TOKEN, UPSPLASH_URL } from '$app/env/private';
 import { Redis } from '@upstash/redis';
-import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 export const cache_status = UPSPLASH_URL && UPSPLASH_TOKEN ? 'ONLINE' : 'OFFLINE';
 
@@ -23,25 +22,29 @@ export const redis =
 		: null;
 console.log(`🤓 Cache Status... ${cache_status}`);
 
-// import { ADMIN_LOGIN } from '$env/static/private';
+// import { ADMIN_LOGIN } from '$app/env/private';
 
 // * START UP
 // RUNS ONCE ON FILE LOAD
+
+// Loading the native profiler inside SvelteKit's build analysis worker segfaults when the worker exits
+const profiling_integrations = building
+	? []
+	: [(await import('@sentry/profiling-node')).nodeProfilingIntegration()];
 
 Sentry.init({
 	release: `syntax@${__VER__}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
+	// Profiles 10% of server sessions, profiling every request adds latency and uses up Sentry quota
+	profileSessionSampleRate: 0.1,
+	profileLifecycle: 'trace',
 	environment: dev ? 'development' : 'production',
 	integrations: [
-		nodeProfilingIntegration,
+		...profiling_integrations,
 		Sentry.prismaIntegration(),
 		Sentry.redisIntegration({ cachePrefixes: ['show:', 'shows:', 'show-og:'] })
-	],
-	_experiments: {
-		metricsAggregator: true
-	}
+	]
 });
 
 // * END START UP
@@ -118,4 +121,22 @@ export const handle: Handle = sequence(
 	document_policy
 );
 
-export const handleError = Sentry.handleErrorWithSentry();
+// Reports 500s and unexpected errors to Sentry. Sentry's handleErrorWithSentry is async, and SvelteKit can't wait
+// on an async handleError while rendering a component, so errors there would only ever say "Internal Error".
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const handleError: HandleServerError = (input) => {
+	if (input.kind === 'validation') return;
+	if (input.kind !== 'unknown' && input.error.status < 500) return;
+	if (input.kind === 'unknown') console.error(input.error);
+
+	const error_id = Sentry.captureException(input.error, {
+		mechanism: { type: 'auto.function.sveltekit.handle_error', handled: true }
+	});
+	void Sentry.flush(2000);
+
+	if (input.kind !== 'unknown') return { error_id };
+	return {
+		message: "Something broke on our end. We've been notified and we're on it.",
+		error_id
+	};
+};

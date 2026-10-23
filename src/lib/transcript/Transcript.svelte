@@ -1,73 +1,76 @@
 <script lang="ts">
-	import { getSlimUtterances } from '$server/transcripts/utils';
-	import { player } from '$state/player';
-	import format_time, { tsToS } from '$utilities/format_time';
-	import 'core-js/full/map/group-by';
+	import { getSlimUtterances } from '#utilities/transcripts.js';
+	import { player } from '#state/player.js';
+	import format_time, { tsToS } from '#utilities/format_time.js';
 	import slug from 'speakingurl';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
-	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import type { SlimUtterance } from '$server/transcripts/types';
-	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
+	import type { AINoteWithFriends, TranscriptWithUtterances } from '#server/ai/queries.js';
+	import type { SlimUtterance } from '#server/transcripts/types.js';
 	import type { Show } from '@prisma/client';
-
-	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
 		transcript: TranscriptWithUtterances;
-		aiShowNote: AINoteWithFriends | null;
+		ai_show_note: AINoteWithFriends | null;
 		show: Show;
 	}
 
-	let { transcript, aiShowNote, show }: Props = $props();
+	let { transcript, ai_show_note, show }: Props = $props();
 
-	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
-		// .filter((utterance) => utterance.speakerId !== 99)
-		.filter((utterance) => {
-			// Remove the flagging utterances
-			const scott = new RegExp(/purple cheese before meeting/gi);
-			if (utterance.transcript?.match(scott)) return false;
-			if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
-			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
-			if (utterance.transcript?.match(wes)) return false;
-			return true;
-		});
+	let slim_transcript: SlimUtterance[] = $derived(
+		getSlimUtterances(transcript.utterances, 1)
+			// .filter((utterance) => utterance.speakerId !== 99)
+			.filter((utterance) => {
+				// Remove the flagging utterances
+				const scott = new RegExp(/purple cheese before meeting/gi);
+				if (utterance.transcript?.match(scott)) return false;
+				if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
+				const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
+				if (utterance.transcript?.match(wes)) return false;
+				return true;
+			})
+	);
 	// group Utterances by their summary
 	type SummaryTitle = { time: string; text: string; id?: number };
 	const def: SummaryTitle = { time: '00:00', text: '' };
-	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
-	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	const utterances_by_summary: UtteranceMap = Map.groupBy(
-		slim_transcript,
-		(utterance: Utterance) => {
+	let utterances_by_summary = $derived(
+		Map.groupBy(slim_transcript, (utterance) => {
 			const start = utterance.start;
-			const summary = aiShowNote?.summary?.findLast((summary, i) => {
-				const nextSummary = aiShowNote?.summary?.at(i + 1);
-				const end = nextSummary ? tsToS(nextSummary.time) : Infinity;
+			const summary = ai_show_note?.summary?.findLast((summary) => {
 				const timestamp = tsToS(summary.time);
 				return start >= timestamp;
 			});
 			return summary || def;
-		}
+		})
 	);
 
-	let currentUtterance = $derived(slim_transcript.find((utterance, index) => {
-		const nextUtteranceStart = slim_transcript[index + 1]?.start || utterance.end;
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= utterance.start && current_time <= nextUtteranceStart;
-	}));
+	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.
+	let audio_timeline_time = $derived(
+		$player.current_show ? player.get_audio_timeline_time() : null
+	);
+	let current_time = $derived(audio_timeline_time ?? 0);
 
-	let currentTopic = $derived(aiShowNote?.summary.find((summary, index) => {
-		const nextSummary = aiShowNote?.summary[index + 1];
-		const topicEnd = nextSummary ? tsToS(nextSummary.time) : Infinity;
-		const topicStart = tsToS(summary.time);
-		const current_time = $player?.audio?.currentTime || 0;
-		return current_time >= topicStart && current_time <= topicEnd;
-	}));
+	let current_utterance = $derived(
+		slim_transcript.find((utterance, index) => {
+			const next_utterance_start = slim_transcript[index + 1]?.start || utterance.end;
+			return current_time >= utterance.start && current_time <= next_utterance_start;
+		})
+	);
 
-	let playing_show_is_this_show = $derived($player.current_show?.number === transcript.show_number);
+	let current_topic = $derived(
+		ai_show_note?.summary.find((summary, index) => {
+			const next_summary = ai_show_note?.summary[index + 1];
+			const topic_end = next_summary ? tsToS(next_summary.time) : Infinity;
+			const topic_start = tsToS(summary.time);
+			return current_time >= topic_start && current_time <= topic_end;
+		})
+	);
+
+	let playing_show_is_this_show = $derived(
+		$player.current_show?.number === transcript.show_number && audio_timeline_time !== null
+	);
 
 	// const words = transcript.utterances
 	// 	.map((utt) => utt.words)
@@ -89,23 +92,22 @@
 	// 	.map((word) => word.word)
 	// 	.join(' ');
 
-	let labelUtterance = $derived(function (utterance: SlimUtterance) {
+	let label_utterance = $derived(function (utterance: SlimUtterance) {
 		if (!playing_show_is_this_show) return ''; // not playing this show
-		if (utterance === currentUtterance) {
+		if (utterance === current_utterance) {
 			return 'current';
-		} else if (currentUtterance && currentUtterance?.end > utterance.end) {
+		} else if (current_utterance && current_utterance?.end > utterance.end) {
 			return 'past';
 		} else {
 			return 'future';
 		}
 	});
-	let placeTopic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
-		const summaryEnd = utterances.at(-1)?.end || Infinity;
-		const current_time = $player?.audio?.currentTime || 0;
+	let place_topic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
+		const summary_end = utterances.at(-1)?.end || Infinity;
 		if (!playing_show_is_this_show) return ''; // not playing this show
-		if (currentTopic?.id === summary.id) {
+		if (current_topic?.id === summary.id) {
 			return 'current';
-		} else if (current_time > summaryEnd) {
+		} else if (current_time > summary_end) {
 			return 'past';
 		} else {
 			return 'future';
@@ -113,14 +115,14 @@
 	});
 </script>
 
-{#if aiShowNote}
-	<TableOfContents {aiShowNote} />
+{#if ai_show_note}
+	<TableOfContents aiShowNote={ai_show_note} />
 {/if}
 
 <div class="timeline">
 	{#each Array.from(utterances_by_summary) as [summary, utterances], i}
 		<section>
-			<header class="topic {placeTopic(summary, utterances)}">
+			<header class="topic {place_topic(summary, utterances)}">
 				<div class="gutter" id={slug(summary.text)}>
 					<strong>Topic {i}</strong>
 					<span>{summary.time}</span>
@@ -137,22 +139,18 @@
 			<div>
 				{#each utterances as utterance}
 					{@const progress =
-						((($player?.audio?.currentTime || 0) - utterance.start) /
-							(utterance.end - utterance.start)) *
-						100}
+						((current_time - utterance.start) / (utterance.end - utterance.start)) * 100}
 					<div
 						style="
               --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
               "
-						class="utterance {labelUtterance(utterance)}"
+						class="utterance {label_utterance(utterance)}"
 					>
 						<div class="gutter">
 							<button
 								class="button-nunya"
-								onclick={async () => {
-									await player.start_show(show);
-									player.update_time(utterance.start);
-								}}>{format_time(utterance.start)}</button
+								onclick={() => player.play_timestamp(show, utterance.start)}
+								>{format_time(utterance.start)}</button
 							>
 							<p class="speaker fst-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}

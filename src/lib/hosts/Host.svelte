@@ -3,11 +3,11 @@
 	interface Props {
 		guest?: boolean;
 		host: {
-		name: string;
-		github?: string | null;
-		twitter?: string | null;
-		slug?: string;
-	};
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			slug?: string;
+		};
 	}
 
 	let { guest = false, host }: Props = $props();

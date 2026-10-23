@@ -1,6 +1,6 @@
 <script lang="ts">
-	import get_show_path from '$/utilities/slug.js';
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import get_show_path from '#utilities/slug.js';
+	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
 
 	let { data } = $props();
 	let guests: any[] = $state([]);
@@ -9,17 +9,17 @@
 	});
 
 	function jumble() {
-		let currentIndex = guests.length,
-			randomIndex;
+		let current_index = guests.length,
+			random_index;
 
 		// While there remain elements to shuffle...
-		while (currentIndex != 0) {
+		while (current_index != 0) {
 			// Pick a remaining element...
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex--;
+			random_index = Math.floor(Math.random() * current_index);
+			current_index--;
 
 			// And swap it with the current element.
-			[guests[currentIndex], guests[randomIndex]] = [guests[randomIndex], guests[currentIndex]];
+			[guests[current_index], guests[random_index]] = [guests[random_index], guests[current_index]];
 		}
 
 		return guests;

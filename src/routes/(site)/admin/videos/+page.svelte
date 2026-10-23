@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
-	import AdminSearch from '$/lib/AdminSearch.svelte';
+	import AdminActions from '#lib/AdminActions.svelte';
+	import AdminSearch from '#lib/AdminSearch.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();

@@ -2,13 +2,13 @@
 	import { run } from 'svelte/legacy';
 
 	import { afterNavigate } from '$app/navigation';
-	import { overlay_open, search_query, search_recent, searching } from '$state/search';
+	import { overlay_open, search_query, search_recent, searching } from '#state/search.js';
 	import { onMount, tick } from 'svelte';
 	import SearchWorker from './search-worker.js?worker';
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
 	import { fade } from 'svelte/transition';
-	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '#actions/click_outside_dialog.js';
 	import type { Block, Tree } from './types';
 	import type { Show } from '@prisma/client';
 
@@ -53,7 +53,9 @@
 		});
 	});
 
-	afterNavigate(() => {
+	afterNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		close();
 	});
 
@@ -139,7 +141,7 @@
 	class="zone"
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
-	use:clickOutDialog
+	use:click_out_dialog
 	onclick-outside={close}
 	aria-labelledby="search-header"
 >

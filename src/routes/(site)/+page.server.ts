@@ -1,6 +1,6 @@
 import type { Actions } from '@sveltejs/kit';
-import { redis } from '$/hooks.server';
-import { prisma_client } from '$/server/prisma-client';
+import { redis } from '#hooks.server';
+import { prisma_client } from '#server/prisma-client.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url }) => {

@@ -5,7 +5,7 @@ import { FFmpeg } from '@ffmpeg.wasm/main';
 import type { Show } from '@prisma/client';
 import core from '@ffmpeg.wasm/core-mt';
 import { read } from '$app/server';
-import { logProgress } from './logProgress';
+import { log_progress } from './logProgress';
 
 import wes_flagger from './audio/wes-flagger.mp3';
 import scott_flagger from './audio/scott-flagger.mp3';
@@ -62,7 +62,7 @@ export async function addFlaggerAudio(show: Show): Promise<Buffer> {
 			workerPath: '/tmp/core.worker.cjs'
 		},
 		logger: (type, ...message) => {
-			logProgress(message.join(' '));
+			log_progress(message.join(' '));
 		}
 	});
 	console.log('Loading ffmpeg');

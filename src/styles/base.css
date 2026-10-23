@@ -23,7 +23,7 @@
 			local('MD IO Variable Regular'),
 			local('MDIOVariable-Regular');
 		font-weight: 100 900;
-		font-style: normal italic;
+		font-style: normal;
 	}
 
 	.fst-100 {
@@ -124,7 +124,7 @@
 		letter-spacing: -0.04em;
 		line-height: 1.4;
 		margin-block: 0.2em;
-		mask-image: url('$assets/Grit Mask@2x.png');
+		mask-image: url('../assets/Grit Mask@2x.png');
 		mask-repeat: repeat;
 		mask-size: 250px;
 		text-wrap: balance;
@@ -248,66 +248,6 @@
 		overflow: auto;
 		margin: auto;
 	}
-
-	/* stylelint-disable selector-class-pattern */
-	[popover]:not(.\:popover-open) {
-		display: none;
-	}
-
-	[popover]:is(dialog[open]) {
-		display: revert;
-	}
-
-	[anchor].\:popover-open {
-		inset: auto;
-	}
-
-	/* This older `:open` pseudo selector is deprecated and support will be removed
-in a later release. */
-	@supports selector([popover]:open) {
-		[popover]:not(.\:popover-open, dialog[open]) {
-			display: revert;
-		}
-
-		/* stylelint-disable selector-pseudo-class-no-unknown */
-		[anchor]:is(:open) {
-			inset: auto;
-		}
-		/* stylelint-enable selector-pseudo-class-no-unknown */
-	}
-
-	@supports selector([popover]:popover-open) {
-		[popover]:not(.\:popover-open, dialog[open]) {
-			display: revert;
-		}
-
-		/* stylelint-disable selector-pseudo-class-no-unknown */
-		[anchor]:is(:popover-open) {
-			inset: auto;
-		}
-		/* stylelint-enable selector-pseudo-class-no-unknown */
-	}
-	/* stylelint-enable selector-class-pattern */
-
-	@supports (width: -moz-fit-content) {
-		[popover] {
-			/* stylelint-disable value-no-vendor-prefix */
-			width: -moz-fit-content;
-			height: -moz-fit-content;
-			/* stylelint-enable value-no-vendor-prefix */
-		}
-	}
-
-	@supports not (inset: 0) {
-		[popover] {
-			/* stylelint-disable declaration-block-no-redundant-longhand-properties */
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			/* stylelint-enable declaration-block-no-redundant-longhand-properties */
-		}
-	}
 }
 
 /* Popover */
@@ -333,7 +273,7 @@ a[href^='http']:not(.social-icon, .button, .icon, .naked)::after {
 	padding: 0;
 	border: 0;
 	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
+	clip-path: inset(50%);
 	white-space: nowrap;
 }
 

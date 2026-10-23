@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { variable_color_svg } from '$/lib/theme/variable_color_svg';
-	import { clickOutside } from '$actions/click_outside';
+	import { variable_color_svg } from '#lib/theme/variable_color_svg.js';
+	import { click_outside } from '#actions/click_outside.js';
 	import { invalidate } from '$app/navigation';
-	import { theme_maker } from '$state/theme';
+	import { theme_maker } from '#state/theme.js';
 	import Cookie from 'js-cookie';
 	import { fly } from 'svelte/transition';
 
 	// when a new theme is selected, apply the class directly to the correct element,
 	// and save the theme name to the user's db record
-	const themes = import.meta.glob('$styles/themes/*.css', { eager: true });
+	const themes = import.meta.glob('../../styles/themes/*.css', { eager: true });
 
 	// TODO refactor to utility function
 	function getThemeName(path: string) {
@@ -19,7 +19,7 @@
 	// Always use system and light which are just base styles
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
 
-	function change_theme(this: HTMLButtonElement, e: Event) {
+	function change_theme(this: HTMLButtonElement) {
 		// Set cookie for server side theme change
 		Cookie.set('theme', this.innerText, {
 			expires: 999,
@@ -50,7 +50,7 @@
 {#if $theme_maker.status === 'OPEN'}
 	<section
 		transition:fly={{ x: '100%', opacity: 0 }}
-		use:clickOutside
+		use:click_outside
 		onclick-outside={theme_maker.close}
 	>
 		<h4>Theme Picker <button class="close" onclick={theme_maker.close}>×</button></h4>

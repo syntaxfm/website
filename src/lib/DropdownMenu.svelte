@@ -2,7 +2,7 @@
 	// ? What is this
 	// A popover based drop down menu. Less specific than the Select Menu
 	// This uses slots instead of props
-	import { anchor } from '$actions/anchor';
+	import { anchor } from '#actions/anchor.js';
 	import type { Snippet } from 'svelte';
 	let {
 		children,

@@ -1,4 +1,4 @@
-import { PER_PAGE } from '$/const';
+import { PER_PAGE } from '#const';
 import { $Enums, Prisma } from '@prisma/client';
 
 const take_homepage = PER_PAGE;

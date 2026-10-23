@@ -1,6 +1,6 @@
 <script lang="ts">
-	import NewsletterForm from '$/lib/newsletter/NewsletterForm.svelte';
-	import NewsletterLogo from '$lib/newsletter/NewsletterLogo.svelte';
+	import NewsletterForm from '#lib/newsletter/NewsletterForm.svelte';
+	import NewsletterLogo from '#lib/newsletter/NewsletterLogo.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();

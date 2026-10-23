@@ -4,19 +4,19 @@
 
 	interface Props {
 		shows: (Show & {
-		aiShowNote: {
-			id: number;
-			show_number: number;
-			title: string;
-			description: string;
-			provider: string;
-			topics: {
+			aiShowNote: {
 				id: number;
-				name: string;
-				showNote: number;
-			}[];
-		} | null;
-	})[];
+				show_number: number;
+				title: string;
+				description: string;
+				provider: string;
+				topics: {
+					id: number;
+					name: string;
+					showNote: number;
+				}[];
+			} | null;
+		})[];
 	}
 
 	let { shows }: Props = $props();

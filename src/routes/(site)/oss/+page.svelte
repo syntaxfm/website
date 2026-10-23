@@ -1,5 +1,5 @@
 <script lang="ts">
-	import UserSubmissionForm from '$/lib/forms/UserSubmissionForm.svelte';
+	import UserSubmissionForm from '#lib/forms/UserSubmissionForm.svelte';
 
 	let { form } = $props();
 </script>

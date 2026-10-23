@@ -1,15 +1,16 @@
-import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
+import { import_or_update_all_changed_shows, import_or_update_all_shows } from '#server/shows.js';
 import { error } from '@sveltejs/kit';
-import { get_transcript } from '$server/transcripts/deepgram';
-import { aiNoteRequestHandler } from '$server/ai/requestHandlers';
+import { get_transcript } from '#server/transcripts/deepgram.js';
+import { aiNoteRequestHandler } from '#server/ai/requestHandlers.js';
 import {
 	syncAllEpisodesSpotifyData,
 	syncEpisodeSpotifyData,
 	type MegaphoneCredentials
-} from '$server/megaphone/sync';
+} from '#server/megaphone/sync.js';
 import type { PageServerLoad } from './$types';
-import { prisma_client } from '$/server/prisma-client';
-import { env } from '$env/dynamic/private';
+import { prisma_client } from '#server/prisma-client.js';
+
+import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
 
 export const config = {
 	maxDuration: 300 // vercel timeout
@@ -18,16 +19,16 @@ export const config = {
 // Helper function to sync Spotify data for specific shows
 async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 	const credentials: MegaphoneCredentials = {
-		apiToken: env.MEGAPHONE_API_TOKEN,
-		networkId: env.MEGAPHONE_NETWORK_ID,
-		podcastId: env.MEGAPHONE_PODCAST_ID
+		apiToken: MEGAPHONE_API_TOKEN,
+		networkId: MEGAPHONE_NETWORK_ID,
+		podcastId: MEGAPHONE_PODCAST_ID
 	};
 
-	for (const showNumber of showNumbers) {
+	for (const show_number of showNumbers) {
 		try {
-			await syncEpisodeSpotifyData(showNumber, credentials);
+			await syncEpisodeSpotifyData(show_number, credentials);
 		} catch (error) {
-			console.error(`🎵 Failed to sync Spotify data for show ${showNumber}:`, error);
+			console.error(`🎵 Failed to sync Spotify data for show ${show_number}:`, error);
 		}
 	}
 }
@@ -78,9 +79,9 @@ export const actions = {
 
 		try {
 			const credentials: MegaphoneCredentials = {
-				apiToken: env.MEGAPHONE_API_TOKEN,
-				networkId: env.MEGAPHONE_NETWORK_ID,
-				podcastId: env.MEGAPHONE_PODCAST_ID
+				apiToken: MEGAPHONE_API_TOKEN,
+				networkId: MEGAPHONE_NETWORK_ID,
+				podcastId: MEGAPHONE_PODCAST_ID
 			};
 			await syncAllEpisodesSpotifyData(credentials);
 		} catch (error) {

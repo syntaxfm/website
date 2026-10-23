@@ -1,7 +1,7 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
 	import ColorsInJs from './colors-in-js.svelte';
-	import { oklchToRgba, rgbaToHex } from '$/utilities/colors';
+	import { oklchToRgba, rgbaToHex } from '#utilities/colors.js';
 
 	const COLORS = ['black', 'yellow', 'teal', 'green', 'red', 'purple'];
 	let type: 'VARIABLE' | 'OKLCH' | 'RGBA' | 'HEX' = $state('HEX');
@@ -49,9 +49,9 @@
 				tabindex="0"
 				role="button"
 				onkeydown={(e) => {
-					let { currentTarget } = e;
+					let { currentTarget: current_target } = e;
 					if (e.key === 'Enter' || e.keyCode === 13) {
-						copy_color(color, currentTarget);
+						copy_color(color, current_target);
 					}
 				}}
 				class="primary box"
@@ -60,14 +60,14 @@
 			>
 				{color}
 			</div>
-			{#each Array(10) as item, index}
+			{#each Array(10) as _, index}
 				<div
 					tabindex="0"
 					role="button"
 					onkeydown={(e) => {
-						let { currentTarget } = e;
+						let { currentTarget: current_target } = e;
 						if (e.key === 'Enter' || e.keyCode === 13) {
-							copy_color(color, currentTarget);
+							copy_color(color, current_target);
 						}
 					}}
 					onclick={({ currentTarget }) => copy_color(`${color}-${index + 1}`, currentTarget)}

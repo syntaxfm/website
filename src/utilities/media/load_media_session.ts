@@ -1,5 +1,5 @@
-import coverArt from '$assets/coverart-128.png';
-import coverArt512 from '$assets/coverart-512.png';
+import coverArt from '#assets/coverart-128.png';
+import coverArt512 from '#assets/coverart-512.png';
 
 import type { Show } from '@prisma/client';
 

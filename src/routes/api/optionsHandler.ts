@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 
-const optionsHandler = (methods: string = 'OPTIONS,POST') => {
+const options_handler = (methods: string = 'OPTIONS,POST') => {
 	const options: RequestHandler = async ({ request }) => {
 		return new Response(null, {
 			headers: {
@@ -15,4 +15,4 @@ const optionsHandler = (methods: string = 'OPTIONS,POST') => {
 	return options;
 };
 
-export default optionsHandler;
+export default options_handler;

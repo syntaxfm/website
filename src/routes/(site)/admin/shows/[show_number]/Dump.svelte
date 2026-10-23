@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Dump from './Dump.svelte';
-	import { onMount } from 'svelte';
 
 	interface Props {
 		data: Record<any, any> | any[];
 	}
 
 	let { data }: Props = $props();
-	let entries = Object.entries(data);
+	let entries = $derived(Object.entries(data));
 
 	function getHeadersFromKeys(data: Record<string, any>[]) {
 		return Object.keys(data.at(0) || {});
@@ -39,7 +38,7 @@
 				{:else if val instanceof Date}
 					<td>{val}</td>
 				{:else if typeof val === 'object' && val !== null}
-					{#each Object.entries(val) as [key, value]}
+					{#each Object.values(val) as value}
 						<td>
 							{value}
 						</td>

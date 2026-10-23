@@ -1,29 +1,31 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
+
 	interface Props {
 		audio: HTMLAudioElement;
 	}
 
-	let { audio }: Props = $props();
+	let { audio: audio_prop }: Props = $props();
+	const audio = untrack(() => audio_prop);
 
-	const audioCtx = new (window.AudioContext || window?.webkitAudioContext)();
-	let audioSource = null;
-	let isAnimating = true;
+	const audio_ctx = new (window.AudioContext || window.webkitAudioContext)();
+	let is_animating = true;
 	let analyser: AnalyserNode;
 
 	audio.play();
-	audioSource = audioCtx.createMediaElementSource(audio);
-	analyser = audioCtx.createAnalyser();
-	audioSource.connect(analyser);
-	analyser.connect(audioCtx.destination);
+	const audio_source = audio_ctx.createMediaElementSource(audio);
+	analyser = audio_ctx.createAnalyser();
+	audio_source.connect(analyser);
+	analyser.connect(audio_ctx.destination);
 	analyser.fftSize = 128;
-	const bufferLength = analyser.frequencyBinCount;
-	const dataArray = new Uint8Array(bufferLength);
-	let barWidth = 10;
+	const buffer_length = analyser.frequencyBinCount;
+	const data_array = new Uint8Array(buffer_length);
+	let bar_width = 10;
 	let bars: {
 		height: number;
 		width: number;
 	}[] = $state([]);
-	let animationFrameId: number;
+	let animation_frame_id: number;
 	let fps = 30; // desired FPS
 	let now;
 	let then = Date.now();
@@ -37,31 +39,31 @@
 		if (delta > interval) {
 			then = now - (delta % interval);
 			bars = [];
-			analyser?.getByteFrequencyData(dataArray);
-			for (let i = 0; i < bufferLength; i++) {
-				let barHeight = dataArray[i];
+			analyser?.getByteFrequencyData(data_array);
+			for (let i = 0; i < buffer_length; i++) {
+				let bar_height = data_array[i];
 
 				bars[i] = {
-					height: barHeight,
-					width: barWidth
+					height: bar_height,
+					width: bar_width
 				};
 			}
 		}
-		if (isAnimating) {
-			animationFrameId = requestAnimationFrame(animate);
+		if (is_animating) {
+			animation_frame_id = requestAnimationFrame(animate);
 		}
 	}
 
 	animate();
 
 	audio.addEventListener('pause', function () {
-		isAnimating = false;
-		cancelAnimationFrame(animationFrameId);
+		is_animating = false;
+		cancelAnimationFrame(animation_frame_id);
 	});
 
 	// When audio is played, resume the animation
 	audio.addEventListener('play', function () {
-		isAnimating = true;
+		is_animating = true;
 		animate();
 	});
 </script>

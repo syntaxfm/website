@@ -119,19 +119,4 @@
 			font-size: 0.9rem;
 		}
 	}
-
-	.cta {
-		font-size: 1.2rem;
-		margin: 0;
-
-		@media (--below-med) {
-			font-size: 0.7rem;
-		}
-	}
-
-	.prize {
-		background: var(--yellow);
-		color: black;
-		font-weight: 800;
-	}
 </style>

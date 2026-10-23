@@ -1,23 +1,23 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function content() {
 	// Last 20 Shows
-	const Show = await prisma_client.show.findMany({
+	const show = await prisma_client.show.findMany({
 		orderBy: { number: 'desc' }
 	});
 
 	// ShowGuest
-	const ShowGuest = await prisma_client.showGuest.findMany();
+	const show_guest = await prisma_client.showGuest.findMany();
 	// Guest
-	const Guest = await prisma_client.guest.findMany();
+	const guest = await prisma_client.guest.findMany();
 	// SocialLink
-	const SocialLink = await prisma_client.socialLink.findMany();
+	const social_link = await prisma_client.socialLink.findMany();
 
-	const twenty_recent_shows = Show.slice(0, 20);
+	const twenty_recent_shows = show.slice(0, 20);
 	const SHOW_NUMBERS = twenty_recent_shows.map((show) => show.number);
 
 	// Transcript
-	const Transcript = await prisma_client.transcript.findMany({
+	const transcript = await prisma_client.transcript.findMany({
 		where: {
 			show_number: {
 				in: SHOW_NUMBERS
@@ -25,10 +25,10 @@ export async function content() {
 		}
 	});
 
-	const TRANSCRIPT_IDS = Transcript.map((transcript) => transcript.id);
+	const TRANSCRIPT_IDS = transcript.map((transcript) => transcript.id);
 
 	// TranscriptUtterance
-	const TranscriptUtterance = await prisma_client.transcriptUtterance.findMany({
+	const transcript_utterance = await prisma_client.transcriptUtterance.findMany({
 		where: {
 			transcriptId: {
 				in: TRANSCRIPT_IDS
@@ -36,10 +36,10 @@ export async function content() {
 		}
 	});
 
-	const TRANSCRIPT_UTTERANCE_IDS = TranscriptUtterance.map((transcript) => transcript.id);
+	const TRANSCRIPT_UTTERANCE_IDS = transcript_utterance.map((transcript) => transcript.id);
 
 	// TranscriptUtteranceWord
-	const TranscriptUtteranceWord = await prisma_client.transcriptUtteranceWord.findMany({
+	const transcript_utterance_word = await prisma_client.transcriptUtteranceWord.findMany({
 		where: {
 			transcriptUtteranceId: {
 				in: TRANSCRIPT_UTTERANCE_IDS
@@ -48,17 +48,17 @@ export async function content() {
 	});
 
 	// AiShowNote
-	const AiShowNote = await prisma_client.aiShowNote.findMany({
+	const ai_show_note = await prisma_client.aiShowNote.findMany({
 		where: {
 			show_number: {
 				in: SHOW_NUMBERS
 			}
 		}
 	});
-	const SHOW_NOTE_ID = AiShowNote.map((note) => note.id);
+	const SHOW_NOTE_ID = ai_show_note.map((note) => note.id);
 
 	// AiSummaryEntry
-	const AiSummaryEntry = await prisma_client.aiSummaryEntry.findMany({
+	const ai_summary_entry = await prisma_client.aiSummaryEntry.findMany({
 		where: {
 			showNote: {
 				in: SHOW_NOTE_ID
@@ -67,7 +67,7 @@ export async function content() {
 	});
 
 	// AiTweet
-	const AiTweet = await prisma_client.aiTweet.findMany({
+	const ai_tweet = await prisma_client.aiTweet.findMany({
 		where: {
 			showNote: {
 				in: SHOW_NOTE_ID
@@ -76,7 +76,7 @@ export async function content() {
 	});
 
 	// Link
-	const Link = await prisma_client.link.findMany({
+	const link = await prisma_client.link.findMany({
 		where: {
 			showNote: {
 				in: SHOW_NOTE_ID
@@ -85,7 +85,7 @@ export async function content() {
 	});
 
 	// AiGuest
-	const AiGuest = await prisma_client.aiGuest.findMany({
+	const ai_guest = await prisma_client.aiGuest.findMany({
 		where: {
 			showNote: {
 				in: SHOW_NOTE_ID
@@ -93,7 +93,7 @@ export async function content() {
 		}
 	});
 	// Topic
-	const Topic = await prisma_client.topic.findMany({
+	const topic = await prisma_client.topic.findMany({
 		where: {
 			showNote: {
 				in: SHOW_NOTE_ID
@@ -102,18 +102,18 @@ export async function content() {
 	});
 
 	return {
-		Show,
-		ShowGuest,
-		Guest,
-		SocialLink,
-		Transcript,
-		TranscriptUtterance,
-		TranscriptUtteranceWord,
-		AiShowNote,
-		AiSummaryEntry,
-		AiTweet,
-		Link,
-		AiGuest,
-		Topic
+		Show: show,
+		ShowGuest: show_guest,
+		Guest: guest,
+		SocialLink: social_link,
+		Transcript: transcript,
+		TranscriptUtterance: transcript_utterance,
+		TranscriptUtteranceWord: transcript_utterance_word,
+		AiShowNote: ai_show_note,
+		AiSummaryEntry: ai_summary_entry,
+		AiTweet: ai_tweet,
+		Link: link,
+		AiGuest: ai_guest,
+		Topic: topic
 	};
 }

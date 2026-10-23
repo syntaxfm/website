@@ -1,4 +1,4 @@
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function add_user_to_role(userId: string, roleName: string) {
 	// Find the role by its name
@@ -13,7 +13,7 @@ export async function add_user_to_role(userId: string, roleName: string) {
 	}
 
 	// Create a UserRole entry linking the user and the role
-	const userRole = await prisma_client.userRole.create({
+	const user_role = await prisma_client.userRole.create({
 		data: {
 			user: {
 				connect: {
@@ -28,5 +28,5 @@ export async function add_user_to_role(userId: string, roleName: string) {
 		}
 	});
 
-	return userRole;
+	return user_role;
 }

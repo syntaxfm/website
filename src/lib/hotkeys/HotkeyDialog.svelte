@@ -1,6 +1,6 @@
 <script lang="ts">
 	let modal: HTMLDialogElement = $state(null!);
-	import { clickOutDialog } from '$actions/click_outside_dialog';
+	import { click_out_dialog } from '#actions/click_outside_dialog.js';
 	import type { Hotkeys } from './types';
 	import { formatShortcut } from './utils';
 
@@ -30,7 +30,7 @@
 		} //
 	};
 
-	const hotkeyNames = Object.keys(hotkeys);
+	const hotkey_names = Object.keys(hotkeys);
 </script>
 
 <dialog
@@ -38,7 +38,7 @@
 	class="zone"
 	style:--bg="var(--bg-sheet)"
 	style:--fg="var(--fg-sheet)"
-	use:clickOutDialog
+	use:click_out_dialog
 	onclick-outside={close}
 	aria-labelledby="hotkey-header"
 >
@@ -48,7 +48,7 @@
 			<button class="close" onclick={close} type="submit">×</button>
 		</header>
 		<div class="hotkeys">
-			{#each hotkeyNames as hotkey}
+			{#each hotkey_names as hotkey}
 				<div class="hotkey-container">
 					<button class="hotkey-key">{formatShortcut(hotkeys[hotkey].trigger)}</button>
 					<span class="hotkey-description">

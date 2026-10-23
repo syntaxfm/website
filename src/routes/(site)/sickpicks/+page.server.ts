@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
-import { processor } from '$/utilities/markdown';
-import { prisma_client } from '$/server/prisma-client';
+import { processor } from '#utilities/markdown.js';
+import { prisma_client } from '#server/prisma-client.js';
 
 function cleanUpLines(string: string) {
 	return string
@@ -37,15 +37,15 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 	});
 
 	// Filter out shows that don't have Sick Picks in the show notes somewhere
-	const sickPicks = shows
+	const sick_picks = shows
 		.filter((show) => {
 			const lines = show.show_notes.split('\n');
 			return lines.some((line) => {
-				const lowerLine = line.toLowerCase();
+				const lower_line = line.toLowerCase();
 				return (
-					lowerLine.match(/s(i+)ck/)?.length &&
-					lowerLine.match('p(i+)ck')?.length &&
-					(lowerLine.startsWith('#') || lowerLine.startsWith('*'))
+					lower_line.match(/s(i+)ck/)?.length &&
+					lower_line.match('p(i+)ck')?.length &&
+					(lower_line.startsWith('#') || lower_line.startsWith('*'))
 				);
 			});
 		})
@@ -73,13 +73,13 @@ export const load: PageServerLoad = async function ({ setHeaders }) {
 
 	// Cache for 3 days, stale for 1 hour OK
 	setHeaders({
-		'cache-control': `public s-maxage=${60 * 60 * 24 * 3}, stale-while-revalidate=${60 * 60 * 1}`
+		'cache-control': `public, s-maxage=${60 * 60 * 24 * 3}, stale-while-revalidate=${60 * 60 * 1}`
 	});
 
 	return {
 		meta: {
 			title: 'Sick Picks'
 		},
-		sickPicks
+		sickPicks: sick_picks
 	};
 };

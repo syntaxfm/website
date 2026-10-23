@@ -1,6 +1,6 @@
 <!-- src/routes/playlists/[playlist_id]/+page.svelte -->
 <script lang="ts">
-	import AdminSearch from '$/lib/AdminSearch.svelte';
+	import AdminSearch from '#lib/AdminSearch.svelte';
 	import type { PageData } from './$types';
 
 	interface Props {
@@ -8,11 +8,13 @@
 	}
 
 	let { data }: Props = $props();
-	const { playlist, videos } = data;
+	let { playlist, videos } = $derived(data);
 
 	let search_text = $state('');
 
-	let filtered = $derived(videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase())));
+	let filtered = $derived(
+		videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase()))
+	);
 </script>
 
 <h1>{playlist?.title}</h1>

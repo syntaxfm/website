@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { theme_maker } from '$state/theme';
+	import { theme_maker } from '#state/theme.js';
 </script>
 
 <button onclick={theme_maker.open}>🎨</button>

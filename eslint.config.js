@@ -36,6 +36,7 @@ export default [
 			}
 		},
 		rules: {
+			'no-unused-vars': 'off',
 			'@typescript-eslint/ban-ts-comment': 'error',
 			'@typescript-eslint/naming-convention': [
 				'error',
@@ -73,6 +74,12 @@ export default [
 					caughtErrorsIgnorePattern: '^_'
 				}
 			]
+		}
+	},
+	{
+		files: ['**/*.{ts,svelte}'],
+		rules: {
+			'no-undef': 'off'
 		}
 	},
 	{

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LatestShow } from '$server/ai/queries';
+	import type { LatestShow } from '#server/ai/queries.js';
 	import Icon from './Icon.svelte';
 	interface Props {
 		show: LatestShow;

@@ -1,7 +1,7 @@
-import { prisma_client } from '$/server/prisma-client';
-import { get_show_card_query } from '$/server/shows/shows_queries';
-import { get_first_paragraph } from '$/utilities/get_first_paragraph';
-import { processor } from '$/utilities/markdown.js';
+import { prisma_client } from '#server/prisma-client.js';
+import { get_show_card_query } from '#server/shows/shows_queries.js';
+import { get_first_paragraph } from '#utilities/get_first_paragraph.js';
+import { processor } from '#utilities/markdown.js';
 
 export const load = async function ({ params, url }) {
 	const { v_slug } = params;

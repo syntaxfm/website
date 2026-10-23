@@ -5,11 +5,11 @@
 	 */
 
 	/** @type {Props} */
-	let { displayError } = $props();
+	let { displayError: display_error } = $props();
 </script>
 
-{#if displayError}
-	<p class="inline-error">{displayError}</p>
+{#if display_error}
+	<p class="inline-error">{display_error}</p>
 {/if}
 
 <style>

@@ -9,7 +9,8 @@ export function oklchToRgba(oklch: string) {
 		const [l, c, h] = matches.map(Number);
 
 		// Use Chroma.js to convert the OKLCH values to an RGBA color
-		const rgba = chroma.oklch(l, c, h).rgba();
+		// chroma-js 3 leaves alpha unset (NaN) for oklch colors
+		const rgba = chroma.oklch(l, c, h).alpha(1).rgba();
 
 		// Format the RGBA array into a CSS string
 		return `rgba(${rgba.map((v) => Math.round(v)).join(', ')})`;

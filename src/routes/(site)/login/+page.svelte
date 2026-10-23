@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Github from '$assets/github.svg';
+	import Github from '#assets/github.svg';
 	import { enhance } from '$app/forms';
-	import { loading } from '$state/loading';
-	import { form_action } from '$lib/form_action';
+	import { loading } from '#state/loading.js';
+	import { form_action } from '#lib/form_action.js';
 
 	let { data } = $props();
-	const { user } = data;
+	let { user } = $derived(data);
 </script>
 
 <section class="content">

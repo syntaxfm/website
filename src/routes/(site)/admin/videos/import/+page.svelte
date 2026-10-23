@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AdminActions from '$/lib/AdminActions.svelte';
-	import AdminSearch from '$/lib/AdminSearch.svelte';
-	import FormButton from '$/lib/FormButton.svelte';
+	import AdminActions from '#lib/AdminActions.svelte';
+	import AdminSearch from '#lib/AdminSearch.svelte';
+	import FormButton from '#lib/FormButton.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();

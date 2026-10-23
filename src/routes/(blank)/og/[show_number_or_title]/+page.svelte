@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LatestShow } from '$/server/ai/queries';
+	import type { LatestShow } from '#server/ai/queries.js';
 	import ShowOg from './ShowOg.svelte';
 
 	let { data } = $props();

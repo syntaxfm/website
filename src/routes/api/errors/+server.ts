@@ -1,10 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import optionsHandler from '../optionsHandler';
+import options_handler from '../optionsHandler';
 
 const SENTRY_HOST = 'o4505358925561856.ingest.sentry.io';
 const SENTRY_PROJECT_IDS = ['4505358945419264'];
 
-export const OPTIONS = optionsHandler();
+export const OPTIONS = options_handler();
 
 export const POST: RequestHandler = async ({ request }) => {
 	let envelope: string = '';

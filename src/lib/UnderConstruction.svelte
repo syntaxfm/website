@@ -1,5 +1,5 @@
 <script lang="ts">
-	import underConstruction from '$assets/under-construction.gif';
+	import underConstruction from '#assets/under-construction.gif';
 </script>
 
 <div>

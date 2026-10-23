@@ -1,7 +1,7 @@
 // * Client side Middleware
-// https://kit.svelte.dev/docs/hooks
+// https://svelte.dev/docs/kit/hooks
 
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import { handleErrorWithSentry } from '@sentry/sveltekit';
 import * as Sentry from '@sentry/sveltekit';
 
@@ -26,9 +26,11 @@ Sentry.init({
 			blockAllMedia: false
 		})
 	],
-	profilesSampleRate: 1.0,
+	profileSessionSampleRate: 1.0,
+	profileLifecycle: 'trace',
 	environment: dev ? 'development' : 'production'
 });
 
 // If you have a custom error handler, pass it to `handleErrorWithSentry`
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError = handleErrorWithSentry();

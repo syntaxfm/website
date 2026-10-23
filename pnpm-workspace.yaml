@@ -2,10 +2,10 @@ allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true
   '@sentry/cli': true
+  '@sentry/node-cpu-profiler': true
   '@sentry/profiling-node': true
   '@sveltejs/kit': true
   bufferutil: true
-  core-js: true
   esbuild: true
   prisma: true
   svelte-preprocess: true

@@ -1,5 +1,5 @@
-// See https://kit.svelte.dev/docs/types#app
-import type { UserWithRoles } from '$server/auth/users';
+// See https://svelte.dev/docs/kit/types#app.d.ts
+import type { UserWithRoles } from '#server/auth/users.js';
 import type { PrismaClient } from '@prisma/client';
 // Import the relevant types
 
@@ -8,8 +8,6 @@ declare global {
 	declare namespace svelteHTML {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {
-			popover?: string | boolean | null;
-			popovertarget?: string | null;
 			'onclick-outside'?: (event: CustomEvent<any>) => void;
 		}
 	}
@@ -17,12 +15,11 @@ declare global {
 		webkitAudioContext: typeof AudioContext;
 	}
 
-	interface MapConstructor<K, V> {
-		groupBy: <T>(callback: (value: V, key: K) => T) => Map<T, Map<K, V>>;
-	}
-
 	namespace App {
-		// interface Error {}
+		interface Error {
+			// Sentry event id for errors reported from handleError, to quote when reporting the problem
+			error_id?: string;
+		}
 		interface Locals {
 			prisma: PrismaClient;
 			form_data: Record<string, unknown>;

@@ -1,6 +1,6 @@
-import { error, json } from '@sveltejs/kit';
-import { prisma_client } from '$/server/prisma-client';
-import { getSlimUtterances } from '$/server/transcripts/utils';
+import { error } from '@sveltejs/kit';
+import { prisma_client } from '#server/prisma-client.js';
+import { getSlimUtterances } from '#utilities/transcripts.js';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
@@ -35,7 +35,7 @@ export async function GET({ params }) {
 
 	const grouped_utterances = getSlimUtterances(transcript.utterances, show_number);
 
-	return json(
+	return Response.json(
 		{
 			show_title: transcript.show.title,
 			show_number: transcript.show.number,

@@ -1,7 +1,7 @@
 import { get_access_token } from '../../../../../server/auth/access_token';
 import { get_github_user } from '../../../../../server/auth/github_user_methods';
 import { find_session } from '../../../../../server/auth/sessions';
-import { find_or_create_user } from '../../../../../server/auth/users';
+import { find_or_create_user, find_user_with_roles } from '../../../../../server/auth/users';
 
 // This route runs after the user has been successfully validated on GitHub
 export async function GET({ url, cookies, locals }) {
@@ -13,7 +13,7 @@ export async function GET({ url, cookies, locals }) {
 	// 4. Use user data to create user in database
 	// 5. Create session in database
 	// 6. Set access token as httpOnly cookie
-	// 7. Redirect to home page
+	// 7. Redirect admins to /admin, everyone else to the home page
 	// ***   ***   ***  *** //
 	// ***   ฅ^•ﻌ•^ฅ   ***  //
 
@@ -46,14 +46,16 @@ export async function GET({ url, cookies, locals }) {
 				httpOnly: true,
 				path: '/',
 				secure: true,
-				sameSite: 'strict',
+				sameSite: 'lax',
 				maxAge: 60 * 60 * 24 * 365 // 1 year
 			});
+
+			const { roles } = await find_user_with_roles(user.id);
 
 			return new Response('', {
 				status: 302,
 				headers: {
-					location: '/'
+					location: roles.includes('admin') ? '/admin' : '/'
 				}
 			});
 		}

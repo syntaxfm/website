@@ -1,16 +1,14 @@
 import { fail, type Action } from '@sveltejs/kit';
 import { validateToken } from './validateTurnstileToken';
-import { prisma_client } from '$/server/prisma-client';
-import { env } from '$env/dynamic/private';
-import { user_submission_schema } from '$/lib/forms/userSubmissionSchema';
+import { prisma_client } from '#server/prisma-client.js';
+import { TURNSTILE_SECRET } from '$app/env/private';
+import { user_submission_schema } from '#lib/forms/userSubmissionSchema.js';
 import { z } from 'zod';
 
 export const user_submission_action: Action = async function ({ locals }) {
 	// Validate Turnsile Token
-	let { error } = await validateToken(
-		locals.form_data['cf-turnstile-response'],
-		env.TURNSTILE_SECRET
-	);
+	let { error } = await validateToken(locals.form_data['cf-turnstile-response'], TURNSTILE_SECRET);
+
 	if (error) {
 		return fail(400, { message: 'Failed Captcha', error });
 	}
@@ -25,7 +23,7 @@ export const user_submission_action: Action = async function ({ locals }) {
 	const parsed = user_submission_schema.safeParse(data);
 	if (!parsed.success) {
 		if (parsed.error instanceof z.ZodError) {
-			const errors = parsed.error.flatten();
+			const errors = z.flattenError(parsed.error);
 			return fail(400, {
 				message: 'Failed to validate form',
 				error: 'See above for details',

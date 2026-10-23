@@ -7,12 +7,12 @@
 	}
 
 	let { data, form }: Props = $props();
-	let formRef: HTMLFormElement | null = $state(null);
+	let form_ref: HTMLFormElement | null = $state(null);
 	let { show } = $derived(data);
 
 	$effect(() => {
 		if (form) {
-			formRef?.scrollIntoView({
+			form_ref?.scrollIntoView({
 				behavior: 'smooth'
 			});
 		}
@@ -39,7 +39,7 @@
 
 <h1 class="h4">AI Show Notes</h1>
 {#if show?.aiShowNote}
-	<form class="flex flex-col" method="POST" action="?/update_ai_show_note" bind:this={formRef}>
+	<form class="flex flex-col" method="POST" action="?/update_ai_show_note" bind:this={form_ref}>
 		{#if form?.message}
 			<div class="errors">
 				{form?.message}

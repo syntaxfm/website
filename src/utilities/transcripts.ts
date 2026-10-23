@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-import type { PrismaUtterance, SlimUtterance, SpeakerMap } from './types';
-
-type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
+import type { ListenV1ResponseResultsUtterancesItem as Utterance } from '@deepgram/sdk';
+import type { PrismaUtterance, SlimUtterance, SpeakerMap } from '#server/transcripts/types.js';
 
 /**
  * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
@@ -10,7 +8,9 @@ type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0
  */
 
 export function getSlimUtterances(
-	utterances: PrismaUtterance[] | Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
+	utterances:
+		| PrismaUtterance[]
+		| (Required<Pick<Utterance, 'transcript' | 'start' | 'end'>> & Pick<Utterance, 'speaker'>)[],
 	showNumber: number,
 	groupForPunctuation = true
 ): SlimUtterance[] {
@@ -74,7 +74,7 @@ export function formatTime(secs: number) {
 }
 
 function getSpeakerShortName(speaker: number | undefined) {
-	const shortForms = new Map([
+	const shortForms = new Map<string | number | undefined, string>([
 		['Scott Tolinski', 'Scott'],
 		['Wes Bos', 'Wes']
 	]);
@@ -114,42 +114,37 @@ export function detectSpeakerNames(
 	// Any other speakers are guests and can be Labeled from the show notes
 	const sayings: [string | RegExp, string][] = [
 		// Scott
+		['My name is Scott', 'Scott Tolinski'],
 		['purple cheese before meeting', 'Scott Tolinski'],
 		['drop a review if you like this show', 'Scott Tolinski'],
-		['My name is Scott', 'Scott Tolinski'],
 		[/^(I'm\s+)?(a\s+)?(developer\s+)?from\s+Denver$/, 'Scott Tolinski'],
 		// Wes
-		[/my dog eats food ?(?:on)? the moon/i, 'Wes Bos'],
-		['welcome to syntax the podcast with the tastiest', 'Wes Bos'],
 		['My name is Wes', 'Wes Bos'],
 		['My name is West', 'Wes Bos'],
-		['pretty stoked', 'Wes Bos'],
-		['pretty nifty', 'Wes Bos'],
-		['forward slash courses', 'Wes Bos'],
-		['eats food', 'Wes Bos'],
+		[/my dog eats food ?(?:on)? the moon/i, 'Wes Bos'],
+		['welcome to syntax the podcast with the tastiest', 'Wes Bos'],
 		[/^(I'm\s+)?(a\s+)?(developer\s+)?from\s+Canada$/i, 'Wes Bos'],
 		['Mr. Scott Tolinski', 'Wes Bos'],
 		// Growler
 		['Open wide dev', 'Announcer'],
 		['to use human language', 'Announcer'],
-		['Strap yourself in', 'Announcer']
+		['Strap yourself in', 'Announcer'],
+		['pretty stoked', 'Wes Bos'],
+		['pretty nifty', 'Wes Bos'],
+		['forward slash courses', 'Wes Bos'],
+		['eats food', 'Wes Bos']
 	];
 	// First get a list of all speakers
 	const speakerNumbers = new Set(utterances.map((utt) => utt.speakerId));
-	// console.log(`We have ${speakerNumbers.size} speakers`);
 	const speakers = new Map();
-	for (const utterance of utterances) {
-		// If this speaker has already been identified, skip it
-		if (speakers.get(utterance.speakerId)) continue;
-		// Otherwise look for a match
-		for (const [saying, speaker] of sayings) {
-			// console.log('Checking', saying, speaker,);
-			const regex = typeof saying === 'string' ? new RegExp(saying, 'i') : saying;
-			if (regex.test(utterance.transcript)) {
-				// console.log(`Found ${speaker}!`, saying);
-				speakers.set(utterance.speakerId, speaker);
-				break;
-			}
+	for (const [saying, speaker] of sayings) {
+		if ([...speakers.values()].includes(speaker)) continue;
+		const regex = typeof saying === 'string' ? new RegExp(saying, 'i') : saying;
+		const match = utterances.find(
+			(utterance) => !speakers.has(utterance.speakerId) && regex.test(utterance.transcript)
+		);
+		if (match) {
+			speakers.set(match.speakerId, speaker);
 		}
 	}
 	// Todo Handle guests somehow

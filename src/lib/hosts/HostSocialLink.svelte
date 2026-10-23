@@ -1,19 +1,21 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 	interface Props {
 		host: {
-		name: string;
-		github?: string | null;
-		twitter?: string | null;
-		url?: string | null;
-		slug?: string;
-	};
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			url?: string | null;
+			slug?: string;
+		};
 	}
 
 	let { host }: Props = $props();
 
 	// if url is not prefixed with https, add it
-	const httpHostUrl = host.url && /https?\:/.test(host.url) ? host.url : `https://${host.url}`;
+	let http_host_url = $derived(
+		host.url && /https?:/.test(host.url) ? host.url : `https://${host.url}`
+	);
 </script>
 
 {#if host.twitter}
@@ -29,7 +31,7 @@
 {/if}
 
 {#if host.url}
-	<a href={httpHostUrl} target="_blank" class="social-icon">
+	<a href={http_host_url} target="_blank" class="social-icon">
 		<Icon name="monitor" title={`${host.name}'s website'`} />
 	</a>
 {/if}

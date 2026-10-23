@@ -1,5 +1,5 @@
 import type { Session, User } from '@prisma/client';
-import { prisma_client } from '$/server/prisma-client';
+import { prisma_client } from '#server/prisma-client.js';
 
 export async function find_session(
 	access_token: string,
