@@ -15,10 +15,6 @@ declare global {
 		webkitAudioContext: typeof AudioContext;
 	}
 
-	interface MapConstructor<K, V> {
-		groupBy: <T>(callback: (value: V, key: K) => T) => Map<T, Map<K, V>>;
-	}
-
 	namespace App {
 		// interface Error {}
 		interface Locals {

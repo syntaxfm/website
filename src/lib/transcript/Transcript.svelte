@@ -9,10 +9,7 @@
 
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '#server/ai/queries.js';
 	import type { SlimUtterance } from '#server/transcripts/types.js';
-	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { Show } from '@prisma/client';
-
-	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
 		transcript: TranscriptWithUtterances;
@@ -38,11 +35,9 @@
 	// group Utterances by their summary
 	type SummaryTitle = { time: string; text: string; id?: number };
 	const def: SummaryTitle = { time: '00:00', text: '' };
-	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
-	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	let utterances_by_summary: UtteranceMap = $derived(
-		Map.groupBy(slim_transcript, (utterance: Utterance) => {
+	let utterances_by_summary = $derived(
+		Map.groupBy(slim_transcript, (utterance) => {
 			const start = utterance.start;
 			const summary = ai_show_note?.summary?.findLast((summary) => {
 				const timestamp = tsToS(summary.time);

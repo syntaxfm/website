@@ -74,7 +74,7 @@ export function formatTime(secs: number) {
 }
 
 function getSpeakerShortName(speaker: number | undefined) {
-	const shortForms = new Map([
+	const shortForms = new Map<string | number | undefined, string>([
 		['Scott Tolinski', 'Scott'],
 		['Wes Bos', 'Wes']
 	]);
