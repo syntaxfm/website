@@ -2,7 +2,7 @@ import { DeepgramClient } from '@deepgram/sdk';
 import { prisma_client as prisma } from '#server/prisma-client.js';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
-import { addFlaggerAudio } from './flagger';
+import { add_flagger_audio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
 
 function get_deepgram_client() {
@@ -37,11 +37,11 @@ export async function get_transcript(showNumber: number) {
 			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
 		);
 	}
-	const show_buffer = await addFlaggerAudio(show);
+	const show_audio = await add_flagger_audio(show);
 	console.log(`Fetching transcript for show #${show.number} - ${show.title}...`);
 
 	try {
-		const transcript = await deepgram_client.listen.v1.media.transcribeFile(show_buffer, {
+		const transcript = await deepgram_client.listen.v1.media.transcribeFile(show_audio, {
 			punctuate: true,
 			model: 'nova-3',
 			language: 'en-US',

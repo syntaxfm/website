@@ -1,109 +1,41 @@
-import { createWriteStream, existsSync } from 'fs';
 import { Readable } from 'stream';
-import { finished } from 'stream/promises';
-import { FFmpeg } from '@ffmpeg.wasm/main';
+import type { ReadableStream } from 'stream/web';
 import type { Show } from '@prisma/client';
-import core from '@ffmpeg.wasm/core-mt';
 import { read } from '$app/server';
-import { log_progress } from './logProgress';
 
 import wes_flagger from './audio/wes-flagger.mp3';
 import scott_flagger from './audio/scott-flagger.mp3';
 
 const flag_paths = [wes_flagger, scott_flagger];
 
-export type ProgressEvent = {
-	duration?: number;
-	ratio?: number;
-	time: number;
-	percentage: number;
-};
-
-async function downloadFile(url: string, path: string) {
-	if (existsSync(path)) return;
-
-	const stream = createWriteStream(path);
-	const response = await fetch(url);
-	if (response.body) {
-		// @ts-expect-error body is readable
-		await finished(Readable.fromWeb(response.body).pipe(stream));
-	}
-}
-
 /**
- * Concatenates a show with flagger audio to help with diatirization
- * @returns {Promise<Buffer>} - The concatenated show
- * @param {string} mp3URL - The URL of the show to concat
+ * Appends flagger audio to a show to help with diarization, streaming the show instead of loading it into memory.
+ * The flaggers are encoded to match the show's MP3 format (44.1kHz stereo 320k, no tags), so their frames can be appended as is.
  **/
-export async function addFlaggerAudio(show: Show): Promise<Buffer> {
+export async function add_flagger_audio(show: Show) {
 	console.log('ADDING FLAGGER AUDIO');
-	const url = new URL(show.url);
-	// Get the filename
-	const file_name = `${show.number}.mp3`;
-	//  Get the base name
-	const [base_name, extension] = file_name.split('.');
-	// create the output filename
-	const output_filename = `${show.number}-flagged.${extension}`;
-	console.log(`Downloading #${show.number} - ${show.title}`);
-	console.log('Creating ffmpeg instance');
-	await downloadFile(
-		'https://cdn.jsdelivr.net/npm/@ffmpeg.wasm/core-mt@0.13.2/dist/core.wasm',
-		'/tmp/core.wasm'
+	const flaggers = await Promise.all(
+		flag_paths.map(async (flag_path) => new Uint8Array(await read(flag_path).arrayBuffer()))
 	);
-	await downloadFile(
-		'https://cdn.jsdelivr.net/npm/@ffmpeg.wasm/core-mt@0.13.2/dist/core.worker.js',
-		'/tmp/core.worker.cjs'
-	);
-	const ffmpeg = await FFmpeg.create({
-		log: true,
-		core: core,
-		coreOptions: {
-			wasmPath: '/tmp/core.wasm',
-			workerPath: '/tmp/core.worker.cjs'
-		},
-		logger: (type, ...message) => {
-			log_progress(message.join(' '));
-		}
-	});
-	console.log('Loading ffmpeg');
 
-	// 1. download the show
-	// 1.1 See if the file exists first
-	await fetch(url, { method: 'HEAD' });
-	console.log(`Fetching ${url}`);
-	const fetch_buffer = await fetch(url)
-		.then((res) => res.arrayBuffer())
-		.then((buf) => Buffer.from(new Uint8Array(buf)));
+	console.log(`Streaming #${show.number} - ${show.title} from ${show.url}`);
+	const response = await fetch(show.url);
+	if (!response.ok || !response.body) {
+		throw new Error(`Failed to fetch ${show.url}: ${response.status}`);
+	}
+	const show_body = response.body as ReadableStream<Uint8Array>;
+	const show_length = Number(response.headers.get('content-length'));
 
-	// Load it into ffmpeg memory
-	ffmpeg.fs.writeFile(file_name, fetch_buffer);
-
-	console.log(`wrote ${file_name} to ffmpeg memory`);
-	// Write Flaggers to ffmpeg memory
-	for (const [i, flag_path] of flag_paths.entries()) {
-		const flag_buffer = Buffer.from(new Uint8Array(await read(flag_path).arrayBuffer()));
-		ffmpeg.fs.writeFile(`flagger-${base_name}-${i}.mp3`, flag_buffer);
-		console.log(`wrote flagger-${base_name}-${i}.mp3 to ffmpeg memory`);
+	async function* show_with_flaggers() {
+		yield* show_body;
+		yield* flaggers;
 	}
 
-	// Create the Command
-	const command = [
-		'-i',
-		file_name,
-		...flag_paths.map((flagPath, i) => ['-i', `flagger-${base_name}-${i}.mp3`]).flat(),
-		'-filter_complex',
-		'[0:a:0][1:a:0][2:a:0]concat=n=3:v=0:a=1[outa]',
-		'-map',
-		'[outa]',
-		output_filename
-	];
-
-	console.log(`Running ffmpeg with command: ${command.join(' ')}`);
-	// Run ffmpeg
-	await ffmpeg.run(...command);
-	// Get the Uint8Array
-	const data = ffmpeg.fs.readFile(output_filename);
-	// Convert to buffer
-	const buffer = Buffer.from(data.buffer);
-	return buffer;
+	return {
+		data: Readable.from(show_with_flaggers()),
+		contentType: 'audio/mpeg',
+		contentLength: show_length
+			? show_length + flaggers.reduce((total, flagger) => total + flagger.length, 0)
+			: undefined
+	};
 }

@@ -70,8 +70,6 @@
 	},
 	"dependencies": {
 		"@deepgram/sdk": "^5.15.0",
-		"@ffmpeg.wasm/core-mt": "0.13.2",
-		"@ffmpeg.wasm/main": "^0.13.1",
 		"@leveluptuts/svelte-side-menu": "^1.1.0",
 		"@prisma/client": "6.19.3",
 		"@sentry/profiling-node": "^11.8.0",

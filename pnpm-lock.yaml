@@ -169,12 +169,6 @@ importers:
       '@deepgram/sdk':
         specifier: ^5.15.0
         version: 5.15.0
-      '@ffmpeg.wasm/core-mt':
-        specifier: 0.13.2
-        version: 0.13.2
-      '@ffmpeg.wasm/main':
-        specifier: ^0.13.1
-        version: 0.13.1
       '@leveluptuts/svelte-side-menu':
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.57.2(@typescript-eslint/types@8.72.0))
@@ -860,13 +854,6 @@ packages:
   '@eslint/plugin-kit@0.7.3':
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
-
-  '@ffmpeg.wasm/core-mt@0.13.2':
-    resolution: {integrity: sha512-3UgpMoOhpTslxluDvBrh0MULeNy55W+WWG00P+JnnCLpJulQxgi6mnIuGO03d2sfV5pyW/FqAwut+fiMLbRsPg==}
-
-  '@ffmpeg.wasm/main@0.13.1':
-    resolution: {integrity: sha512-WoEd9xp/N9VWddZ3y1cdRK/el52ZKLoqOS+BNQZcsbLQpkQuHrFG93+zY4VjMZ0aWno4pQG4TSgLzsexpukpHw==}
-    engines: {node: '>=14.0.0'}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -4719,10 +4706,6 @@ snapshots:
     dependencies:
       '@eslint/core': 1.2.1
       levn: 0.4.1
-
-  '@ffmpeg.wasm/core-mt@0.13.2': {}
-
-  '@ffmpeg.wasm/main@0.13.1': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
