@@ -124,12 +124,12 @@
 								<div class="video-dock" data-actions="external" bind:this={dock_el}></div>
 							{/if}
 							<div class="media-controls">
-								<media-seek-backward-button>
+								<media-seek-backward-button notooltip>
 									<span slot="icon">
 										<Icon name="back-30" />
 									</span>
 								</media-seek-backward-button>
-								<media-play-button>
+								<media-play-button notooltip>
 									<span slot="play" style="--icon_size: 26px;">
 										<Icon name="play" />
 									</span>
@@ -137,7 +137,7 @@
 										<Icon name="pause" />
 									</span>
 								</media-play-button>
-								<media-seek-forward-button>
+								<media-seek-forward-button notooltip>
 									<span slot="icon">
 										<Icon name="forward-30" />
 									</span>
@@ -154,7 +154,10 @@
 								></media-time-range>
 							</div>
 							<media-duration-display aria-hidden={is_stacked_video_bar}></media-duration-display>
-							<media-playback-rate-button class="docked-rate" aria-hidden={!is_stacked_video_bar}
+							<media-playback-rate-button
+								class="docked-rate"
+								notooltip
+								aria-hidden={!is_stacked_video_bar}
 							></media-playback-rate-button>
 							<media-time-display
 								class="time-with-duration"
@@ -163,9 +166,9 @@
 							></media-time-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button aria-hidden={is_stacked_video_bar}
+							<media-playback-rate-button notooltip aria-hidden={is_stacked_video_bar}
 							></media-playback-rate-button>
-							<media-mute-button></media-mute-button>
+							<media-mute-button notooltip></media-mute-button>
 							<media-volume-range></media-volume-range>
 						</div>
 						{#if is_stacked_video_bar && $player.current_show}

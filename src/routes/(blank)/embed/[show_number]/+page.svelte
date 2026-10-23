@@ -38,12 +38,13 @@
 			{#if browser}
 				<media-controller
 					audio
+					hotkeys="noshift+/"
 					style="--media-range-track-height: 5px; --media-range-thumb-height: 15px; --media-range-thumb-border-radius: 0;	--media-range-track-border-radius: 5px; --media-range-bar-color: var(--primary);--media-background-color: transparent; --media-control-background: transparent; width: 100%; --media-font-family: var(--body-font-family); --media-control-hover-background: transparent; "
 				>
 					<audio slot="media" preload="metadata" crossorigin="anonymous" src={show.url}></audio>
 					<media-control-bar class="media-bar">
 						<div class="media-controls">
-							<media-play-button>
+							<media-play-button notooltip>
 								<span slot="play" style="--icon_size: 32px;">
 									<Icon name="play" />
 								</span>
@@ -63,7 +64,7 @@
 							<media-duration-display></media-duration-display>
 						</div>
 						<div class="media-sound">
-							<media-playback-rate-button></media-playback-rate-button>
+							<media-playback-rate-button notooltip></media-playback-rate-button>
 						</div>
 					</media-control-bar>
 				</media-controller>

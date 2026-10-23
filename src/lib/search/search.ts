@@ -1,24 +1,30 @@
 import type { Show } from '@prisma/client';
-import flexsearch from 'flexsearch';
+import { Encoder, Index } from 'flexsearch';
 import type { Block, Tree } from './types';
-
-const flex_index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;
 
-let indexes: any[];
+let indexes: Index[];
 
 const map: Map<string, Block> = new Map();
 
 const hrefs: Map<string, string> = new Map();
 
-export function init(blocks: Block[]) {
+export function init(blocks: (Block & Show)[]) {
 	if (inited) return;
 
 	// we have multiple indexes, so we can rank sections (migration guide comes last)
 	const max_rank = Math.max(...blocks.map((block) => block.rank ?? 0));
 
-	indexes = Array.from({ length: max_rank + 1 }, () => new flex_index({ tokenize: 'forward' }));
+	// Match flexsearch 0.7's encoding. 0.8's default collapses repeated characters and splits
+	// numbers, so searching "900" would also match 90, 1900, 9001...
+	const encoder = new Encoder({
+		normalize: (str) => str.toLowerCase(),
+		numeric: false,
+		dedupe: false
+	});
+
+	indexes = Array.from({ length: max_rank + 1 }, () => new Index({ tokenize: 'forward', encoder }));
 
 	for (const block of blocks) {
 		const title = block.breadcrumbs.at(-1);
@@ -29,9 +35,6 @@ export function init(blocks: Block[]) {
 		// We need to keep the existing one to allow looking up recent searches by URL even if docs change
 		// It's unclear how much browsers do string interning and how this might affect memory
 		// We'd probably want to test both implementations across browsers if memory usage becomes an issue
-		// https://github.com/nextapps-de/flexsearch/pull/364 is merged and released
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
 		indexes[block.rank ?? 0].add(block.href, `${title} ${block.content} ${block.number}`);
 
 		hrefs.set(block.breadcrumbs.join('::'), block.href);
@@ -45,7 +48,7 @@ export function search(query: string) {
 	const regex = new RegExp(`(^|\\b)${escaped}`, 'i');
 
 	const blocks = indexes
-		.flatMap((index) => index.search(query))
+		.flatMap((index) => index.search(query) as string[])
 		.map(lookup)
 		.map((block, rank) => ({ block, rank }))
 		.sort((a, b) => {
