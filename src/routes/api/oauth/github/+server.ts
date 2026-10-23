@@ -4,10 +4,8 @@ import { PUBLIC_GITHUB_ID } from '$app/env/public';
 import type { RequestHandler } from '@sveltejs/kit';
 import { prisma_client } from '#server/prisma-client.js';
 
-export const GET: RequestHandler = async function ({ locals, cookies }) {
-	const access_token = cookies.get('access_token');
-
-	if (!access_token) {
+export const GET: RequestHandler = async function ({ locals }) {
+	if (!locals.user) {
 		// Create session token
 		const session_token = randomUUID();
 
