@@ -4,12 +4,12 @@
 
 	interface Props {
 		playlist: Playlist & {
-		item_count: number;
-		videos: PlaylistOnVideo[] &
-			{
-				video: Video;
-			}[];
-	};
+			item_count: number;
+			videos: PlaylistOnVideo[] &
+				{
+					video: Video;
+				}[];
+		};
 	}
 
 	let { playlist }: Props = $props();

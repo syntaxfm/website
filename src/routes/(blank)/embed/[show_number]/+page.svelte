@@ -106,7 +106,8 @@
 		overflow: hidden;
 		padding: 20px;
 		background-size: contain;
-		background-image: var(--bg-grit-dark),
+		background-image:
+			var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 	}
 	p {

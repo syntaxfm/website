@@ -13,10 +13,12 @@
 	let { show, show_date = show.date ? new Date(show.date) : null }: Props = $props();
 
 	let hosts = untrack(() =>
-		(show.hosts?.length > 0 ? show.hosts : [
-			{ name: 'Wes Bos', username: 'wesbos' },
-			{ name: 'Scott Tolinski', username: 'stolinski' }
-		]
+		(show.hosts?.length > 0
+			? show.hosts
+			: [
+					{ name: 'Wes Bos', username: 'wesbos' },
+					{ name: 'Scott Tolinski', username: 'stolinski' }
+				]
 		).map((host) => ({
 			name: host.name || '',
 			github: host.username || ''
@@ -30,7 +32,6 @@
 			github: guest.Guest.github || ''
 		}))
 	];
-
 
 	function fitText(node: HTMLHeadElement) {
 		node.classList.remove('finish-sizing-text');
@@ -106,10 +107,7 @@
 		</h1>
 
 		<div class="brand-footer">
-			<FacePile
-				size="120px"
-				faces={all_faces}
-			/>
+			<FacePile size="120px" faces={all_faces} />
 			<div class="grit logos">
 				<svg height="100px" viewBox="0 0 1371 1212" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<title>Syntax</title>
@@ -141,7 +139,8 @@
 		container: show-card / inline-size;
 		display: grid;
 		padding: 20px;
-		background-image: var(--bg-grit-dark),
+		background-image:
+			var(--bg-grit-dark),
 			radial-gradient(farthest-side circle at 50% 0%, #3a006b66 4% 4%, #000 100%);
 		background-color: black;
 		color: var(--fg);

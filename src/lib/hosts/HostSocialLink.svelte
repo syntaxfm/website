@@ -2,12 +2,12 @@
 	import Icon from '$lib/Icon.svelte';
 	interface Props {
 		host: {
-		name: string;
-		github?: string | null;
-		twitter?: string | null;
-		url?: string | null;
-		slug?: string;
-	};
+			name: string;
+			github?: string | null;
+			twitter?: string | null;
+			url?: string | null;
+			slug?: string;
+		};
 	}
 
 	let { host }: Props = $props();

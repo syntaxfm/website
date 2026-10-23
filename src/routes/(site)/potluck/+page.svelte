@@ -2,8 +2,8 @@
 	<div style:margin-bottom="2rem">
 		<h1 class="h3">Ask a Potluck Question</h1>
 		<p>
-			Once a month we do <strong>Potluck</strong> episodes. That's a stupid name for a show where we
-			answer your questions.
+			Once a month we do <strong>Potluck</strong> episodes. That's a stupid name for a show where we answer
+			your questions.
 		</p>
 
 		<p>

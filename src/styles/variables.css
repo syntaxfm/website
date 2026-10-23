@@ -128,7 +128,8 @@
 	/* Shadow */
 	--shadow-strength: 10%;
 	--shadow-color: 220 40% 2%;
-	--shadow-6: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+	--shadow-6:
+		0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
 		0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
 		0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
 		0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
@@ -179,6 +180,6 @@
 	--hero-gradient-2: var(--black);
 
 	/* Sentry footer gradient */
-	--sentry-footer-bg: url('$assets/squiggle-greyscale.webp'),
-		linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
+	--sentry-footer-bg:
+		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 }

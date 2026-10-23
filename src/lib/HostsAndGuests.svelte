@@ -4,10 +4,10 @@
 	interface Props {
 		guests?: { Guest: Guest }[];
 		hosts?: {
-		name: string | null;
-		username: string | null;
-		twitter: string | null;
-	}[];
+			name: string | null;
+			username: string | null;
+			twitter: string | null;
+		}[];
 	}
 
 	let { guests = [], hosts = [] }: Props = $props();

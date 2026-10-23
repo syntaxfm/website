@@ -28,8 +28,7 @@ export async function open_show_page() {
 
 export function enter_fullscreen() {
 	const el = get(youtube_player).active_element as
-		| (YoutubeVideoElementLike & { webkitRequestFullscreen?: () => void })
-		| null;
+		(YoutubeVideoElementLike & { webkitRequestFullscreen?: () => void }) | null;
 	if (!el) return;
 	// Safari on iPad only has the prefixed version. iPhone can't full screen anything but <video>.
 	if (el.requestFullscreen) void el.requestFullscreen().catch(() => {});

@@ -6,7 +6,6 @@ const flex_index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;
 
- 
 let indexes: any[];
 
 const map: Map<string, Block> = new Map();

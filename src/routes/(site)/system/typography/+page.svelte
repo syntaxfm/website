@@ -45,8 +45,7 @@
 		modern websites and web applications. With a friendly and casual tone, Wes and Scott deliver their
 		expertise in an approachable manner, making complex topics easy to understand. Syntax.fm is known
 		for its informative content, practical advice, and engaging discussions, making it a go-to resource
-		for developers seeking to enhance their skills and stay up-to-date with the latest trends in web
-		development.
+		for developers seeking to enhance their skills and stay up-to-date with the latest trends in web development.
 	</p>
 	<p class="text-sm">Small Paragraph</p>
 </section>

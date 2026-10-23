@@ -4,16 +4,10 @@
 		type?: HTMLInputElement['type'];
 		value?: string;
 		id: string;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let {
-		label = '',
-		type = 'text',
-		value = $bindable(''),
-		id,
-		...rest
-	}: Props = $props();
+	let { label = '', type = 'text', value = $bindable(''), id, ...rest }: Props = $props();
 
 	function typeAction(node: HTMLInputElement) {
 		node.type = type;

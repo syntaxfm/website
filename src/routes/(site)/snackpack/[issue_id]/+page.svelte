@@ -7,20 +7,20 @@
 	$effect(() => {
 		if (embed) {
 			embed.innerHTML = '';
-			const container = document.createElement("shadow-dom-container");
-			const shadow = container.attachShadow({ mode: "open" });
+			const container = document.createElement('shadow-dom-container');
+			const shadow = container.attachShadow({ mode: 'open' });
 			embed.appendChild(container);
-			const wrapper = document.createElement("div");
-				wrapper.classList.add('wrapper');
-				wrapper.innerHTML = data.html;
-				shadow.appendChild(wrapper);
-				data.styles?.forEach((style: string) => {
-					const style_element = document.createElement('style');
-					style_element.innerHTML = style;
-					shadow.appendChild(style_element);
-				});
-				const main_styles = document.createElement('style');
-				main_styles.innerHTML = `img {
+			const wrapper = document.createElement('div');
+			wrapper.classList.add('wrapper');
+			wrapper.innerHTML = data.html;
+			shadow.appendChild(wrapper);
+			data.styles?.forEach((style: string) => {
+				const style_element = document.createElement('style');
+				style_element.innerHTML = style;
+				shadow.appendChild(style_element);
+			});
+			const main_styles = document.createElement('style');
+			main_styles.innerHTML = `img {
 	max-width: 100%;
 }
 .ck-inner-section {
@@ -28,8 +28,8 @@
 }
 table {
 	border: 0 !important;
-}`
-				shadow.appendChild(main_styles);
+}`;
+			shadow.appendChild(main_styles);
 		}
 	});
 </script>

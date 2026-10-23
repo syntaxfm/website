@@ -9,5 +9,5 @@
 </script>
 
 <div>
-{@html data.props.html}
+	{@html data.props.html}
 </div>

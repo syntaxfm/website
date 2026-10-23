@@ -24,4 +24,4 @@ services:
     environment:
       SRH_MODE: env
       SRH_TOKEN: ${UPSPLASH_TOKEN}
-      SRH_CONNECTION_STRING: "redis://redis:6379"
+      SRH_CONNECTION_STRING: 'redis://redis:6379'

@@ -12,7 +12,9 @@
 
 	let search_text = $state('');
 
-	let filtered = $derived(videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase())));
+	let filtered = $derived(
+		videos?.filter((s) => s.title.toLowerCase().includes(search_text.toLowerCase()))
+	);
 </script>
 
 <h1>{playlist?.title}</h1>

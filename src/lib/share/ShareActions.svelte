@@ -43,10 +43,11 @@
 		);
 	}
 
-	let time_stamp =
-		$derived(share_at_ts && $player?.audio?.currentTime
+	let time_stamp = $derived(
+		share_at_ts && $player?.audio?.currentTime
 			? `%3Ft%3D${to_hms(Math.trunc($player.audio?.currentTime))}`
-			: ``);
+			: ``
+	);
 	let share_url = $derived(`https%3A//syntax.fm/${show.number}${time_stamp}`);
 </script>
 
