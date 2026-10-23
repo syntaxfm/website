@@ -181,9 +181,6 @@ importers:
       '@leveluptuts/svelte-side-menu':
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.57.2(@typescript-eslint/types@8.72.0))
-      '@oddbird/popover-polyfill':
-        specifier: ^0.7.3
-        version: 0.7.3
       '@prisma/client':
         specifier: 6.19.3
         version: 6.19.3(prisma@6.19.3(typescript@6.0.3))(typescript@6.0.3)
@@ -1236,9 +1233,6 @@ packages:
 
   '@octokit/types@18.0.0':
     resolution: {integrity: sha512-l6bAF43PNxkJp6g+W4PjoUSSkxHomXw2nOum5CTftJz1NlV3vu93NImgOYtLf6CbBUb5j+fiuzW0PPQ5JTSvZA==}
-
-  '@oddbird/popover-polyfill@0.7.3':
-    resolution: {integrity: sha512-uOY7RLqS1M12u+EzZHQ8vPSh3NjwDlb4qwJ1WDzQ0inZ14+47Vv0NNs+1Lh4PtX1nLiiCbfJyIxPRHsgBTvhvg==}
 
   '@opentelemetry/api@1.10.0':
     resolution: {integrity: sha512-lMkyes8iHrG+mk6WH7X70MdCLI2RS0FwNBY1PyQ8UemaijE2m5mv5A0Niy3HtbYTFrgkUEQjFMXmSAk2hQDuPQ==}
@@ -5649,8 +5643,6 @@ snapshots:
   '@octokit/types@18.0.0':
     dependencies:
       '@octokit/openapi-types': 29.0.1
-
-  '@oddbird/popover-polyfill@0.7.3': {}
 
   '@opentelemetry/api@1.10.0': {}
 

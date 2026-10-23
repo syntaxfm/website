@@ -8,8 +8,6 @@ declare global {
 	declare namespace svelteHTML {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {
-			popover?: string | boolean | null;
-			popovertarget?: string | null;
 			'onclick-outside'?: (event: CustomEvent<any>) => void;
 		}
 	}
