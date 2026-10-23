@@ -10,3 +10,5 @@ allowBuilds:
   prisma: true
   svelte-preprocess: true
   utf-8-validate: true
+minimumReleaseAgeExclude:
+  - youtube-video-element@1.9.1
