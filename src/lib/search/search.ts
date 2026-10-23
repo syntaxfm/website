@@ -6,7 +6,7 @@ const flex_index = flexsearch.Index ?? flexsearch;
 
 export let inited = false;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 let indexes: any[];
 
 const map: Map<string, Block> = new Map();
