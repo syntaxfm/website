@@ -10,19 +10,3 @@ allowBuilds:
   prisma: true
   svelte-preprocess: true
   utf-8-validate: true
-minimumReleaseAgeExclude:
-  - youtube-video-element@1.9.1
-  - '@sentry/browser-utils@11.9.0'
-  - '@sentry/browser@11.9.0'
-  - '@sentry/bundler-plugins@11.9.0'
-  - '@sentry/cloudflare@11.9.0'
-  - '@sentry/feedback@11.9.0'
-  - '@sentry/node@11.9.0'
-  - '@sentry/opentelemetry@11.9.0'
-  - '@sentry/profiling-node@11.9.0'
-  - '@sentry/replay-canvas@11.9.0'
-  - '@sentry/replay@11.9.0'
-  - '@sentry/server-runtime-injection@11.9.0'
-  - '@sentry/server-utils@11.9.0'
-  - '@sentry/svelte@11.9.0'
-  - '@sentry/sveltekit@11.9.0'
