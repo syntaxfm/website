@@ -1,0 +1,10 @@
+cases:
+  - name: Sharing without a timestamp starts a new listener at the beginning
+    steps:
+      - aiAct: Click the yellow episode Play button in the main content above Show Notes for episode 9999 (not the triangular play control in the bottom player). In the bottom player, pause playback, then click the forward 30 seconds control exactly twice. Leave playback paused.
+      - media.remember: {}
+      - aiAct: Open Share for this episode. Enable Start at timestamp and then disable it again. Click Link to copy the link with Start at timestamp unchecked.
+      - share.check: { timestamp: false }
+      - share.open: {}
+      - aiAct: Click the yellow episode Play button in the main content above Show Notes for episode 9999 (not the triangular play control in the bottom player).
+      - media.check: { timestamp: false }
