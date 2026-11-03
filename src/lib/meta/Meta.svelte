@@ -41,8 +41,6 @@
 	<meta name="description" content={meta.description} />
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={generateTitle(meta.title)} />
 	<meta name="twitter:site" content="@syntaxfm" />
-	<meta name="twitter:description" content={meta.description} />
 	<meta name="twitter:image" content={meta.image} />
 </svelte:head>
