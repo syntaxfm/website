@@ -92,6 +92,7 @@ jobs:
         id: report
         if: ${{ always() && vars.MIDSCENE_PAGES_PROJECT != '' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'failure') }}
         run: |
+          mkdir -p "$RUNNER_TEMP/midscene-publish"
           shopt -s nullglob
           reports=(tests/midscene/midscene_run/report/midscene-e2e-*/index.html)
           if [ "${#reports[@]}" -ne 1 ]; then
@@ -107,7 +108,9 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: '4.151.1'
-          command: pages deploy "${{ steps.report.outputs.directory }}" --project-name=${{ vars.MIDSCENE_PAGES_PROJECT }} --branch=run-${{ github.run_id }}-${{ github.run_attempt }} --commit-hash=${{ github.sha }}
+          packageManager: npm
+          workingDirectory: ${{ runner.temp }}/midscene-publish
+          command: pages deploy "${{ github.workspace }}/${{ steps.report.outputs.directory }}" --project-name=${{ vars.MIDSCENE_PAGES_PROJECT }} --branch=run-${{ github.run_id }}-${{ github.run_attempt }} --commit-hash=${{ github.sha }}
       - name: Write report links to Summary
         if: always()
         env:
