@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: 22.22.0
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --registry=https://registry.npmjs.org
       - run: cp .env.example .env
       - run: pnpm db:push && pnpm db:generate && pnpm test:midscene:seed
       - run: pnpm test:midscene:check
