@@ -49,6 +49,12 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
       </url>
 
       <url>
+        <loc>${site}/pages/giveaway-rules</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+      </url>
+
+      <url>
         <loc>${site}/system/colors</loc>
         <changefreq>monthly</changefreq>
         <priority>0.2</priority>

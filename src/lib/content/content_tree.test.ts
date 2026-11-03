@@ -6,6 +6,7 @@ describe('safe_href', () => {
 		'https://syntax.fm/show/900',
 		'http://example.com',
 		'mailto:hello@syntax.fm',
+		'tel:+18553804526',
 		'#t=12:34',
 		'/pages/privacy',
 		'getfresh.dev',

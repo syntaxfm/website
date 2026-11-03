@@ -97,10 +97,10 @@ export function is_site_path(value: unknown): value is SitePath {
 	}
 }
 
-const SAFE_LINK_PROTOCOLS: ReadonlySet<string> = new Set(['http:', 'https:', 'mailto:']);
+const SAFE_LINK_PROTOCOLS: ReadonlySet<string> = new Set(['http:', 'https:', 'mailto:', 'tel:']);
 
 /**
- * Returns the href when it is an http(s) or mailto URL, or a non-empty relative/fragment link;
+ * Returns the href when it is an http(s), mailto or tel URL, or a non-empty relative/fragment link;
  * otherwise undefined. Uses the WHATWG URL parser, the same one browsers use, so tricks like
  * `java\tscript:` or leading control characters resolve to the protocol a browser would follow.
  */
