@@ -4,6 +4,10 @@ title: More Bots Than Humans
 date: 1782730800000
 url: https://traffic.megaphone.fm/FSI8452010042.mp3
 youtube_url: https://www.youtube.com/watch?v=rmCmzimg4UY
+hosts:
+  - stolinski
+  - wesbos
+  - w3cj
 ---
 
 Wes, Scott, and CJ break down the latest web dev news. From AI agents and coding tools to Deno Desktop, Nub, and predictive UX. They also discuss bot-filled social media, remote work debates, and a slick 3D bookstore experience.

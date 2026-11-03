@@ -86,8 +86,6 @@
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.68.0",
 		"@deepgram/sdk": "^4.11.3",
-		"@ffmpeg.wasm/core-mt": "0.13.2",
-		"@ffmpeg.wasm/main": "^0.13.1",
 		"@oddbird/popover-polyfill": "^0.6.1",
 		"@prisma/client": "6.18.0",
 		"@sentry/profiling-node": "^10.58.0",

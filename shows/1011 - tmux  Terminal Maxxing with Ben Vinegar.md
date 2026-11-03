@@ -26,7 +26,7 @@ Scott and Wes sit down with Ben Vinegar, former Syntax GM and founder of Modem.d
 * **[12:46](#t=12:46)** Integrating AI with Terminal Workflows
 * **[14:56](#t=14:56)** The Future of Terminal Applications
 * **[17:31](#t=17:31)** Balancing GUIs and Terminal Interfaces
-  * [getfresh.dev](getfresh.dev)
+  * [getfresh.dev](https://getfresh.dev)
   * [Ben’s talk at AI Engineer Miami](https://www.youtube.com/watch?v=6IxSbMhT7v4)
 * **[24:39](#t=24:39)** Navigating Development Tools and Environments
 * **[26:44](#t=26:44)** The Balance of Security and Convenience in Coding

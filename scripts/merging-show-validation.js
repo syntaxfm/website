@@ -1,6 +1,7 @@
 import { exec } from 'child_process';
 import fs from 'fs/promises';
 import { promisify } from 'util';
+import matter from 'gray-matter';
 // import path from 'path';
 const exec_async = promisify(exec);
 
@@ -95,9 +96,32 @@ const validate_timestamps = (content) => {
 	return invalid_timestamps;
 };
 
+const KNOWN_FRONT_MATTER_KEYS = ['number', 'title', 'date', 'url', 'youtube_url', 'hosts', 'guest'];
+
+const validate_front_matter = (content) => {
+	let data;
+	try {
+		({ data } = matter(content));
+	} catch (error) {
+		return error.message;
+	}
+	// Keys are case sensitive, so `Hosts:` would be silently ignored on import
+	const miscased_keys = Object.keys(data).filter(
+		(key) =>
+			!KNOWN_FRONT_MATTER_KEYS.includes(key) && KNOWN_FRONT_MATTER_KEYS.includes(key.toLowerCase())
+	);
+	if (miscased_keys.length > 0) {
+		return miscased_keys
+			.map((key) => `"${key}" should be lowercase "${key.toLowerCase()}"`)
+			.join(', ');
+	}
+	return null;
+};
+
 // Function to process a single markdown file for broken links
 const process_file = async (filePath) => {
 	const content = await fs.readFile(filePath, 'utf8');
+	const front_matter_error = validate_front_matter(content);
 	const urls = extract_urls(content);
 	const published = is_episode_published(content);
 
@@ -118,7 +142,8 @@ const process_file = async (filePath) => {
 
 	return {
 		brokenLinks: broken_links,
-		invalidTimestamps: invalid_timestamps
+		invalidTimestamps: invalid_timestamps,
+		frontMatterError: front_matter_error
 	};
 };
 
@@ -149,10 +174,15 @@ const main = async () => {
 		console.log('No new markdown files to check in ./shows.');
 	} else {
 		for (const file of md_files) {
-			const { brokenLinks: broken_links, invalidTimestamps: invalid_timestamps } =
-				await process_file(file);
-			if (broken_links.length > 0 || invalid_timestamps.length > 0) {
+			const {
+				brokenLinks: broken_links,
+				invalidTimestamps: invalid_timestamps,
+				frontMatterError: front_matter_error
+			} = await process_file(file);
+			if (broken_links.length > 0 || invalid_timestamps.length > 0 || front_matter_error) {
 				error_messages.push(`Issues found in ${file}:`);
+				if (front_matter_error)
+					error_messages.push(`- Invalid front matter: ${front_matter_error}`);
 				broken_links.forEach((link) => error_messages.push(`- Broken link: ${link}`));
 				invalid_timestamps.forEach((timestamp) =>
 					error_messages.push(`- Invalid timestamp: ${timestamp}`)

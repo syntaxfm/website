@@ -4,7 +4,7 @@ import { show } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
-import { addFlaggerAudio } from './flagger';
+import { add_flagger_audio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
 import { env } from '$env/dynamic/private';
 
@@ -39,11 +39,11 @@ export async function get_transcript(showNumber: number) {
 			`Transcript for show #${show.number} already exists. Delete it if you want to re-fetch it.`
 		);
 	}
-	const show_buffer = await addFlaggerAudio(active_show);
+	const show_audio = await add_flagger_audio(active_show);
 	console.log(`Fetching transcript for show #${active_show.number} - ${active_show.title}...`);
 
 	try {
-		const transcript = await deepgram_client.listen.prerecorded.transcribeFile(show_buffer, {
+		const transcript = await deepgram_client.listen.prerecorded.transcribeFile(show_audio, {
 			punctuate: true,
 			model: 'nova-2-ea',
 			language: 'en-US',

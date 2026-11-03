@@ -14,12 +14,6 @@ importers:
       '@deepgram/sdk':
         specifier: ^4.11.3
         version: 4.11.3
-      '@ffmpeg.wasm/core-mt':
-        specifier: 0.13.2
-        version: 0.13.2
-      '@ffmpeg.wasm/main':
-        specifier: ^0.13.1
-        version: 0.13.1
       '@oddbird/popover-polyfill':
         specifier: ^0.6.1
         version: 0.6.1
@@ -1438,13 +1432,6 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@ffmpeg.wasm/core-mt@0.13.2':
-    resolution: {integrity: sha512-3UgpMoOhpTslxluDvBrh0MULeNy55W+WWG00P+JnnCLpJulQxgi6mnIuGO03d2sfV5pyW/FqAwut+fiMLbRsPg==}
-
-  '@ffmpeg.wasm/main@0.13.1':
-    resolution: {integrity: sha512-WoEd9xp/N9VWddZ3y1cdRK/el52ZKLoqOS+BNQZcsbLQpkQuHrFG93+zY4VjMZ0aWno4pQG4TSgLzsexpukpHw==}
-    engines: {node: '>=14.0.0'}
-
   '@hono/node-server@1.19.11':
     resolution: {integrity: sha512-dr8/3zEaB+p0D2n/IUrlPF1HZm586qgJNXK1a9fhg/PzdtkK7Ksd5l312tJX2yBuALqDYBlG20QEbayqPyxn+g==}
     engines: {node: '>=18.14.1'}
@@ -1622,6 +1609,7 @@ packages:
   '@opentelemetry/sdk-trace-base@2.8.0':
     resolution: {integrity: sha512-mhU4jp+vW0mGbFRd+GeXHvmfA4aDqWjBjLC3pE5XMpLs0IE2ryYb019Ts2AQrOq67gaTF25D91+fgvEHDZEnuQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
@@ -6925,10 +6913,6 @@ snapshots:
       levn: 0.4.1
 
   '@fastify/busboy@2.1.1': {}
-
-  '@ffmpeg.wasm/core-mt@0.13.2': {}
-
-  '@ffmpeg.wasm/main@0.13.1': {}
 
   '@hono/node-server@1.19.11(hono@4.13.9)':
     dependencies:

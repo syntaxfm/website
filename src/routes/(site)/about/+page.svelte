@@ -7,6 +7,8 @@
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
 	import cj from '$assets/cj.jpg';
+	import niki from '$assets/niki.jpeg';
+	import komatsu from '$assets/komatsu.jpeg';
 	import { count_podcasts } from '$server/shows/shows.remote';
 
 	let hosts = {
@@ -34,6 +36,9 @@
 			name: 'CJ Reynolds',
 			github: 'w3cj',
 			twitter: 'coding_garden'
+		},
+		niki: {
+			name: 'Niki Brandner'
 		}
 	};
 
@@ -210,6 +215,23 @@
 							>Coding Garden</a
 						>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes
 						and hanging out with his dog.
+					</p>
+				</div>
+			</article>
+
+			<article class="host-card">
+				<div class="profile-box">
+					<img class="host-portrait" use:lol src={niki} alt={hosts.niki.name} data-lol={komatsu} />
+					<h2 class="host-name">
+						<span class="h4 fv-800-i">Niki</span>
+						<span class="h6">Brandner</span>
+					</h2>
+					<HostSocialLink host={hosts.niki} />
+					<p>
+						Niki Brandner is an Amsterdam-based video and audio engineer who studied at SAE
+						Amsterdam. From fine-tuning podcasts and editing videos to preparing promotional
+						material, mixing, and mastering music, she's passionate about making content sound and
+						look its best.
 					</p>
 				</div>
 			</article>

@@ -5,6 +5,7 @@ import { left_pad } from '$utilities/left_pad';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import slug from 'speakingurl';
+import * as Sentry from '@sentry/sveltekit';
 import { db } from '$server/db/client';
 import {
 	show,
@@ -32,14 +33,19 @@ export async function import_or_update_all_shows() {
 
 		// Read and process each .md file
 		for (const md_file_path in md_files) {
-			const { number, hash, md_file_contents } = await get_show_data_from_glob(
-				md_files[md_file_path],
-				md_file_path
-			);
-			await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
+			try {
+				const { number, hash, md_file_contents } = await get_show_data_from_glob(
+					md_files[md_file_path],
+					md_file_path
+				);
+				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
+			} catch (err) {
+				throw new Error(`Failed to import ${md_file_path}`, { cause: err });
+			}
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
+		Sentry.captureException(err);
 		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
@@ -55,10 +61,17 @@ export async function import_or_update_all_changed_shows() {
 
 		// Read and process each .md file
 		for (const md_file_path in md_files) {
-			const { number, hash, md_file_contents } = await get_show_data_from_glob(
-				md_files[md_file_path],
-				md_file_path
-			);
+			let number: number;
+			let hash: string;
+			let md_file_contents: string;
+			try {
+				({ number, hash, md_file_contents } = await get_show_data_from_glob(
+					md_files[md_file_path],
+					md_file_path
+				));
+			} catch (err) {
+				throw new Error(`Failed to import ${md_file_path}`, { cause: err });
+			}
 
 			const existing_show = await db.query.show.findFirst({
 				where: eq(show.number, number)
@@ -78,6 +91,7 @@ export async function import_or_update_all_changed_shows() {
 		}
 	} catch (err) {
 		console.error('❌ Pod Sync Error:', err);
+		Sentry.captureException(err);
 		error(500, 'Error Importing Shows');
 	}
 	console.log('🤖 Pod Sync Complete ✅');
@@ -86,8 +100,11 @@ export async function import_or_update_all_changed_shows() {
 
 async function get_show_data_from_glob(md_file_contents: string, md_file_path: string) {
 	const hash = await get_hash_from_content(md_file_contents);
-	const cleaned_path = md_file_path.replace('/shows/', '');
-	const number = parseInt(cleaned_path.split(' - ')[0]);
+	const filename = md_file_path.split('/').pop() ?? '';
+	const number = parseInt(filename, 10);
+	if (Number.isNaN(number)) {
+		throw new Error(`Could not determine show number from ${md_file_path}`);
+	}
 	return { number, hash, md_file_contents };
 }
 
@@ -99,7 +116,9 @@ async function parse_and_save_show_notes(
 	md_file: string
 ) {
 	// Parse the front matter
-	const { data, content: show_notes_content } = matter(notes);
+	// YAML treats an unquoted @ as invalid, even though it is a common handle format.
+	const parseable_notes = notes.replace(/^(\s*twitter:\s*)@([^\s#]+)(\s*(?:#.*)?)$/gm, '$1$2$3');
+	const { data, content: show_notes_content } = matter(parseable_notes);
 
 	const date = new Date(data.date); // Parse the date string into a Date object
 
@@ -180,9 +199,12 @@ async function parse_and_save_show_notes(
 			});
 
 		// Handle hosts connection if they exist in the frontmatter
-		if (data.hosts && Array.isArray(data.hosts)) {
+		// Accept any casing of the key (e.g. `Hosts:`) so hosts are never silently dropped
+		const hosts_key = Object.keys(data).find((key) => key.toLowerCase() === 'hosts');
+		const hosts: unknown = hosts_key ? data[hosts_key] : undefined;
+		if (Array.isArray(hosts)) {
 			const host_profiles = await db.query.profile.findMany({
-				where: inArray(profile.username, data.hosts)
+				where: inArray(profile.username, hosts)
 			});
 
 			if (host_profiles.length > 0) {
@@ -227,6 +249,9 @@ async function parse_and_save_show_notes(
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 	try {
 		const { social, name, ...guest_without_socials } = guest;
+		if (typeof guest_without_socials.twitter === 'string') {
+			guest_without_socials.twitter = guest_without_socials.twitter.replace(/^@/, '');
+		}
 		const name_slug = slug(name);
 		const guest_id = `guest_${name_slug}`;
 
