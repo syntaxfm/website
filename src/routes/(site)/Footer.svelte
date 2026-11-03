@@ -34,6 +34,7 @@
 				<a href="/system/theme">Theme</a>
 				<a href="/pages/privacy">Privacy Policy</a>
 				<a href="/pages/terms-of-service">Terms of Service</a>
+				<a href="/pages/giveaway-rules">Giveaway Rules</a>
 				<!-- <a href="/system/components">Components</a> -->
 			</div>
 			<div class="links-col social-links">
