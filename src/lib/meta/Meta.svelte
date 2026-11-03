@@ -26,7 +26,7 @@
 		href="https://feed.syntax.fm"
 		title="Syntax RSS Feed"
 	/>
-	<meta name="image" property="og:image" content={meta.image} />
+	<meta property="og:image" content={meta.image} />
 	<meta name="theme-color" content="#000000" />
 	{#if meta.canonical}
 		<link rel="canonical" href={meta.canonical} />
@@ -42,5 +42,4 @@
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@syntaxfm" />
-	<meta name="twitter:image" content={meta.image} />
 </svelte:head>
