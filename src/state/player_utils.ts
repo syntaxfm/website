@@ -1,11 +1,16 @@
 import type { Show } from '$server/db/types';
+import type { MediaKind } from './media_timeline';
 
 /**
- * The fields the player reads from a show: `url` to play it, `number`/`title`/`slug` for the
- * title link, share button and media session, and `id` to replay the album-art spin. Callers
- * with a full database `Show` satisfy it as-is; list cards pass only these fields and have no `id`.
+ * The fields the player reads from a show: `url` to play it, `youtube_url` to play its video,
+ * `number`/`title`/`slug` for the title link, share button and media session, and `id` to replay
+ * the album-art spin. Callers with a full database `Show` satisfy it as-is; list cards pass only
+ * these fields and have no `id`.
  */
-export type PlayerShow = Pick<Show, 'number' | 'title' | 'slug' | 'url'> & { id?: Show['id'] };
+export type PlayerShow = Pick<Show, 'number' | 'title' | 'slug' | 'url'> & {
+	id?: Show['id'];
+	youtube_url?: Show['youtube_url'];
+};
 
 export interface PlayerState {
 	current_show: null | PlayerShow;
@@ -14,6 +19,8 @@ export interface PlayerState {
 	duration: number;
 	status: 'INITIAL' | 'LOADED' | 'LOADING' | 'PAUSED' | 'PLAYING';
 	initial_load: boolean;
+	// Whether the current show is playing from the audio file or the YouTube video
+	media_kind: MediaKind;
 }
 
 const DB_NAME = 'SyntaxDB';

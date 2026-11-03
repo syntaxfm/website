@@ -51,10 +51,15 @@
 		}
 	);
 
+	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.
+	let audio_timeline_time = $derived(
+		$player.current_show ? player.get_audio_timeline_time() : null
+	);
+	let current_time = $derived(audio_timeline_time ?? 0);
+
 	let current_utterance = $derived(
 		slim_transcript.find((utterance, index) => {
 			const next_utterance_start = slim_transcript[index + 1]?.start || utterance.end;
-			const current_time = $player?.audio?.currentTime || 0;
 			return current_time >= utterance.start && current_time <= next_utterance_start;
 		})
 	);
@@ -64,12 +69,13 @@
 			const next_summary = ai_show_note?.summary[index + 1];
 			const topic_end = next_summary ? tsToS(next_summary.time) : Infinity;
 			const topic_start = tsToS(summary.time);
-			const current_time = $player?.audio?.currentTime || 0;
 			return current_time >= topic_start && current_time <= topic_end;
 		})
 	);
 
-	let playing_show_is_this_show = $derived($player.current_show?.number === transcript.show_number);
+	let playing_show_is_this_show = $derived(
+		$player.current_show?.number === transcript.show_number && audio_timeline_time !== null
+	);
 
 	// const words = transcript.utterances
 	// 	.map((utt) => utt.words)
@@ -103,7 +109,6 @@
 	});
 	let place_topic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
 		const summary_end = utterances.at(-1)?.end || Infinity;
-		const current_time = $player?.audio?.currentTime || 0;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (current_topic?.id === summary.id) {
 			return 'current';
@@ -139,9 +144,7 @@
 			<div>
 				{#each utterances as utterance (utterance.start)}
 					{@const progress =
-						((($player?.audio?.currentTime || 0) - utterance.start) /
-							(utterance.end - utterance.start)) *
-						100}
+						((current_time - utterance.start) / (utterance.end - utterance.start)) * 100}
 					<div
 						style="
 
@@ -150,11 +153,8 @@
 						class="utterance {label_utterance(utterance)}"
 					>
 						<div class="gutter">
-							<button
-								onclick={async () => {
-									await player.start_show(show);
-									player.update_time(utterance.start);
-								}}>{format_time(utterance.start)}</button
+							<button onclick={() => player.play_timestamp(show, utterance.start)}
+								>{format_time(utterance.start)}</button
 							>
 							<p class="speaker fv-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}

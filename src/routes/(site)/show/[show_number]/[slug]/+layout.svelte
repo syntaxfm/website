@@ -15,14 +15,8 @@
 			e.preventDefault();
 			const href = target.getAttribute('href');
 			const timestamp = href ? tsToS(href.replace('#t=', '')) : 0;
-			// If we aren't already playing this episode, load it up and then jump it
-			if ($player.current_show?.number !== show.number) {
-				await player.start_show(show, timestamp);
-			} else {
-				// Jump to timestamp, then resume if this show is only loaded or paused
-				player.update_time(timestamp);
-				if ($player.status !== 'PLAYING') player.play();
-			}
+			// Show note timestamps are on the audio timeline, play_timestamp picks video or audio accordingly
+			await player.play_timestamp(show, timestamp);
 		}
 	}
 

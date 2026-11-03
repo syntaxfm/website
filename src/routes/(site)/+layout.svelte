@@ -2,8 +2,11 @@
 	import './style.css';
 	import 'media-chrome';
 	import 'youtube-video-element';
+	import { Toaster } from 'svelte-french-toast';
 	import { browser } from '$app/environment';
-	import { onNavigate } from '$app/navigation';
+	import { beforeNavigate, onNavigate } from '$app/navigation';
+	import GlobalYoutubePlayer from '$lib/videos/GlobalYoutubePlayer.svelte';
+	import { youtube_player } from '$state/youtube_player';
 	import Loading from '$lib/Loading.svelte';
 	import Footer from '$lib/layout/Footer.svelte';
 	import Header from '$lib/layout/Header.svelte';
@@ -17,6 +20,12 @@
 
 	const { data, children } = $props();
 	const { user, user_theme } = $derived(data);
+
+	// The video keeps playing across pages, so save where it is before its page goes away
+	beforeNavigate((navigation) => {
+		if (navigation.willUnload) return;
+		youtube_player.before_navigate();
+	});
 
 	onNavigate(async (navigation) => {
 		if (!document.startViewTransition) return;
@@ -52,7 +61,10 @@
 
 	{#if browser}
 		<Player />
+		<GlobalYoutubePlayer />
 	{/if}
+
+	<Toaster />
 
 	<Loading />
 

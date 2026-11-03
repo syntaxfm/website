@@ -5,7 +5,7 @@ import { parse } from 'svelte/compiler';
 import { get } from 'svelte/store';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { tsToS } from '$utilities/format_time.js';
-import type { PlayerShow, PlayerState } from '$state/player_utils';
+import type { PlayerShow } from '$state/player_utils';
 
 const { metrics_count } = vi.hoisted(() => ({ metrics_count: vi.fn() }));
 
@@ -87,6 +87,7 @@ const page_show: PlayerShow = {
 	url: 'https://example.com/1012.mp3'
 };
 
+// What play_timestamp does with the time (seek, resume, start, video or audio) is covered in player.test.ts
 describe('show page timestamp click', () => {
 	beforeEach(() => {
 		vi.restoreAllMocks();
@@ -95,76 +96,24 @@ describe('show page timestamp click', () => {
 		player.reset();
 	});
 
-	function spy_on_player() {
-		return {
-			start_show: vi.spyOn(player, 'start_show'),
-			update_time: vi.spyOn(player, 'update_time'),
-			play: vi.spyOn(player, 'play')
-		};
-	}
+	it.each([
+		['#t=00:44', 44],
+		['#t=01:02:03', 3723]
+	])('plays this show from %s', async (href, seconds) => {
+		const play_timestamp = vi.spyOn(player, 'play_timestamp').mockResolvedValue(undefined);
 
-	const not_playing: PlayerState['status'][] = ['LOADED', 'PAUSED'];
+		const event = await click_timestamp(page_show, href);
 
-	it.each(not_playing)(
-		'seeks then plays this show when it is already current and %s',
-		async (status) => {
-			player.set({ ...get(player), current_show: page_show, status });
-			const spies = spy_on_player();
-
-			const event = await click_timestamp(page_show, '#t=00:44');
-
-			expect(event.preventDefault).toHaveBeenCalled();
-			expect(spies.start_show).not.toHaveBeenCalled();
-			expect(spies.update_time).toHaveBeenCalledWith(44);
-			expect(spies.play).toHaveBeenCalledOnce();
-			expect(spies.update_time.mock.invocationCallOrder[0]).toBeLessThan(
-				spies.play.mock.invocationCallOrder[0]
-			);
-			expect(get(player).status).toBe('PLAYING');
-			expect(metrics_count).not.toHaveBeenCalled();
-		}
-	);
-
-	it('only seeks when this show is already playing', async () => {
-		player.set({ ...get(player), current_show: page_show, status: 'PLAYING' });
-		const spies = spy_on_player();
-
-		await click_timestamp(page_show, '#t=01:02:03');
-
-		expect(spies.start_show).not.toHaveBeenCalled();
-		expect(spies.update_time).toHaveBeenCalledWith(3723);
-		expect(spies.play).not.toHaveBeenCalled();
-		expect(get(player).status).toBe('PLAYING');
-		expect(metrics_count).not.toHaveBeenCalled();
-	});
-
-	it('starts this show at the timestamp when a different show is playing', async () => {
-		const other_show: PlayerShow = {
-			...page_show,
-			number: 900,
-			url: 'https://example.com/900.mp3'
-		};
-		player.set({ ...get(player), current_show: other_show, status: 'PLAYING' });
-		const spies = spy_on_player();
-
-		await click_timestamp(page_show, '#t=00:44');
-
-		expect(spies.start_show).toHaveBeenCalledWith(page_show, 44);
-		expect(spies.update_time).not.toHaveBeenCalled();
-		expect(spies.play).toHaveBeenCalledOnce();
-		expect(metrics_count).toHaveBeenCalledWith('episode_start', 1, {
-			attributes: { episode: 1012 }
-		});
-		expect(get(player).status).toBe('PLAYING');
+		expect(event.preventDefault).toHaveBeenCalled();
+		expect(play_timestamp).toHaveBeenCalledWith(page_show, seconds);
 	});
 
 	it('ignores clicks on links without a timestamp', async () => {
-		const spies = spy_on_player();
+		const play_timestamp = vi.spyOn(player, 'play_timestamp');
 
 		const event = await click_timestamp(page_show, '/show/1012/episode-1012');
 
 		expect(event.preventDefault).not.toHaveBeenCalled();
-		expect(spies.start_show).not.toHaveBeenCalled();
-		expect(spies.update_time).not.toHaveBeenCalled();
+		expect(play_timestamp).not.toHaveBeenCalled();
 	});
 });

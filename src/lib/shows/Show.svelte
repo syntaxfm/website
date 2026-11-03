@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
 	import Dot from '$lib/utilities/Dot.svelte';
-	import { player } from '$state/player';
-	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import get_show_path from '$utilities/slug';
-	import no_thumb from './no_thumb.png';
+	import ShowThumbnail from './ShowThumbnail.svelte';
 
 	interface Props {
 		show: {
@@ -27,10 +24,6 @@
 	}
 
 	let { show, type, href, onselect, data_has_node = false, preload_data = false }: Props = $props();
-	let youtube_video_id = $derived(show.youtube_url ? get_id_from_url(show.youtube_url) : '');
-	let thumbnail_src = $derived(
-		(youtube_video_id ? get_thumbnail_from_id(youtube_video_id) : '') || show.thumbnail || no_thumb
-	);
 	let show_href = $derived(href || get_show_path(show));
 	let show_date = $derived(show.date instanceof Date ? show.date : new Date(show.date));
 	let formatted_date = $derived(
@@ -40,15 +33,6 @@
 			day: 'numeric'
 		})
 	);
-	let can_play_show = $derived(Boolean(show.url));
-
-	function on_play_overlay_click(event: MouseEvent) {
-		event.preventDefault();
-		event.stopPropagation();
-		const { number, title, slug, url } = show;
-		if (!url) return;
-		void player.start_show({ number, title, slug, url });
-	}
 </script>
 
 <a
@@ -61,25 +45,12 @@
 	<article
 		class={[type === 'list' ? 'flex bg-shade-or-tint-light show-list-view' : 'show-grid-view']}
 	>
-		<div class={['thumbnail-wrap', type === 'list' ? 'br-small' : 'br-medium']}>
-			<img
-				style={type === 'list' ? 'width: 135px;' : 'width: 100%'}
-				src={thumbnail_src}
-				alt={show.title}
-			/>
-			{#if can_play_show}
-				<button
-					type="button"
-					class="thumbnail-play-overlay"
-					onclick={on_play_overlay_click}
-					aria-label={`Play episode ${show.number}: ${show.title}`}
-				>
-					<span class="play-icon-wrap" aria-hidden="true">
-						<Icon name="play" width={18} height={18} aria_hidden={true} />
-					</span>
-				</button>
-			{/if}
-		</div>
+		<ShowThumbnail
+			{show}
+			class={type === 'list' ? 'br-small' : 'br-medium grid-thumbnail'}
+			width={type === 'list' ? '135px' : '100%'}
+			is_video_slot={type === 'grid'}
+		/>
 		<div class={['stack', type === 'grid' && 'stack-reverse']} style:--stack-gap="0.5rem">
 			<h3 class="fs-body fv-700-i">{show.title}</h3>
 			<div class="flex">
@@ -112,52 +83,8 @@
 		max-width: 300px;
 	}
 
-	.thumbnail-wrap {
-		position: relative;
-		overflow: hidden;
-
-		img {
-			display: block;
-		}
-	}
-
-	.show-grid-view .thumbnail-wrap {
+	.show-grid-view :global(.grid-thumbnail) {
 		margin-bottom: 0.5rem;
-	}
-
-	.thumbnail-play-overlay {
-		position: absolute;
-		inset: 0;
-		display: grid;
-		place-items: center;
-		opacity: 0;
-		pointer-events: none;
-		background: color-mix(in lch, var(--c-black), transparent 55%);
-		border: 0;
-		transition: opacity 0.2s ease;
-	}
-
-	.thumbnail-play-overlay:focus-visible {
-		opacity: 1;
-		pointer-events: auto;
-		outline: 2px solid var(--c-primary);
-		outline-offset: -2px;
-	}
-
-	.thumbnail-wrap:hover .thumbnail-play-overlay,
-	.thumbnail-wrap:focus-within .thumbnail-play-overlay {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-	.play-icon-wrap {
-		display: grid;
-		place-items: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: 9999px;
-		background: color-mix(in lch, var(--c-black), transparent 30%);
-		color: var(--c-white);
 	}
 
 	.flex {

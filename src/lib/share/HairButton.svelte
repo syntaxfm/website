@@ -37,7 +37,9 @@
 <style>
 	button {
 		background: transparent;
-		color: var(--c-fg);
+
+		/* Takes the text color of where it sits, like the player bar's white */
+		color: inherit;
 		padding: 0;
 	}
 </style>

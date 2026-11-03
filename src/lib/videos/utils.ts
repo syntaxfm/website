@@ -19,7 +19,9 @@ function parse_time_to_seconds(time_value: string): number {
 	return hours * 3600 + minutes * 60 + seconds;
 }
 
-export function get_id_from_url(url: string) {
+/** The 11 character YouTube video id, or '' when there's no url or it isn't a YouTube video. */
+export function get_id_from_url(url: string | null | undefined) {
+	if (!url) return '';
 	const trimmed_url = url.trim();
 
 	if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed_url)) {
@@ -43,7 +45,7 @@ export function get_id_from_url(url: string) {
 		}
 
 		const path_parts = parsed_url.pathname.split('/').filter(Boolean);
-		if (path_parts[0] === 'embed' || path_parts[0] === 'shorts' || path_parts[0] === 'live') {
+		if (['embed', 'shorts', 'live', 'watch', 'v'].includes(path_parts[0])) {
 			return path_parts[1] ?? '';
 		}
 	} catch {
@@ -51,6 +53,12 @@ export function get_id_from_url(url: string) {
 	}
 
 	return '';
+}
+
+/** A plain watch url, which is what <youtube-video> takes as its src. '' when there's no video. */
+export function get_watch_url_from_url(url: string | null | undefined) {
+	const video_id = get_id_from_url(url);
+	return video_id ? `https://www.youtube.com/watch?v=${video_id}` : '';
 }
 
 export function get_embed_url_from_url(url: string) {

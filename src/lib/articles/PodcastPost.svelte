@@ -9,13 +9,11 @@
 	import PageTitle from '../layout/PageTitle.svelte';
 	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
+	import YoutubeEmbed from '$lib/videos/YoutubeEmbed.svelte';
 	import { get_id_from_url } from '$lib/videos/utils';
 
 	let { show, children } = $props();
-	let youtube_video_id = $derived(show.youtube_url ? get_id_from_url(show.youtube_url) : '');
-	let youtube_embed_url = $derived(
-		youtube_video_id ? `https://www.youtube.com/embed/${youtube_video_id}?rel=0` : ''
-	);
+	let has_youtube = $derived(Boolean(get_id_from_url(show.youtube_url)));
 	let tags = $derived(
 		show.meta?.tags?.map((content_tag: { tag: { name: string; slug: string | null } }) => ({
 			name: content_tag.tag.name,
@@ -24,16 +22,10 @@
 	);
 </script>
 
-{#if youtube_embed_url}
-	<iframe
-		class="youtube"
-		src={youtube_embed_url}
-		title={`${show.title} on YouTube`}
-		frameborder="0"
-		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-		referrerpolicy="strict-origin-when-cross-origin"
-		allowfullscreen
-	></iframe>
+{#if has_youtube}
+	<div class="youtube">
+		<YoutubeEmbed {show} />
+	</div>
 {/if}
 <!--
 <div class="show-actions-wrap">
@@ -223,7 +215,6 @@
 	.youtube {
 		width: 100%;
 		color: var(--c-fg);
-		aspect-ratio: 16 / 9;
 
 		/* Mirrors `--s-graphic-heavy` but pinned to `--c-black` so the drop shadow
 		   stays black in dark mode (matching the black bezel) instead of following
@@ -240,6 +231,10 @@
 		border: var(--c-black) solid 10px;
 		overflow: hidden;
 		border-radius: 24px;
+
+		/* The outer radius minus the 10px bezel */
+		--embed-radius: 14px;
+
 		margin-bottom: 2rem;
 	}
 </style>

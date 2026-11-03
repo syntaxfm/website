@@ -2,7 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
 	import type { Show } from '$server/db/types';
-	import toast, { Toaster } from 'svelte-french-toast';
+	import toast from 'svelte-french-toast';
 
 	interface Props {
 		timestamp?: boolean;
@@ -43,10 +43,12 @@
 		);
 	}
 
+	// Share links are on the audio timeline. A video whose timeline doesn't match can't give one.
+	let audio_timeline_time = $derived(
+		$player.current_show ? Math.trunc(player.get_audio_timeline_time() ?? 0) : 0
+	);
 	let time_stamp = $derived(
-		share_at_ts && $player?.audio?.currentTime
-			? `%3Ft%3D${to_hms(Math.trunc($player.audio?.currentTime))}`
-			: ``
+		share_at_ts && audio_timeline_time ? `%3Ft%3D${to_hms(audio_timeline_time)}` : ``
 	);
 	let share_url = $derived(`https%3A//syntax.fm/${show.number}${time_stamp}`);
 </script>
@@ -57,10 +59,9 @@
 			<input bind:checked={share_at_ts} type="checkbox" />
 			Start at timestamp:
 		</label>
-		<input type="text" value={to_hms(Math.trunc($player?.audio?.currentTime || 0))} />
+		<input type="text" value={to_hms(audio_timeline_time)} />
 	</p>
 {/if}
-<Toaster />
 <button onclick={copy_embed} aria-label="Copy Embed Code for this show"
 	><Icon name="code" /> Embed</button
 >

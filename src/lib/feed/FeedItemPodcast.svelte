@@ -1,9 +1,8 @@
 <script lang="ts">
-	import no_thumb from '../shows/no_thumb.png';
 	import TagRow from '../tags/TagRow.svelte';
 	import type { ShowWithHostsAndGuests } from '$server/db/types';
 	import FeedHosts from '$lib/hosts/FeedHosts.svelte';
-	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
+	import ShowThumbnail from '$lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
 
 	type Feed_show = ShowWithHostsAndGuests & { thumbnail?: string | null };
@@ -12,10 +11,6 @@
 	};
 
 	const { show, content }: { show: Feed_show; content: Feed_content } = $props();
-	let youtube_video_id = $derived(show?.youtube_url ? get_id_from_url(show.youtube_url) : '');
-	let thumbnail_src = $derived(
-		(youtube_video_id ? get_thumbnail_from_id(youtube_video_id) : '') || show?.thumbnail || no_thumb
-	);
 </script>
 
 <article class="stack">
@@ -29,7 +24,7 @@
 	<FeedHosts {show} />
 	<div class="thumb-container">
 		<!-- <span class="number fv-700-i">#{show.number}</span> -->
-		<img src={thumbnail_src} alt={show.title} />
+		<ShowThumbnail {show} class="br-medium" is_video_slot />
 	</div>
 	<h4 class="fv-700-i">
 		<a href={resolve(`/show/${show.number}/${show.slug}`)}>
@@ -61,13 +56,9 @@
 
 	.thumb-container {
 		position: relative;
-
-		/* margin-top: -6.5rem; */
-	}
-
-	img {
 		border-radius: 20px;
 		border: solid 12px var(--c-primary);
-		width: 100%;
+
+		/* margin-top: -6.5rem; */
 	}
 </style>
