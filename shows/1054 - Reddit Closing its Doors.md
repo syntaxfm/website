@@ -4,7 +4,7 @@ title: Reddit Closing it’s Doors
 date: 1794222000000
 url: https://traffic.megaphone.fm/FSI5980748523.mp3
 youtube_url: https://www.youtube.com/live/feteUGx5020
-Hosts:
+hosts:
   - stolinski
   - wesbos
   - w3cj
