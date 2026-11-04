@@ -24,7 +24,8 @@ Scott and CJ tour their homelabs, from a fully 3D printed server rack to a custo
 * **[12:58](#t=12:58)** Networking: Building a Custom OPNsense Firewall
   * [oaknode Firewall Appliance](https://amzn.to/3VOFubp)
 * **[15:08](#t=15:08)** Load Balancing Two ISPs With SFP+ Fiber
-  * [AUMOX 10 Port 2.5G Switch](https://www.amazon.com/dp/B0DJWXPJ4N)
+  * [AUMOX 10 Port 2.5G Switch](https://www.amazon.com/dp/B0DJWXPJ4N?tag=codinggardenw-20)
+  * [TEROW 4 Port 2.5G PoE Switch](https://link.amazon/B05MlDhM8)
 * **[20:07](#t=20:07)** Wi-Fi Access Points and VLAN Network Segmentation
   * [Omada AX5400 WiFi Access Point](https://amzn.to/4dSK928)
 * **[21:40](#t=21:40)** Scott's Switch and Eero Wi-Fi 7 Mesh Setup
@@ -35,6 +36,8 @@ Scott and CJ tour their homelabs, from a fully 3D printed server rack to a custo
 * **[31:08](#t=31:08)** Local Domains and TLS Certificates With Caddy and Cloudflare
 * **[34:37](#t=34:37)** NAS and Storage: Synology vs. a DIY Setup
 * **[38:59](#t=38:59)** Hot and Cold Storage: Hardware RAID, ZFS and Cockpit
+  * [Mediasonic PRORAID 4](https://link.amazon/B05lF59vX)
+  * [Beelink ME Mini N95 NAS Mini PC](https://link.amazon/B0eqWV68n)
   * [Cockpit](https://cockpit-project.org/)
 * **[45:20](#t=45:20)** Container Management With [OrbStack](https://orbstack.dev/), Proxmox and Portainer
   * [Portainer](https://github.com/portainer/portainer)
@@ -43,18 +46,36 @@ Scott and CJ tour their homelabs, from a fully 3D printed server rack to a custo
   * [Apollo AIR-1](https://apolloautomation.com/products/air-1)
 * **[51:02](#t=51:02)** Flashing Wyze Cams With [Thingino](https://thingino.com/) for Frigate
 * **[52:30](#t=52:30)** Cloud-Free Smart Devices: ESPHome, Tasmota and Bluetooth Proxies
+  * [ESPHome](https://esphome.io/)
+  * [Tasmota](https://tasmota.github.io/docs/)
+  * [Matter Smart Switch](https://link.amazon/B0hzYbuHl)
+  * [Kauf Smart Bulbs](https://link.amazon/B0exFwVRr)
+  * [Govee Temperature Sensors](https://link.amazon/B08rEPXW0)
+  * [ESPHome Bluetooth Proxy](https://esphome.io/components/bluetooth_proxy/)
+  * [ZWave Long Range USB](https://link.amazon/B0bd89pgW)
+  * [SONOFF Zigbee USB](https://link.amazon/B00LfYSGe)
 * **[57:07](#t=57:07)** Self-Hosted Media: Jellyfin, Audiobookshelf and Immich
+  * [Jellyfin](https://jellyfin.org/)
+  * [Audiobookshelf](https://audiobookshelf.org/)
+  * [Finamp](https://github.com/finamp-app/finamp)
   * [Seerr](https://seerr.dev/)
 * **[01:02:37](#t=01:02:37)** RSS, Read Later and YouTube Archiving With [Tube Archivist](https://www.tubearchivist.com/)
   * [Miniflux](https://miniflux.app/)
+  * [RSS Is Not Dead](https://www.youtube.com/watch?v=hSgpW0j2eOk)
   * [Wallabag](https://wallabag.org/)
 * **[01:04:01](#t=01:04:01)** Offline Internet: Wikipedia and Stack Overflow With [Kiwix](https://browse.library.kiwix.org/#lang=eng)
   * [Zim Library Manager](https://github.com/w3cj/zim-library-manager)
 * **[01:05:46](#t=01:05:46)** Paperless-ngx for Device Manuals and Documents
   * [Paperless NGX](https://github.com/paperless-ngx/paperless-ngx)
 * **[01:07:44](#t=01:07:44)** AI Coding Agents: Scott's Pi Durable Personal Agent
+  * [Pi Durable](https://earendil.com/posts/pi-durable/)
+  * [Zed Remote](https://zed.dev/remote-development)
 * **[01:09:46](#t=01:09:46)** Coding Over the Network With T3 Code and Zed Remote
 * **[01:15:39](#t=01:15:39)** CJ's OpenCode, Open WebUI and code-server Setup
+  * [Open WebUI](https://github.com/open-webui/open-webui)
+  * [Vane](https://github.com/ItzCrazyKns/Vane)
+  * [OpenAI Oauth Proxy](https://github.com/EvanZhouDev/openai-oauth/)
+  * [VS Code Server](https://github.com/coder/code-server)
 * **[01:20:02](#t=01:20:02)** What's in Your Homelab? Roast Our Setups
 
 ### Hit us up on Socials!
