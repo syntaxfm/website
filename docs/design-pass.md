@@ -36,25 +36,29 @@ Status: ⬜ todo · 🟨 in progress · ✅ done · ⏭️ deferred
 
 ## Public pages (impact order)
 
-| # | Route | Page | Status | Notes |
-|---|-------|------|--------|-------|
-| 1 | `/` | Home | ⬜ | thin shell; many commented placeholders (Staff Picks, Fan Favorites, Recent Shorts) — pilot page |
-| 2 | `/shows` | Shows index | ✅ | Now the episode grid itself (was a 1-box doorway). Heading + intro removed per LIST \| Topic - Grid View; visually-hidden h1 kept for SEO; reuses ShowEpisodes/Pagination. Deleted orphaned ShowBox. Open: controls row still uses Per-Page select; Figma frame uses filter chips + search (deferred) |
-| 3 | `/show/[show_number]/[slug]` | Show detail | ✅ | video Post frame matched: sidebar (swag/most-popular/trending), subscribe row, red YouTube CTA in title (top-right), relative date, canonical tags under title, prev/next, capped Most-Popular(5). Open: backfill content_tags on #950+ (tag row empty on recent shows); audio-only play UI is deferred (commented scaffolding kept on purpose, not dead code) |
-| 4 | `/show/[show_number]/[slug]/transcript` | Transcript | ⬜ | |
-| 5 | `/shows/syntax-podcast` | Podcast landing | ✅ | Consolidated into `/shows` — now a 301 redirect (preserves `?page`/`?perPage`). No standalone page. |
-| 6 | `/guests` | Guests index | ⬜ | |
-| 7 | `/guest/[name_slug]` | Guest detail | ⬜ | |
-| 8 | `/snackpack` | Snackpack index | ✅ | Matched LIST \| Newsletter: hero banner + new swag promo band (`NewsletterPromo` built from `swag.png`) + "Past Issues!" feed. `NewsletterArchive` now shows the real issue # + cleaned title + `MMM dd, yyyy` date (parsed from the broadcast subject in the remote, was showing the raw ConvertKit id). Slimmed `+page.server.ts` (dropped the redundant API crawl the page ignored; kept `Broadcast` type + meta). Container queries throughout; nav/platform-links/footer come from the `(site)` layout. |
-| 9 | `/snackpack/[issue_id]` | Snackpack issue | ⬜ | |
-| 10 | `/sickpicks` | Sick picks | ⬜ | |
-| 11 | `/potluck` | Potluck | ⬜ | |
-| 12 | `/about` | About | ⬜ | |
-| 13 | `/oss` | Open source | ⬜ | |
-| 14 | `/pages/[page]` | CMS pages | ⬜ | template chrome only; body is CMS content |
-| 15 | `/login` | Login | ⬜ | |
-| 16 | `/spooky` | Spooky | ⏭️ | seasonal — low priority |
-| — | `/X_videos/**` | Videos (old) | ✅ | Retired 2026-06-19 — routes deleted, orphaned PlaylistCard/PlaylistVideo removed, dead `/videos` links pulled from sitemap + PodcastPost "Related Videos". Non-episode video is legacy (see memory). `lib/videos/utils.ts` kept (used by Show/feed). |
+Statuses checked page by page with Scott on 2026-11-05. Open work is tracked in Dex
+under the epic `iw15n6bh` (Public site design pass); the Dex task is in the last column.
+
+| # | Route | Page | Status | Notes | Dex |
+|---|-------|------|--------|-------|-----|
+| 1 | `/` | Home | ⬜ | Needs a full evaluation against the ✅ HOME frame: no splashy header, commented-out sections (Staff Picks, Fan Favorites, Recent Shorts, Guests, 3D Sk8). The feed (`src/lib/feed/`) is shared with Guest pages | `408npbn0` |
+| 2 | `/shows` | Shows index | ✅ | Episode grid, reuses ShowEpisodes/Pagination. Filter chips + search from the Figma frame are deferred | |
+| 3 | `/show/[show_number]/[slug]` | Show detail | 🟨 | Video post frame matched. Open: audio-only play UI (commented scaffolding in `PodcastPost.svelte`) and content_tags backfill on #950+ | `qdeszsr7` |
+| 4 | `/show/[show_number]/[slug]/transcript` | Transcript | ⬜ | Not close. Redesign from scratch; no Figma frame | `tlvb9k5k` |
+| 5 | `/shows/syntax-podcast` | Podcast landing | ✅ | 301 redirect to `/shows` (keeps `?page`/`?perPage`) | |
+| 6 | `/guests` | Guests index | ✅ | Search, A–Z/Recent/Jumble, photo cards | |
+| 7 | `/guest/[name_slug]` | Guest detail | ✅ | Page done; waits only on the shared feed (Home) | `408npbn0` |
+| 8 | `/snackpack` | Snackpack index | ✅ | Matches LIST \| Newsletter. Bug: going back from an issue takes ~2.8 s with no feedback (uncached Kit crawl) | `eb6cvbsd` |
+| 9 | `/snackpack/[issue_id]` | Snackpack issue | ✅ | | |
+| 10 | `/sickpicks` | Sick picks | ⬜ | Not close. Needs a design first (no ✅ frame) and paging (1,717 links) | `glyultqh` |
+| 11 | `/potluck` | Potluck | ✅ | | |
+| 12 | `/about` | About | ⬜ | Not close. Rebuild to the ✅ LIST \| About Us (Team) frame | `v1plttsx` |
+| 13 | `/oss` | Open source | ⏭️ | Not needed. Archive it, redirect to episode 894 | `k9t6g4y5` |
+| 14 | `/pages/[page]` | CMS pages | ⬜ | Privacy, Terms, Giveaway rules. Fix through the default element CSS, not route styles | `1m5z73wn` |
+| 15 | `/login` | Login | ✅ | Central Syntax Auth | |
+| 16 | `/spooky` | Spooky | ✅ | | |
+| — | `/X_videos/**` | Videos (old) | ✅ | Retired 2026-06-19 — routes deleted, orphaned PlaylistCard/PlaylistVideo removed, dead `/videos` links pulled from sitemap + PodcastPost "Related Videos". `lib/videos/utils.ts` kept (used by Show/feed). | |
+| — | all pages | Performance | ⬜ | Site-wide: Home 768 KB HTML, guest 1.84 MB, 100 feed items, no lazy images | `xdtusmbh` |
 
 ## Admin pages (phase 2 — after public)
 
