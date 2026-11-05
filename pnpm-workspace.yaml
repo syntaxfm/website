@@ -1,5 +1,13 @@
 # pnpm 11 replaced onlyBuiltDependencies with allowBuilds (map of pkg -> bool).
 # Unlisted build-script deps are "unreviewed" and fail install (strictDepBuilds).
+# Security patches for transitive deps whose parents still pin a vulnerable major
+# (Dependabot alerts 354, 355, 357, 359). Drop each line once the parent ships the fix.
+overrides:
+  'deepmerge-ts@<8.0.0': ^8.0.2 # @prisma/config (prisma, scripts only)
+  'glob@>=9.0.0 <14.0.2': ^14.0.3 # @sentry/bundler-plugin-core, @vercel/nft (build time)
+  'minimatch@>=7.0.0 <11.0.1': ^11.0.4 # eslint, typescript-eslint (dev only)
+  'zod@<4.6.6': ^4.6.7 # @codecov/bundler-plugin-core still asks for zod 3 (build time)
+
 allowBuilds:
   '@sentry-internal/node-cpu-profiler': true
   '@sentry/cli': true

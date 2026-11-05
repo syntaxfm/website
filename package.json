@@ -105,7 +105,7 @@
 		"openai": "^4.93.0",
 		"p-map": "^7.0.4",
 		"postgres": "^3.4.9",
-		"puppeteer-core": "25.0.2",
+		"puppeteer-core": "25.16.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-highlight": "^7.0.2",
 		"rehype-raw": "^7.0.0",
@@ -123,6 +123,6 @@
 		"valibot": "^1.4.1",
 		"waait": "^1.0.5",
 		"youtube-video-element": "^1.9.0",
-		"zod": "^4.4.3"
+		"zod": "^4.6.7"
 	}
 }
