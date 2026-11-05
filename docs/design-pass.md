@@ -48,7 +48,7 @@ under the epic `iw15n6bh` (Public site design pass); the Dex task is in the last
 | 5 | `/shows/syntax-podcast` | Podcast landing | ✅ | 301 redirect to `/shows` (keeps `?page`/`?perPage`) | |
 | 6 | `/guests` | Guests index | ✅ | Search, A–Z/Recent/Jumble, photo cards | |
 | 7 | `/guest/[name_slug]` | Guest detail | ✅ | Page done; waits only on the shared feed (Home) | `408npbn0` |
-| 8 | `/snackpack` | Snackpack index | ✅ | Matches LIST \| Newsletter. Bug: going back from an issue takes ~2.8 s with no feedback (uncached Kit crawl) | `eb6cvbsd` |
+| 8 | `/snackpack` | Snackpack index | ✅ | Matches LIST \| Newsletter. The archive's uncached Kit crawl (~2–3 s) is part of the site-wide perf pass | `xdtusmbh` |
 | 9 | `/snackpack/[issue_id]` | Snackpack issue | ✅ | | |
 | 10 | `/sickpicks` | Sick picks | ⬜ | Not close. Needs a design first (no ✅ frame) and paging (1,717 links) | `glyultqh` |
 | 11 | `/potluck` | Potluck | ✅ | | |

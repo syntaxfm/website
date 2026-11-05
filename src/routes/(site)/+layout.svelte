@@ -5,6 +5,7 @@
 	import { Toaster } from 'svelte-french-toast';
 	import { browser } from '$app/environment';
 	import { beforeNavigate, onNavigate } from '$app/navigation';
+	import wait from 'waait';
 	import GlobalYoutubePlayer from '$lib/videos/GlobalYoutubePlayer.svelte';
 	import { youtube_player } from '$state/youtube_player';
 	import Loading from '$lib/Loading.svelte';
@@ -18,6 +19,8 @@
 	import FollowBanner from '$lib/social/FollowBanner.svelte';
 	import AdminMenu from './admin/AdminMenu.svelte';
 
+	const VIEW_TRANSITION_MAX_WAIT_MS = 300;
+
 	const { data, children } = $props();
 	const { user, user_theme } = $derived(data);
 
@@ -27,13 +30,18 @@
 		youtube_player.before_navigate();
 	});
 
-	onNavigate(async (navigation) => {
+	// A view transition shows a frozen snapshot of the old page until its callback resolves. Pages
+	// that `await` data in the component finish rendering only after that data arrives, so waiting
+	// on `navigation.complete` alone froze the screen (URL changed, old page still painted, loading
+	// bar hidden) until Chrome aborted the transition at 4 s. Cap the wait: fast pages still
+	// animate, slow ones unfreeze and show the loading bar until they render.
+	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
 
 		return new Promise((oldStateCaptureResolve) => {
 			document.startViewTransition(async () => {
 				oldStateCaptureResolve();
-				await navigation.complete;
+				await Promise.race([navigation.complete, wait(VIEW_TRANSITION_MAX_WAIT_MS)]);
 			});
 		});
 	});
