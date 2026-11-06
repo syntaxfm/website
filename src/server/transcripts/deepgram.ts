@@ -8,13 +8,13 @@ import { add_flagger_audio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
 import { DEEPGRAM_SECRET } from '$app/env/private';
 
-const deepgram_api_key = DEEPGRAM_SECRET;
-if (!deepgram_api_key) {
-	console.error('Please set the DEEPGRAM_SECRET environment variable.');
-	process.exit(1);
+// Created on first use: the build loads this module without secrets (Cloudflare builds and
+// deploys with none), and exiting the process there failed the build.
+let deepgram_client: ReturnType<typeof createClient> | undefined;
+function get_deepgram_client() {
+	if (!DEEPGRAM_SECRET) throw new Error('DEEPGRAM_SECRET is not set');
+	return (deepgram_client ??= createClient(DEEPGRAM_SECRET));
 }
-
-const deepgram_client = createClient(deepgram_api_key);
 
 export async function get_transcript(showNumber: number) {
 	const active_show = await db.query.show.findFirst({
@@ -43,7 +43,7 @@ export async function get_transcript(showNumber: number) {
 	console.log(`Fetching transcript for show #${active_show.number} - ${active_show.title}...`);
 
 	try {
-		const transcript = await deepgram_client.listen.prerecorded.transcribeFile(show_audio, {
+		const transcript = await get_deepgram_client().listen.prerecorded.transcribeFile(show_audio, {
 			punctuate: true,
 			model: 'nova-2-ea',
 			language: 'en-US',
