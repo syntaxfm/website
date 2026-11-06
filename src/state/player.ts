@@ -163,7 +163,9 @@ const new_player_state = () => {
 				state.audio.src = incoming_show.url;
 				state.audio.currentTime = resume_time;
 				state.current_show = incoming_show;
-				state.status = resume_time > 0 ? 'PAUSED' : 'LOADED';
+				// Preloading is not a user playback request. Keep the initial state so
+				// the episode page applies a shared ?t= position on its first Play click.
+				state.status = is_initial_load ? 'INITIAL' : resume_time > 0 ? 'PAUSED' : 'LOADED';
 			}
 			return state;
 		});
