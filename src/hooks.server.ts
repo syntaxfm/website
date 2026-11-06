@@ -44,7 +44,6 @@ const sentry_init = Sentry.initCloudflareSentryHandle({
 // RUNS ON EVERY REQUEST
 
 const auth: Handle = async function ({ event, resolve }) {
-	event.locals.theme = decodeURIComponent(event.cookies.get('theme') || 'system');
 	event.locals.user = null;
 	event.locals.auth_session = null;
 

@@ -9,8 +9,9 @@ import {
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = ({ locals, url, setHeaders }) => {
+	// The account page is per visitor, so it's the one page that renders the user
 	if (locals.user) {
-		return {};
+		return { user_name: locals.user.name };
 	}
 
 	const return_to = get_sign_in_return_to(url.searchParams.get('return_to'), url);

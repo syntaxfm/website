@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { variable_color_svg } from '#lib/theme/variable_color_svg.ts';
 	import { click_outside } from '$actions/click_outside';
-	import { invalidate } from '$app/navigation';
 	import { theme_maker } from '$state/theme';
 	import Cookie from 'js-cookie';
 	import { fly } from 'svelte/transition';
@@ -20,7 +19,7 @@
 	const theme_names = ['system', 'light', ...Object.keys(themes).map(getThemeName)];
 
 	function change_theme(this: HTMLButtonElement, _e: Event) {
-		// Set cookie for server side theme change
+		// app.html reads this cookie and sets the theme class before each page's first paint
 		Cookie.set('theme', this.innerText, {
 			expires: 999,
 			sameSite: 'strict',
@@ -28,12 +27,9 @@
 			path: '/'
 		});
 
-		const theme_wrapper = document.querySelector('.theme-wrapper');
-		// Update the dom manually
-		if (theme_wrapper) theme_wrapper.className = 'theme-' + this.innerText + ' theme-wrapper';
-		// Invalidate the route
-		// Load new server data
-		invalidate('/');
+		const root = document.documentElement;
+		root.classList.remove(...[...root.classList].filter((name) => name.startsWith('theme-')));
+		root.classList.add('theme-' + this.innerText);
 		variable_color_svg();
 	}
 </script>

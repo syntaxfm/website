@@ -7,6 +7,14 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<script>
+			// The visitor's theme (ThemeMaker's `theme` cookie), applied before the first paint. The
+			// server renders the same page for everyone, so it never reads the cookie.
+			document.documentElement.classList.add(
+				'theme-' + (/(?:^|;\s*)theme=([\w-]+)/.exec(document.cookie)?.[1] ?? 'system')
+			);
+		</script>
+
 		%syntax.analytics% %sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

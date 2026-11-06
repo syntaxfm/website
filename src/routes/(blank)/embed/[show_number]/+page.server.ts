@@ -17,7 +17,6 @@ export const load = async function ({ params, locals }) {
 	if (!show) throw error(404, 'Show not found');
 
 	return {
-		user_theme: locals.theme,
 		show
 	};
 };

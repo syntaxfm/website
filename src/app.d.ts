@@ -32,7 +32,6 @@ declare global {
 				country: string | null;
 			};
 			user: AuthenticatedUser | null;
-			theme: string;
 		}
 
 		// interface PageData {}

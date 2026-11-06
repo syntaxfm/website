@@ -16,10 +16,14 @@
 	import SearchBox from '#lib/search/SearchBox.svelte';
 	import ThemeMaker from '#lib/ThemeMaker.svelte';
 	import FollowBanner from '#lib/social/FollowBanner.svelte';
+	import { get_signed_in_user } from '#lib/admin/signed_in_user.remote.ts';
 	import AdminMenu from './admin/AdminMenu.svelte';
 
-	const { data, children } = $props();
-	const { user, user_theme } = $derived(data);
+	const { children } = $props();
+
+	// Asked from the browser only: pages render the same for every visitor (the theme is set in
+	// app.html), so they never carry the user. Read via `.current` so it never holds up the page.
+	const signed_in_user = browser ? get_signed_in_user() : null;
 
 	// The video keeps playing across pages, so save where it is before its page goes away
 	beforeNavigate((navigation) => {
@@ -45,10 +49,10 @@
 <a href="#main-content" class="skip-to-main-content">Skip to main content</a>
 <PageLoadingIndicator />
 
-{#if user?.roles?.includes('admin')}
+{#if signed_in_user?.current?.roles.includes('admin')}
 	<AdminMenu />
 {/if}
-<div class={'theme-' + user_theme + ' theme-wrapper'}>
+<div class="theme-wrapper">
 	<Header />
 
 	<main id="main-content" class="layout-main">
