@@ -1277,7 +1277,7 @@
 						}
 					})}
 				>
-					<input type="hidden" name="n:show_number" value={show.number} />
+					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
 					<button type="submit" data-intent="primary" disabled={ai_busy}>
 						{ai_busy ? 'Generating…' : 'Generate AI notes'}
 					</button>
@@ -1304,7 +1304,7 @@
 						}
 					})}
 				>
-					<input type="hidden" name="n:show_number" value={show.number} />
+					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
 				</form>
 
 				<div class="admin-actions">

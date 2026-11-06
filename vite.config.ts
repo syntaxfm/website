@@ -3,7 +3,7 @@ import at_import from 'postcss-import';
 import postcss_preset_env from 'postcss-preset-env';
 import preprocess from 'svelte-preprocess';
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
-import { sentrySvelteKit } from '@sentry/sveltekit';
+import { sentrySvelteKit } from '@sentry/sveltekit/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { codecovSvelteKitPlugin } from '@codecov/sveltekit-plugin';
@@ -32,11 +32,9 @@ export default defineConfig(({ mode, command }) => {
 				public_origins: (env.SYNTAX_AUTH_PUBLIC_ORIGINS ?? '').split(/[\s,]+/).filter(Boolean)
 			}),
 			sentrySvelteKit({
-				sourceMapsUploadOptions: {
-					org: 'syntax-fm',
-					project: 'website',
-					authToken: env.SENTRY_AUTH_TOKEN
-				}
+				org: 'syntax-fm',
+				project: 'website',
+				authToken: env.SENTRY_AUTH_TOKEN
 			}),
 
 			sveltekit({

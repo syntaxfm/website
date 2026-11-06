@@ -12,6 +12,7 @@ export const variables = defineEnvVars({
 	DATABASE_URL: { schema: optional },
 	NODE_ENV: { schema: optional },
 	OPENAI_API_KEY: { schema: optional },
+	ANTHROPIC_KEY: { schema: optional },
 	PUBLIC_URL: { public: true, static: true },
 	CONVERT_KIT_SECRET: { schema: optional },
 	MEGAPHONE_API_TOKEN: { schema: optional },

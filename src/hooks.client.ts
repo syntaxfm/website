@@ -29,7 +29,9 @@ Sentry.init({
 			blockAllMedia: false
 		})
 	],
-	profilesSampleRate: 1.0,
+	// Sentry 11: profile every session, while a traced span is running (was profilesSampleRate: 1)
+	profileSessionSampleRate: 1.0,
+	profileLifecycle: 'trace',
 	environment: dev ? 'development' : 'production'
 });
 
