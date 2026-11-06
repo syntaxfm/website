@@ -6,7 +6,7 @@
 	import SearchWorker from './search-worker.js?worker';
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import { fade } from 'svelte/transition';
 	import { click_out_dialog } from '$actions/click_outside_dialog';
 	import type { Block, Tree } from './types';
@@ -91,7 +91,9 @@
 		}
 	});
 
-	afterNavigate(() => {
+	afterNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		close();
 	});
 

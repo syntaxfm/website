@@ -1,4 +1,5 @@
-import { error, isHttpError, type Handle, type RequestEvent } from '@sveltejs/kit';
+import { error, isHttpError, type RequestEvent } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit/hooks';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -6,15 +7,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const { find_profile } = vi.hoisted(() => ({ find_profile: vi.fn() }));
 
 vi.mock('@sentry/sveltekit', () => ({
-	init: vi.fn(),
-	redisIntegration: vi.fn(),
+	initCloudflareSentryHandle:
+		(): Handle =>
+		async ({ event, resolve }) =>
+			resolve(event),
 	sentryHandle:
 		(): Handle =>
 		async ({ event, resolve }) =>
 			resolve(event),
 	handleErrorWithSentry: () => vi.fn()
 }));
-vi.mock('@sentry/profiling-node', () => ({ nodeProfilingIntegration: vi.fn() }));
 vi.mock('sk-form-data', () => ({
 	form_data: (({ event, resolve }) => resolve(event)) satisfies Handle
 }));
@@ -26,7 +28,11 @@ vi.mock('@sveltejs/kit/hooks', () => ({
 			const run = (index: number, current: RequestEvent): ReturnType<Handle> =>
 				index === handles.length
 					? resolve(current)
-					: handles[index]({ event: current, resolve: (next) => run(index + 1, next) });
+					: handles[index]({
+							event: current,
+							// SvelteKit 3's resolve always returns a Promise
+							resolve: async (next) => run(index + 1, next)
+						});
 			return run(0, event);
 		}
 }));
@@ -36,7 +42,7 @@ vi.mock('$server/db/client', () => ({
 
 async function load_handle(dev: boolean): Promise<Handle> {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return (await import('./hooks.server')).handle;
 }
 

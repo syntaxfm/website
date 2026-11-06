@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ShowCard from '$lib/shows/Show.svelte';
-	import Icon from '$lib/Icon.svelte';
+	import ShowCard from '#lib/shows/Show.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import type { Show as DbShow } from '$server/db/types';
 	import { search } from '$state/search.svelte';
 	import type { Tree, Block } from './types';

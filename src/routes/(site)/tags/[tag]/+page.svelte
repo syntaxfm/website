@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Meta from '$lib/meta/Meta.svelte';
-	import FeedItem from '$lib/feed/FeedItem.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
+	import FeedItem from '#lib/feed/FeedItem.svelte';
 	import { get_content_by_tag } from './tags.remote';
 
 	const tag_slug = (page.params as Record<string, string>).tag ?? '';

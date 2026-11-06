@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { torn_highlight } from '$actions/torn_highlight';
-	import { string_hash } from '$lib/utils/string_hash';
+	import { string_hash } from '#lib/utils/string_hash.ts';
 
 	interface Props {
 		text: string;

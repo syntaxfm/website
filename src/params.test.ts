@@ -72,7 +72,7 @@ beforeAll(async () => {
 
 async function load_matchers(dev: boolean): Promise<Record<string, Matcher>> {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	const matchers: Record<string, Matcher> = {};
 	for (const [name, file] of matcher_files) {
 		const match = field(await import(/* @vite-ignore */ path.join(project_root, file)), 'match');

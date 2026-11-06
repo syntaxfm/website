@@ -1,4 +1,4 @@
-import { PUBLIC_URL } from '$env/static/public';
+import { PUBLIC_URL } from '$app/env/public';
 
 export const GET = async function GET({ setHeaders }) {
 	const robots_txt = `User-agent: *

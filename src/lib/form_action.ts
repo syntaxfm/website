@@ -1,11 +1,10 @@
 /**
  * @deprecated Use .remote() functions instead
  */
-import { applyAction } from '$app/forms';
-import { invalidateAll } from '$app/navigation';
+import { applyAction, type ActionResult } from '$app/forms';
+import { refreshAll } from '$app/navigation';
 import toast from 'svelte-french-toast';
 import { loading } from '$state/loading';
-import type { ActionResult } from '@sveltejs/kit';
 
 type FormActionMessage = {
 	message?: string;
@@ -14,14 +13,7 @@ type FormActionMessage = {
 export const form_action = (
 	opts?: FormActionMessage,
 	pre?: (data?: unknown) => void,
-	callback?: (
-		data?: unknown,
-		{
-			formElement
-		}?: {
-			formElement: HTMLFormElement;
-		}
-	) => void
+	callback?: (data?: unknown, context?: { formElement: HTMLFormElement }) => void
 ) => {
 	return function form_enhance({ formElement }: { formElement: HTMLFormElement }) {
 		if (pre) pre();
@@ -38,7 +30,7 @@ export const form_action = (
 				toast.error(`Something went wrong. Check the console`);
 				console.log(result);
 			}
-			await invalidateAll();
+			await refreshAll();
 			await applyAction(result);
 			loading.setLoading(false);
 			if (callback && 'data' in result && result?.data)

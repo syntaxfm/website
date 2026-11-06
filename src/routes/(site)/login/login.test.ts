@@ -4,11 +4,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const { private_env } = vi.hoisted(() => ({
 	private_env: {} as Record<string, string | undefined>
 }));
-vi.mock('$env/dynamic/private', () => ({ env: private_env }));
+// Vitest reads named imports off this object, so tests can change values per case
+vi.mock('$app/env/private', () => private_env);
 
 async function load_login(dev: boolean) {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return (await import('./+page.server')).load;
 }
 

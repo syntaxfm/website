@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
+	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
 	import type { Action } from 'svelte/action';
 	import { fly } from 'svelte/transition';
 	import emo from '$assets/emo.jpg';
@@ -9,7 +9,7 @@
 	import cj from '$assets/cj.jpg';
 	import niki from '$assets/niki.jpeg';
 	import komatsu from '$assets/komatsu.jpeg';
-	import { count_podcasts } from '$server/shows/shows.remote';
+	import { count_podcasts } from '#lib/shows/shows.remote.ts';
 
 	let hosts = {
 		wes: {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import MarkdownContent from '$lib/content/MarkdownContent.svelte';
-	import type { ContentTree } from '$lib/content/content_tree';
+	import MarkdownContent from '#lib/content/MarkdownContent.svelte';
+	import type { ContentTree } from '#lib/content/content_tree.ts';
 
 	let { show_notes }: { show_notes: ContentTree } = $props();
 </script>

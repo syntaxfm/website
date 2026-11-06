@@ -6,9 +6,9 @@ import { error } from '@sveltejs/kit';
 import { keywords } from './fixes';
 import { add_flagger_audio } from './flagger';
 import { save_transcript_to_db } from './transcripts';
-import { env } from '$env/dynamic/private';
+import { DEEPGRAM_SECRET } from '$app/env/private';
 
-const deepgram_api_key = env.DEEPGRAM_SECRET;
+const deepgram_api_key = DEEPGRAM_SECRET;
 if (!deepgram_api_key) {
 	console.error('Please set the DEEPGRAM_SECRET environment variable.');
 	process.exit(1);

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon, { icon_names } from '$lib/Icon.svelte';
+	import Icon, { icon_names } from '#lib/Icon.svelte';
 </script>
 
 <div class="icons-grid">

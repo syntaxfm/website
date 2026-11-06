@@ -2,8 +2,8 @@
 	import { format } from 'date-fns';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import type { Pathname } from '$app/types';
-	import AdminList from '$lib/admin/AdminList.svelte';
+	import type { Path } from '$app/types';
+	import AdminList from '#lib/admin/AdminList.svelte';
 	import { get_tag_detail } from '../admin_tags.remote';
 
 	const tag_id = (current_page.params as Record<string, string>).id ?? '';
@@ -12,7 +12,7 @@
 	type TagDetail = Awaited<ReturnType<typeof get_tag_detail>>;
 	type TagDetailItem = TagDetail['items'][number];
 
-	function to_edit_link(content_row: TagDetailItem): Pathname | null {
+	function to_edit_link(content_row: TagDetailItem): Path | null {
 		if (content_row.type === 'ARTICLE') {
 			return `/admin/content/articles/${content_row.id}`;
 		}
@@ -107,7 +107,10 @@
 	{#if detail.total_content_count > detail.limit}
 		<p class="admin-feedback">
 			Showing first {detail.limit} of {detail.total_content_count}.
-			<a href={resolve(`/admin/content?tag_id=${detail.tag.id}`)}>Open in content list</a> for full results.
+
+			<a href={resolve(`admin/content?tag_id=${detail.tag.id}`)}>Open in content list</a>
+
+			for full results.
 		</p>
 	{/if}
 </div>

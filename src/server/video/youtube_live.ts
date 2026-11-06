@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { YOUTUBE_API_KEY } from '$app/env/private';
 import { YOUTUBE_CHANNEL_ID } from '$const';
 
 const CACHE_TTL_MS = 60 * 1000;
@@ -61,7 +61,7 @@ async function fetch_json<T>(fetcher: Fetcher, url: URL): Promise<T> {
 }
 
 async function fetch_youtube_live_stream(fetcher: Fetcher): Promise<YouTubeLiveStream | null> {
-	if (!env.YOUTUBE_API_KEY) {
+	if (!YOUTUBE_API_KEY) {
 		return null;
 	}
 
@@ -70,7 +70,7 @@ async function fetch_youtube_live_stream(fetcher: Fetcher): Promise<YouTubeLiveS
 		part: 'contentDetails',
 		playlistId: UPLOADS_PLAYLIST_ID,
 		maxResults: '50',
-		key: env.YOUTUBE_API_KEY
+		key: YOUTUBE_API_KEY
 	}).toString();
 
 	const playlist_data = await fetch_json<YouTubePlaylistItemResponse>(fetcher, playlist_url);
@@ -87,7 +87,7 @@ async function fetch_youtube_live_stream(fetcher: Fetcher): Promise<YouTubeLiveS
 	videos_url.search = new URLSearchParams({
 		part: 'snippet,status,liveStreamingDetails',
 		id: video_ids.join(','),
-		key: env.YOUTUBE_API_KEY
+		key: YOUTUBE_API_KEY
 	}).toString();
 
 	const videos_data = await fetch_json<YouTubeVideoResponse>(fetcher, videos_url);

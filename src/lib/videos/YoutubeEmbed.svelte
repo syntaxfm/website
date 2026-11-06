@@ -2,7 +2,7 @@
 	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
 	import { record_duration } from '$state/media_timeline';
 	import type { PlayerShow } from '$state/player_utils';
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import { get_watch_url_from_url } from './utils';
 	import { youtube_slot } from './video_actions';
 

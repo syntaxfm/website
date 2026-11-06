@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import Logo from '$lib/layout/Logo.svelte';
-	import Nav from '$lib/layout/Nav.svelte';
+	import Logo from '#lib/layout/Logo.svelte';
+	import Nav from '#lib/layout/Nav.svelte';
 
 	interface Props {
 		page_type?: 'landing' | 'interior';
@@ -22,7 +22,7 @@
 		<div class={['layout-main', { 'live-home': is_homepage_live }]}>
 			{#if page_type === 'interior'}
 				{#if !is_homepage_live}
-					<a title="Syntax Podcast Home" href={resolve('/')}>
+					<a title="Syntax Podcast Home" href={resolve('')}>
 						<Logo height="95px" />
 					</a>
 				{/if}

@@ -1,5 +1,5 @@
 <script lang="ts" generics="Input extends RemoteFormInput | void, Output">
-	import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
+	import type { RemoteForm, RemoteFormInput } from '$app/server';
 	import type { Snippet } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import type { HTMLAttributes } from 'svelte/elements';

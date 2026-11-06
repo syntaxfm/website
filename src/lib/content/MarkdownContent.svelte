@@ -43,7 +43,8 @@ text nodes: the only text rendered is the content's own. -->
 				{@render render_nodes(node.children)}
 			</a>
 		{:else if node.target.type === 'site_path' && is_site_path(node.target.path)}
-			<a href={resolve(node.target.path)} aria-hidden={aria_hidden} {tabindex}>
+			<!-- Stored site paths start with "/"; SvelteKit 3 pathnames don't -->
+			<a href={resolve(node.target.path.slice(1))} aria-hidden={aria_hidden} {tabindex}>
 				{@render render_nodes(node.children)}
 			</a>
 		{:else if node.target.type === 'external' && safe_href(node.target.url)}

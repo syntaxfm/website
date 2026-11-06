@@ -3,7 +3,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { profile } from '$server/db/schema';
 
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 
 import {
 	as_remote_request_response,

@@ -2,12 +2,10 @@
 // https://kit.svelte.dev/docs/hooks
 
 import * as Sentry from '@sentry/sveltekit';
-import { nodeProfilingIntegration } from '@sentry/profiling-node';
-import type { Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 
 import {
 	get_admin_guard_response,
@@ -28,21 +26,13 @@ import {
 // import { ADMIN_LOGIN } from '$env/static/private';
 
 // * START UP
-// RUNS ONCE ON FILE LOAD
-
-Sentry.init({
+// Sentry on Cloudflare Workers: the SDK starts per request inside this handle (Node's Sentry.init,
+// profiling and the Redis integration don't run in a Worker). It must be the first handle.
+const sentry_init = Sentry.initCloudflareSentryHandle({
 	release: `syntax@${APP_VERSION}`,
 	dsn: 'https://ea134756b8f244ff99638864ce038567@o4505358925561856.ingest.sentry.io/4505358945419264',
 	tracesSampleRate: 1,
-	profilesSampleRate: 1.0, // Profiling sample rate is relative to tracesSampleRate
-	environment: dev ? 'development' : 'production',
-	integrations: [
-		nodeProfilingIntegration,
-		Sentry.redisIntegration({ cachePrefixes: ['show:', 'shows:', 'show-og:'] })
-	],
-	_experiments: {
-		metricsAggregator: true
-	}
+	environment: dev ? 'development' : 'production'
 });
 
 // * END START UP
@@ -143,6 +133,7 @@ const safe_form_data: Handle = async function ({ event, resolve }) {
 
 // Wraps requests in this sequence of hooks
 export const handle: Handle = sequence(
+	sentry_init,
 	Sentry.sentryHandle(),
 	request_metadata,
 	auth,

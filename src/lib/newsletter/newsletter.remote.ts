@@ -1,5 +1,5 @@
 import { query } from '$app/server';
-import { env } from '$env/dynamic/private';
+import { CONVERT_KIT_V4_API_KEY, CONVERT_KIT_SECRET } from '$app/env/private';
 import { parseSubject } from './parse-subject';
 
 const numberformatter = new Intl.NumberFormat('en-US');
@@ -45,7 +45,7 @@ type BroadCastResponse = {
 };
 
 async function getBroadcastsPage(after?: string) {
-	const api_key = env.CONVERT_KIT_V4_API_KEY;
+	const api_key = CONVERT_KIT_V4_API_KEY;
 	if (!api_key) {
 		return undefined;
 	}
@@ -105,12 +105,12 @@ async function fetchBroadcastList() {
 
 export const get_newsletter_archive = query(async () => {
 	const subs = await fetch(
-		`https://api.convertkit.com/v3/subscribers?api_secret=${env.CONVERT_KIT_SECRET}`
+		`https://api.convertkit.com/v3/subscribers?api_secret=${CONVERT_KIT_SECRET}`
 	)
 		.then((res) => res.json())
 		.catch(console.error);
 
-	const issues: NewsletterIssue[] = env.CONVERT_KIT_SECRET
+	const issues: NewsletterIssue[] = CONVERT_KIT_SECRET
 		? await fetchBroadcastList()
 		: [
 				{

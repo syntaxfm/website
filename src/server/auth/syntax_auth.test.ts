@@ -5,12 +5,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const { private_env } = vi.hoisted(() => ({
 	private_env: {} as Record<string, string | undefined>
 }));
-vi.mock('$env/dynamic/private', () => ({ env: private_env }));
+vi.mock('$app/env/private', () => ({
+	get SYNTAX_AUTH_PUBLIC_ORIGINS() {
+		return private_env.SYNTAX_AUTH_PUBLIC_ORIGINS;
+	}
+}));
 
 // The auth origin is fixed when the module loads, so each build flavor gets its own instance.
 async function load_syntax_auth(dev: boolean) {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return import('./syntax_auth');
 }
 

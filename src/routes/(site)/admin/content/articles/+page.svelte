@@ -4,16 +4,16 @@
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import AdminSearch from '../../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import StatusBadge from '$lib/admin/StatusBadge.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import StatusBadge from '#lib/admin/StatusBadge.svelte';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
 		read_string
-	} from '$lib/admin/admin_filters';
+	} from '#lib/admin/admin_filters.ts';
 	import { create_article, list_articles } from './admin_articles.remote';
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
@@ -67,9 +67,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -78,7 +77,7 @@
 		creating = true;
 		try {
 			const created = await create_article({ title: 'Untitled Article' });
-			await goto(resolve(`/admin/content/articles/${created.content_id}`));
+			await goto(resolve(`admin/content/articles/${created.content_id}`));
 		} catch (error) {
 			console.error(error);
 			create_error = error instanceof Error ? error.message : 'Unable to create article.';
@@ -151,7 +150,7 @@
 						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('/admin/content/articles')}
+						<a class="button small" data-intent="quiet" href={resolve('admin/content/articles')}
 							>× Clear</a
 						>
 					{/if}
@@ -168,7 +167,7 @@
 
 		{#snippet table_body()}
 			{#each list_result.items as article_item (article_item.content_id)}
-				{@const edit_link = resolve(`/admin/content/articles/${article_item.content_id}`)}
+				{@const edit_link = resolve(`admin/content/articles/${article_item.content_id}`)}
 				<tr>
 					<td>
 						<div class="admin-row">
@@ -177,9 +176,8 @@
 						</div>
 					</td>
 					<td><StatusBadge status={article_item.meta.status} /></td>
-					<td>
-						{article_item.author?.name || article_item.author?.username || '-'}
-					</td>
+					<td>{article_item.author?.name || article_item.author?.username || '-'}</td>
+
 					<td>
 						{#if article_item.meta.updated_at}
 							{format(article_item.meta.updated_at, 'MMM d, yyyy HH:mm')}

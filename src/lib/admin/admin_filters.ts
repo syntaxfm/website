@@ -1,3 +1,4 @@
+import type { ReadonlyURL, ReadonlyURLSearchParams } from '$app/state';
 import type { ResolvedPathname } from '$app/types';
 
 type ReadIntOptions = {
@@ -8,7 +9,7 @@ type ReadIntOptions = {
 type UrlUpdates = Record<string, string | number | null | undefined>;
 
 export function read_picklist<T extends string>(
-	search_params: URLSearchParams,
+	search_params: ReadonlyURLSearchParams,
 	key: string,
 	allowed: readonly T[],
 	fallback: T
@@ -21,7 +22,7 @@ export function read_picklist<T extends string>(
 	return (allowed as readonly string[]).includes(raw_value) ? (raw_value as T) : fallback;
 }
 
-export function read_string(search_params: URLSearchParams, key: string): string {
+export function read_string(search_params: ReadonlyURLSearchParams, key: string): string {
 	const raw_value = search_params.get(key);
 	if (raw_value === null) {
 		return '';
@@ -31,7 +32,7 @@ export function read_string(search_params: URLSearchParams, key: string): string
 }
 
 export function read_int(
-	search_params: URLSearchParams,
+	search_params: ReadonlyURLSearchParams,
 	key: string,
 	fallback: number,
 	options?: ReadIntOptions
@@ -49,8 +50,9 @@ export function read_int(
 	return clamp_int(parsed, options);
 }
 
-export function build_url(current_url: URL, updates: UrlUpdates): ResolvedPathname {
-	const next_params = new URLSearchParams(current_url.searchParams);
+export function build_url(current_url: ReadonlyURL, updates: UrlUpdates): ResolvedPathname {
+	// page.url is readonly in SvelteKit 3, so build from a copy of its query
+	const next_params = new URLSearchParams(current_url.search);
 
 	for (const [key, value] of Object.entries(updates)) {
 		if (value === null || value === undefined || value === '') {
@@ -69,7 +71,7 @@ export function build_url(current_url: URL, updates: UrlUpdates): ResolvedPathna
 }
 
 export function has_any_filter(
-	search_params: URLSearchParams,
+	search_params: ReadonlyURLSearchParams,
 	filter_keys: readonly string[]
 ): boolean {
 	for (const key of filter_keys) {

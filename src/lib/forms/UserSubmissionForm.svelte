@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Turnstile } from 'svelte-turnstile';
-	import { env } from '$env/dynamic/public';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { submit_user_submission } from './submissions.remote';
 	import InlineError from './InlineError.svelte';
-	import { slide_fade } from '$lib/utils/transitions';
+	import { slide_fade } from '#lib/utils/transitions.ts';
 	import type { SubmissionTypes } from '$server/db/types';
 
 	interface Props {
@@ -106,7 +106,7 @@
 	<div class="input-group turnstile">
 		<Turnstile
 			appearance="interaction-only"
-			siteKey={env.PUBLIC_TURNSTILE_SITE_KEY}
+			siteKey={PUBLIC_TURNSTILE_SITE_KEY ?? ''}
 			responseFieldName="cf_turnstile_response"
 			bind:reset={reset_turnstile}
 		/>

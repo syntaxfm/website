@@ -4,17 +4,17 @@
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import AdminSearch from '../../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import StatusBadge from '$lib/admin/StatusBadge.svelte';
-	import RemoteFormButton from '$lib/forms/RemoteFormButton.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import StatusBadge from '#lib/admin/StatusBadge.svelte';
+	import RemoteFormButton from '#lib/forms/RemoteFormButton.svelte';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
 		read_string
-	} from '$lib/admin/admin_filters';
+	} from '#lib/admin/admin_filters.ts';
 	import {
 		bulk_update_show_status,
 		import_all_shows,
@@ -69,9 +69,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -93,14 +92,11 @@
 			const show_numbers = selected_ids
 				.map((id) => Number.parseInt(id, 10))
 				.filter((value) => Number.isFinite(value));
-
-			const result = await bulk_update_show_status({
-				show_numbers,
-				status: bulk_status
-			});
+			const result = await bulk_update_show_status({ show_numbers, status: bulk_status });
 
 			const skipped_suffix =
 				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
+
 			action_message = `Updated ${result.count} show(s) to ${bulk_status}.${skipped_suffix}`;
 			selected_ids = [];
 			await list_shows({
@@ -141,15 +137,18 @@
 
 <div class="admin-page stack">
 	<div class="admin-actions">
-		<a class="button small" data-intent="primary" href={resolve('/admin/content/podcast/new')}
+		<a class="button small" data-intent="primary" href={resolve('admin/content/podcast/new')}
 			>New Show</a
 		>
+
 		<RemoteFormButton class="small" data-intent="primary" remote={import_all_shows}
 			>Sync Changed/New Shows</RemoteFormButton
 		>
+
 		<RemoteFormButton class="small" data-intent="quiet" remote={refresh_all}
 			>Refresh All Shows</RemoteFormButton
 		>
+
 		<form class="admin-inline-form" action="/webhooks/refresh" method="GET">
 			<button class="small" type="submit" data-intent="quiet">Refresh Webhook</button>
 		</form>
@@ -197,7 +196,7 @@
 						onselect={(value) => update_url({ status: value || null, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('/admin/content/podcast')}
+						<a class="button small" data-intent="quiet" href={resolve('admin/content/podcast')}
 							>× Clear</a
 						>
 					{/if}
@@ -254,8 +253,8 @@
 		{#snippet table_body({ toggle_selected, is_selected })}
 			{#each list_result.items as show_row (show_row.number)}
 				{@const row_id = String(show_row.number)}
-				{@const public_link = resolve(`/show/${show_row.number}/${show_row.slug}`)}
-				{@const edit_link = resolve(`/admin/content/podcast/${show_row.number}`)}
+				{@const public_link = resolve(`show/${show_row.number}/${show_row.slug}`)}
+				{@const edit_link = resolve(`admin/content/podcast/${show_row.number}`)}
 				<tr>
 					<td>
 						<input

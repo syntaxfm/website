@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { get_feed_content } from '$lib/feed/feed.remote';
+	import { get_feed_content } from '#lib/feed/feed.remote.ts';
 	import FeedItem from './FeedItem.svelte';
 	import FeedTitle from './FeedTitle.svelte';
 </script>

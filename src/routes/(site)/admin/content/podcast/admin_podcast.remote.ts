@@ -1,5 +1,7 @@
 import { command, form, getRequestEvent, query } from '$app/server';
-import { env } from '$env/dynamic/private';
+
+import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
+
 import { db } from '$server/db/client';
 import {
 	aiGuest,
@@ -85,37 +87,18 @@ const create_show_editor_schema = v.object({
 	youtube_url: v.optional(v.nullable(v.string()))
 });
 
-const show_number_schema = v.object({
-	show_number: v.number()
-});
-
-const guest_search_schema = v.object({
-	search_text: v.optional(v.string())
-});
-
-const show_guest_schema = v.object({
-	show_id: v.string(),
-	guest_id: v.string()
-});
+const show_number_schema = v.object({ show_number: v.number() });
+const guest_search_schema = v.object({ search_text: v.optional(v.string()) });
+const show_guest_schema = v.object({ show_id: v.string(), guest_id: v.string() });
 
 const video_search_schema = v.object({
 	search_text: v.optional(v.string()),
 	limit: v.optional(v.number())
 });
 
-const show_video_schema = v.object({
-	show_id: v.string(),
-	video_id: v.string()
-});
-
-const user_search_schema = v.object({
-	search_text: v.optional(v.string())
-});
-
-const show_host_schema = v.object({
-	show_id: v.string(),
-	user_id: v.string()
-});
+const show_video_schema = v.object({ show_id: v.string(), video_id: v.string() });
+const user_search_schema = v.object({ search_text: v.optional(v.string()) });
+const show_host_schema = v.object({ show_id: v.string(), user_id: v.string() });
 
 const update_ai_show_note_schema = v.object({
 	id: v.number(),
@@ -220,9 +203,9 @@ function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 // Helper function to sync Spotify data for specific shows
 async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 	const credentials: MegaphoneCredentials = {
-		apiToken: env.MEGAPHONE_API_TOKEN as string,
-		networkId: env.MEGAPHONE_NETWORK_ID as string,
-		podcastId: env.MEGAPHONE_PODCAST_ID as string
+		apiToken: MEGAPHONE_API_TOKEN as string,
+		networkId: MEGAPHONE_NETWORK_ID as string,
+		podcastId: MEGAPHONE_PODCAST_ID as string
 	};
 
 	for (const show_number of showNumbers) {
@@ -646,7 +629,7 @@ export const update_show_editor = command(update_show_editor_schema, async (inpu
 export const sync_spotify_for_show = command(show_number_schema, async ({ show_number }) => {
 	assert_admin_user();
 
-	if (!env.MEGAPHONE_API_TOKEN || !env.MEGAPHONE_NETWORK_ID || !env.MEGAPHONE_PODCAST_ID) {
+	if (!MEGAPHONE_API_TOKEN || !MEGAPHONE_NETWORK_ID || !MEGAPHONE_PODCAST_ID) {
 		error(
 			500,
 			'Missing required Megaphone environment variables: MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID'
@@ -654,9 +637,9 @@ export const sync_spotify_for_show = command(show_number_schema, async ({ show_n
 	}
 
 	const credentials: MegaphoneCredentials = {
-		apiToken: env.MEGAPHONE_API_TOKEN,
-		networkId: env.MEGAPHONE_NETWORK_ID,
-		podcastId: env.MEGAPHONE_PODCAST_ID
+		apiToken: MEGAPHONE_API_TOKEN,
+		networkId: MEGAPHONE_NETWORK_ID,
+		podcastId: MEGAPHONE_PODCAST_ID
 	};
 
 	await syncEpisodeSpotifyData(show_number, credentials);
@@ -1050,9 +1033,9 @@ export const refresh_all = form(async () => {
 
 	try {
 		const credentials: MegaphoneCredentials = {
-			apiToken: env.MEGAPHONE_API_TOKEN as string,
-			networkId: env.MEGAPHONE_NETWORK_ID as string,
-			podcastId: env.MEGAPHONE_PODCAST_ID as string
+			apiToken: MEGAPHONE_API_TOKEN as string,
+			networkId: MEGAPHONE_NETWORK_ID as string,
+			podcastId: MEGAPHONE_PODCAST_ID as string
 		};
 		await syncAllEpisodesSpotifyData(credentials);
 	} catch (error) {

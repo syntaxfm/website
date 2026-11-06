@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AdminList from '$lib/admin/AdminList.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
 	import { create_role, list_roles } from '../admin_users.remote';
 
 	interface RoleItem {

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import { player } from '$state/player';
 	import {
 		get_id_from_url,
 		get_thumbnail_from_id,
 		get_thumbnail_srcset_from_id
-	} from '$lib/videos/utils';
-	import { youtube_slot } from '$lib/videos/video_actions';
+	} from '#lib/videos/utils.ts';
+	import { youtube_slot } from '#lib/videos/video_actions.ts';
 	import no_thumb from './no_thumb.png';
 
 	interface Props {

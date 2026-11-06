@@ -3,10 +3,10 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { onDestroy } from 'svelte';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
-	import SlugEditor from '$lib/admin/SlugEditor.svelte';
-	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import SlugEditor from '#lib/admin/SlugEditor.svelte';
+	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import AdminSearch from '../../../../AdminSearch.svelte';
 	import {
 		add_video_to_playlist,
@@ -118,7 +118,7 @@
 
 		try {
 			await delete_playlist(playlist_detail.id);
-			await goto(resolve('/admin/content/videos/playlists'));
+			await goto(resolve('admin/content/videos/playlists'));
 		} catch (error) {
 			console.error('Unable to delete playlist', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete playlist.';

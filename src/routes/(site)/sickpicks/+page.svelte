@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import Filter from '$lib/forms/Filter.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import ShowNotes from '$lib/shows/ShowNotes.svelte';
+	import Filter from '#lib/forms/Filter.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
+	import ShowNotes from '#lib/shows/ShowNotes.svelte';
 	import { get_sick_picks } from './sickpicks.remote.js';
 
 	const shows = await get_sick_picks();
@@ -41,7 +41,7 @@
 		<article class="stack">
 			<header>
 				<h2 class="h4">
-					<a href={resolve(`/${show.number}`)}>
+					<a href={resolve(`${show.number}`)}>
 						<span class="primary">#{show.number}</span>
 						{show.title}
 					</a>

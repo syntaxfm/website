@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
 	import { delete_all_transcripts, import_all_transcripts } from '../admin_podcast.remote';
 	import type { PageData } from './$types';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_URL } from '$env/static/public';
+	import { PUBLIC_URL } from '$app/env/public';
 	import Album from './Album.svelte';
 	import { player } from '$state/player';
 	import type { Show } from '$server/db/types';

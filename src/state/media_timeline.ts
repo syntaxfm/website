@@ -2,7 +2,7 @@
 // This module tracks each version's duration and saved position separately so we never apply
 // an audio timestamp to a video (or vice versa) unless we know the two line up.
 import { get_local_storage } from '$utilities/storage';
-import { get_id_from_url } from '$lib/videos/utils';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 
 export type MediaKind = 'AUDIO' | 'VIDEO';
 

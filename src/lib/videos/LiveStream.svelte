@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { formatDistanceToNow } from 'date-fns';
 	import type { Attachment } from 'svelte/attachments';
-	import Icon from '$lib/Icon.svelte';
-	import Logo from '$lib/layout/Logo.svelte';
-	import LiveTag from '$lib/tags/LiveTag.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import Logo from '#lib/layout/Logo.svelte';
+	import LiveTag from '#lib/tags/LiveTag.svelte';
 
 	interface LiveStreamData {
 		id: string;

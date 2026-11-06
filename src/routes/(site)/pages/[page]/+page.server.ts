@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { markdown_to_content } from '$lib/content/markdown_to_content.server';
+import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 
 export const load = async ({ params }) => {
 	const content_files = import.meta.glob<string>('../*.md', {

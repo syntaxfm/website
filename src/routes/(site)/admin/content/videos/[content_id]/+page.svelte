@@ -2,12 +2,12 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
-	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
-	import MultiSelect from '$lib/admin/MultiSelect.svelte';
-	import StatusSelect from '$lib/admin/StatusSelect.svelte';
-	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
+	import MultiSelect from '#lib/admin/MultiSelect.svelte';
+	import StatusSelect from '#lib/admin/StatusSelect.svelte';
+	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import { onDestroy } from 'svelte';
 	import { get_content_detail, get_tag_options } from '../../admin_content.remote';
 	import { delete_video, update_video_meta } from '../admin_videos.remote';
@@ -112,7 +112,7 @@
 
 		try {
 			await delete_video({ content_id: content_item.id, confirm_text: 'DELETE' });
-			await goto(resolve('/admin/content/videos'));
+			await goto(resolve('admin/content/videos'));
 		} catch (error) {
 			console.error('Unable to delete video', error);
 			throw error;
@@ -168,7 +168,9 @@
 				<aside class="admin-metadata-rail" aria-labelledby="content-metadata-heading">
 					<h2 id="content-metadata-heading" class="h5">Content</h2>
 					<StatusSelect {status} onchange={handle_status_change} />
+
 					<DateTimePicker value={published_at} onchange={handle_published_at_change} />
+
 					<MultiSelect
 						options={tag_options}
 						selected_ids={selected_tag_ids}

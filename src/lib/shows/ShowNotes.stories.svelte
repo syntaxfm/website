@@ -1,7 +1,7 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import ShowNotes from './ShowNotes.svelte';
-	import type { ContentNode, ContentTree } from '$lib/content/content_tree';
+	import type { ContentNode, ContentTree } from '#lib/content/content_tree.ts';
 
 	const { Story } = defineMeta({
 		title: 'Shows/ShowNotes',

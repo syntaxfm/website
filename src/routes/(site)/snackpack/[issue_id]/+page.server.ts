@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { env } from '$env/dynamic/private';
-import type { Broadcast } from '$lib/newsletter/newsletter.remote';
-import { parseSubject } from '$lib/newsletter/parse-subject';
+import { CONVERT_KIT_SECRET } from '$app/env/private';
+import type { Broadcast } from '#lib/newsletter/newsletter.remote.ts';
+import { parseSubject } from '#lib/newsletter/parse-subject.ts';
 
 // Wrap the email body in a full document so it renders standalone inside the
 // iframe: <base target="_blank"> sends every link to a new tab, and the email's
@@ -14,7 +14,7 @@ function asEmailDocument(content: string): string {
 export const load: PageServerLoad = async function ({ setHeaders, params }) {
 	// Fetch the real broadcast for this issue from Kit (ConvertKit).
 	const response = await fetch(
-		`https://api.convertkit.com/v3/broadcasts/${params.issue_id}?api_secret=${env.CONVERT_KIT_SECRET}`
+		`https://api.convertkit.com/v3/broadcasts/${params.issue_id}?api_secret=${CONVERT_KIT_SECRET}`
 	)
 		.then((res) => res.json() as Promise<{ broadcast: Broadcast | undefined }>)
 		.catch(() => ({ broadcast: undefined }));

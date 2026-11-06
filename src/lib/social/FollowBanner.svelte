@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import PlatformLinks from '$lib/layout/PlatformLinks.svelte';
+	import PlatformLinks from '#lib/layout/PlatformLinks.svelte';
 	import prefooter from './prefooter.png';
 
 	const speed = 169;

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
-	import Logo from '$lib/layout/Logo.svelte';
-	import NewsletterForm from '$lib/newsletter/NewsletterForm.svelte';
-	import PodcastLinks from '$lib/PodcastLinks.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import Logo from '#lib/layout/Logo.svelte';
+	import NewsletterForm from '#lib/newsletter/NewsletterForm.svelte';
+	import PodcastLinks from '#lib/PodcastLinks.svelte';
 	import { resolve } from '$app/paths';
 	import '../../(site)/style.css';
 
@@ -19,7 +19,7 @@
 
 <div>
 	<div class="logo">
-		<a href={resolve('/')}><Logo /></a>
+		<a href={resolve('')}><Logo /></a>
 	</div>
 	<main class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
 		<section>

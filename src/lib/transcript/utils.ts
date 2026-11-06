@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { SyncPrerecordedResponse } from '@deepgram/sdk';
-import type { DBUtterance, SlimUtterance, SpeakerMap } from './types';
+import type { DBUtterance, SlimUtterance, SpeakerMap } from '$server/transcripts/types';
 
 type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 

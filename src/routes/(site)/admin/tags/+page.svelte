@@ -2,9 +2,9 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
 	import AdminSearch from '../AdminSearch.svelte';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
@@ -37,9 +37,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -191,7 +190,7 @@
 				/>
 				{#if show_clear_filters}
 					<div class="admin-control-row">
-						<a class="button" data-intent="quiet" href={resolve('/admin/tags')}>× Clear</a>
+						<a class="button" data-intent="quiet" href={resolve('admin/tags')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -231,7 +230,7 @@
 						/>
 					</td>
 					<td>/{row.slug}</td>
-					<td><a href={resolve(`/admin/tags/${row.id}`)}>{row.content_count}</a></td>
+					<td><a href={resolve(`admin/tags/${row.id}`)}>{row.content_count}</a></td>
 					<td>
 						<div class="admin-control-row">
 							<button

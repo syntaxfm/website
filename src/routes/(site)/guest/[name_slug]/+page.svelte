@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import GuestHero from '$lib/guest/GuestHero.svelte';
-	import FeedItem from '$lib/feed/FeedItem.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import SwaggyNewsletterForm from '$lib/newsletter/SwaggyNewsletterForm.svelte';
-	import TrendingTopics from '$lib/sidebar/TrendingTopics.svelte';
+	import GuestHero from '#lib/guest/GuestHero.svelte';
+	import FeedItem from '#lib/feed/FeedItem.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
+	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
+	import TrendingTopics from '#lib/sidebar/TrendingTopics.svelte';
 	import { get_guest, get_guest_feed } from '../guests.remote';
 
 	const guest = await get_guest(page.params.name_slug!);

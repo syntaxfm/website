@@ -1,7 +1,8 @@
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
-import { getRequestEvent, query } from '$app/server';
+import { query } from '$app/server';
 import { asc, desc, count } from 'drizzle-orm';
+import * as v from 'valibot';
 
 export const get_latest_podcast = query(async () => {
 	// TODO make this more than just last 10 podcasts
@@ -15,12 +16,15 @@ export const count_podcasts = query(async () => {
 	return result[0].count;
 });
 
-export const get_all_podcasts = query(async () => {
-	const { url } = getRequestEvent();
-	const page_number = Math.max(1, parseInt(url.searchParams.get('page') || '1') || 1);
-	const order = url.searchParams.get('order') || 'desc';
-	const per_page = Math.max(1, parseInt(url.searchParams.get('perPage') || '29') || 29);
-	const offset = (page_number - 1) * per_page;
+// SvelteKit 3 queries can't read the request URL, so the Shows page passes its filters in.
+const podcast_list_schema = v.object({
+	page: v.pipe(v.number(), v.integer(), v.minValue(1)),
+	order: v.picklist(['asc', 'desc']),
+	per_page: v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(100))
+});
+
+export const get_all_podcasts = query(podcast_list_schema, async ({ page, order, per_page }) => {
+	const offset = (page - 1) * per_page;
 
 	return db.query.show.findMany({
 		limit: per_page,

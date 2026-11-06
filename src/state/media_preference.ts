@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store';
 import { get_local_storage } from '$utilities/storage';
-import { get_id_from_url } from '$lib/videos/utils';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 import type { MediaKind } from './media_timeline';
 
 const STORAGE_KEY = 'media_preference';

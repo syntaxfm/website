@@ -3,7 +3,7 @@ import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import { inArray } from 'drizzle-orm';
 import { get_show_detail_query } from '$server/shows/shows_queries';
-import { markdown_to_content } from '$lib/content/markdown_to_content.server';
+import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ params, locals, url }) => {

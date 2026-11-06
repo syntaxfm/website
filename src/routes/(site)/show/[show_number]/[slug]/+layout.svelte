@@ -3,7 +3,7 @@
 	import { player } from '$state/player';
 	import { format } from 'date-fns';
 	import { tsToS } from '$utilities/format_time.js';
-	import PodcastPost from '$lib/articles/PodcastPost.svelte';
+	import PodcastPost from '#lib/articles/PodcastPost.svelte';
 
 	let { data, children } = $props();
 	let { show } = $derived(data);

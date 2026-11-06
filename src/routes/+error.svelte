@@ -10,15 +10,17 @@
 	} | null;
 
 	interface Props {
-		// error page does not automatically infer layout data...
-		data: {
+		// error page does not automatically infer layout data, and SvelteKit 3 renders it without
+		// data when rendering itself failed, so fall back to the page's data
+		data?: {
 			user: PageSafeUser;
 			user_theme: string;
 		};
 	}
 
 	let { data }: Props = $props();
-	let { user, user_theme } = $derived(data);
+	let user: PageSafeUser = $derived(data?.user ?? page.data.user ?? null);
+	let user_theme: string = $derived(data?.user_theme ?? page.data.user_theme ?? 'system');
 </script>
 
 <!-- Manually render (site) layout around error -->

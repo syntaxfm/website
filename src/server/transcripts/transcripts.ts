@@ -11,7 +11,7 @@ import {
 	transcriptUtteranceWord as transcriptUtteranceWords
 } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
-import { detectSpeakerNames, getSlimUtterances } from './utils';
+import { detectSpeakerNames, getSlimUtterances } from '#lib/transcript/utils.ts';
 import pMap from 'p-map';
 import { randomUUID } from 'crypto';
 

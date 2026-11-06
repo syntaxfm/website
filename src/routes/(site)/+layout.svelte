@@ -3,20 +3,20 @@
 	import 'media-chrome';
 	import 'youtube-video-element';
 	import { Toaster } from 'svelte-french-toast';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { beforeNavigate, onNavigate } from '$app/navigation';
 	import wait from 'waait';
-	import GlobalYoutubePlayer from '$lib/videos/GlobalYoutubePlayer.svelte';
+	import GlobalYoutubePlayer from '#lib/videos/GlobalYoutubePlayer.svelte';
 	import { youtube_player } from '$state/youtube_player';
-	import Loading from '$lib/Loading.svelte';
-	import Footer from '$lib/layout/Footer.svelte';
-	import Header from '$lib/layout/Header.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
-	import PageLoadingIndicator from '$lib/page_loading_indicator.svelte';
-	import Player from '$lib/player/Player.svelte';
-	import SearchBox from '$lib/search/SearchBox.svelte';
-	import ThemeMaker from '../../params/ThemeMaker.svelte';
-	import FollowBanner from '$lib/social/FollowBanner.svelte';
+	import Loading from '#lib/Loading.svelte';
+	import Footer from '#lib/layout/Footer.svelte';
+	import Header from '#lib/layout/Header.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
+	import PageLoadingIndicator from '#lib/page_loading_indicator.svelte';
+	import Player from '#lib/player/Player.svelte';
+	import SearchBox from '#lib/search/SearchBox.svelte';
+	import ThemeMaker from '#lib/ThemeMaker.svelte';
+	import FollowBanner from '#lib/social/FollowBanner.svelte';
 	import AdminMenu from './admin/AdminMenu.svelte';
 
 	const VIEW_TRANSITION_MAX_WAIT_MS = 300;
@@ -26,6 +26,7 @@
 
 	// The video keeps playing across pages, so save where it is before its page goes away
 	beforeNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
 		if (navigation.willUnload) return;
 		youtube_player.before_navigate();
 	});
@@ -36,6 +37,7 @@
 	// bar hidden) until Chrome aborted the transition at 4 s. Cap the wait: fast pages still
 	// animate, slow ones unfreeze and show the loading bar until they render.
 	onNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
 		if (!document.startViewTransition) return;
 
 		return new Promise((oldStateCaptureResolve) => {

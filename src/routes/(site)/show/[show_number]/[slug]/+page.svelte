@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PrevNext from '$lib/shows/PrevNext.svelte';
-	import ShowNotes from '$lib/shows/ShowNotes.svelte';
+	import PrevNext from '#lib/shows/PrevNext.svelte';
+	import ShowNotes from '#lib/shows/ShowNotes.svelte';
 	let { data } = $props();
 	let { show_notes, prev_show, next_show } = $derived(data);
 </script>

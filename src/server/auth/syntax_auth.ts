@@ -1,7 +1,7 @@
 import { json, text } from '@sveltejs/kit';
 
-import { dev } from '$app/environment';
-import { env } from '$env/dynamic/private';
+import { dev } from '$app/env';
+import { SYNTAX_AUTH_PUBLIC_ORIGINS } from '$app/env/private';
 
 import {
 	log_syntax_auth_failure,
@@ -18,6 +18,8 @@ const SYNTAX_SESSION_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/get-session`;
 const SYNTAX_SIGN_OUT_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/sign-out`;
 // Browsers sign in here only in production builds.
 const PRODUCTION_SIGN_IN_URL = 'https://auth.syntax.fm/sign-in';
+// SvelteKit 3 refuses redirect() to another origin unless it is allowlisted; sign-in is the one.
+export const SIGN_IN_REDIRECT_ORIGINS = [new URL(PRODUCTION_SIGN_IN_URL).origin];
 
 // In development, browsers sign in through @syntaxfm/auth-local's same-origin proxy, so the website
 // works on whatever address it is opened at (localhost, a LAN or Tailscale address, or a name behind
@@ -27,9 +29,6 @@ const DEVELOPMENT_SIGN_IN_PATH = `${DEVELOPMENT_AUTH_MOUNT_PATH}/sign-in`;
 // Development only: the private header naming the browser origin this server checked, which local
 // Syntax Auth trusts for that one request. Browsers can't send it there; deployed Auth ignores it.
 const DEVELOPMENT_ORIGIN_HEADER = 'x-syntax-auth-dev-origin';
-// Development only: browser-facing origins the request alone doesn't show, such as an HTTPS proxy's
-// `https://dev.example`. The same setting @syntaxfm/auth-local reads (see vite.config.ts).
-const PUBLIC_ORIGINS_VARIABLE = 'SYNTAX_AUTH_PUBLIC_ORIGINS';
 
 // Development requests to local Syntax Auth, body included, must finish within this time so a
 // stalled Auth shows its fix instead of hanging the page. Production timing is unchanged.
@@ -310,11 +309,12 @@ function canonical_origin(value: string): string | null {
  * the https origin of the developer's TLS proxy. Forwarded-protocol headers are never read.
  */
 function get_own_origins(app_url: URL): string[] {
-	const configured = (env[PUBLIC_ORIGINS_VARIABLE] ?? '')
+	const configured = (SYNTAX_AUTH_PUBLIC_ORIGINS ?? '')
 		.split(/[\s,]+/)
 		.map(canonical_origin)
 		.filter((origin): origin is string => origin !== null)
 		.filter((origin) => new URL(`${new URL(origin).protocol}//${app_url.host}`).origin === origin);
+
 	return [...new Set([app_url.origin, ...configured])];
 }
 

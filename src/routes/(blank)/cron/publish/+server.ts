@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { CRON_SECRET } from '$app/env/private';
 import { db } from '$server/db/client';
 import { content } from '$server/db/schema';
 import { error, json } from '@sveltejs/kit';
@@ -6,7 +6,7 @@ import { and, eq, lte, sql } from 'drizzle-orm';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, url }) => {
-	const cron_secret = env.CRON_SECRET;
+	const cron_secret = CRON_SECRET;
 	if (!cron_secret) {
 		error(500, 'CRON_SECRET is not configured');
 	}

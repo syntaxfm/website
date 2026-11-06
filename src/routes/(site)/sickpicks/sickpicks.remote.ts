@@ -1,4 +1,4 @@
-import { markdown_to_content } from '$lib/content/markdown_to_content.server';
+import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import { lte, desc } from 'drizzle-orm';

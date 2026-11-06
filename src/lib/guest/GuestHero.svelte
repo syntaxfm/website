@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Collage from '$lib/collage/Collage.svelte';
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
-	import { string_hash } from '$lib/utils/string_hash';
+	import Collage from '#lib/collage/Collage.svelte';
+	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
+	import { string_hash } from '#lib/utils/string_hash.ts';
 
 	interface Props {
 		guest: {

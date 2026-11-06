@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MarkdownContent from '$lib/content/MarkdownContent.svelte';
+	import MarkdownContent from '#lib/content/MarkdownContent.svelte';
 
 	let { data } = $props();
 </script>

@@ -2,8 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
 	import AdminSearch from '../AdminSearch.svelte';
 	import { create_guest, list_guests } from './admin_guests.remote';
 
@@ -32,9 +32,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -58,7 +57,7 @@
 		try {
 			const created = await create_guest({ name: trimmed_name });
 			new_guest_name = '';
-			await goto(resolve(`/admin/guests/${created.id}`));
+			await goto(resolve(`admin/guests/${created.id}`));
 		} catch (error) {
 			console.error('Unable to create guest', error);
 			action_error = error instanceof Error ? error.message : 'Unable to create guest.';
@@ -107,7 +106,7 @@
 				/>
 				{#if show_clear_filters}
 					<div class="admin-control-row">
-						<a class="button" data-intent="quiet" href={resolve('/admin/guests')}>× Clear</a>
+						<a class="button" data-intent="quiet" href={resolve('admin/guests')}>× Clear</a>
 					</div>
 				{/if}
 			</div>
@@ -133,9 +132,7 @@
 		{#snippet table_body()}
 			{#each list_result.items as guest_row (guest_row.id)}
 				<tr>
-					<td>
-						<a href={resolve(`/admin/guests/${guest_row.id}`)}>{guest_row.name}</a>
-					</td>
+					<td><a href={resolve(`admin/guests/${guest_row.id}`)}>{guest_row.name}</a></td>
 					<td>/{guest_row.name_slug}</td>
 					<td>
 						{#if guest_row.twitter}

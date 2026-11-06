@@ -7,9 +7,9 @@ import {
 	get_id_from_url,
 	get_thumbnail_from_id,
 	get_thumbnail_srcset_from_id
-} from '$lib/videos/utils';
+} from '#lib/videos/utils.ts';
 import get_show_path from '$utilities/slug';
-import type { RankedContent } from '$lib/sidebar/ranked';
+import type { RankedContent } from '#lib/sidebar/ranked.ts';
 
 export const get_feed_content = query(() => {
 	return db.query.content.findMany({

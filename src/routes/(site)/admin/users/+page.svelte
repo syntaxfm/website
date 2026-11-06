@@ -4,9 +4,9 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminSearch from '../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import { build_url, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import { build_url, read_int, read_string } from '#lib/admin/admin_filters.ts';
 	import { bulk_assign_role, bulk_remove_role, list_roles, list_users } from './admin_users.remote';
 
 	const PAGE_SIZE = 25;
@@ -50,9 +50,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -254,7 +253,8 @@
 							{#if user_row.email}
 								<p class="fs-2">{user_row.email}</p>
 							{/if}
-							<a class="button" data-intent="quiet" href={resolve(`/admin/users/${user_row.id}`)}
+
+							<a class="button" data-intent="quiet" href={resolve(`admin/users/${user_row.id}`)}
 								>Edit</a
 							>
 						</div>

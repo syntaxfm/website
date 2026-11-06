@@ -1,4 +1,4 @@
-import { formatAsTranscript, getSlimUtterances } from '$server/transcripts/utils';
+import { formatAsTranscript, getSlimUtterances } from '#lib/transcript/utils.ts';
 import { encode } from 'gpt-3-encoder';
 import OpenAI from 'openai';
 import type { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
@@ -7,7 +7,7 @@ import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 import { create_condensed_prompt, summarize_prompt, summarize_prompt_2 } from './prompts';
 import type { AIPodcastSummaryResponse } from './queries';
 import type { DBUtterance, SlimUtterance, TranscribedShow } from '../transcripts/types';
-import { env } from '$env/dynamic/private';
+import { OPENAI_API_KEY } from '$app/env/private';
 
 const TOKEN_LIMIT = 7000;
 const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
@@ -16,10 +16,7 @@ const TOKEN_INPUT_LIMIT = TOKEN_LIMIT - COMPLETION_TOKEN_IDEAL;
 export const MODEL = 'gpt-4';
 export const EMBEDDING_MODEL = 'text-embedding-ada-002';
 const CONDENSE_THRESHOLD = 100;
-
-const openai = new OpenAI({
-	apiKey: env.OPENAI_API_KEY
-});
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 async function condense(
 	transcript: string,
@@ -94,13 +91,12 @@ async function condense(
 			}
 			const smaller = encode(condensed || '').length;
 			const original = encode(utterance.transcript).length;
+
 			console.log(
 				index,
 				'/',
 				slim_utterances.length,
-				`Condensed from ${original} to ${smaller} tokens - ${Math.round(
-					(smaller / original) * 100
-				)}% of original`
+				`Condensed from ${original} to ${smaller} tokens - ${Math.round((smaller / original) * 100)}% of original`
 			);
 			console.timeEnd(`Condensing ${index} of ${slim_utterances.length}`);
 			// Return the modifined utterance

@@ -1,19 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
+	import type { Path } from '$app/types';
 
-	type NavLink = { text: string; path: Pathname; subroutes?: NavLink[] };
+	type NavLink = { text: string; path: Path; subroutes?: NavLink[] };
 
 	const links: NavLink[] = [
-		{
-			text: 'Dashboard',
-			path: '/admin'
-		},
-		{
-			text: 'Submissions',
-			path: '/admin/submissions'
-		},
+		{ text: 'Dashboard', path: '/admin' },
+		{ text: 'Submissions', path: '/admin/submissions' },
 		{
 			text: 'Content',
 			path: '/admin/content',
@@ -48,14 +42,8 @@
 				}
 			]
 		},
-		{
-			text: 'Tags',
-			path: '/admin/tags'
-		},
-		{
-			text: 'Guests',
-			path: '/admin/guests'
-		},
+		{ text: 'Tags', path: '/admin/tags' },
+		{ text: 'Guests', path: '/admin/guests' },
 		{
 			text: 'Users',
 			path: '/admin/users',
@@ -68,7 +56,7 @@
 		}
 	];
 
-	function path_matches(link_path: Pathname, current_path: string): boolean {
+	function path_matches(link_path: Path, current_path: string): boolean {
 		return (
 			current_path === link_path ||
 			(link_path !== '/admin' && current_path.startsWith(`${link_path}/`))

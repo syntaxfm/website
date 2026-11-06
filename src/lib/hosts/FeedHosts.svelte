@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FacePile from '$lib/hosts/FacePile.svelte';
+	import FacePile from '#lib/hosts/FacePile.svelte';
 	import type { ShowWithHostsAndGuests } from '$server/db/types';
 
 	import { get_faces_from_show } from './hosts_utils';
