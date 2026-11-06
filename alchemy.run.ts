@@ -96,14 +96,24 @@ const syntax_database = Cloudflare.Hyperdrive.Connection(
 // src/server/db/client.ts reads HYPERDRIVE from platform.env.
 const secret = (name: string) => Config.Redacted(name);
 
+// The spam check on the user submission form (Potluck questions and the like)
+const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
+	name: 'syntax-website-beta-submissions',
+	domains: [BETA_DOMAIN],
+	mode: 'managed'
+});
+
 // A missing secret stops the deploy
 export const website_props = Effect.gen(function* () {
+	const turnstile = yield* submission_turnstile;
 	return {
 		domain: BETA_DOMAIN,
 		workersDev: false,
 		compatibility: COMPATIBILITY,
 		env: {
 			HYPERDRIVE: syntax_database,
+			PUBLIC_TURNSTILE_SITE_KEY: turnstile.sitekey,
+			TURNSTILE_SECRET: turnstile.secret,
 			CONVERT_KIT_SECRET: yield* secret('CONVERT_KIT_SECRET'),
 			CONVERT_KIT_V4_API_KEY: yield* secret('CONVERT_KIT_V4_API_KEY'),
 			DEEPGRAM_SECRET: yield* secret('DEEPGRAM_SECRET'),
