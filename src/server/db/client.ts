@@ -5,6 +5,7 @@ import { getRequestEvent } from '$app/server';
 import type { RequestEvent } from '@sveltejs/kit';
 import * as tables from './schema';
 import * as relations from './relations';
+import { time_query } from '$server/server_timing';
 import { POSTGRES_DATABASE_URL, DATABASE_URL } from '$app/env/private';
 
 // Drizzle needs the table definitions and relations combined into one schema object
@@ -28,6 +29,10 @@ function connect(connection_url: string | undefined) {
 		prepare: true,
 		ssl: connection_url.includes('localhost') ? false : 'prefer'
 	});
+	// Drizzle runs every query through `unsafe`
+	const unsafe = client.unsafe.bind(client);
+	client.unsafe = ((...args: Parameters<typeof unsafe>) =>
+		time_query(unsafe(...args))) as typeof client.unsafe;
 	return drizzle(client, { schema, logger: false });
 }
 

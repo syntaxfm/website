@@ -2,6 +2,7 @@ import * as v from 'valibot';
 import { with_show_card_show } from '$server/shows/shows_queries';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
+import { edge_cached } from '$server/edge_cache';
 import { guest } from '$server/db/schema';
 import { eq } from 'drizzle-orm';
 
@@ -56,31 +57,35 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 	});
 });
 
-export const get_all_guests = query(async () => {
-	return db.query.guest.findMany({
-		columns: {
-			id: true,
-			name: true,
-			name_slug: true,
-			of: true,
-			github: true,
-			twitter: true,
-			url: true
-		},
-		with: {
-			showGuests: {
-				columns: {},
-				with: {
-					show: {
-						columns: {
-							number: true,
-							slug: true,
-							title: true
+// Every guest with their episodes (177 guests, 57 KB; Postgres takes 3 ms, the round trip ~100 ms).
+// Guests change when an episode comes out.
+export const get_all_guests = query(() =>
+	edge_cached('all-guests', { fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 7 }, () =>
+		db.query.guest.findMany({
+			columns: {
+				id: true,
+				name: true,
+				name_slug: true,
+				of: true,
+				github: true,
+				twitter: true,
+				url: true
+			},
+			with: {
+				showGuests: {
+					columns: {},
+					with: {
+						show: {
+							columns: {
+								number: true,
+								slug: true,
+								title: true
+							}
 						}
 					}
 				}
-			}
-		},
-		orderBy: (g, { asc }) => [asc(g.name)]
-	});
-});
+			},
+			orderBy: (g, { asc }) => [asc(g.name)]
+		})
+	)
+);

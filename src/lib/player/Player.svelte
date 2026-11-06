@@ -13,7 +13,7 @@
 	import { enter_fullscreen, open_show_page } from '#lib/videos/video_actions.ts';
 
 	const show = await get_latest_podcast();
-	player.initialize(show);
+	player.initialize(show ?? undefined);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
 	let has_video = $derived(Boolean(get_id_from_url($player.current_show?.youtube_url)));

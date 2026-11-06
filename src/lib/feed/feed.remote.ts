@@ -3,7 +3,6 @@ import { query } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { content, content_tags, tag } from '$server/db/schema';
-import { with_show_card_show } from '$server/shows/shows_queries';
 import {
 	get_id_from_url,
 	get_thumbnail_from_id,
@@ -39,14 +38,31 @@ export const get_feed_content = query(() =>
 	)
 );
 
-export const get_most_popular_content_this_week = query(async (): Promise<RankedContent[]> => {
+// The show page sidebar. Was every show card field (22 KB, ~110 ms uncached); now only what
+// RankedItem renders, edge cached like the feed.
+export const get_most_popular_content_this_week = query(() =>
+	edge_cached(
+		'most-popular-this-week',
+		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
+		load_most_popular_content
+	)
+);
+
+async function load_most_popular_content(): Promise<RankedContent[]> {
 	// TODO: rank by real popularity once we track it; for now, the most recent published podcasts.
 	const rows = await db.query.content.findMany({
+		columns: { id: true, title: true, published_at: true },
 		where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
 		limit: 6,
 		with: {
-			show: { with: with_show_card_show }
+			show: {
+				columns: { number: true, slug: true, date: true, youtube_url: true },
+				with: {
+					guests: { columns: {}, with: { guest: { columns: { name: true } } } },
+					hosts: { columns: {}, with: { profile: { columns: { name: true } } } }
+				}
+			}
 		}
 	});
 
@@ -70,14 +86,14 @@ export const get_most_popular_content_this_week = query(async (): Promise<Ranked
 			series: 'Syntax Podcast',
 			number: show.number,
 			thumbnail: youtube_id ? get_thumbnail_from_id(youtube_id) : null,
-			thumbnail_srcset: youtube_id ? get_thumbnail_srcset_from_id(youtube_id) : undefined,
-			date: row.published_at ?? show.date,
+			thumbnail_srcset: youtube_id ? get_thumbnail_srcset_from_id(youtube_id) : null,
+			date: (row.published_at ?? show.date).toISOString(),
 			people: [...guests, ...hosts]
 		});
 	}
 
 	return items;
-});
+}
 
 // Two aggregate queries (220-520 ms) for a sidebar that changes when content is published
 export const get_trending_tags = query(() =>
@@ -91,28 +107,28 @@ export const get_trending_tags = query(() =>
 async function load_trending_tags(): Promise<{ name: string; slug: string | null }[]> {
 	const ninety_days_ago = new Date(Date.now() - 1000 * 60 * 60 * 24 * 90);
 
-	const recent = await db
-		.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
-		.from(content_tags)
-		.innerJoin(tag, eq(tag.id, content_tags.tag_id))
-		.innerJoin(content, eq(content.id, content_tags.content_id))
-		.where(and(eq(content.status, 'PUBLISHED'), gte(content.published_at, ninety_days_ago)))
-		.groupBy(tag.id, tag.name, tag.slug)
-		.orderBy(desc(count(content_tags.content_id)))
-		.limit(20);
+	// Both at once: each query is a ~100 ms round trip to the database (Postgres itself takes 2 ms),
+	// and the recent one currently finds nothing, so running them one after the other cost two.
+	const [recent, all_time] = await Promise.all([
+		db
+			.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
+			.from(content_tags)
+			.innerJoin(tag, eq(tag.id, content_tags.tag_id))
+			.innerJoin(content, eq(content.id, content_tags.content_id))
+			.where(and(eq(content.status, 'PUBLISHED'), gte(content.published_at, ninety_days_ago)))
+			.groupBy(tag.id, tag.name, tag.slug)
+			.orderBy(desc(count(content_tags.content_id)))
+			.limit(20),
+		// Fallback while the content migration is still backfilling recent tags.
+		db
+			.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
+			.from(content_tags)
+			.innerJoin(tag, eq(tag.id, content_tags.tag_id))
+			.groupBy(tag.id, tag.name, tag.slug)
+			.orderBy(desc(count(content_tags.content_id)))
+			.limit(20)
+	]);
 
-	if (recent.length >= 5) {
-		return recent.map((row) => ({ name: row.name, slug: row.slug }));
-	}
-
-	// Fallback while the content migration is still backfilling recent tags.
-	const all_time = await db
-		.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
-		.from(content_tags)
-		.innerJoin(tag, eq(tag.id, content_tags.tag_id))
-		.groupBy(tag.id, tag.name, tag.slug)
-		.orderBy(desc(count(content_tags.content_id)))
-		.limit(20);
-
-	return all_time.map((row) => ({ name: row.name, slug: row.slug }));
+	const tags = recent.length >= 5 ? recent : all_time;
+	return tags.map((row) => ({ name: row.name, slug: row.slug }));
 }

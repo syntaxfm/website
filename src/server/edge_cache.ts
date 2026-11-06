@@ -5,6 +5,7 @@
 // Under `pnpm dev` (Node) there is no edge cache, so the data is computed every time.
 import { getRequestEvent } from '$app/server';
 import { PUBLIC_URL } from '$app/env/public';
+import { add_timing } from '$server/server_timing';
 
 const FRESH_UNTIL_HEADER = 'x-fresh-until';
 const EDGE_CACHE_HOST_PREFIX = 'edge-cache.';
@@ -16,16 +17,33 @@ interface EdgeCacheTimes {
 	stale_seconds: number;
 }
 
-// `compute` must return JSON-serializable data. It should throw rather than return a fallback on
-// failure, so a failure is never cached.
+// A value's type after a JSON round trip: Dates become ISO strings.
+export type Jsonified<T> = T extends Date
+	? string
+	: T extends string | number | boolean | null | undefined
+		? T
+		: T extends readonly (infer Item)[]
+			? Jsonified<Item>[]
+			: T extends object
+				? { [Key in keyof T]: Jsonified<T[Key]> }
+				: T;
+
+function as_json<T>(value: T): Jsonified<T> {
+	return JSON.parse(JSON.stringify(value ?? null)) as Jsonified<T>;
+}
+
+// Always returns the JSON copy, cached or not (and under `pnpm dev`), so callers see one shape.
+// `compute` should throw rather than return a fallback on failure, so a failure is never cached.
 export async function edge_cached<T>(
 	key: string,
 	{ fresh_seconds, stale_seconds }: EdgeCacheTimes,
 	compute: () => Promise<T>
-): Promise<T> {
-	const { platform } = getRequestEvent();
+): Promise<Jsonified<T>> {
+	const event = getRequestEvent();
+	const { platform } = event;
 	const cache = platform?.caches?.default;
-	if (!cache) return compute();
+	if (!cache) return as_json(await compute());
+	const lookup_start = performance.now();
 
 	// Its own hostname, so purging the site's pages after a deploy (scripts/purge-beta-cache.ts)
 	// keeps this data warm. Data outlives deploys: change the key when a value's shape changes.
@@ -34,7 +52,7 @@ export async function edge_cached<T>(
 	);
 
 	const refresh = async () => {
-		const value = await compute();
+		const value = as_json(await compute());
 		const response = new Response(JSON.stringify(value), {
 			headers: {
 				'content-type': 'application/json',
@@ -54,6 +72,11 @@ export async function edge_cached<T>(
 		console.error(`edge_cached: could not read "${key}"`, error);
 		return undefined;
 	});
+	add_timing(
+		event,
+		cached ? 'edge-cache-hit' : 'edge-cache-miss',
+		performance.now() - lookup_start
+	);
 	if (!cached) return refresh();
 
 	if (Number(cached.headers.get(FRESH_UNTIL_HEADER)) < Date.now()) {
@@ -62,5 +85,5 @@ export async function edge_cached<T>(
 		});
 		if (platform?.ctx) platform.ctx.waitUntil(background);
 	}
-	return (await cached.json()) as T;
+	return (await cached.json()) as Jsonified<T>;
 }

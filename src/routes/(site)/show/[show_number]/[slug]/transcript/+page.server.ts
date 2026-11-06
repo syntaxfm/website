@@ -1,20 +1,22 @@
 import { db } from '$server/db/client';
-import { get_show_cache_s } from '$utilities/get_show_cache_ms';
+import { edge_cached } from '$server/edge_cache';
 
-export const load = async function ({ setHeaders, params, parent }) {
-	const { show } = await parent();
-	const cache_ms = get_show_cache_s(show.date);
-	setHeaders({
-		'cache-control': `public, s-maxage=${cache_ms}, stale-while-revalidate=${cache_ms}`
-	});
-	const { show_number } = params;
+// A transcript doesn't change once it's made. Edge cached because pages can't be shared-cached:
+// every page renders for its visitor (hooks.server.ts).
+export const load = async function ({ params }) {
+	const show_number = parseInt(params.show_number);
 
 	return {
-		transcript: await db.query.transcript.findFirst({
-			where: (transcripts, { eq }) => eq(transcripts.show_number, parseInt(show_number)),
-			with: {
-				utterances: true
-			}
-		})
+		transcript: await edge_cached(
+			`transcript-${show_number}`,
+			{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 30 },
+			async () =>
+				(await db.query.transcript.findFirst({
+					where: (transcripts, { eq }) => eq(transcripts.show_number, show_number),
+					with: {
+						utterances: true
+					}
+				})) ?? null
+		)
 	};
 };

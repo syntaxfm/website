@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const request_event: { platform?: App.Platform } = {};
+const request_event: { platform?: App.Platform; request: Request } = {
+	request: new Request('https://beta.syntax.fm/')
+};
 vi.mock('$app/server', () => ({ getRequestEvent: () => request_event }));
 vi.mock('$app/env/public', () => ({ PUBLIC_URL: 'beta.syntax.fm' }));
 

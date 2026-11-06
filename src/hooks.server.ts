@@ -8,6 +8,7 @@ import { form_data } from 'sk-form-data';
 import { dev } from '$app/env';
 import { PUBLIC_URL } from '$app/env/public';
 import { PRODUCTION_HOST } from '$const';
+import { add_timing, server_timing_header } from '$server/server_timing';
 
 import {
 	get_admin_guard_response,
@@ -59,6 +60,7 @@ const auth: Handle = async function ({ event, resolve }) {
 
 	let set_cookie_headers: string[] = [];
 	if (event.url.pathname !== '/logout') {
+		const auth_start = performance.now();
 		const auth_result = await get_syntax_auth(event.request.headers.get('cookie'), event.fetch, {
 			required: requires_sign_in
 		});
@@ -78,6 +80,7 @@ const auth: Handle = async function ({ event, resolve }) {
 			event.locals.user = await get_authenticated_user(auth_result.auth.user);
 			event.locals.auth_session = auth_result.auth.session;
 		}
+		add_timing(event, 'auth', performance.now() - auth_start);
 	}
 
 	if (is_admin_route) {
@@ -118,6 +121,34 @@ const preload_fonts: Handle = async function ({ event, resolve }) {
 	});
 };
 
+// Where each request's server time went, for DevTools' Timing tab (see server_timing.ts)
+const server_timing: Handle = async function ({ event, resolve }) {
+	const start = performance.now();
+	const response = await resolve(event);
+	try {
+		response.headers.append(
+			'server-timing',
+			server_timing_header(event, performance.now() - start)
+		);
+	} catch {
+		// Responses passed through from fetch() have immutable headers; they go without
+	}
+	return response;
+};
+
+// Every page renders for its visitor: the (site) layout carries the signed-in user and their
+// theme. The Worker's shared cache keys only by URL, so a cached page went to everyone: measured
+// on beta, a page requested with a theme cookie was served, with that theme, to the next visitor.
+// Pages and page data stay out of shared caches; speed comes from caching the data underneath
+// (server/edge_cache.ts), which is the same for everyone.
+const private_pages: Handle = async function ({ event, resolve }) {
+	const response = await resolve(event);
+	if (event.isDataRequest || response.headers.get('x-sveltekit-page') === 'true') {
+		response.headers.set('cache-control', 'private, no-cache');
+	}
+	return response;
+};
+
 // Plausible, proxied through /api/57475. Only the live site counts, so betas and previews don't
 // mix into syntax.fm's stats. Fills the %syntax.analytics% placeholder in app.html.
 const ANALYTICS_SCRIPT =
@@ -148,6 +179,8 @@ const safe_form_data: Handle = async function ({ event, resolve }) {
 export const handle: Handle = sequence(
 	sentry_init,
 	Sentry.sentryHandle(),
+	server_timing,
+	private_pages,
 	request_metadata,
 	auth,
 	safe_form_data,

@@ -8,7 +8,7 @@
 			show: string;
 			thumbnail?: string;
 			youtube_url?: string;
-			date: Date;
+			date: Date | string;
 			number: number;
 			slug: string;
 		}[];
