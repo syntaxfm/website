@@ -1,74 +1,21 @@
-import { dev } from '$app/env';
-import chrome from '@sparticuz/chromium';
-import puppeteer, { Browser } from 'puppeteer-core';
+import { error } from '@sveltejs/kit';
+import { get_og_image, og_image_key } from '$server/og/og_image';
 
-const exe_path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-
-chrome.setGraphicsMode = true;
-
-async function getOptions() {
-	if (dev) {
-		return {
-			product: 'chrome',
-			args: [],
-			executablePath: exe_path,
-			headless: true
-		};
-	}
-	return {
-		product: 'chrome',
-		args: chrome.args,
-		executablePath: await chrome.executablePath(),
-		headless: !!chrome.headless
-	};
-}
-
-let browser: Browser | null = null;
-
-async function getScreenshot(url: string) {
-	const options = await getOptions();
-	console.time(`launching browser`);
-	// We load the browser outside the handler so we can re-use a warm instance
-	if (!browser) {
-		console.log(`launching browser`);
-		browser = await puppeteer.launch(options);
-	}
-	console.timeEnd(`launching browser`);
-
-	console.log(`creating new page`);
-	const page = await browser.newPage();
-	await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
-	await page.goto(url);
-	await page.waitForSelector('.finish-sizing-text');
-	const buffer = await page.screenshot({ type: 'jpeg' });
-	return buffer;
-}
-
-export const config = {
-	maxDuration: 30 // vercel timeout 30s
-};
-
-const headers = {
-	'Content-Type': 'image/jpeg',
-	// cache for 10 minutes, allow stale to be served for up for another 10 mins
-	'cache-control': 'public, s-maxage=600, stale-while-revalidate=600'
-};
+// The image only changes when its show does, and a changed show gets a new stored image (its key
+// is a hash of what it shows), so browsers keep it a day and Cloudflare's edge a week. Deploys
+// purge the edge cache; the stored copy in R2 answers the next request without a new render.
+const IMAGE_CACHE_CONTROL = `public, max-age=${60 * 60 * 24}, s-maxage=${60 * 60 * 24 * 7}`;
 
 export async function GET({ url, params }) {
-	const start = performance.now();
-	// const qs = new URLSearchParams(url.search);
-	// const show = qs.get('show');
-	const show = params.show_number;
+	// A show number, or a page's title (Meta.svelte)
+	const show_number_or_title = params.show_number;
+	const key = await og_image_key(show_number_or_title);
+	if (!key) error(404, 'Show not found');
 
-	console.time(`Taking screenshot of ${show}`);
-	const photo_buffer = await getScreenshot(`${url.origin}/og/${show}`);
-	console.timeEnd(`Taking screenshot of ${show}`);
-	const end = performance.now();
-	console.log(`time to render ${show}:`, (end - start) / 1000);
+	const page_url = `${url.origin}/og/${encodeURIComponent(show_number_or_title)}`;
+	const image = await get_og_image(key, page_url);
 
-	// Copy into an ArrayBuffer-backed view: BodyInit rejects views that may wrap a SharedArrayBuffer.
-	return new Response(new Uint8Array(photo_buffer), {
-		status: 200,
-		headers
+	return new Response(image.slice().buffer, {
+		headers: { 'content-type': 'image/jpeg', 'cache-control': IMAGE_CACHE_CONTROL }
 	});
 }

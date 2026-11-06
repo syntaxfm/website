@@ -103,6 +103,10 @@ const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
 	mode: 'managed'
 });
 
+// Share (OG) images: rendered once with Cloudflare's browser (BROWSER), then kept here
+// (src/server/og/og_image.ts)
+const og_images = Cloudflare.R2.Bucket('OgImages');
+
 // A missing secret stops the deploy
 export const website_props = Effect.gen(function* () {
 	const turnstile = yield* submission_turnstile;
@@ -112,6 +116,8 @@ export const website_props = Effect.gen(function* () {
 		compatibility: COMPATIBILITY,
 		env: {
 			HYPERDRIVE: syntax_database,
+			BROWSER: Cloudflare.Browser(),
+			OG_IMAGES: og_images,
 			PUBLIC_TURNSTILE_SITE_KEY: turnstile.sitekey,
 			TURNSTILE_SECRET: turnstile.secret,
 			CONVERT_KIT_SECRET: yield* secret('CONVERT_KIT_SECRET'),

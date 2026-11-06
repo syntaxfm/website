@@ -139,6 +139,9 @@
 
 <style lang="postcss">
 	article {
+		/* A dark card whatever the viewer's color scheme (as Header.svelte does): --c-fg is
+		   light-dark(), which the build polyfills from the page-wide prefers-color-scheme */
+		--c-fg: var(--c-white);
 		border: 10px solid var(--c-yellow);
 		border-radius: 35px;
 		container: show-card / inline-size;
