@@ -120,6 +120,8 @@ export const website_props = Effect.gen(function* () {
 			OG_IMAGES: og_images,
 			PUBLIC_TURNSTILE_SITE_KEY: turnstile.sitekey,
 			TURNSTILE_SECRET: turnstile.secret,
+			// Callers of /webhooks/* and /cron/* must present it (has_auth.ts, cron/publish)
+			CRON_SECRET: yield* secret('CRON_SECRET'),
 			CONVERT_KIT_SECRET: yield* secret('CONVERT_KIT_SECRET'),
 			CONVERT_KIT_V4_API_KEY: yield* secret('CONVERT_KIT_V4_API_KEY'),
 			DEEPGRAM_SECRET: yield* secret('DEEPGRAM_SECRET'),
