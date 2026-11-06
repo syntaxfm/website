@@ -14,5 +14,8 @@
 			"schedule": "*/5 * * * *"
 		}
 	],
+	"git": {
+		"deploymentEnabled": false
+	},
 	"installCommand": "pnpm install"
 }
