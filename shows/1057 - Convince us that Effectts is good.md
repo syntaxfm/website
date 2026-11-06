@@ -1,7 +1,7 @@
 ---
 number: 1057
 title: Convince us that Effect.ts is good
-date: 1793876400000
+date: 1795003200000
 url: https://traffic.megaphone.fm/FSI7047632099.mp3
 youtube_url: https://www.youtube.com/watch?v=fLi2HivlhAI
 guest:
