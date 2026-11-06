@@ -119,6 +119,8 @@ export const website_props = Effect.gen(function* () {
 			DEEPGRAM_SECRET: yield* secret('DEEPGRAM_SECRET'),
 			MEGAPHONE_API_TOKEN: yield* secret('MEGAPHONE_API_TOKEN'),
 			MEGAPHONE_NETWORK_ID: yield* secret('MEGAPHONE_NETWORK_ID'),
+			// Not secret: set in .env.schema
+			MEGAPHONE_PODCAST_ID: yield* Config.String('MEGAPHONE_PODCAST_ID'),
 			OPENAI_API_KEY: yield* secret('OPENAI_API_KEY'),
 			YOUTUBE_API_KEY: yield* secret('YOUTUBE_API_KEY')
 		}
