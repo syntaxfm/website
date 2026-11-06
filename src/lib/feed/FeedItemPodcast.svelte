@@ -1,11 +1,12 @@
 <script lang="ts">
 	import TagRow from '../tags/TagRow.svelte';
-	import type { ShowWithHostsAndGuests } from '$server/db/types';
+	import type { ComponentProps } from 'svelte';
+	import type { FaceShow } from '#lib/hosts/hosts_utils.ts';
 	import FeedHosts from '#lib/hosts/FeedHosts.svelte';
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
 
-	type Feed_show = ShowWithHostsAndGuests & { thumbnail?: string | null };
+	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow;
 	type Feed_content = {
 		tags: Array<{ tag: { name: string; slug: string | null } }>;
 	};

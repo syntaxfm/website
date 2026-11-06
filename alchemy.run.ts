@@ -22,6 +22,10 @@ const BETA_DOMAIN = 'beta.syntax.fm';
 // nodejs_compat: postgres.js, Deepgram streams and Sentry use Node APIs
 const COMPATIBILITY = { date: '2026-11-01', flags: ['nodejs_compat'] };
 
+// No placement: measured 2026-11-06 from Denver, pinning the Worker to the database's region
+// (aws:us-east-1) added ~55 ms to every request (robots.txt 72 -> 131 ms, page data 80 -> 125-190
+// ms) and only helped the two oversized remote queries. Fix those instead.
+
 class DeployTargetError extends Data.TaggedError('DeployTargetError')<{
 	readonly message: string;
 }> {}

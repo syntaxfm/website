@@ -11,29 +11,23 @@ import {
 import get_show_path from '$utilities/slug';
 import type { RankedContent } from '#lib/sidebar/ranked.ts';
 
+// Only what the feed cards render (FeedItemPodcast, FeedHosts, ShowThumbnail, FeedItemVideo).
+// Selecting whole rows sent show notes, search vectors and AI notes: 494 KB per call.
 export const get_feed_content = query(() => {
 	return db.query.content.findMany({
+		columns: { id: true, type: true },
 		orderBy: (c, { desc }) => [desc(c.published_at)],
 		limit: 100,
 		with: {
 			show: {
+				columns: { number: true, title: true, slug: true, url: true, youtube_url: true },
 				with: {
-					guests: { with: { guest: true } },
-					hosts: { with: { profile: true } },
-					aiShowNote: {
-						with: {
-							topics: true
-						}
-					}
+					guests: { columns: {}, with: { guest: { columns: { name: true, github: true } } } },
+					hosts: { columns: {}, with: { profile: { columns: { name: true, username: true } } } }
 				}
 			},
-			tags: {
-				with: {
-					tag: true
-				}
-			},
-			article: true,
-			video: true
+			tags: { columns: {}, with: { tag: { columns: { name: true, slug: true } } } },
+			video: { columns: { title: true } }
 		}
 	});
 });
