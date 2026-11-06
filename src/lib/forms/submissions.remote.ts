@@ -1,5 +1,5 @@
 import { form } from '$app/server';
-import { env } from '$env/dynamic/private';
+import { TURNSTILE_SECRET } from '$app/env/private';
 import { z } from 'zod';
 import { db } from '$server/db/client';
 import { userSubmission } from '$server/db/schema';
@@ -13,7 +13,8 @@ const submission_form_schema = user_submission_schema.extend({
 export const submit_user_submission = form(submission_form_schema, async (data) => {
 	const { cf_turnstile_response: turnstile_token, submission_type, body, name, email } = data;
 
-	const { success, error } = await validateToken(turnstile_token, env.TURNSTILE_SECRET);
+	if (!TURNSTILE_SECRET) throw new Error('TURNSTILE_SECRET is not set');
+	const { success, error } = await validateToken(turnstile_token, TURNSTILE_SECRET);
 	if (!success) {
 		return { success: false, message: `Captcha failed${error ? `: ${error}` : ''}` };
 	}

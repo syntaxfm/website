@@ -5,7 +5,7 @@
 	import type { Video } from '$server/db/types';
 
 	type Props = {
-		video: Video;
+		video: Pick<Video, 'title'>;
 	};
 
 	const { video }: Props = $props();

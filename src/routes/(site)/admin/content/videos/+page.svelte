@@ -4,16 +4,16 @@
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import AdminSearch from '../../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import StatusBadge from '$lib/admin/StatusBadge.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import StatusBadge from '#lib/admin/StatusBadge.svelte';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
 		read_string
-	} from '$lib/admin/admin_filters';
+	} from '#lib/admin/admin_filters.ts';
 	import { list_videos } from './admin_videos.remote';
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
@@ -61,9 +61,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 </script>
@@ -74,7 +73,7 @@
 
 <div class="admin-page stack">
 	<div class="admin-actions">
-		<a class="button small" data-intent="primary" href={resolve('/admin/content/videos/import')}
+		<a class="button small" data-intent="primary" href={resolve('admin/content/videos/import')}
 			>Import New Videos</a
 		>
 	</div>
@@ -130,7 +129,7 @@
 						onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
 					/>
 					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('/admin/content/videos')}
+						<a class="button small" data-intent="quiet" href={resolve('admin/content/videos')}
 							>× Clear</a
 						>
 					{/if}
@@ -154,7 +153,7 @@
 						<div class="admin-row">
 							<p>{display_title}</p>
 							{#if has_content}
-								<a href={resolve(`/admin/content/videos/${video_row.meta?.id}`)}>Edit</a>
+								<a href={resolve(`admin/content/videos/${video_row.meta?.id}`)}>Edit</a>
 							{/if}
 						</div>
 					</td>

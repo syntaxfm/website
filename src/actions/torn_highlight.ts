@@ -1,5 +1,5 @@
 import type { Attachment } from 'svelte/attachments';
-import { string_hash } from '$lib/utils/string_hash';
+import { string_hash } from '#lib/utils/string_hash.ts';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 

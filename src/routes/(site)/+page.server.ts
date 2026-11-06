@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import { get_youtube_live_stream, type YouTubeLiveStream } from '$server/video/youtube_live';
 import type { PageServerLoad } from './$types';
 

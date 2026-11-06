@@ -4,16 +4,16 @@
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import AdminSearch from '../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import { humanize_enum } from '$lib/utils/format_enum';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
 		read_string
-	} from '$lib/admin/admin_filters';
+	} from '#lib/admin/admin_filters.ts';
 	import {
 		bulk_update_submission_status,
 		get_submissions,
@@ -118,9 +118,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -271,7 +270,7 @@
 								})}
 						/>
 						{#if show_clear_filters}
-							<a class="button small" data-intent="quiet" href={resolve('/admin/submissions')}
+							<a class="button small" data-intent="quiet" href={resolve('admin/submissions')}
 								>× Clear</a
 							>
 						{/if}

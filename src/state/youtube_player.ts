@@ -1,6 +1,6 @@
 import type { PlayerShow } from './player_utils';
 import { get, writable } from 'svelte/store';
-import { get_id_from_url } from '$lib/videos/utils';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 import { get_saved_position, record_duration, save_position } from './media_timeline';
 import { mark_youtube_unavailable } from './media_preference';
 

@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/sveltekit';
 import { get, writable } from 'svelte/store';
 import toast from 'svelte-french-toast';
 import { load_media_session } from '$utilities/media/load_media_session';
-import { get_id_from_url } from '$lib/videos/utils';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_cached_or_network_show } from './player_offline';
 import {

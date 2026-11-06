@@ -1,5 +1,8 @@
+import at_import from 'postcss-import';
+import postcss_preset_env from 'postcss-preset-env';
+import preprocess from 'svelte-preprocess';
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
-import { sentrySvelteKit } from '@sentry/sveltekit';
+import { sentrySvelteKit } from '@sentry/sveltekit/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { codecovSvelteKitPlugin } from '@codecov/sveltekit-plugin';
@@ -14,7 +17,7 @@ export default defineConfig(({ mode, command }) => {
 			port: 5740
 		},
 		plugins: [
-			// Dev server only: production gets its env from the host (Vercel), not a varlock boot, and
+			// Dev server only: production gets its env from the host (Worker vars and secrets), not a varlock boot, and
 			// tests need no secrets (so they never wait on 1Password). Imported lazily because loading
 			// the module resolves the env as a side effect.
 			command === 'serve' &&
@@ -27,14 +30,61 @@ export default defineConfig(({ mode, command }) => {
 			syntax_auth({
 				public_origins: (env.SYNTAX_AUTH_PUBLIC_ORIGINS ?? '').split(/[\s,]+/).filter(Boolean)
 			}),
+			// `adapter` set by hand: Sentry can't detect Alchemy's injected Cloudflare adapter
 			sentrySvelteKit({
-				sourceMapsUploadOptions: {
-					org: 'syntax-fm',
-					project: 'website',
-					authToken: env.SENTRY_AUTH_TOKEN
+				adapter: 'cloudflare',
+				org: 'syntax-fm',
+				project: 'website',
+				authToken: env.SENTRY_AUTH_TOKEN
+			}),
+
+			sveltekit({
+				preprocess: [
+					preprocess({
+						postcss: {
+							prependData: `
+				@custom-media --below-small (width < 400px);
+				@custom-media --below-med (width < 700px);
+				@custom-media --below-large (width < 900px);
+				@custom-media --below-xlarge (width < 1200px);
+				@custom-media --above-small (width > 400px);
+				@custom-media --above-med (width > 700px);
+				@custom-media --above-large (width > 900px);
+				@custom-media --above-xlarge (width > 1200px);
+			`,
+
+							plugins: [
+								at_import,
+								postcss_preset_env({
+									stage: 2,
+									features: {
+										'nesting-rules': true,
+										'custom-media-queries': true,
+										'media-query-ranges': true
+									}
+								})
+							]
+						}
+					})
+				],
+				compilerOptions: { experimental: { async: true } },
+				// Not forkPreloads: tried 2026-11-06, it looped /shows (effect_update_depth_exceeded,
+				// endless get_all_podcasts requests, no episodes) and gained little over caching.
+				experimental: { remoteFunctions: true },
+				// No `adapter`: Alchemy's SvelteKit resource (alchemy.run.ts) injects its own Cloudflare
+				// adapter on `alchemy deploy`. `pnpm dev` runs on Node and needs none.
+				alias: {
+					$actions: 'src/actions',
+					$assets: 'src/assets',
+					$const: 'src/const.ts',
+					$server: 'src/server',
+					$shows: 'shows',
+					$state: 'src/state',
+					$styles: 'src/styles',
+					$utilities: 'src/utilities'
 				}
 			}),
-			sveltekit(),
+
 			codecovSvelteKitPlugin({
 				enableBundleAnalysis: env.CODECOV_TOKEN !== undefined,
 				bundleName: 'website',

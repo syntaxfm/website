@@ -3,14 +3,14 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import { onDestroy } from 'svelte';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
-	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
-	import MarkdownEditor from '$lib/admin/MarkdownEditor.svelte';
-	import MultiSelect from '$lib/admin/MultiSelect.svelte';
-	import SlugEditor from '$lib/admin/SlugEditor.svelte';
-	import StatusSelect from '$lib/admin/StatusSelect.svelte';
-	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
+	import MarkdownEditor from '#lib/admin/MarkdownEditor.svelte';
+	import MultiSelect from '#lib/admin/MultiSelect.svelte';
+	import SlugEditor from '#lib/admin/SlugEditor.svelte';
+	import StatusSelect from '#lib/admin/StatusSelect.svelte';
+	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import {
 		delete_article,
 		get_article_authors,
@@ -151,7 +151,7 @@
 
 		await autosave.save_now();
 		await delete_article({ content_id: article_item.content_id, confirm_text: 'DELETE' });
-		await goto(resolve('/admin/content/articles'));
+		await goto(resolve('admin/content/articles'));
 	}
 
 	onDestroy(() => autosave.cleanup());

@@ -1,4 +1,5 @@
-import { error, isHttpError, type Handle, type RequestEvent } from '@sveltejs/kit';
+import { error, isHttpError, type RequestEvent } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit/hooks';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -6,15 +7,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const { find_profile } = vi.hoisted(() => ({ find_profile: vi.fn() }));
 
 vi.mock('@sentry/sveltekit', () => ({
-	init: vi.fn(),
-	redisIntegration: vi.fn(),
+	initCloudflareSentryHandle:
+		(): Handle =>
+		async ({ event, resolve }) =>
+			resolve(event),
 	sentryHandle:
 		(): Handle =>
 		async ({ event, resolve }) =>
 			resolve(event),
 	handleErrorWithSentry: () => vi.fn()
 }));
-vi.mock('@sentry/profiling-node', () => ({ nodeProfilingIntegration: vi.fn() }));
 vi.mock('sk-form-data', () => ({
 	form_data: (({ event, resolve }) => resolve(event)) satisfies Handle
 }));
@@ -26,7 +28,11 @@ vi.mock('@sveltejs/kit/hooks', () => ({
 			const run = (index: number, current: RequestEvent): ReturnType<Handle> =>
 				index === handles.length
 					? resolve(current)
-					: handles[index]({ event: current, resolve: (next) => run(index + 1, next) });
+					: handles[index]({
+							event: current,
+							// SvelteKit 3's resolve always returns a Promise
+							resolve: async (next) => run(index + 1, next)
+						});
 			return run(0, event);
 		}
 }));
@@ -36,7 +42,7 @@ vi.mock('$server/db/client', () => ({
 
 async function load_handle(dev: boolean): Promise<Handle> {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return (await import('./hooks.server')).handle;
 }
 
@@ -110,6 +116,8 @@ afterEach(() => {
 
 describe('auth hook in production', async () => {
 	const handle = await load_handle(false);
+	// The same module instance the hooks loaded
+	const { get_request_user } = await import('$server/auth/request_auth');
 
 	it('sends a signed-out admin visit to central sign-in without asking Auth', async () => {
 		const response = await handle({
@@ -138,7 +146,9 @@ describe('auth hook in production', async () => {
 		expect(event_fetch).toHaveBeenCalledOnce();
 		expect(platform_fetch).not.toHaveBeenCalled();
 		expect(resolve).toHaveBeenCalledOnce();
-		expect(event.locals.user?.roles).toEqual(['admin']);
+		expect((await get_request_user(event))?.roles).toEqual(['admin']);
+		// Asked once per request: the lookup above reused the hook's answer
+		expect(event_fetch).toHaveBeenCalledOnce();
 		expect(response.headers.getSetCookie()).toEqual(cookies);
 	});
 
@@ -158,8 +168,71 @@ describe('auth hook in production', async () => {
 	});
 });
 
+describe('page cache', async () => {
+	const handle = await load_handle(false);
+	const SENTRY_TAGS =
+		'<meta name="sentry-trace" content="trace-1"/><meta name="baggage" content="sentry-trace_id=trace-1"/>';
+
+	function page_resolve(headers: Record<string, string> = {}) {
+		return vi.fn(
+			async () =>
+				new Response(`<html><head>${SENTRY_TAGS}</head><body>page</body></html>`, {
+					headers: { 'x-sveltekit-page': 'true', 'content-type': 'text/html', ...headers }
+				})
+		);
+	}
+
+	it('caches a public page at the edge, without Sentry trace tags', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/shows', { route_id: '/(site)/shows' }),
+			resolve: page_resolve()
+		});
+
+		expect(response.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=300');
+		const html = await response.text();
+		expect(html).toContain('page');
+		expect(html).not.toContain('sentry-trace');
+		expect(html).not.toContain('baggage');
+	});
+
+	it('keeps a page that sets a cookie private', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/shows', { route_id: '/(site)/shows' }),
+			resolve: page_resolve({ 'set-cookie': 'a=1; Path=/' })
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-cache');
+	});
+
+	it('keeps a route that sets its own cache-control as it is', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/show/2000/future', {
+				route_id: '/(site)/show/[show_number]/[slug]'
+			}),
+			resolve: page_resolve({ 'cache-control': 'private, no-store' })
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-store');
+	});
+
+	it('keeps the account page private', async () => {
+		event_fetch.mockResolvedValue(session_response(central_session));
+		const response = await handle({
+			event: make_event('https://syntax.fm/login', {
+				route_id: '/(site)/login',
+				cookie: 'session=value'
+			}),
+			resolve: page_resolve()
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-cache');
+	});
+});
+
 describe('auth hook in development', async () => {
 	const handle = await load_handle(true);
+	// The same module instance the hooks loaded
+	const { get_request_user } = await import('$server/auth/request_auth');
 
 	it('renders a public page without asking Auth when there is no cookie', async () => {
 		const response = await handle({
@@ -171,8 +244,7 @@ describe('auth hook in development', async () => {
 		expect(platform_fetch).not.toHaveBeenCalled();
 	});
 
-	it('renders a public page signed out when Auth is down', async () => {
-		platform_fetch.mockRejectedValue(new TypeError('fetch failed'));
+	it('renders a public page without asking Auth, even with a cookie', async () => {
 		const event = make_event('http://localhost:5740/', {
 			route_id: '/(site)',
 			cookie: 'theme=dark'
@@ -181,7 +253,8 @@ describe('auth hook in development', async () => {
 		const response = await handle({ event, resolve });
 
 		expect(await response.text()).toBe('page');
-		expect(event.locals.user).toBeNull();
+		expect(platform_fetch).not.toHaveBeenCalled();
+		expect(event_fetch).not.toHaveBeenCalled();
 	});
 
 	it.each([
@@ -251,8 +324,7 @@ describe('auth hook in development', async () => {
 		const response = await handle({ event, resolve });
 
 		expect(await response.text()).toBe('page');
-		expect(event.locals.user?.id).toBe('local-developer');
-		expect(event.locals.auth_session).not.toHaveProperty('token');
+		expect((await get_request_user(event))?.id).toBe('local-developer');
 		expect(response.headers.getSetCookie()).toEqual(cookies);
 	});
 

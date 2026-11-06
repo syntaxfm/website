@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
-	import Collage from '$lib/collage/Collage.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import Collage from '#lib/collage/Collage.svelte';
 	import NewsletterForm from './NewsletterForm.svelte';
 	import NewsletterLogo from './NewsletterLogo.svelte';
 	const { count }: { count: string } = $props();

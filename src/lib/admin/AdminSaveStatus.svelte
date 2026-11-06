@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AutosaveState } from '$lib/utils/autosave.svelte';
+	import type { AutosaveState } from '#lib/utils/autosave.svelte.ts';
 
 	interface Props {
 		state: AutosaveState;

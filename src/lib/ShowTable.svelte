@@ -37,14 +37,14 @@
 				{#each shows as show (show.number)}
 					<tr>
 						<td>{format(show.date, 'E MMM d')}</td>
+						<td
+							><a href={resolve(`${show.number}`)} target="_blank">{show.number} {show.title} [↗]</a
+							></td
+						>
+
 						<td>
-							<a href={resolve(`/${show.number}`)} target="_blank">
-								{show.number}
-								{show.title}
-								[↗]
-							</a>
+							<a href={resolve(`admin/content/podcast/${show.number}`)}>Edit</a>
 						</td>
-						<td><a href={resolve(`/admin/content/podcast/${show.number}`)}>Edit</a></td>
 					</tr>
 				{/each}
 			{:else}

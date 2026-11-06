@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { string_hash } from '$lib/utils/string_hash';
+	import { string_hash } from '#lib/utils/string_hash.ts';
 	import {
 		generate_collage,
 		torn_paper_path,

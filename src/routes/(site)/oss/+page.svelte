@@ -1,6 +1,6 @@
 <script lang="ts">
-	import UserSubmissionForm from '$lib/forms/UserSubmissionForm.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
+	import UserSubmissionForm from '#lib/forms/UserSubmissionForm.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
 </script>
 
 <Meta

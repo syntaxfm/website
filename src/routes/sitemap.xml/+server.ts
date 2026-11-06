@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_URL } from '$env/static/public';
+import { PUBLIC_URL } from '$app/env/public';
 import { db } from '$server/db/client';
 import { show as showsTable, guest as guestsTable } from '$server/db/schema';
 import { lte } from 'drizzle-orm';

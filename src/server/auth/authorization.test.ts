@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { find_profile } = vi.hoisted(() => ({ find_profile: vi.fn() }));
 
-vi.mock('$app/environment', () => ({ dev: false }));
+vi.mock('$app/env', () => ({ dev: false }));
 
 vi.mock('$server/db/client', () => ({
 	db: {
@@ -78,7 +78,7 @@ describe('get_admin_guard_response', () => {
 		['http://dev.example/admin', '/admin']
 	])('sends %s to sign in at its own address in development builds', async (current, return_to) => {
 		vi.resetModules();
-		vi.doMock('$app/environment', () => ({ dev: true }));
+		vi.doMock('$app/env', () => ({ dev: true }));
 		const development = await import('./authorization');
 		const response = development.get_admin_guard_response(null, new URL(current));
 		const location = response?.headers.get('Location') ?? '';

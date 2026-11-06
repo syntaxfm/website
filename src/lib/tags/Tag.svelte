@@ -5,7 +5,7 @@
 </script>
 
 {#if slug}
-	<a href={resolve(`/tags/${slug}`)} class="tag fs-caption">#{name}</a>
+	<a href={resolve(`tags/${slug}`)} class="tag fs-caption">#{name}</a>
 {:else}
 	<span class="tag fs-caption">#{name}</span>
 {/if}

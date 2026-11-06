@@ -204,6 +204,7 @@
 	--logo-mask-image: url('$assets/Grit Mask@2x.png');
 
 	/* Misc */
+	--page-transition-duration: 100ms;
 
 	/* Some of these are to appease stylelint */
 	--transition-name: 'null';

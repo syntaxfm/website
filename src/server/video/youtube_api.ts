@@ -11,7 +11,7 @@ import {
 	showVideo,
 	video
 } from '$server/db/schema';
-import { env } from '$env/dynamic/private';
+import { YOUTUBE_API_KEY } from '$app/env/private';
 
 // Youtube importer
 // Important things to know -> Youtube is the source of truth for all the data
@@ -60,7 +60,7 @@ interface YouTubePlaylistItemResponse {
 }
 
 export async function get_youtube_playlists(): Promise<void> {
-	const api_key = env.YOUTUBE_API_KEY;
+	const api_key = YOUTUBE_API_KEY;
 	if (!api_key) {
 		throw new Error('YOUTUBE_API_KEY must be set to import YouTube playlists');
 	}
@@ -120,7 +120,7 @@ export async function get_youtube_playlists(): Promise<void> {
 export async function import_youtube_playlist(playlist_id: string) {
 	// Yo, let's grab that playlist data from the YouTube API!
 	const playlist_response = await fetch(
-		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlist_id}&key=${env.YOUTUBE_API_KEY}`
+		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlist_id}&key=${YOUTUBE_API_KEY}`
 	);
 
 	if (!playlist_response.ok) {
@@ -161,9 +161,7 @@ export async function import_youtube_playlist(playlist_id: string) {
 	do {
 		// Time to fetch those video details, page by page!
 		const video_response = await fetch(
-			`https://www.googleapis.com/youtube/v3/playlist_items?part=snippet&playlistId=${playlist_id}&key=${env.YOUTUBE_API_KEY}&maxResults=50${
-				next_page_token ? `&pageToken=${next_page_token}` : ''
-			}`
+			`https://www.googleapis.com/youtube/v3/playlist_items?part=snippet&playlistId=${playlist_id}&key=${YOUTUBE_API_KEY}&maxResults=50${next_page_token ? `&pageToken=${next_page_token}` : ''}`
 		);
 
 		if (!video_response.ok) {
@@ -195,7 +193,7 @@ export async function import_youtube_playlist(playlist_id: string) {
 
 	// Fetch video details using the videos endpoint
 	const videos_response = await fetch(
-		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${video_ids.join(',')}&key=${env.YOUTUBE_API_KEY}`
+		`https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${video_ids.join(',')}&key=${YOUTUBE_API_KEY}`
 	);
 
 	if (!videos_response.ok) {
@@ -249,7 +247,7 @@ export async function import_youtube_playlist(playlist_id: string) {
 				.insert(playlistOnVideo)
 				.values({
 					video_id: item.id,
-					playlist_id: playlist_id,
+					playlist_id,
 					order: playlist_item?.snippet.position || 0
 				})
 				.onConflictDoUpdate({

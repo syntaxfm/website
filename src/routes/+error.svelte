@@ -1,28 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Layout from './(site)/+layout.svelte';
-
-	type PageSafeUser = {
-		id: string;
-		name: string;
-		image: string | null;
-		roles: string[];
-	} | null;
-
-	interface Props {
-		// error page does not automatically infer layout data...
-		data: {
-			user: PageSafeUser;
-			user_theme: string;
-		};
-	}
-
-	let { data }: Props = $props();
-	let { user, user_theme } = $derived(data);
 </script>
 
 <!-- Manually render (site) layout around error -->
-<Layout data={{ user: user, user_theme }}>
+<Layout>
 	<div>
 		<h2>Oopsie-daisy</h2>
 		{#if page?.error?.message}

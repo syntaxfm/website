@@ -149,20 +149,21 @@
 
 <nav {@attach attach_nav} aria-label="Primary navigation">
 	<ul {@attach attach_menu} id={nav_id} class:open={is_open}>
-		<li><a href={resolve('/shows')} onclick={close}>Shows</a></li>
-		<li><a href={resolve('/about')} onclick={close}>About</a></li>
-		<li><a href={resolve('/snackpack')} onclick={close}>Newsletter</a></li>
-		<li><a href={resolve('/potluck')} onclick={close}>Potluck Qs</a></li>
+		<li><a href={resolve('shows')} onclick={close}>Shows</a></li>
+		<li><a href={resolve('about')} onclick={close}>About</a></li>
+		<li><a href={resolve('snackpack')} onclick={close}>Newsletter</a></li>
+		<li><a href={resolve('potluck')} onclick={close}>Potluck Qs</a></li>
+
 		<li>
 			<a href="https://sentry.shop/collections/syntax" rel="external" onclick={close}>Shop</a>
 		</li>
 	</ul>
 
 	<div class="nav-actions">
-		<button type="button" class="search-control" aria-label="Search" onclick={open_search}>
-			<Icon name="search" />
-			<span>Search</span>
-		</button>
+		<button type="button" class="search-control" aria-label="Search" onclick={open_search}
+			><Icon name="search" /> <span>Search</span></button
+		>
+
 		<button
 			{@attach attach_toggle}
 			type="button"

@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { article, content, content_tags } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
@@ -43,14 +44,6 @@ const delete_article_schema = v.object({
 	confirm_text: v.string()
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 function normalize_slug(input_text: string) {
 	return get_slug(input_text, {
 		separator: '-',
@@ -73,7 +66,7 @@ function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 }
 
 export const get_all_articles = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.article.findMany({
 		with: {
@@ -174,14 +167,14 @@ function fetch_article_rows(content_ids: string[]) {
 }
 
 export const list_articles = query(list_articles_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	return fetch_article_list(input);
 });
 
 export const create_article = command(create_article_schema, async (input) => {
-	const event = assert_admin_user();
+	const admin = await assert_admin();
 
-	const author_id = event.locals.user?.profile_id;
+	const author_id = admin.profile_id;
 	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}
@@ -229,7 +222,7 @@ export const create_article = command(create_article_schema, async (input) => {
 });
 
 export const get_article_editor = query(v.string(), async (content_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.article.findFirst({
 		where: eq(article.content_id, content_id),
@@ -249,7 +242,7 @@ export const get_article_editor = query(v.string(), async (content_id) => {
 });
 
 export const get_article_authors = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.profile.findMany({
 		columns: {
@@ -263,7 +256,7 @@ export const get_article_authors = query(async () => {
 });
 
 export const update_article = command(update_article_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug);
 	if (!normalized_slug) {
@@ -337,7 +330,7 @@ export const update_article = command(update_article_schema, async (input) => {
 });
 
 export const delete_article = command(delete_article_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (input.confirm_text !== 'DELETE') {
 		error(400, 'Type DELETE to confirm article deletion');

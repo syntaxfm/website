@@ -1,15 +1,15 @@
 <script lang="ts">
 	import '../../../(site)/style.css';
 	import { format } from 'date-fns';
-	import Icon from '$lib/Icon.svelte';
-	import ListenLinks from '$lib/ListenLinks.svelte';
-	import AlbumArt from '$lib/player/AlbumArt.svelte';
-	import ShareButton from '$lib/share/HairButton.svelte';
+	import Icon from '#lib/Icon.svelte';
+	import ListenLinks from '#lib/ListenLinks.svelte';
+	import AlbumArt from '#lib/player/AlbumArt.svelte';
+	import ShareButton from '#lib/share/HairButton.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import ShareActions from '$lib/share/ShareActions.svelte';
+	import ShareActions from '#lib/share/ShareActions.svelte';
 	import { fade } from 'svelte/transition';
 	import { episode_share_status } from '$state/player.js';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 
 	let { data } = $props();
 	let { show } = $derived(data);
@@ -26,9 +26,8 @@
 		<p class="show-page-date" style:--transition-name="show-date-{show.number}">
 			{format(new Date(show.date), 'MMMM do, yyyy')}
 		</p>
-		<h1>
-			<span>{show.title} </span>
-		</h1>
+
+		<h1><span>{show.title}</span></h1>
 
 		<div class="player-container">
 			<AlbumArt is_link={true} {show} />

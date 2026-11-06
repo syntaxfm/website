@@ -1,8 +1,9 @@
-import { markdown_to_content } from '$lib/content/markdown_to_content.server';
+import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import { lte, desc } from 'drizzle-orm';
 import { query } from '$app/server';
+import { edge_cached } from '$server/edge_cache';
 
 function cleanUpLines(string: string) {
 	return string
@@ -13,7 +14,17 @@ function cleanUpLines(string: string) {
 		.join('\n');
 }
 
-export const get_sick_picks = query(async () => {
+// Reads every show's notes and renders each pick's Markdown: ~1.2 s per call uncached. Picks only
+// change when an episode comes out, so the result is cached at the edge.
+export const get_sick_picks = query(() =>
+	edge_cached(
+		'sick-picks',
+		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 7 },
+		load_sick_picks
+	)
+);
+
+async function load_sick_picks() {
 	// Load ALL shows from the database
 	const shows_data = await db.query.show.findMany({
 		columns: {
@@ -70,4 +81,4 @@ export const get_sick_picks = query(async () => {
 			};
 		});
 	return sick_picks;
-});
+}

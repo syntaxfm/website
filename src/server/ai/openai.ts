@@ -1,4 +1,4 @@
-import { formatAsTranscript, getSlimUtterances } from '$server/transcripts/utils';
+import { formatAsTranscript, getSlimUtterances } from '#lib/transcript/utils.ts';
 import { encode } from 'gpt-3-encoder';
 import OpenAI from 'openai';
 import type { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
@@ -7,7 +7,7 @@ import { anthropic_completion, convert_openai_to_anthropic } from './anthropic';
 import { create_condensed_prompt, summarize_prompt, summarize_prompt_2 } from './prompts';
 import type { AIPodcastSummaryResponse } from './queries';
 import type { DBUtterance, SlimUtterance, TranscribedShow } from '../transcripts/types';
-import { env } from '$env/dynamic/private';
+import { OPENAI_API_KEY } from '$app/env/private';
 
 const TOKEN_LIMIT = 7000;
 const COMPLETION_TOKEN_IDEAL = 1500; // how many tokens we should reserve to the completion - otherwise the responses are poor quality
@@ -16,10 +16,13 @@ const TOKEN_INPUT_LIMIT = TOKEN_LIMIT - COMPLETION_TOKEN_IDEAL;
 export const MODEL = 'gpt-4';
 export const EMBEDDING_MODEL = 'text-embedding-ada-002';
 const CONDENSE_THRESHOLD = 100;
+let openai_client: OpenAI | undefined;
 
-const openai = new OpenAI({
-	apiKey: env.OPENAI_API_KEY
-});
+// Created on first use: the SDK throws on a missing key, and the module must load without one
+function get_openai(): OpenAI {
+	if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is not set');
+	return (openai_client ??= new OpenAI({ apiKey: OPENAI_API_KEY }));
+}
 
 async function condense(
 	transcript: string,
@@ -74,12 +77,14 @@ async function condense(
 				// "temperature": 0.3
 			};
 			console.log(`Condensing`, index, `of`, slim_utterances.length);
-			const completion = await openai.chat.completions.create(input).catch((err) => {
-				// Catch the error in transcribing so we can at least save the utterance without the condensed transcript
-				console.log(`❗️ Error Condensing`, index, `of`, slim_utterances.length);
-				console.dir(err.response?.data);
-				console.dir(err.response?.headers);
-			});
+			const completion = await get_openai()
+				.chat.completions.create(input)
+				.catch((err) => {
+					// Catch the error in transcribing so we can at least save the utterance without the condensed transcript
+					console.log(`❗️ Error Condensing`, index, `of`, slim_utterances.length);
+					console.dir(err.response?.data);
+					console.dir(err.response?.headers);
+				});
 			const condensed = completion?.choices?.at(0)?.message?.content;
 			// Inject the condensed transcript into the utterance
 			if (condensed) {
@@ -94,13 +99,12 @@ async function condense(
 			}
 			const smaller = encode(condensed || '').length;
 			const original = encode(utterance.transcript).length;
+
 			console.log(
 				index,
 				'/',
 				slim_utterances.length,
-				`Condensed from ${original} to ${smaller} tokens - ${Math.round(
-					(smaller / original) * 100
-				)}% of original`
+				`Condensed from ${original} to ${smaller} tokens - ${Math.round((smaller / original) * 100)}% of original`
 			);
 			console.timeEnd(`Condensing ${index} of ${slim_utterances.length}`);
 			// Return the modifined utterance
@@ -177,18 +181,20 @@ export async function generate_ai_notes(
 		const anthropic_input = convert_openai_to_anthropic(input);
 		const anthropic_result = await anthropic_completion(anthropic_input);
 		console.log(anthropic_result);
-		const start_index = anthropic_result.completion.indexOf('{');
-		const end_index = anthropic_result.completion.lastIndexOf('}');
-		const json_part = anthropic_result.completion.substring(start_index, end_index + 1);
+		const start_index = anthropic_result.indexOf('{');
+		const end_index = anthropic_result.lastIndexOf('}');
+		const json_part = anthropic_result.substring(start_index, end_index + 1);
 		console.log(`JSON Part: ${json_part}`);
 		const aparsed = JSON.parse(json_part) as AIPodcastSummaryResponse;
 		return { ...aparsed, provider: 'anthropic' };
 	}
 	// OpenAI
 	console.log(`Using openai for ${show.number}`);
-	const completion = await openai.chat.completions.create(input).catch((err) => {
-		console.dir(err.response?.data?.error, { depth: null });
-	});
+	const completion = await get_openai()
+		.chat.completions.create(input)
+		.catch((err) => {
+			console.dir(err.response?.data?.error, { depth: null });
+		});
 	const maybe_json = completion?.choices.at(0)?.message?.content;
 	console.log(maybe_json);
 	const parsed = JSON.parse(maybe_json || '') as AIPodcastSummaryResponse;

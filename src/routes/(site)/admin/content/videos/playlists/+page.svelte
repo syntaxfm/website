@@ -4,8 +4,8 @@
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import AdminSearch from '../../../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import { build_url, has_any_filter, read_int, read_string } from '$lib/admin/admin_filters';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
 	import { create_playlist, list_playlists } from './admin_playlists.remote';
 
 	const FILTER_KEYS = ['q'] as const;
@@ -29,9 +29,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>): void {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -49,7 +48,7 @@
 
 		try {
 			const created = await create_playlist({ title: trimmed_title });
-			await goto(resolve(`/admin/content/videos/playlists/${created.id}`));
+			await goto(resolve(`admin/content/videos/playlists/${created.id}`));
 		} catch (error) {
 			console.error('Unable to create playlist', error);
 			create_error = error instanceof Error ? error.message : 'Unable to create playlist.';
@@ -105,7 +104,7 @@
 				/>
 				{#if show_clear_filters}
 					<div class="admin-actions">
-						<a class="button" data-intent="quiet" href={resolve('/admin/content/videos/playlists')}
+						<a class="button" data-intent="quiet" href={resolve('admin/content/videos/playlists')}
 							>Clear filters</a
 						>
 					</div>
@@ -124,9 +123,9 @@
 			{#each list_result.items as playlist_row (playlist_row.id)}
 				<tr>
 					<td>
-						<a href={resolve(`/admin/content/videos/playlists/${playlist_row.id}`)}>
-							{playlist_row.title}
-						</a>
+						<a href={resolve(`admin/content/videos/playlists/${playlist_row.id}`)}
+							>{playlist_row.title}</a
+						>
 					</td>
 					<td>/{playlist_row.slug}</td>
 					<td>{playlist_row.videos.length}</td>

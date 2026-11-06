@@ -1,4 +1,4 @@
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 
 class LocalStore<T> {
 	#value = $state<T>() as T;

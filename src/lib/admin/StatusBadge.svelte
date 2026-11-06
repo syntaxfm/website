@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { humanize_enum } from '$lib/utils/format_enum';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 
 	interface Props {
 		status: string | null | undefined;

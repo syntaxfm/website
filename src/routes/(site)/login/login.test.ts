@@ -1,14 +1,24 @@
 import { isRedirect, type Redirect } from '@sveltejs/kit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-const { private_env } = vi.hoisted(() => ({
-	private_env: {} as Record<string, string | undefined>
+const { private_env, request_user } = vi.hoisted(() => ({
+	private_env: {} as Record<string, string | undefined>,
+	request_user: { current: null as { id: string; name: string } | null }
 }));
-vi.mock('$env/dynamic/private', () => ({ env: private_env }));
+// The signed-in user comes from Syntax Auth on demand (server/auth/request_auth.ts)
+vi.mock('$server/auth/request_auth', () => ({
+	get_request_user: async () => request_user.current
+}));
+// A getter, so each test can set or delete the value
+vi.mock('$app/env/private', () => ({
+	get SYNTAX_AUTH_PUBLIC_ORIGINS() {
+		return private_env.SYNTAX_AUTH_PUBLIC_ORIGINS;
+	}
+}));
 
 async function load_login(dev: boolean) {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return (await import('./+page.server')).load;
 }
 
@@ -17,11 +27,12 @@ type LoginLoad = Awaited<ReturnType<typeof load_login>>;
 // The Sentry plugin wraps load functions in tests too, so the load is awaited and has a request.
 async function run_login(load: LoginLoad, href: string, signed_in = false) {
 	const set_headers = vi.fn();
+	request_user.current = signed_in ? { id: 'local-developer', name: 'Local Developer' } : null;
 	const event = {
 		url: new URL(href),
 		request: new Request(href),
 		route: { id: '/(site)/login' },
-		locals: { user: signed_in ? { id: 'local-developer' } : null },
+		locals: {},
 		setHeaders: set_headers
 	} as unknown as Parameters<LoginLoad>[0];
 
@@ -74,7 +85,7 @@ describe('/login in development', async () => {
 		);
 
 		expect(redirect).toBeUndefined();
-		expect(data).toEqual({});
+		expect(data).toEqual({ user_name: 'Local Developer' });
 	});
 });
 

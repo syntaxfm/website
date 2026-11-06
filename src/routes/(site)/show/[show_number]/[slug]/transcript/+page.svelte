@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Transcript from '$lib/transcript/Transcript.svelte';
+	import Transcript from '#lib/transcript/Transcript.svelte';
 
 	let { data } = $props();
 	let { transcript, show } = $derived(data);

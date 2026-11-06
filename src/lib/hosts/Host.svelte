@@ -21,15 +21,14 @@
 		<figcaption>
 			<p>
 				{#if guest}
-					<a href={resolve(`/guest/${host.slug}`)}>{host.name}</a>
+					<a href={resolve(`guest/${host.slug}`)}>{host.name}</a>
 				{:else}
 					{host.name}
 				{/if}
 				<span class="host-guest-tag fv-900-i grit">{guest ? 'Guest' : 'Host'}</span>
 			</p>
-			<div>
-				<HostSocialLink {host} />
-			</div>
+
+			<div><HostSocialLink {host} /></div>
 		</figcaption>
 	</figure>
 </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { format, formatDistance } from 'date-fns';
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
+	import type { Path } from '$app/types';
 	import { get_dashboard } from './admin_dashboard.remote';
 
 	const dashboard = await get_dashboard();
@@ -19,7 +19,7 @@
 		show: { number: number; slug: string } | null;
 	};
 
-	function content_edit_link(item: EditLinkInput): Pathname | null {
+	function content_edit_link(item: EditLinkInput): Path | null {
 		const content_type = item.content_type ?? item.type;
 		const content_id = item.content_id ?? item.id;
 		if (content_type === 'PODCAST' && item.show) {
@@ -41,20 +41,21 @@
 
 <div class="admin-page stack">
 	<div class="admin-control-row">
-		<a class="button small" href={resolve('/admin/submissions?status=PENDING')}>
+		<a class="button small" href={resolve('admin/submissions?status=PENDING')}>
 			<strong>{dashboard.pending_submissions_count}</strong>
-			<span>&nbsp;Pending submissions</span>
+			<span>Pending submissions</span>
 		</a>
-		<a class="button small" href={resolve('/admin/content?status=DRAFT')}>
+
+		<a class="button small" href={resolve('admin/content?status=DRAFT')}>
 			<strong>{dashboard.drafts_count}</strong>
-			<span>&nbsp;Drafts</span>
+			<span>Drafts</span>
 		</a>
 		<a
 			class="button small"
-			href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
+			href={resolve(`admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 		>
 			<strong>{dashboard.scheduled_count}</strong>
-			<span>&nbsp;Scheduled</span>
+			<span>Scheduled</span>
 		</a>
 	</div>
 
@@ -65,10 +66,11 @@
 					class="button small"
 					data-intent="quiet"
 					href={resolve(
-						`/admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`
+						`admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`
 					)}
 				>
-					{bucket.submission_type}&nbsp;<strong>{bucket.count}</strong>
+					{bucket.submission_type}
+					<strong>{bucket.count}</strong>
 				</a>
 			{/each}
 		</div>
@@ -97,7 +99,7 @@
 										<span class="fs-1"
 											>{item.was_published ? 'Published' : 'Updated'} · {item.content_type}</span
 										>
-										&nbsp;
+
 										{#if edit_link}
 											<a href={resolve(edit_link)}>{item.title}</a>
 										{:else}
@@ -105,14 +107,12 @@
 										{/if}
 									{:else}
 										<span class="fs-1">Submission · {item.submission_type}</span>
-										&nbsp;
+
 										<a
 											href={resolve(
-												`/admin/submissions?status=PENDING&submission_type=${item.submission_type}`
-											)}
+												`admin/submissions?status=PENDING&submission_type=${item.submission_type}`
+											)}>{item.submitter_name || 'Anon'}</a
 										>
-											{item.submitter_name || 'Anon'}
-										</a>
 									{/if}
 								</td>
 							</tr>
@@ -129,7 +129,7 @@
 			<a
 				class="button"
 				data-intent="quiet"
-				href={resolve(`/admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
+				href={resolve(`admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 				>All upcoming →</a
 			>
 		</div>
@@ -152,26 +152,23 @@
 									<div class="admin-control">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
-												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}
+												href={resolve(`show/${content_row.show.number}/${content_row.show.slug}`)}
 												target="_blank"
-												rel="noopener noreferrer"
+												rel="noopener noreferrer">{content_row.title}</a
 											>
-												{content_row.title}
-											</a>
-											<a href={resolve(`/admin/content/podcast/${content_row.show.number}`)}>Edit</a
-											>
+
+											<a href={resolve(`admin/content/podcast/${content_row.show.number}`)}>Edit</a>
 										{:else if content_row.type === 'VIDEO' && content_row.video}
 											<a
 												href={content_row.video.url}
 												target="_blank"
-												rel="noopener noreferrer external"
+												rel="noopener noreferrer external">{content_row.title}</a
 											>
-												{content_row.title}
-											</a>
-											<a href={resolve(`/admin/content/videos/${content_row.id}`)}>Edit</a>
+											<a href={resolve(`admin/content/videos/${content_row.id}`)}>Edit</a>
 										{:else if content_row.type === 'ARTICLE'}
 											<p>{content_row.title}</p>
-											<a href={resolve(`/admin/content/articles/${content_row.id}`)}>Edit</a>
+
+											<a href={resolve(`admin/content/articles/${content_row.id}`)}>Edit</a>
 										{:else}
 											<p>{content_row.title}</p>
 										{/if}
@@ -249,13 +246,11 @@
 								<td>
 									<div class="admin-control">
 										<a
-											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
+											href={resolve(`show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener noreferrer">{show_row.title}</a
 										>
-											{show_row.title}
-										</a>
-										<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>Edit</a>
+										<a href={resolve(`admin/content/podcast/${show_row.number}`)}>Edit</a>
 									</div>
 								</td>
 								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
@@ -288,13 +283,11 @@
 								<td>
 									<div class="admin-control">
 										<a
-											href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
+											href={resolve(`show/${show_row.number}/${show_row.slug}`)}
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener noreferrer">{show_row.title}</a
 										>
-											{show_row.title}
-										</a>
-										<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>Edit</a>
+										<a href={resolve(`admin/content/podcast/${show_row.number}`)}>Edit</a>
 									</div>
 								</td>
 								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
@@ -309,7 +302,8 @@
 	<section class="admin-section">
 		<div class="admin-control-row">
 			<h2 class="h5">Recently published (last 7 days)</h2>
-			<a class="button" data-intent="quiet" href={resolve('/admin/content?status=PUBLISHED')}
+
+			<a class="button" data-intent="quiet" href={resolve('admin/content?status=PUBLISHED')}
 				>All published →</a
 			>
 		</div>
@@ -332,26 +326,23 @@
 									<div class="admin-control">
 										{#if content_row.type === 'PODCAST' && content_row.show}
 											<a
-												href={resolve(`/show/${content_row.show.number}/${content_row.show.slug}`)}
+												href={resolve(`show/${content_row.show.number}/${content_row.show.slug}`)}
 												target="_blank"
-												rel="noopener noreferrer"
+												rel="noopener noreferrer">{content_row.title}</a
 											>
-												{content_row.title}
-											</a>
-											<a href={resolve(`/admin/content/podcast/${content_row.show.number}`)}>Edit</a
-											>
+
+											<a href={resolve(`admin/content/podcast/${content_row.show.number}`)}>Edit</a>
 										{:else if content_row.type === 'VIDEO' && content_row.video}
 											<a
 												href={content_row.video.url}
 												target="_blank"
-												rel="noopener noreferrer external"
+												rel="noopener noreferrer external">{content_row.title}</a
 											>
-												{content_row.title}
-											</a>
-											<a href={resolve(`/admin/content/videos/${content_row.id}`)}>Edit</a>
+											<a href={resolve(`admin/content/videos/${content_row.id}`)}>Edit</a>
 										{:else if content_row.type === 'ARTICLE'}
 											<p>{content_row.title}</p>
-											<a href={resolve(`/admin/content/articles/${content_row.id}`)}>Edit</a>
+
+											<a href={resolve(`admin/content/articles/${content_row.id}`)}>Edit</a>
 										{:else}
 											<p>{content_row.title}</p>
 										{/if}

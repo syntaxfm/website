@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getSlimUtterances } from '$server/transcripts/utils';
+	import { getSlimUtterances } from '#lib/transcript/utils.ts';
 	import { player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
@@ -8,6 +8,7 @@
 	import TableOfContents from './TableOfContents.svelte';
 
 	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
+	import type { Jsonified } from '$server/edge_cache';
 	import type { SlimUtterance } from '$server/transcripts/types';
 	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { PlayerShow } from '$state/player_utils';
@@ -15,7 +16,8 @@
 	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
-		transcript: TranscriptWithUtterances;
+		// Edge cached as JSON (transcript/+page.server.ts)
+		transcript: Jsonified<TranscriptWithUtterances>;
 		ai_show_note: AINoteWithFriends | null;
 		show: PlayerShow;
 	}

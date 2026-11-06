@@ -36,3 +36,11 @@ scripts/prod_backup.sql
 .warden/
 .design-scratch/
 database_dump.sql
+
+# Cloudflare Workers: local Worker vars/secrets and wrangler state
+.dev.vars*
+.wrangler/
+
+# Alchemy: local deploy state and build output
+.alchemy/
+/dist/

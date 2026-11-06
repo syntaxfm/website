@@ -7,6 +7,8 @@
 	const increment = 1;
 
 	onNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
+
 		const typical_load_time = average_load || 200; //ms
 		const frequency = typical_load_time / 100;
 		let start = performance.now();

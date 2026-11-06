@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Dot from '$lib/utilities/Dot.svelte';
+	import Dot from '#lib/utilities/Dot.svelte';
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
+	import type { Path } from '$app/types';
 	import get_show_path from '$utilities/slug';
 	import ShowThumbnail from './ShowThumbnail.svelte';
 
@@ -37,7 +37,7 @@
 
 <a
 	class="show-link"
-	href={resolve(show_href as Pathname)}
+	href={resolve(show_href as Path)}
 	onclick={onselect}
 	data-has-node={data_has_node ? true : undefined}
 	data-sveltekit-preload-data={preload_data ? '' : undefined}
@@ -46,7 +46,7 @@
 		class={[type === 'list' ? 'flex bg-shade-or-tint-light show-list-view' : 'show-grid-view']}
 	>
 		<ShowThumbnail
-			{show}
+			show={show}
 			class={type === 'list' ? 'br-small' : 'br-medium grid-thumbnail'}
 			width={type === 'list' ? '135px' : '100%'}
 			sizes={type === 'list' ? '135px' : '300px'}

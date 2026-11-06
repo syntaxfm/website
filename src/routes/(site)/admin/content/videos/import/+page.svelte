@@ -6,7 +6,7 @@
 		import_playlist
 	} from '../admin_videos.remote';
 	import AdminSearch from '../../../AdminSearch.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
 
 	interface ActionFeedback {
 		tone: 'positive' | 'negative';

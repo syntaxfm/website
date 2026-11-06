@@ -1,7 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { asc } from 'drizzle-orm';
 import { db } from '$server/db/client';
-import { getSlimUtterances } from '$server/transcripts/utils';
+import { getSlimUtterances } from '#lib/transcript/utils.ts';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);

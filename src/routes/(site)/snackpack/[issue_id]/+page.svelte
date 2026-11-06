@@ -43,7 +43,7 @@
 				'EEEE MMM dd, yyyy'
 			)}
 		</p>
-		<a class="issue-back" href={resolve('/snackpack')}>← Back to all issues</a>
+		<a class="issue-back" href={resolve('snackpack')}>← Back to all issues</a>
 	</header>
 
 	<div class="issue-paper">

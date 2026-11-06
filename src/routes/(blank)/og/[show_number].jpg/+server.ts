@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import chrome from '@sparticuz/chromium';
 import puppeteer, { Browser } from 'puppeteer-core';
 

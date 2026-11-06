@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('$env/dynamic/private', () => ({ env: {} }));
+vi.mock('$app/env/private', () => ({ YOUTUBE_API_KEY: undefined }));
 vi.mock('$server/db/client', () => ({ db: {} }));
 
 import { get_youtube_playlists } from './youtube_api';

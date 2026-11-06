@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '#lib/Icon.svelte';
 
 	type Props = Omit<HTMLInputAttributes, 'id' | 'placeholder' | 'type' | 'value'> & {
 		id?: string;

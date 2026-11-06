@@ -1,11 +1,9 @@
 <script lang="ts">
-	import type { AllPossibleContent } from '$server/db/types';
+	import type { get_feed_content } from './feed.remote';
 	import FeedItemPodcast from './FeedItemPodcast.svelte';
 	import FeedItemVideo from './FeedItemVideo.svelte';
 
-	type Feed_content = AllPossibleContent & {
-		tags: Array<{ tag: { name: string; slug: string | null } }>;
-	};
+	type Feed_content = Awaited<ReturnType<typeof get_feed_content>>[number];
 
 	const { content }: { content: Feed_content } = $props();
 </script>

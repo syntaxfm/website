@@ -7,7 +7,8 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 // These run this project's real route tree and matchers through the installed SvelteKit routing
 // code (not exported, so loaded from its source) — the code the client router and the server use.
 type Callable = (...args: unknown[]) => unknown;
-type Matcher = (param: string) => boolean;
+// SvelteKit 3 matchers, as defineParams returns them (Standard Schema objects)
+type Matcher = unknown;
 type Route = { id: string; page: boolean; endpoint: boolean; pattern: RegExp; params: unknown };
 type ClientRoute = { id: string; exec: (path: string) => unknown };
 type Match = { id: string; params: unknown } | null;
@@ -15,7 +16,7 @@ type Match = { id: string; params: unknown } | null;
 const CATCH_ALL = '/(site)/[...number=app_path]';
 const PREVIOUS_CATCH_ALL = '/(site)/[...number]';
 
-const project_root = fileURLToPath(new URL('../..', import.meta.url));
+const project_root = fileURLToPath(new URL('..', import.meta.url));
 const kit_root = path.dirname(createRequire(import.meta.url).resolve('@sveltejs/kit/package.json'));
 
 function is_callable(value: unknown): value is Callable {
@@ -33,21 +34,20 @@ async function load_installed_kit(file: string, name: string): Promise<Callable>
 }
 
 let routes: Route[] = [];
-let matcher_files: [string, string][] = [];
+let params_file: string | null = null;
 
 beforeAll(async () => {
-	const load_svelte_config = await load_installed_kit(
-		'src/core/config/index.js',
-		'load_svelte_config'
-	);
+	const validate_config = await load_installed_kit('src/core/config/index.js', 'validate_config');
+	const process_config = await load_installed_kit('src/core/config/index.js', 'process_config');
 	const create_manifest_data = await load_installed_kit(
 		'src/core/sync/create_manifest_data/index.js',
 		'default'
 	);
-	const manifest = create_manifest_data({
-		config: await load_svelte_config(project_root),
-		cwd: project_root
-	});
+	// Routing only needs the default file locations (src/routes, src/params.ts)
+	const manifest = create_manifest_data(
+		process_config(validate_config({}), project_root),
+		project_root
+	);
 
 	const listed = field(manifest, 'routes');
 	if (!Array.isArray(listed)) throw new Error('The route manifest has no routes');
@@ -64,27 +64,33 @@ beforeAll(async () => {
 		};
 	});
 
-	matcher_files = Object.entries(field(manifest, 'matchers') ?? {}).map(([name, file]) => {
-		if (typeof file !== 'string') throw new Error(`Unreadable matcher ${name}`);
-		return [name, file];
-	});
+	const listed_params = field(manifest, 'params');
+	if (typeof listed_params !== 'string') throw new Error('The route manifest has no params file');
+	params_file = listed_params;
 });
 
 async function load_matchers(dev: boolean): Promise<Record<string, Matcher>> {
+	if (!params_file) throw new Error('No params file');
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
-	const matchers: Record<string, Matcher> = {};
-	for (const [name, file] of matcher_files) {
-		const match = field(await import(/* @vite-ignore */ path.join(project_root, file)), 'match');
-		if (!is_callable(match)) throw new Error(`${file} exports no match`);
-		matchers[name] = (param) => Boolean(match(param));
+	// src/params.ts reads import.meta.env.DEV (it can't import $app/env)
+	vi.stubEnv('DEV', dev);
+	try {
+		const params = field(
+			await import(/* @vite-ignore */ path.join(project_root, params_file)),
+			'params'
+		);
+		if (typeof params !== 'object' || params === null)
+			throw new Error(`${params_file} exports no params`);
+		// defineParams already shaped them the way SvelteKit's router takes them
+		return Object.fromEntries(Object.entries(params));
+	} finally {
+		vi.unstubAllEnvs();
 	}
-	return matchers;
 }
 
 /** The page routes as the installed client router builds them (parse.js). */
 async function client_routes(dev: boolean): Promise<ClientRoute[]> {
-	const parse = await load_installed_kit('src/runtime/client/parse.js', 'parse');
+	const parse = await load_installed_kit('src/runtime/client/parse.js', 'parse_routes');
 	const dictionary = Object.fromEntries(
 		routes.filter((route) => route.page).map((route) => [route.id, [0]])
 	);
@@ -268,10 +274,10 @@ describe('app_path matcher', () => {
 		const navigate_source = source.slice(source.indexOf('async function navigate({'));
 		const fallback_source = source.slice(source.indexOf('async function server_fallback('));
 		expect(navigate_source).toContain(
-			'let navigation_result = intent && (await load_route(intent));'
+			'let navigation_result = intent && (await load_route({ ...intent, action_result }));'
 		);
 		expect(navigate_source).toMatch(
-			/if \(!navigation_result\) \{[^]*?\} else \{\s*navigation_result = await server_fallback\(/
+			/if \(!navigation_result\) \{[^]*?navigation_result = await server_fallback\(/
 		);
 		expect(navigate_source).toContain('url: new URL(navigation_result.location, url),');
 		expect(fallback_source.slice(0, fallback_source.indexOf('\n}\n'))).toContain(

@@ -2,15 +2,15 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { formatDistanceToNow } from 'date-fns';
-	import Tabs from '$lib/Tabs.svelte';
-	import HostsAndGuests from '$lib/HostsAndGuests.svelte';
-	import ShareWindow from '$lib/share/ShareWindow.svelte';
+	import Tabs from '#lib/Tabs.svelte';
+	import HostsAndGuests from '#lib/HostsAndGuests.svelte';
+	import ShareWindow from '#lib/share/ShareWindow.svelte';
 	import SwaggyNewsletterForm from '../newsletter/SwaggyNewsletterForm.svelte';
 	import PageTitle from '../layout/PageTitle.svelte';
 	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
-	import YoutubeEmbed from '$lib/videos/YoutubeEmbed.svelte';
-	import { get_id_from_url } from '$lib/videos/utils';
+	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
+	import { get_id_from_url } from '#lib/videos/utils.ts';
 
 	let { show, children } = $props();
 	let has_youtube = $derived(Boolean(get_id_from_url(show.youtube_url)));
@@ -23,9 +23,7 @@
 </script>
 
 {#if has_youtube}
-	<div class="youtube">
-		<YoutubeEmbed {show} />
-	</div>
+	<div class="youtube"><YoutubeEmbed {show} /></div>
 {/if}
 <!--
 <div class="show-actions-wrap">
@@ -96,14 +94,14 @@
 	<section>
 		<Tabs>
 			<a
-				data-sveltekit-noscroll
+				data-sveltekit-reset="false"
 				class:active={!page.url.pathname.includes('transcript')}
-				href={resolve(`/show/${page.params.show_number}/${page.params.slug}`)}>Show Notes</a
+				href={resolve(`show/${page.params.show_number}/${page.params.slug}`)}>Show Notes</a
 			>
 			<a
 				class:active={page.url.pathname.includes('transcript')}
-				data-sveltekit-noscroll
-				href={resolve(`/show/${page.params.show_number}/${page.params.slug}/transcript`)}
+				data-sveltekit-reset="false"
+				href={resolve(`show/${page.params.show_number}/${page.params.slug}/transcript`)}
 				>Transcript</a
 			>
 		</Tabs>

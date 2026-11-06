@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Turnstile } from 'svelte-turnstile';
-	import { env } from '$env/dynamic/public';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { submit_user_submission } from './submissions.remote';
 	import InlineError from './InlineError.svelte';
-	import { slide_fade } from '$lib/utils/transitions';
+	import { slide_fade } from '#lib/utils/transitions.ts';
 	import type { SubmissionTypes } from '$server/db/types';
 
 	interface Props {
@@ -13,8 +13,13 @@
 	let { selected_submission_type = 'SPOOKY' }: Props = $props();
 
 	let reset_turnstile: (() => void) | undefined = $state();
+	// Turnstile's token, submitted through a bound hidden field (SvelteKit 3 rejects inputs not
+	// created with fields.*.as(), like the one Turnstile would inject itself)
+	let turnstile_token = $state('');
 
 	const fields = submit_user_submission.fields;
+	// svelte-ignore state_referenced_locally
+	fields.submission_type.set(selected_submission_type);
 </script>
 
 {#if submit_user_submission.result}
@@ -33,6 +38,7 @@
 		} catch (error) {
 			console.error('Submission failed', error);
 		} finally {
+			turnstile_token = '';
 			reset_turnstile?.();
 		}
 	})}
@@ -40,23 +46,13 @@
 	<div class="input-group">
 		<label for="submission_type">Submission Type</label>
 		<div class="input">
-			<select name="submission_type" id="submission_type">
-				<option value="POTLUCK" selected={selected_submission_type === 'POTLUCK'}>
-					Potluck Question
-				</option>
-				<option value="SPOOKY" selected={selected_submission_type === 'SPOOKY'}>
-					👻🎃 Spooky Story Submission
-				</option>
-				<option value="GUEST" selected={selected_submission_type === 'GUEST'}>
-					Guest Suggestion
-				</option>
-				<option value="FEEDBACK" selected={selected_submission_type === 'FEEDBACK'}>
-					Show Feedback
-				</option>
-				<option value="OSS" selected={selected_submission_type === 'OSS'}>
-					💰 OSS Funding Suggestion
-				</option>
-				<option value="OTHER" selected={selected_submission_type === 'OTHER'}>Other</option>
+			<select {...fields.submission_type.as('select')} id="submission_type">
+				<option value="POTLUCK"> Potluck Question </option>
+				<option value="SPOOKY"> 👻🎃 Spooky Story Submission </option>
+				<option value="GUEST"> Guest Suggestion </option>
+				<option value="FEEDBACK"> Show Feedback </option>
+				<option value="OSS"> 💰 OSS Funding Suggestion </option>
+				<option value="OTHER">Other</option>
 			</select>
 		</div>
 	</div>
@@ -69,7 +65,7 @@
 			<InlineError display_error={fields.body.issues()?.[0]?.message} />
 			<textarea
 				id="body"
-				name="body"
+				{...fields.body.as('text')}
 				placeholder="What do you have to say? Write as much as you like!"
 				required
 				minlength={25}
@@ -81,9 +77,8 @@
 		<label for="name">Name</label>
 		<div class="input">
 			<input
-				type="text"
 				id="name"
-				name="name"
+				{...fields.name.as('text')}
 				placeholder="Name, @handle, or Alias"
 				maxlength={100}
 			/>
@@ -95,21 +90,26 @@
 		<div class="input">
 			<InlineError display_error={fields.email.issues()?.[0]?.message} />
 			<input
-				type="email"
 				id="email"
-				name="email"
+				{...fields.email.as('email')}
 				placeholder="Only if we need it"
 				maxlength={100}
 			/>
 		</div>
 	</div>
 	<div class="input-group turnstile">
-		<Turnstile
-			appearance="interaction-only"
-			siteKey={env.PUBLIC_TURNSTILE_SITE_KEY}
-			responseFieldName="cf_turnstile_response"
-			bind:reset={reset_turnstile}
-		/>
+		<!-- Without a site key Turnstile throws while rendering, which SvelteKit 3 turns into the error page -->
+		{#if PUBLIC_TURNSTILE_SITE_KEY}
+			<Turnstile
+				appearance="interaction-only"
+				siteKey={PUBLIC_TURNSTILE_SITE_KEY}
+				responseField={false}
+				bind:reset={reset_turnstile}
+				on:callback={(event) => (turnstile_token = event.detail.token)}
+				on:expired={() => (turnstile_token = '')}
+			/>
+		{/if}
+		<input {...fields.cf_turnstile_response.as('hidden', turnstile_token)} />
 	</div>
 	<button type="submit">Send</button>
 </form>

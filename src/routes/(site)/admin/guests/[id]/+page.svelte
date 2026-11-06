@@ -4,10 +4,10 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
-	import SlugEditor from '$lib/admin/SlugEditor.svelte';
-	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import SlugEditor from '#lib/admin/SlugEditor.svelte';
+	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import {
 		add_social_link,
 		delete_guest,
@@ -159,7 +159,7 @@
 
 		try {
 			await delete_guest({ guest_id: loaded_guest.id, confirm_text: 'DELETE' });
-			await goto(resolve('/admin/guests'));
+			await goto(resolve('admin/guests'));
 		} catch (error) {
 			console.error('Unable to delete guest', error);
 			status_error = error instanceof Error ? error.message : 'Unable to delete guest.';
@@ -357,14 +357,15 @@
 						<li class="admin-row">
 							<span class="admin-control-row">
 								<span class="fs-2">#{show_row.number}</span>
-								<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
+
+								<a href={resolve(`admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
 							</span>
 							<span class="admin-control-row">
 								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
 								<a
 									class="button"
 									data-intent="quiet"
-									href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
+									href={resolve(`show/${show_row.number}/${show_row.slug}`)}
 									target="_blank"
 									rel="noopener noreferrer"
 								>

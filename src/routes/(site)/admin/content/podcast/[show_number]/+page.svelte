@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { onDestroy } from 'svelte';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '$lib/admin/AdminSaveStatus.svelte';
-	import DateTimePicker from '$lib/admin/DateTimePicker.svelte';
-	import MarkdownEditor from '$lib/admin/MarkdownEditor.svelte';
-	import MultiSelect from '$lib/admin/MultiSelect.svelte';
-	import SlugEditor from '$lib/admin/SlugEditor.svelte';
-	import StatusSelect from '$lib/admin/StatusSelect.svelte';
-	import { create_autosave_controller } from '$lib/utils/autosave.svelte';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
+	import MarkdownEditor from '#lib/admin/MarkdownEditor.svelte';
+	import MultiSelect from '#lib/admin/MultiSelect.svelte';
+	import SlugEditor from '#lib/admin/SlugEditor.svelte';
+	import StatusSelect from '#lib/admin/StatusSelect.svelte';
+	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import {
 		add_ai_guest,
 		add_ai_summary_entry,
@@ -1277,7 +1277,7 @@
 						}
 					})}
 				>
-					<input type="hidden" name="n:show_number" value={show.number} />
+					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
 					<button type="submit" data-intent="primary" disabled={ai_busy}>
 						{ai_busy ? 'Generating…' : 'Generate AI notes'}
 					</button>
@@ -1304,7 +1304,7 @@
 						}
 					})}
 				>
-					<input type="hidden" name="n:show_number" value={show.number} />
+					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
 				</form>
 
 				<div class="admin-actions">

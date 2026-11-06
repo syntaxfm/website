@@ -8,12 +8,12 @@
 	import get_show_path from '$utilities/slug';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
-	import { get_latest_podcast } from '$server/shows/shows.remote';
-	import { get_id_from_url } from '$lib/videos/utils';
-	import { enter_fullscreen, open_show_page } from '$lib/videos/video_actions';
+	import { get_latest_podcast } from '#lib/shows/shows.remote.ts';
+	import { get_id_from_url } from '#lib/videos/utils.ts';
+	import { enter_fullscreen, open_show_page } from '#lib/videos/video_actions.ts';
 
 	const show = await get_latest_podcast();
-	player.initialize(show);
+	player.initialize(show ?? undefined);
 
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
 	let has_video = $derived(Boolean(get_id_from_url($player.current_show?.youtube_url)));

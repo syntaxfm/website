@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SyntaxKeyboard from '$lib/SyntaxKeyboard.svelte';
+	import SyntaxKeyboard from '#lib/SyntaxKeyboard.svelte';
 </script>
 
 <div class="layout keyboard-banner">

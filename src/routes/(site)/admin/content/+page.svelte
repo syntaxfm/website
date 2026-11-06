@@ -3,21 +3,21 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
+	import type { Path } from '$app/types';
 	import AdminSearch from '../AdminSearch.svelte';
-	import AdminConfirmDialog from '$lib/admin/AdminConfirmDialog.svelte';
-	import AdminList from '$lib/admin/AdminList.svelte';
-	import SelectMenu from '$lib/SelectMenu.svelte';
-	import MultiSelect from '$lib/admin/MultiSelect.svelte';
-	import StatusBadge from '$lib/admin/StatusBadge.svelte';
-	import { humanize_enum } from '$lib/utils/format_enum';
+	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminList from '#lib/admin/AdminList.svelte';
+	import SelectMenu from '#lib/SelectMenu.svelte';
+	import MultiSelect from '#lib/admin/MultiSelect.svelte';
+	import StatusBadge from '#lib/admin/StatusBadge.svelte';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
 		read_string
-	} from '$lib/admin/admin_filters';
+	} from '#lib/admin/admin_filters.ts';
 	import {
 		assign_content_tags,
 		bulk_delete_content,
@@ -125,9 +125,8 @@
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true
+			replace: true,
+			reset: false
 		});
 	}
 
@@ -299,7 +298,7 @@
 		return null;
 	}
 
-	function to_edit_link(content_row: ContentListItem): Pathname | null {
+	function to_edit_link(content_row: ContentListItem): Path | null {
 		if (content_row.type === 'ARTICLE') {
 			return `/admin/content/articles/${content_row.id}`;
 		}
@@ -380,7 +379,7 @@
 						</a>
 					{/if}
 					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('/admin/content')}>× Clear</a>
+						<a class="button small" data-intent="quiet" href={resolve('admin/content')}>× Clear</a>
 					{/if}
 				</div>
 			</div>

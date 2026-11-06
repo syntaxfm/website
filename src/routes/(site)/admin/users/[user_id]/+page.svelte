@@ -13,7 +13,6 @@
 		id: string;
 		name: string;
 	}
-
 	interface ShowHostedRow {
 		number: number;
 		slug: string;
@@ -229,14 +228,15 @@
 						<li class="admin-row admin-control-row">
 							<div class="admin-control-row">
 								<span class="fs-2">#{show_row.number}</span>
-								<a href={resolve(`/admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
+
+								<a href={resolve(`admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
 							</div>
 							<div class="admin-actions">
 								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
 								<a
 									class="button"
 									data-intent="quiet"
-									href={resolve(`/show/${show_row.number}/${show_row.slug}`)}
+									href={resolve(`show/${show_row.number}/${show_row.slug}`)}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -257,7 +257,8 @@
 				<ul class="no-list">
 					{#each user_detail.articles_authored as article_row (article_row.id)}
 						<li class="admin-row admin-control-row">
-							<a href={resolve(`/admin/content/articles/${article_row.id}`)}>{article_row.title}</a>
+							<a href={resolve(`admin/content/articles/${article_row.id}`)}>{article_row.title}</a>
+
 							<div class="admin-actions">
 								<span class="fs-2">{article_row.status}</span>
 								<span class="fs-2">{format(article_row.updated_at, 'MMM d, yyyy')}</span>

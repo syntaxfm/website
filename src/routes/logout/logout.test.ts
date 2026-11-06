@@ -4,11 +4,16 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const { private_env } = vi.hoisted(() => ({
 	private_env: {} as Record<string, string | undefined>
 }));
-vi.mock('$env/dynamic/private', () => ({ env: private_env }));
+// A getter, so each test can set or delete the value
+vi.mock('$app/env/private', () => ({
+	get SYNTAX_AUTH_PUBLIC_ORIGINS() {
+		return private_env.SYNTAX_AUTH_PUBLIC_ORIGINS;
+	}
+}));
 
 async function load_post(dev: boolean) {
 	vi.resetModules();
-	vi.doMock('$app/environment', () => ({ dev }));
+	vi.doMock('$app/env', () => ({ dev }));
 	return (await import('./+server')).POST;
 }
 

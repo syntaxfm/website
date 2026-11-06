@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import ProducedBySentry from '$lib/layout/ProducedBySentry.svelte';
+	import ProducedBySentry from '#lib/layout/ProducedBySentry.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Layout/ProducedBySentry',

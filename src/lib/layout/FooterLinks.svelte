@@ -6,11 +6,16 @@
 <section>
 	<div class="flex">
 		<ul>
-			<li><a href={resolve('/shows')}>Podcast</a></li>
-			<li><a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a></li>
-			<li><a href={resolve('/about')}>About</a></li>
-			<li><a href={resolve('/sickpicks')}>Sick Picks</a></li>
-			<li><a href={resolve('/guests')}>Guest List</a></li>
+			<li><a href={resolve('shows')}>Podcast</a></li>
+
+			<li>
+				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>
+			</li>
+
+			<li><a href={resolve('about')}>About</a></li>
+			<li><a href={resolve('sickpicks')}>Sick Picks</a></li>
+			<li><a href={resolve('guests')}>Guest List</a></li>
+
 			<li>
 				<a
 					target="_blank"
@@ -29,8 +34,8 @@
 					Source Code
 				</a>
 			</li>
-			<li><a href={resolve('/pages/privacy')}>Privacy Policy</a></li>
-			<li><a href={resolve('/pages/terms-of-service')}>Terms of Service</a></li>
+			<li><a href={resolve('pages/privacy')}>Privacy Policy</a></li>
+			<li><a href={resolve('pages/terms-of-service')}>Terms of Service</a></li>
 			<!-- <a href="/system/components">Components</a> -->
 		</ul>
 	</div>
@@ -38,21 +43,26 @@
 		<a target="_blank" rel="noopener" href="https://x.com/syntaxfm"
 			><Icon name="twitter" width={24} height={24} weight={1.5} /></a
 		>
+
 		<a target="_blank" rel="noopener" href="https://github.com/syntaxfm"
 			><Icon name="github" width={24} height={24} weight={1.5} /></a
 		>
+
 		<a target="_blank" rel="noopener" href="https://discord.gg/W5y68HMfZV"
 			><Icon name="discord" width={24} height={24} weight={1.5} /></a
 		>
+
 		<a target="_blank" rel="noopener" href="https://www.youtube.com/@syntaxfm"
 			><Icon name="youtube" width={24} height={24} weight={1.5} /></a
 		>
+
 		<a target="_blank" rel="noopener" href="https://www.tiktok.com/@syntaxfm"
 			><Icon name="tiktok" width={24} height={24} weight={1.5} /></a
 		>
-		<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/"
-			><Icon name="instagram" width={24} height={24} weight={1.5} /></a
-		>
+
+		<a target="_blank" rel="noopener" href="https://www.instagram.com/syntax_fm/">
+			<Icon name="instagram" width={24} height={24} weight={1.5} />
+		</a>
 	</div>
 </section>
 

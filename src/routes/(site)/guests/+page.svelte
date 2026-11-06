@@ -1,8 +1,8 @@
 <script lang="ts">
 	import get_show_path from '$utilities/slug';
 	import { resolve } from '$app/paths';
-	import HostSocialLink from '$lib/hosts/HostSocialLink.svelte';
-	import Meta from '$lib/meta/Meta.svelte';
+	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
+	import Meta from '#lib/meta/Meta.svelte';
 	import { get_all_guests } from '../guest/guests.remote';
 
 	const all_guests = await get_all_guests();
@@ -100,7 +100,7 @@
 				<li class="card">
 					<a
 						class="avatar"
-						href={resolve(`/guest/${guest.name_slug}`)}
+						href={resolve(`guest/${guest.name_slug}`)}
 						tabindex="-1"
 						aria-hidden="true"
 					>
@@ -113,9 +113,8 @@
 						/>
 					</a>
 					<div class="info">
-						<h2 class="name h4">
-							<a href={resolve(`/guest/${guest.name_slug}`)}>{guest.name}</a>
-						</h2>
+						<h2 class="name h4"><a href={resolve(`guest/${guest.name_slug}`)}>{guest.name}</a></h2>
+
 						{#if guest.of}
 							<p class="of">{guest.of}</p>
 						{/if}
@@ -132,7 +131,7 @@
 									>
 								{/each}
 								{#if episodes.length > MAX_BADGES}
-									<a class="episode more" href={resolve(`/guest/${guest.name_slug}`)}
+									<a class="episode more" href={resolve(`guest/${guest.name_slug}`)}
 										>+{episodes.length - MAX_BADGES}</a
 									>
 								{/if}
