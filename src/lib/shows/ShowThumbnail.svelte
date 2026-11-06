@@ -1,7 +1,11 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
 	import { player } from '$state/player';
-	import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
+	import {
+		get_id_from_url,
+		get_thumbnail_from_id,
+		get_thumbnail_srcset_from_id
+	} from '$lib/videos/utils';
 	import { youtube_slot } from '$lib/videos/video_actions';
 	import no_thumb from './no_thumb.png';
 
@@ -18,13 +22,27 @@
 		is_video_slot?: boolean;
 		class?: string;
 		width?: string;
+		// How wide the thumbnail renders, so the browser picks the smallest sharp srcset file
+		sizes: string;
+		// Only thumbnails on the first screen should load eagerly
+		loading?: 'lazy' | 'eager';
 	}
 
-	let { show, is_video_slot = false, class: class_name, width = '100%' }: Props = $props();
+	let {
+		show,
+		is_video_slot = false,
+		class: class_name,
+		width = '100%',
+		sizes,
+		loading = 'lazy'
+	}: Props = $props();
 
 	let youtube_video_id = $derived(get_id_from_url(show.youtube_url));
 	let thumbnail_src = $derived(
 		(youtube_video_id ? get_thumbnail_from_id(youtube_video_id) : '') || show.thumbnail || no_thumb
+	);
+	let thumbnail_srcset = $derived(
+		youtube_video_id ? get_thumbnail_srcset_from_id(youtube_video_id) : undefined
 	);
 
 	function play(event: MouseEvent) {
@@ -41,7 +59,18 @@
 	class={['thumbnail', class_name]}
 	{@attach is_video_slot && youtube_video_id ? youtube_slot(show.number) : undefined}
 >
-	<img style:width src={thumbnail_src} alt={show.title} />
+	<img
+		style:width
+		src={thumbnail_src}
+		srcset={thumbnail_srcset}
+		{sizes}
+		{loading}
+		fetchpriority={loading === 'eager' ? 'high' : undefined}
+		decoding="async"
+		width="1280"
+		height="720"
+		alt={show.title}
+	/>
 	{#if show.url}
 		<button type="button" onclick={play} aria-label={`Play episode ${show.number}: ${show.title}`}>
 			<span aria-hidden="true">
@@ -58,6 +87,9 @@
 
 		img {
 			display: block;
+			height: auto;
+			aspect-ratio: 16 / 9;
+			object-fit: cover;
 		}
 	}
 

@@ -24,7 +24,12 @@
 	<FeedHosts {show} />
 	<div class="thumb-container">
 		<!-- <span class="number fv-700-i">#{show.number}</span> -->
-		<ShowThumbnail {show} class="br-medium" is_video_slot />
+		<ShowThumbnail
+			{show}
+			class="br-medium"
+			sizes="(min-width: 1200px) 748px, (min-width: 900px) calc(100vw - 452px), calc(100vw - 88px)"
+			is_video_slot
+		/>
 	</div>
 	<h4 class="fv-700-i">
 		<a href={resolve(`/show/${show.number}/${show.slug}`)}>

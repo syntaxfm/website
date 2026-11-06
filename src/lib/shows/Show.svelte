@@ -49,6 +49,7 @@
 			{show}
 			class={type === 'list' ? 'br-small' : 'br-medium grid-thumbnail'}
 			width={type === 'list' ? '135px' : '100%'}
+			sizes={type === 'list' ? '135px' : '300px'}
 			is_video_slot={type === 'grid'}
 		/>
 		<div class={['stack', type === 'grid' && 'stack-reverse']} style:--stack-gap="0.5rem">

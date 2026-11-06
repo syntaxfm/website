@@ -1,5 +1,17 @@
+// YouTube's WebP thumbnails are about half the bytes of its JPEGs (1280 wide: 87 KB vs 202 KB).
+const YOUTUBE_THUMBNAIL_BASE = 'https://i.ytimg.com/vi_webp';
+
 export function get_thumbnail_from_id(id: string) {
-	return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+	return `${YOUTUBE_THUMBNAIL_BASE}/${id}/maxresdefault.webp`;
+}
+
+/**
+ * The 16:9 picture widths YouTube serves for a video, for `srcset`. sddefault is 640×480 with
+ * the 16:9 frame letterboxed inside it, so it only fits a 16:9 box with `object-fit: cover`.
+ */
+export function get_thumbnail_srcset_from_id(id: string) {
+	const base = `${YOUTUBE_THUMBNAIL_BASE}/${id}`;
+	return `${base}/mqdefault.webp 320w, ${base}/sddefault.webp 640w, ${base}/maxresdefault.webp 1280w`;
 }
 
 function parse_time_to_seconds(time_value: string): number {

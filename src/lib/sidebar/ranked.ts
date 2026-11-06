@@ -7,6 +7,8 @@ export type RankedContent = {
 	series: string;
 	number: number | null;
 	thumbnail: string | null;
+	// Smaller sizes of the same thumbnail, when it is a YouTube video
+	thumbnail_srcset?: string;
 	date: Date;
 	people: string[];
 };

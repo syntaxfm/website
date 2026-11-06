@@ -3,7 +3,11 @@ import { query } from '$app/server';
 import { db } from '$server/db/client';
 import { content, content_tags, tag } from '$server/db/schema';
 import { with_show_card_show } from '$server/shows/shows_queries';
-import { get_id_from_url, get_thumbnail_from_id } from '$lib/videos/utils';
+import {
+	get_id_from_url,
+	get_thumbnail_from_id,
+	get_thumbnail_srcset_from_id
+} from '$lib/videos/utils';
 import get_show_path from '$utilities/slug';
 import type { RankedContent } from '$lib/sidebar/ranked';
 
@@ -65,6 +69,7 @@ export const get_most_popular_content_this_week = query(async (): Promise<Ranked
 			series: 'Syntax Podcast',
 			number: show.number,
 			thumbnail: youtube_id ? get_thumbnail_from_id(youtube_id) : null,
+			thumbnail_srcset: youtube_id ? get_thumbnail_srcset_from_id(youtube_id) : undefined,
 			date: row.published_at ?? show.date,
 			people: [...guests, ...hosts]
 		});

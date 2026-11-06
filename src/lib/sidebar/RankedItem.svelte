@@ -16,7 +16,16 @@
 
 	<div class="stack ranked-item-info">
 		<p class="fs-body">{item.series}{item.number ? ` – #${item.number}` : ''}</p>
-		<img src={item.thumbnail ?? no_thumb} alt={item.title} />
+		<img
+			src={item.thumbnail ?? no_thumb}
+			srcset={item.thumbnail_srcset}
+			sizes="(min-width: 900px) 248px, (min-width: 480px) 432px, calc(100vw - 116px)"
+			loading="lazy"
+			decoding="async"
+			width="1280"
+			height="720"
+			alt={item.title}
+		/>
 		<h4 class="fs-body fv-700-i">{item.title}</h4>
 		{#if item.people.length > 0}
 			<p class="fs-caption">{item.people.join(', ')}</p>
@@ -44,6 +53,9 @@
 	img {
 		border-radius: var(--br-medium);
 		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
 	}
 
 	.flex {
