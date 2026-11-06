@@ -29,11 +29,12 @@ Bass!
 		box-sizing: inherit;
 	}
 
+	/* Self-hosted MD IO variable font (wght 200–900, ital 0–1). Vite fingerprints it into
+	   /_app/immutable/, so it is cached forever and preloaded by the `preload_fonts` hook. */
 	@font-face {
 		font-family: '💪';
 		src:
-			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff2') format('woff2'),
-			url('https://fonts.tolin.ski/fonts/MDIOVariable.woff') format('woff'),
+			url('../assets/fonts/MDIO-VF.woff2') format('woff2'),
 			local('MD IO Variable Regular'),
 			local('MDIOVariable-Regular');
 	}

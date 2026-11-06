@@ -118,6 +118,14 @@ const document_policy: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
+// SvelteKit preloads JS and CSS by default. Adding fonts puts a <link rel="preload"> for the site
+// font in the HTML head, so it downloads alongside the CSS instead of after it is parsed.
+const preload_fonts: Handle = async function ({ event, resolve }) {
+	return resolve(event, {
+		preload: ({ type }) => type === 'js' || type === 'css' || type === 'font'
+	});
+};
+
 const safe_paths = new Set(['/api/errors', '/api/57475/3v3n7']);
 const safe_form_data: Handle = async function ({ event, resolve }) {
 	if (safe_paths.has(event.url.pathname)) return resolve(event);
@@ -139,7 +147,8 @@ export const handle: Handle = sequence(
 	request_metadata,
 	auth,
 	safe_form_data,
-	document_policy
+	document_policy,
+	preload_fonts
 );
 
 // SvelteKit requires this hook export to be named `handleError` (camelCase).
