@@ -17,10 +17,21 @@ const LOCAL_DB = 'local';
 const LOCAL_DB_USER = 'root';
 const LOCAL_DATABASE_URL = 'postgresql://root:mysecretpassword@localhost:5434/local';
 const MIGRATIONS_DIR = 'drizzle/pg-migrations';
-// Production predates drizzle-kit migration tracking: its schema was built by the
-// MySQL → Postgres migration script and matches the migrations up to and including this tag.
-// Only used when a restored database has no drizzle.__drizzle_migrations table.
-const UNTRACKED_PROD_BASELINE = '0001_puzzling_talos';
+// Production predates drizzle-kit migration tracking: its schema was built by the MySQL → Postgres
+// migration script, and later migrations were applied by hand (0002 + 0003 on 2026-11-06). Only
+// used when a restored database has no drizzle.__drizzle_migrations table: the newest migration
+// whose change is visible in the restored schema counts as applied, with everything before it.
+const UNTRACKED_BASELINES = [
+	{
+		tag: '0003_reconcile_pushed_schema',
+		applied_when: `select 1 from pg_constraint where conname = 'articles_author_id_profiles_id_fk'`
+	},
+	{
+		tag: '0002_syntax_auth',
+		applied_when: `select 1 where to_regclass('public.profiles') is not null`
+	},
+	{ tag: '0001_puzzling_talos', applied_when: 'select 1' }
+];
 // Keep in sync with @initOp in .env.schema and the op:// references in .env.1password.
 const OP_ACCOUNT = 'sentry.1password.com';
 const OP_VAULT = '4bk5tuz4wmhcgb6lqu56rt4h64'; // Syntax.fm
@@ -356,10 +367,11 @@ function baseline_untracked_migrations() {
 	const tracked = psql(`select to_regclass('drizzle.__drizzle_migrations') is not null`) === 't';
 	if (tracked || !local_has_tables()) return;
 
+	const baseline = UNTRACKED_BASELINES.find(({ applied_when }) => psql(applied_when) !== '');
 	const { entries } = JSON.parse(readFileSync(`${MIGRATIONS_DIR}/meta/_journal.json`, 'utf8'));
-	const baseline_index = entries.findIndex((entry) => entry.tag === UNTRACKED_PROD_BASELINE);
+	const baseline_index = entries.findIndex((entry) => entry.tag === baseline.tag);
 	if (baseline_index === -1) {
-		throw new SetupError(`Baseline migration ${UNTRACKED_PROD_BASELINE} not found in journal`);
+		throw new SetupError(`Baseline migration ${baseline.tag} not found in journal`);
 	}
 
 	const values = entries.slice(0, baseline_index + 1).map((entry) => {
@@ -373,7 +385,7 @@ function baseline_untracked_migrations() {
 		create table drizzle.__drizzle_migrations (id serial primary key, hash text not null, created_at bigint);
 		insert into drizzle.__drizzle_migrations (hash, created_at) values ${values.join(', ')};
 	`);
-	ok(`Marked migrations through ${UNTRACKED_PROD_BASELINE} as applied`);
+	ok(`Marked migrations through ${baseline.tag} as applied`);
 }
 
 function psql(sql) {
