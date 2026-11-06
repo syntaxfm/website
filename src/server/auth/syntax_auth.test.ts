@@ -281,17 +281,23 @@ describe('as_remote_request_response', () => {
 		createRequire(import.meta.url).resolve('@sveltejs/kit/package.json')
 	);
 
-	// SvelteKit's own encoding of a remote function's result (`stringify` in its runtime shared
-	// module, which its remote handler uses), loaded from the installed source.
+	// SvelteKit's own encoding of a remote function's result (`stringify` in its transport module,
+	// which its remote handler uses), loaded from the installed source. It has to be initialised with
+	// the app's transport hooks first; this site defines none.
 	async function kit_stringify(data: unknown): Promise<unknown> {
 		const module: unknown = await import(
-			/* @vite-ignore */ path.join(kit_root, 'src/runtime/shared.js')
+			/* @vite-ignore */ path.join(kit_root, 'src/runtime/app/internal/transport.js')
 		);
-		const stringify: unknown =
-			typeof module === 'object' && module !== null ? Reflect.get(module, 'stringify') : undefined;
+		const field = (name: string): unknown =>
+			typeof module === 'object' && module !== null ? Reflect.get(module, name) : undefined;
+		const init_transport = field('init_transport');
+		if (typeof init_transport !== 'function')
+			throw new Error('The installed SvelteKit has no init_transport');
+		init_transport({});
+		const stringify = field('stringify');
 		if (typeof stringify !== 'function')
 			throw new Error('The installed SvelteKit has no stringify');
-		return stringify(data, {});
+		return stringify(data);
 	}
 
 	it.each([
