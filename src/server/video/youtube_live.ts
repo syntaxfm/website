@@ -1,5 +1,6 @@
 import { YOUTUBE_API_KEY } from '$app/env/private';
 import { YOUTUBE_CHANNEL_ID } from '$const';
+import { edge_cached } from '$server/edge_cache';
 
 const CACHE_TTL_MS = 60 * 1000;
 const UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID.replace(/^UC/, 'UU');
@@ -125,7 +126,14 @@ export async function get_youtube_live_stream(
 		return pending_request;
 	}
 
-	pending_request = fetch_youtube_live_stream(fetcher);
+	// The in-memory cache lives in one Worker isolate, so most requests missed it and waited on two
+	// sequential YouTube API calls (up to ~600 ms). The edge cache is shared by every isolate in a
+	// Cloudflare location and refreshes in the background.
+	pending_request = edge_cached(
+		'youtube-live-stream',
+		{ fresh_seconds: CACHE_TTL_MS / 1000, stale_seconds: 60 * 10 },
+		() => fetch_youtube_live_stream(fetcher)
+	);
 
 	try {
 		const stream = await pending_request;

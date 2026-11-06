@@ -50,7 +50,7 @@ describe('edge_cached', () => {
 
 		expect(await edge_cached('sick-picks', TIMES, compute)).toEqual({ picks: [1, 2] });
 		await settle();
-		expect([...cache.entries.keys()]).toEqual(['https://beta.syntax.fm/__edge-cache/sick-picks']);
+		expect([...cache.entries.keys()]).toEqual(['https://edge-cache.beta.syntax.fm/sick-picks']);
 
 		expect(await edge_cached('sick-picks', TIMES, compute)).toEqual({ picks: [1, 2] });
 		expect(compute).toHaveBeenCalledTimes(1);

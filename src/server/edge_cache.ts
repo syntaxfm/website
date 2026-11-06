@@ -7,6 +7,7 @@ import { getRequestEvent } from '$app/server';
 import { PUBLIC_URL } from '$app/env/public';
 
 const FRESH_UNTIL_HEADER = 'x-fresh-until';
+const EDGE_CACHE_HOST_PREFIX = 'edge-cache.';
 
 interface EdgeCacheTimes {
 	// Served without recomputing for this long
@@ -26,7 +27,11 @@ export async function edge_cached<T>(
 	const cache = platform?.caches?.default;
 	if (!cache) return compute();
 
-	const cache_key = new Request(`https://${PUBLIC_URL}/__edge-cache/${encodeURIComponent(key)}`);
+	// Its own hostname, so purging the site's pages after a deploy (scripts/purge-beta-cache.ts)
+	// keeps this data warm. Data outlives deploys: change the key when a value's shape changes.
+	const cache_key = new Request(
+		`https://${EDGE_CACHE_HOST_PREFIX}${PUBLIC_URL}/${encodeURIComponent(key)}`
+	);
 
 	const refresh = async () => {
 		const value = await compute();
