@@ -6,6 +6,8 @@ import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { form_data } from 'sk-form-data';
 
 import { dev } from '$app/env';
+import { PUBLIC_URL } from '$app/env/public';
+import { PRODUCTION_HOST } from '$const';
 
 import {
 	get_admin_guard_response,
@@ -116,6 +118,17 @@ const preload_fonts: Handle = async function ({ event, resolve }) {
 	});
 };
 
+// Plausible, proxied through /api/57475. Only the live site counts, so betas and previews don't
+// mix into syntax.fm's stats. Fills the %syntax.analytics% placeholder in app.html.
+const ANALYTICS_SCRIPT =
+	'<script defer data-domain="syntax.fm" data-api="/api/57475/3v3n7" src="/api/57475/script.js"></script>';
+const analytics: Handle = async function ({ event, resolve }) {
+	const script = PUBLIC_URL === PRODUCTION_HOST ? ANALYTICS_SCRIPT : '';
+	return resolve(event, {
+		transformPageChunk: ({ html }) => html.replace('%syntax.analytics%', script)
+	});
+};
+
 const safe_paths = new Set(['/api/errors', '/api/57475/3v3n7']);
 const safe_form_data: Handle = async function ({ event, resolve }) {
 	if (safe_paths.has(event.url.pathname)) return resolve(event);
@@ -139,7 +152,8 @@ export const handle: Handle = sequence(
 	auth,
 	safe_form_data,
 	document_policy,
-	preload_fonts
+	preload_fonts,
+	analytics
 );
 
 // SvelteKit requires this hook export to be named `handleError` (camelCase).

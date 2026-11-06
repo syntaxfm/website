@@ -1,7 +1,7 @@
 import { PUBLIC_URL } from '$app/env/public';
+import { PRODUCTION_HOST } from '$const';
 
 // Only the production site is crawlable; betas and previews would show up as duplicate content
-const PRODUCTION_HOST = 'syntax.fm';
 
 export const GET = async function GET({ setHeaders }) {
 	const robots_txt =

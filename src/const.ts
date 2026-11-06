@@ -9,6 +9,9 @@ export const DAYS_OF_WEEK_TYPES: { [key: number]: 'HASTY' | 'TASTY' | 'SUPPER' |
 
 export const CURRENT_YEAR = new Date().getFullYear();
 
+// PUBLIC_URL of the live site. Betas and previews don't get crawled or counted in analytics.
+export const PRODUCTION_HOST = 'syntax.fm';
+
 export const PODCAST_LINKS = [
 	{
 		href: 'https://feed.syntax.fm',

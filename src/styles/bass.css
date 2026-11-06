@@ -109,9 +109,10 @@ Bass!
 		animation-name: -ua-view-transition-fade-in;
 	}
 
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 0.2s;
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: var(--page-transition-duration);
 	}
 
 	a,
