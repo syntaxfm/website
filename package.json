@@ -25,11 +25,11 @@
 		"db:migrate": "drizzle-kit migrate",
 		"db:migrate:direct": "node scripts/direct-db-migration.js",
 		"i-changed-the-schema": "pnpm run db:push",
-		"postinstall": "pnpm exec playwright install",
+		"postinstall": "[ -n \"$PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD\" ] || pnpm exec playwright install",
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.{css,svelte}\"",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"deploy:beta": "PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=false varlock run -- alchemy deploy --stage beta --yes",
+		"deploy:beta": "svelte-kit sync && PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=false varlock run -- alchemy deploy --stage beta --yes",
 		"postdeploy:beta": "node scripts/purge-beta-cache.ts"
 	},
 	"devDependencies": {
