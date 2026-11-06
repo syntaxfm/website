@@ -1,4 +1,3 @@
-import adapter from '@sveltejs/adapter-cloudflare';
 import at_import from 'postcss-import';
 import postcss_preset_env from 'postcss-preset-env';
 import preprocess from 'svelte-preprocess';
@@ -31,7 +30,9 @@ export default defineConfig(({ mode, command }) => {
 			syntax_auth({
 				public_origins: (env.SYNTAX_AUTH_PUBLIC_ORIGINS ?? '').split(/[\s,]+/).filter(Boolean)
 			}),
+			// `adapter` set by hand: Sentry can't detect Alchemy's injected Cloudflare adapter
 			sentrySvelteKit({
+				adapter: 'cloudflare',
 				org: 'syntax-fm',
 				project: 'website',
 				authToken: env.SENTRY_AUTH_TOKEN
@@ -68,8 +69,8 @@ export default defineConfig(({ mode, command }) => {
 				],
 				compilerOptions: { experimental: { async: true } },
 				experimental: { remoteFunctions: true },
-				// Builds a Cloudflare Worker (.svelte-kit/cloudflare); settings live in wrangler.jsonc
-				adapter: adapter(),
+				// No `adapter`: Alchemy's SvelteKit resource (alchemy.run.ts) injects its own Cloudflare
+				// adapter on `alchemy deploy`. `pnpm dev` runs on Node and needs none.
 				alias: {
 					$actions: 'src/actions',
 					$assets: 'src/assets',

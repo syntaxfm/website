@@ -1,6 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 import type { AuthenticatedUser } from '$server/auth/authorization';
 import type { SyntaxAuthSession } from '$server/auth/syntax_auth';
+import type { SyntaxWebsiteEnv } from '../alchemy.run.ts';
 // Import the relevant types
 
 // for information about these interfaces
@@ -35,7 +36,10 @@ declare global {
 		}
 
 		// interface PageData {}
-		// interface Platform {}
+		// The Worker's bindings (alchemy.run.ts). Absent under `pnpm dev`, which runs on Node.
+		interface Platform {
+			env: Partial<SyntaxWebsiteEnv>;
+		}
 	}
 
 	interface Document {

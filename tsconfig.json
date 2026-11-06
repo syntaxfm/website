@@ -5,5 +5,12 @@
 		"sourceMap": true,
 		"strict": true
 	},
-	"include": ["src", "vite.config.ts", "drizzle.config.ts", "playwright.config.ts", "tests"]
+	"include": [
+		"src",
+		"vite.config.ts",
+		"alchemy.run.ts",
+		"drizzle.config.ts",
+		"playwright.config.ts",
+		"tests"
+	]
 }
