@@ -456,7 +456,6 @@
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 512 512"
-		xml:space="preserve"
 	>
 		<g>
 			<g>
@@ -490,7 +489,6 @@
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
-		xml:space="preserve"
 		viewBox="0 0 192 192"
 	>
 		<path
@@ -508,7 +506,6 @@
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 461.001 461.001"
-		xml:space="preserve"
 		fill="currentColor"
 	>
 		<g>
