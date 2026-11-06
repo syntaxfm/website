@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { content, content_tags, tag } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
@@ -29,13 +30,6 @@ const list_tags_schema = v.object({
 	page_size: v.optional(v.number())
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-}
-
 function normalize_slug(input_text: string) {
 	return get_slug(input_text, {
 		separator: '-',
@@ -45,7 +39,7 @@ function normalize_slug(input_text: string) {
 }
 
 export const list_tags = query(list_tags_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 	const page = Math.max(1, input.page || 1);
@@ -96,7 +90,7 @@ export const list_tags = query(list_tags_schema, async (input) => {
 });
 
 export const get_tag_detail = query(v.string(), async (tag_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const tag_row = await db.query.tag.findFirst({
 		where: eq(tag.id, tag_id),
@@ -156,7 +150,7 @@ export const get_tag_detail = query(v.string(), async (tag_id) => {
 });
 
 export const search_tags = query(search_tag_schema, async ({ search_text }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_search = search_text?.trim() || '';
 
@@ -168,7 +162,7 @@ export const search_tags = query(search_tag_schema, async ({ search_text }) => {
 });
 
 export const create_tag = command(create_tag_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug?.trim() || input.name);
 	if (!normalized_slug) {
@@ -187,7 +181,7 @@ export const create_tag = command(create_tag_schema, async (input) => {
 });
 
 export const update_tag = command(update_tag_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug?.trim() || input.name);
 	if (!normalized_slug) {
@@ -206,7 +200,7 @@ export const update_tag = command(update_tag_schema, async (input) => {
 });
 
 export const delete_tag = command(v.string(), async (tag_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(tag).where(eq(tag.id, tag_id));
 

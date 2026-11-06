@@ -1,22 +1,14 @@
-import { getRequestEvent, query } from '$app/server';
+import { query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { content, show, userSubmission } from '$server/db/schema';
-import { error } from '@sveltejs/kit';
 import { and, asc, count, desc, eq, gt, gte, lt, lte } from 'drizzle-orm';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_MISSING_ROWS = 50;
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 export const get_dashboard = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	const now = new Date();
 	const seven_days_ago = new Date(now.getTime() - 7 * DAY_MS);

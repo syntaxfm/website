@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import {
 	article,
@@ -66,14 +67,6 @@ const bulk_delete_schema = v.object({
 });
 
 type ListContentInput = v.InferOutput<typeof list_content_schema>;
-
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
 
 function normalize_slug(input_text: string) {
 	return get_slug(input_text, {
@@ -182,7 +175,7 @@ async function fetch_content_list(input: ListContentInput) {
 // TEMP FUNCTION CAN BE REMOVED AFTER MIGRATION
 // this finds shows and videos and makes content from them
 export const populate_content_from_existing_data = command(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	try {
 		// Global slug counter across ALL content types (shows, videos, etc.)
@@ -294,12 +287,12 @@ export const populate_content_from_existing_data = command(async () => {
 });
 
 export const list_content = query(list_content_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	return fetch_content_list(input);
 });
 
 export const get_all_content = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	const content_result = await fetch_content_list({
 		status: 'ALL',
@@ -312,7 +305,7 @@ export const get_all_content = query(async () => {
 });
 
 export const create_content = command(create_content_schema, async (input) => {
-	const event = assert_admin_user();
+	const admin = await assert_admin();
 
 	if (input.type !== 'ARTICLE') {
 		error(
@@ -340,7 +333,7 @@ export const create_content = command(create_content_schema, async (input) => {
 		error(409, 'Slug already exists');
 	}
 
-	const author_id = event.locals.user?.profile_id;
+	const author_id = admin.profile_id;
 	if (!author_id) {
 		error(401, 'Missing authenticated user');
 	}
@@ -373,7 +366,7 @@ export const create_content = command(create_content_schema, async (input) => {
 });
 
 export const get_content_detail = query(v.string(), async (content_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.content.findFirst({
 		where: eq(content.id, content_id),
@@ -395,7 +388,7 @@ export const get_content_detail = query(v.string(), async (content_id) => {
 });
 
 export const update_content_meta = command(update_content_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug);
 	if (!normalized_slug) {
@@ -452,7 +445,7 @@ export const update_content_meta = command(update_content_schema, async (input) 
 });
 
 export const check_slug_available = query(slug_check_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug);
 	if (!normalized_slug) {
@@ -480,7 +473,7 @@ export const check_slug_available = query(slug_check_schema, async (input) => {
 });
 
 export const get_tag_options = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.tag.findMany({
 		orderBy: (tag_item, { asc }) => [asc(tag_item.name)]
@@ -488,7 +481,7 @@ export const get_tag_options = query(async () => {
 });
 
 export const assign_content_tags = command(bulk_tag_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const values = input.content_ids.flatMap((content_id) =>
 		input.tag_ids.map((tag_id) => ({
@@ -503,7 +496,7 @@ export const assign_content_tags = command(bulk_tag_schema, async (input) => {
 });
 
 export const remove_content_tags = command(bulk_tag_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(content_tags)
@@ -518,7 +511,7 @@ export const remove_content_tags = command(bulk_tag_schema, async (input) => {
 });
 
 export const bulk_update_status = command(bulk_status_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const set_values: {
 		status: (typeof CONTENT_STATUS_VALUES)[number];
@@ -546,7 +539,7 @@ export const bulk_update_status = command(bulk_status_schema, async (input) => {
 });
 
 export const bulk_delete_content = command(bulk_delete_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (input.confirm_text !== 'DELETE') {
 		error(400, 'Type DELETE to confirm bulk delete');
@@ -608,7 +601,7 @@ export const bulk_delete_content = command(bulk_delete_schema, async (input) => 
 });
 
 export const export_content = command(list_content_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const export_result = await fetch_content_list({
 		...input,

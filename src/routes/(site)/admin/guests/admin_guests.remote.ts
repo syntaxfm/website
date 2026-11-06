@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { guest, show, showGuest, socialLink } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
@@ -40,14 +41,6 @@ const remove_social_link_schema = v.object({
 	social_link_id: v.pipe(v.string(), v.trim(), v.minLength(1))
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 function normalize_slug(input_text: string) {
 	return get_slug(input_text, {
 		separator: '-',
@@ -66,7 +59,7 @@ function nullify_optional(value: string | null | undefined): string | null {
 }
 
 export const list_guests = query(list_guests_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 	const page = Math.max(1, input.page || 1);
@@ -101,7 +94,7 @@ export const list_guests = query(list_guests_schema, async (input) => {
 });
 
 export const get_guest_detail = query(v.string(), async (guest_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const result = await db.query.guest.findFirst({
 		where: eq(guest.id, guest_id),
@@ -130,7 +123,7 @@ export const get_guest_detail = query(v.string(), async (guest_id) => {
 });
 
 export const create_guest = command(create_guest_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.name);
 	if (!normalized_slug) {
@@ -160,7 +153,7 @@ export const create_guest = command(create_guest_schema, async (input) => {
 });
 
 export const update_guest = command(update_guest_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.name_slug);
 	if (!normalized_slug) {
@@ -194,7 +187,7 @@ export const update_guest = command(update_guest_schema, async (input) => {
 });
 
 export const delete_guest = command(delete_guest_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (input.confirm_text !== 'DELETE') {
 		error(400, 'Type DELETE to confirm guest deletion');
@@ -206,7 +199,7 @@ export const delete_guest = command(delete_guest_schema, async (input) => {
 });
 
 export const add_social_link = command(add_social_link_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.insert(socialLink)
@@ -220,7 +213,7 @@ export const add_social_link = command(add_social_link_schema, async (input) => 
 });
 
 export const remove_social_link = command(remove_social_link_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(socialLink).where(eq(socialLink.id, input.social_link_id));
 

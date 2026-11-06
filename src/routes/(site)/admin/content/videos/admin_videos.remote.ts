@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import {
 	content,
@@ -39,14 +40,6 @@ const delete_video_schema = v.object({
 	confirm_text: v.string()
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 	if (!maybe_iso) {
 		return null;
@@ -63,8 +56,8 @@ function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 // Queries
 // ======================================================
 
-export const get_all_videos = query(() => {
-	assert_admin_user();
+export const get_all_videos = query(async () => {
+	await assert_admin();
 	return db.query.playlist.findMany({
 		orderBy: (playlist, { desc }) => [desc(playlist.created_at)],
 		with: {
@@ -74,7 +67,7 @@ export const get_all_videos = query(() => {
 });
 
 export const list_videos = query(list_videos_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 	const status = input.status || 'ALL';
@@ -150,7 +143,7 @@ export const list_videos = query(list_videos_schema, async (input) => {
 });
 
 export const get_remote_playlists = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	const playlist_data = await db.query.remotePlaylist.findMany({
 		orderBy: (content, { desc }) => [desc(content.created_at)]
@@ -170,7 +163,7 @@ export const get_remote_playlists = query(async () => {
 });
 
 export const get_playlist = query(v.string(), async (playlist_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.playlist.findFirst({
 		where: eq(playlist.id, playlist_id),
@@ -189,7 +182,7 @@ export const get_playlist = query(v.string(), async (playlist_id) => {
 // ======================================================
 
 export const import_remote_playlists = command(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	try {
 		await get_youtube_playlists();
@@ -206,7 +199,7 @@ export const import_remote_playlists = command(async () => {
 });
 
 export const import_playlist = command(v.string(), async (playlist_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	try {
 		await import_youtube_playlist(playlist_id);
@@ -224,7 +217,7 @@ export const import_playlist = command(v.string(), async (playlist_id) => {
 });
 
 export const update_video_meta = command(update_video_meta_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
 	if (input.status === 'PUBLISHED' && !next_published_at) {
@@ -265,7 +258,7 @@ export const update_video_meta = command(update_video_meta_schema, async (input)
 });
 
 export const delete_video = command(delete_video_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (input.confirm_text !== 'DELETE') {
 		error(400, 'Type DELETE to confirm video deletion');

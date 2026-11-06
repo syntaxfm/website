@@ -1,6 +1,4 @@
 // See https://kit.svelte.dev/docs/types#app
-import type { AuthenticatedUser } from '$server/auth/authorization';
-import type { SyntaxAuthSession } from '$server/auth/syntax_auth';
 import type { SyntaxWebsiteEnv } from '../alchemy.run.ts';
 // Import the relevant types
 
@@ -24,14 +22,14 @@ declare global {
 
 	namespace App {
 		// interface Error {}
+		// The signed-in user isn't here: ask server/auth/request_auth.ts, which asks Syntax Auth only
+		// when needed
 		interface Locals {
-			auth_session: SyntaxAuthSession | null;
 			form_data: Record<string, unknown>;
 			request_metadata: {
 				ip: string | null;
 				country: string | null;
 			};
-			user: AuthenticatedUser | null;
 		}
 
 		// interface PageData {}

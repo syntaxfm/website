@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import {
 	SUBMISSION_STATUS_VALUES,
@@ -42,13 +43,6 @@ const bulk_delete_schema = v.object({
 	confirm_text: v.string()
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-}
-
 function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 	if (!maybe_iso) {
 		return null;
@@ -74,7 +68,7 @@ export const get_submissions = query(
 		page: raw_page,
 		page_size: raw_page_size
 	}) => {
-		assert_admin_user();
+		await assert_admin();
 		const search_text = raw_search_text?.trim() ?? '';
 		const submission_type_param = submission_type?.trim() || '';
 		const status_param = status?.trim() || '';
@@ -155,7 +149,7 @@ export const get_submissions = query(
 );
 
 export const update_submission_status = command(update_submission_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const next_status = input.status;
 	if (!SUBMISSION_STATUS_VALUES.enumValues.includes(next_status as SubmissionStatus)) {
@@ -176,7 +170,7 @@ export const update_submission_status = command(update_submission_schema, async 
 });
 
 export const delete_submission = command(delete_submission_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(userSubmission).where(eq(userSubmission.id, input.id));
 
@@ -186,7 +180,7 @@ export const delete_submission = command(delete_submission_schema, async (input)
 });
 
 export const bulk_update_submission_status = command(bulk_status_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const next_status = input.status;
 	if (!SUBMISSION_STATUS_VALUES.enumValues.includes(next_status as SubmissionStatus)) {
@@ -210,7 +204,7 @@ export const bulk_update_submission_status = command(bulk_status_schema, async (
 });
 
 export const bulk_delete_submissions = command(bulk_delete_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (input.confirm_text !== 'DELETE') {
 		error(400, 'Confirmation text required');

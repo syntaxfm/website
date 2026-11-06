@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
+import { get_request_user } from '$server/auth/request_auth';
 import { show } from '$server/db/schema';
 import { inArray } from 'drizzle-orm';
 import { get_show_detail_query } from '$server/shows/shows_queries';
@@ -30,7 +31,8 @@ async function load_show_page(show_number: number) {
 	return { show: show_fields, show_notes: markdown_to_content(show_notes), prev_next };
 }
 
-export const load: LayoutServerLoad = async ({ params, locals, url }) => {
+export const load: LayoutServerLoad = async (event) => {
+	const { params, url } = event;
 	const show_number = parseInt(params.show_number);
 
 	const show_page = await edge_cached(
@@ -39,12 +41,15 @@ export const load: LayoutServerLoad = async ({ params, locals, url }) => {
 		() => load_show_page(show_number)
 	);
 
-	const now = new Date();
+	// Only an unreleased show asks who is signed in: admins can preview it. That page is for the
+	// admin alone, so it stays out of shared caches.
 	const show_date = new Date(show_page?.show.date || '');
-	const is_admin = locals?.user?.roles?.includes('admin');
-
-	if (show_date > now && !is_admin) {
-		error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
+	if (show_date > new Date()) {
+		const user = await get_request_user(event);
+		if (!user?.roles.includes('admin')) {
+			error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
+		}
+		event.setHeaders({ 'cache-control': 'private, no-store' });
 	}
 	if (!show_page) {
 		error(404, `This show does not exist.`);

@@ -116,6 +116,8 @@ afterEach(() => {
 
 describe('auth hook in production', async () => {
 	const handle = await load_handle(false);
+	// The same module instance the hooks loaded
+	const { get_request_user } = await import('$server/auth/request_auth');
 
 	it('sends a signed-out admin visit to central sign-in without asking Auth', async () => {
 		const response = await handle({
@@ -144,7 +146,9 @@ describe('auth hook in production', async () => {
 		expect(event_fetch).toHaveBeenCalledOnce();
 		expect(platform_fetch).not.toHaveBeenCalled();
 		expect(resolve).toHaveBeenCalledOnce();
-		expect(event.locals.user?.roles).toEqual(['admin']);
+		expect((await get_request_user(event))?.roles).toEqual(['admin']);
+		// Asked once per request: the lookup above reused the hook's answer
+		expect(event_fetch).toHaveBeenCalledOnce();
 		expect(response.headers.getSetCookie()).toEqual(cookies);
 	});
 
@@ -166,6 +170,8 @@ describe('auth hook in production', async () => {
 
 describe('auth hook in development', async () => {
 	const handle = await load_handle(true);
+	// The same module instance the hooks loaded
+	const { get_request_user } = await import('$server/auth/request_auth');
 
 	it('renders a public page without asking Auth when there is no cookie', async () => {
 		const response = await handle({
@@ -177,8 +183,7 @@ describe('auth hook in development', async () => {
 		expect(platform_fetch).not.toHaveBeenCalled();
 	});
 
-	it('renders a public page signed out when Auth is down', async () => {
-		platform_fetch.mockRejectedValue(new TypeError('fetch failed'));
+	it('renders a public page without asking Auth, even with a cookie', async () => {
 		const event = make_event('http://localhost:5740/', {
 			route_id: '/(site)',
 			cookie: 'theme=dark'
@@ -187,7 +192,8 @@ describe('auth hook in development', async () => {
 		const response = await handle({ event, resolve });
 
 		expect(await response.text()).toBe('page');
-		expect(event.locals.user).toBeNull();
+		expect(platform_fetch).not.toHaveBeenCalled();
+		expect(event_fetch).not.toHaveBeenCalled();
 	});
 
 	it.each([
@@ -257,8 +263,7 @@ describe('auth hook in development', async () => {
 		const response = await handle({ event, resolve });
 
 		expect(await response.text()).toBe('page');
-		expect(event.locals.user?.id).toBe('local-developer');
-		expect(event.locals.auth_session).not.toHaveProperty('token');
+		expect((await get_request_user(event))?.id).toBe('local-developer');
 		expect(response.headers.getSetCookie()).toEqual(cookies);
 	});
 

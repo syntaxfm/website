@@ -1,4 +1,5 @@
-import { command, getRequestEvent, query } from '$app/server';
+import { command, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import {
 	article,
@@ -9,7 +10,6 @@ import {
 	show,
 	showToProfile
 } from '$server/db/schema';
-import { error } from '@sveltejs/kit';
 import { and, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
@@ -33,15 +33,8 @@ const create_role_schema = v.object({
 	name: v.pipe(v.string(), v.trim(), v.minLength(1))
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-}
-
 export const list_users = query(list_users_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_search = input.search_text?.trim() || '';
 	const page = Math.max(1, input.page || 1);
@@ -89,7 +82,7 @@ export const list_users = query(list_users_schema, async (input) => {
 });
 
 export const get_user_detail = query(v.string(), async (user_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const result = await db.query.profile.findFirst({
 		where: eq(profile.id, user_id),
@@ -136,7 +129,7 @@ export const get_user_detail = query(v.string(), async (user_id) => {
 });
 
 export const list_roles = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.role.findMany({
 		orderBy: (role_item, { asc }) => [asc(role_item.name)]
@@ -144,7 +137,7 @@ export const list_roles = query(async () => {
 });
 
 export const create_role = command(create_role_schema, async ({ name }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const [created_role] = await db.insert(role).values({ name }).returning();
 
@@ -152,7 +145,7 @@ export const create_role = command(create_role_schema, async ({ name }) => {
 });
 
 export const add_user_role = command(user_role_schema, async ({ user_id, role_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.insert(profileRole)
@@ -166,7 +159,7 @@ export const add_user_role = command(user_role_schema, async ({ user_id, role_id
 });
 
 export const remove_user_role = command(user_role_schema, async ({ user_id, role_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(profileRole)
@@ -176,7 +169,7 @@ export const remove_user_role = command(user_role_schema, async ({ user_id, role
 });
 
 export const bulk_assign_role = command(bulk_user_role_schema, async ({ user_ids, role_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (user_ids.length === 0) {
 		return { count: 0 };
@@ -190,7 +183,7 @@ export const bulk_assign_role = command(bulk_user_role_schema, async ({ user_ids
 });
 
 export const bulk_remove_role = command(bulk_user_role_schema, async ({ user_ids, role_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (user_ids.length === 0) {
 		return { success: true };

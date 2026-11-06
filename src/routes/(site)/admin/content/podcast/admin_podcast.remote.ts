@@ -1,4 +1,5 @@
-import { command, form, getRequestEvent, query } from '$app/server';
+import { command, form, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
 
 import { MEGAPHONE_API_TOKEN, MEGAPHONE_NETWORK_ID, MEGAPHONE_PODCAST_ID } from '$app/env/private';
 
@@ -179,14 +180,6 @@ async function assert_ai_show_note_exists(show_note_id: number) {
 	}
 }
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 function parse_optional_iso_date(maybe_iso: string | null | undefined) {
 	if (!maybe_iso) {
 		return null;
@@ -218,7 +211,7 @@ async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 }
 
 export const get_all_shows = query(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.show.findMany({
 		orderBy: (content, { desc }) => [desc(content.number)],
@@ -240,7 +233,7 @@ export const get_all_shows = query(async () => {
 });
 
 export const list_shows = query(list_shows_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 	const status = input.status || 'ALL';
@@ -304,7 +297,7 @@ export const list_shows = query(list_shows_schema, async (input) => {
 });
 
 export const bulk_update_show_status = command(bulk_show_status_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const existing_shows = await db.query.show.findMany({
 		where: inArray(show.number, input.show_numbers),
@@ -351,7 +344,7 @@ export const bulk_update_show_status = command(bulk_show_status_schema, async (i
 });
 
 export const get_show_editor = query(v.number(), async (show_number) => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.show.findFirst({
 		where: eq(show.number, show_number),
@@ -403,7 +396,7 @@ export const get_show_editor = query(v.number(), async (show_number) => {
 });
 
 export const create_show_editor = command(create_show_editor_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const duplicate_show_number = await db.query.show.findFirst({
 		where: eq(show.number, input.show_number),
@@ -481,7 +474,7 @@ export const create_show_editor = command(create_show_editor_schema, async (inpu
 });
 
 export const update_show_editor = command(update_show_editor_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const existing_show = await db.query.show.findFirst({
 		where: eq(show.number, input.show_number),
@@ -627,7 +620,7 @@ export const update_show_editor = command(update_show_editor_schema, async (inpu
 });
 
 export const sync_spotify_for_show = command(show_number_schema, async ({ show_number }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	if (!MEGAPHONE_API_TOKEN || !MEGAPHONE_NETWORK_ID || !MEGAPHONE_PODCAST_ID) {
 		error(
@@ -651,7 +644,7 @@ export const sync_spotify_for_show = command(show_number_schema, async ({ show_n
 });
 
 export const search_guests = query(guest_search_schema, async ({ search_text }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_search = search_text?.trim() || '';
 
@@ -668,7 +661,7 @@ export const search_guests = query(guest_search_schema, async ({ search_text }) 
 });
 
 export const add_show_guest = command(show_guest_schema, async ({ show_id, guest_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.insert(showGuest)
@@ -682,7 +675,7 @@ export const add_show_guest = command(show_guest_schema, async ({ show_id, guest
 });
 
 export const remove_show_guest = command(show_guest_schema, async ({ show_id, guest_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(showGuest)
@@ -692,7 +685,7 @@ export const remove_show_guest = command(show_guest_schema, async ({ show_id, gu
 });
 
 export const search_videos = query(video_search_schema, async ({ search_text, limit }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_search = search_text?.trim() || '';
 	const max_results = Math.min(100, Math.max(1, limit || 25));
@@ -708,7 +701,7 @@ export const search_videos = query(video_search_schema, async ({ search_text, li
 });
 
 export const add_show_video = command(show_video_schema, async ({ show_id, video_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.insert(showVideo)
@@ -722,7 +715,7 @@ export const add_show_video = command(show_video_schema, async ({ show_id, video
 });
 
 export const remove_show_video = command(show_video_schema, async ({ show_id, video_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(showVideo)
@@ -736,7 +729,7 @@ export const remove_show_video = command(show_video_schema, async ({ show_id, vi
 // ============================================================================
 
 export const search_users_for_host = query(user_search_schema, async ({ search_text }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_search = search_text?.trim() || '';
 
@@ -762,7 +755,7 @@ export const search_users_for_host = query(user_search_schema, async ({ search_t
 });
 
 export const add_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.insert(showToProfile)
@@ -776,7 +769,7 @@ export const add_show_host = command(show_host_schema, async ({ show_id, user_id
 });
 
 export const remove_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(showToProfile)
@@ -792,7 +785,7 @@ export const remove_show_host = command(show_host_schema, async ({ show_id, user
 // ============================================================================
 
 export const update_ai_show_note = command(update_ai_show_note_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(aiShowNote)
@@ -806,7 +799,7 @@ export const update_ai_show_note = command(update_ai_show_note_schema, async (in
 });
 
 export const update_ai_summary_entry = command(update_ai_summary_entry_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(aiSummaryEntry)
@@ -821,7 +814,7 @@ export const update_ai_summary_entry = command(update_ai_summary_entry_schema, a
 });
 
 export const update_ai_tweet = command(update_ai_tweet_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(aiTweet)
@@ -834,7 +827,7 @@ export const update_ai_tweet = command(update_ai_tweet_schema, async (input) => 
 });
 
 export const update_link = command(update_link_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(link)
@@ -849,7 +842,7 @@ export const update_link = command(update_link_schema, async (input) => {
 });
 
 export const update_ai_guest = command(update_ai_guest_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(aiGuest)
@@ -862,7 +855,7 @@ export const update_ai_guest = command(update_ai_guest_schema, async (input) => 
 });
 
 export const update_topic = command(update_topic_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.update(topic)
@@ -875,7 +868,7 @@ export const update_topic = command(update_topic_schema, async (input) => {
 });
 
 export const add_ai_summary_entry = command(add_ai_summary_entry_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	await assert_ai_show_note_exists(input.show_note_id);
 
 	const [inserted] = await db
@@ -892,7 +885,7 @@ export const add_ai_summary_entry = command(add_ai_summary_entry_schema, async (
 });
 
 export const add_ai_tweet = command(add_ai_tweet_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	await assert_ai_show_note_exists(input.show_note_id);
 
 	const [inserted] = await db
@@ -907,7 +900,7 @@ export const add_ai_tweet = command(add_ai_tweet_schema, async (input) => {
 });
 
 export const add_link = command(add_link_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	await assert_ai_show_note_exists(input.show_note_id);
 
 	const [inserted] = await db
@@ -924,7 +917,7 @@ export const add_link = command(add_link_schema, async (input) => {
 });
 
 export const add_ai_guest = command(add_ai_guest_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	await assert_ai_show_note_exists(input.show_note_id);
 
 	const [inserted] = await db
@@ -939,7 +932,7 @@ export const add_ai_guest = command(add_ai_guest_schema, async (input) => {
 });
 
 export const add_topic = command(add_topic_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 	await assert_ai_show_note_exists(input.show_note_id);
 
 	const [inserted] = await db
@@ -954,7 +947,7 @@ export const add_topic = command(add_topic_schema, async (input) => {
 });
 
 export const delete_ai_summary_entry = command(ai_child_id_schema, async ({ id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(aiSummaryEntry).where(eq(aiSummaryEntry.id, id));
 
@@ -962,7 +955,7 @@ export const delete_ai_summary_entry = command(ai_child_id_schema, async ({ id }
 });
 
 export const delete_ai_tweet = command(ai_child_id_schema, async ({ id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(aiTweet).where(eq(aiTweet.id, id));
 
@@ -970,7 +963,7 @@ export const delete_ai_tweet = command(ai_child_id_schema, async ({ id }) => {
 });
 
 export const delete_link = command(ai_child_id_schema, async ({ id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(link).where(eq(link.id, id));
 
@@ -978,7 +971,7 @@ export const delete_link = command(ai_child_id_schema, async ({ id }) => {
 });
 
 export const delete_ai_guest = command(ai_child_id_schema, async ({ id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(aiGuest).where(eq(aiGuest.id, id));
 
@@ -986,7 +979,7 @@ export const delete_ai_guest = command(ai_child_id_schema, async ({ id }) => {
 });
 
 export const delete_topic = command(ai_child_id_schema, async ({ id }) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(topic).where(eq(topic.id, id));
 
@@ -994,21 +987,21 @@ export const delete_topic = command(ai_child_id_schema, async ({ id }) => {
 });
 
 export const import_all_transcripts = command(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	await import_transcripts();
 	return { success: true, message: 'Transcripts import completed' };
 });
 
 export const delete_all_transcripts = command(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db.delete(transcript);
 	return { success: true, message: 'Deleted all transcripts' };
 });
 
 export const import_all_shows = form(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	console.log('🤖 Pod Sync Requested via Admin');
 	const result = await import_or_update_all_changed_shows();
@@ -1026,7 +1019,7 @@ export const import_all_shows = form(async () => {
 });
 
 export const refresh_all = form(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	console.log('🤖 Pod Refresh Requested via Admin');
 	const result = await import_or_update_all_shows();
@@ -1046,7 +1039,7 @@ export const refresh_all = form(async () => {
 });
 
 export const delete_all_shows = form(async () => {
-	assert_admin_user();
+	await assert_admin();
 
 	// Order of these is important because of how db relations work
 	await db.delete(showGuest);
@@ -1065,7 +1058,7 @@ export const delete_transcript = form(
 		show_number: v.number()
 	}),
 	async ({ show_number }) => {
-		assert_admin_user();
+		await assert_admin();
 
 		await db.delete(transcript).where(eq(transcript.show_number, show_number));
 		return { message: `Deleted Transcript for Show ${show_number}` };
@@ -1077,7 +1070,7 @@ export const fetch_show_transcript = form(
 		show_number: v.number()
 	}),
 	async ({ show_number }) => {
-		assert_admin_user();
+		await assert_admin();
 
 		await get_transcript(show_number);
 		console.log('🤖 transcript fetch requested');
@@ -1091,7 +1084,7 @@ export const fetch_ai_notes = form(
 		show_number: v.number()
 	}),
 	async ({ show_number }) => {
-		assert_admin_user();
+		await assert_admin();
 
 		const current_show = await db.query.show.findFirst({
 			where: eq(show.number, show_number),

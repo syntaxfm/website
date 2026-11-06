@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import { command, getRequestEvent, query } from '$app/server';
+import { assert_admin } from '$server/auth/request_auth';
+import { command, query } from '$app/server';
 import { db } from '$server/db/client';
 import { content, playlist, playlistOnVideo, video } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
@@ -33,14 +34,6 @@ const search_videos_schema = v.object({
 	search_text: v.optional(v.string())
 });
 
-function assert_admin_user() {
-	const event = getRequestEvent();
-	if (!event.locals?.user?.roles?.includes('admin')) {
-		error(403, 'Admin access required');
-	}
-	return event;
-}
-
 function normalize_slug(input_text: string) {
 	return get_slug(input_text, {
 		separator: '-',
@@ -50,7 +43,7 @@ function normalize_slug(input_text: string) {
 }
 
 export const list_playlists = query(list_playlists_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 	const page = Math.max(1, input.page || 1);
@@ -87,7 +80,7 @@ export const list_playlists = query(list_playlists_schema, async (input) => {
 });
 
 export const get_playlist_detail = query(v.string(), async (playlist_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	return db.query.playlist.findFirst({
 		where: eq(playlist.id, playlist_id),
@@ -107,7 +100,7 @@ export const get_playlist_detail = query(v.string(), async (playlist_id) => {
 });
 
 export const create_playlist = command(create_playlist_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.title);
 	if (!normalized_slug) {
@@ -135,7 +128,7 @@ export const create_playlist = command(create_playlist_schema, async (input) => 
 });
 
 export const update_playlist = command(update_playlist_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const normalized_slug = normalize_slug(input.slug);
 	if (!normalized_slug) {
@@ -172,7 +165,7 @@ export const update_playlist = command(update_playlist_schema, async (input) => 
 });
 
 export const delete_playlist = command(v.string(), async (playlist_id) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const existing_playlist = await db.query.playlist.findFirst({
 		where: eq(playlist.id, playlist_id),
@@ -189,7 +182,7 @@ export const delete_playlist = command(v.string(), async (playlist_id) => {
 });
 
 export const add_video_to_playlist = command(playlist_video_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const max_order_rows = await db
 		.select({ max_order: sql<number | null>`max(${playlistOnVideo.order})` })
@@ -212,7 +205,7 @@ export const add_video_to_playlist = command(playlist_video_schema, async (input
 });
 
 export const remove_video_from_playlist = command(playlist_video_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	await db
 		.delete(playlistOnVideo)
@@ -227,7 +220,7 @@ export const remove_video_from_playlist = command(playlist_video_schema, async (
 });
 
 export const search_videos_for_playlist = query(search_videos_schema, async (input) => {
-	assert_admin_user();
+	await assert_admin();
 
 	const search_text = input.search_text?.trim() || '';
 
