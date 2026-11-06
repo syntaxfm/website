@@ -128,17 +128,40 @@ const server_timing: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-// Every page renders for its visitor: the (site) layout carries the signed-in user and their
-// theme. The Worker's shared cache keys only by URL, so a cached page went to everyone: measured
-// on beta, a page requested with a theme cookie was served, with that theme, to the next visitor.
-// Pages and page data stay out of shared caches; speed comes from caching the data underneath
-// (server/edge_cache.ts), which is the same for everyone.
-const private_pages: Handle = async function ({ event, resolve }) {
+// Pages render the same for every visitor (the user and theme are browser only), so pages and page
+// data are cached at Cloudflare's edge for PAGE_CACHE_SECONDS; browsers check back each time. The
+// Worker's cache keys by URL only, so anything per visitor stays private: admin, sign in/out,
+// responses that set a cookie, and routes that set their own cache-control (an admin's preview of
+// an unreleased show). Each deploy purges the page cache (scripts/purge-beta-cache.ts), so a cached
+// page never names a previous build's files.
+const PAGE_CACHE_SECONDS = 60 * 5;
+const PRIVATE_ROUTE_PREFIXES = ['/(site)/admin', '/(site)/login'];
+// Sentry's per-request trace tags would make every visitor of a cached page share one trace
+const SENTRY_TRACE_TAGS = /<meta name="(?:sentry-trace|baggage)"[^>]*>/g;
+
+const page_cache: Handle = async function ({ event, resolve }) {
 	const response = await resolve(event);
-	if (event.isDataRequest || response.headers.get('x-sveltekit-page') === 'true') {
+	const is_page = response.headers.get('x-sveltekit-page') === 'true';
+	if (!is_page && !event.isDataRequest) return response;
+
+	const is_private =
+		event.url.pathname === '/logout' ||
+		PRIVATE_ROUTE_PREFIXES.some((prefix) => event.route.id?.startsWith(prefix)) ||
+		response.headers.has('set-cookie');
+	if (is_private) {
 		response.headers.set('cache-control', 'private, no-cache');
+		return response;
 	}
-	return response;
+	if (response.status !== 200 || response.headers.has('cache-control')) return response;
+
+	response.headers.set('cache-control', `public, max-age=0, s-maxage=${PAGE_CACHE_SECONDS}`);
+	if (!is_page) return response;
+
+	const html = (await response.text()).replace(SENTRY_TRACE_TAGS, '');
+	// The body changed, so its length and ETag no longer describe it
+	response.headers.delete('content-length');
+	response.headers.delete('etag');
+	return new Response(html, { status: response.status, headers: response.headers });
 };
 
 // Plausible, proxied through /api/57475. Only the live site counts, so betas and previews don't
@@ -172,7 +195,7 @@ export const handle: Handle = sequence(
 	sentry_init,
 	Sentry.sentryHandle(),
 	server_timing,
-	private_pages,
+	page_cache,
 	request_metadata,
 	auth,
 	safe_form_data,

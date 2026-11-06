@@ -168,6 +168,67 @@ describe('auth hook in production', async () => {
 	});
 });
 
+describe('page cache', async () => {
+	const handle = await load_handle(false);
+	const SENTRY_TAGS =
+		'<meta name="sentry-trace" content="trace-1"/><meta name="baggage" content="sentry-trace_id=trace-1"/>';
+
+	function page_resolve(headers: Record<string, string> = {}) {
+		return vi.fn(
+			async () =>
+				new Response(`<html><head>${SENTRY_TAGS}</head><body>page</body></html>`, {
+					headers: { 'x-sveltekit-page': 'true', 'content-type': 'text/html', ...headers }
+				})
+		);
+	}
+
+	it('caches a public page at the edge, without Sentry trace tags', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/shows', { route_id: '/(site)/shows' }),
+			resolve: page_resolve()
+		});
+
+		expect(response.headers.get('cache-control')).toBe('public, max-age=0, s-maxage=300');
+		const html = await response.text();
+		expect(html).toContain('page');
+		expect(html).not.toContain('sentry-trace');
+		expect(html).not.toContain('baggage');
+	});
+
+	it('keeps a page that sets a cookie private', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/shows', { route_id: '/(site)/shows' }),
+			resolve: page_resolve({ 'set-cookie': 'a=1; Path=/' })
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-cache');
+	});
+
+	it('keeps a route that sets its own cache-control as it is', async () => {
+		const response = await handle({
+			event: make_event('https://syntax.fm/show/2000/future', {
+				route_id: '/(site)/show/[show_number]/[slug]'
+			}),
+			resolve: page_resolve({ 'cache-control': 'private, no-store' })
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-store');
+	});
+
+	it('keeps the account page private', async () => {
+		event_fetch.mockResolvedValue(session_response(central_session));
+		const response = await handle({
+			event: make_event('https://syntax.fm/login', {
+				route_id: '/(site)/login',
+				cookie: 'session=value'
+			}),
+			resolve: page_resolve()
+		});
+
+		expect(response.headers.get('cache-control')).toBe('private, no-cache');
+	});
+});
+
 describe('auth hook in development', async () => {
 	const handle = await load_handle(true);
 	// The same module instance the hooks loaded
