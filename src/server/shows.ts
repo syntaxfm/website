@@ -232,11 +232,7 @@ async function parse_and_save_show_notes(
 			await Promise.all(guest_promises);
 			// Otherwise as long as data.guest exists
 		} else if (data?.guest) {
-			try {
-				await add_or_update_guest(data?.guest, id);
-			} catch (err) {
-				console.error('Error Importing Show and Guests:', id, data.guest, err);
-			}
+			await add_or_update_guest(data.guest, id);
 		}
 		console.log(`Episode # ${id} imported successfully`);
 	} catch (err) {
@@ -246,82 +242,48 @@ async function parse_and_save_show_notes(
 	}
 }
 
+// Guests, show links and social links have UUID ids, so a guest is found by its unique name_slug.
+// This used to build text ids (`guest_<slug>`); every insert failed on the UUID column and the
+// error was only logged, so no imported show got its guests (22 shows, found 2026-11-06).
 async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
+	const { social, name, ...guest_without_socials } = guest;
+	if (typeof guest_without_socials.twitter === 'string') {
+		guest_without_socials.twitter = guest_without_socials.twitter.replace(/^@/, '');
+	}
+	const name_slug = slug(name);
+
 	try {
-		const { social, name, ...guest_without_socials } = guest;
-		if (typeof guest_without_socials.twitter === 'string') {
-			guest_without_socials.twitter = guest_without_socials.twitter.replace(/^@/, '');
-		}
-		const name_slug = slug(name);
-		const guest_id = `guest_${name_slug}`;
-
-		// Upsert the guest
-		await db
+		const [{ id: guest_id }] = await db
 			.insert(guests)
-			.values({
-				id: guest_id,
-				name,
-				name_slug,
-				...guest_without_socials
-			})
+			.values({ name, name_slug, ...guest_without_socials })
 			.onConflictDoUpdate({
-				target: guests.id,
-				set: {
-					name,
-					...guest_without_socials
-				}
-			});
+				target: guests.name_slug,
+				set: { name, ...guest_without_socials }
+			})
+			.returning({ id: guests.id });
 
-		// Upsert the showGuest relationship
 		await db
 			.insert(showGuest)
-			.values({
-				show_id: show_id,
-				guest_id: guest_id
-			})
-			.onConflictDoUpdate({
-				target: [showGuest.show_id, showGuest.guest_id],
-				set: {
-					show_id: show_id,
-					guest_id: guest_id
-				}
-			});
+			.values({ show_id, guest_id })
+			.onConflictDoNothing({ target: [showGuest.show_id, showGuest.guest_id] });
 
-		if (social) {
-			let social_links_array = [];
-			// If social is a string, convert it to an array with one element
-			if (typeof social === 'string') {
-				social_links_array = [social];
-			} else if (Array.isArray(social)) {
-				social_links_array = social;
-			} else {
-				console.error('Unexpected data type for social:', typeof social);
-				return;
-			}
-
-			const social_link_promises = social_links_array.map((social_link) => {
-				const social_link_id = `${guest_id}_${slug(social_link)}`;
-				return db
-					.insert(socialLink)
-					.values({
-						id: social_link_id,
-						link: social_link,
-						guest_id: guest_id
-					})
-					.onConflictDoUpdate({
-						target: socialLink.id,
-						set: {
-							link: social_link
-						}
-					});
-			});
-
-			await Promise.all(social_link_promises);
+		const social_links =
+			typeof social === 'string' ? [social] : Array.isArray(social) ? social : [];
+		if (social && social_links.length === 0) {
+			console.error('Unexpected data type for social:', typeof social, name);
 		}
+		await Promise.all(
+			social_links.map((link) =>
+				db
+					.insert(socialLink)
+					.values({ link, guest_id })
+					.onConflictDoNothing({ target: [socialLink.link, socialLink.guest_id] })
+			)
+		);
 
 		return { id: guest_id, name, name_slug };
 	} catch (err) {
-		console.error('Error Importing Guests:', show_id, guest, err);
+		throw new Error(`Could not import guest ${name} for ${show_id}`, { cause: err });
 	}
 }
 
