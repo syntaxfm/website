@@ -8,7 +8,6 @@ import * as Config from 'effect/Config';
 import * as Data from 'effect/Data';
 import * as Effect from 'effect/Effect';
 import * as Layer from 'effect/Layer';
-import * as Redacted from 'effect/Redacted';
 
 // The Syntax Cloudflare account: syntax.fm's zone, Syntax Auth and Syntax Lab. Alchemy takes the
 // account from its profile or CLOUDFLARE_ACCOUNT_ID, not from the stack, so the stack checks it.
@@ -69,32 +68,13 @@ const state_store = Layer.unwrap(
 	})
 );
 
-// PlanetScale Postgres, from the PROD_DATABASE_URL secret. Hyperdrive pools connections near the
-// database; it's PlanetScale's recommended path for Workers (direct connections time out).
-const database_origin = Effect.gen(function* () {
-	const url = new URL(Redacted.value(yield* Config.Redacted('PROD_DATABASE_URL')));
-	return {
-		scheme: 'postgres' as const,
-		host: url.hostname,
-		port: Number(url.port || 5432),
-		database: url.pathname.slice(1),
-		user: decodeURIComponent(url.username),
-		password: Redacted.make(decodeURIComponent(url.password))
-	};
+// PlanetScale Postgres through Hyperdrive (PlanetScale's recommended path for Workers; direct
+// connections time out). Looked up by name, so a deploy never needs the database password: the
+// connection was created by an earlier version of this stack and kept (RemovalPolicy.retain).
+// Changing its origin (a new host or password) is done on the Hyperdrive config in Cloudflare.
+const syntax_database = Cloudflare.Hyperdrive.lookup('SyntaxDatabase', {
+	name: 'syntaxwebsite-syntaxdatabase-beta-jaw3qpwy5oak63dt'
 });
-
-const syntax_database = Cloudflare.Hyperdrive.Connection(
-	'SyntaxDatabase',
-	// A missing or unreadable PROD_DATABASE_URL stops the deploy
-	database_origin.pipe(
-		Effect.map((origin) => ({ origin })),
-		Effect.orDie
-	)
-);
-
-// Everything the app reads at runtime: $app/env/private reads the secrets from the Worker env, and
-// src/server/db/client.ts reads HYPERDRIVE from platform.env.
-const secret = (name: string) => Config.Redacted(name);
 
 // The spam check on the user submission form (Potluck questions and the like)
 const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
@@ -107,7 +87,10 @@ const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
 // (src/server/og/og_image.ts)
 const og_images = Cloudflare.R2.Bucket('OgImages');
 
-// A missing secret stops the deploy
+// The app's secrets (CRON_SECRET, Kit, Deepgram, Megaphone, OpenAI, YouTube) aren't here: they're
+// set on the Worker itself (Cloudflare dashboard, or wrangler secret put) and Alchemy leaves
+// secrets it didn't upload alone. So a deploy, including one Cloudflare runs on every push to v_3,
+// needs no 1Password. $app/env/private reads them from the Worker env.
 export const website_props = Effect.gen(function* () {
 	const turnstile = yield* submission_turnstile;
 	return {
@@ -120,17 +103,8 @@ export const website_props = Effect.gen(function* () {
 			OG_IMAGES: og_images,
 			PUBLIC_TURNSTILE_SITE_KEY: turnstile.sitekey,
 			TURNSTILE_SECRET: turnstile.secret,
-			// Callers of /webhooks/* and /cron/* must present it (has_auth.ts, cron/publish)
-			CRON_SECRET: yield* secret('CRON_SECRET'),
-			CONVERT_KIT_SECRET: yield* secret('CONVERT_KIT_SECRET'),
-			CONVERT_KIT_V4_API_KEY: yield* secret('CONVERT_KIT_V4_API_KEY'),
-			DEEPGRAM_SECRET: yield* secret('DEEPGRAM_SECRET'),
-			MEGAPHONE_API_TOKEN: yield* secret('MEGAPHONE_API_TOKEN'),
-			MEGAPHONE_NETWORK_ID: yield* secret('MEGAPHONE_NETWORK_ID'),
 			// Not secret: set in .env.schema
-			MEGAPHONE_PODCAST_ID: yield* Config.String('MEGAPHONE_PODCAST_ID'),
-			OPENAI_API_KEY: yield* secret('OPENAI_API_KEY'),
-			YOUTUBE_API_KEY: yield* secret('YOUTUBE_API_KEY')
+			MEGAPHONE_PODCAST_ID: yield* Config.String('MEGAPHONE_PODCAST_ID')
 		}
 	};
 }).pipe(Effect.orDie);

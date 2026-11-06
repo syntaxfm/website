@@ -29,7 +29,7 @@
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.{css,svelte}\"",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"deploy:beta": "PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=true varlock run -- alchemy deploy --stage beta",
+		"deploy:beta": "PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=false varlock run -- alchemy deploy --stage beta --yes",
 		"postdeploy:beta": "node scripts/purge-beta-cache.ts"
 	},
 	"devDependencies": {
