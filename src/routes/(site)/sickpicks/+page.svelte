@@ -3,10 +3,15 @@
 	import Filter from '#lib/forms/Filter.svelte';
 	import Meta from '#lib/meta/Meta.svelte';
 	import ShowNotes from '#lib/shows/ShowNotes.svelte';
+	import { on_visible } from '$actions/on_visible';
 	import { get_sick_picks } from './sickpicks.remote.js';
+
+	// Rendering every show's picks at once blocked the main thread for over a second
+	const SHOWS_PER_BATCH = 20;
 
 	const shows = await get_sick_picks();
 	let search = $state('');
+	let visible_count = $state(SHOWS_PER_BATCH);
 	let filtered_shows = $derived.by(() => {
 		const normalized_search = search.trim().toLowerCase();
 
@@ -37,7 +42,7 @@
 		bind:value={search}
 	/>
 
-	{#each filtered_shows as show (show.number)}
+	{#each filtered_shows.slice(0, visible_count) as show (show.number)}
 		<article class="stack">
 			<header>
 				<h2 class="h4">
@@ -56,4 +61,10 @@
 	{:else}
 		<p>No matching sick picks.</p>
 	{/each}
+
+	{#if visible_count < filtered_shows.length}
+		{#key visible_count}
+			<div {@attach on_visible(() => (visible_count += SHOWS_PER_BATCH))}></div>
+		{/key}
+	{/if}
 </section>

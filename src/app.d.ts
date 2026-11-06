@@ -36,9 +36,12 @@ declare global {
 		}
 
 		// interface PageData {}
-		// The Worker's bindings (alchemy.run.ts). Absent under `pnpm dev`, which runs on Node.
+		// What Alchemy's Worker shim passes: bindings (alchemy.run.ts), the execution context and the
+		// Cache API. Absent under `pnpm dev`, which runs on Node.
 		interface Platform {
 			env: Partial<SyntaxWebsiteEnv>;
+			ctx?: { waitUntil(promise: Promise<unknown>): void };
+			caches?: CacheStorage & { default?: Cache };
 		}
 	}
 

@@ -68,6 +68,8 @@ export default defineConfig(({ mode, command }) => {
 					})
 				],
 				compilerOptions: { experimental: { async: true } },
+				// Not forkPreloads: tried 2026-11-06, it looped /shows (effect_update_depth_exceeded,
+				// endless get_all_podcasts requests, no episodes) and gained little over caching.
 				experimental: { remoteFunctions: true },
 				// No `adapter`: Alchemy's SvelteKit resource (alchemy.run.ts) injects its own Cloudflare
 				// adapter on `alchemy deploy`. `pnpm dev` runs on Node and needs none.

@@ -29,7 +29,8 @@
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.{css,svelte}\"",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"deploy:beta": "PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=true varlock run -- alchemy deploy --stage beta"
+		"deploy:beta": "PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=true varlock run -- alchemy deploy --stage beta",
+		"postdeploy:beta": "node scripts/purge-beta-cache.ts"
 	},
 	"devDependencies": {
 		"@alchemy.run/cloudflare": "2.0.0-beta.85",
