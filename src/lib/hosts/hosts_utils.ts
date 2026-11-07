@@ -15,7 +15,8 @@ export function get_faces_from_show(show: FaceShow) {
 				];
 
 	const hosts = host_profiles.map((profile) => ({
-		name: profile.name || '',
+		// v3 never writes profile names (they came from the old users table), so a host can lack one
+		name: profile.name || profile.username || '',
 		github: profile.username || '',
 		type: 'host'
 	}));
