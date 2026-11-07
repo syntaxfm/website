@@ -3,7 +3,10 @@
 	import FeedItemPodcast from './FeedItemPodcast.svelte';
 	import FeedItemVideo from './FeedItemVideo.svelte';
 
-	type Feed_content = Awaited<ReturnType<typeof get_feed_content>>[number];
+	// The Home feed is edge cached as JSON (dates are strings); the Guest and Tag feeds aren't (Dates)
+	type Feed_content = Omit<Awaited<ReturnType<typeof get_feed_content>>[number], 'published_at'> & {
+		published_at: string | Date | null;
+	};
 
 	const { content }: { content: Feed_content } = $props();
 </script>

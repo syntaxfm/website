@@ -17,7 +17,7 @@ import type { RankedContent } from '#lib/sidebar/ranked.ts';
 export const get_feed_content = query(() =>
 	edge_cached('home-feed', { fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 }, () =>
 		db.query.content.findMany({
-			columns: { id: true, type: true },
+			columns: { id: true, type: true, published_at: true },
 			orderBy: (c, { desc }) => [desc(c.published_at)],
 			limit: 100,
 			with: {

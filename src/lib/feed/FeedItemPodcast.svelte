@@ -5,13 +5,17 @@
 	import FeedHosts from '#lib/hosts/FeedHosts.svelte';
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
+	import { formatDistanceToNowStrict } from 'date-fns';
 
 	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow;
 	type Feed_content = {
+		published_at: string | Date | null;
 		tags: Array<{ tag: { name: string; slug: string | null } }>;
 	};
 
 	const { show, content }: { show: Feed_show; content: Feed_content } = $props();
+
+	const published_at = $derived(content.published_at ? new Date(content.published_at) : null);
 </script>
 
 <article class="stack">
@@ -19,7 +23,13 @@
 		<div class="show-logo"></div>
 		<div>
 			<h3 class="h4 fv-700-i">Syntax Podcast</h3>
-			<p>4 Hours Ago</p>
+			{#if published_at}
+				<p>
+					<time datetime={published_at.toISOString()}>
+						{formatDistanceToNowStrict(published_at, { addSuffix: true })}
+					</time>
+				</p>
+			{/if}
 		</div>
 	</header>
 	<FeedHosts {show} />
@@ -42,6 +52,10 @@
 	header {
 		align-items: center;
 		gap: 20px;
+	}
+
+	time {
+		text-transform: capitalize;
 	}
 
 	.show-logo {
