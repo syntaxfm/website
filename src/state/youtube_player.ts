@@ -356,16 +356,13 @@ function create_youtube_player() {
 	}
 
 	/**
-	 * A <youtube-video> showing this show, to read the video duration from.
-	 * The global element once it's playing the show, otherwise the preview in one of the show's slots.
+	 * The global <youtube-video>, once it's showing this show's video, to read the video's length
+	 * from. Null otherwise: the show page shows a picture of the video until it's played.
 	 */
 	function find_video(show: PlayerShow): YoutubeVideoElementLike | null {
 		const state = get(store);
-		if (!is_switching_video && state.video_id === get_id_from_url(show.youtube_url)) {
-			return state.active_element;
-		}
-		const preview = find_slot(show.number)?.slot_el.querySelector?.('youtube-video');
-		return (preview as YoutubeVideoElementLike | null | undefined) ?? null;
+		if (is_switching_video || state.video_id !== get_id_from_url(show.youtube_url)) return null;
+		return state.active_element;
 	}
 
 	/**

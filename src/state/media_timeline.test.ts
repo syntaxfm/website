@@ -78,6 +78,28 @@ describe('media_timeline', () => {
 		expect(await timelines_match({ number: 5, youtube_url }, video_el)).toBe(true);
 	});
 
+	it("asks a hidden YouTube player for the video's length when none is mounted", async () => {
+		record_duration(8, 'AUDIO', 1800);
+		const probe = {
+			duration: 1801,
+			loadComplete: Promise.resolve(),
+			inert: false,
+			style: { cssText: '' },
+			setAttribute: vi.fn(),
+			remove: vi.fn()
+		};
+		const append = vi.fn();
+		vi.stubGlobal('customElements', { get: () => class {} });
+		vi.stubGlobal('document', { createElement: () => probe, body: { append } });
+
+		expect(await timelines_match({ number: 8, youtube_url })).toBe(true);
+		expect(probe.setAttribute).toHaveBeenCalledWith('src', youtube_url);
+		expect(append).toHaveBeenCalledWith(probe);
+		expect(probe.inert).toBe(true);
+		// It's only there to answer, then it goes
+		expect(probe.remove).toHaveBeenCalled();
+	});
+
 	it('persists durations across sessions', () => {
 		record_duration(6, 'AUDIO', 1200);
 		record_duration(6, 'VIDEO', 1200);

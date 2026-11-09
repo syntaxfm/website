@@ -2,7 +2,7 @@
 // This module tracks each version's duration and saved position separately so we never apply
 // an audio timestamp to a video (or vice versa) unless we know the two line up.
 import { get_local_storage } from '$utilities/storage';
-import { get_id_from_url } from '#lib/videos/utils.ts';
+import { get_id_from_url, get_watch_url_from_url } from '#lib/videos/utils.ts';
 
 export type MediaKind = 'AUDIO' | 'VIDEO';
 
@@ -92,10 +92,13 @@ function probe_audio_duration(url: string): Promise<number | null> {
 	});
 }
 
-async function wait_for_video_duration(video_el: {
+// The parts of <youtube-video> that tell us a video's length
+interface VideoDurationSource {
 	duration: number;
 	loadComplete?: Promise<void>;
-}) {
+}
+
+async function wait_for_video_duration(video_el: VideoDurationSource) {
 	if (!video_el.loadComplete) return video_el.duration;
 	const timeout = new Promise((resolve) => setTimeout(resolve, PROBE_TIMEOUT));
 	await Promise.race([video_el.loadComplete, timeout]);
@@ -103,22 +106,46 @@ async function wait_for_video_duration(video_el: {
 }
 
 /**
+ * The video's length, asked of a hidden YouTube player that's removed once it answers. Pages show
+ * a picture of the video until it's played, so there's usually no player on the page to ask.
+ */
+async function probe_video_duration(youtube_url: string): Promise<number | null> {
+	if (typeof document === 'undefined' || !customElements.get('youtube-video')) return null;
+	const video = document.createElement('youtube-video') as HTMLElement & VideoDurationSource;
+	video.inert = true;
+	// Out of the layout and unseen, but still rendered: YouTube's player doesn't start in a
+	// display: none iframe
+	video.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+	video.setAttribute('src', get_watch_url_from_url(youtube_url));
+	document.body.append(video);
+	try {
+		const duration = await wait_for_video_duration(video);
+		return Number.isFinite(duration) && duration > 0 ? duration : null;
+	} finally {
+		video.remove();
+	}
+}
+
+/**
  * Do the audio and video versions of this show line up?
- * Probes the audio file and waits on a mounted video element if durations aren't known yet.
+ * If durations aren't known yet, probes the audio file, and for the video waits on the mounted
+ * player or probes YouTube.
  * When we can't tell, returns false so timestamps fall back to the (exact) audio timeline.
  */
 export async function timelines_match(
 	show: { number: number; url?: string; youtube_url?: string | null },
-	video_el?: { duration: number; loadComplete?: Promise<void> } | null
+	video_el?: VideoDurationSource | null
 ): Promise<boolean> {
-	if (!get_id_from_url(show.youtube_url)) return false;
+	const { youtube_url } = show;
+	if (!youtube_url || !get_id_from_url(youtube_url)) return false;
 	const cached = timelines_match_cached(show.number);
 	if (cached !== null) return cached;
 
 	const known = get_durations(show.number);
 	const [audio_duration, video_duration] = await Promise.all([
 		known.audio ?? (show.url ? probe_audio_duration(show.url) : null),
-		known.video ?? (video_el ? wait_for_video_duration(video_el) : null)
+		known.video ??
+			(video_el ? wait_for_video_duration(video_el) : probe_video_duration(youtube_url))
 	]);
 	if (audio_duration) record_duration(show.number, 'AUDIO', audio_duration);
 	if (video_duration) record_duration(show.number, 'VIDEO', video_duration);
