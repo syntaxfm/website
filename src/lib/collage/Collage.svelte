@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { string_hash } from '#lib/utils/string_hash.ts';
 	import {
+		dots_to_layers,
 		generate_collage,
+		squares_to_layers,
 		torn_paper_path,
 		DEFAULT_PALETTE,
+		type CollageDotLayer,
 		type CollagePalette
 	} from './collage';
 
@@ -22,9 +25,25 @@
 	let { seed, width = 1000, height = 300, palette = DEFAULT_PALETTE, solid }: Props = $props();
 
 	const data = $derived(solid ? null : generate_collage(seed, width, height, palette));
+	// Thousands of dots and squares, merged into a few paths (see dots_to_layers)
+	const layers = $derived(
+		data && {
+			dots: dots_to_layers(data.dots),
+			squares: squares_to_layers(data.squares),
+			grit: dots_to_layers(data.grit)
+		}
+	);
 	const solid_clip = $derived(solid ? torn_paper_path(seed, width, height) : '');
 	const clip_id = $derived(`collage-${string_hash(seed)}`);
 </script>
+
+{#snippet dot_paths(dot_layers: CollageDotLayer[])}
+	<g fill="none" stroke-linecap="round">
+		{#each dot_layers as layer, index (index)}
+			<path d={layer.d} stroke={layer.stroke} stroke-width={layer.width} />
+		{/each}
+	</g>
+{/snippet}
 
 <svg
 	class="collage"
@@ -32,7 +51,7 @@
 	preserveAspectRatio="xMidYMid slice"
 	aria-hidden="true"
 >
-	{#if data}
+	{#if data && layers}
 		<defs>
 			<clipPath id={clip_id}>
 				<path d={data.clip} />
@@ -43,11 +62,9 @@
 			{#each data.shapes as shape, index (index)}
 				<path d={shape.d} fill={shape.fill} opacity={shape.opacity} />
 			{/each}
-			{#each data.dots as dot, index (index)}
-				<circle cx={dot.cx} cy={dot.cy} r={dot.r} fill={dot.fill} />
-			{/each}
-			{#each data.squares as sq, index (index)}
-				<rect x={sq.x} y={sq.y} width={sq.size} height={sq.size} fill={sq.fill} />
+			{@render dot_paths(layers.dots)}
+			{#each layers.squares as layer, index (index)}
+				<path d={layer.d} fill={layer.fill} />
 			{/each}
 			{#each data.strokes as stroke, index (index)}
 				<path
@@ -59,9 +76,7 @@
 					stroke-linecap="round"
 				/>
 			{/each}
-			{#each data.grit as speck, index (index)}
-				<circle cx={speck.cx} cy={speck.cy} r={speck.r} fill={speck.fill} />
-			{/each}
+			{@render dot_paths(layers.grit)}
 		</g>
 	{:else}
 		<path d={solid_clip} fill={solid} />

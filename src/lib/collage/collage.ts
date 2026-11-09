@@ -231,6 +231,73 @@ function scrap(cx: number, cy: number, rx: number, ry: number, rng: Rng): string
 	return `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join('L')}Z`;
 }
 
+/** A set of same-coloured, same-sized dots drawn by one stroked path. */
+export interface CollageDotLayer {
+	d: string;
+	stroke: string;
+	width: number;
+}
+
+/** A set of same-coloured squares drawn by one filled path. */
+export interface CollageSquareLayer {
+	d: string;
+	fill: string;
+}
+
+/** One decimal place: a twentieth of a viewBox unit, well under a pixel at any size we render. */
+function compact(value: number): string {
+	return String(Math.round(value * 10) / 10);
+}
+
+/** Consecutive items of one colour, so colours keep painting over each other in the same order. */
+function runs_by_fill<T extends { fill: string }>(items: T[]): T[][] {
+	const runs: T[][] = [];
+	for (const item of items) {
+		const run = runs.at(-1);
+		if (run && run[0].fill === item.fill) run.push(item);
+		else runs.push([item]);
+	}
+	return runs;
+}
+
+/**
+ * Dots as a handful of paths instead of one `<circle>` each. A guest hero has about 10,000 dots:
+ * as elements they were 11,600 DOM nodes and 1.2 MB of HTML on every guest page.
+ *
+ * Each dot is a zero-length line (`M x y h0`), which a round line cap draws as a circle as wide
+ * as the stroke. One path holds every dot of one colour and one radius (to a tenth of a unit).
+ * Draw the paths with `fill="none" stroke-linecap="round"`.
+ */
+export function dots_to_layers(dots: CollageDot[]): CollageDotLayer[] {
+	const layers: CollageDotLayer[] = [];
+	for (const run of runs_by_fill(dots)) {
+		const by_radius = new Map<number, string[]>();
+		for (const dot of run) {
+			const tenths = Math.max(1, Math.round(dot.r * 10));
+			const points = by_radius.get(tenths) ?? [];
+			points.push(`M${compact(dot.cx)} ${compact(dot.cy)}h0`);
+			by_radius.set(tenths, points);
+		}
+		for (const [tenths, points] of by_radius) {
+			layers.push({ d: points.join(''), stroke: run[0].fill, width: (tenths * 2) / 10 });
+		}
+	}
+	return layers;
+}
+
+/** Squares as one filled path per run of a colour, instead of one `<rect>` each. */
+export function squares_to_layers(squares: CollageSquare[]): CollageSquareLayer[] {
+	return runs_by_fill(squares).map((run) => ({
+		fill: run[0].fill,
+		d: run
+			.map((square) => {
+				const size = compact(square.size);
+				return `M${compact(square.x)} ${compact(square.y)}h${size}v${size}h-${size}z`;
+			})
+			.join('')
+	}));
+}
+
 /** Just the torn-paper outline for a seed — used for the solid backing layer. */
 export function torn_paper_path(seed: string, width = 1000, height = 300): string {
 	return torn_outline(width, height, make_rng(string_seed(seed)));
