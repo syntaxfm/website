@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import PlatformLinks from '#lib/layout/PlatformLinks.svelte';
-	import prefooter from './prefooter.png';
+	import prefooter from './prefooter.webp';
 
 	const speed = 169;
 	let since_start = $state(Date.now() - 1499256000000);

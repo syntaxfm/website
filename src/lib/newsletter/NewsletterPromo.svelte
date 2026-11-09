@@ -1,5 +1,5 @@
 <script lang="ts">
-	import swag from './swag.png';
+	import swag from './swag.webp';
 
 	const HEADLINE = 'Join our newsletter for 15% off all Syntax & Sentry swag!';
 </script>

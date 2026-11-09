@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Input from '#lib/forms/Input.svelte';
-	import swag from './swag.png';
+	import swag from './swag.webp';
 	import { resolve } from '$app/paths';
 	let is_hidden = $state(false);
 
