@@ -1,3 +1,48 @@
+@layer base {
+	/* Long-form text rendered from Markdown (Privacy, Terms, Giveaway rules): a readable line length
+	and vertical rhythm. The reset removes every margin and components space their children with
+	gap, so the rhythm lives on this container rather than on bare elements, where it would stack
+	on top of every component's gap. */
+	.prose {
+		max-width: 72ch;
+
+		> * + * {
+			margin-block-start: 1em;
+		}
+
+		/* rem, not em: headings are 35-50px, so 2em would leave ~80px */
+		> :is(h2, h3, h4, h5, h6):not(:first-child) {
+			margin-block-start: 2.5rem;
+		}
+
+		> :is(h1, h2, h3, h4, h5, h6) + * {
+			margin-block-start: 0.5em;
+		}
+
+		:is(ul, ol) {
+			padding-inline-start: 1.5em;
+		}
+
+		li + li,
+		li > :is(ul, ol) {
+			margin-block-start: 0.25em;
+		}
+
+		/* Wide tables scroll sideways on phones instead of pushing the page wider */
+		table {
+			display: block;
+			max-width: 100%;
+			overflow-x: auto;
+		}
+
+		th,
+		td {
+			border: 1px solid var(--c-gray-4);
+			vertical-align: baseline;
+		}
+	}
+}
+
 @layer utilities {
 	/* Font Sizes
 	--fs-micro/--fs-caption/--fs-body were renamed into the numbered scale (#2093), leaving these
