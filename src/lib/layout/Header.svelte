@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import Logo from '#lib/layout/Logo.svelte';
 	import Nav from '#lib/layout/Nav.svelte';
+	import logo_mask from '$assets/Grit Mask@2x.png';
 
 	interface Props {
 		page_type?: 'landing' | 'interior';
@@ -16,6 +17,11 @@
 		page.url.pathname === '/' && Boolean(page.data.live_stream || page.data.debug_live_stream)
 	);
 </script>
+
+<!-- The logo is invisible until its grit mask loads, so the mask is fetched with the page -->
+<svelte:head>
+	<link rel="preload" as="image" href={logo_mask} crossorigin="anonymous" fetchpriority="high" />
+</svelte:head>
 
 {#if !is_admin_route}
 	<header class={{ 'live-home': is_homepage_live }}>

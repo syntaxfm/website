@@ -1,0 +1,10 @@
+/* Self-hosted MD IO variable font (wght 200–900, ital 0–1). Vite fingerprints it into
+   /_app/immutable/, so it is cached forever. Kept out of style.css: pages get it from
+   SiteFont.svelte, which says why. */
+@font-face {
+	font-family: '💪';
+	src:
+		url('../assets/fonts/MDIO-VF.woff2') format('woff2'),
+		local('MD IO Variable Regular'),
+		local('MDIOVariable-Regular');
+}

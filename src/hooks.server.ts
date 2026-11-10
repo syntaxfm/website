@@ -105,14 +105,6 @@ const document_policy: Handle = async function ({ event, resolve }) {
 	return response;
 };
 
-// SvelteKit preloads JS and CSS by default. Adding fonts puts a <link rel="preload"> for the site
-// font in the HTML head, so it downloads alongside the CSS instead of after it is parsed.
-const preload_fonts: Handle = async function ({ event, resolve }) {
-	return resolve(event, {
-		preload: ({ type }) => type === 'js' || type === 'css' || type === 'font'
-	});
-};
-
 // Where each request's server time went, for DevTools' Timing tab (see server_timing.ts)
 const server_timing: Handle = async function ({ event, resolve }) {
 	const start = performance.now();
@@ -200,7 +192,6 @@ export const handle: Handle = sequence(
 	auth,
 	safe_form_data,
 	document_policy,
-	preload_fonts,
 	analytics
 );
 

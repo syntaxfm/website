@@ -19,7 +19,7 @@ Bass!
 	html {
 		box-sizing: border-box;
 		text-size-adjust: none;
-		font-family: '💪';
+		font-family: '💪'; /* Declared in font.css */
 		color-scheme: light dark;
 	}
 
@@ -27,16 +27,6 @@ Bass!
 	*::before,
 	*::after {
 		box-sizing: inherit;
-	}
-
-	/* Self-hosted MD IO variable font (wght 200–900, ital 0–1). Vite fingerprints it into
-	   /_app/immutable/, so it is cached forever and preloaded by the `preload_fonts` hook. */
-	@font-face {
-		font-family: '💪';
-		src:
-			url('../assets/fonts/MDIO-VF.woff2') format('woff2'),
-			local('MD IO Variable Regular'),
-			local('MDIOVariable-Regular');
 	}
 
 	p,

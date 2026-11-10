@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { MediaQuery } from 'svelte/reactivity';
+	import { browser } from '$app/env';
 	import { player } from '$state/player';
 	import { player_window_status } from '$state/player_window_status';
 	import { youtube_player } from '$state/youtube_player';
@@ -12,12 +13,19 @@
 	import { get_id_from_url } from '#lib/videos/utils.ts';
 	import { enter_fullscreen, open_show_page } from '#lib/videos/video_actions.ts';
 
-	const show = await get_latest_podcast();
-	player.initialize(show ?? undefined);
+	// The server renders the bar holding the latest episode, so it's on the page from the first paint.
+	// The browser then loads what this visitor was last playing (IndexedDB), often the same episode.
+	const latest_show = await get_latest_podcast();
+	let is_restoring = $state(true);
+	if (browser) {
+		void player.initialize(latest_show ?? undefined).finally(() => (is_restoring = false));
+	}
 
+	let current_show = $derived($player.current_show ?? (is_restoring ? latest_show : null));
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
-	let has_video = $derived(Boolean(get_id_from_url($player.current_show?.youtube_url)));
-	let is_video = $derived($player.media_kind === 'VIDEO');
+	let has_video = $derived(Boolean(get_id_from_url(current_show?.youtube_url)));
+	// Episodes with a video play it unless the visitor chose audio, which only the browser knows
+	let is_video = $derived(is_restoring ? has_video : $player.media_kind === 'VIDEO');
 	let media_kind_label = $derived(is_video ? 'Switch to Audio' : 'Switch to Video');
 	let player_height = $state(0);
 	// The title stops short of the window controls, which sit over the top right of the player
@@ -89,7 +97,7 @@
 				title={media_kind_label}><Icon name={is_video ? 'headphones' : 'video'} /></button
 			>
 		{/if}
-		{#if $player.current_show}<ShareButton show={$player.current_show} />{/if}
+		{#if current_show}<ShareButton show={current_show} />{/if}
 		<button
 			class="minimize"
 			onclick={player.toggle_minimize}
@@ -111,10 +119,10 @@
 		{/if}
 
 		<div class="player-content stack" style:--stack-gap="0.5rem">
-			{#if $player.current_show}
+			{#if current_show}
 				<p>
-					<a id="player_show_title" href={resolve(get_show_path($player.current_show))}
-						>Show #{$player.current_show?.number} - {$player.current_show?.title}</a
+					<a id="player_show_title" href={resolve(get_show_path(current_show))}
+						>Show #{current_show.number} - {current_show.title}</a
 					>
 				</p>
 			{/if}
@@ -267,6 +275,18 @@
 	/* Only lays anything out on small screens with the video docked, the video sits beside the controls */
 	.media-top {
 		display: contents;
+	}
+
+	/* The bar is served with the page, but media-chrome's elements are empty until its script runs.
+	   These keep the bar the same size before and after: its controls are 24px tall, and the play
+	   button would otherwise show both of its icons. */
+	.media-range,
+	.media-sound {
+		min-height: 24px;
+	}
+
+	media-play-button:not(:defined) [slot='pause'] {
+		display: none;
 	}
 
 	.window-controls {

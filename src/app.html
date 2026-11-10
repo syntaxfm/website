@@ -13,6 +13,16 @@
 			document.documentElement.classList.add(
 				'theme-' + (/(?:^|;\s*)theme=([\w-]+)/.exec(document.cookie)?.[1] ?? 'system')
 			);
+
+			// Admins: keeps room for the admin menu, which arrives once the page's scripts have asked
+			// who is signed in (lib/admin/admin_hint.ts)
+			try {
+				if (localStorage.getItem('is_admin') === '1') {
+					document.documentElement.classList.add('is-admin');
+				}
+			} catch {
+				// Site data is blocked, so nothing was remembered
+			}
 		</script>
 
 		%syntax.analytics% %sveltekit.head%

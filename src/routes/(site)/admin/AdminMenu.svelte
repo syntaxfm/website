@@ -193,6 +193,11 @@
 		}
 	}
 
+	/* The page keeps this much room for the menu before it renders (admin.css). The rest is the border. */
+	.admin-menu {
+		min-block-size: calc(var(--admin-menu-height) - 1px);
+	}
+
 	.admin-submenu,
 	.admin-nested-submenu {
 		padding-block: var(--pad-xsmall);

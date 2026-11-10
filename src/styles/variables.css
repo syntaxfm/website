@@ -206,6 +206,9 @@
 	/* Misc */
 	--page-transition-duration: 100ms;
 
+	/* The admin menu's top row. The page keeps this room for it before it renders (admin.css). */
+	--admin-menu-height: 38px;
+
 	/* Some of these are to appease stylelint */
 	--transition-name: 'null';
 }

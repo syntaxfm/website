@@ -1,4 +1,11 @@
 @layer admin {
+	/* The admin menu arrives once the page's scripts have asked who is signed in. An admin's browser
+	   marks the page before it paints (app.html), and this keeps the menu's room until then, so the
+	   page doesn't jump down. AdminMenu.svelte sizes its row from the same height. */
+	:root.is-admin:not(:has(.admin-nav)) body {
+		padding-block-start: var(--admin-menu-height);
+	}
+
 	.admin {
 		--admin-bg: var(--c-bg);
 		--admin-fg: var(--c-fg);
