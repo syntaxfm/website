@@ -1,6 +1,9 @@
 <script lang="ts">
 	import font_url from '$assets/fonts/MDIO-VF.woff2';
 	import font_face from '$styles/font.css?inline';
+
+	// The tag name is spelled this way so Svelte doesn't take it for this component's own styles
+	const font_style = `<${'style'}>${font_face}</${'style'}>`;
 </script>
 
 <!--
@@ -13,5 +16,10 @@
 -->
 <svelte:head>
 	<link rel="preload" as="font" type="font/woff2" href={font_url} crossorigin="anonymous" />
-	<svelte:element this={"style"}>{font_face}</svelte:element>
+	<!--
+		Raw HTML so the browser keeps the server's copy as it is. A built page spells the font's URL
+		differently in the browser, and rewriting the rule would load the font again.
+	-->
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- our own stylesheet, built by Vite -->
+	{@html font_style}
 </svelte:head>
