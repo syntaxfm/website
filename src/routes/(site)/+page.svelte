@@ -15,7 +15,7 @@
 
 <section class="layout-sidebar">
 	<Feed />
-	<aside>
+	<aside class="stack">
 		<!-- <MostPopularThisWeek /> -->
 		<TrendingTopics />
 		<!-- 3d skateboard -->
