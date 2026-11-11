@@ -2,18 +2,25 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import LiveStream from './LiveStream.svelte';
 
-	const sample_stream = {
+	const live_video = {
 		id: 'pMwTR2KeuaU',
 		title: 'Bun re-written in Rust, Zig team big mad',
 		url: 'https://www.youtube.com/watch?v=pMwTR2KeuaU',
-		embed_url:
-			'https://www.youtube-nocookie.com/embed/pMwTR2KeuaU?autoplay=1&mute=1&playsinline=1&rel=0&controls=1',
+		is_live: true,
 		started_at: '2026-07-14T15:00:00.000Z',
 		labels: ['ai', 'github', 'conference']
 	};
-	const long_label_stream = {
-		...sample_stream,
+	const long_label_video = {
+		...live_video,
 		labels: ['artificial-intelligence', 'github-universe-keynote', 'developer-conference']
+	};
+	const latest_video = { ...live_video, is_live: false };
+	const episode = {
+		number: 1052,
+		title: 'Github Universe Keynote Recap',
+		slug: 'github-universe-keynote-recap',
+		url: 'https://traffic.megaphone.fm/FSI4626542802.mp3',
+		youtube_url: 'https://www.youtube.com/watch?v=XPnpzSA8RlI'
 	};
 
 	const { Story } = defineMeta({
@@ -22,6 +29,11 @@
 	});
 </script>
 
-<Story name="Live" args={{ stream: sample_stream }} />
-<Story name="Long labels" args={{ stream: long_label_stream }} />
-<Story name="Debug" args={{ stream: null, debug: true }} />
+<Story name="Live" args={{ video: live_video }} />
+<Story name="Long labels" args={{ video: long_label_video }} />
+<Story name="Latest video" args={{ video: latest_video }} />
+<Story
+	name="Latest episode"
+	args={{ video: { ...latest_video, id: 'XPnpzSA8RlI', title: episode.title }, show: episode }}
+/>
+<Story name="Debug" args={{ video: null, debug: true }} />

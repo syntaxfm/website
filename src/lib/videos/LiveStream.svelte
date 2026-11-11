@@ -4,57 +4,76 @@
 	import Icon from '#lib/Icon.svelte';
 	import Logo from '#lib/layout/Logo.svelte';
 	import LiveTag from '#lib/tags/LiveTag.svelte';
+	import { player } from '$state/player';
+	import type { PlayerShow } from '$state/player_utils';
+	import VideoPoster from './VideoPoster.svelte';
+	import YoutubeEmbed from './YoutubeEmbed.svelte';
+	import { get_autoplay_embed_url_from_id } from './utils';
 
-	interface LiveStreamData {
+	// Home's hero. While Syntax is live it plays the stream. The rest of the time it holds the
+	// channel's newest video, which waits for a click.
+	interface HeroVideo {
 		id: string;
 		title: string;
 		url: string;
-		embed_url: string;
+		is_live: boolean;
+		// When the stream started, or when the video came out
 		started_at: string | null;
 		labels: string[];
 	}
 
 	interface Props {
-		stream: LiveStreamData | null;
+		video: HeroVideo | null;
+		// The episode the video belongs to, if it's one: it then plays in the site's player
+		show?: PlayerShow | null;
+		// Development: shows the hero as it looks during a live stream
 		debug?: boolean;
 	}
 
 	const SYNTAX_STARTED_AT = 1499256000000;
+	const POSTER_SIZES = '(min-width: 1400px) 938px, (min-width: 1000px) 66vw, calc(100vw - 40px)';
 
-	const debug_stream: LiveStreamData = {
+	const debug_video: HeroVideo = {
 		id: 'pMwTR2KeuaU',
 		title: 'Bun re-written in Rust, Zig team big mad',
 		url: 'https://www.youtube.com/watch?v=pMwTR2KeuaU',
-		embed_url:
-			'https://www.youtube-nocookie.com/embed/pMwTR2KeuaU?autoplay=1&mute=1&playsinline=1&rel=0&controls=1',
+		is_live: true,
 		started_at: '2026-07-14T15:00:00.000Z',
 		labels: ['ai', 'github', 'conference']
 	};
 
-	const { stream, debug = false }: Props = $props();
+	const { video, show = null, debug = false }: Props = $props();
 	const title_id = $props.id();
-	const displayed_stream = $derived(stream ?? (debug ? debug_stream : null));
-	const embed_url = $derived.by(() => {
-		if (!displayed_stream) return null;
-
-		try {
-			const url = new URL(displayed_stream.embed_url);
-			if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
-			return url.toString();
-		} catch {
-			return null;
-		}
-	});
+	const displayed_video = $derived(debug ? debug_video : video);
+	const is_live = $derived(Boolean(displayed_video?.is_live));
 	const relative_start_time = $derived.by(() => {
-		if (!displayed_stream?.started_at) return 'Live now';
-		const started_at = new Date(displayed_stream.started_at);
-		if (Number.isNaN(started_at.getTime())) return 'Live now';
-		return formatDistanceToNow(started_at, { addSuffix: true });
+		const started_at = displayed_video?.started_at ? new Date(displayed_video.started_at) : null;
+		if (started_at && !Number.isNaN(started_at.getTime())) {
+			return formatDistanceToNow(started_at, { addSuffix: true });
+		}
+		return is_live ? 'Live now' : 'Latest video';
 	});
 	const displayed_labels = $derived(
-		displayed_stream ? [...new Set(displayed_stream.labels)].slice(0, 3) : []
+		displayed_video ? [...new Set(displayed_video.labels)].slice(0, 3) : []
 	);
 	let syntax_age_ms = $state(0);
+
+	// A video that isn't an episode plays here in YouTube's own player, once asked for. The id, so
+	// a different video arriving starts as a picture again.
+	let playing_here_id: string | null = $state(null);
+	const is_embedded = $derived(is_live || playing_here_id === displayed_video?.id);
+
+	function play_here() {
+		if (!displayed_video) return;
+		if ($player.status === 'PLAYING') player.pause();
+		playing_here_id = displayed_video.id;
+	}
+
+	// One thing plays at a time: the site's player starting puts this back to its picture. Playing
+	// is a status in the player's store, so there's no event to hang this on.
+	$effect(() => {
+		if ($player.status === 'PLAYING') playing_here_id = null;
+	});
 
 	const track_syntax_age: Attachment<HTMLSpanElement> = () => {
 		function update_syntax_age(): void {
@@ -67,7 +86,7 @@
 	};
 </script>
 
-{#if displayed_stream}
+{#if displayed_video}
 	<section class="live-stream" aria-labelledby={title_id}>
 		<div class="hero-logo" aria-hidden="true"><Logo /></div>
 
@@ -97,29 +116,41 @@
 
 		<div class="video-stage">
 			<div class="video-frame">
-				{#key displayed_stream.id}
-					{#if embed_url}
+				{#if is_embedded}
+					{#key displayed_video.id}
+						<!-- A stream starts by itself, so it has to start muted -->
 						<iframe
-							src={embed_url}
-							title="{displayed_stream.title} live stream"
+							src={get_autoplay_embed_url_from_id(displayed_video.id, { muted: is_live })}
+							title={is_live ? `${displayed_video.title} live stream` : displayed_video.title}
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 							referrerpolicy="strict-origin-when-cross-origin"
 							allowfullscreen
 						></iframe>
-					{/if}
-				{/key}
+					{/key}
+				{:else if show}
+					<YoutubeEmbed {show} is_show_page={false} sizes={POSTER_SIZES} />
+				{:else}
+					<VideoPoster
+						video_id={displayed_video.id}
+						label={`Play ${displayed_video.title}`}
+						sizes={POSTER_SIZES}
+						onplay={play_here}
+					/>
+				{/if}
 			</div>
 
-			<div class="live-badge"><LiveTag /></div>
+			{#if is_live}
+				<div class="live-badge"><LiveTag /></div>
+			{/if}
 		</div>
 
 		<a
 			class="chat-callout"
-			href={displayed_stream.url}
+			href={displayed_video.url}
 			target="_blank"
 			rel="noopener noreferrer external"
 		>
-			<span>Join the live chat on YouTube now!</span>
+			<span>{is_live ? 'Join the live chat on YouTube now!' : 'Watch on YouTube'}</span>
 			<Icon name="link-out" height="1.25em" width="1.25em" />
 		</a>
 
@@ -129,7 +160,7 @@
 				<span class="meta-x">x</span>
 				<span class="meta-time">{relative_start_time}</span>
 			</div>
-			<h2 id={title_id}><span class="title-text">{displayed_stream.title}</span></h2>
+			<h2 id={title_id}><span class="title-text">{displayed_video.title}</span></h2>
 			{#if displayed_labels.length}
 				<div class="stream-labels">
 					{#each displayed_labels as label (label)}
@@ -294,9 +325,19 @@
 	}
 
 	.video-frame {
+		position: relative;
 		box-sizing: border-box;
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
+
+		/* An episode's embed fills the frame, square inside the frame's own rounded border */
+		--embed-radius: 0;
+
+		:global(.youtube-embed) {
+			height: 100%;
+			aspect-ratio: auto;
+		}
+
 		padding: 0;
 		background-color: var(--c-black);
 		background-image: none;
@@ -484,6 +525,12 @@
 	}
 
 	h2 {
+		/* Two lines is what the hero has room for. Monday's stream titles run to four. */
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
 		width: 100%;
 		margin: 0;
 		font-size: var(--stream-title-font-size);

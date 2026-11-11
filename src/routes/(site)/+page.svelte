@@ -11,7 +11,7 @@
 
 <h1 class="visually-hidden">Syntax Podcast</h1>
 
-<LiveStream stream={data.live_stream} debug={data.debug_live_stream} />
+<LiveStream video={data.hero_video} show={data.hero_show} debug={data.debug_live_stream} />
 
 <section class="layout-sidebar">
 	<Feed />

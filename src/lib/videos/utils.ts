@@ -97,3 +97,21 @@ export function get_embed_url_from_url(url: string) {
 
 	return `https://www.youtube.com/embed/${video_id}?${search_params.toString()}`;
 }
+
+/**
+ * The embed url for the plain YouTube iframe, which plays on its own, apart from the site's player.
+ * `muted` is what lets a browser start it without a click.
+ */
+export function get_autoplay_embed_url_from_id(id: string, { muted = false } = {}) {
+	const search_params = new URLSearchParams({ autoplay: '1', playsinline: '1', rel: '0' });
+	if (muted) search_params.set('mute', '1');
+	return `https://www.youtube-nocookie.com/embed/${id}?${search_params.toString()}`;
+}
+
+/** Seconds in a YouTube API duration such as `PT1H2M3S`. 0 when it isn't one (live streams are `P0D`). */
+export function get_seconds_from_iso_duration(duration: string | null | undefined) {
+	const match = duration?.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+	if (!match) return 0;
+	const [, hours = '0', minutes = '0', seconds = '0'] = match;
+	return Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds);
+}
