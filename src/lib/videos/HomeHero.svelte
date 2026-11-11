@@ -141,6 +141,9 @@
 		--title-gap: clamp(14px, 3vi, 37px);
 		--doodle-size: 48px;
 
+		/* How far each part drifts as the page scrolls is its own --drift, times this */
+		--drift-scale: 1;
+
 		/* A soft spring: settles 2% past the end, then back */
 		--title-ease: linear(
 			0,
@@ -233,6 +236,9 @@
 
 		--logo-color: var(--c-primary);
 
+		/* Furthest back, so it falls behind the most */
+		--drift: 140px;
+
 		:global(svg) {
 			display: block;
 			width: 100%;
@@ -250,6 +256,11 @@
 		background: var(--c-black);
 		border: var(--frame-border) solid var(--c-white);
 		border-radius: var(--br-medium);
+
+		/* Lifted off the surface, and off the logo behind it */
+		box-shadow:
+			0 2px 6px oklch(from var(--c-black) l c h / 0.5),
+			0 32px 64px -24px oklch(from var(--c-black) l c h / 0.9);
 
 		/* An episode's embed fills the frame, square inside the frame's own rounded border */
 		--embed-radius: 0;
@@ -309,6 +320,9 @@
 		line-height: 1.05;
 		text-wrap: balance;
 
+		/* Sits a little above the picture */
+		filter: drop-shadow(0 10px 14px oklch(from var(--c-black) l c h / 0.45));
+
 		/* A click on the title is a click on the picture under it */
 		pointer-events: none;
 		transform-origin: left top;
@@ -346,6 +360,8 @@
 		margin: calc(var(--header-height) - var(--logo-top) - var(--doodle-size)) 0 0
 			calc(var(--logo-tuck) + var(--pad-medium));
 		rotate: 8deg;
+
+		--drift: -40px;
 	}
 
 	/* Under the logo, measured from the video's edge so they stay with the logo on a wide screen */
@@ -354,6 +370,8 @@
 		place-self: end end;
 		margin-right: calc(var(--logo-width) * 0.62);
 		rotate: -15deg;
+
+		--drift: -55px;
 	}
 
 	.doodle-cat {
@@ -361,6 +379,8 @@
 		place-self: center end;
 		margin-right: var(--gutter);
 		rotate: 15deg;
+
+		--drift: -30px;
 	}
 
 	/* Right of the title */
@@ -369,12 +389,37 @@
 		place-self: start end;
 		margin: var(--title-gap) 10% 0 0;
 		rotate: -15deg;
+
+		--drift: 25px;
 	}
 
 	.doodle-devto {
 		grid-area: title;
 		place-self: end end;
 		rotate: -9deg;
+
+		--drift: -20px;
+	}
+
+	/*
+		Depth. As the page scrolls, the logo falls behind the video and each icon runs at its own
+		pace. The video and its title stay put.
+	*/
+	@keyframes drift {
+		to {
+			translate: 0 calc(var(--drift) * var(--drift-scale));
+		}
+	}
+
+	@supports (animation-timeline: scroll()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.logo,
+			.doodle {
+				animation: drift linear both;
+				animation-timeline: scroll(root);
+				animation-range: 0 100lvh;
+			}
+		}
 	}
 
 	@media (--below-xlarge) {
@@ -432,6 +477,7 @@
 			--frame-border: 4px;
 			--title-size: var(--fs-5);
 			--doodle-size: 24px;
+			--drift-scale: 0.5;
 
 			grid-template:
 				'logo' auto
