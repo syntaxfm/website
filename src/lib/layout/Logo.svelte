@@ -20,9 +20,18 @@
 
 <style>
 	svg {
+		/* An outline runs a little past the artwork's edge */
+		overflow: visible;
 		mask-image: var(--logo-mask-image);
 		mask-repeat: repeat;
 		mask-size: 250px;
 		height: 100%;
+	}
+
+	/* Drawn as an outline when --logo-stroke is a color and --logo-color is transparent */
+	path {
+		stroke: var(--logo-stroke, none);
+		stroke-width: 3px;
+		vector-effect: non-scaling-stroke;
 	}
 </style>

@@ -25,7 +25,7 @@
 		debug?: boolean;
 	}
 
-	const POSTER_SIZES = '(min-width: 1400px) 938px, (min-width: 900px) 68vw, calc(100vw - 48px)';
+	const POSTER_SIZES = '(min-width: 1325px) 938px, (min-width: 900px) 71vw, calc(100vw - 48px)';
 
 	const debug_video: HeroVideo = {
 		id: 'pMwTR2KeuaU',
@@ -127,10 +127,13 @@
 		/* Header.svelte's height on Home. The hero runs up behind it. */
 		--header-height: 165px;
 		--logo-top: 48px;
-		--logo-width: clamp(200px, 22vi, 340px);
+		--logo-width: clamp(380px, 40vi, 640px);
 
-		/* How much of the logo's right side the video covers: its full stop, and none of the "x" */
-		--logo-tuck: calc(var(--logo-width) * 0.115);
+		/* How much of the logo's right side the video covers: the "x" and the full stop */
+		--logo-tuck: calc(var(--logo-width) * 0.42);
+
+		/* The logo and the title lean the same way */
+		--lean: -10.14deg;
 
 		/* Below the header's nav */
 		--video-top: calc(var(--header-height) + 10px);
@@ -169,8 +172,8 @@
 		display: grid;
 
 		/*
-			The video sits in the middle when there's room, and the logo tucks its right edge in
-			behind it. On a narrower screen the logo's column holds its width and the video gives way.
+			The video sits in the middle when there's room, and the logo runs in behind it from the
+			left. On a narrower screen the logo's column holds its width and the video gives way.
 		*/
 		grid-template:
 			[logo-start video-start] auto
@@ -231,10 +234,18 @@
 		width: var(--logo-width);
 		aspect-ratio: 1371 / 1212;
 
-		/* "Syn" clears the video's top edge. Only the end of "tax." goes behind it. */
-		margin-top: calc(var(--video-top) - var(--logo-top) - var(--logo-width) * 1212 / 1371 * 0.5);
+		/*
+			A quarter of it stands above the video's top edge. Leaning drops the foot of the "t" below
+			the box, and the bottom margin keeps the icons under that.
+		*/
+		margin: calc(var(--video-top) - var(--logo-top) - var(--logo-width) * 1212 / 1371 * 0.25) 0
+			calc(var(--logo-width) * 0.046);
+		rotate: var(--lean);
 
-		--logo-color: var(--c-primary);
+		/* A giant outline, with no grit to break the line */
+		--logo-color: transparent;
+		--logo-stroke: var(--c-primary);
+		--logo-mask-image: none;
 
 		/* Furthest back, so it falls behind the most */
 		--drift: 140px;
@@ -327,7 +338,7 @@
 		pointer-events: none;
 		transform-origin: left top;
 		translate: 0 calc(-1 * (var(--title-gap) + 0.75em));
-		rotate: -10.14deg;
+		rotate: var(--lean);
 		transition:
 			translate 600ms var(--title-ease),
 			rotate 600ms var(--title-ease);
@@ -364,11 +375,10 @@
 		--drift: -40px;
 	}
 
-	/* Under the logo, measured from the video's edge so they stay with the logo on a wide screen */
+	/* Under the logo: one in the corner left of the "t", one beside the video */
 	.doodle-code {
 		grid-area: icons;
-		place-self: end end;
-		margin-right: calc(var(--logo-width) * 0.62);
+		place-self: end start;
 		rotate: -15deg;
 
 		--drift: -55px;
@@ -443,8 +453,14 @@
 			column-gap: var(--gutter);
 		}
 
+		/* The solid logo, upright, with the theme's grit */
 		.logo {
-			margin-top: 0;
+			margin: 0;
+			rotate: none;
+
+			--logo-color: var(--c-primary);
+			--logo-stroke: none;
+			--logo-mask-image: inherit;
 		}
 
 		.video-frame,
@@ -459,7 +475,6 @@
 
 		.doodle-code {
 			justify-self: center;
-			margin-right: 0;
 		}
 
 		.doodle-cat {
