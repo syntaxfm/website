@@ -127,6 +127,13 @@
 		/* Header.svelte's height on Home. The hero runs up behind it. */
 		--header-height: 165px;
 		--logo-top: 48px;
+		--logo-width: clamp(200px, 22vi, 340px);
+
+		/* How much of the logo's right side the video covers: its full stop, and none of the "x" */
+		--logo-tuck: calc(var(--logo-width) * 0.115);
+
+		/* Below the header's nav */
+		--video-top: calc(var(--header-height) + 10px);
 		--gutter: clamp(24px, 3vi, 48px);
 		--wedge-height: clamp(48px, 13vi, 180px);
 		--frame-border: 10px;
@@ -157,18 +164,36 @@
 		overflow-x: clip;
 		left: 50%;
 		display: grid;
+
+		/*
+			The video sits in the middle when there's room, and the logo tucks its right edge in
+			behind it. On a narrower screen the logo's column holds its width and the video gives way.
+		*/
 		grid-template:
-			'logo  video' auto
-			'icons video' 1fr
-			'.     title' minmax(var(--wedge-height), auto)
-			/ clamp(200px, 22vi, 370px) minmax(0, 938px);
-		justify-content: center;
-		column-gap: var(--gutter);
+			[logo-start video-start] auto
+			[logo-end icons-start] 1fr
+			[icons-end video-end title-start] minmax(var(--wedge-height), auto)
+			[title-end]
+			/ [logo-start icons-start] minmax(calc(var(--logo-width) - var(--logo-tuck)), 1fr)
+			[icons-end video-start title-start] var(--logo-tuck)
+			[logo-end] minmax(0, calc(938px - var(--logo-tuck)))
+			[video-end title-end] minmax(0, 1fr);
 		width: 100vi;
 		margin-top: calc(var(--header-height) * -1);
 		padding: var(--logo-top) var(--gutter) var(--pad-xlarge);
 		translate: -50% 0;
 		color: var(--c-white);
+	}
+
+	/*
+		The dark surface. Its bottom edge is cut on a slant, so whatever the page is made of shows
+		through under it.
+	*/
+	.home-hero::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
 		background-color: var(--c-black);
 		background-image:
 			radial-gradient(circle, oklch(from var(--c-white) l c h / 0.17) 0 1px, transparent 1.5px),
@@ -194,22 +219,17 @@
 			1000px 2000px,
 			62% 130%,
 			58% 130%;
-	}
-
-	/* The page's own color cuts in from the bottom left */
-	.home-hero::after {
-		content: '';
-		position: absolute;
-		inset: auto 0 -1px;
-		z-index: -1;
-		height: var(--wedge-height);
-		background: color-mix(in srgb, var(--c-bg) 93%, var(--c-fg));
-		clip-path: polygon(0 0, 100% 100%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--wedge-height)));
 	}
 
 	.logo {
 		grid-area: logo;
+		justify-self: end;
+		width: var(--logo-width);
 		aspect-ratio: 1371 / 1212;
+
+		/* "Syn" clears the video's top edge. Only the end of "tax." goes behind it. */
+		margin-top: calc(var(--video-top) - var(--logo-top) - var(--logo-width) * 1212 / 1371 * 0.5);
 
 		--logo-color: var(--c-primary);
 
@@ -226,9 +246,7 @@
 		align-self: start;
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
-
-		/* Below the header's nav */
-		margin-top: calc(var(--header-height) + 10px - var(--logo-top));
+		margin-top: calc(var(--video-top) - var(--logo-top));
 		background: var(--c-black);
 		border: var(--frame-border) solid var(--c-white);
 		border-radius: var(--br-medium);
@@ -254,7 +272,7 @@
 		grid-area: video;
 		place-self: start end;
 		z-index: 1;
-		margin-top: calc(var(--header-height) + 10px - var(--logo-top));
+		margin-top: calc(var(--video-top) - var(--logo-top));
 		pointer-events: none;
 		translate: 14px -65%;
 		rotate: 2deg;
@@ -273,11 +291,11 @@
 		place-self: start start;
 		z-index: 1;
 
-		/* Two lines is what the hero has room for. Monday's stream titles run to four. */
+		/* Three lines holds most titles whole. Monday's stream titles run to four or more. */
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
 		overflow: hidden;
 
 		/* The rest of the row is the icons' */
@@ -321,24 +339,27 @@
 		pointer-events: none;
 	}
 
-	/* Above the frame's top left corner, between the logo and the nav */
+	/* Above the frame's top edge, between the logo and the nav */
 	.doodle-send {
 		grid-area: video;
 		place-self: start start;
-		margin: calc(var(--header-height) - var(--logo-top) - var(--doodle-size)) 0 0 var(--pad-medium);
+		margin: calc(var(--header-height) - var(--logo-top) - var(--doodle-size)) 0 0
+			calc(var(--logo-tuck) + var(--pad-medium));
 		rotate: 8deg;
 	}
 
-	/* Under the logo */
+	/* Under the logo, measured from the video's edge so they stay with the logo on a wide screen */
 	.doodle-code {
 		grid-area: icons;
-		place-self: end start;
+		place-self: end end;
+		margin-right: calc(var(--logo-width) * 0.62);
 		rotate: -15deg;
 	}
 
 	.doodle-cat {
 		grid-area: icons;
 		place-self: center end;
+		margin-right: var(--gutter);
 		rotate: 15deg;
 	}
 
@@ -367,12 +388,18 @@
 		.home-hero {
 			/* Below the header's nav */
 			--logo-top: 96px;
+			--logo-width: clamp(180px, 28vi, 240px);
 
 			grid-template:
 				'logo  icons' auto
 				'video video' auto
 				'title title' minmax(var(--wedge-height), auto)
-				/ clamp(180px, 28vi, 240px) minmax(0, 1fr);
+				/ var(--logo-width) minmax(0, 1fr);
+			column-gap: var(--gutter);
+		}
+
+		.logo {
+			margin-top: 0;
 		}
 
 		.video-frame,
@@ -387,6 +414,11 @@
 
 		.doodle-code {
 			justify-self: center;
+			margin-right: 0;
+		}
+
+		.doodle-cat {
+			margin-right: 0;
 		}
 	}
 
@@ -395,6 +427,7 @@
 		.home-hero {
 			--header-height: 323px;
 			--logo-top: 88px;
+			--logo-width: 200px;
 			--gutter: 20px;
 			--frame-border: 4px;
 			--title-size: var(--fs-5);
@@ -406,6 +439,9 @@
 				'title' auto
 				/ minmax(0, 1fr);
 			padding-bottom: var(--wedge-height);
+		}
+
+		.home-hero::before {
 			background-size:
 				67px 67px,
 				1000px 2000px,
@@ -415,12 +451,11 @@
 
 		.logo {
 			justify-self: center;
-			width: 200px;
 		}
 
 		.video-frame,
 		.live-badge {
-			margin-top: calc(var(--header-height) - var(--logo-top) - 200px * 1212 / 1371);
+			margin-top: calc(var(--header-height) - var(--logo-top) - var(--logo-width) * 1212 / 1371);
 		}
 
 		.live-badge {
