@@ -29,7 +29,6 @@ export interface YouTubeVideoItem {
 		title?: string;
 		publishedAt?: string;
 		liveBroadcastContent?: 'live' | 'none' | 'upcoming';
-		tags?: string[];
 	};
 	contentDetails?: {
 		duration?: string;
@@ -51,11 +50,7 @@ interface YouTubeVideoResponse {
 export interface YouTubeHeroVideo {
 	id: string;
 	title: string;
-	url: string;
 	is_live: boolean;
-	// When the stream started, or when the video came out
-	started_at: string | null;
-	labels: string[];
 }
 
 interface HeroVideoCache {
@@ -122,10 +117,7 @@ export function pick_hero_video(items: YouTubeVideoItem[]): YouTubeHeroVideo | n
 	return {
 		id: video.id,
 		title: video.snippet.title,
-		url: `https://www.youtube.com/watch?v=${video.id}`,
-		is_live: is_live(video),
-		started_at: get_released_at(video),
-		labels: video.snippet.tags?.slice(0, 3) ?? []
+		is_live: is_live(video)
 	};
 }
 

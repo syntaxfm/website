@@ -12,15 +12,15 @@
 	const is_admin_route = $derived(
 		page.url.pathname === '/admin' || page.url.pathname.startsWith('/admin/')
 	);
-	// Home's hero (LiveStream.svelte) runs up behind the header and carries its own big logo
+	// Home's hero (HomeHero.svelte) runs up behind the header and carries its own big logo
 	const has_home_hero = $derived(
 		page.url.pathname === '/' && Boolean(page.data.hero_video || page.data.debug_live_stream)
 	);
 </script>
 
 {#if !is_admin_route}
-	<header class={{ 'home-hero': has_home_hero }}>
-		<div class={['layout-main', { 'home-hero': has_home_hero }]}>
+	<header class={{ 'has-home-hero': has_home_hero }}>
+		<div class={['layout-main', { 'has-home-hero': has_home_hero }]}>
 			{#if page_type === 'interior'}
 				{#if !has_home_hero}
 					<a title="Syntax Podcast Home" href={resolve('')}>
@@ -42,7 +42,7 @@
 		padding: 1.5rem 0;
 	}
 
-	header.home-hero {
+	header.has-home-hero {
 		box-sizing: border-box;
 		height: 165px;
 		padding: 24px 0 48px;
@@ -56,19 +56,19 @@
 		--logo-color: light-dark(var(--c-black), var(--c-primary));
 	}
 
-	.layout-main.home-hero {
+	.layout-main.has-home-hero {
 		justify-content: flex-end;
 
 		--c-fg: var(--c-white);
 	}
 
 	@media (width < 700px) {
-		header.home-hero {
+		header.has-home-hero {
 			height: 323px;
 			padding: 24px 0 0;
 		}
 
-		.layout-main.home-hero {
+		.layout-main.has-home-hero {
 			justify-content: center;
 		}
 	}

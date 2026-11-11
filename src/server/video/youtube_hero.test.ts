@@ -13,8 +13,7 @@ function upload(id: string, overrides: Partial<YouTubeVideoItem> = {}): YouTubeV
 			channelId: YOUTUBE_CHANNEL_ID,
 			title: `Video ${id}`,
 			publishedAt: '2026-11-04T14:00:00Z',
-			liveBroadcastContent: 'none',
-			tags: ['css', 'svelte', 'ai', 'extra']
+			liveBroadcastContent: 'none'
 		},
 		contentDetails: { duration: 'PT58M12S' },
 		status: { embeddable: true, privacyStatus: 'public' },
@@ -34,14 +33,7 @@ describe('pick_hero_video', () => {
 			upload('middle')
 		]);
 
-		expect(video).toEqual({
-			id: 'newest',
-			title: 'Video x',
-			url: 'https://www.youtube.com/watch?v=newest',
-			is_live: false,
-			started_at: '2026-11-06T14:00:00Z',
-			labels: ['css', 'svelte', 'ai']
-		});
+		expect(video).toEqual({ id: 'newest', title: 'Video x', is_live: false });
 	});
 
 	it('picks the live stream over a newer video', () => {
@@ -57,7 +49,6 @@ describe('pick_hero_video', () => {
 
 		expect(video?.id).toBe('stream');
 		expect(video?.is_live).toBe(true);
-		expect(video?.started_at).toBe('2026-11-09T17:00:00Z');
 	});
 
 	it('skips Shorts', () => {
@@ -86,7 +77,6 @@ describe('pick_hero_video', () => {
 
 		expect(video?.id).toBe('replay');
 		expect(video?.is_live).toBe(false);
-		expect(video?.started_at).toBe('2026-11-09T17:00:00Z');
 	});
 
 	it('skips what visitors could not watch here', () => {

@@ -1,18 +1,11 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import LiveStream from './LiveStream.svelte';
+	import HomeHero from './HomeHero.svelte';
 
 	const live_video = {
 		id: 'pMwTR2KeuaU',
 		title: 'Bun re-written in Rust, Zig team big mad',
-		url: 'https://www.youtube.com/watch?v=pMwTR2KeuaU',
-		is_live: true,
-		started_at: '2026-07-14T15:00:00.000Z',
-		labels: ['ai', 'github', 'conference']
-	};
-	const long_label_video = {
-		...live_video,
-		labels: ['artificial-intelligence', 'github-universe-keynote', 'developer-conference']
+		is_live: true
 	};
 	const latest_video = { ...live_video, is_live: false };
 	const episode = {
@@ -24,14 +17,24 @@
 	};
 
 	const { Story } = defineMeta({
-		title: 'Media/LiveStream',
-		component: LiveStream
+		title: 'Media/HomeHero',
+		component: HomeHero
 	});
 </script>
 
 <Story name="Live" args={{ video: live_video }} />
-<Story name="Long labels" args={{ video: long_label_video }} />
 <Story name="Latest video" args={{ video: latest_video }} />
+<Story name="Short title" args={{ video: { ...latest_video, title: 'CSS is back' } }} />
+<Story
+	name="Long title"
+	args={{
+		video: {
+			...latest_video,
+			title:
+				'Bun re-written in Rust, Zig team big mad ✧ TypeScript 7 released, now 10x faster ✧ Potluck questions'
+		}
+	}}
+/>
 <Story
 	name="Latest episode"
 	args={{ video: { ...latest_video, id: 'XPnpzSA8RlI', title: episode.title }, show: episode }}
