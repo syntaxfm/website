@@ -1,20 +1,37 @@
 <script lang="ts">
-	import Input from '#lib/forms/Input.svelte';
-	import swag from './swag.webp';
+	import { onMount, tick } from 'svelte';
+	import { Turnstile } from 'svelte-turnstile';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { resolve } from '$app/paths';
+	import swag from './swag.webp';
+	import { subscribe_to_newsletter } from './newsletter.remote';
+
 	let is_hidden = $state(false);
 
-	const FORM_ID = 5465361;
-	let action = $derived(`https://app.convertkit.com/forms/${FORM_ID}/subscriptions`);
+	// Turnstile loads Cloudflare's script, so the bot check starts once someone starts on the form
+	let should_check_for_bots = $state(false);
+	let has_bot_check_settled = $state(false);
+	let turnstile_token = $state('');
+	let reset_turnstile: (() => void) | undefined = $state();
+	let on_bot_check_settled: (() => void) | undefined;
 
-	function submit() {
-		document.cookie = 'newsletter_visible=hidden';
+	const { fields } = subscribe_to_newsletter;
+	let result = $derived(subscribe_to_newsletter.result);
+	let error_message = $derived(
+		fields.email_address.issues()?.[0]?.message ??
+			(result && !result.is_subscribed ? result.message : undefined)
+	);
+
+	function settle_bot_check(token: string) {
+		turnstile_token = token;
+		has_bot_check_settled = true;
+		on_bot_check_settled?.();
+		on_bot_check_settled = undefined;
 	}
 
-	$effect(() => {
-		if (typeof document !== 'undefined') {
-			is_hidden = document.cookie.includes('newsletter_visible');
-		}
+	// The cookie is only readable in the browser
+	onMount(() => {
+		is_hidden = document.cookie.includes('newsletter_visible');
 	});
 </script>
 
@@ -33,18 +50,66 @@
 		<h3 id="newsletter-card-title"><a href={resolve('snackpack')}>Syntax Snack Pack</a></h3>
 		<p>Our newsletter: hot takes, tips & tricks, new content and swag drops.</p>
 
-		<form
-			{action}
-			onsubmit={submit}
-			method="post"
-			data-sv-form={FORM_ID}
-			data-uid="05d939b74d"
-			target="_blank"
-			aria-labelledby="newsletter-card-title"
-		>
-			<Input required type="email" label="Email" id="email_address" autocomplete="email" />
-			<button type="submit">Subscribe</button>
-		</form>
+		{#if result?.is_subscribed}
+			<p class="confirm" role="status">{result.message}</p>
+		{:else}
+			<form
+				aria-labelledby="newsletter-card-title"
+				onfocusin={() => (should_check_for_bots = true)}
+				{...subscribe_to_newsletter.enhance(async ({ element, submit }) => {
+					// Clicked before the bot check finished: send it again once it has
+					if (!has_bot_check_settled) {
+						should_check_for_bots = true;
+						await new Promise<void>((done) => (on_bot_check_settled = done));
+						await tick();
+						element.requestSubmit();
+						return;
+					}
+					try {
+						await submit();
+						if (subscribe_to_newsletter.result?.is_subscribed) {
+							document.cookie = 'newsletter_visible=hidden; path=/; max-age=31536000';
+						}
+					} catch (error) {
+						console.error('Newsletter signup failed', error);
+					} finally {
+						turnstile_token = '';
+						has_bot_check_settled = false;
+						reset_turnstile?.();
+					}
+				})}
+			>
+				<label for="newsletter-card-email">Email</label>
+				<input
+					id="newsletter-card-email"
+					{...fields.email_address.as('email')}
+					autocomplete="email"
+					required
+					aria-describedby={error_message ? 'newsletter-card-error' : undefined}
+				/>
+				<button type="submit" disabled={subscribe_to_newsletter.pending > 0}>Subscribe</button>
+				{#if error_message}
+					<p id="newsletter-card-error" class="error">{error_message}</p>
+				{/if}
+				<input {...fields.cf_turnstile_response.as('hidden', turnstile_token)} />
+				<!-- Without a site key Turnstile throws while rendering -->
+				{#if should_check_for_bots && PUBLIC_TURNSTILE_SITE_KEY}
+					<Turnstile
+						appearance="interaction-only"
+						siteKey={PUBLIC_TURNSTILE_SITE_KEY}
+						responseField={false}
+						bind:reset={reset_turnstile}
+						on:callback={(event) => settle_bot_check(event.detail.token)}
+						on:error={() => settle_bot_check('')}
+						on:timeout={() => settle_bot_check('')}
+						on:expired={() => {
+							turnstile_token = '';
+							has_bot_check_settled = false;
+						}}
+					/>
+				{/if}
+			</form>
+		{/if}
 	</section>
 {/if}
 
@@ -96,7 +161,8 @@
 
 	/* The card is yellow in both themes, so its text stays black where the page's would turn white */
 	h3,
-	p {
+	p,
+	label {
 		color: var(--c-black);
 	}
 
@@ -125,47 +191,53 @@
 	   there's room for both. */
 	form {
 		display: grid;
-		gap: var(--pad-small);
+		grid-template-areas: 'label' 'input' 'error' 'button' 'check';
+		gap: var(--pad-xsmall) 0;
 		margin-top: var(--pad-xsmall);
 
 		@container newsletter-card (width >= 420px) {
+			grid-template-areas: 'label label' 'input button' 'error error' 'check check';
 			grid-template-columns: 1fr auto;
-			align-items: end;
+			column-gap: var(--pad-small);
+		}
+
+		/* Turnstile's box, only there when Cloudflare wants a click */
+		> :global(div) {
+			grid-area: check;
 		}
 	}
 
-	/* The shared input floats its label over the field; here it sits above it, in the flow */
-	form :global(.input) {
-		display: block;
-	}
-
-	form :global(.input label) {
-		position: static;
-		display: block;
-		margin-bottom: var(--pad-xsmall);
-		color: var(--c-black);
+	label {
+		grid-area: label;
 		font-size: var(--fs-2);
 		font-variation-settings: var(--fv-700);
 	}
 
-	form :global(.input input),
+	input,
 	button {
 		height: 44px;
 		border-radius: var(--br-medium);
 		font-size: var(--fs-3);
 	}
 
-	form :global(.input input) {
+	input {
+		grid-area: input;
 		width: 100%;
 		padding: 0 12px;
 		border: 2px solid var(--c-black);
 		background: var(--c-white);
 		color: var(--c-black);
+
+		&[aria-invalid='true'] {
+			border-color: var(--c-red);
+		}
 	}
 
 	button {
+		grid-area: button;
 		display: grid;
 		place-items: center;
+		margin-top: var(--pad-xsmall);
 		padding: 0 var(--pad-large);
 		border: 0;
 		background: var(--c-black);
@@ -173,6 +245,10 @@
 		font-variation-settings: var(--fv-700-italic);
 		white-space: nowrap;
 		cursor: pointer;
+
+		@container newsletter-card (width >= 420px) {
+			margin-top: 0;
+		}
 
 		&:hover {
 			background: oklch(from var(--c-black) calc(l + 0.2) c h);
@@ -182,16 +258,34 @@
 			scale: 0.97;
 		}
 
+		&:disabled {
+			cursor: progress;
+			opacity: 0.7;
+		}
+
 		@media (prefers-reduced-motion: no-preference) {
 			transition:
 				background-color 150ms ease-out,
-				scale 100ms ease-out;
+				scale 100ms ease-out,
+				opacity 150ms ease-out;
 		}
 	}
 
-	form :global(.input input:focus-visible),
+	input:focus-visible,
 	button:focus-visible {
 		outline: 3px solid var(--c-black);
 		outline-offset: 2px;
+	}
+
+	.error {
+		grid-area: error;
+		margin: 0;
+		font-variation-settings: var(--fv-700);
+	}
+
+	/* Takes the form's place once Kit has the address */
+	.confirm {
+		font-size: var(--fs-3);
+		font-variation-settings: var(--fv-700-italic);
 	}
 </style>

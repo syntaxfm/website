@@ -76,7 +76,8 @@ const syntax_database = Cloudflare.Hyperdrive.lookup('SyntaxDatabase', {
 	name: 'syntaxwebsite-syntaxdatabase-beta-jaw3qpwy5oak63dt'
 });
 
-// The spam check on the user submission form (Potluck questions and the like)
+// The spam check on the user submission form (Potluck questions and the like) and the
+// newsletter signup card
 const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
 	name: 'syntax-website-beta-submissions',
 	domains: [BETA_DOMAIN],
