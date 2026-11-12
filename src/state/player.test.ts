@@ -3,19 +3,23 @@ import { get } from 'svelte/store';
 import type { Show } from '$server/db/types';
 import type { PlayerShow } from './player_utils';
 
-const { metrics_count, device_copies, keep_audio_on_device, remembered } = vi.hoisted(() => ({
-	metrics_count: vi.fn(),
-	// Audio addresses the device has a copy of, and the address each copy plays from
-	device_copies: new Map<string, string>(),
-	keep_audio_on_device: vi.fn(),
-	// What an earlier visit left in IndexedDB
-	remembered: { state: null as { current_show: PlayerShow } | null }
-}));
+const { metrics_count, device_copies, keep_audio_on_device, remembered, connection } = vi.hoisted(
+	() => ({
+		metrics_count: vi.fn(),
+		// Audio addresses the device has a copy of, and the address each copy plays from
+		device_copies: new Map<string, string>(),
+		keep_audio_on_device: vi.fn(),
+		// What an earlier visit left in IndexedDB
+		remembered: { state: null as { current_show: PlayerShow } | null },
+		connection: { is_limited: false }
+	})
+);
 
 vi.mock('@sentry/sveltekit', () => ({ metrics: { count: metrics_count } }));
 vi.mock('$utilities/media/load_media_session', () => ({ load_media_session: vi.fn() }));
 vi.mock('./player_offline', () => ({
 	get_device_audio_url: async (audio_url: string) => device_copies.get(audio_url) ?? null,
+	is_on_limited_data: () => connection.is_limited,
 	keep_audio_on_device
 }));
 vi.mock('./player_utils', () => ({
@@ -72,6 +76,8 @@ function attach_audio(listened_seconds = 0) {
 		src: '',
 		preload: '',
 		currentTime: 0,
+		playbackRate: 1,
+		paused: false,
 		played: { length: 1, start: () => 0, end: () => listened_seconds },
 		play: vi.fn().mockResolvedValue(undefined),
 		pause: vi.fn()
@@ -118,7 +124,7 @@ describe('player show input', () => {
 		expect(get(player).status).toBe('LOADED');
 	});
 
-	it('downloads none of the audio until it is played', async () => {
+	it('downloads none of the audio while the page loads', async () => {
 		const audio = attach_audio();
 
 		await player.initialize(show);
@@ -247,6 +253,7 @@ describe('player audio kept on the device', () => {
 		device_copies.clear();
 		keep_audio_on_device.mockReset();
 		remembered.state = null;
+		connection.is_limited = false;
 		player.reset();
 	});
 
@@ -300,5 +307,144 @@ describe('player audio kept on the device', () => {
 		player.ontimeupdate();
 
 		expect(keep_audio_on_device).not.toHaveBeenCalled();
+	});
+
+	// Half a minute in, the player keeps the audio and gets the copy ready to play from
+	async function listen_until_kept() {
+		keep_audio_on_device.mockImplementation(async () => {
+			device_copies.set(show.url, 'blob:device-copy');
+		});
+		player.ontimeupdate();
+		await settle();
+	}
+
+	it('asks for the audio to be kept once, however long the listening goes on', async () => {
+		attach_audio(31);
+		await player.start_show(show);
+
+		player.ontimeupdate();
+		player.ontimeupdate();
+		await settle();
+		player.ontimeupdate();
+
+		expect(keep_audio_on_device).toHaveBeenCalledOnce();
+	});
+
+	it('plays on from the network when the copy lands, so nothing is heard', async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+
+		await listen_until_kept();
+
+		expect(audio.src).toBe(show.url);
+	});
+
+	it("moves to the device's copy at a pause, at the same spot and speed", async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+		await listen_until_kept();
+		Object.assign(audio, { currentTime: 95, playbackRate: 1.5, paused: true });
+
+		player.onpause();
+
+		expect(audio.src).toBe('blob:device-copy');
+		expect(audio.preload).toBe('metadata');
+		expect(audio.currentTime).toBe(95);
+		expect(audio.playbackRate).toBe(1.5);
+		expect(audio.play).toHaveBeenCalledOnce();
+		expect(get(player).current_show?.url).toBe(show.url);
+	});
+
+	it("keeps playing through a jump, from the device's copy", async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+		await listen_until_kept();
+		audio.currentTime = 1500;
+
+		player.onseeking();
+		player.onseeking();
+
+		expect(audio.src).toBe('blob:device-copy');
+		expect(audio.currentTime).toBe(1500);
+		expect(audio.play).toHaveBeenCalledTimes(2);
+		expect(get(player).status).toBe('PLAYING');
+	});
+
+	it('moves to the copy that lands while the show sits paused', async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+		audio.paused = true;
+
+		await listen_until_kept();
+
+		expect(audio.src).toBe('blob:device-copy');
+	});
+
+	it('stays on the network at a pause when no copy was kept', async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+		player.ontimeupdate();
+		await settle();
+		audio.paused = true;
+
+		player.onpause();
+
+		expect(audio.src).toBe(show.url);
+	});
+
+	it('lets go of a waiting copy when another show takes over', async () => {
+		const audio = attach_audio(31);
+		await player.start_show(show);
+		await listen_until_kept();
+
+		await player.start_show({ ...show, number: 901, url: 'https://example.com/901.mp3' });
+		player.onpause();
+
+		expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:device-copy');
+		expect(audio.src).toBe('https://example.com/901.mp3');
+	});
+});
+
+describe('player.warm_audio', () => {
+	beforeEach(() => {
+		vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => undefined });
+		device_copies.clear();
+		remembered.state = null;
+		connection.is_limited = false;
+		player.reset();
+	});
+
+	it('reads the start of the loaded audio', async () => {
+		const audio = attach_audio();
+		await player.initialize(show);
+		await settle();
+
+		player.warm_audio();
+
+		expect(audio.preload).toBe('metadata');
+	});
+
+	it('reads nothing for a listener on limited data', async () => {
+		connection.is_limited = true;
+		const audio = attach_audio();
+		await player.initialize(show);
+		await settle();
+
+		player.warm_audio();
+
+		expect(audio.preload).toBe('none');
+	});
+
+	it('reads nothing for a show that plays as video', async () => {
+		const audio = attach_audio();
+		await player.initialize({
+			...show,
+			youtube_url: 'https://www.youtube.com/watch?v=dj6tUUTDXAo'
+		});
+		await settle();
+
+		player.warm_audio();
+
+		expect(audio.preload).toBe('none');
 	});
 });

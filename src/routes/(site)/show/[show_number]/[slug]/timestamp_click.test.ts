@@ -13,6 +13,7 @@ vi.mock('@sentry/sveltekit', () => ({ metrics: { count: metrics_count } }));
 vi.mock('$utilities/media/load_media_session', () => ({ load_media_session: vi.fn() }));
 vi.mock('$state/player_offline', () => ({
 	get_device_audio_url: async () => null,
+	is_on_limited_data: () => false,
 	keep_audio_on_device: async () => undefined
 }));
 vi.mock('$state/player_utils', () => ({

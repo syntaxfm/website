@@ -4,7 +4,7 @@ import toast from 'svelte-french-toast';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { get_id_from_url } from '#lib/videos/utils.ts';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
-import { get_device_audio_url, keep_audio_on_device } from './player_offline';
+import { get_device_audio_url, is_on_limited_data, keep_audio_on_device } from './player_offline';
 import {
 	load_state_from_indexed_db,
 	open_db,
@@ -74,6 +74,13 @@ const new_player_state = () => {
 
 	// The address the audio element is playing the device's copy from, to free it once replaced
 	let device_audio_url: string | null = null;
+
+	// The address of the device's copy of a show that's still playing from the network, held ready
+	// for the next pause or jump
+	let waiting_device_audio_url: string | null = null;
+
+	// The show whose audio is being kept, or was, so each timeupdate doesn't start that over
+	let keeping_audio_url: string | null = null;
 
 	function attach_media(media: HTMLElement | null) {
 		const { media_controller } = get(player_state);
@@ -192,6 +199,37 @@ const new_player_state = () => {
 
 		if (device_audio_url) URL.revokeObjectURL(device_audio_url);
 		device_audio_url = device_url;
+		if (waiting_device_audio_url) URL.revokeObjectURL(waiting_device_audio_url);
+		waiting_device_audio_url = null;
+	}
+
+	// Moves a show that's playing from the network over to the device's copy, once that's ready.
+	// Called at a pause or a jump, where the change of source can't be heard. From then on the
+	// network download stops and jumps don't wait on it.
+	function switch_to_device_copy() {
+		const { audio, media_kind } = get(player_state);
+		if (!audio || !waiting_device_audio_url || media_kind !== 'AUDIO') return;
+
+		const was_playing = !audio.paused;
+		// A new source starts over at the beginning and at normal speed
+		const position = audio.currentTime;
+		const speed = audio.playbackRate;
+		audio.preload = 'metadata';
+		audio.src = waiting_device_audio_url;
+		audio.currentTime = position;
+		audio.playbackRate = speed;
+		device_audio_url = waiting_device_audio_url;
+		waiting_device_audio_url = null;
+		if (was_playing) play_audio();
+	}
+
+	// Reads the start of the loaded audio, so the first play doesn't wait on the network.
+	// Not while the page is loading: the caller waits until the page is done.
+	function warm_audio() {
+		const { audio, current_show, media_kind } = get(player_state);
+		if (!audio || !current_show || media_kind !== 'AUDIO') return;
+		if (audio.preload !== 'none' || is_on_limited_data()) return;
+		audio.preload = 'metadata';
 	}
 
 	function is_video_active_for(show: PlayerShow | null) {
@@ -314,23 +352,37 @@ const new_player_state = () => {
 		if (get(player_state).media_kind === 'VIDEO') return;
 		update((state) => ({ ...state, status: 'PAUSED' }));
 		save_position(true);
+		switch_to_device_copy();
 	}
 
 	function ontimeupdate() {
 		save_position();
-		keep_listened_audio();
+		void keep_listened_audio();
 	}
 
-	// Keeps the episode's audio on the device once it's clear someone is listening to it, not sampling it
-	function keep_listened_audio() {
+	// Keeps the episode's audio on the device once it's clear someone is listening to it, not sampling
+	// it, then gets that copy ready to play from.
+	async function keep_listened_audio() {
 		const { audio, current_show, media_kind } = get(player_state);
 		if (!audio || !current_show || media_kind !== 'AUDIO') return;
+		if (device_audio_url || keeping_audio_url === current_show.url) return;
 		let listened_seconds = 0;
 		for (let index = 0; index < audio.played.length; index++) {
 			listened_seconds += audio.played.end(index) - audio.played.start(index);
 		}
 		if (listened_seconds < LISTENED_SECONDS_BEFORE_KEEPING) return;
-		void keep_audio_on_device(current_show.url);
+
+		keeping_audio_url = current_show.url;
+		await keep_audio_on_device(current_show.url);
+		const device_url = await get_device_audio_url(current_show.url);
+		if (!device_url) return;
+		if (get(player_state).current_show !== current_show || device_audio_url) {
+			URL.revokeObjectURL(device_url);
+			return;
+		}
+		waiting_device_audio_url = device_url;
+		// The copy can land while the show sits paused, with no pause or jump still to come
+		if (audio.paused) switch_to_device_copy();
 	}
 
 	function ondurationchange() {
@@ -387,6 +439,8 @@ const new_player_state = () => {
 		onpause,
 		onplay,
 		onended,
+		onseeking: switch_to_device_copy,
+		warm_audio,
 		play_timestamp,
 
 		// The main method for playing a show.
@@ -485,6 +539,7 @@ const new_player_state = () => {
 			//  Reset the player state and pause audio
 			// Set currentTime to 0 (probably doesn't need to happen)
 			youtube_player.close();
+			keeping_audio_url = null;
 			update((state) => {
 				if (state.audio) {
 					state.audio.pause();

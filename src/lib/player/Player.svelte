@@ -7,6 +7,7 @@
 	import AlbumArt from './AlbumArt.svelte';
 	import { resolve } from '$app/paths';
 	import get_show_path from '$utilities/slug';
+	import { page_idle } from '$utilities/page_idle';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
 	import { get_latest_podcast } from '#lib/shows/shows.remote.ts';
@@ -18,7 +19,12 @@
 	const latest_show = await get_latest_podcast();
 	let is_restoring = $state(true);
 	if (browser) {
-		void player.initialize(latest_show ?? undefined).finally(() => (is_restoring = false));
+		void player
+			.initialize(latest_show ?? undefined)
+			.finally(() => (is_restoring = false))
+			// The audio's start is read once the page is done, so it never competes with the page
+			.then(page_idle)
+			.then(player.warm_audio);
 	}
 
 	let current_show = $derived($player.current_show ?? (is_restoring ? latest_show : null));
@@ -145,6 +151,7 @@
 					ondurationchange={player.ondurationchange}
 					onended={player.onended}
 					onpause={player.onpause}
+					onseeking={player.onseeking}
 					slot="media"
 					preload="none"
 					crossorigin="anonymous"

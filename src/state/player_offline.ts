@@ -33,7 +33,7 @@ export async function get_device_audio_url(audio_url: string): Promise<string | 
 }
 
 // Only Chromium says. Elsewhere there's no way to tell.
-function is_on_limited_data(): boolean {
+export function is_on_limited_data(): boolean {
 	const connection: unknown = 'connection' in navigator ? navigator.connection : undefined;
 	if (typeof connection !== 'object' || connection === null) return false;
 	const is_saving_data = 'saveData' in connection && connection.saveData === true;
