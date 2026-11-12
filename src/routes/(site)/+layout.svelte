@@ -97,6 +97,15 @@
 </div>
 
 <style>
+	/*
+		The site's pages are speckled paper, and the specks scroll with the page. Only here, so the
+		embedded player and the share pictures keep their own backgrounds.
+	*/
+	.theme-wrapper {
+		background-image: var(--texture-speckle);
+		background-size: var(--texture-speckle-size);
+	}
+
 	.skip-to-main-content {
 		position: absolute;
 		top: -1000px;

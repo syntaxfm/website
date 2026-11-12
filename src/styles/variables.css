@@ -202,6 +202,11 @@
 	--c-bg-grit-light: url('/svg/grit.svg?light&count=50&w=1000&h=2000');
 	--c-bg-grit-dark: url('/svg/grit.svg?dark&count=50&w=1000&h=2000');
 
+	/* The page's speckled paper: the design's grey specks, tiled at the design's size. A dark page
+	   gets the same specks inverted (below). */
+	--texture-speckle: url('$assets/speckle.webp');
+	--texture-speckle-size: 926px 694px;
+
 	/* Inlined (10 KB): the logo is invisible until its mask has loaded, and a separate file arrived
 	   after the first paint */
 	--logo-mask-image: url('$assets/Grit Mask@2x.png?inline');
@@ -214,4 +219,8 @@
 
 	/* Some of these are to appease stylelint */
 	--transition-name: 'null';
+
+	@media (prefers-color-scheme: dark) {
+		--texture-speckle: url('$assets/speckle-inverted.webp');
+	}
 }
