@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Feed from '#lib/feed/Feed.svelte';
-	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
-	// import MostPopularThisWeek from '#lib/sidebar/MostPopularThisWeek.svelte';
-	import TrendingTopics from '#lib/sidebar/TrendingTopics.svelte';
+	import FeedSidebar from '#lib/feed/FeedSidebar.svelte';
 	import HomeHero from '#lib/videos/HomeHero.svelte';
 	import type { PageData } from './$types';
 
@@ -15,14 +13,5 @@
 
 <section class="layout-sidebar">
 	<Feed />
-	<aside class="stack">
-		<!-- <MostPopularThisWeek /> -->
-		<TrendingTopics />
-		<!-- 3d skateboard -->
-		<SwaggyNewsletterForm />
-		<!-- FileReader Guests -->
-		<!-- Staff Picks -->
-		<!-- Fan Favorites -->
-		<!-- Recent Shorts -->
-	</aside>
+	<FeedSidebar />
 </section>

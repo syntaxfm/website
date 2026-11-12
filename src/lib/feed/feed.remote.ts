@@ -11,38 +11,15 @@ import {
 import get_show_path from '$utilities/slug';
 import type { RankedContent } from '#lib/sidebar/ranked.ts';
 import { get_show_label } from '#lib/shows/show_label.ts';
+import { feed_card_query } from './feed_queries';
 
-// Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo).
-// Selecting whole rows sent show notes, search vectors and AI notes: 494 KB per call.
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
 export const get_feed_content = query(() =>
 	edge_cached('home-feed', { fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 }, () =>
 		db.query.content.findMany({
-			columns: { id: true, type: true, published_at: true },
+			...feed_card_query,
 			orderBy: (c, { desc }) => [desc(c.published_at)],
-			limit: 100,
-			with: {
-				show: {
-					columns: {
-						number: true,
-						title: true,
-						slug: true,
-						url: true,
-						youtube_url: true,
-						show_type: true,
-						date: true
-					},
-					with: {
-						guests: { columns: {}, with: { guest: { columns: { name: true, github: true } } } },
-						hosts: {
-							columns: {},
-							with: { profile: { columns: { name: true, username: true } } }
-						}
-					}
-				},
-				tags: { columns: {}, with: { tag: { columns: { name: true, slug: true } } } },
-				video: { columns: { title: true } }
-			}
+			limit: 100
 		})
 	)
 );
