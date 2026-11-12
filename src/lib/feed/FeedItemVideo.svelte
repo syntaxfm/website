@@ -3,26 +3,31 @@
 
 <script lang="ts">
 	import type { Video } from '$server/db/types';
+	import FeedByline from './FeedByline.svelte';
+	import { VIDEO_LABEL } from './feed_label';
 
 	type Props = {
 		video: Pick<Video, 'title'>;
+		published_at: string | Date | null;
 	};
 
-	const { video }: Props = $props();
+	const { video, published_at }: Props = $props();
 </script>
 
-<article>
-	<h4>{video.title}</h4>
-	<!-- <div>
-		<h3 class="h4">Syntax Podcast</h3>
-		<p>4 Hours Ago</p>
-	</div>
-	<div><HostsAndGuests hosts={show.hosts} guests={show.guests} /></div>
-	<div>
-		<span class="number fv-700-i">#{show.number}</span>
-		<img src={show?.thumbnail || no_thumb} alt={show.title} />
-	</div>
-
-	<p>{show?.aiShowNote?.description}</p>
-	<TagRow tags={show?.aiShowNote?.topics.map((topic) => topic.name)} /> -->
+<article class="stack">
+	<h3 class="fv-700-i">{video.title}</h3>
+	<FeedByline label={VIDEO_LABEL} {published_at} />
 </article>
+
+<style>
+	article {
+		--stack-gap: 14px;
+
+		padding-bottom: 2rem;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: var(--fs-7);
+	}
+</style>

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import TagRow from '../tags/TagRow.svelte';
 	import type { ComponentProps } from 'svelte';
-	import type { FaceShow } from '#lib/hosts/hosts_utils.ts';
-	import FeedHosts from '#lib/hosts/FeedHosts.svelte';
+	import { get_faces_from_show, get_people_line, type FaceShow } from '#lib/hosts/hosts_utils.ts';
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
-	import { formatDistanceToNowStrict } from 'date-fns';
+	import FeedByline from './FeedByline.svelte';
+	import { get_show_label, type LabeledShow } from './feed_label';
 
-	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow;
+	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow & LabeledShow;
 	type Feed_content = {
 		published_at: string | Date | null;
 		tags: Array<{ tag: { name: string; slug: string | null } }>;
@@ -15,23 +15,11 @@
 
 	const { show, content }: { show: Feed_show; content: Feed_content } = $props();
 
-	const published_at = $derived(content.published_at ? new Date(content.published_at) : null);
+	const faces = $derived(get_faces_from_show(show));
 </script>
 
 <article class="stack">
-	<header>
-		<h3 class="h4 fv-700-i">Syntax Podcast</h3>
-		{#if published_at}
-			<p>
-				<time datetime={published_at.toISOString()}>
-					{formatDistanceToNowStrict(published_at, { addSuffix: true })}
-				</time>
-			</p>
-		{/if}
-	</header>
-	<FeedHosts {show} />
 	<div class="thumb-container">
-		<!-- <span class="number fv-700-i">#{show.number}</span> -->
 		<ShowThumbnail
 			{show}
 			class="br-medium"
@@ -40,18 +28,30 @@
 		/>
 	</div>
 
-	<h4 class="fv-700-i"><a href={resolve(`show/${show.number}/${show.slug}`)}>{show.title}</a></h4>
+	<h3 class="fv-700-i"><a href={resolve(`show/${show.number}/${show.slug}`)}>{show.title}</a></h3>
 
-	<TagRow tags={content.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug }))} />
+	<FeedByline
+		label={get_show_label(show)}
+		published_at={content.published_at}
+		{faces}
+		people={get_people_line(faces)}
+	/>
+
+	{#if content.tags.length > 0}
+		<TagRow tags={content.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug }))} />
+	{/if}
 </article>
 
 <style>
-	time {
-		text-transform: capitalize;
+	article {
+		--stack-gap: 14px;
+
+		/* With the feed's own gap, cards sit further from each other than a card's parts do */
+		padding-bottom: 2rem;
 	}
 
-	h4,
-	.h4 {
+	h3 {
+		margin: 0;
 		font-size: var(--fs-7);
 	}
 
@@ -59,7 +59,5 @@
 		position: relative;
 		border-radius: 20px;
 		border: solid 12px var(--c-primary);
-
-		/* margin-top: -6.5rem; */
 	}
 </style>

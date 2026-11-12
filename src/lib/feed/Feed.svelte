@@ -12,3 +12,9 @@
 		{/each}
 	</div>
 </section>
+
+<style>
+	.stack {
+		margin-top: 1.5rem;
+	}
+</style>

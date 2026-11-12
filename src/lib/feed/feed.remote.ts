@@ -11,7 +11,7 @@ import {
 import get_show_path from '$utilities/slug';
 import type { RankedContent } from '#lib/sidebar/ranked.ts';
 
-// Only what the feed cards render (FeedItemPodcast, FeedHosts, ShowThumbnail, FeedItemVideo).
+// Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo).
 // Selecting whole rows sent show notes, search vectors and AI notes: 494 KB per call.
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
 export const get_feed_content = query(() =>
@@ -22,7 +22,15 @@ export const get_feed_content = query(() =>
 			limit: 100,
 			with: {
 				show: {
-					columns: { number: true, title: true, slug: true, url: true, youtube_url: true },
+					columns: {
+						number: true,
+						title: true,
+						slug: true,
+						url: true,
+						youtube_url: true,
+						show_type: true,
+						date: true
+					},
 					with: {
 						guests: { columns: {}, with: { guest: { columns: { name: true, github: true } } } },
 						hosts: {
