@@ -10,6 +10,17 @@ interface YouTubeStatisticsResponse {
 	}>;
 }
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Views per day since release. Counted from at least one day, so an episode out for an hour
+ * isn't ranked on a handful of views multiplied up.
+ */
+export function get_views_per_day(views: number, released_at: string, now: number): number {
+	const days = Math.max(1, (now - Date.parse(released_at)) / DAY_MS);
+	return views / days;
+}
+
 /**
  * Each video's view count, by video id, in one YouTube API call. Videos YouTube doesn't return
  * (private, deleted) are left out. Throws when there's no API key or the call fails.

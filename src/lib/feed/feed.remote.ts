@@ -2,7 +2,7 @@ import { and, count, desc, eq, gte } from 'drizzle-orm';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
-import { get_youtube_view_counts } from '$server/video/youtube_views';
+import { get_views_per_day, get_youtube_view_counts } from '$server/video/youtube_views';
 import { content, content_tags, tag } from '$server/db/schema';
 import {
 	get_id_from_url,
@@ -29,7 +29,7 @@ export const get_feed_content = query(() =>
 // an hour: views move slowly, and every refresh spends YouTube API quota.
 export const get_most_popular_content_this_week = query(() =>
 	edge_cached(
-		'most-popular-by-views',
+		'most-popular-by-views-per-day',
 		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
 		load_most_popular_content
 	)
@@ -39,7 +39,8 @@ export const get_most_popular_content_this_week = query(() =>
 const RECENT_EPISODES_TO_RANK = 12;
 const RANKED_ITEMS = 6;
 
-// The recent episodes with the most YouTube views. The site doesn't count plays itself.
+// The recent episodes with the most YouTube views per day since release, so a new episode isn't
+// outranked by one that has simply been up longer. The site doesn't count plays itself.
 async function load_most_popular_content(): Promise<RankedContent[]> {
 	const items = await load_recent_episodes();
 	const youtube_ids = items.flatMap(({ youtube_id }) => (youtube_id ? [youtube_id] : []));
@@ -52,8 +53,12 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 		console.error('Could not rank the most popular episodes by YouTube views', error);
 	}
 
+	const now = Date.now();
+	const views_per_day = (item: (typeof items)[number]) =>
+		get_views_per_day(views.get(item.youtube_id) ?? 0, item.date, now);
+
 	return items
-		.toSorted((a, b) => (views.get(b.youtube_id) ?? 0) - (views.get(a.youtube_id) ?? 0))
+		.toSorted((a, b) => views_per_day(b) - views_per_day(a))
 		.slice(0, RANKED_ITEMS)
 		.map(({ youtube_id: _, ...item }) => item);
 }

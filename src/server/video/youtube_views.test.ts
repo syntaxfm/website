@@ -2,7 +2,22 @@ import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('$app/env/private', () => ({ YOUTUBE_API_KEY: 'test-key' }));
 
-const { get_youtube_view_counts } = await import('./youtube_views');
+const { get_views_per_day, get_youtube_view_counts } = await import('./youtube_views');
+
+describe('get_views_per_day', () => {
+	const now = Date.parse('2026-11-12T12:00:00Z');
+
+	it('ranks a new episode above an older one with more total views', () => {
+		const new_episode = get_views_per_day(9_000, '2026-11-09T12:00:00Z', now);
+		const old_episode = get_views_per_day(30_000, '2026-10-13T12:00:00Z', now);
+		expect(new_episode).toBe(3_000);
+		expect(old_episode).toBe(1_000);
+	});
+
+	it('counts an episode out for under a day as one day', () => {
+		expect(get_views_per_day(500, '2026-11-12T11:00:00Z', now)).toBe(500);
+	});
+});
 
 function youtube_returns(body: unknown, status = 200) {
 	return vi.fn(async () => new Response(JSON.stringify(body), { status }));
