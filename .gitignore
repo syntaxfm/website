@@ -29,3 +29,8 @@ db-data
 
 core.wasm
 core.worker.cjs
+
+# Midscene browser reports
+tests/midscene/**/midscene_run/
+tests/midscene/**/.midscene/
+tests/midscene/midscene-node-spec.*.md
