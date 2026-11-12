@@ -2,6 +2,7 @@ import { and, count, desc, eq, gte } from 'drizzle-orm';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
+import { get_youtube_view_counts } from '$server/video/youtube_views';
 import { content, content_tags, tag } from '$server/db/schema';
 import {
 	get_id_from_url,
@@ -24,23 +25,45 @@ export const get_feed_content = query(() =>
 	)
 );
 
-// The show page sidebar. Was every show card field (22 KB, ~110 ms uncached); now only what
-// RankedItem renders, edge cached like the feed.
+// The sidebar beside every feed and on show pages. Only what RankedItem renders, edge cached for
+// an hour: views move slowly, and every refresh spends YouTube API quota.
 export const get_most_popular_content_this_week = query(() =>
 	edge_cached(
-		'most-popular-this-week',
-		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
+		'most-popular-by-views',
+		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
 		load_most_popular_content
 	)
 );
 
+// About six weeks of episodes: two a week
+const RECENT_EPISODES_TO_RANK = 12;
+const RANKED_ITEMS = 6;
+
+// The recent episodes with the most YouTube views. The site doesn't count plays itself.
 async function load_most_popular_content(): Promise<RankedContent[]> {
-	// TODO: rank by real popularity once we track it; for now, the most recent published podcasts.
+	const items = await load_recent_episodes();
+	const youtube_ids = items.flatMap(({ youtube_id }) => (youtube_id ? [youtube_id] : []));
+
+	let views = new Map<string, number>();
+	try {
+		views = await get_youtube_view_counts(youtube_ids);
+	} catch (error) {
+		// Newest first rather than an empty sidebar, until the next refresh
+		console.error('Could not rank the most popular episodes by YouTube views', error);
+	}
+
+	return items
+		.toSorted((a, b) => (views.get(b.youtube_id) ?? 0) - (views.get(a.youtube_id) ?? 0))
+		.slice(0, RANKED_ITEMS)
+		.map(({ youtube_id: _, ...item }) => item);
+}
+
+async function load_recent_episodes(): Promise<(RankedContent & { youtube_id: string })[]> {
 	const rows = await db.query.content.findMany({
 		columns: { id: true, title: true, published_at: true },
 		where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
-		limit: 6,
+		limit: RECENT_EPISODES_TO_RANK,
 		with: {
 			show: {
 				columns: { number: true, slug: true, date: true, youtube_url: true, show_type: true },
@@ -52,7 +75,7 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 		}
 	});
 
-	const items: RankedContent[] = [];
+	const items: (RankedContent & { youtube_id: string })[] = [];
 	for (const row of rows) {
 		const { show } = row;
 		if (!show) continue;
@@ -74,7 +97,8 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 			thumbnail: youtube_id ? get_thumbnail_from_id(youtube_id) : null,
 			thumbnail_srcset: youtube_id ? get_thumbnail_srcset_from_id(youtube_id) : null,
 			date: (row.published_at ?? show.date).toISOString(),
-			people: [...guests, ...hosts]
+			people: [...guests, ...hosts],
+			youtube_id
 		});
 	}
 
