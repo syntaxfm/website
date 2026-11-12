@@ -3,18 +3,26 @@ import { get } from 'svelte/store';
 import type { Show } from '$server/db/types';
 import type { PlayerShow } from './player_utils';
 
-const { metrics_count } = vi.hoisted(() => ({ metrics_count: vi.fn() }));
+const { metrics_count, device_copies, keep_audio_on_device, remembered } = vi.hoisted(() => ({
+	metrics_count: vi.fn(),
+	// Audio addresses the device has a copy of, and the address each copy plays from
+	device_copies: new Map<string, string>(),
+	keep_audio_on_device: vi.fn(),
+	// What an earlier visit left in IndexedDB
+	remembered: { state: null as { current_show: PlayerShow } | null }
+}));
 
 vi.mock('@sentry/sveltekit', () => ({ metrics: { count: metrics_count } }));
 vi.mock('$utilities/media/load_media_session', () => ({ load_media_session: vi.fn() }));
 vi.mock('./player_offline', () => ({
-	get_cached_or_network_show: async (show: PlayerShow) => show
+	get_device_audio_url: async (audio_url: string) => device_copies.get(audio_url) ?? null,
+	keep_audio_on_device
 }));
 vi.mock('./player_utils', () => ({
 	STORE_NAME: 'player_state',
 	// Never settles, so the fire-and-forget IndexedDB save stays out of the way.
 	open_db: () => new Promise(() => {}),
-	load_state_from_indexed_db: async () => null
+	load_state_from_indexed_db: async () => remembered.state
 }));
 
 import { player } from './player';
@@ -59,10 +67,12 @@ describe('player.start_show', () => {
 // initialize() starts load_show without awaiting it, so let that work settle before asserting.
 const settle = () => new Promise((resolve) => setTimeout(resolve, 0));
 
-function attach_audio() {
+function attach_audio(listened_seconds = 0) {
 	const audio = {
 		src: '',
+		preload: '',
 		currentTime: 0,
+		played: { length: 1, start: () => 0, end: () => listened_seconds },
 		play: vi.fn().mockResolvedValue(undefined),
 		pause: vi.fn()
 	};
@@ -106,6 +116,15 @@ describe('player show input', () => {
 		expect(audio.play).not.toHaveBeenCalled();
 		expect(get(player).current_show?.number).toBe(900);
 		expect(get(player).status).toBe('LOADED');
+	});
+
+	it('downloads none of the audio until it is played', async () => {
+		const audio = attach_audio();
+
+		await player.initialize(show);
+		await settle();
+
+		expect(audio.preload).toBe('none');
 	});
 
 	it('leaves the player empty on initialize when there is no latest show', async () => {
@@ -218,5 +237,68 @@ describe('player video playback', () => {
 		expect(audio.currentTime).toBe(120);
 		expect(audio.play).toHaveBeenCalledOnce();
 		expect(get(youtube_player).status).toBe('IDLE');
+	});
+});
+
+describe('player audio kept on the device', () => {
+	beforeEach(() => {
+		vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => undefined });
+		vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => undefined);
+		device_copies.clear();
+		keep_audio_on_device.mockReset();
+		remembered.state = null;
+		player.reset();
+	});
+
+	it("plays the device's copy and still knows the show by its real address", async () => {
+		device_copies.set(show.url, 'blob:device-copy');
+		const audio = attach_audio();
+
+		await player.initialize(show);
+		await settle();
+
+		expect(audio.src).toBe('blob:device-copy');
+		expect(audio.preload).toBe('metadata');
+		expect(get(player).current_show?.url).toBe(show.url);
+	});
+
+	it('frees the copy it was playing when another show takes over', async () => {
+		device_copies.set(show.url, 'blob:device-copy');
+		attach_audio();
+		await player.initialize(show);
+		await settle();
+
+		await player.start_show({ ...show, number: 901, url: 'https://example.com/901.mp3' });
+
+		expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:device-copy');
+	});
+
+	it('falls back to the latest show when the remembered one points at a copy that is gone', async () => {
+		remembered.state = { current_show: { ...show, number: 850, url: 'blob:gone' } };
+		const audio = attach_audio();
+
+		await player.initialize(show);
+		await settle();
+
+		expect(audio.src).toBe(show.url);
+		expect(get(player).current_show?.number).toBe(900);
+	});
+
+	it('keeps the audio once someone has listened for half a minute', async () => {
+		attach_audio(31);
+		await player.start_show(show);
+
+		player.ontimeupdate();
+
+		expect(keep_audio_on_device).toHaveBeenCalledWith(show.url);
+	});
+
+	it('keeps nothing for someone who only samples the episode', async () => {
+		attach_audio(12);
+		await player.start_show(show);
+
+		player.ontimeupdate();
+
+		expect(keep_audio_on_device).not.toHaveBeenCalled();
 	});
 });

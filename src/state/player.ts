@@ -4,7 +4,7 @@ import toast from 'svelte-french-toast';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { get_id_from_url } from '#lib/videos/utils.ts';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
-import { get_cached_or_network_show } from './player_offline';
+import { get_device_audio_url, keep_audio_on_device } from './player_offline';
 import {
 	load_state_from_indexed_db,
 	open_db,
@@ -47,6 +47,9 @@ function is_media_controller(el: unknown): el is MediaControllerElement {
 	);
 }
 
+// Someone who has listened this long is likely to keep going or come back to the episode
+const LISTENED_SECONDS_BEFORE_KEEPING = 30;
+
 // Shows someone was partway through listening to keep playing as audio, so they pick up where they left off
 function plays_as_video(show: PlayerShow) {
 	return should_play_video(show) && !is_mid_audio(show.number);
@@ -68,6 +71,9 @@ const new_player_state = () => {
 
 	// The media element the bottom bar's media-chrome controls are currently driving
 	let attached_media: HTMLElement | null = null;
+
+	// The address the audio element is playing the device's copy from, to free it once replaced
+	let device_audio_url: string | null = null;
 
 	function attach_media(media: HTMLElement | null) {
 		const { media_controller } = get(player_state);
@@ -139,7 +145,11 @@ const new_player_state = () => {
 	// `latest_show` is undefined when there is no published show to fall back to.
 	async function initialize(latest_show: PlayerShow | undefined) {
 		const saved_state = await load_state_from_indexed_db();
-		const show = saved_state?.current_show ?? latest_show;
+		// Older visits could remember a show by a device copy's address, which died with that visit
+		const saved_show = saved_state?.current_show?.url.startsWith('blob:')
+			? null
+			: saved_state?.current_show;
+		const show = saved_show ?? latest_show;
 		if (!show) return;
 		await load_show(show, true);
 		update((state) => ({ ...state, media_kind: plays_as_video(show) ? 'VIDEO' : 'AUDIO' }));
@@ -159,24 +169,29 @@ const new_player_state = () => {
 			});
 		}
 
-		// Check to see if requested show is saved into cache
-		const incoming_show = await get_cached_or_network_show(requested_show);
+		// The device's copy plays when there is one. The show keeps its real address, which is what
+		// gets remembered between visits.
+		const device_url = await get_device_audio_url(requested_show.url);
 
 		// If playback is coming from timestamp, use timestamp, otherwise user last played position or 0.
-		const resume_time = play_from_position ?? get_saved_position(incoming_show.number, 'AUDIO');
+		const resume_time = play_from_position ?? get_saved_position(requested_show.number, 'AUDIO');
 
 		// Update state for new incomming show
 		update((state) => {
 			if (state.audio && state.media_controller) {
-				state.audio.src = incoming_show.url;
+				// Audio from the network waits for play: reading just its length downloads several MB.
+				// A copy on the device costs nothing to read, so its length shows right away.
+				state.audio.preload = device_url ? 'metadata' : 'none';
+				state.audio.src = device_url ?? requested_show.url;
 				state.audio.currentTime = resume_time;
-				state.current_show = incoming_show;
+				state.current_show = requested_show;
 				state.status = resume_time > 0 ? 'PAUSED' : 'LOADED';
 			}
 			return state;
 		});
 
-		return incoming_show;
+		if (device_audio_url) URL.revokeObjectURL(device_audio_url);
+		device_audio_url = device_url;
 	}
 
 	function is_video_active_for(show: PlayerShow | null) {
@@ -193,8 +208,8 @@ const new_player_state = () => {
 		update((state) => ({ ...state, media_kind: 'AUDIO' }));
 		attach_media(get(player_state).audio);
 
-		const incoming_show = await load_show(requested_show, false, play_from_position);
-		if (autoplay) track_episode_start(incoming_show);
+		await load_show(requested_show, false, play_from_position);
+		if (autoplay) track_episode_start(requested_show);
 
 		// This opens the UI Player drawer
 		player_window_status.set('ACTIVE');
@@ -303,6 +318,19 @@ const new_player_state = () => {
 
 	function ontimeupdate() {
 		save_position();
+		keep_listened_audio();
+	}
+
+	// Keeps the episode's audio on the device once it's clear someone is listening to it, not sampling it
+	function keep_listened_audio() {
+		const { audio, current_show, media_kind } = get(player_state);
+		if (!audio || !current_show || media_kind !== 'AUDIO') return;
+		let listened_seconds = 0;
+		for (let index = 0; index < audio.played.length; index++) {
+			listened_seconds += audio.played.end(index) - audio.played.start(index);
+		}
+		if (listened_seconds < LISTENED_SECONDS_BEFORE_KEEPING) return;
+		void keep_audio_on_device(current_show.url);
 	}
 
 	function ondurationchange() {

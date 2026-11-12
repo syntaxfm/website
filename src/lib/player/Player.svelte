@@ -146,7 +146,7 @@
 					onended={player.onended}
 					onpause={player.onpause}
 					slot="media"
-					preload="metadata"
+					preload="none"
 					crossorigin="anonymous"
 				></audio>
 				{#if $player_window_status === 'ACTIVE'}

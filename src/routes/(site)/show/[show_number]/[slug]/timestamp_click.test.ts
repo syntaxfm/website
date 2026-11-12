@@ -12,7 +12,8 @@ const { metrics_count } = vi.hoisted(() => ({ metrics_count: vi.fn() }));
 vi.mock('@sentry/sveltekit', () => ({ metrics: { count: metrics_count } }));
 vi.mock('$utilities/media/load_media_session', () => ({ load_media_session: vi.fn() }));
 vi.mock('$state/player_offline', () => ({
-	get_cached_or_network_show: async (show: PlayerShow) => show
+	get_device_audio_url: async () => null,
+	keep_audio_on_device: async () => undefined
 }));
 vi.mock('$state/player_utils', () => ({
 	STORE_NAME: 'player_state',
