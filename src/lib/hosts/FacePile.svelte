@@ -44,6 +44,9 @@
 		font-size: var(--local-size);
 		border-radius: 50%;
 		overflow: hidden;
+
+		/* Grows with the face: 2px on the feed's small faces, 4px on a share image's large ones */
 		border: var(--b-medium);
+		border-width: max(2px, calc(var(--local-size) / 30));
 	}
 </style>
