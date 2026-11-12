@@ -247,8 +247,8 @@
 		--logo-stroke: var(--c-primary);
 		--logo-mask-image: none;
 
-		/* Furthest back, so it falls behind the most */
-		--drift: 140px;
+		/* Furthest back, so it falls behind the most. Any further and its foot crosses the slant. */
+		--drift: 160px;
 
 		:global(svg) {
 			display: block;
@@ -372,7 +372,7 @@
 			calc(var(--logo-tuck) + var(--pad-medium));
 		rotate: 8deg;
 
-		--drift: -40px;
+		--drift: -45px;
 	}
 
 	/* Under the logo: one in the corner left of the "t", one beside the video */
@@ -381,7 +381,7 @@
 		place-self: end start;
 		rotate: -15deg;
 
-		--drift: -55px;
+		--drift: -60px;
 	}
 
 	.doodle-cat {
@@ -390,7 +390,7 @@
 		margin-right: var(--gutter);
 		rotate: 15deg;
 
-		--drift: -30px;
+		--drift: -35px;
 	}
 
 	/* Right of the title */
@@ -400,7 +400,7 @@
 		margin: var(--title-gap) 10% 0 0;
 		rotate: -15deg;
 
-		--drift: 25px;
+		--drift: 30px;
 	}
 
 	.doodle-devto {
@@ -408,12 +408,13 @@
 		place-self: end end;
 		rotate: -9deg;
 
-		--drift: -20px;
+		--drift: -25px;
 	}
 
 	/*
 		Depth. As the page scrolls, the logo falls behind the video and each icon runs at its own
-		pace. The video and its title stay put.
+		pace. The video and its title stay put. Most of the travel comes early, while the hero is
+		still on screen, and it eases off as the hero leaves.
 	*/
 	@keyframes drift {
 		to {
@@ -425,7 +426,7 @@
 		@media (prefers-reduced-motion: no-preference) {
 			.logo,
 			.doodle {
-				animation: drift linear both;
+				animation: drift cubic-bezier(0.3, 0.45, 0.65, 1) both;
 				animation-timeline: scroll(root);
 				animation-range: 0 100lvh;
 			}
