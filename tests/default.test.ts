@@ -15,6 +15,8 @@ test('Got about page', async ({ page }) => {
 	await page.click('a:has-text("About")');
 	// Check for an h1 with the text "All Episodes"
 	await expect(page.locator('h1:has-text("About Syntax")')).toBeVisible();
+	await expect(page.getByRole('main')).toHaveCount(1);
+	await expect(page.getByRole('main')).toHaveAttribute('id', 'main-content');
 });
 
 test('admin action should require login', async ({ request, baseURL }) => {
