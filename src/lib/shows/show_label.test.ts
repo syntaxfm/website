@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { get_show_label } from './feed_label';
+import { get_show_label } from './show_label';
 
 describe('get_show_label', () => {
 	it('calls the first Monday episode cut from a live stream Syntax Live', () => {

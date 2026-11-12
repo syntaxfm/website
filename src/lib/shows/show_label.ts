@@ -8,7 +8,7 @@ export const VIDEO_LABEL = 'Syntax Video';
 
 export type LabeledShow = {
 	show_type: Show['show_type'];
-	// A string once the feed has been through the edge cache
+	// A string once a list has been through the edge cache or JSON
 	date: Date | string;
 };
 

@@ -39,7 +39,15 @@ const podcast_list_schema = v.object({
 export const get_all_podcasts = query(podcast_list_schema, ({ page, order, per_page }) =>
 	edge_cached(`podcasts-${order}-${page}-${per_page}`, SHOW_LIST_CACHE, () =>
 		db.query.show.findMany({
-			columns: { number: true, title: true, slug: true, date: true, url: true, youtube_url: true },
+			columns: {
+					number: true,
+					title: true,
+					slug: true,
+					date: true,
+					url: true,
+					youtube_url: true,
+					show_type: true
+				},
 			limit: per_page,
 			offset: (page - 1) * per_page,
 			orderBy: [order === 'desc' ? desc(show.number) : asc(show.number)],

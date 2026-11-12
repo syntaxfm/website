@@ -4,7 +4,7 @@
 <script lang="ts">
 	import type { Video } from '$server/db/types';
 	import FeedByline from './FeedByline.svelte';
-	import { VIDEO_LABEL } from './feed_label';
+	import { VIDEO_LABEL } from '#lib/shows/show_label.ts';
 
 	type Props = {
 		video: Pick<Video, 'title'>;

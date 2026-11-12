@@ -5,7 +5,7 @@
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
 	import FeedByline from './FeedByline.svelte';
-	import { get_show_label, type LabeledShow } from './feed_label';
+	import { get_show_label, type LabeledShow } from '#lib/shows/show_label.ts';
 
 	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow & LabeledShow;
 	type Feed_content = {

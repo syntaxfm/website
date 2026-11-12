@@ -10,6 +10,7 @@ import {
 } from '#lib/videos/utils.ts';
 import get_show_path from '$utilities/slug';
 import type { RankedContent } from '#lib/sidebar/ranked.ts';
+import { get_show_label } from '#lib/shows/show_label.ts';
 
 // Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo).
 // Selecting whole rows sent show notes, search vectors and AI notes: 494 KB per call.
@@ -65,7 +66,7 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 		limit: 6,
 		with: {
 			show: {
-				columns: { number: true, slug: true, date: true, youtube_url: true },
+				columns: { number: true, slug: true, date: true, youtube_url: true, show_type: true },
 				with: {
 					guests: { columns: {}, with: { guest: { columns: { name: true } } } },
 					hosts: { columns: {}, with: { profile: { columns: { name: true } } } }
@@ -91,7 +92,7 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 			id: row.id,
 			title: row.title,
 			href: get_show_path({ number: show.number, slug: show.slug }),
-			series: 'Syntax Podcast',
+			series: get_show_label(show),
 			number: show.number,
 			thumbnail: youtube_id ? get_thumbnail_from_id(youtube_id) : null,
 			thumbnail_srcset: youtube_id ? get_thumbnail_srcset_from_id(youtube_id) : null,

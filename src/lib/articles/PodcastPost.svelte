@@ -11,6 +11,7 @@
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
 	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
 	import { get_id_from_url } from '#lib/videos/utils.ts';
+	import { get_show_label } from '#lib/shows/show_label.ts';
 
 	let { show, children } = $props();
 	let has_youtube = $derived(Boolean(get_id_from_url(show.youtube_url)));
@@ -82,7 +83,7 @@
 	{tags}
 	type="NORMAL"
 	date={formatDistanceToNow(new Date(show.date), { addSuffix: true })}
-	show_name="Syntax Podcast"
+	show_name={get_show_label(show)}
 	youtube_url={show.youtube_url}
 />
 

@@ -6,6 +6,7 @@
 	import Pagination from '#lib/layout/Pagination.svelte';
 	import SelectMenu from '#lib/SelectMenu.svelte';
 	import Meta from '#lib/meta/Meta.svelte';
+	import { get_show_label } from '#lib/shows/show_label.ts';
 
 	// The list's default page size (also the Per Page menu's default)
 	const DEFAULT_PER_PAGE = 29;
@@ -33,7 +34,7 @@
 	function to_episode(podcast: Podcast) {
 		return {
 			...podcast,
-			show: 'Syntax Podcast',
+			show: get_show_label(podcast),
 			youtube_url: podcast.youtube_url ?? undefined
 		};
 	}
