@@ -2,7 +2,7 @@
 // Kit, Sick Picks). Remote functions can't set HTTP headers, so instead of caching their
 // responses this caches the data they compute, in the same `caches.default` the Worker uses for
 // cached pages. Stale data is served while a fresh copy is computed in the background.
-// Under `pnpm dev` (Node) there is no edge cache, so the data is computed every time.
+// Under `pnpm dev` (Node) there is no edge cache; see memory_cached.
 import { getRequestEvent } from '$app/server';
 import { PUBLIC_URL } from '$app/env/public';
 import { add_timing } from '$server/server_timing';
@@ -32,6 +32,34 @@ function as_json<T>(value: T): Jsonified<T> {
 	return JSON.parse(JSON.stringify(value ?? null)) as Jsonified<T>;
 }
 
+// Under `pnpm dev` there is no edge cache, and computing every time made the Snack Pack page wait
+// 2-3 s on Kit at each load. So the last value is kept in memory, served at once and refreshed
+// behind every request: as fast as the edge, and a changed query shows on the next reload.
+const memory_values = new Map<string, unknown>();
+const memory_refreshes = new Map<string, Promise<unknown>>();
+
+async function memory_cached<T>(key: string, compute: () => Promise<T>): Promise<Jsonified<T>> {
+	const refresh = () => {
+		const running =
+			memory_refreshes.get(key) ??
+			compute()
+				.then((value) => {
+					const json = as_json(value);
+					memory_values.set(key, json);
+					return json;
+				})
+				.finally(() => memory_refreshes.delete(key));
+		memory_refreshes.set(key, running);
+		return running as Promise<Jsonified<T>>;
+	};
+
+	if (!memory_values.has(key)) return refresh();
+	refresh().catch((error: unknown) => {
+		console.error(`edge_cached: background refresh of "${key}" failed`, error);
+	});
+	return memory_values.get(key) as Jsonified<T>;
+}
+
 // Always returns the JSON copy, cached or not (and under `pnpm dev`), so callers see one shape.
 // `compute` should throw rather than return a fallback on failure, so a failure is never cached.
 export async function edge_cached<T>(
@@ -42,7 +70,7 @@ export async function edge_cached<T>(
 	const event = getRequestEvent();
 	const { platform } = event;
 	const cache = platform?.caches?.default;
-	if (!cache) return as_json(await compute());
+	if (!cache) return memory_cached(key, compute);
 	const lookup_start = performance.now();
 
 	// Its own hostname, so purging the site's pages after a deploy (scripts/purge-beta-cache.ts)

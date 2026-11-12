@@ -38,10 +38,25 @@ describe('edge_cached', () => {
 		vi.useRealTimers();
 	});
 
-	it('computes every time without an edge cache (pnpm dev on Node)', async () => {
+	it('serves the last value without an edge cache (pnpm dev) and refreshes it behind', async () => {
+		let version = 1;
+		const compute = vi.fn(async () => ({ version: version++ }));
+
+		expect(await edge_cached('dev-key', TIMES, compute)).toEqual({ version: 1 });
+		expect(await edge_cached('dev-key', TIMES, compute)).toEqual({ version: 1 });
+		await vi.waitFor(() => expect(compute).toHaveBeenCalledTimes(2));
+		expect(await edge_cached('dev-key', TIMES, compute)).toEqual({ version: 2 });
+	});
+
+	it('refreshes a value once at a time without an edge cache', async () => {
 		const compute = vi.fn(async () => ({ picks: 1 }));
-		await edge_cached('key', TIMES, compute);
-		await edge_cached('key', TIMES, compute);
+		await edge_cached('dev-once', TIMES, compute);
+		await Promise.all([
+			edge_cached('dev-once', TIMES, compute),
+			edge_cached('dev-once', TIMES, compute)
+		]);
+		await vi.waitFor(() => expect(compute).toHaveBeenCalledTimes(2));
+		await new Promise((settle) => setTimeout(settle, 10));
 		expect(compute).toHaveBeenCalledTimes(2);
 	});
 
