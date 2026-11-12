@@ -96,6 +96,7 @@
 				{#if should_check_for_bots && PUBLIC_TURNSTILE_SITE_KEY}
 					<Turnstile
 						appearance="interaction-only"
+						theme="light"
 						siteKey={PUBLIC_TURNSTILE_SITE_KEY}
 						responseField={false}
 						bind:reset={reset_turnstile}
