@@ -29,12 +29,9 @@
 	span {
 		flex-shrink: 0;
 
-		&:nth-child(2) {
-			translate: calc((var(--local-size) / 3) * -1) 0;
-		}
-
-		&:nth-child(3) {
-			translate: calc((var(--local-size) / 3 * -2)) 0;
+		/* Each face covers a third of the one before. A margin, so the pile is as wide as it looks. */
+		& + span {
+			margin-left: calc(var(--local-size) / -3);
 		}
 	}
 
