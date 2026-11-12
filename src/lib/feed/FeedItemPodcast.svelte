@@ -19,18 +19,15 @@
 </script>
 
 <article class="stack">
-	<header class="flex">
-		<div class="show-logo"></div>
-		<div>
-			<h3 class="h4 fv-700-i">Syntax Podcast</h3>
-			{#if published_at}
-				<p>
-					<time datetime={published_at.toISOString()}>
-						{formatDistanceToNowStrict(published_at, { addSuffix: true })}
-					</time>
-				</p>
-			{/if}
-		</div>
+	<header>
+		<h3 class="h4 fv-700-i">Syntax Podcast</h3>
+		{#if published_at}
+			<p>
+				<time datetime={published_at.toISOString()}>
+					{formatDistanceToNowStrict(published_at, { addSuffix: true })}
+				</time>
+			</p>
+		{/if}
 	</header>
 	<FeedHosts {show} />
 	<div class="thumb-container">
@@ -49,22 +46,8 @@
 </article>
 
 <style>
-	header {
-		align-items: center;
-		gap: 20px;
-	}
-
 	time {
 		text-transform: capitalize;
-	}
-
-	.show-logo {
-		aspect-ratio: 1/1;
-		width: 56px;
-		height: 56px;
-		background: var(--c-primary);
-		border-radius: var(--br-medium);
-		border: var(--b-medium);
 	}
 
 	h4,
