@@ -219,7 +219,6 @@
 		fill="currentColor"
 		viewBox="0 0 32 32"
 		style="width: var(--icon_size, 16px);"
-		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<title>{title}</title>
@@ -452,7 +451,6 @@
 		fill="currentColor"
 		height="24"
 		width="24"
-		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 512 512"
@@ -487,7 +485,6 @@
 	<svg
 		height="24"
 		width="24"
-		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		xml:space="preserve"
@@ -504,7 +501,6 @@
 {#if name === 'youtube'}
 	<svg
 		height="24"
-		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 461.001 461.001"
