@@ -2,77 +2,66 @@
 	import { afterNavigate } from '$app/navigation';
 	import { search } from '$state/search.svelte';
 	import { tick } from 'svelte';
-	import { SvelteSet } from 'svelte/reactivity';
 	import SearchWorker from './search-worker.js?worker';
 	import SearchResults from './SearchResults.svelte';
 	import SearchResultList from './SearchResultList.svelte';
 	import Icon from '#lib/Icon.svelte';
 	import { fade } from 'svelte/transition';
 	import { click_out_dialog } from '$actions/click_outside_dialog';
-	import type { Block, Tree } from './types';
-	import type { Show } from '$server/db/types';
+	import { page_idle } from '$utilities/page_idle';
+	import type { SearchShow, SearchWorkerReply, SearchWorkerRequest } from './types';
 
 	let search_input: HTMLInputElement = $state(null!);
 	let modal: HTMLDialogElement = $state(null!);
-	let local_search: {
-		results: Tree[];
-		query: string;
-	} | null = $state(null);
-	let recent_searches: (Block & Show)[] = $state([]);
+	let local_search: { results: SearchShow[]; query: string } | null = $state(null);
+	let recent_searches: SearchShow[] = $state([]);
 
 	let worker: Worker | null = null;
-	let ready = $state(false);
+	let are_shows_ready = $state(false);
+	let are_notes_ready = $state(false);
 	let active_color = $state('var(--c-fg)');
 
-	let uid = 0;
-	const pending = new SvelteSet<number>();
+	function send(message: SearchWorkerRequest) {
+		worker?.postMessage(message);
+	}
 
-	// The index is every show's notes (10 MB, 1.2 MB compressed), so the worker starts the first time
-	// search opens instead of with every page, where its download competed with the first click.
+	// Titles, numbers and guests (~45 KB) load once the page is quiet, so search answers from the
+	// first keystroke. The show notes (~600 KB) wait for search to open.
+	function start_worker() {
+		if (worker) return;
+		worker = new SearchWorker();
+		worker.addEventListener('message', (event: MessageEvent<SearchWorkerReply>) => {
+			const message = event.data;
+			if (message.type === 'shows_ready') are_shows_ready = true;
+			else if (message.type === 'notes_ready') are_notes_ready = true;
+			else if (message.type === 'results') local_search = message;
+			else if (message.type === 'recents') recent_searches = message.results;
+		});
+		send({ type: 'load_shows', origin: location.origin });
+	}
+
 	$effect(() => {
-		if (!search.searching || worker) return;
-		const w = new SearchWorker();
-		worker = w;
+		page_idle().then(start_worker);
+		return () => worker?.terminate();
+	});
 
-		w.addEventListener('message', (event) => {
-			const { type, payload } = event.data;
-			if (type === 'ready') {
-				ready = true;
-			} else if (type === 'results') {
-				local_search = payload;
-			} else if (type === 'recents') {
-				recent_searches = payload;
-			}
-		});
-
-		w.postMessage({
-			type: 'init',
-			payload: {
-				origin: location.origin
-			}
-		});
-
+	$effect(() => {
+		if (!search.searching) return;
+		start_worker();
+		send({ type: 'load_notes', origin: location.origin });
 		search_input?.focus();
 	});
 
-	$effect(() => () => worker?.terminate());
-
-	// Send search query to worker when ready or query changes
+	// Notes first, so this asks again when they arrive and their matches join the results
 	$effect(() => {
-		if (ready && worker) {
-			const id = ++uid;
-			pending.add(id);
-			worker.postMessage({ type: 'query', id, payload: search.search_query });
+		if (are_notes_ready || are_shows_ready) {
+			send({ type: 'query', query: search.search_query });
 		}
 	});
 
-	// Send recent searches to worker when ready or recent list changes
 	$effect(() => {
-		if (ready && worker) {
-			worker.postMessage({
-				type: 'recents',
-				payload: $state.snapshot(search.search_recent.value)
-			});
+		if (are_shows_ready) {
+			send({ type: 'recents', hrefs: $state.snapshot(search.search_recent.value) });
 		}
 	});
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import SearchResultList from './SearchResultList.svelte';
-	import type { Tree } from './types';
+	import type { SearchShow } from './types';
 
 	interface Props {
-		results: Tree[];
+		results: SearchShow[];
 		query: string;
 		onselect: (href: string) => void;
 	}

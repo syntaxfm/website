@@ -1,51 +1,28 @@
 <script lang="ts">
 	import ShowCard from '#lib/shows/Show.svelte';
 	import Icon from '#lib/Icon.svelte';
-	import type { Show as DbShow } from '$server/db/types';
 	import { search } from '$state/search.svelte';
-	import type { Tree, Block } from './types';
+	import type { SearchShow } from './types';
 	import { get_show_label } from '#lib/shows/show_label.ts';
 
 	interface Props {
-		results: (Block & DbShow)[] | Tree[];
+		results: SearchShow[];
 		recent_searches?: boolean;
 		onselect: (href: string) => void;
 	}
 
 	let { results, recent_searches = false, onselect }: Props = $props();
-
-	function is_tree(show_or_tree: (Block & DbShow) | Tree): show_or_tree is Tree {
-		return 'node' in show_or_tree;
-	}
-
-	function to_show(show_or_tree: (Block & DbShow) | Tree) {
-		const local_show: Block & DbShow = is_tree(show_or_tree) ? show_or_tree.node : show_or_tree;
-		const show_thumbnail =
-			'thumbnail' in local_show && typeof local_show.thumbnail === 'string'
-				? local_show.thumbnail
-				: null;
-
-		return {
-			title: local_show.title,
-			date: local_show.date,
-			show: get_show_label(local_show),
-			thumbnail: show_thumbnail,
-			youtube_url: local_show.youtube_url,
-			number: local_show.number,
-			slug: local_show.slug
-		};
-	}
 </script>
 
 <ul class="stack" class:recent={recent_searches}>
 	{#each results as result (result.href)}
 		<li>
 			<ShowCard
-				show={to_show(result)}
+				show={{ ...result, show: get_show_label(result) }}
 				type="list"
 				href={result.href}
 				onselect={() => onselect(result.href)}
-				data_has_node={is_tree(result)}
+				data_has_node={!recent_searches}
 				preload_data={true}
 			/>
 			{#if recent_searches}
