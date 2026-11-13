@@ -29,7 +29,7 @@ vi.mock('./player_utils', () => ({
 	load_state_from_indexed_db: async () => remembered.state
 }));
 
-import { player } from './player';
+import { audio_timeline_time, player } from './player';
 import { youtube_player } from './youtube_player';
 
 const show: Show = {
@@ -446,5 +446,34 @@ describe('player.warm_audio', () => {
 		player.warm_audio();
 
 		expect(audio.preload).toBe('none');
+	});
+});
+
+describe('audio_timeline_time', () => {
+	beforeEach(() => {
+		vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => undefined });
+		player.reset();
+	});
+
+	it('follows the audio every frame while it plays, and stops when it pauses', async () => {
+		const frames: FrameRequestCallback[] = [];
+		vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+			frames.push(callback)
+		);
+		vi.stubGlobal('cancelAnimationFrame', () => frames.splice(0));
+		const audio = attach_audio();
+		await player.start_show(show);
+
+		const seen: (number | null)[] = [];
+		const unsubscribe = audio_timeline_time.subscribe((time) => seen.push(time));
+		audio.currentTime = 12;
+		frames.shift()?.(0);
+		audio.currentTime = 13;
+		frames.shift()?.(0);
+		expect(seen.at(-1)).toBe(13);
+
+		player.update((state) => ({ ...state, status: 'PAUSED' }));
+		expect(frames).toHaveLength(0);
+		unsubscribe();
 	});
 });

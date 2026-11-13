@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/sveltekit';
-import { get, writable } from 'svelte/store';
+import { get, readable, writable } from 'svelte/store';
 import toast from 'svelte-french-toast';
 import { load_media_session } from '$utilities/media/load_media_session';
 import { get_id_from_url } from '#lib/videos/utils.ts';
@@ -588,3 +588,29 @@ const new_player_state = () => {
 };
 
 export const player = new_player_state();
+
+/**
+ * The position on the audio timeline (see get_audio_timeline_time), read every frame while a show
+ * plays. The player store only changes on play, pause and seek, so this is what follows along live.
+ * It only runs while something is subscribed (the transcript).
+ */
+export const audio_timeline_time = readable<number | null>(null, (set) => {
+	let frame: number | null = null;
+	function stop() {
+		if (frame !== null) cancelAnimationFrame(frame);
+		frame = null;
+	}
+	function tick() {
+		set(player.get_audio_timeline_time());
+		frame = requestAnimationFrame(tick);
+	}
+	const unsubscribe = player.subscribe(({ status }) => {
+		set(player.get_audio_timeline_time());
+		stop();
+		if (status === 'PLAYING') frame = requestAnimationFrame(tick);
+	});
+	return () => {
+		stop();
+		unsubscribe();
+	};
+});

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getSlimUtterances } from '#lib/transcript/utils.ts';
-	import { player } from '$state/player';
+	import { audio_timeline_time, player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import 'core-js/full/map/group-by';
 	import slug from 'speakingurl';
@@ -59,11 +59,9 @@
 		})
 	);
 
-	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.
-	let audio_timeline_time = $derived(
-		$player.current_show ? player.get_audio_timeline_time() : null
-	);
-	let current_time = $derived(audio_timeline_time ?? 0);
+	// Transcript times are on the audio timeline, read every frame while the show plays. This is null
+	// while a video with a different timeline plays.
+	let current_time = $derived($audio_timeline_time ?? 0);
 
 	let current_utterance = $derived(
 		slim_transcript.find((utterance, index) => {
@@ -82,7 +80,7 @@
 	);
 
 	let playing_show_is_this_show = $derived(
-		$player.current_show?.number === transcript.show_number && audio_timeline_time !== null
+		$player.current_show?.number === transcript.show_number && $audio_timeline_time !== null
 	);
 
 	// const words = transcript.utterances
