@@ -7,26 +7,28 @@
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
-	import type { AINoteWithFriends, TranscriptWithUtterances } from '$server/ai/queries';
-	import type { Jsonified } from '$server/edge_cache';
-	import type { SlimUtterance } from '$server/transcripts/types';
+	import type { AINoteWithFriends } from '$server/ai/queries';
+	import type { DBUtterance, SlimUtterance } from '$server/transcripts/types';
 	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { PlayerShow } from '$state/player_utils';
 
 	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
-		// Edge cached as JSON (transcript/+page.server.ts)
-		transcript: Jsonified<TranscriptWithUtterances>;
+		// Utterances in start order (transcript/+page.server.ts)
+		transcript: {
+			show_number: number;
+			utterances: Pick<DBUtterance, 'speaker' | 'start' | 'end' | 'transcript_value'>[];
+		};
 		ai_show_note: AINoteWithFriends | null;
 		show: PlayerShow;
 	}
 
 	let { transcript, ai_show_note, show }: Props = $props();
 
-	const slim_transcript: SlimUtterance[] = getSlimUtterances(transcript.utterances, 1)
-		// .filter((utterance) => utterance.speakerId !== 99)
-		.filter((utterance) => {
+	// Derived so moving between two shows' transcripts, which reuses this component, shows the new one
+	const slim_transcript: SlimUtterance[] = $derived(
+		getSlimUtterances(transcript.utterances, transcript.show_number).filter((utterance) => {
 			// Remove the flagging utterances
 			const scott = new RegExp(/purple cheese before meeting/gi);
 			if (utterance.transcript?.match(scott)) return false;
@@ -34,23 +36,23 @@
 			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
 			if (utterance.transcript?.match(wes)) return false;
 			return true;
-		});
+		})
+	);
 	// group Utterances by their summary
 	type SummaryTitle = { time: string; text: string; id?: number };
 	const def: SummaryTitle = { time: '00:00', text: '' };
 	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
 	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	const utterances_by_summary: UtteranceMap = Map.groupBy(
-		slim_transcript,
-		(utterance: Utterance) => {
+	const utterances_by_summary: UtteranceMap = $derived(
+		Map.groupBy(slim_transcript, (utterance: Utterance) => {
 			const start = utterance.start;
 			const summary = ai_show_note?.summary?.findLast((summary) => {
 				const timestamp = tsToS(summary.time);
 				return start >= timestamp;
 			});
 			return summary || def;
-		}
+		})
 	);
 
 	// Transcript times are on the audio timeline. This is null while a video with a different timeline plays.

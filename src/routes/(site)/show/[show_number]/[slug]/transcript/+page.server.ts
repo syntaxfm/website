@@ -8,13 +8,17 @@ export const load = async function ({ params }) {
 
 	return {
 		transcript: await edge_cached(
-			`transcript-${show_number}`,
+			`transcript-lines-${show_number}`,
 			{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 30 },
 			async () =>
 				(await db.query.transcript.findFirst({
 					where: (transcripts, { eq }) => eq(transcripts.show_number, show_number),
+					columns: { show_number: true },
 					with: {
-						utterances: true
+						utterances: {
+							columns: { speaker: true, start: true, end: true, transcript_value: true },
+							orderBy: (utterances, { asc }) => [asc(utterances.start)]
+						}
 					}
 				})) ?? null
 		)

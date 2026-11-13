@@ -3,8 +3,6 @@ import { desc, asc, lte, and, eq } from 'drizzle-orm';
 import type { InferSelectModel } from 'drizzle-orm';
 import {
 	show as shows,
-	transcript as transcripts,
-	transcriptUtterance as transcriptUtterances,
 	aiShowNote as aiShowNotes,
 	aiSummaryEntry as aiSummaryEntries,
 	link as links,
@@ -21,10 +19,6 @@ export const ai_note_with_friends = () => ({
 		tweets: true
 	}
 });
-
-export type TranscriptWithUtterances = InferSelectModel<typeof transcripts> & {
-	utterances: InferSelectModel<typeof transcriptUtterances>[];
-};
 
 export type AINoteWithFriends = InferSelectModel<typeof aiShowNotes> & {
 	links: InferSelectModel<typeof links>[];
