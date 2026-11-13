@@ -22,21 +22,25 @@
 		};
 		ai_show_note: AINoteWithFriends | null;
 		show: PlayerShow;
+		// Hosts and guests, to name a voice the transcript couldn't
+		people_on_show: string[];
 	}
 
-	let { transcript, ai_show_note, show }: Props = $props();
+	let { transcript, ai_show_note, show, people_on_show }: Props = $props();
 
 	// Derived so moving between two shows' transcripts, which reuses this component, shows the new one
 	const slim_transcript: SlimUtterance[] = $derived(
-		getSlimUtterances(transcript.utterances, transcript.show_number).filter((utterance) => {
-			// Remove the flagging utterances
-			const scott = new RegExp(/purple cheese before meeting/gi);
-			if (utterance.transcript?.match(scott)) return false;
-			if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
-			const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
-			if (utterance.transcript?.match(wes)) return false;
-			return true;
-		})
+		getSlimUtterances(transcript.utterances, transcript.show_number, true, people_on_show).filter(
+			(utterance) => {
+				// Remove the flagging utterances
+				const scott = new RegExp(/purple cheese before meeting/gi);
+				if (utterance.transcript?.match(scott)) return false;
+				if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
+				const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
+				if (utterance.transcript?.match(wes)) return false;
+				return true;
+			}
+		)
 	);
 	// group Utterances by their summary
 	type SummaryTitle = { time: string; text: string; id?: number };
@@ -133,7 +137,7 @@
 		<section>
 			<header class="topic {place_topic(summary, utterances)}">
 				<div class="gutter" id={slug(summary.text)}>
-					<strong>Topic {i}</strong>
+					<strong>Topic {i + 1}</strong>
 					<span>{summary.time}</span>
 				</div>
 				<div class="marker">
@@ -150,10 +154,7 @@
 					{@const progress =
 						((current_time - utterance.start) / (utterance.end - utterance.start)) * 100}
 					<div
-						style="
-
-              --progress: {progress > 0 && progress < 100 ? `${progress}%` : '100%'};
-              "
+						style:--progress={progress > 0 && progress < 100 ? `${progress}%` : '100%'}
 						class="utterance {label_utterance(utterance)}"
 					>
 						<div class="gutter">
@@ -179,8 +180,9 @@
 
 <style lang="postcss">
 	.timeline {
-		--highlight: var(--c-black-1);
-		--future: var(--c-black-2);
+		/* Foreground tints, so the line stays visible on a dark page too */
+		--highlight: var(--c-fg-1);
+		--future: var(--c-fg-2);
 		--current: var(--c-primary);
 		--past: var(--c-primary);
 		--gutter-border-size: 5px;
@@ -242,11 +244,12 @@
 	h4 {
 		position: sticky;
 		top: 0;
-		font-size: var(--fs-4);
+		font-size: var(--fs-5);
+		font-variation-settings: var(--fv-700-italic);
+		text-wrap: balance;
 		margin: 0;
 		z-index: 2;
 		padding: 1rem 0;
-		background: var(--c-bg);
 	}
 
 	.utterance {
@@ -282,13 +285,28 @@
 		font-size: var(--fs-2);
 		position: sticky;
 		top: 0;
-		background: var(--c-bg);
+		/* The page's speckled paper, so the stuck header doesn't read as a solid band. The page sets
+		   no color under its specks, so it shows the browser's own (Canvas). */
+		background-color: Canvas;
+		background-image: var(--texture-speckle);
+		background-size: var(--texture-speckle-size);
 		z-index: 2;
 		margin-top: var(--vertical-spacing);
 		margin-bottom: var(--vertical-spacing);
 
 		.marker {
 			place-content: center;
+		}
+
+		/* "Topic 12 01:02:03" stays on one line, overflowing left into the margin if it must */
+		.gutter {
+			position: static;
+			display: flex;
+			justify-content: flex-end;
+			gap: 6px;
+			align-self: center;
+			font-size: var(--fs-1);
+			white-space: nowrap;
 		}
 
 		@media (--below-med) {
@@ -316,14 +334,32 @@
 
 		@media (--below-med) {
 			display: flex;
+			align-items: baseline;
+			gap: 10px;
 			position: relative;
 			top: 0;
 			width: 100%;
-			justify-content: space-between;
+			text-align: left;
+			transform: none;
 		}
 
 		p {
 			margin: 0;
+		}
+
+		button {
+			padding: 0;
+			background: none;
+			color: inherit;
+			font-size: var(--fs-2);
+			font-variation-settings: var(--fv-700);
+			font-variant-numeric: tabular-nums;
+			line-height: inherit;
+
+			&:hover {
+				background: none;
+				color: var(--c-primary);
+			}
 		}
 	}
 
@@ -351,7 +387,7 @@
 	}
 
 	.speaker {
-		font-size: var(--fs-3);
+		font-size: var(--fs-2);
 		color: var(--c-black-1-accent, currentcolor);
 	}
 </style>

@@ -7,6 +7,7 @@ type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0
 /**
  * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
  * @param utterances the utterances to slim. This can be used on both Database Utterances and straight from Deepgram.
+ * @param people_on_show the show's hosts and guests, so a lone unnamed one is named instead of "Guest <n>"
  */
 
 export function getSlimUtterances(
@@ -14,7 +15,8 @@ export function getSlimUtterances(
 		| Pick<DBUtterance, 'speaker' | 'start' | 'end' | 'transcript_value'>[]
 		| Pick<Utterance, 'transcript' | 'speaker' | 'start' | 'end'>[],
 	showNumber: number,
-	groupForPunctuation = true
+	groupForPunctuation = true,
+	people_on_show: string[] = []
 ): SlimUtterance[] {
 	const start: Omit<SlimUtterance, 'utteranceIndex' | 'speakerName'>[] = [];
 	const slim = utterances.reduce((acc, utterance) => {
@@ -48,7 +50,7 @@ export function getSlimUtterances(
 		};
 		return [...acc, slimUtterance];
 	}, start);
-	const speakerNames = detectSpeakerNames(slim);
+	const speakerNames = detectSpeakerNames(slim, people_on_show);
 	// Add speaker names and index to existing utterances
 	return slim.map((utterance, utteranceIndex: number) => {
 		const speakerName = speakerNames.get(utterance.speakerId);
@@ -104,7 +106,8 @@ export function formatForEmbedding(utterances: SlimUtterance[]) {
 }
 
 export function detectSpeakerNames(
-	utterances: Pick<SlimUtterance, 'transcript' | 'speakerId'>[]
+	utterances: Pick<SlimUtterance, 'transcript' | 'speakerId'>[],
+	people_on_show: string[] = []
 ): SpeakerMap {
 	// Logic:
 	// Scott always says "drop a review if you like this show" at the end of each podcast
@@ -154,12 +157,15 @@ export function detectSpeakerNames(
 			}
 		}
 	}
-	// Todo Handle guests somehow
-	// For now set anyone else as a guest
-	for (const speaker of speakerNumbers) {
-		if (!speakers.get(speaker)) {
-			speakers.set(speaker, `Guest ${speaker}`);
-		}
+	// With one person on the show left unnamed and one voice left unrecognized, that voice is them.
+	// Anything less certain stays "Guest <n>" rather than risk naming the wrong person.
+	const named = new Set(speakers.values());
+	const unnamed_people = [...new Set(people_on_show)].filter((name) => !named.has(name));
+	const unrecognized = [...speakerNumbers].filter((speaker) => !speakers.get(speaker));
+	const lone_person =
+		unnamed_people.length === 1 && unrecognized.length === 1 ? unnamed_people[0] : null;
+	for (const speaker of unrecognized) {
+		speakers.set(speaker, lone_person ?? `Guest ${speaker}`);
 	}
 
 	return speakers;
