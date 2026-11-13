@@ -27,8 +27,10 @@
 	let uid = 0;
 	const pending = new SvelteSet<number>();
 
-	//Initialize worker once on mount
+	// The index is every show's notes (10 MB, 1.2 MB compressed), so the worker starts the first time
+	// search opens instead of with every page, where its download competed with the first click.
 	$effect(() => {
+		if (!search.searching || worker) return;
 		const w = new SearchWorker();
 		worker = w;
 
@@ -51,11 +53,9 @@
 		});
 
 		search_input?.focus();
-
-		return () => {
-			w.terminate();
-		};
 	});
+
+	$effect(() => () => worker?.terminate());
 
 	// Send search query to worker when ready or query changes
 	$effect(() => {
