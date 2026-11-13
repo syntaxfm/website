@@ -2,10 +2,12 @@ import { Index } from 'flexsearch';
 import type { SearchNotes, SearchShow } from './types';
 
 const RESULT_LIMIT = 50;
+// About 30 ms of indexing each
+const NOTES_PER_BATCH = 50;
 
 export interface ShowSearch {
 	// Notes come later than titles: until they're added, search covers titles, numbers and guests
-	add_notes(notes: SearchNotes[]): void;
+	add_notes(notes: SearchNotes[]): Promise<void>;
 	search(query: string): SearchShow[];
 	lookup(href: string): SearchShow | undefined;
 }
@@ -27,9 +29,16 @@ export function create_show_search(shows: SearchShow[]): ShowSearch {
 	let notes_index: Index | null = null;
 
 	return {
-		add_notes(notes) {
+		async add_notes(notes) {
 			const index = new Index({ tokenize: 'forward' });
-			for (const { href, notes: text } of notes) index.add(href, text);
+			for (let start = 0; start < notes.length; start += NOTES_PER_BATCH) {
+				for (const { href, notes: text } of notes.slice(start, start + NOTES_PER_BATCH)) {
+					index.add(href, text);
+				}
+				// Indexing every show's notes takes ~0.7 s: searches typed meanwhile answer from titles
+				// between batches instead of waiting for all of it
+				await new Promise((resolve) => setTimeout(resolve, 0));
+			}
 			notes_index = index;
 		},
 

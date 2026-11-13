@@ -37,17 +37,30 @@ describe('create_show_search', () => {
 		expect(numbers(search.search('svelte'))).toEqual([901, 902]);
 	});
 
-	it('adds shows that match only in their notes, after the title matches', () => {
+	it('adds shows that match only in their notes, after the title matches', async () => {
 		const search = create_show_search(SHOWS);
 		expect(numbers(search.search('vite'))).toEqual([]);
 
-		search.add_notes([
+		await search.add_notes([
 			{ href: SHOWS[3].href, notes: 'Vite plugins and Svelte questions' },
 			{ href: SHOWS[0].href, notes: 'Container queries' }
 		]);
 
 		expect(numbers(search.search('vite'))).toEqual([903]);
 		expect(numbers(search.search('svelte'))).toEqual([901, 902, 903]);
+	});
+
+	it('answers from titles while the notes are still being indexed', async () => {
+		const search = create_show_search(SHOWS);
+		const many_notes = Array.from({ length: 120 }, (_, i) => ({
+			href: i === 119 ? SHOWS[3].href : `/show/${i}/other`,
+			notes: i === 119 ? 'vite' : 'other notes'
+		}));
+
+		const adding = search.add_notes(many_notes);
+		expect(numbers(search.search('svelte'))).toEqual([901, 902]);
+		await adding;
+		expect(numbers(search.search('vite'))).toEqual([903]);
 	});
 
 	it('looks up a recent search by its link', () => {
