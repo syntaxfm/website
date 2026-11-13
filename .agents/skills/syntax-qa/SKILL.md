@@ -60,7 +60,8 @@ Useful public refs to compare against (read-only):
 - Latest show: `http://localhost:5740/api/shows/latest`
 - One show: `http://localhost:5740/api/shows/<number>`
 - Transcript: `http://localhost:5740/api/transcripts/<number>`
-- Feeds/meta: `/content.json`, `/sitemap.xml`, `/robots.txt`
+- Search index: `/search-index/shows.json`, `/search-index/notes.json`
+- Feeds/meta: `/sitemap.xml`, `/robots.txt`
 - OG image: `/og/<show_number>.jpg`
 
 Webhook/cron endpoints (`/webhooks/transcripts`, `/webhooks/refresh`,

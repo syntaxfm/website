@@ -5,7 +5,7 @@ import type { SearchNotes, SearchShow } from '#lib/search/types.ts';
 // Search is split in two so it answers from the first keystroke: titles, numbers and guests
 // (~45 KB compressed) load before search opens, and the show notes (~600 KB) load behind.
 
-// Browsers keep a copy for an hour, Cloudflare for five, like /content.json
+// Browsers keep a copy for an hour, Cloudflare for five
 export const SEARCH_INDEX_HEADERS = {
 	'cache-control': `public, max-age=${60 * 60}, s-maxage=${60 * 60 * 5}`
 };

@@ -207,7 +207,6 @@ Use `Response.json(...)` and `new Response(text)` instead.
 - [ ] `src/routes/api/shows/[number=show_number]/+server.ts`
 - [ ] `src/routes/api/shows/latest/+server.ts`
 - [ ] `src/routes/api/transcripts/[number=show_number]/+server.ts`
-- [ ] `src/routes/content.json/+server.ts`
 - [ ] `src/routes/webhooks/ai/+server.ts`
 - [ ] `src/routes/webhooks/refresh/+server.ts`
 - [ ] `src/routes/webhooks/transcripts/+server.ts`
