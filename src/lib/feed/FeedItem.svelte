@@ -2,12 +2,15 @@
 	import type { get_feed_content } from './feed.remote';
 	import FeedItemPodcast from './FeedItemPodcast.svelte';
 	import FeedItemVideo from './FeedItemVideo.svelte';
+	import FeedItemNewsletter from './FeedItemNewsletter.svelte';
 
 	// The Home feed is edge cached as JSON (dates are strings); the Guest and Tag feeds aren't (Dates)
 	type Cached_content = Awaited<ReturnType<typeof get_feed_content>>[number];
-	type Feed_content = Omit<Cached_content, 'published_at' | 'show'> & {
+	// The Guest feed only ever holds episodes, so it doesn't load newsletter_issue
+	type Feed_content = Omit<Cached_content, 'published_at' | 'show' | 'newsletter_issue'> & {
 		published_at: string | Date | null;
 		show: Omit<Cached_content['show'], 'date'> & { date: string | Date };
+		newsletter_issue?: Cached_content['newsletter_issue'] | null;
 	};
 
 	const { content }: { content: Feed_content } = $props();
@@ -18,4 +21,10 @@
 	<FeedItemPodcast show={content.show} {content} />
 {:else if content.type === 'VIDEO'}
 	<FeedItemVideo video={content.video} published_at={content.published_at} />
+{:else if content.type === 'NEWSLETTER' && content.newsletter_issue}
+	<FeedItemNewsletter
+		title={content.title}
+		issue={content.newsletter_issue}
+		published_at={content.published_at}
+	/>
 {:else if content.type === 'ARTICLE'}{/if}

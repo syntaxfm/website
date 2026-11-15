@@ -29,6 +29,13 @@
       "when": 1790186412537,
       "tag": "0003_reconcile_pushed_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794695270727,
+      "tag": "0004_newsletter_issues",
+      "breakpoints": true
     }
   ]
 }

@@ -1,14 +1,18 @@
 <script lang="ts">
-	import { get_newsletter_archive } from '#lib/newsletter/newsletter.remote.ts';
+	import {
+		get_newsletter_archive,
+		get_subscriber_count
+	} from '#lib/newsletter/newsletter.remote.ts';
 	import NewsletterArchive from '#lib/newsletter/NewsletterArchive.svelte';
 	import NewsletterBanner from '#lib/newsletter/NewsletterBanner.svelte';
 	import NewsletterPromo from '#lib/newsletter/NewsletterPromo.svelte';
 	import Icon from '#lib/Icon.svelte';
 
-	let { issues, count } = await get_newsletter_archive();
+	// From Postgres, so it's in the page's HTML; only the subscriber count waits on Kit
+	const issues = await get_newsletter_archive();
 </script>
 
-<NewsletterBanner {count} />
+<NewsletterBanner count={get_subscriber_count()} />
 <NewsletterPromo />
 
 <section class="past-issues">

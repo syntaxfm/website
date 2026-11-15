@@ -3,12 +3,14 @@ import { PUBLIC_URL } from '$app/env/public';
 import { db } from '$server/db/client';
 import { show as showsTable, guest as guestsTable } from '$server/db/schema';
 import { lte } from 'drizzle-orm';
+import { get_newsletter_issues } from '$server/newsletter/issues';
 
 const site = `https://${PUBLIC_URL}`;
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
 	const shows = await db.select().from(showsTable).where(lte(showsTable.date, new Date()));
 	const guests = await db.select().from(guestsTable);
+	const snackpack_issues = await get_newsletter_issues();
 	const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -112,6 +114,24 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
     <loc>${site}/guest/${guest?.name_slug}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  `
+			)
+			.join('')}
+
+      <url>
+        <loc>${site}/snackpack</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+      </url>
+
+		${snackpack_issues
+			.map(
+				(issue) => `
+  <url>
+    <loc>${site}/snackpack/${issue.id}</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   `
 			)

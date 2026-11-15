@@ -3,7 +3,8 @@
 	import Collage from '#lib/collage/Collage.svelte';
 	import NewsletterForm from './NewsletterForm.svelte';
 	import NewsletterLogo from './NewsletterLogo.svelte';
-	const { count }: { count: string } = $props();
+	// A promise, so the signup renders at once and the number fills in when Kit answers
+	const { count }: { count: PromiseLike<string> } = $props();
 
 	const DOODLE_SIZE = 44;
 </script>
@@ -29,7 +30,14 @@
 				<NewsletterLogo />
 			</div>
 			<p class="banner-copy">
-				Be one of the <strong>{count}</strong> coolest people in the world!
+				<svelte:boundary>
+					{@const total = await count}
+					Be one of the {#if total}<strong>{total}</strong>{/if} coolest people in the world!
+
+					{#snippet pending()}
+						Be one of the coolest people in the world!
+					{/snippet}
+				</svelte:boundary>
 			</p>
 		</div>
 		<div class="signup">

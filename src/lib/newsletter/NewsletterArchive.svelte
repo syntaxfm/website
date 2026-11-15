@@ -5,7 +5,7 @@
 	import { resolve } from '$app/paths';
 
 	interface Props {
-		id: number;
+		id: string;
 		issue_number: number | null;
 		title: string;
 		date: string;

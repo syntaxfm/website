@@ -35,6 +35,38 @@ relying on it.
 
 ---
 
+## 2026-11-14 - Snack Pack issues as content
+
+**Type**: Additive
+**Status**: ✅ Applied (production 2026-11-15, before deploy)
+**Affects**: `newsletter_issues` (new), `content` (new `NEWSLETTER` rows)
+
+### Changes
+- New `newsletter_issues` table (migration `0004_newsletter_issues`): `id` (Kit's broadcast id, text
+  primary key), `issue_number`, `content_id` (unique, cascades from `content`).
+- Each Snack Pack issue gets a `content` row: type `NEWSLETTER`, slug `snack-pack-<kit id>`,
+  following ADR-0004.
+
+### Migration Script Changes
+- None. Rows are filled by the app, not the migration: `src/server/newsletter/issues.ts` copies
+  issues from Kit on first read and whenever the copy is older than 6 hours.
+
+### Application Code Changes
+- `/snackpack` and `sitemap.xml` read issues from Postgres instead of Kit.
+- The home feed shows Snack Pack issues (`FeedItemNewsletter.svelte`) and only `PUBLISHED`
+  content. The most-popular sidebar ranks `PODCAST` content only.
+
+### Rollback Plan
+- `DROP TABLE newsletter_issues; DELETE FROM content WHERE type = 'NEWSLETTER';`, then deploy the
+  previous app version.
+
+### Deployment Notes
+- Apply the migration to production **before** deploying this app version: the new code queries
+  `newsletter_issues` on `/snackpack`, `sitemap.xml` and the home feed.
+- The first request after deploy waits ~1.5 s on Kit once while the table fills.
+
+---
+
 ## 2026-09-23 - Reconcile pushed schema
 
 **Type**: Constraint (history reconciliation)
