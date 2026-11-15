@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { PODCAST_FEED_URL, SITE_DESCRIPTION } from '$const';
 	const props = $props();
 
 	let title = `Syntax - Web Development Podcast`;
 
 	let meta = $derived({
 		//·defaults
-		description: `Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 2 times a week!`,
+		description: SITE_DESCRIPTION,
 		image: `${page.url.protocol}//${page.url.host}/og/${encodeURIComponent(
 			page.data.meta?.title || title
 		)}.jpg`,
@@ -27,7 +28,7 @@
 	<link
 		rel="alternate"
 		type="application/rss+xml"
-		href="https://feed.syntax.fm"
+		href={PODCAST_FEED_URL}
 		title="Syntax RSS Feed"
 	/>
 	<meta name="image" property="og:image" content={meta.image} />

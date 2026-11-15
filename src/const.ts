@@ -12,9 +12,15 @@ export const CURRENT_YEAR = new Date().getFullYear();
 // PUBLIC_URL of the live site. Betas and previews don't get crawled or counted in analytics.
 export const PRODUCTION_HOST = 'syntax.fm';
 
+export const SITE_DESCRIPTION =
+	'Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more. Listen in 2 times a week!';
+
+// The podcast's RSS feed, hosted by Megaphone
+export const PODCAST_FEED_URL = 'https://feed.syntax.fm';
+
 export const PODCAST_LINKS = [
 	{
-		href: 'https://feed.syntax.fm',
+		href: PODCAST_FEED_URL,
 		text: 'RSS'
 	},
 	{

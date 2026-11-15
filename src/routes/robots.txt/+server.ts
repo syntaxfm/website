@@ -11,7 +11,7 @@ Disallow: /admin
 Disallow: /haters
 Disallow: /api
 
-Sitemap:  https://${PUBLIC_URL}/sitemap.xml`
+Sitemap: https://${PUBLIC_URL}/sitemap.xml`
 			: `User-agent: *
 Disallow: /`;
 

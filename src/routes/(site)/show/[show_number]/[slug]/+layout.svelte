@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { player } from '$state/player';
-	import { format } from 'date-fns';
 	import { tsToS } from '$utilities/format_time.js';
 	import PodcastPost from '#lib/articles/PodcastPost.svelte';
+	import { podcast_episode_schema, to_json_ld } from '#lib/seo/structured_data.ts';
 
 	let { data, children } = $props();
 	let { show } = $derived(data);
@@ -20,30 +20,7 @@
 		}
 	}
 
-	let show_schema = $derived({
-		'@context': 'https://schema.org/',
-		'@type': 'PodcastEpisode',
-		url: page.url,
-		name: show.title,
-		datePublished: format(show.date, 'yyyy-LL-dd'),
-		// TODO: add duration once we are saving it
-		// timeRequired: 'PT37M',
-		description: show.aiShowNote?.description,
-		associatedMedia: {
-			'@type': 'MediaObject',
-			contentUrl: show.url
-		},
-		partOfSeries: {
-			'@type': 'PodcastSeries',
-			name: 'Syntax',
-			url: 'https://syntax.fm'
-		}
-	});
-	// Escape `<` and `&` as JSON unicode escapes: the text can never close the script element and
-	// is left untouched by Svelte's text escaping, while JSON parsers decode it back to the same data.
-	let show_schema_json = $derived(
-		JSON.stringify(show_schema, null, 2).replaceAll('<', '\\u003c').replaceAll('&', '\\u0026')
-	);
+	let show_schema_json = $derived(to_json_ld(podcast_episode_schema(show, page.url.origin)));
 </script>
 
 <!-- Capture phase: claim the click before SvelteKit's router treats it as hash navigation -->
