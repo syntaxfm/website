@@ -45,6 +45,30 @@ anything other than personal use without our permission._
   and/or transfer a podcast to a device only for your personal,
   noncommercial use.
 
+### Quoting Syntax
+
+_You're welcome to quote short parts of our episodes and transcripts, as
+long as you credit Syntax and link back to where the quote came from.
+Please don't republish whole episodes or transcripts._
+
+- Notwithstanding the restrictions in the "Copyrights" and "Rules for
+  Use of Syntax" sections of these Terms, you may: (a) crawl and index
+  the publicly available pages of Syntax, including episode pages and
+  transcripts, in order to provide search results or answers that cite
+  Syntax; and (b) quote short excerpts of Syntax content, including
+  transcripts, in articles, posts, search results and AI-generated
+  answers, provided that each excerpt credits "Syntax" and links to the
+  episode or page on Syntax that it came from.
+
+- You may not: (a) republish all or a substantial portion of any
+  episode or transcript; (b) use excerpts in a way that substitutes for
+  listening to or visiting Syntax; (c) alter an excerpt so that it
+  misrepresents what was said; or (d) imply that Syntax, its hosts or
+  Sentry endorse you, your product or your content.
+
+- Any use not permitted by this section still requires our prior
+  written consent.
+
 ### Trademarks
 
 _Like our podcast, the names and logos on our site are protected by
@@ -161,8 +185,9 @@ right to block your access to Syntax._
   will or may be used in any way that will affect the functionality or
   operation of the Service or of any related website, other websites, or
   the Internet; (h) to collect or track the personal information of
-  others; (i) to spam, phish, pharm, pretext, spider, crawl, or
-  scrape; (j) for any obscene or immoral purpose; or (k) to interfere
+  others; (i) to spam, phish, pharm or pretext, or to spider, crawl or
+  scrape except as permitted in the "Quoting Syntax" section of these
+  Terms; (j) for any obscene or immoral purpose; or (k) to interfere
   with or circumvent the security features of Syntax or any related
   website, other websites, or the Internet.
 
