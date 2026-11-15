@@ -1,0 +1,147 @@
+{
+	"version": "0.1.20261103",
+	"status_code": 20000,
+	"status_message": "Ok.",
+	"time": "0.6929 sec.",
+	"cost": 0.0126,
+	"tasks_count": 1,
+	"tasks_error": 0,
+	"tasks": [
+		{
+			"id": "11152326-3093-0386-0000-058f5f4e8360",
+			"status_code": 20000,
+			"status_message": "Ok.",
+			"time": "0.6254 sec.",
+			"cost": 0.0126,
+			"result_count": 1,
+			"path": ["v3", "dataforseo_labs", "google", "competitors_domain", "live"],
+			"data": {
+				"api": "dataforseo_labs",
+				"function": "competitors_domain",
+				"se_type": "google",
+				"target": "syntax.fm",
+				"location_code": 2840,
+				"language_code": "en",
+				"exclude_top_domains": true,
+				"limit": 5
+			},
+			"result": [
+				{
+					"se_type": "google",
+					"target": "syntax.fm",
+					"location_code": 2840,
+					"language_code": "en",
+					"total_count": 9958,
+					"items_count": 5,
+					"items": [
+						{
+							"se_type": "google",
+							"domain": "syntax.fm",
+							"avg_position": 29.764900662251655,
+							"sum_position": 17978,
+							"intersections": 604,
+							"full_domain_metrics": {
+								"organic": {
+									"pos_1": 9,
+									"pos_2_3": 19,
+									"pos_4_10": 63,
+									"pos_11_20": 114,
+									"pos_21_30": 133,
+									"pos_31_40": 119,
+									"pos_41_50": 58,
+									"pos_51_60": 53,
+									"pos_61_70": 24,
+									"pos_71_80": 7,
+									"pos_81_90": 5,
+									"pos_91_100": 0,
+									"etv": 332.2320316469413,
+									"count": 604,
+									"estimated_paid_traffic_cost": 106.21838808332541,
+									"is_new": 458,
+									"is_up": 44,
+									"is_down": 79,
+									"is_lost": 308,
+									"clickstream_etv": null,
+									"clickstream_gender_distribution": null,
+									"clickstream_age_distribution": null
+								},
+								"local_pack": null,
+								"featured_snippet": null
+							}
+						},
+						{
+							"se_type": "google",
+							"domain": "github.com",
+							"avg_position": 13.64010989010989,
+							"sum_position": 4965,
+							"intersections": 364,
+							"full_domain_metrics": {
+								"organic": {
+									"pos_1": 126517,
+									"pos_2_3": 256946,
+									"pos_4_10": 636844,
+									"pos_11_20": 565657,
+									"pos_21_30": 432641,
+									"pos_31_40": 327230,
+									"pos_41_50": 266155,
+									"pos_51_60": 196670,
+									"pos_61_70": 143428,
+									"pos_71_80": 97332,
+									"pos_81_90": 62618,
+									"pos_91_100": 34944,
+									"etv": 13054311.874570455,
+									"count": 3146982,
+									"estimated_paid_traffic_cost": 43049191.89292078,
+									"is_new": 2272612,
+									"is_up": 310456,
+									"is_down": 332294,
+									"is_lost": 915431,
+									"clickstream_etv": null,
+									"clickstream_gender_distribution": null,
+									"clickstream_age_distribution": null
+								},
+								"local_pack": null,
+								"featured_snippet": null
+							}
+						},
+						{
+							"se_type": "google",
+							"domain": "stackoverflow.com",
+							"avg_position": 17.580882352941178,
+							"sum_position": 4782,
+							"intersections": 272,
+							"full_domain_metrics": {
+								"organic": {
+									"pos_1": 128450,
+									"pos_2_3": 204039,
+									"pos_4_10": 420725,
+									"pos_11_20": 348029,
+									"pos_21_30": 207163,
+									"pos_31_40": 130146,
+									"pos_41_50": 89402,
+									"pos_51_60": 63522,
+									"pos_61_70": 41423,
+									"pos_71_80": 27787,
+									"pos_81_90": 17223,
+									"pos_91_100": 7512,
+									"etv": 3648538.117281856,
+									"count": 1685421,
+									"estimated_paid_traffic_cost": 2067319.4379892831,
+									"is_new": 1087444,
+									"is_up": 200638,
+									"is_down": 206943,
+									"is_lost": 570856,
+									"clickstream_etv": null,
+									"clickstream_gender_distribution": null,
+									"clickstream_age_distribution": null
+								},
+								"local_pack": null,
+								"featured_snippet": null
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

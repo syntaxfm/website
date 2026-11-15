@@ -35,6 +35,29 @@ relying on it.
 
 ---
 
+## 2026-11-15 - SEO snapshots
+
+**Type**: Additive
+**Status**: Applied locally; pending production
+**Affects**: `seo_snapshots` (new)
+
+### Changes
+- `0004_seo_snapshots` adds `seo_snapshots`: one row per SEO snapshot taken from `/admin/seo`, with
+  its Firecrawl credit cost, the normalized report (`jsonb`) and any failed calls (`jsonb`).
+
+### Application Code Changes
+- `src/server/seo_tracker/` takes and compares snapshots; `/admin/seo` shows them.
+
+### Rollback Plan
+- `DROP TABLE seo_snapshots;` loses only snapshot history.
+
+### Deployment Notes
+- Apply before the app deploy that ships `/admin/seo`; the page queries the table on load.
+- Taking snapshots also needs `FIRECRAWL_API_KEY` on the Worker. Without it the page shows saved
+  snapshots and its button is disabled.
+
+---
+
 ## 2026-09-23 - Reconcile pushed schema
 
 **Type**: Constraint (history reconciliation)

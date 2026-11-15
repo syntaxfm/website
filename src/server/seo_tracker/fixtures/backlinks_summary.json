@@ -1,0 +1,57 @@
+{
+	"version": "0.1.20261103",
+	"status_code": 20000,
+	"status_message": "Ok.",
+	"time": "0.2058 sec.",
+	"cost": 0.024036,
+	"tasks_count": 1,
+	"tasks_error": 0,
+	"tasks": [
+		{
+			"id": "11152326-3093-0265-0000-bcc1d5422409",
+			"status_code": 20000,
+			"status_message": "Ok.",
+			"time": "0.1876 sec.",
+			"cost": 0.024036,
+			"result_count": 1,
+			"path": ["v3", "backlinks", "summary", "live"],
+			"data": {
+				"api": "backlinks",
+				"function": "summary",
+				"target": "syntax.fm"
+			},
+			"result": [
+				{
+					"target": "syntax.fm",
+					"first_seen": "2019-01-16 22:56:57 +00:00",
+					"lost_date": null,
+					"rank": 432,
+					"backlinks": 48336,
+					"backlinks_spam_score": 21,
+					"crawled_pages": 6986,
+					"info": {
+						"server": "cloudflare",
+						"cms": null,
+						"platform_type": ["unknown"],
+						"ip_address": "172.67.134.109",
+						"country": "FM",
+						"is_ip": false,
+						"target_spam_score": 4
+					},
+					"internal_links_count": 96126,
+					"external_links_count": 158583,
+					"broken_backlinks": 37,
+					"broken_pages": 15,
+					"referring_domains": 2323,
+					"referring_domains_nofollow": 621,
+					"referring_main_domains": 2060,
+					"referring_main_domains_nofollow": 457,
+					"referring_ips": 1394,
+					"referring_subnets": 849,
+					"referring_pages": 37022,
+					"referring_pages_nofollow": 4056
+				}
+			]
+		}
+	]
+}

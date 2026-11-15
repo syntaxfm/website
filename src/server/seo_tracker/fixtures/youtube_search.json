@@ -1,0 +1,59 @@
+{
+	"estimated_results": 3520,
+	"observed_at_ms": 1794785151544,
+	"query": "svelte podcast",
+	"videos": [
+		{
+			"channel_handle": "@JavaScriptConferences",
+			"channel_id": "UCQM428Hwrvxla8DCgjGONSQ",
+			"channel_name": "JavaScript Conferences by GitNation",
+			"description_snippet": "\"We don't work on Svelte for the sake of adoption. We work on it because we have an idea in our heads about what the right way ...",
+			"is_live": false,
+			"length_text": "30:05",
+			"published_text": "1 year ago",
+			"title": "Svelte’s Creator Rich Harris on Rethinking Web Dev, Building Svelte & the Power of Tech Conferences",
+			"url": "https://www.youtube.com/watch?v=Tvth3_H5N8o",
+			"video_id": "Tvth3_H5N8o",
+			"view_count_text": "14,344 views"
+		},
+		{
+			"channel_handle": "@maximilian-schwarzmueller",
+			"channel_id": "UCNxUdsuH8-kEGIwSD0r8RhQ",
+			"channel_name": "Maximilian Schwarzmüller",
+			"description_snippet": "Join me as I explain which key decision factors could be considered when choosing a modern frontend JavaScript framework or ...",
+			"is_live": false,
+			"length_text": "32:35",
+			"published_text": "2 years ago",
+			"title": "React vs Angular vs Vue vs Svelte vs SolidJS | E2 Code & Curiosity Podcast",
+			"url": "https://www.youtube.com/watch?v=K2lvjqvpajc",
+			"video_id": "K2lvjqvpajc",
+			"view_count_text": "37,184 views"
+		},
+		{
+			"channel_handle": null,
+			"channel_id": null,
+			"channel_name": "Syntax and Scott Tolinski",
+			"description_snippet": "In this video Scott covers everything you need to know about building modern full stack svelte kit applications, including SvelteKit, ...",
+			"is_live": false,
+			"length_text": "3:01:17",
+			"published_text": "10 months ago",
+			"title": "Modern Svelte Kit - Complete Svelte Kit Course for Beginners",
+			"url": "https://www.youtube.com/watch?v=vkXxFfGwPao",
+			"video_id": "vkXxFfGwPao",
+			"view_count_text": "58,670 views"
+		},
+		{
+			"channel_handle": "@codetv-dev",
+			"channel_id": "UCnty0z0pNRDgnuoirYXnC5A",
+			"channel_name": "CodeTV",
+			"description_snippet": "Svelte's Runes made a lot of headlines when they were announced. In this episode, creator Rich Harris will teach us about Runes ...",
+			"is_live": false,
+			"length_text": "1:28:31",
+			"published_text": "Streamed 2 years ago",
+			"title": "Going Deep on Svelte 5 with Rich Harris",
+			"url": "https://www.youtube.com/watch?v=0ipZQUsPq9U",
+			"video_id": "0ipZQUsPq9U",
+			"view_count_text": "14,186 views"
+		}
+	]
+}

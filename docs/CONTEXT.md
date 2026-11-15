@@ -111,6 +111,14 @@ A continuous segment of speech from one speaker in a Transcript. The atomic unit
 **Word** (`transcriptUtteranceWord`):
 Word-level timing inside an Utterance. Optional and very large (millions of rows); often skipped in exports/migrations. See `docs/archive/large-table-export-options.md` for handling guidance.
 
+### Search tracking
+
+**SEO snapshot** (`seo_snapshot`):
+One saved reading of how syntax.fm shows up in search, taken from `/admin/seo`: the Google keywords it ranks for, its position on a fixed list of **Tracked searches** on Google and YouTube, competitors, and backlinks. Snapshots use identical settings so any two can be compared.
+
+**Tracked search**:
+A search phrase (`TRACKED_SEARCHES` in `src/server/seo_tracker/seo_config.ts`) checked on Google and YouTube in every SEO snapshot. Distinct from a **Tag**, though Tags decide which ranked keywords count as on topic.
+
 ## Relationships
 
 - **Syntax** has many **Shows**.

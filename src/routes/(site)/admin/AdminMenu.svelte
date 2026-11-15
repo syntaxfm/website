@@ -44,6 +44,7 @@
 		},
 		{ text: 'Tags', path: '/admin/tags' },
 		{ text: 'Guests', path: '/admin/guests' },
+		{ text: 'SEO', path: '/admin/seo' },
 		{
 			text: 'Users',
 			path: '/admin/users',

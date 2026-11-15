@@ -12,9 +12,11 @@ import {
 	boolean,
 	serial,
 	primaryKey,
-	foreignKey
+	foreignKey,
+	jsonb
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
+import type { SeoCallError, SeoReport } from '../seo_tracker/seo_report';
 
 // ============================================================================
 // ENUMS
@@ -569,3 +571,23 @@ export const content_tags = pgTable(
 );
 
 // TODO Related content table
+
+// ============================================================================
+// SEO TRACKER
+// ============================================================================
+
+// One row per SEO snapshot taken from /admin/seo: Google rankings, tracked Google and YouTube
+// searches, competitors and backlinks, normalized (src/server/seo_tracker/seo_report.ts)
+export const seo_snapshot = pgTable(
+	'seo_snapshots',
+	{
+		id: uuid('id').defaultRandom().primaryKey(),
+		taken_at: timestamp('taken_at', { withTimezone: true }).defaultNow().notNull(),
+		// Firecrawl credits the snapshot cost
+		credits_cost: integer('credits_cost').notNull(),
+		report: jsonb('report').$type<SeoReport>().notNull(),
+		// Calls that failed; the matching report sections are empty
+		errors: jsonb('errors').$type<SeoCallError[]>().notNull()
+	},
+	(table) => [index('seo_snapshots_taken_at_idx').on(table.taken_at)]
+);

@@ -1,0 +1,362 @@
+{
+	"version": "0.1.20261103",
+	"status_code": 20000,
+	"status_message": "Ok.",
+	"time": "0.3997 sec.",
+	"cost": 0.0126,
+	"tasks_count": 1,
+	"tasks_error": 0,
+	"tasks": [
+		{
+			"id": "11152326-3093-0381-0000-b01aff11381b",
+			"status_code": 20000,
+			"status_message": "Ok.",
+			"time": "0.3917 sec.",
+			"cost": 0.0126,
+			"result_count": 1,
+			"path": ["v3", "dataforseo_labs", "google", "ranked_keywords", "live"],
+			"data": {
+				"api": "dataforseo_labs",
+				"function": "ranked_keywords",
+				"se_type": "google",
+				"target": "syntax.fm",
+				"location_code": 2840,
+				"language_code": "en",
+				"limit": 5,
+				"order_by": ["keyword_data.keyword_info.search_volume,desc"]
+			},
+			"result": [
+				{
+					"se_type": "google",
+					"target": "syntax.fm",
+					"location_code": 2840,
+					"language_code": "en",
+					"total_count": 604,
+					"items_count": 5,
+					"metrics": {
+						"organic": {
+							"pos_1": 9,
+							"pos_2_3": 19,
+							"pos_4_10": 63,
+							"pos_11_20": 114,
+							"pos_21_30": 133,
+							"pos_31_40": 119,
+							"pos_41_50": 58,
+							"pos_51_60": 53,
+							"pos_61_70": 24,
+							"pos_71_80": 7,
+							"pos_81_90": 5,
+							"pos_91_100": 0,
+							"etv": 332.2320316469413,
+							"count": 604,
+							"estimated_paid_traffic_cost": 106.21838808332541,
+							"is_new": 458,
+							"is_up": 44,
+							"is_down": 79,
+							"is_lost": 0,
+							"clickstream_etv": null,
+							"clickstream_gender_distribution": null,
+							"clickstream_age_distribution": null
+						},
+						"paid": {
+							"pos_1": 0,
+							"pos_2_3": 0,
+							"pos_4_10": 0,
+							"pos_11_20": 0,
+							"pos_21_30": 0,
+							"pos_31_40": 0,
+							"pos_41_50": 0,
+							"pos_51_60": 0,
+							"pos_61_70": 0,
+							"pos_71_80": 0,
+							"pos_81_90": 0,
+							"pos_91_100": 0,
+							"etv": 0,
+							"count": 0,
+							"estimated_paid_traffic_cost": 0,
+							"is_new": 0,
+							"is_up": 0,
+							"is_down": 0,
+							"is_lost": 0,
+							"clickstream_etv": null,
+							"clickstream_gender_distribution": null,
+							"clickstream_age_distribution": null
+						},
+						"featured_snippet": null,
+						"local_pack": null,
+						"ai_overview_reference": null
+					},
+					"metrics_absolute": null,
+					"items": [
+						{
+							"se_type": "google",
+							"keyword_data": {
+								"se_type": "google",
+								"keyword": "gemma in sons of anarchy",
+								"location_code": 2840,
+								"language_code": "en",
+								"keyword_info": {
+									"se_type": "google",
+									"last_updated_time": "2026-10-16 15:43:26 +00:00",
+									"competition": 0,
+									"competition_level": "LOW",
+									"cpc": 0.03999999910593033,
+									"search_volume": 9900,
+									"low_top_of_page_bid": null,
+									"high_top_of_page_bid": null,
+									"categories": [10013, 10105, 10557, 10566, 13536, 13882],
+									"search_volume_trend": {
+										"monthly": 0,
+										"quarterly": 22,
+										"yearly": 0
+									}
+								},
+								"keyword_info_normalized_with_bing": null,
+								"keyword_info_normalized_with_clickstream": null,
+								"clickstream_keyword_info": null,
+								"keyword_properties": {
+									"se_type": "google",
+									"core_keyword": "son of anarchy gemma",
+									"synonym_clustering_algorithm": "text_processing",
+									"keyword_difficulty": 12,
+									"detected_language": "en",
+									"is_another_language": false
+								},
+								"search_intent_info": {
+									"se_type": "google",
+									"main_intent": "informational",
+									"foreign_intent": null,
+									"last_updated_time": "2026-04-27 22:03:49 +00:00"
+								}
+							},
+							"ranked_serp_element": {
+								"se_type": "google",
+								"serp_item": {
+									"se_type": "google",
+									"type": "organic",
+									"rank_group": 72,
+									"rank_absolute": 83,
+									"position": "left",
+									"domain": "syntax.fm",
+									"title": "Syntax - Web Development Podcast",
+									"url": "https://syntax.fm/",
+									"breadcrumb": "https://syntax.fm",
+									"website_name": "Syntax - Web Development Podcast",
+									"is_image": false,
+									"is_video": false,
+									"is_featured_snippet": false,
+									"is_malicious": false,
+									"description": "Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more.",
+									"amp_version": false,
+									"main_domain": "syntax.fm",
+									"relative_url": "/",
+									"etv": 0.002949790796265006,
+									"estimated_paid_traffic_cost": 0.00011799163621617481,
+									"clickstream_etv": null,
+									"rank_changes": {
+										"previous_rank_absolute": null,
+										"is_new": true,
+										"is_up": false,
+										"is_down": false
+									}
+								},
+								"check_url": "https://www.google.com/search?q=gemma%20in%20sons%20of%20anarchy&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+								"serp_item_types": [
+									"ai_overview",
+									"organic",
+									"people_also_ask",
+									"related_searches",
+									"knowledge_graph",
+									"images"
+								],
+								"se_results_count": 284,
+								"keyword_difficulty": 12,
+								"is_lost": false,
+								"last_updated_time": "2026-07-30 10:12:07 +00:00",
+								"previous_updated_time": "2026-05-15 07:46:39 +00:00"
+							}
+						},
+						{
+							"se_type": "google",
+							"keyword_data": {
+								"se_type": "google",
+								"keyword": "maps javascript",
+								"location_code": 2840,
+								"language_code": "en",
+								"keyword_info": {
+									"se_type": "google",
+									"last_updated_time": "2026-10-16 18:39:03 +00:00",
+									"competition": 0,
+									"competition_level": "LOW",
+									"cpc": 2.319999933242798,
+									"search_volume": 6600,
+									"low_top_of_page_bid": null,
+									"high_top_of_page_bid": null,
+									"categories": [10108, 10756, 13600, 13601],
+									"search_volume_trend": {
+										"monthly": -19,
+										"quarterly": 0,
+										"yearly": -56
+									}
+								},
+								"keyword_info_normalized_with_bing": null,
+								"keyword_info_normalized_with_clickstream": null,
+								"clickstream_keyword_info": null,
+								"keyword_properties": {
+									"se_type": "google",
+									"core_keyword": "javascript map",
+									"synonym_clustering_algorithm": "text_processing",
+									"keyword_difficulty": 88,
+									"detected_language": "en",
+									"is_another_language": false
+								},
+								"search_intent_info": {
+									"se_type": "google",
+									"main_intent": "informational",
+									"foreign_intent": null,
+									"last_updated_time": "2026-04-29 14:20:39 +00:00"
+								}
+							},
+							"ranked_serp_element": {
+								"se_type": "google",
+								"serp_item": {
+									"se_type": "google",
+									"type": "organic",
+									"rank_group": 40,
+									"rank_absolute": 49,
+									"position": "left",
+									"domain": "syntax.fm",
+									"title": "You Should Use Maps and Sets in JS - Syntax",
+									"url": "https://syntax.fm/videos/syntax-side-dish-explainers/you-should-use-maps-and-sets-in-js",
+									"breadcrumb": "https://syntax.fm · Nov 6, 2023",
+									"website_name": "Syntax podcast · Syntax",
+									"is_image": false,
+									"is_video": true,
+									"is_featured_snippet": false,
+									"is_malicious": false,
+									"description": "In this video CJ talks about the scenarios when it is better to use Maps and Sets instead of Objects and Arrays in JavaScript. 00:00 Intro",
+									"amp_version": false,
+									"main_domain": "syntax.fm",
+									"relative_url": "/videos/syntax-side-dish-explainers/you-should-use-maps-and-sets-in-js",
+									"etv": 0.060403596609830856,
+									"estimated_paid_traffic_cost": 0.14013634622097015,
+									"clickstream_etv": null,
+									"rank_changes": {
+										"previous_rank_absolute": 51,
+										"is_new": false,
+										"is_up": true,
+										"is_down": false
+									}
+								},
+								"check_url": "https://www.google.com/search?q=maps%20javascript&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+								"serp_item_types": [
+									"organic",
+									"ai_overview",
+									"people_also_ask",
+									"short_videos",
+									"perspectives",
+									"video",
+									"related_searches",
+									"images"
+								],
+								"se_results_count": 109,
+								"keyword_difficulty": 88,
+								"is_lost": false,
+								"last_updated_time": "2026-07-31 13:54:07 +00:00",
+								"previous_updated_time": "2026-05-17 13:33:35 +00:00"
+							}
+						},
+						{
+							"se_type": "google",
+							"keyword_data": {
+								"se_type": "google",
+								"keyword": "josh wardle",
+								"location_code": 2840,
+								"language_code": "en",
+								"keyword_info": {
+									"se_type": "google",
+									"last_updated_time": "2026-10-16 01:00:33 +00:00",
+									"competition": 0,
+									"competition_level": "LOW",
+									"cpc": null,
+									"search_volume": 3600,
+									"low_top_of_page_bid": null,
+									"high_top_of_page_bid": null,
+									"categories": [10008],
+									"search_volume_trend": {
+										"monthly": 22,
+										"quarterly": 52,
+										"yearly": 52
+									}
+								},
+								"keyword_info_normalized_with_bing": null,
+								"keyword_info_normalized_with_clickstream": null,
+								"clickstream_keyword_info": null,
+								"keyword_properties": {
+									"se_type": "google",
+									"core_keyword": null,
+									"synonym_clustering_algorithm": "text_processing",
+									"keyword_difficulty": 18,
+									"detected_language": "en",
+									"is_another_language": false
+								},
+								"search_intent_info": {
+									"se_type": "google",
+									"main_intent": "informational",
+									"foreign_intent": null,
+									"last_updated_time": "2026-04-28 02:38:07 +00:00"
+								}
+							},
+							"ranked_serp_element": {
+								"se_type": "google",
+								"serp_item": {
+									"se_type": "google",
+									"type": "organic",
+									"rank_group": 16,
+									"rank_absolute": 20,
+									"position": "left",
+									"domain": "syntax.fm",
+									"title": "Transcript: Creator of Wordle - Josh Wardle - Syntax #430",
+									"url": "https://syntax.fm/show/430/creator-of-wordle-josh-wardle/transcript",
+									"breadcrumb": "https://syntax.fm › show › transcript",
+									"website_name": "Syntax - Web Development Podcast",
+									"is_image": false,
+									"is_video": false,
+									"is_featured_snippet": false,
+									"is_malicious": false,
+									"description": "Feb 9, 2022 — Josh Wardle, creator of Wordle, joins to discuss building the insanely viral web game using vanilla JavaScript and web components.",
+									"amp_version": false,
+									"main_domain": "syntax.fm",
+									"relative_url": "/show/430/creator-of-wordle-josh-wardle/transcript",
+									"etv": 11.71979808807373,
+									"estimated_paid_traffic_cost": null,
+									"clickstream_etv": null,
+									"rank_changes": {
+										"previous_rank_absolute": null,
+										"is_new": true,
+										"is_up": false,
+										"is_down": false
+									}
+								},
+								"check_url": "https://www.google.com/search?q=josh%20wardle&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+								"serp_item_types": [
+									"knowledge_graph",
+									"organic",
+									"people_also_ask",
+									"short_videos",
+									"related_searches",
+									"images"
+								],
+								"se_results_count": 118,
+								"keyword_difficulty": 18,
+								"is_lost": false,
+								"last_updated_time": "2026-07-30 21:34:13 +00:00",
+								"previous_updated_time": "2026-05-16 20:30:14 +00:00"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
