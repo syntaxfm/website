@@ -4,6 +4,8 @@ import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { content_tags, seo_snapshot, tag } from '$server/db/schema';
 import { compare_reports, find_opportunities } from '$server/seo_tracker/seo_compare';
+import { GOOGLE_RESULT_DEPTH } from '$server/seo_tracker/seo_config';
+import type { DomainOverview } from '$server/seo_tracker/seo_report';
 import { take_seo_snapshot } from '$server/seo_tracker/seo_snapshot';
 import { error } from '@sveltejs/kit';
 import { count, desc, eq, gte, sql } from 'drizzle-orm';
@@ -20,7 +22,12 @@ export const get_seo_dashboard = query(async () => {
 			id: seo_snapshot.id,
 			taken_at: seo_snapshot.taken_at,
 			credits_cost: seo_snapshot.credits_cost,
-			error_count: sql<number>`jsonb_array_length(${seo_snapshot.errors})`
+			error_count: sql<number>`jsonb_array_length(${seo_snapshot.errors})`,
+			// Only the totals, for the trend lines: whole reports are ~30 kB each
+			overview: sql<DomainOverview | null>`${seo_snapshot.report} -> 'overview'`,
+			referring_domains: sql<
+				number | null
+			>`(${seo_snapshot.report} -> 'backlinks' ->> 'referring_domains')::integer`
 		})
 		.from(seo_snapshot)
 		.orderBy(desc(seo_snapshot.taken_at))
@@ -43,6 +50,8 @@ export const get_seo_dashboard = query(async () => {
 
 	return {
 		is_online: Boolean(FIRECRAWL_API_KEY),
+		// Positions are checked this deep; past it a search counts as not found
+		max_position: GOOGLE_RESULT_DEPTH,
 		latest: latest ?? null,
 		comparison: latest && previous ? compare_reports(previous.report, latest.report) : null,
 		previous_taken_at: previous?.taken_at ?? null,

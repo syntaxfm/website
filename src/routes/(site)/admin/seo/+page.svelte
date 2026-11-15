@@ -2,8 +2,11 @@
 	import { format } from 'date-fns';
 	import { error_message } from '#lib/utils/error_message.ts';
 	import { get_seo_dashboard, run_seo_snapshot } from './admin_seo.remote';
+	import BarList from './BarList.svelte';
+	import { build_stat_tiles, opportunity_rows, position_band_rows } from './seo_charts';
+	import StatTiles from './StatTiles.svelte';
+	import TrackedSearchChart from './TrackedSearchChart.svelte';
 	import {
-		format_change,
 		format_count,
 		format_page,
 		format_position,
@@ -17,6 +20,10 @@
 	let is_running = $state(false);
 	let run_feedback = $state<Feedback | null>(null);
 
+	// Bars shown in the opportunities chart; the full list is in the table below it
+	const OPPORTUNITY_CHART_ROWS = 10;
+
+	let stat_tiles = $derived(build_stat_tiles(dashboard.history));
 	let google_moves = $derived(
 		new Map(dashboard.comparison?.google.map((move) => [move.search, move]) ?? [])
 	);
@@ -83,44 +90,45 @@
 		{@const { report, errors, taken_at } = dashboard.latest}
 		{@const comparison = dashboard.comparison}
 
-		<section class="admin-section">
+		<section class="admin-section stack">
 			<h2 class="h5">Snapshot {format(taken_at, 'MMM d, yyyy HH:mm')}</h2>
-			<dl class="admin-source-facts">
-				{#if report.overview}
-					<dt>Google keywords</dt>
-					<dd>
-						{format_count(report.overview.keyword_count)}
-						<span class="fs-1">{format_change(comparison?.keyword_count_change ?? null)}</span>
-					</dd>
-					<dt>Visits a month (estimate)</dt>
-					<dd>
-						{format_count(report.overview.estimated_traffic)}
-						<span class="fs-1">{format_change(comparison?.traffic_change ?? null)}</span>
-					</dd>
-					<dt>In the top 3</dt>
-					<dd>{format_count(report.overview.bands.pos_1 + report.overview.bands.pos_2_3)}</dd>
-					<dt>On page 1</dt>
-					<dd>
-						{format_count(
-							report.overview.bands.pos_1 +
-								report.overview.bands.pos_2_3 +
-								report.overview.bands.pos_4_10
-						)}
-					</dd>
-				{/if}
-				{#if report.backlinks}
-					<dt>Sites linking to syntax.fm</dt>
-					<dd>{format_count(report.backlinks.referring_domains)}</dd>
-				{/if}
-				{#if errors.length > 0}
-					<dt>Failed calls</dt>
-					<dd>{errors.length}</dd>
-				{/if}
-			</dl>
+			<StatTiles tiles={stat_tiles} />
+			{#if errors.length > 0}
+				<p class="admin-feedback" data-tone="negative">
+					{errors.length} calls failed, so some numbers are missing
+				</p>
+			{/if}
 		</section>
 
-		<section class="admin-section">
-			<h2 class="h5">Tracked searches on Google</h2>
+		<section class="admin-section stack">
+			<h2 class="h5">Where Syntax shows up for tracked searches</h2>
+			<TrackedSearchChart
+				google={report.google_searches}
+				youtube={report.youtube_searches}
+				max_position={dashboard.max_position}
+			/>
+		</section>
+
+		{#if dashboard.opportunities && dashboard.opportunities.on_topic.length > 0}
+			<section class="admin-section stack">
+				<h2 class="h5">Close to the top: Syntax topics at #4–20 on Google, by monthly searches</h2>
+				<BarList
+					rows={opportunity_rows(dashboard.opportunities.on_topic, OPPORTUNITY_CHART_ROWS)}
+				/>
+			</section>
+		{/if}
+
+		{#if report.overview}
+			<section class="admin-section stack">
+				<h2 class="h5">
+					Where syntax.fm ranks for its {format_count(report.overview.keyword_count)} Google keywords
+				</h2>
+				<BarList rows={position_band_rows(report.overview)} />
+			</section>
+		{/if}
+
+		<details class="admin-section">
+			<summary>Google details</summary>
 			<div class="table-container">
 				<table>
 					<thead>
@@ -150,10 +158,10 @@
 					</tbody>
 				</table>
 			</div>
-		</section>
+		</details>
 
-		<section class="admin-section">
-			<h2 class="h5">Tracked searches on YouTube</h2>
+		<details class="admin-section">
+			<summary>YouTube details</summary>
 			<div class="table-container">
 				<table>
 					<thead>
@@ -190,14 +198,14 @@
 					</tbody>
 				</table>
 			</div>
-		</section>
+		</details>
 
 		{#if dashboard.opportunities}
-			<section class="admin-section">
-				<h2 class="h5">Close to the top: Syntax topics at #4–20 on Google</h2>
-				{#if dashboard.opportunities.on_topic.length === 0}
-					<p class="fs-2">None right now.</p>
-				{:else}
+			<details class="admin-section">
+				<summary>
+					All {dashboard.opportunities.on_topic.length} close-to-the-top keywords
+				</summary>
+				{#if dashboard.opportunities.on_topic.length > 0}
 					<div class="table-container">
 						<table>
 							<thead>
@@ -232,7 +240,7 @@
 						{dashboard.opportunities.off_topic_count} more aren't about a Syntax topic
 					</p>
 				{/if}
-			</section>
+			</details>
 		{/if}
 
 		{#if comparison && dashboard.previous_taken_at}

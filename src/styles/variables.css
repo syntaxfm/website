@@ -115,6 +115,11 @@
 	--c-fg-8: oklch(from var(--c-fg) l c h / 0.9);
 	--c-fg-9: var(--c-fg);
 	--c-primary: var(--c-yellow);
+
+	/* Chart marks: Syntax purple and pink, stepped to chart lightness and checked for colorblind
+	   separation and 3:1 contrast on white (light) and black (dark). Text never uses these. */
+	--c-chart-1: light-dark(#654abb, #6e51ca);
+	--c-chart-2: light-dark(#db2c87, #ed539b);
 	--c-sentry-footer-bg:
 		url('$assets/squiggle-greyscale.webp'), linear-gradient(315deg, #180d1c 0.57%, #452650 100%);
 
