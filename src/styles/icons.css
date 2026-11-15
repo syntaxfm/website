@@ -18,9 +18,8 @@
 .icon use {
 	--icon-stroke-linecap-butt: butt;
 
-	/* icon secondary color */
+	/* icon secondary color. No stroke: it would outline filled icons. Line icons set stroke="currentColor". */
 	fill: var(--icon-color-secondary);
-	stroke: var(--icon-color-secondary);
 	stroke-miterlimit: 10;
 	stroke-linecap: square;
 	stroke-linejoin: miter;

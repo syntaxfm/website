@@ -19,7 +19,7 @@
 				rx="1"
 				ry="1"
 				fill="inherit"
-				stroke="inherit"
+				stroke="currentColor"
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			></rect></g
