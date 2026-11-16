@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { get_request_user } from '$server/auth/request_auth';
@@ -56,11 +56,11 @@ export const load: LayoutServerLoad = async (event) => {
 	}
 
 	const { show: show_fields, show_notes, prev_next } = show_page;
-	// Built from the show's own slug, so /show/900/wrong-slug still names the real page
 	const is_transcript = url.pathname.endsWith('/transcript');
-	const canonical_url = `${url.origin}/show/${show_number}/${show_fields.slug}${
-		is_transcript ? '/transcript' : ''
-	}`;
+	const show_path = `/show/${show_number}/${show_fields.slug}${is_transcript ? '/transcript' : ''}`;
+	// A wrong or cut-off slug (/show/900/13-new-css) is the same episode: one URL per page
+	if (params.slug !== show_fields.slug) redirect(301, show_path + url.search);
+	const canonical_url = `${url.origin}${show_path}`;
 
 	return {
 		show: show_fields,

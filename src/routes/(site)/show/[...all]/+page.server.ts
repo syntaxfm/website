@@ -14,6 +14,6 @@ export async function load(event) {
 	if (!found_podcast) error(404, 'Not found');
 
 	const url = get_show_path(found_podcast);
-	// Redirect to the page for this show
-	redirect(302, url + event.url.search);
+	// /show/900 permanently is the episode page
+	redirect(301, url + event.url.search);
 }

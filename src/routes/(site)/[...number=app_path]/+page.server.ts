@@ -14,6 +14,6 @@ export async function load(event) {
 	if (!show) error(404, 'Not found');
 
 	const url = get_show_path(show);
-	// Redirect to the page for this show
-	redirect(302, url + event.url.search);
+	// syntax.fm/900, the URL said on air, permanently is the episode page
+	redirect(301, url + event.url.search);
 }
