@@ -182,6 +182,15 @@ export function formatForEmbedding(utterances: SlimUtterance[]) {
 	}, '');
 }
 
+// Most episodes have no hosts recorded (show_to_profile is empty for them). Until they do, those
+// were Wes and Scott's.
+const DEFAULT_HOSTS = ['Wes Bos', 'Scott Tolinski'];
+
+// Who can be speaking on an episode, for detectSpeakerNames
+export function people_on_show(host_names: string[], guest_names: string[]): string[] {
+	return [...(host_names.length > 0 ? host_names : DEFAULT_HOSTS), ...guest_names];
+}
+
 export function detectSpeakerNames(
 	utterances: Pick<SlimUtterance, 'transcript' | 'speakerId'>[],
 	people_on_show: string[] = []
@@ -216,23 +225,41 @@ export function detectSpeakerNames(
 		['to use human language', 'Announcer'],
 		['Strap yourself in', 'Announcer']
 	];
-	// First get a list of all speakers
+	// When the list says who hosted, only those hosts can be named: on a Wes + CJ show, a voice
+	// saying Scott's lines is still Wes or CJ. A list of guests alone doesn't say.
+	const knows_hosts = sayings.some(([, name]) => people_on_show.includes(name));
+	const can_be_named = (name: string) =>
+		!knows_hosts || name === 'Announcer' || people_on_show.includes(name);
+	const patterns = sayings
+		.filter(([, name]) => can_be_named(name))
+		.map(
+			([saying, name]) =>
+				[typeof saying === 'string' ? new RegExp(saying, 'i') : saying, name] as const
+		);
 	const speakerNumbers = new Set(utterances.map((utt) => utt.speakerId));
-	// console.log(`We have ${speakerNumbers.size} speakers`);
-	const speakers = new Map();
+
+	// Count every saying each voice says over the whole episode, so one stray catchphrase (Scott
+	// saying "pretty stoked") can't name a voice. Each name then goes to the voice that says its
+	// sayings most, and to one voice only.
+	const match_counts = new Map<string, { speakerId: number; name: string; count: number }>();
 	for (const utterance of utterances) {
-		// If this speaker has already been identified, skip it
-		if (speakers.get(utterance.speakerId)) continue;
-		// Otherwise look for a match
-		for (const [saying, speaker] of sayings) {
-			// console.log('Checking', saying, speaker,);
-			const regex = typeof saying === 'string' ? new RegExp(saying, 'i') : saying;
-			if (regex.test(utterance.transcript)) {
-				// console.log(`Found ${speaker}!`, saying);
-				speakers.set(utterance.speakerId, speaker);
-				break;
-			}
-		}
+		const match = patterns.find(([pattern]) => pattern.test(utterance.transcript));
+		if (!match) continue;
+		const key = `${utterance.speakerId}:${match[1]}`;
+		const entry = match_counts.get(key) ?? {
+			speakerId: utterance.speakerId,
+			name: match[1],
+			count: 0
+		};
+		entry.count += 1;
+		match_counts.set(key, entry);
+	}
+	const speakers: SpeakerMap = new Map();
+	const taken_names = new Set<string>();
+	for (const { speakerId, name } of [...match_counts.values()].sort((a, b) => b.count - a.count)) {
+		if (speakers.has(speakerId) || taken_names.has(name)) continue;
+		speakers.set(speakerId, name);
+		taken_names.add(name);
 	}
 	// With one person on the show left unnamed and one voice left unrecognized, that voice is them.
 	// Anything less certain stays "Guest <n>" rather than risk naming the wrong person.

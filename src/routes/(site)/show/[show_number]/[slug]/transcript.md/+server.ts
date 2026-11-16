@@ -3,7 +3,11 @@ import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { get_show_detail_query } from '$server/shows/shows_queries';
 import { transcript_markdown } from '#lib/transcript/transcript_markdown.ts';
-import { getSlimUtterances, remove_flagging_utterances } from '#lib/transcript/utils.ts';
+import {
+	getSlimUtterances,
+	people_on_show,
+	remove_flagging_utterances
+} from '#lib/transcript/utils.ts';
 import type { RequestHandler } from './$types';
 
 // The transcript as Markdown, for AI agents: /show/{number}/{slug}/transcript.md. Same passages
@@ -30,10 +34,10 @@ async function load_transcript_source(show_number: number) {
 		date: show_row.date,
 		description: show_row.aiShowNote?.description ?? null,
 		topics: (show_row.aiShowNote?.summary ?? []).map(({ time, text }) => ({ time, text })),
-		people_on_show: [
-			...show_row.hosts.flatMap(({ profile }) => profile.name ?? []),
-			...show_row.guests.map(({ guest }) => guest.name)
-		],
+		people_on_show: people_on_show(
+			show_row.hosts.flatMap(({ profile }) => profile.name ?? []),
+			show_row.guests.map(({ guest }) => guest.name)
+		),
 		utterances: transcript_row.utterances
 	};
 }

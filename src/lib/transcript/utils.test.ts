@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	detectSpeakerNames,
+	people_on_show,
 	group_by_topic,
 	nearest_passage_id,
 	passage_ids,
@@ -118,6 +119,43 @@ describe('detectSpeakerNames', () => {
 		);
 		expect(names.get(0)).toBe('Wes Bos');
 		expect(names.get(1)).toBe('CJ');
+	});
+
+	it('gives a name to one voice only, the one that says its sayings most', () => {
+		const names = detectSpeakerNames(
+			[
+				// Scott says a Wes catchphrase first
+				{ speakerId: 1, transcript: 'I am pretty stoked about this.' },
+				{ speakerId: 0, transcript: 'Pretty stoked.' },
+				{ speakerId: 0, transcript: 'That is pretty nifty.' },
+				{ speakerId: 1, transcript: 'Hi.' }
+			],
+			['Wes Bos', 'Scott Tolinski']
+		);
+		expect(names.get(0)).toBe('Wes Bos');
+		expect(names.get(1)).toBe('Scott Tolinski');
+	});
+
+	it('only names people on the episode', () => {
+		const names = detectSpeakerNames(
+			[
+				{ speakerId: 0, transcript: 'Drop a review if you like this show.' },
+				{ speakerId: 0, transcript: 'Pretty stoked.' },
+				{ speakerId: 1, transcript: 'I love Nuxt.' }
+			],
+			['CJ', 'Wes Bos']
+		);
+		expect(names.get(0)).toBe('Wes Bos');
+		expect(names.get(1)).toBe('CJ');
+	});
+
+	it('assumes Wes and Scott when an episode has no hosts recorded', () => {
+		expect(people_on_show([], ['Jared Palmer'])).toEqual([
+			'Wes Bos',
+			'Scott Tolinski',
+			'Jared Palmer'
+		]);
+		expect(people_on_show(['CJ', 'Wes Bos'], [])).toEqual(['CJ', 'Wes Bos']);
 	});
 
 	it('keeps "Guest <n>" when it can’t tell which voice is the guest', () => {

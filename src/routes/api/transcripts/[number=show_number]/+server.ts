@@ -1,7 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { asc } from 'drizzle-orm';
 import { db } from '$server/db/client';
-import { getSlimUtterances } from '#lib/transcript/utils.ts';
+import { getSlimUtterances, people_on_show } from '#lib/transcript/utils.ts';
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
@@ -14,6 +14,10 @@ export async function GET({ params }) {
 					title: true,
 					number: true,
 					date: true
+				},
+				with: {
+					hosts: { with: { profile: { columns: { name: true } } } },
+					guests: { with: { guest: { columns: { name: true } } } }
 				}
 			},
 			utterances: {
@@ -32,7 +36,15 @@ export async function GET({ params }) {
 		error(404, 'Transcript not found');
 	}
 
-	const grouped_utterances = getSlimUtterances(transcript.utterances, show_number);
+	const grouped_utterances = getSlimUtterances(
+		transcript.utterances,
+		show_number,
+		true,
+		people_on_show(
+			transcript.show.hosts.flatMap(({ profile }) => profile.name ?? []),
+			transcript.show.guests.map(({ guest }) => guest.name)
+		)
+	);
 
 	return json(
 		{
