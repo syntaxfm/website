@@ -12,7 +12,14 @@
 		return {
 			title,
 			description: page.data.meta?.description || SITE_DESCRIPTION,
-			canonical: page.data.meta?.canonical,
+			// A page's address without its query is its canonical, unless the page says otherwise
+			// (an episode reached by a wrong slug, a numbered page of a list). Error pages have none.
+			canonical: page.error
+				? undefined
+				: page.data.meta?.canonical || `${page.url.origin}${page.url.pathname}`,
+			published: page.data.meta?.published,
+			modified: page.data.meta?.modified,
+			noindex: page.data.meta?.noindex,
 			image:
 				page.data.meta?.image ||
 				`${page.url.protocol}//${page.url.host}/og/${encodeURIComponent(title)}.jpg`
@@ -35,11 +42,21 @@
 	/>
 	<meta name="image" property="og:image" content={meta.image} />
 	<meta name="theme-color" content="#000000" />
-	{#if meta.canonical}
+	{#if meta.noindex}
+		<meta name="robots" content="noindex" />
+	{:else if meta.canonical}
 		<link rel="canonical" href={meta.canonical} />
 	{/if}
 	<!-- OG -->
-	<meta property="og:type" content="website" />
+	{#if meta.published}
+		<meta property="og:type" content="article" />
+		<meta property="article:published_time" content={meta.published} />
+		{#if meta.modified}
+			<meta property="article:modified_time" content={meta.modified} />
+		{/if}
+	{:else}
+		<meta property="og:type" content="website" />
+	{/if}
 	<meta property="og:title" content={generateTitle(meta.title)} />
 	<meta property="og:description" content={meta.description} />
 	{#if meta.canonical}

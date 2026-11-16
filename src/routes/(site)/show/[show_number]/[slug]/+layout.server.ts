@@ -6,6 +6,7 @@ import { show } from '$server/db/schema';
 import { inArray } from 'drizzle-orm';
 import { get_show_detail_query } from '$server/shows/shows_queries';
 import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
+import { episode_dates } from '#lib/seo/structured_data.ts';
 import type { LayoutServerLoad } from './$types';
 
 // The show, its neighbours and its rendered notes. Two database round trips (~100-150 ms each from
@@ -73,7 +74,8 @@ export const load: LayoutServerLoad = async (event) => {
 			image: `${url.origin}/og/${show_number}.jpg`,
 			url: canonical_url,
 			canonical: canonical_url,
-			description: show_fields.aiShowNote?.description
+			description: show_fields.aiShowNote?.description,
+			...episode_dates(show_fields)
 		}
 	};
 };

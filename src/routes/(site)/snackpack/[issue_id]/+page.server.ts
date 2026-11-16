@@ -51,7 +51,8 @@ export const load: PageServerLoad = async function ({ params }) {
 		published_at,
 		html: asEmailDocument(broadcast.content),
 		meta: {
-			title: `${title} — Syntax Snack Pack`
+			title: `${title} — Syntax Snack Pack`,
+			published: new Date(published_at).toISOString()
 		}
 	};
 };

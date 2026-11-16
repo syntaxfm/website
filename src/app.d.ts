@@ -41,6 +41,11 @@ declare global {
 				canonical?: string;
 				image?: string;
 				url?: string;
+				// ISO dates. A page with a published date is an article (an episode, a newsletter issue).
+				published?: string;
+				modified?: string;
+				// A page with nothing worth finding yet (an episode's transcript before it's made)
+				noindex?: boolean;
 			};
 		}
 		// What Alchemy's Worker shim passes: bindings (alchemy.run.ts), the execution context and the

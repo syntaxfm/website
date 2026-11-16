@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { formatDistanceToNow } from 'date-fns';
 	import Tabs from '#lib/Tabs.svelte';
 	import HostsAndGuests from '#lib/HostsAndGuests.svelte';
 	import ShareWindow from '#lib/share/ShareWindow.svelte';
@@ -82,7 +81,7 @@
 	title={show.title}
 	{tags}
 	type="NORMAL"
-	date={formatDistanceToNow(new Date(show.date), { addSuffix: true })}
+	date={new Date(show.date).toISOString()}
 	show_name={get_show_label(show)}
 	youtube_url={show.youtube_url}
 />

@@ -102,6 +102,25 @@ describe('podcast_episode_schema', () => {
 		expect(json).not.toHaveProperty('about');
 		expect(json).not.toHaveProperty('mentions');
 		expect(json).not.toHaveProperty('dateModified');
+		expect(json).not.toHaveProperty('subjectOf');
+	});
+
+	it('links the transcript page and its Markdown once there is a transcript', () => {
+		const schema = podcast_episode_schema({ ...episode, transcript: { show_number: 900 } }, SITE);
+
+		expect(schema.subjectOf).toEqual([
+			{
+				'@type': 'WebPage',
+				name: 'Transcript: Is CSS a Programming Language?',
+				url: `${SITE}/show/900/is-css-a-programming-language/transcript`
+			},
+			{
+				'@type': 'DigitalDocument',
+				name: 'Transcript: Is CSS a Programming Language?',
+				url: `${SITE}/show/900/is-css-a-programming-language/transcript.md`,
+				encodingFormat: 'text/markdown'
+			}
+		]);
 	});
 });
 

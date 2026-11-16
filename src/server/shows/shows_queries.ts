@@ -110,7 +110,9 @@ export function get_show_detail_query(number: number) {
 					}
 				}
 			},
-			aiShowNote: with_ai_show_note_full
+			aiShowNote: with_ai_show_note_full,
+			// Whether there is one, for the episode's JSON-LD; the lines load on the transcript page
+			transcript: { columns: { show_number: true } }
 		}
 	} as const;
 }

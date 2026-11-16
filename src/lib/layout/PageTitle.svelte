@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { format, formatDistanceToNow } from 'date-fns';
 	import Icon from '../Icon.svelte';
 	import TagRow from '../tags/TagRow.svelte';
 	import TornPaperText from './TornPaperText.svelte';
@@ -12,6 +13,7 @@
 		youtube_url = ''
 	}: {
 		type: 'SIMPLE' | 'CRAZY' | 'NORMAL';
+		// ISO; shown as "3 days ago", with the exact date in the markup for agents and on hover
 		date?: string;
 		title: string;
 		tags?: { name: string; slug: string | null }[];
@@ -28,7 +30,11 @@
 		</a>
 	{/if}
 	<p class="flex">
-		{date}
+		{#if date}
+			<time datetime={date} title={format(new Date(date), 'MMMM d, yyyy')}>
+				{formatDistanceToNow(new Date(date), { addSuffix: true })}
+			</time>
+		{/if}
 		<span class="primary"><Icon name="close" /></span>
 		{show_name}
 	</p>

@@ -21,6 +21,8 @@ export type EpisodeSchemaShow = {
 		updated_at: DateValue;
 		tags: { tag: { name: string; slug: string | null } }[];
 	} | null;
+	// Present once the episode has a transcript
+	transcript?: { show_number: number } | null;
 };
 
 function series_id(site_url: string): string {
@@ -56,6 +58,17 @@ function latest_iso(first: DateValue, second: DateValue): string {
 	return new Date(Math.max(new Date(first).getTime(), new Date(second).getTime())).toISOString();
 }
 
+/** When an episode came out and was last changed, as ISO, for its JSON-LD and its meta tags. */
+export function episode_dates(show: Pick<EpisodeSchemaShow, 'date' | 'meta'>): {
+	published: string;
+	modified: string | undefined;
+} {
+	return {
+		published: new Date(show.date).toISOString(),
+		modified: show.meta ? latest_iso(show.date, show.meta.updated_at) : undefined
+	};
+}
+
 /** The podcast itself, for Home. */
 export function podcast_series_schema(site_url: string): JsonLd {
 	const hosts = get_faces_from_show({ hosts: [], guests: [] });
@@ -87,6 +100,23 @@ export function podcast_episode_schema(show: EpisodeSchemaShow, site_url: string
 		name: link.name,
 		url: link.url
 	}));
+	const { published, modified } = episode_dates(show);
+	// The transcript page, and the same transcript as Markdown for agents
+	const transcript = show.transcript
+		? [
+				{
+					'@type': 'WebPage',
+					name: `Transcript: ${show.title}`,
+					url: `${episode_url}/transcript`
+				},
+				{
+					'@type': 'DigitalDocument',
+					name: `Transcript: ${show.title}`,
+					url: `${episode_url}/transcript.md`,
+					encodingFormat: 'text/markdown'
+				}
+			]
+		: undefined;
 
 	return {
 		'@context': 'https://schema.org',
@@ -95,8 +125,8 @@ export function podcast_episode_schema(show: EpisodeSchemaShow, site_url: string
 		url: episode_url,
 		name: show.title,
 		episodeNumber: show.number,
-		datePublished: new Date(show.date).toISOString(),
-		dateModified: show.meta ? latest_iso(show.date, show.meta.updated_at) : undefined,
+		datePublished: published,
+		dateModified: modified,
 		description: show.aiShowNote?.description,
 		image: `${site_url}/og/${show.number}.jpg`,
 		inLanguage: 'en',
@@ -115,7 +145,8 @@ export function podcast_episode_schema(show: EpisodeSchemaShow, site_url: string
 		author: hosts.map(host_person),
 		contributor: guests.length > 0 ? guests : undefined,
 		about: tags.length > 0 ? tags : undefined,
-		mentions: links.length > 0 ? links : undefined
+		mentions: links.length > 0 ? links : undefined,
+		subjectOf: transcript
 	};
 }
 

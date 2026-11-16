@@ -19,6 +19,11 @@
 	}
 </script>
 
+<svelte:head>
+	<!-- A player for other sites to embed; the episode page is the one to find -->
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <div class="theme-system theme-wrapper zone">
 	<figure class="zone" style:--transition-name-bg="var(--c-black)" style:--c-fg="var(--c-white)">
 		<span style:--="show-date-{show.number}" class="show-number fv-900 grit">{show.number}</span>
