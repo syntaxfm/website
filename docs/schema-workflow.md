@@ -35,7 +35,7 @@ Drizzle model names and table names differ: the model `show` is the `shows` tabl
 ### Production
 
 `pnpm preheat` and `pnpm db:pull` migrate only the local Docker database. `pnpm dev`, the build,
-and a deploy (Vercel runs `pnpm build`) do not run migrations automatically. Other database tools
+and a deploy (Alchemy, `pnpm deploy:beta`) do not run migrations automatically. Other database tools
 use the configured application URL, so a remote override can target production. Applying a
 migration to production is a separate, deliberate step, in the order the change's
 [changelog](./schema-changelog.md) entry gives relative to the app deploy. An agent takes it only
@@ -45,9 +45,10 @@ Production predates migration tracking: it has no `drizzle.__drizzle_migrations`
 `drizzle-kit migrate` against it would replay `0000`. Never point it there. See
 [ADR-0001](./adr/0001-drizzle-postgres-over-prisma-mysql.md) for how local copies are baselined.
 
-1. Read the write URL once per command: `op read
-   'op://4bk5tuz4wmhcgb6lqu56rt4h64/syntax-website/PROD_ADMIN_DATABASE_URL'`. If `op` can't reach
-   the desktop app, open 1Password (`open -a 1Password`).
+1. Load the write URL that `pnpm env:pull` keeps outside the app's env:
+   `. ~/.config/syntax-website/prod-admin.env && PGURL="$PROD_ADMIN_DATABASE_URL"`. If the file is
+   missing, run `pnpm env:pull` (one 1Password approval; if `op` can't reach the desktop app, open
+   1Password with `open -a 1Password`).
 2. Back up with `pg_dump` inside the local container, whose version matches production:
    `docker exec -e PGURL="$PGURL" website-db-1 sh -c 'pg_dump --format=custom --no-owner
    --no-privileges "$PGURL"' > db_exports/prod-pre-<migration>-<date>.dump`

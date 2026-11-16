@@ -4,11 +4,14 @@
 //
 //   pnpm preheat   Full setup. Copies prod into the local DB only if the local DB is empty.
 //   pnpm db:pull   Replace the local DB with a fresh copy of prod, then apply pending migrations.
+//   pnpm env:pull  Only refresh the team secrets in .env.local from 1Password.
 //
 // Uses only Node built-ins so it can run on a fresh clone, before `pnpm install`.
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { parseEnv } from 'node:util';
 
@@ -32,20 +35,34 @@ const UNTRACKED_BASELINES = [
 	},
 	{ tag: '0001_puzzling_talos', applied_when: 'select 1' }
 ];
-// Keep in sync with @initOp in .env.schema and the op:// references in .env.1password.
+// Keep in sync with the op:// references in .env.1password.
 const OP_ACCOUNT = 'sentry.1password.com';
 const OP_VAULT = '4bk5tuz4wmhcgb6lqu56rt4h64'; // Syntax.fm
+const OP_ITEM = 'syntax-website';
+const SECRETS_FILE = '.env.local';
+const SECRETS_BLOCK_START =
+	'# >>> 1Password (pnpm env:pull). Change values in 1Password, not here.';
+const SECRETS_BLOCK_END = '# <<< 1Password';
+// The production write URL stays out of the app's env: only prod migrations read it
+// (docs/schema-workflow.md#production).
+const PROD_ADMIN_FIELD = 'PROD_ADMIN_DATABASE_URL';
+const PROD_ADMIN_FILE = join(homedir(), '.config', 'syntax-website', 'prod-admin.env');
 // Local Syntax Auth's "Continue as Local Developer" account always has this central user ID.
 const LOCAL_DEVELOPER_ID = 'local-developer';
 
 const args = new Set(process.argv.slice(2));
 const pull_only = args.has('--pull');
+const env_only = args.has('--env');
 const assume_yes = args.has('--yes') || args.has('-y');
 
 class SetupError extends Error {}
 
 async function main() {
 	check_node();
+	if (env_only) {
+		await setup_1password();
+		return;
+	}
 	check_pnpm();
 	check_docker();
 
@@ -156,7 +173,9 @@ function clean_legacy_env() {
 
 // ─── 1Password ───────────────────────────────────────────────────────────────
 
-// USE_1PASSWORD in .env.local switches .env.1password on (see .env.schema). Asked once per machine.
+// USE_1PASSWORD in .env.local means: copy the team secrets from 1Password into .env.local. Asked
+// once per machine. One 1Password approval per run; after that pnpm dev, agents and remote
+// sessions read .env.local and never wait on a 1Password prompt.
 async function setup_1password() {
 	step('Checking 1Password');
 	let use_1password = existsSync('.env.local') ? read_env('.env.local').USE_1PASSWORD : undefined;
@@ -179,8 +198,7 @@ async function setup_1password() {
 	}
 
 	await ensure_op_cli();
-	check_op_vault_access();
-	ok('Syntax.fm vault is reachable');
+	pull_1password_secrets();
 }
 
 async function ensure_op_cli() {
@@ -206,14 +224,91 @@ async function ensure_op_cli() {
 	);
 }
 
-function check_op_vault_access() {
+// The keys in .env.1password and the 1Password field each one comes from.
+function op_fields() {
+	const fields = [];
+	for (const line of readFileSync('.env.1password', 'utf8').split('\n')) {
+		const match = line.match(/^([A-Z0-9_]+)=op\(op:\/\/[^/]+\/[^/]+\/([^)]+)\)$/);
+		if (match) fields.push({ key: match[1], field: match[2] });
+	}
+	return fields;
+}
+
+function pull_1password_secrets() {
+	const item = JSON.parse(
+		run_op([
+			'item',
+			'get',
+			OP_ITEM,
+			'--vault',
+			OP_VAULT,
+			'--account',
+			OP_ACCOUNT,
+			'--format',
+			'json'
+		])
+	);
+	const values = new Map(
+		(item.fields ?? []).filter((field) => field.label).map((field) => [field.label, field.value])
+	);
+
+	const fields = op_fields();
+	const missing = fields.filter(({ field }) => !values.get(field)).map(({ field }) => field);
+	if (missing.length > 0) {
+		throw new SetupError(
+			`The ${OP_ITEM} item in 1Password has no value for: ${missing.join(', ')}`
+		);
+	}
+	write_secrets_block(fields.map(({ key, field }) => [key, values.get(field)]));
+	ok(`${fields.length} secrets from 1Password → ${SECRETS_FILE}`);
+
+	const admin_url = values.get(PROD_ADMIN_FIELD);
+	if (admin_url) {
+		mkdirSync(join(homedir(), '.config', 'syntax-website'), { recursive: true, mode: 0o700 });
+		writeFileSync(PROD_ADMIN_FILE, `${env_line(PROD_ADMIN_FIELD, admin_url)}\n`, { mode: 0o600 });
+		chmodSync(PROD_ADMIN_FILE, 0o600);
+		ok(`${PROD_ADMIN_FIELD} → ${PROD_ADMIN_FILE.replace(homedir(), '~')}`);
+	}
+}
+
+// Replaces the 1Password block in .env.local (and any loose copies of its keys), keeping the rest
+function write_secrets_block(entries) {
+	const keys = new Set(entries.map(([key]) => key));
+	const existing = existsSync(SECRETS_FILE) ? readFileSync(SECRETS_FILE, 'utf8') : '';
+	const block_pattern = new RegExp(
+		`${escape_regexp(SECRETS_BLOCK_START)}[\\s\\S]*?${escape_regexp(SECRETS_BLOCK_END)}\\n?`
+	);
+	const kept = existing
+		.replace(block_pattern, '')
+		.split('\n')
+		.filter((line) => !keys.has(line.split('=')[0]))
+		.join('\n')
+		.trim();
+	const block = [
+		SECRETS_BLOCK_START,
+		...entries.map(([key, value]) => env_line(key, value)),
+		SECRETS_BLOCK_END
+	].join('\n');
+	writeFileSync(SECRETS_FILE, `${kept ? `${kept}\n\n` : ''}${block}\n`, { mode: 0o600 });
+	chmodSync(SECRETS_FILE, 0o600);
+}
+
+function env_line(key, value) {
+	if (/['\n]/.test(value)) {
+		throw new SetupError(`${key} contains a quote or newline; .env.local can't hold it as is`);
+	}
+	return `${key}='${value}'`;
+}
+
+function escape_regexp(text) {
+	return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// op waits for the app to be unlocked and the request approved; don't hang forever if nobody does
+function run_op(argv) {
 	console.log('   Approve the 1Password prompt if one appears…');
-	// op waits for the app to be unlocked/approved; don't hang forever if nobody does.
-	const result = spawnSync('op', ['vault', 'get', OP_VAULT, '--account', OP_ACCOUNT], {
-		encoding: 'utf8',
-		timeout: 60_000
-	});
-	if (result.status === 0) return;
+	const result = spawnSync('op', argv, { encoding: 'utf8', timeout: 60_000 });
+	if (result.status === 0) return result.stdout;
 	if (result.error?.code === 'ETIMEDOUT') {
 		throw new SetupError(
 			'Timed out waiting for 1Password. Unlock the 1Password app, approve the prompt, then re-run.'
@@ -241,7 +336,7 @@ function check_op_vault_access() {
 
 // ─── Env validation ──────────────────────────────────────────────────────────
 
-// Resolves every var in .env.schema (including 1Password) so problems surface now, not in pnpm dev.
+// Resolves every var in .env.schema so problems surface now, not in pnpm dev.
 function validate_env() {
 	step('Validating env (.env.schema)');
 	const result = spawnSync('pnpm', ['exec', 'varlock', 'load', '--agent'], { encoding: 'utf8' });
@@ -252,7 +347,7 @@ function validate_env() {
 	ok('Env is valid');
 }
 
-// Resolved through varlock, so it comes from 1Password when USE_1PASSWORD=true.
+// Resolved through varlock: .env.local, where the 1Password step copied it for the core team.
 async function resolve_prod_database_url() {
 	step('Resolving PROD_DATABASE_URL');
 	let url = run('pnpm', ['exec', 'varlock', 'printenv', 'PROD_DATABASE_URL'], {

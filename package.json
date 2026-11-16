@@ -5,13 +5,14 @@
 	"scripts": {
 		"dev": "vite dev",
 		"preheat": "node ./scripts/preheat.js",
+		"env:pull": "node ./scripts/preheat.js --env",
 		"vite-dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "svelte-kit sync && playwright test",
 		"test:ui": "svelte-kit sync && playwright test --ui",
-		"check": "USE_1PASSWORD=false varlock run -- sh -c 'svelte-kit sync && svelte-check --tsconfig ./tsconfig.json'",
-		"check:watch": "USE_1PASSWORD=false varlock run -- sh -c 'svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch'",
+		"check": "varlock run -- sh -c 'svelte-kit sync && svelte-check --tsconfig ./tsconfig.json'",
+		"check:watch": "varlock run -- sh -c 'svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch'",
 		"test:unit": "svelte-kit sync && vitest",
 		"eslint": "eslint .",
 		"lint": "prettier --check . && eslint . && pnpm stylelint",
@@ -29,7 +30,7 @@
 		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.{css,svelte}\"",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"deploy:beta": "svelte-kit sync && PUBLIC_URL=beta.syntax.fm USE_1PASSWORD=false varlock run -- alchemy deploy --stage beta --yes",
+		"deploy:beta": "svelte-kit sync && PUBLIC_URL=beta.syntax.fm varlock run -- alchemy deploy --stage beta --yes",
 		"postdeploy:beta": "node scripts/purge-beta-cache.ts"
 	},
 	"devDependencies": {
@@ -51,7 +52,6 @@
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^25.9.3",
 		"@types/speakingurl": "^13.0.6",
-		"@varlock/1password-plugin": "^2.0.4",
 		"@varlock/vite-integration": "^1.5.2",
 		"alchemy": "2.0.0-beta.85",
 		"dotenv": "^17.4.2",

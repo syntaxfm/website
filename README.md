@@ -38,8 +38,8 @@ pnpm dev       # http://localhost:5740
 2. If an old-style `.env` exists, points its `DATABASE_URL` at the local Docker database and moves
    a remote `POSTGRES_DATABASE_URL` (which the app would prefer) to `PROD_DATABASE_URL`.
 3. Asks once whether to use 1Password and saves the answer as `USE_1PASSWORD` in `.env.local`. If
-   yes, it checks for the 1Password CLI (offering a Homebrew install) and that you can open the
-   team vault.
+   yes, it checks for the 1Password CLI (offering a Homebrew install) and copies the team secrets
+   into `.env.local` with one 1Password approval (`pnpm env:pull` does only this step).
 4. Runs `pnpm install`, then resolves every variable in `.env.schema` so problems show up now.
 5. Starts Postgres 18 with `docker compose` on port `5434`. Its data lives in a named Docker
    volume, so it survives container restarts and re-runs.
@@ -58,7 +58,7 @@ a terminal to ask in it refuses unless you pass `--yes`.
 
 Preheat and `db:pull` only read production and apply migrations locally. With the normal local
 configuration, the app reads and writes the local copy; keep both application database URLs local.
-`pnpm dev` and a deploy (Vercel runs `pnpm build`) do not run preheat or migrations automatically.
+`pnpm dev` and a deploy (Alchemy, `pnpm deploy:beta`) do not run preheat or migrations automatically.
 Re-run `pnpm preheat` after pulling new migrations. Back up local changes before replacing the copy.
 
 ### Local Postgres and your network
@@ -88,21 +88,16 @@ its containers and volume; different names use different volumes. Only one can h
 
 Env vars are declared in [`.env.schema`](./.env.schema) and loaded with [varlock](https://varlock.dev). The defaults there are enough to run locally. Put your own values in `.env.local`, which is gitignored (`.env.*`) and never committed.
 
-Core team: answer yes when `pnpm preheat` asks about 1Password. It installs the [1Password CLI](https://www.1password.dev/cli/get-started/) if needed, checks you can open the Syntax.fm vault, and saves `USE_1PASSWORD=true` to `.env.local`. Secrets then load from the vault (see [`.env.1password`](./.env.1password)). Use `pnpm exec varlock load` to check what resolved; it masks sensitive values.
+Core team: answer yes when `pnpm preheat` asks about 1Password. It installs the [1Password CLI](https://www.1password.dev/cli/get-started/) if needed, saves `USE_1PASSWORD=true` to `.env.local`, and copies the secrets listed in [`.env.1password`](./.env.1password) from the Syntax.fm vault into a marked block in `.env.local`. That's one 1Password approval per run; after it, `pnpm dev`, scripts, agents and remote sessions read `.env.local` and never wait on a 1Password prompt. Run `pnpm env:pull` (or preheat again) when a secret changes in 1Password. Use `pnpm exec varlock load` to check what resolved; it masks sensitive values.
 
-With `USE_1PASSWORD=true`, values are read live from the vault by each new process that loads the
-env (`pnpm dev`, `pnpm db:pull`, `drizzle-kit`, `varlock` itself), so 1Password may ask you to
-approve each one. `pnpm check` (which sets `USE_1PASSWORD=false`) and `pnpm test:unit` don't
-load secrets and never ask.
+The copy keeps `.env.local` readable only by you (`chmod 600`); treat it as a secret and never
+copy it into the repo, share, or paste it. Change values in 1Password, not in the block: the next
+pull replaces it. If you can open the production admin URL in 1Password, it goes to
+`~/.config/syntax-website/prod-admin.env` instead, outside the app's env (see
+[Production](./docs/schema-workflow.md#production)).
 
-`USE_1PASSWORD=false` with your own values in `.env.local` is equally supported, whether you have
-no vault access or would rather not approve each process. If you keep copies of team secrets
-there, treat the file as a secret: readable only by you (`chmod 600 .env.local`), never copied into
-the repo, shared, or pasted, and updated when a secret is rotated (stale values fail like wrong
-ones). Trusted setup automation can use Varlock's existing `load --format env` export to resolve
-configured values once and write them straight to a private file, never to a terminal or log.
-Preserve existing database and origin settings, cache only the configured website values, and set
-`USE_1PASSWORD=false` for subsequent starts. Do not ask teammates to copy secrets by hand.
+`USE_1PASSWORD=false` with your own values in `.env.local` is equally supported. Do not ask
+teammates to copy secrets by hand.
 
 Keep `POSTGRES_DATABASE_URL` unset locally. The app and `drizzle-kit` prefer it over
 `DATABASE_URL`, so a remote value there points local dev at that database. Production is read only

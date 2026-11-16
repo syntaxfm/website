@@ -61,7 +61,7 @@ These are enforced by convention now; a Warden rule set may be added later to ma
 
 - Install deps: `pnpm install`
 - One-command setup (deps, Docker Postgres, copy of prod data, migrations): `pnpm preheat`
-- Env vars: declared in `.env.schema` (varlock); personal overrides in `.env.local` (gitignored); core team secrets load live from 1Password via `.env.1password` when `USE_1PASSWORD=true` (each new process may prompt). `USE_1PASSWORD=false` with your own values in `.env.local` is equally supported. Keep `POSTGRES_DATABASE_URL` unset locally; it overrides `DATABASE_URL`.
+- Env vars: declared in `.env.schema` (varlock); personal overrides in `.env.local` (gitignored); with `USE_1PASSWORD=true`, `pnpm preheat` / `pnpm env:pull` copy the team secrets listed in `.env.1password` into `.env.local` with one 1Password approval; nothing else calls 1Password. `USE_1PASSWORD=false` with your own values in `.env.local` is equally supported. Keep `POSTGRES_DATABASE_URL` unset locally; it overrides `DATABASE_URL`.
 - Replace local DB with a fresh copy of prod: `pnpm db:pull` (asks before replacing; `--yes` when not interactive)
 - Start dev server: `pnpm dev` → http://localhost:5740 (also starts local Syntax Auth; Docker required). Network access is opt-in with `pnpm dev --host`.
 - `pnpm dev` never runs preheat or migrations; nothing in local tooling migrates or writes to production.

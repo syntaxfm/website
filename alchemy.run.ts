@@ -1,7 +1,7 @@
 // The website's Alchemy stack (modelled on ../syntax-lab/alchemy.run.ts). `pnpm deploy:beta` deploys
 // it to beta.syntax.fm: the SvelteKit app as a Cloudflare Worker, its Hyperdrive connection to
-// PlanetScale Postgres, and its secrets. Secrets come from 1Password through varlock at deploy time
-// (USE_1PASSWORD=true, see .env.schema / .env.1password). Local work stays on `pnpm dev` (Node).
+// PlanetScale Postgres, and its Turnstile keys. The app's other secrets are set on the Worker (see
+// below). Local work stays on `pnpm dev` (Node).
 import * as Alchemy from 'alchemy';
 import * as Cloudflare from '@alchemy.run/cloudflare';
 import * as Config from 'effect/Config';
