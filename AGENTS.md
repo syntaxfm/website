@@ -218,10 +218,10 @@ See [`docs/schema-workflow.md`](./docs/schema-workflow.md) for the full procedur
 Quick form for new work post-cutover:
 
 1. Edit `src/server/db/schema.ts`.
-2. `pnpm drizzle-kit generate` — review generated SQL.
+2. `git fetch` and merge `origin/v_3` first, so the migration number doesn't clash with one pushed from elsewhere. Then `pnpm drizzle-kit generate` — review generated SQL. Migrations hold schema only; a one-off data fix is a script, not a migration.
 3. Apply it locally with `pnpm preheat`; test.
 4. Commit the migration SQL, snapshot, and journal in `drizzle/pg-migrations/`, plus an entry in `docs/schema-changelog.md`.
-5. Production is **not** migrated automatically: not by `pnpm preheat`, `pnpm db:pull`, `pnpm dev`, the build, or a deploy. `scripts/preheat.js` only touches the local Docker DB. Local dev must never point `DATABASE_URL`/`POSTGRES_DATABASE_URL` at prod; prod is only read via `PROD_DATABASE_URL` by `pnpm preheat`/`pnpm db:pull`. Agents never run migrations against production.
+5. Production is **not** migrated automatically: not by `pnpm preheat`, `pnpm db:pull`, `pnpm dev`, the build, or a deploy. `scripts/preheat.js` only touches the local Docker DB. Local dev must never point `DATABASE_URL`/`POSTGRES_DATABASE_URL` at prod; prod is only read via `PROD_DATABASE_URL` by `pnpm preheat`/`pnpm db:pull`. An agent migrates production only with Scott's approval for that migration, following [Production](./docs/schema-workflow.md#production).
 
 Major schema decisions (text IDs, no CHECK constraints, unified content model) live in [`docs/adr/`](./docs/adr/) — read those before proposing structural changes.
 
