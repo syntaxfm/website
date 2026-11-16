@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import Icon from '#lib/Icon.svelte';
 	import { topic_anchor } from '#lib/transcript/utils.ts';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import SidebarTitle from './SidebarTitle.svelte';
@@ -8,10 +9,10 @@
 	let { moments }: { moments: KeyMomentRow[] } = $props();
 </script>
 
-<!-- A topic page's links into the transcripts, laid out like Most Popular -->
+<!-- A topic page's links into the transcripts, built like a Most Popular item -->
 <div>
 	<SidebarTitle title="_KEY_MOMENTS()" />
-	<ol class="key-moments stack">
+	<ul class="key-moments stack">
 		{#each moments as moment (moment.show_number)}
 			<li>
 				<a
@@ -21,29 +22,28 @@
 						slug: moment.show_slug
 					})}#{topic_anchor(moment.text)}"
 				>
-					<!-- 00:57:04 reads as 57:04, as the transcript shows it -->
-					<span class="time fs-caption">{format_time(tsToS(moment.time))}</span>
+					<span class="marker"><Icon name="play" width={12} height={12} aria_hidden={true} /></span>
 					<span class="stack key-moment-info">
-						<span class="fs-caption">#{moment.show_number} – {moment.show_title}</span>
 						<strong class="fs-body fv-700-i">{moment.text}</strong>
+						<span class="fs-caption episode">#{moment.show_number} – {moment.show_title}</span>
+						<!-- 00:57:04 reads as 57:04, as the transcript shows it -->
+						<span class="fs-micro">{format_time(tsToS(moment.time))}</span>
 					</span>
 				</a>
 			</li>
 		{/each}
-	</ol>
+	</ul>
 </div>
 
 <style>
 	.key-moments {
-		--time-width: 64px;
-
 		position: relative;
 		gap: 20px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 
-		/* The same rail as Most Popular, through the middle of the times */
+		/* The same rail as Most Popular */
 		&::before {
 			content: '';
 			display: block;
@@ -51,7 +51,7 @@
 			height: 100%;
 			background-color: var(--c-fg-1);
 			position: absolute;
-			left: calc(var(--time-width) / 2 - 1px);
+			left: 15px;
 			top: 0;
 			z-index: -1;
 		}
@@ -59,7 +59,6 @@
 
 	.key-moment {
 		gap: 20px;
-		align-items: start;
 		color: inherit;
 		text-decoration: none;
 
@@ -72,14 +71,28 @@
 		gap: 5px;
 	}
 
-	.time {
+	/* Potluck titles run four topics long */
+	.episode {
+		color: var(--c-fg-7);
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
+	}
+
+	.marker {
 		flex-shrink: 0;
-		width: var(--time-width);
-		padding-block: 6px;
-		text-align: center;
-		font-variant-numeric: tabular-nums;
+		display: grid;
+		place-items: center;
+		width: 32px;
+		height: 32px;
 		background: var(--c-primary);
 		color: var(--c-black);
 		border-radius: 32px;
+	}
+
+	.fs-micro {
+		font-variant-numeric: tabular-nums;
 	}
 </style>

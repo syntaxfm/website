@@ -17,7 +17,7 @@ import { feed_card_query } from '#lib/feed/feed_queries.ts';
 import { pick_key_moments, whole_word_pattern, type KeyMomentRow } from '#lib/seo/hubs.ts';
 
 // Moments are picked one per episode from the newest matches, so a handful of rows is plenty
-const KEY_MOMENT_LIMIT = 6;
+const KEY_MOMENT_LIMIT = 5;
 const KEY_MOMENT_CANDIDATES = 60;
 
 // Transcript topics (AI summary entries) that name the tag, in this tag's released episodes that
