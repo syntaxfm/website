@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { SyncPrerecordedResponse } from '@deepgram/sdk';
+import slug from 'speakingurl';
 import type { DBUtterance, SlimUtterance, SpeakerMap } from '$server/transcripts/types';
 
 type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
@@ -107,23 +108,35 @@ export function nearest_passage_id(
 
 export type TopicSummary = { time: string; text: string; id?: number };
 
+// A transcript topic's anchor (/transcript#css-container-queries), for its contents list and for
+// topic pages that link to the moment a topic comes up
+export function topic_anchor(topic_text: string): string {
+	return slug(topic_text);
+}
+
 // Splits the transcript at each AI summary topic's start time. Passages before the first topic,
-// or a transcript with no topics, form one group with a null topic.
+// or a transcript with no topics, form one group with a null topic. Every topic gets a group, even
+// one that starts inside a long passage and so has none of its own: its heading is still there for
+// the contents list and topic pages to link to.
 export function group_by_topic<T extends { start: number }>(
 	utterances: readonly T[],
 	topics: readonly TopicSummary[],
 	to_seconds: (time: string) => number
 ): { topic: TopicSummary | null; utterances: T[] }[] {
-	const groups: { topic: TopicSummary | null; utterances: T[] }[] = [];
 	const in_time_order = [...topics].sort((a, b) => to_seconds(a.time) - to_seconds(b.time));
+	const groups: { topic: TopicSummary | null; utterances: T[] }[] = in_time_order.map((topic) => ({
+		topic,
+		utterances: []
+	}));
+	const untitled: T[] = [];
 	for (const utterance of utterances) {
-		const topic =
-			in_time_order.findLast((summary) => utterance.start >= to_seconds(summary.time)) ?? null;
-		const current = groups.at(-1);
-		if (current && current.topic === topic) current.utterances.push(utterance);
-		else groups.push({ topic, utterances: [utterance] });
+		const index = in_time_order.findLastIndex(
+			(summary) => utterance.start >= to_seconds(summary.time)
+		);
+		if (index === -1) untitled.push(utterance);
+		else groups[index].utterances.push(utterance);
 	}
-	return groups;
+	return untitled.length > 0 ? [{ topic: null, utterances: untitled }, ...groups] : groups;
 }
 
 // Format time function, converts seconds into MM:SS or HH:MM:SS

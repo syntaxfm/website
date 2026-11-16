@@ -5,7 +5,6 @@
 	import { page } from '$app/state';
 	import Pagination from '#lib/layout/Pagination.svelte';
 	import SelectMenu from '#lib/SelectMenu.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 	import { get_show_label } from '#lib/shows/show_label.ts';
 
 	// The list's default page size (also the Per Page menu's default)
@@ -40,10 +39,6 @@
 	}
 </script>
 
-<Meta
-	title={`Syntax Podcast Shows ${page_number > 1 ? `- Page ${page_number}` : ''}`}
-	canonical={`${page.url.protocol}//${page.url.host}${page.url.pathname}${page_number > 1 ? `?page=${page_number}` : ''}`}
-/>
 
 <svelte:head>
 	{#if is_noindex_page}

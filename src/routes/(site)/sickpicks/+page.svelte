@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import Filter from '#lib/forms/Filter.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 	import ShowNotes from '#lib/shows/ShowNotes.svelte';
 	import { on_visible } from '$actions/on_visible';
 	import { get_sick_picks } from './sickpicks.remote.js';
@@ -26,8 +25,6 @@
 		);
 	});
 </script>
-
-<Meta title="Sick Picks"></Meta>
 
 <section class="stack" aria-labelledby="sick-picks-title">
 	<header class="stack">

@@ -5,12 +5,12 @@
 		nearest_passage_id,
 		passage_ids,
 		remove_flagging_utterances,
+		topic_anchor,
 		type TopicSummary
 	} from '#lib/transcript/utils.ts';
 	import { onMount } from 'svelte';
 	import { audio_timeline_time, player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
-	import slug from 'speakingurl';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
@@ -154,9 +154,10 @@
 
 <div class="timeline">
 	{#each topic_groups as { summary, utterances }, i (summary.id ?? summary.text)}
-		<section>
+		<!-- The anchor is on the section: the gutter it used to be on is hidden on phones -->
+		<section id={summary.text ? topic_anchor(summary.text) : undefined}>
 			<header class="topic {place_topic(summary, utterances)}">
-				<div class="gutter" id={slug(summary.text)}>
+				<div class="gutter">
 					<strong>Topic {i + 1}</strong>
 					<span>{summary.time}</span>
 				</div>

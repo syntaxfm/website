@@ -1,20 +1,22 @@
 <script lang="ts">
+	// The site's only head tags for search and sharing, rendered once by the (site) layout. A page
+	// sets its own through `meta` in its load (App.PageData), never with a second copy of these tags.
 	import { page } from '$app/state';
 	import { PODCAST_FEED_URL, SITE_DESCRIPTION } from '$const';
-	const props = $props();
 
-	let title = `Syntax - Web Development Podcast`;
+	const DEFAULT_TITLE = 'Syntax - Web Development Podcast';
 
-	let meta = $derived({
-		//·defaults
-		description: SITE_DESCRIPTION,
-		image: `${page.url.protocol}//${page.url.host}/og/${encodeURIComponent(
-			page.data.meta?.title || title
-		)}.jpg`,
-		title,
-		// any page customizations
-		...page.data.meta,
-		...props
+	// Field by field, so a page's empty description (an episode without AI notes) keeps the site's
+	let meta = $derived.by(() => {
+		const title = page.data.meta?.title || DEFAULT_TITLE;
+		return {
+			title,
+			description: page.data.meta?.description || SITE_DESCRIPTION,
+			canonical: page.data.meta?.canonical,
+			image:
+				page.data.meta?.image ||
+				`${page.url.protocol}//${page.url.host}/og/${encodeURIComponent(title)}.jpg`
+		};
 	});
 
 	function generateTitle(title: string) {

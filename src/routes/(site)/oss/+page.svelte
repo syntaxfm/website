@@ -1,12 +1,6 @@
 <script lang="ts">
 	import UserSubmissionForm from '#lib/forms/UserSubmissionForm.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 </script>
-
-<Meta
-	title="$50,000 for Open Source"
-	description="Syntax is Pledging $50,000 to open source projects."
-/>
 
 <main>
 	<div style:margin-bottom="2rem">

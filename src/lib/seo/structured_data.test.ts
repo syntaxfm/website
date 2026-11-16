@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
+	guest_page_schema,
 	podcast_episode_schema,
 	podcast_series_schema,
 	to_json_ld,
+	topic_page_schema,
 	type EpisodeSchemaShow
 } from './structured_data';
 
@@ -122,5 +124,38 @@ describe('to_json_ld', () => {
 		expect(json).not.toContain('<');
 		expect(json).not.toContain('&');
 		expect(JSON.parse(json)).toEqual(schema);
+	});
+});
+
+describe('topic_page_schema', () => {
+	it('lists the episodes with their canonical urls, newest first', () => {
+		const schema = topic_page_schema(
+			{ name: 'CSS', slug: 'css', description: 'About CSS' },
+			[{ number: 900, title: 'CSS', slug: 'css-show' }],
+			SITE
+		);
+		expect(schema.url).toBe(`${SITE}/tags/css`);
+		expect(schema.mainEntity).toMatchObject({
+			numberOfItems: 1,
+			itemListElement: [{ position: 1, item: { url: `${SITE}/show/900/css-show` } }]
+		});
+	});
+});
+
+describe('guest_page_schema', () => {
+	it('describes the guest as a person with their profiles and episodes', () => {
+		const schema = guest_page_schema(
+			episode.guests[0].guest,
+			'Ben on Syntax',
+			[{ number: 900, title: 'CSS', slug: 'css-show' }],
+			SITE
+		);
+		expect(schema.url).toBe(`${SITE}/guest/ben-vinegar`);
+		expect(schema.mainEntity).toMatchObject({
+			'@type': 'Person',
+			name: 'Ben Vinegar',
+			sameAs: ['https://x.com/bentlegen', 'https://github.com/benvinegar'],
+			subjectOf: [{ episodeNumber: 900 }]
+		});
 	});
 });

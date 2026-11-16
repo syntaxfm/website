@@ -32,7 +32,17 @@ declare global {
 			};
 		}
 
-		// interface PageData {}
+		// A page's search and sharing tags, rendered once by #lib/meta/Meta.svelte. Unset fields fall
+		// back to the site's own.
+		interface PageData {
+			meta?: {
+				title?: string;
+				description?: string | null;
+				canonical?: string;
+				image?: string;
+				url?: string;
+			};
+		}
 		// What Alchemy's Worker shim passes: bindings (alchemy.run.ts), the execution context and the
 		// Cache API. Absent under `pnpm dev`, which runs on Node.
 		interface Platform {

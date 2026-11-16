@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AINoteWithFriends } from '$server/ai/queries';
-	import slug from 'speakingurl';
+	import { topic_anchor } from '#lib/transcript/utils.ts';
 
 	interface Props {
 		ai_show_note: AINoteWithFriends;
@@ -13,7 +13,7 @@
 	<ul>
 		{#each ai_show_note?.summary || [] as summary (summary.text)}
 			<li>
-				<a href="#{slug(summary.text)}">
+				<a href="#{topic_anchor(summary.text)}">
 					<span class="timestamp fv-900">{summary.time}</span>
 					{summary.text}
 				</a>

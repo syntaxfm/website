@@ -2,18 +2,22 @@
 	import { page } from '$app/state';
 	import GuestHero from '#lib/guest/GuestHero.svelte';
 	import FeedItem from '#lib/feed/FeedItem.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
 	import TrendingTopics from '#lib/sidebar/TrendingTopics.svelte';
 	import { get_guest, get_guest_feed } from '../guests.remote';
+	import type { PageData } from './$types';
+
+	const { data }: { data: PageData } = $props();
 
 	const guest = await get_guest(page.params.name_slug!);
 	const feed = await get_guest_feed(page.params.name_slug!);
 </script>
 
-{#if guest}
-	<Meta title={guest.name} />
+<svelte:head>
+	<svelte:element this={"script"} type="application/ld+json">{data.schema_json}</svelte:element>
+</svelte:head>
 
+{#if guest}
 	<GuestHero {guest} />
 
 	<section class="layout-sidebar guest-feed">

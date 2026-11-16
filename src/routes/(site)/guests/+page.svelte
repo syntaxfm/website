@@ -2,7 +2,6 @@
 	import get_show_path from '$utilities/slug';
 	import { resolve } from '$app/paths';
 	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 	import { get_all_guests } from '../guest/guests.remote';
 
 	const all_guests = await get_all_guests();
@@ -58,8 +57,6 @@
 		);
 	});
 </script>
-
-<Meta title="Guests" />
 
 <section class="guests">
 	<header class="intro">

@@ -35,10 +35,9 @@ function host_person(host: Face): JsonLd {
 	};
 }
 
-function guest_person(
-	guest: EpisodeSchemaShow['guests'][number]['guest'],
-	site_url: string
-): JsonLd {
+type SchemaGuest = EpisodeSchemaShow['guests'][number]['guest'];
+
+function guest_person(guest: SchemaGuest, site_url: string): JsonLd {
 	const same_as = [
 		guest.twitter && `https://x.com/${guest.twitter}`,
 		guest.github && `https://github.com/${guest.github}`,
@@ -117,6 +116,76 @@ export function podcast_episode_schema(show: EpisodeSchemaShow, site_url: string
 		contributor: guests.length > 0 ? guests : undefined,
 		about: tags.length > 0 ? tags : undefined,
 		mentions: links.length > 0 ? links : undefined
+	};
+}
+
+// An episode as a list entry or a mention: just enough to name it and find its page
+export type EpisodeReference = { number: number; title: string; slug: string };
+
+function episode_reference(episode: EpisodeReference, site_url: string): JsonLd {
+	return {
+		'@type': 'PodcastEpisode',
+		name: episode.title,
+		episodeNumber: episode.number,
+		url: `${site_url}/show/${episode.number}/${episode.slug}`,
+		partOfSeries: { '@id': series_id(site_url) }
+	};
+}
+
+// A list that names every item stays a manageable size for the biggest topics (200+ episodes)
+const MAX_LISTED_EPISODES = 50;
+
+/** A topic page: the topic and its episodes, newest first. */
+export function topic_page_schema(
+	topic: { name: string; slug: string; description: string },
+	episodes: readonly EpisodeReference[],
+	site_url: string
+): JsonLd {
+	const url = `${site_url}/tags/${topic.slug}`;
+	const listed = episodes.slice(0, MAX_LISTED_EPISODES);
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'CollectionPage',
+		'@id': url,
+		url,
+		name: `${topic.name} episodes`,
+		description: topic.description,
+		inLanguage: 'en',
+		isPartOf: { '@type': 'WebSite', name: 'Syntax', url: site_url },
+		about: { '@type': 'Thing', name: topic.name },
+		mainEntity: {
+			'@type': 'ItemList',
+			numberOfItems: episodes.length,
+			itemListOrder: 'https://schema.org/ItemListOrderDescending',
+			itemListElement: listed.map((episode, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				item: episode_reference(episode, site_url)
+			}))
+		}
+	};
+}
+
+/** A guest page: the person, where else to find them, and the episodes they were on. */
+export function guest_page_schema(
+	guest: SchemaGuest,
+	description: string,
+	episodes: readonly EpisodeReference[],
+	site_url: string
+): JsonLd {
+	const person = guest_person(guest, site_url);
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'ProfilePage',
+		'@id': person.url,
+		url: person.url,
+		description,
+		inLanguage: 'en',
+		mainEntity: {
+			...person,
+			'@id': `${String(person.url)}#person`,
+			subjectOf: episodes.map((episode) => episode_reference(episode, site_url))
+		}
 	};
 }
 

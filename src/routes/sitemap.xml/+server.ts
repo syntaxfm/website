@@ -1,9 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$app/env/public';
-import { and, eq, isNotNull, lte } from 'drizzle-orm';
+import { and, eq, isNotNull, lte, max } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
-import { content, content_tags, guest, show, tag, transcript } from '$server/db/schema';
+import { content, content_tags, guest, show, showGuest, tag, transcript } from '$server/db/schema';
 import { sitemap_xml, type SitemapUrl } from '#lib/seo/sitemap.ts';
 
 const STATIC_PATHS = [
@@ -35,13 +35,26 @@ async function load_sitemap_rows() {
 			.leftJoin(content, eq(content.id, show.content_id))
 			.leftJoin(transcript, eq(transcript.show_number, show.number))
 			.where(lte(show.date, new Date())),
-		db.select({ name_slug: guest.name_slug }).from(guest),
+		// A guest or topic page changes when it gets a new episode
 		db
-			.selectDistinct({ slug: tag.slug })
+			.select({ name_slug: guest.name_slug, lastmod: max(show.date) })
+			.from(guest)
+			.leftJoin(showGuest, eq(showGuest.guest_id, guest.id))
+			.leftJoin(show, and(eq(show.id, showGuest.show_id), lte(show.date, new Date())))
+			.groupBy(guest.name_slug),
+		db
+			.select({ slug: tag.slug, lastmod: max(content.published_at) })
 			.from(tag)
 			.innerJoin(content_tags, eq(content_tags.tag_id, tag.id))
 			.innerJoin(content, eq(content.id, content_tags.content_id))
-			.where(and(eq(content.status, 'PUBLISHED'), isNotNull(tag.slug)))
+			.where(
+				and(
+					eq(content.status, 'PUBLISHED'),
+					lte(content.published_at, new Date()),
+					isNotNull(tag.slug)
+				)
+			)
+			.groupBy(tag.slug)
 	]);
 	return { shows, guests, tags };
 }
@@ -62,8 +75,10 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
 				? [{ path, lastmod }]
 				: [{ path, lastmod }, { path: `${path}/transcript` }];
 		}),
-		...guests.map((row) => ({ path: `/guest/${row.name_slug}` })),
-		...tags.flatMap((row) => (row.slug ? [{ path: `/tags/${row.slug}` }] : []))
+		...guests.map((row) => ({ path: `/guest/${row.name_slug}`, lastmod: row.lastmod })),
+		...tags.flatMap((row) =>
+			row.slug ? [{ path: `/tags/${row.slug}`, lastmod: row.lastmod }] : []
+		)
 	];
 
 	setHeaders({

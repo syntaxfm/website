@@ -68,6 +68,19 @@ describe('group_by_topic', () => {
 		]);
 	});
 
+	it('keeps a topic that starts inside a long passage, so its anchor exists', () => {
+		const groups = group_by_topic(
+			[{ start: 0 }, { start: 90 }],
+			[{ time: '00:30', text: 'Intro', id: 1 }, ...topics.slice(1)],
+			tsToS
+		);
+		expect(groups.map((group) => [group.topic?.text ?? null, group.utterances.length])).toEqual([
+			[null, 1],
+			['Intro', 0],
+			['CSS', 1]
+		]);
+	});
+
 	it('keeps everything in one untitled group without topics', () => {
 		expect(group_by_topic([{ start: 5 }, { start: 90 }], [], tsToS)).toEqual([
 			{ topic: null, utterances: [{ start: 5 }, { start: 90 }] }

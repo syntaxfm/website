@@ -1,10 +1,7 @@
 <script lang="ts">
 	import UserSubmissionForm from '#lib/forms/UserSubmissionForm.svelte';
-	import Meta from '#lib/meta/Meta.svelte';
 	import { resolve } from '$app/paths';
 </script>
-
-<Meta title="Submit a Spooky Story" />
 
 <main>
 	<div style:margin-bottom="2rem">
