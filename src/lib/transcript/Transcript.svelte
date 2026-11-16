@@ -2,10 +2,12 @@
 	import {
 		getSlimUtterances,
 		group_by_topic,
+		nearest_passage_id,
 		passage_ids,
 		remove_flagging_utterances,
 		type TopicSummary
 	} from '#lib/transcript/utils.ts';
+	import { onMount } from 'svelte';
 	import { audio_timeline_time, player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
 	import slug from 'speakingurl';
@@ -38,10 +40,30 @@
 	);
 
 	// Each passage's anchor (#t-<second>), so a link can point at one moment
-	let id_by_utterance = $derived.by(() => {
+	let passage_anchors = $derived.by(() => {
 		const ids = passage_ids(slim_transcript.map((utterance) => utterance.start));
-		return new Map(slim_transcript.map((utterance, index) => [utterance, ids[index]]));
+		return slim_transcript.map((utterance, index) => ({ utterance, id: ids[index] }));
 	});
+	let id_by_utterance = $derived(
+		new Map(passage_anchors.map(({ utterance, id }) => [utterance, id]))
+	);
+
+	// A link made before the transcript was re-run can name a second no passage starts on. It
+	// then lands on the passage playing at that second, highlighted as :target would be.
+	let linked_passage_id = $state<string | null>(null);
+
+	function follow_outdated_passage_link() {
+		linked_passage_id = nearest_passage_id(
+			window.location.hash,
+			passage_anchors.map(({ utterance, id }) => ({ id, start: utterance.start }))
+		);
+		if (!linked_passage_id) return;
+		const id = linked_passage_id;
+		// After the router's own scroll attempt, which finds no element for the old id
+		requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+	}
+
+	onMount(follow_outdated_passage_link);
 
 	// Passages before the first AI summary topic, or with no topics at all
 	const UNTITLED_TOPIC: TopicSummary = { time: '00:00', text: '' };
@@ -120,6 +142,8 @@
 	});
 </script>
 
+<svelte:window onhashchange={follow_outdated_passage_link} />
+
 {#if ai_show_note?.description}
 	<p class="transcript-summary">{ai_show_note.description}</p>
 {/if}
@@ -154,6 +178,7 @@
 						id={passage_id}
 						style:--progress={progress > 0 && progress < 100 ? `${progress}%` : '100%'}
 						class="utterance {label_utterance(utterance)}"
+						class:linked={passage_id === linked_passage_id}
 					>
 						<div class="gutter">
 							<!-- A real link, so the moment can be copied and shared; it also plays from there -->
@@ -269,8 +294,10 @@
 		/* A linked passage (#t-1234) lands below the stuck topic header, not under it */
 		scroll-margin-top: 160px;
 
-		/* The passage a link points at, highlighted with or without JavaScript */
-		&:target .text {
+		/* The passage a link points at, highlighted with or without JavaScript. .linked is an
+		   outdated link's nearest passage, found with JavaScript. */
+		&:target .text,
+		&.linked .text {
 			background-color: var(--c-yellow-2);
 			border-radius: var(--br-small);
 		}

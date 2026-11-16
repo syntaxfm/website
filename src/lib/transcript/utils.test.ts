@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	detectSpeakerNames,
 	group_by_topic,
+	nearest_passage_id,
 	passage_ids,
 	remove_flagging_utterances
 } from './utils';
@@ -22,6 +23,30 @@ describe('remove_flagging_utterances', () => {
 describe('passage_ids', () => {
 	it('names each passage by its start second, numbering repeats', () => {
 		expect(passage_ids([0.4, 12.9, 12.2, 3600])).toEqual(['t-0', 't-12', 't-12-2', 't-3600']);
+	});
+});
+
+describe('nearest_passage_id', () => {
+	const passages = [
+		{ id: 't-0', start: 0.2 },
+		{ id: 't-14', start: 14.6 },
+		{ id: 't-31', start: 31 }
+	];
+
+	it('leaves exact matches and other hashes to the browser', () => {
+		expect(nearest_passage_id('#t-14', passages)).toBeNull();
+		expect(nearest_passage_id('#overview-of-nuxt', passages)).toBeNull();
+		expect(nearest_passage_id('', passages)).toBeNull();
+	});
+
+	it('points an outdated link at the passage that was playing at that second', () => {
+		expect(nearest_passage_id('#t-15', passages)).toBe('t-14');
+		expect(nearest_passage_id('#t-30-2', passages)).toBe('t-14');
+		expect(nearest_passage_id('#t-9000', passages)).toBe('t-31');
+	});
+
+	it('falls back to the first passage for a time before it', () => {
+		expect(nearest_passage_id('#t-0', [{ id: 't-3', start: 3 }])).toBe('t-3');
 	});
 });
 

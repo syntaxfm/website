@@ -88,6 +88,23 @@ export function passage_ids(starts: readonly number[]): string[] {
 	});
 }
 
+const PASSAGE_HASH = /^#t-(\d+)(?:-\d+)?$/;
+
+// For a passage link that no longer matches a passage exactly (the transcript was re-run and the
+// passages start a second or two differently), the passage it most likely meant: the last one
+// starting at or before that second. Null when the hash isn't a passage link or matches exactly.
+export function nearest_passage_id(
+	hash: string,
+	passages: readonly { id: string; start: number }[]
+): string | null {
+	const match = PASSAGE_HASH.exec(hash);
+	if (!match || passages.length === 0) return null;
+	if (passages.some((passage) => `#${passage.id}` === hash)) return null;
+	const seconds = Number(match[1]);
+	const before = passages.filter((passage) => Math.floor(passage.start) <= seconds).at(-1);
+	return (before ?? passages[0]).id;
+}
+
 export type TopicSummary = { time: string; text: string; id?: number };
 
 // Splits the transcript at each AI summary topic's start time. Passages before the first topic,
