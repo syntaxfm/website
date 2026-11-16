@@ -45,12 +45,17 @@
 
 @layer utilities {
 	/* Font Sizes
-	--fs-micro/--fs-caption/--fs-body were renamed into the numbered scale (#2093), leaving these
-	pointing at undefined tokens, which compute to the inherited size. They keep that size. */
-	.fs-micro,
-	.fs-caption,
+	The named sizes on today's scale: each sits where it sat before the scale moved down a step */
+	.fs-micro {
+		font-size: var(--fs-1);
+	}
+
+	.fs-caption {
+		font-size: var(--fs-2);
+	}
+
 	.fs-body {
-		font-size: inherit;
+		font-size: var(--fs-3);
 	}
 
 	.fs-1 {

@@ -22,9 +22,9 @@
 				})}#{topic_anchor(moment.text)}"
 			>
 				<span class="marker"><Icon name="play" width={12} height={12} aria_hidden={true} /></span>
-				<strong class="fv-700-i">{moment.text}</strong>
+				<strong class="fs-body fv-700-i">{moment.text}</strong>
 				<!-- 00:57:04 reads as 57:04, as the transcript shows it -->
-				<span class="episode"
+				<span class="episode fs-caption"
 					><span class="time">{format_time(tsToS(moment.time))}</span> · #{moment.show_number}
 					{moment.show_title}</span
 				>
@@ -66,7 +66,7 @@
 		grid-row: 1;
 		align-self: start;
 
-		/* Centered on the moment's first line (17px × 1.3) */
+		/* Centered on the moment's first line (fs-body × 1.3) */
 		margin-top: calc((var(--fs-3) * 1.3 - 32px) / 2);
 		display: grid;
 		place-items: center;
@@ -79,7 +79,6 @@
 
 	strong {
 		grid-column: 2;
-		font-size: var(--fs-3);
 		line-height: 1.3;
 
 		.key-moment:hover & {
@@ -90,7 +89,6 @@
 	/* Potluck titles run four topics long */
 	.episode {
 		grid-column: 2;
-		font-size: var(--fs-2);
 		line-height: 1.4;
 		color: var(--c-fg-7);
 		display: -webkit-box;
