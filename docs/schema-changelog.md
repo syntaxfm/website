@@ -38,7 +38,7 @@ relying on it.
 ## 2026-11-15 - SEO snapshots
 
 **Type**: Additive
-**Status**: Applied locally; pending production
+**Status**: ✅ Applied (production 2026-11-16, with psql; backup `db_exports/prod-pre-0005-tag-cleanup-20261116.dump`)
 **Affects**: `seo_snapshots` (new)
 
 ### Changes
