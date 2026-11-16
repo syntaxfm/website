@@ -9,39 +9,34 @@
 	let { moments }: { moments: KeyMomentRow[] } = $props();
 </script>
 
-<!-- A topic page's links into the transcripts, built like a Most Popular item -->
+<!-- A topic page's links into the transcripts, laid out like Most Popular -->
 <div>
 	<SidebarTitle title="_KEY_MOMENTS()" />
-	<ul class="key-moments stack">
+	<div class="key-moments stack">
 		{#each moments as moment (moment.show_number)}
-			<li>
-				<a
-					class="flex key-moment"
-					href="{resolve('/(site)/show/[show_number]/[slug]/transcript', {
-						show_number: String(moment.show_number),
-						slug: moment.show_slug
-					})}#{topic_anchor(moment.text)}"
+			<a
+				class="key-moment"
+				href="{resolve('/(site)/show/[show_number]/[slug]/transcript', {
+					show_number: String(moment.show_number),
+					slug: moment.show_slug
+				})}#{topic_anchor(moment.text)}"
+			>
+				<span class="marker"><Icon name="play" width={12} height={12} aria_hidden={true} /></span>
+				<strong class="fv-700-i">{moment.text}</strong>
+				<!-- 00:57:04 reads as 57:04, as the transcript shows it -->
+				<span class="episode"
+					><span class="time">{format_time(tsToS(moment.time))}</span> · #{moment.show_number}
+					{moment.show_title}</span
 				>
-					<span class="marker"><Icon name="play" width={12} height={12} aria_hidden={true} /></span>
-					<span class="stack key-moment-info">
-						<strong class="fs-body fv-700-i">{moment.text}</strong>
-						<span class="fs-caption episode">#{moment.show_number} – {moment.show_title}</span>
-						<!-- 00:57:04 reads as 57:04, as the transcript shows it -->
-						<span class="fs-micro">{format_time(tsToS(moment.time))}</span>
-					</span>
-				</a>
-			</li>
+			</a>
 		{/each}
-	</ul>
+	</div>
 </div>
 
 <style>
 	.key-moments {
 		position: relative;
-		gap: 20px;
-		margin: 0;
-		padding: 0;
-		list-style: none;
+		gap: 24px;
 
 		/* The same rail as Most Popular */
 		&::before {
@@ -57,32 +52,22 @@
 		}
 	}
 
+	/* Marker in its own column; the moment and its episode beside it */
 	.key-moment {
-		gap: 20px;
+		display: grid;
+		grid-template-columns: 32px 1fr;
+		gap: 4px 20px;
+		align-items: center;
 		color: inherit;
 		text-decoration: none;
-
-		&:hover strong {
-			text-decoration: underline;
-		}
-	}
-
-	.key-moment-info {
-		gap: 5px;
-	}
-
-	/* Potluck titles run four topics long */
-	.episode {
-		color: var(--c-fg-7);
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		overflow: hidden;
 	}
 
 	.marker {
-		flex-shrink: 0;
+		grid-row: 1;
+		align-self: start;
+
+		/* Centered on the moment's first line (17px × 1.3) */
+		margin-top: calc((var(--fs-3) * 1.3 - 32px) / 2);
 		display: grid;
 		place-items: center;
 		width: 32px;
@@ -92,7 +77,31 @@
 		border-radius: 32px;
 	}
 
-	.fs-micro {
+	strong {
+		grid-column: 2;
+		font-size: var(--fs-3);
+		line-height: 1.3;
+
+		.key-moment:hover & {
+			text-decoration: underline;
+		}
+	}
+
+	/* Potluck titles run four topics long */
+	.episode {
+		grid-column: 2;
+		font-size: var(--fs-2);
+		line-height: 1.4;
+		color: var(--c-fg-7);
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
+	}
+
+	.time {
+		color: var(--c-fg);
 		font-variant-numeric: tabular-nums;
 	}
 </style>
