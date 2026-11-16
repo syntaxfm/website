@@ -1,6 +1,7 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
+import { record_tag_redirect } from '$server/tags/tag_redirects';
 import { content, content_tags, tag } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
 import { asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
@@ -188,6 +189,11 @@ export const update_tag = command(update_tag_schema, async (input) => {
 		error(400, 'Tag slug is invalid');
 	}
 
+	const current = await db.query.tag.findFirst({
+		where: eq(tag.id, input.id),
+		columns: { slug: true }
+	});
+
 	await db
 		.update(tag)
 		.set({
@@ -195,6 +201,11 @@ export const update_tag = command(update_tag_schema, async (input) => {
 			slug: normalized_slug
 		})
 		.where(eq(tag.id, input.id));
+
+	// The topic page's old URL keeps working
+	if (current?.slug && current.slug !== normalized_slug) {
+		await record_tag_redirect(current.slug, input.id);
+	}
 
 	return { success: true };
 });

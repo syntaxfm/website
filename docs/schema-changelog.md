@@ -35,6 +35,33 @@ relying on it.
 
 ---
 
+## 2026-11-16 - Tag redirects and tag cleanup
+
+**Type**: Additive (table) + data
+**Status**: Applied locally; pending production
+**Affects**: `tag_redirects` (new), `tags`, `content_tags`
+
+### Changes
+- `0005_tag_redirects` adds `tag_redirects`: an old topic slug and the tag it now belongs to.
+- `0006_tag_cleanup` (data) merges 58 duplicate tags into 52 (webdev, web-dev and WebDevelopment
+  into Web Development; front-end into frontend; …), records a redirect for each merged slug, and
+  gives 396 all-lowercase tags proper names (javascript → JavaScript). Slugs of kept tags don't
+  change. Every statement is keyed by slug, so a tag missing in production is skipped.
+
+### Application Code Changes
+- `/tags/[tag]` 301s a merged or renamed slug to its tag (`src/server/tags/tag_redirects.ts`).
+- Changing a tag's slug in `/admin/tags` records a redirect from the old one.
+
+### Rollback Plan
+- `DROP TABLE tag_redirects;` brings back 404s for merged slugs. The merges and renames need a
+  restore from backup to undo; take one before applying 0006.
+
+### Deployment Notes
+- Back up production, then apply 0005 and 0006 together, before or with the app deploy. Without
+  0005 the tag page's redirect lookup fails for unknown slugs.
+
+---
+
 ## 2026-11-15 - SEO snapshots
 
 **Type**: Additive

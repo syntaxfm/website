@@ -36,6 +36,20 @@
       "when": 1794785563810,
       "tag": "0004_seo_snapshots",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794806732962,
+      "tag": "0005_tag_redirects",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794806830695,
+      "tag": "0006_tag_cleanup",
+      "breakpoints": true
     }
   ]
 }

@@ -515,6 +515,15 @@ export const tag = pgTable(
 	(t) => [uniqueIndex('tags_slug_idx').on(t.slug)]
 );
 
+// A topic page's old URL (/tags/web-dev) after its tag was merged or renamed: the page 301s to the
+// tag it became. Goes with the tag.
+export const tag_redirect = pgTable('tag_redirects', {
+	old_slug: varchar('old_slug', { length: 64 }).primaryKey(),
+	tag_id: uuid('tag_id')
+		.notNull()
+		.references(() => tag.id, { onDelete: 'cascade' })
+});
+
 // ============================================================================
 // Content Table
 // Content is the wrapper for all content types; shows, articles, videos, tools
