@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { CONVERT_KIT_SECRET } from '$app/env/private';
 import { edge_cached } from '$server/edge_cache';
-import type { Broadcast } from '#lib/newsletter/newsletter.remote.ts';
+import type { Broadcast } from '$server/newsletter/kit';
 import { parseSubject } from '#lib/newsletter/parse-subject.ts';
 
 // Wrap the email body in a full document so it renders standalone inside the

@@ -9,6 +9,7 @@ import {
 	content_tags,
 	guest,
 	link,
+	newsletter_issue,
 	playlist,
 	playlistOnVideo,
 	profile,
@@ -254,7 +255,18 @@ export const contentRelations = relations(content, ({ one, many }) => ({
 		fields: [content.id],
 		references: [video.content_id]
 	}),
+	newsletter_issue: one(newsletter_issue, {
+		fields: [content.id],
+		references: [newsletter_issue.content_id]
+	}),
 	tags: many(content_tags)
+}));
+
+export const newsletterIssueRelations = relations(newsletter_issue, ({ one }) => ({
+	meta: one(content, {
+		fields: [newsletter_issue.content_id],
+		references: [content.id]
+	})
 }));
 
 export const articleRelations = relations(article, ({ one }) => ({

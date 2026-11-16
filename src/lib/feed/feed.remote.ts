@@ -13,16 +13,20 @@ import get_show_path from '$utilities/slug';
 import type { RankedContent } from '#lib/sidebar/ranked.ts';
 import { get_show_label } from '#lib/shows/show_label.ts';
 import { feed_card_query } from './feed_queries';
+import { refresh_newsletter_issues_if_stale } from '$server/newsletter/issues';
 
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
 export const get_feed_content = query(() =>
-	edge_cached('home-feed', { fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 }, () =>
-		db.query.content.findMany({
+	edge_cached('home-feed', { fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 }, async () => {
+		// Snack Pack issues are in the feed, and nothing else on the home page would notice a new one
+		await refresh_newsletter_issues_if_stale();
+		return db.query.content.findMany({
 			...feed_card_query,
+			where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
 			orderBy: (c, { desc }) => [desc(c.published_at)],
 			limit: 100
-		})
-	)
+		});
+	})
 );
 
 // The sidebar beside every feed and on show pages. Only what RankedItem renders, edge cached for
@@ -66,7 +70,8 @@ async function load_most_popular_content(): Promise<RankedContent[]> {
 async function load_recent_episodes(): Promise<(RankedContent & { youtube_id: string })[]> {
 	const rows = await db.query.content.findMany({
 		columns: { id: true, title: true, published_at: true },
-		where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
+		// Episodes only: other content types would take their places in the ranking
+		where: (c, { and, eq }) => and(eq(c.status, 'PUBLISHED'), eq(c.type, 'PODCAST')),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
 		limit: RECENT_EPISODES_TO_RANK,
 		with: {

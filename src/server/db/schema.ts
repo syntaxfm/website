@@ -570,6 +570,26 @@ export const content_tags = pgTable(
 	]
 );
 
+// ============================================================================
+// Newsletter Issues Table
+// Snack Pack issues, copied from Kit (src/server/newsletter/sync_issues.ts). Kit stays the source
+// of truth: the copy lets the site list issues without waiting on Kit's slow API.
+// ============================================================================
+
+export const newsletter_issue = pgTable(
+	'newsletter_issues',
+	{
+		// Kit's broadcast id, which /snackpack/[issue_id] uses
+		id: text('id').primaryKey(),
+		issue_number: integer('issue_number'),
+		content_id: uuid('content_id')
+			.notNull()
+			.unique()
+			.references(() => content.id, { onDelete: 'cascade' })
+	},
+	(table) => [uniqueIndex('newsletter_issues_content_id_idx').on(table.content_id)]
+);
+
 // TODO Related content table
 
 // ============================================================================

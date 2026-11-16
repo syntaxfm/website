@@ -8,4 +8,4 @@
 	});
 </script>
 
-<Story name="Default" />
+<Story name="Default" args={{ count: Promise.resolve('12,345') }} />

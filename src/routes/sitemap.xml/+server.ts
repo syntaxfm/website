@@ -5,6 +5,7 @@ import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { content, content_tags, guest, show, showGuest, tag, transcript } from '$server/db/schema';
 import { sitemap_xml, type SitemapUrl } from '#lib/seo/sitemap.ts';
+import { get_newsletter_issues } from '$server/newsletter/issues';
 
 const STATIC_PATHS = [
 	'',
@@ -60,11 +61,14 @@ async function load_sitemap_rows() {
 }
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
-	const { shows, guests, tags } = await edge_cached(
-		'sitemap-rows',
-		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
-		load_sitemap_rows
-	);
+	const [{ shows, guests, tags }, snackpack_issues] = await Promise.all([
+		edge_cached(
+			'sitemap-rows',
+			{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
+			load_sitemap_rows
+		),
+		get_newsletter_issues()
+	]);
 
 	const urls: SitemapUrl[] = [
 		...STATIC_PATHS.map((path) => ({ path })),
@@ -78,7 +82,11 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
 		...guests.map((row) => ({ path: `/guest/${row.name_slug}`, lastmod: row.lastmod })),
 		...tags.flatMap((row) =>
 			row.slug ? [{ path: `/tags/${row.slug}`, lastmod: row.lastmod }] : []
-		)
+		),
+		...snackpack_issues.map((issue) => ({
+			path: `/snackpack/${issue.id}`,
+			lastmod: issue.published_at
+		}))
 	];
 
 	setHeaders({
