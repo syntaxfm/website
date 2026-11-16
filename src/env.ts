@@ -8,7 +8,7 @@ const optional = (value: string | undefined) => value;
 export const variables = defineEnvVars({
 	YOUTUBE_API_KEY: { schema: optional },
 	FIRECRAWL_API_KEY: { schema: optional },
-	DEEPGRAM_SECRET: { schema: optional },
+	XAI_API_KEY: { schema: optional },
 	POSTGRES_DATABASE_URL: { schema: optional },
 	DATABASE_URL: { schema: optional },
 	NODE_ENV: { schema: optional },

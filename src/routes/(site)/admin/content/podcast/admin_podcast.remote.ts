@@ -38,7 +38,7 @@ import {
 } from '$server/shows';
 import { error } from '@sveltejs/kit';
 import { and, desc, eq, gte, ilike, inArray, lte, ne, notInArray, or, sql } from 'drizzle-orm';
-import { get_transcript } from '$server/transcripts/deepgram';
+import { get_transcript } from '$server/transcripts/grok';
 import { generate_ai_notes } from '$server/ai/openai';
 import { import_transcripts } from '$server/transcripts/transcripts';
 import { DAYS_OF_WEEK_TYPES } from '$const';
