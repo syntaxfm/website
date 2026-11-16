@@ -56,6 +56,11 @@ export const load: LayoutServerLoad = async (event) => {
 	}
 
 	const { show: show_fields, show_notes, prev_next } = show_page;
+	// Built from the show's own slug, so /show/900/wrong-slug still names the real page
+	const is_transcript = url.pathname.endsWith('/transcript');
+	const canonical_url = `${url.origin}/show/${show_number}/${show_fields.slug}${
+		is_transcript ? '/transcript' : ''
+	}`;
 
 	return {
 		show: show_fields,
@@ -64,12 +69,10 @@ export const load: LayoutServerLoad = async (event) => {
 		prev_show: prev_next.find((s) => s.number === show_number - 1),
 		next_show: prev_next.find((s) => s.number === show_number + 1),
 		meta: {
-			title: `${
-				url.pathname.includes('/transcript') ? 'Transcript: ' : ''
-			}${show_fields.title} - Syntax #${show_number}`,
-			image: `${url.protocol}//${url.host}/og/${show_number}.jpg`,
-			url: `${url.protocol}//${url.host}${url.pathname}`,
-			canonical: `${url.protocol}//${url.host}${url.pathname}`,
+			title: `${is_transcript ? 'Transcript: ' : ''}${show_fields.title} - Syntax #${show_number}`,
+			image: `${url.origin}/og/${show_number}.jpg`,
+			url: canonical_url,
+			canonical: canonical_url,
 			description: show_fields.aiShowNote?.description
 		}
 	};

@@ -29,7 +29,7 @@ describe('llms_txt', () => {
 		const text = llms_txt(input);
 
 		expect(text).toContain(
-			'- [#950: Hot \\[Takes\\]](https://syntax.fm/show/950/hot-takes): Wes and Scott share hot takes. [Transcript](https://syntax.fm/show/950/hot-takes/transcript)'
+			'- [#950: Hot \\[Takes\\]](https://syntax.fm/show/950/hot-takes): Wes and Scott share hot takes. [Transcript](https://syntax.fm/show/950/hot-takes/transcript.md)'
 		);
 		expect(text).toContain('- [#949: Potluck](https://syntax.fm/show/949/potluck)\n');
 	});

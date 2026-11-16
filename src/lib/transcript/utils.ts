@@ -62,6 +62,53 @@ export function getSlimUtterances(
 	});
 }
 
+// Lines the hosts say only so the speaker detector can tell them apart ("purple cheese before
+// meeting"); readers never see them
+const FLAGGING_PATTERNS = [
+	/purple cheese before meeting/i,
+	/^my name is scott/i,
+	/my dog eats food ?(?:on)? the moon/i
+];
+
+export function remove_flagging_utterances<T extends { transcript: string }>(utterances: T[]): T[] {
+	return utterances.filter(
+		(utterance) => !FLAGGING_PATTERNS.some((pattern) => pattern.test(utterance.transcript))
+	);
+}
+
+// A passage's anchor is its start second, so a link like /transcript#t-1234 survives re-renders
+// and means the same moment in the audio. Two passages starting in the same second get -2, -3.
+export function passage_ids(starts: readonly number[]): string[] {
+	const used = new Map<string, number>();
+	return starts.map((start) => {
+		const base = `t-${Math.floor(start)}`;
+		const count = (used.get(base) ?? 0) + 1;
+		used.set(base, count);
+		return count === 1 ? base : `${base}-${count}`;
+	});
+}
+
+export type TopicSummary = { time: string; text: string; id?: number };
+
+// Splits the transcript at each AI summary topic's start time. Passages before the first topic,
+// or a transcript with no topics, form one group with a null topic.
+export function group_by_topic<T extends { start: number }>(
+	utterances: readonly T[],
+	topics: readonly TopicSummary[],
+	to_seconds: (time: string) => number
+): { topic: TopicSummary | null; utterances: T[] }[] {
+	const groups: { topic: TopicSummary | null; utterances: T[] }[] = [];
+	const in_time_order = [...topics].sort((a, b) => to_seconds(a.time) - to_seconds(b.time));
+	for (const utterance of utterances) {
+		const topic =
+			in_time_order.findLast((summary) => utterance.start >= to_seconds(summary.time)) ?? null;
+		const current = groups.at(-1);
+		if (current && current.topic === topic) current.utterances.push(utterance);
+		else groups.push({ topic, utterances: [utterance] });
+	}
+	return groups;
+}
+
 // Format time function, converts seconds into MM:SS or HH:MM:SS
 function formatTime(secs: number) {
 	const seconds = Math.round(secs);

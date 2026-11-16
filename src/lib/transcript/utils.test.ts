@@ -1,5 +1,54 @@
 import { describe, expect, it } from 'vitest';
-import { detectSpeakerNames } from './utils';
+import {
+	detectSpeakerNames,
+	group_by_topic,
+	passage_ids,
+	remove_flagging_utterances
+} from './utils';
+import { tsToS } from '$utilities/format_time';
+
+describe('remove_flagging_utterances', () => {
+	it('drops the lines said only for speaker detection', () => {
+		const kept = remove_flagging_utterances([
+			{ transcript: 'Purple cheese before meeting.' },
+			{ transcript: 'My name is Scott Tolinski.' },
+			{ transcript: 'My dog eats food on the moon.' },
+			{ transcript: 'Today we talk about CSS.' }
+		]);
+		expect(kept).toEqual([{ transcript: 'Today we talk about CSS.' }]);
+	});
+});
+
+describe('passage_ids', () => {
+	it('names each passage by its start second, numbering repeats', () => {
+		expect(passage_ids([0.4, 12.9, 12.2, 3600])).toEqual(['t-0', 't-12', 't-12-2', 't-3600']);
+	});
+});
+
+describe('group_by_topic', () => {
+	const topics = [
+		{ time: '00:00', text: 'Intro', id: 1 },
+		{ time: '01:00', text: 'CSS', id: 2 }
+	];
+
+	it('splits passages at each topic start', () => {
+		const groups = group_by_topic(
+			[{ start: 5 }, { start: 59 }, { start: 60 }, { start: 90 }],
+			topics,
+			tsToS
+		);
+		expect(groups.map((group) => [group.topic?.text, group.utterances.length])).toEqual([
+			['Intro', 2],
+			['CSS', 2]
+		]);
+	});
+
+	it('keeps everything in one untitled group without topics', () => {
+		expect(group_by_topic([{ start: 5 }, { start: 90 }], [], tsToS)).toEqual([
+			{ topic: null, utterances: [{ start: 5 }, { start: 90 }] }
+		]);
+	});
+});
 
 const HOSTS = [
 	{

@@ -5,6 +5,18 @@
 	let { transcript, show } = $derived(data);
 </script>
 
+<svelte:head>
+	{#if transcript}
+		<!-- The same transcript as Markdown, for AI agents -->
+		<link
+			rel="alternate"
+			type="text/markdown"
+			href="/show/{show.number}/{show.slug}/transcript.md"
+			title="Transcript as Markdown"
+		/>
+	{/if}
+</svelte:head>
+
 {#if transcript}
 	<Transcript
 		{show}

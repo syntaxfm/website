@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { getSlimUtterances } from '#lib/transcript/utils.ts';
+	import {
+		getSlimUtterances,
+		group_by_topic,
+		passage_ids,
+		remove_flagging_utterances,
+		type TopicSummary
+	} from '#lib/transcript/utils.ts';
 	import { audio_timeline_time, player } from '$state/player';
 	import format_time, { tsToS } from '$utilities/format_time';
-	import 'core-js/full/map/group-by';
 	import slug from 'speakingurl';
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
 	import type { AINoteWithFriends } from '$server/ai/queries';
 	import type { DBUtterance, SlimUtterance } from '$server/transcripts/types';
-	import type { SyncPrerecordedResponse } from '@deepgram/sdk';
 	import type { PlayerShow } from '$state/player_utils';
-
-	type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0];
 
 	interface Props {
 		// Utterances in start order (transcript/+page.server.ts)
@@ -30,33 +32,25 @@
 
 	// Derived so moving between two shows' transcripts, which reuses this component, shows the new one
 	const slim_transcript: SlimUtterance[] = $derived(
-		getSlimUtterances(transcript.utterances, transcript.show_number, true, people_on_show).filter(
-			(utterance) => {
-				// Remove the flagging utterances
-				const scott = new RegExp(/purple cheese before meeting/gi);
-				if (utterance.transcript?.match(scott)) return false;
-				if (utterance.transcript.toLowerCase().startsWith('my name is scott')) return false;
-				const wes = new RegExp(/my dog eats food ?(?:on)? the moon/i);
-				if (utterance.transcript?.match(wes)) return false;
-				return true;
-			}
+		remove_flagging_utterances(
+			getSlimUtterances(transcript.utterances, transcript.show_number, true, people_on_show)
 		)
 	);
-	// group Utterances by their summary
-	type SummaryTitle = { time: string; text: string; id?: number };
-	const def: SummaryTitle = { time: '00:00', text: '' };
-	// TODO: This is a type for Map.groupBy(). We can remove this once TypeScript ships the types for it
-	type UtteranceMap = Map<typeof def, SlimUtterance[]>;
 
-	const utterances_by_summary: UtteranceMap = $derived(
-		Map.groupBy(slim_transcript, (utterance: Utterance) => {
-			const start = utterance.start;
-			const summary = ai_show_note?.summary?.findLast((summary) => {
-				const timestamp = tsToS(summary.time);
-				return start >= timestamp;
-			});
-			return summary || def;
-		})
+	// Each passage's anchor (#t-<second>), so a link can point at one moment
+	let id_by_utterance = $derived.by(() => {
+		const ids = passage_ids(slim_transcript.map((utterance) => utterance.start));
+		return new Map(slim_transcript.map((utterance, index) => [utterance, ids[index]]));
+	});
+
+	// Passages before the first AI summary topic, or with no topics at all
+	const UNTITLED_TOPIC: TopicSummary = { time: '00:00', text: '' };
+
+	let topic_groups = $derived(
+		group_by_topic(slim_transcript, ai_show_note?.summary ?? [], tsToS).map((group) => ({
+			summary: group.topic ?? UNTITLED_TOPIC,
+			utterances: group.utterances
+		}))
 	);
 
 	// Transcript times are on the audio timeline, read every frame while the show plays. This is null
@@ -113,7 +107,7 @@
 			return 'future';
 		}
 	});
-	let place_topic = $derived(function (summary: SummaryTitle, utterances: SlimUtterance[]) {
+	let place_topic = $derived(function (summary: TopicSummary, utterances: SlimUtterance[]) {
 		const summary_end = utterances.at(-1)?.end || Infinity;
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (current_topic?.id === summary.id) {
@@ -126,12 +120,16 @@
 	});
 </script>
 
+{#if ai_show_note?.description}
+	<p class="transcript-summary">{ai_show_note.description}</p>
+{/if}
+
 {#if ai_show_note}
 	<TableOfContents {ai_show_note} />
 {/if}
 
 <div class="timeline">
-	{#each Array.from(utterances_by_summary) as [summary, utterances], i (summary.text)}
+	{#each topic_groups as { summary, utterances }, i (summary.id ?? summary.text)}
 		<section>
 			<header class="topic {place_topic(summary, utterances)}">
 				<div class="gutter" id={slug(summary.text)}>
@@ -144,20 +142,26 @@
 					<Squiggle />
 				</div>
 				<div>
-					<h4>{summary.text || 'Transcript'}</h4>
+					<h2>{summary.text || 'Transcript'}</h2>
 				</div>
 			</header>
 			<div>
-				{#each utterances as utterance (utterance.start)}
+				{#each utterances as utterance (id_by_utterance.get(utterance))}
 					{@const progress =
 						((current_time - utterance.start) / (utterance.end - utterance.start)) * 100}
+					{@const passage_id = id_by_utterance.get(utterance)}
 					<div
+						id={passage_id}
 						style:--progress={progress > 0 && progress < 100 ? `${progress}%` : '100%'}
 						class="utterance {label_utterance(utterance)}"
 					>
 						<div class="gutter">
-							<button onclick={() => player.play_timestamp(show, utterance.start)}
-								>{format_time(utterance.start)}</button
+							<!-- A real link, so the moment can be copied and shared; it also plays from there -->
+							<a
+								class="timestamp"
+								href="#{passage_id}"
+								onclick={() => player.play_timestamp(show, utterance.start)}
+								>{format_time(utterance.start)}</a
 							>
 							<p class="speaker fv-600">
 								{utterance.speakerName || `Guest ${utterance.speakerId}`}
@@ -239,7 +243,12 @@
 		--progress: 100%;
 	}
 
-	h4 {
+	.transcript-summary {
+		font-size: var(--fs-4);
+		text-wrap: pretty;
+	}
+
+	h2 {
 		position: sticky;
 		top: 0;
 		font-size: var(--fs-5);
@@ -256,6 +265,15 @@
 		grid-template-columns: 120px auto 1fr;
 		gap: 0 20px;
 		font-size: var(--fs-2);
+
+		/* A linked passage (#t-1234) lands below the stuck topic header, not under it */
+		scroll-margin-top: 160px;
+
+		/* The passage a link points at, highlighted with or without JavaScript */
+		&:target .text {
+			background-color: var(--c-yellow-2);
+			border-radius: var(--br-small);
+		}
 
 		@media (--below-med) {
 			grid-template-columns: 67px 1fr;
@@ -345,17 +363,16 @@
 			margin: 0;
 		}
 
-		button {
-			padding: 0;
-			background: none;
+		.timestamp {
 			color: inherit;
 			font-size: var(--fs-2);
 			font-variation-settings: var(--fv-700);
 			font-variant-numeric: tabular-nums;
 			line-height: inherit;
+			text-decoration: none;
 
-			&:hover {
-				background: none;
+			&:hover,
+			&:focus-visible {
 				color: var(--c-primary);
 			}
 		}
