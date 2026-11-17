@@ -1,4 +1,9 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
+import {
+	find_video_destination,
+	OLD_PLAYLIST_DESTINATION,
+	OLD_PLAYLIST_SLUGS
+} from '$server/video/old_video_urls';
 import { and, eq } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
@@ -63,7 +68,13 @@ export const load: PageServerLoad = async ({ params, url }) => {
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		() => load_video_page(params.slug)
 	);
-	if (!video) error(404, 'This video does not exist.');
+	if (!video) {
+		// An old playlist page (/videos/cj-syntax), or a video now known as an episode
+		if (OLD_PLAYLIST_SLUGS.has(params.slug)) redirect(301, OLD_PLAYLIST_DESTINATION);
+		const destination = await find_video_destination(params.slug);
+		if (destination) redirect(301, destination);
+		error(404, 'This video does not exist.');
+	}
 
 	const canonical = `${url.origin}/videos/${video.slug}`;
 	const summary = video.description.paragraphs.join(' ');
