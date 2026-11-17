@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		getSlimUtterances,
+		GUEST,
 		group_by_topic,
 		nearest_passage_id,
 		passage_ids,
@@ -190,7 +191,7 @@
 								>{format_time(utterance.start)}</a
 							>
 							<p class="speaker fv-600">
-								{utterance.speakerName || `Guest ${utterance.speakerId}`}
+								{utterance.speakerName || GUEST}
 							</p>
 						</div>
 						<div class="marker">

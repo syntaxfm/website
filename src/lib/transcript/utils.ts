@@ -8,7 +8,7 @@ type Utterance = NonNullable<SyncPrerecordedResponse['results']['utterances']>[0
 /**
  * Get the slim version of the utterances. This is used for the transcript and embedding functions. It groups together utterances that have the same speaker.
  * @param utterances the utterances to slim. This can be used on both Database Utterances and straight from Deepgram.
- * @param people_on_show the show's hosts and guests, so a lone unnamed one is named instead of "Guest <n>"
+ * @param people_on_show the show's hosts and guests, so a lone unnamed one is named instead of "Guest"
  */
 
 export function getSlimUtterances(
@@ -182,6 +182,9 @@ export function formatForEmbedding(utterances: SlimUtterance[]) {
 	}, '');
 }
 
+// A voice nobody could be sure of
+export const GUEST = 'Guest';
+
 // Most episodes have no hosts recorded (show_to_profile is empty for them). Until they do, those
 // were Wes and Scott's.
 const DEFAULT_HOSTS = ['Wes Bos', 'Scott Tolinski'];
@@ -262,14 +265,14 @@ export function detectSpeakerNames(
 		taken_names.add(name);
 	}
 	// With one person on the show left unnamed and one voice left unrecognized, that voice is them.
-	// Anything less certain stays "Guest <n>" rather than risk naming the wrong person.
+	// Anything less certain stays "Guest" rather than risk naming the wrong person.
 	const named = new Set(speakers.values());
 	const unnamed_people = [...new Set(people_on_show)].filter((name) => !named.has(name));
 	const unrecognized = [...speakerNumbers].filter((speaker) => !speakers.get(speaker));
 	const lone_person =
 		unnamed_people.length === 1 && unrecognized.length === 1 ? unnamed_people[0] : null;
 	for (const speaker of unrecognized) {
-		speakers.set(speaker, lone_person ?? `Guest ${speaker}`);
+		speakers.set(speaker, lone_person ?? GUEST);
 	}
 
 	return speakers;

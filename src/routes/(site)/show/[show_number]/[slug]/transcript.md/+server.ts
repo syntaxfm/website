@@ -5,6 +5,7 @@ import { get_show_detail_query } from '$server/shows/shows_queries';
 import { transcript_markdown } from '#lib/transcript/transcript_markdown.ts';
 import {
 	getSlimUtterances,
+	GUEST,
 	people_on_show,
 	remove_flagging_utterances
 } from '#lib/transcript/utils.ts';
@@ -65,7 +66,7 @@ export const GET: RequestHandler = async function GET({ params, url, setHeaders 
 		getSlimUtterances(source.utterances, show_number, true, source.people_on_show)
 	).map((utterance) => ({
 		start: utterance.start,
-		speaker: utterance.speakerName || `Guest ${utterance.speakerId}`,
+		speaker: utterance.speakerName || GUEST,
 		text: utterance.transcript
 	}));
 

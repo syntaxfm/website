@@ -158,22 +158,22 @@ describe('detectSpeakerNames', () => {
 		expect(people_on_show(['CJ', 'Wes Bos'], [])).toEqual(['CJ', 'Wes Bos']);
 	});
 
-	it('keeps "Guest <n>" when it can’t tell which voice is the guest', () => {
+	it('says "Guest" when it can’t tell which voice is the guest', () => {
 		const two_voices = detectSpeakerNames(
 			[...HOSTS, { speakerId: 2, transcript: 'Hi.' }, { speakerId: 3, transcript: 'Hello.' }],
 			['Kyle Daigle']
 		);
-		expect(two_voices.get(2)).toBe('Guest 2');
-		expect(two_voices.get(3)).toBe('Guest 3');
+		expect(two_voices.get(2)).toBe('Guest');
+		expect(two_voices.get(3)).toBe('Guest');
 
 		const two_guests = detectSpeakerNames(
 			[...HOSTS, { speakerId: 2, transcript: 'Hi.' }],
 			['Kyle Daigle', 'Rich Harris']
 		);
-		expect(two_guests.get(2)).toBe('Guest 2');
+		expect(two_guests.get(2)).toBe('Guest');
 
 		expect(detectSpeakerNames([...HOSTS, { speakerId: 2, transcript: 'Hi.' }]).get(2)).toBe(
-			'Guest 2'
+			'Guest'
 		);
 	});
 });
