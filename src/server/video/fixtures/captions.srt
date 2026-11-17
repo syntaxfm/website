@@ -1,0 +1,159 @@
+1
+00:00:00,080 --> 00:00:03,200
+Hey, what's up? This is Scott with Level
+
+2
+00:00:01,600 --> 00:00:05,200
+Up Tutts and today I'm going to show you
+
+3
+00:00:03,200 --> 00:00:07,680
+how to install a theme using the
+
+4
+00:00:05,200 --> 00:00:10,960
+WordPress interface. And we're lucky
+
+5
+00:00:07,680 --> 00:00:12,880
+because this is really easy. So, that's
+
+6
+00:00:10,960 --> 00:00:15,200
+one of the things WordPress handles
+
+7
+00:00:12,880 --> 00:00:16,960
+really well is making tasks like
+
+8
+00:00:15,200 --> 00:00:19,199
+installing and changing your theme as
+
+9
+00:00:16,960 --> 00:00:21,520
+well as installing plugins and changing
+
+10
+00:00:19,199 --> 00:00:24,400
+out plugins and things like that. It
+
+11
+00:00:21,520 --> 00:00:26,880
+makes it really easy. So, to do this,
+
+12
+00:00:24,400 --> 00:00:29,679
+all we have to go to is appearance and
+
+13
+00:00:26,880 --> 00:00:31,679
+then themes. Now we have our active
+
+14
+00:00:29,679 --> 00:00:33,480
+themes. You'll notice if we click
+
+15
+00:00:31,679 --> 00:00:36,880
+activate on
+
+16
+00:00:33,480 --> 00:00:38,120
+2013 and then we then come to the front
+
+17
+00:00:36,880 --> 00:00:40,879
+end of our
+
+18
+00:00:38,120 --> 00:00:42,960
+website, you'll see it's already using
+
+19
+00:00:40,879 --> 00:00:46,399
+this completely different theme which
+
+20
+00:00:42,960 --> 00:00:49,920
+was the uh the default theme for 2013.
+
+21
+00:00:46,399 --> 00:00:53,120
+Now if we were to activate 2012, of
+
+22
+00:00:49,920 --> 00:00:56,079
+course uh and refresh our site would
+
+23
+00:00:53,120 --> 00:00:58,160
+already be using 2012. Now, you could
+
+24
+00:00:56,079 --> 00:00:59,840
+even do a live preview, which is just
+
+25
+00:00:58,160 --> 00:01:02,079
+going to give you a quick preview of
+
+26
+00:00:59,840 --> 00:01:04,799
+what your site would look like. Um, we
+
+27
+00:01:02,079 --> 00:01:07,280
+can click cancel on that one. Now,
+
+28
+00:01:04,799 --> 00:01:09,760
+you'll notice we have this big button
+
+29
+00:01:07,280 --> 00:01:11,760
+here, and it says add new theme. Now,
+
+30
+00:01:09,760 --> 00:01:14,479
+let's click this, and we can add a new
+
+31
+00:01:11,760 --> 00:01:17,040
+theme based on searching in the
+
+32
+00:01:14,479 --> 00:01:19,200
+WordPress repository here for themes.
+
+33
+00:01:17,040 --> 00:01:22,000
+So, we can look at all sorts of things.
+
+34
+00:01:19,200 --> 00:01:25,320
+We can look at the newest themes. We can
+
+35
+00:01:22,000 --> 00:01:26,840
+look at uh recently uploaded or featured
+
+36
+00:01:25,320 --> 00:01:30,720
+themes.
+
+37
+00:01:26,840 --> 00:01:32,159
+Um and you know a lot of these maybe are
+
+38
+00:01:30,720 --> 00:01:34,799
+going to be like theme engines that
+
+39
+00:01:32,159 --> 00:01:36,960
+allow you to uh build upon or some of
+
+40
+00:01:34,799 --> 00:01:38,720
+them are going to be or it could even be

@@ -1,0 +1,23 @@
+{
+	"kind": "youtube#captionListResponse",
+	"items": [
+		{
+			"kind": "youtube#caption",
+			"id": "AUieDaY-uxGnklL2T5zFJ5JSsiLg4DlTTDiZaXDFdTUaPoy8Jr8",
+			"snippet": {
+				"videoId": "p7AnLyQFw9Y",
+				"lastUpdated": "2025-04-01T06:11:20.936212Z",
+				"trackKind": "asr",
+				"language": "en",
+				"name": "",
+				"audioTrackType": "unknown",
+				"isCC": false,
+				"isLarge": false,
+				"isEasyReader": false,
+				"isDraft": false,
+				"isAutoSynced": false,
+				"status": "serving"
+			}
+		}
+	]
+}
