@@ -409,10 +409,6 @@ packages:
     resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.29.10':
-    resolution: {integrity: sha512-NpugTzbKgGrNe45Ui32cN8vCFFMxVtP/9rtfwv0nP5FRDAjvYBxJcLVpYA9mr1jxP6cnIT7x9LUzuDTbWYYNRA==}
-    engines: {node: '>=6.9.0'}
-
   '@cacheable/memory@2.2.0':
     resolution: {integrity: sha512-CTLKqLItRCEixEAewD3/j9DB3/o96gpTPD4eJ1v+DGOlxZRZncRQkGYqqnAGCscYd6RNeXfGeiuCphsPtqyIfQ==}
 
@@ -3136,14 +3132,8 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
 
-  parse-nested-form-data@1.0.1:
-    resolution: {integrity: sha512-BuMXaUOncsciUsL3N69cMvEHCeLAG6sRoFa7NPbw30Jn+klD47hlx/+Rq1MWrxsdQWu8157d2TnReea/NWTuFA==}
-    peerDependencies:
-      '@remix-run/web-file': '>=3.0.0'
-      '@remix-run/web-form-data': '*'
-    peerDependenciesMeta:
-      '@remix-run/web-form-data':
-        optional: true
+  parse-nested-form-data@1.1.0:
+    resolution: {integrity: sha512-1coPdYi6vywiGhwmv0GeNnmqlzCoXGQ32uA84T1SAAAcjI11ZY3r41x/oEuJRSzDKvN53QyUkYol2dkvrEGYBQ==}
 
   parse5@7.3.0:
     resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
@@ -4249,8 +4239,6 @@ snapshots:
       picocolors: 1.1.1
 
   '@babel/helper-validator-identifier@7.29.7': {}
-
-  '@babel/runtime@7.29.10': {}
 
   '@cacheable/memory@2.2.0':
     dependencies:
@@ -7170,10 +7158,7 @@ snapshots:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
 
-  parse-nested-form-data@1.0.1(@remix-run/web-file@3.1.0):
-    dependencies:
-      '@babel/runtime': 7.29.10
-      '@remix-run/web-file': 3.1.0
+  parse-nested-form-data@1.1.0: {}
 
   parse5@7.3.0:
     dependencies:
@@ -7767,9 +7752,7 @@ snapshots:
   sk-form-data@2.0.2:
     dependencies:
       '@remix-run/web-file': 3.1.0
-      parse-nested-form-data: 1.0.1(@remix-run/web-file@3.1.0)
-    transitivePeerDependencies:
-      - '@remix-run/web-form-data'
+      parse-nested-form-data: 1.1.0
 
   slash@5.1.0: {}
 
