@@ -50,6 +50,13 @@
       "when": 1794945295737,
       "tag": "0006_video_transcripts",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794948176276,
+      "tag": "0007_oauth_connections",
+      "breakpoints": true
     }
   ]
 }

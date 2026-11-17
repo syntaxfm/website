@@ -2,19 +2,25 @@ import { error, json } from '@sveltejs/kit';
 import { YOUTUBE_API_KEY } from '$app/env/private';
 import { import_next_video_captions } from '$server/video/video_captions';
 import { sync_channel_videos } from '$server/video/video_sync';
-import { has_youtube_owner_sign_in } from '$server/video/youtube_owner';
+import { get_youtube_connection } from '$server/video/youtube_owner';
 import { has_auth } from '../transcripts/has_auth';
 
 // workers/scheduled_jobs.ts runs this hourly. Each run:
 // 1. reads the newest 50 uploads (2 quota units); the run in FULL_SYNC_HOUR_UTC, or ?full, reads
 //    the whole channel (~60 units) and archives videos that are no longer public
 // 2. saves one video's YouTube captions as its transcript (250 units). 24 a day is ~6,000 of the
-//    10,000 daily units; raise CAPTIONS_PER_RUN once Google raises the quota.
+//    10,000 daily units; raise CAPTIONS_PER_RUN once Google raises the quota. Captions wait while
+//    YouTube isn't connected (Connect YouTube in admin).
 const FULL_SYNC_HOUR_UTC = 9;
 const CAPTIONS_PER_RUN = 1;
 
 async function import_captions(): Promise<string[]> {
-	if (!has_youtube_owner_sign_in()) return ['Captions skipped: no YouTube owner sign-in'];
+	const connection = await get_youtube_connection();
+	if (connection.status !== 'connected') {
+		return [
+			`Captions waiting: YouTube is ${connection.status === 'missing' ? 'not connected' : 'disconnected'}`
+		];
+	}
 	const messages: string[] = [];
 	for (let run = 0; run < CAPTIONS_PER_RUN; run++) {
 		try {

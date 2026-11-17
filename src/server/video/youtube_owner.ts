@@ -1,54 +1,169 @@
-import { YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN } from '$app/env/private';
-import { as_number, as_string, read_path } from '#lib/utils/narrow.ts';
+import { eq } from 'drizzle-orm';
+import { YOUTUBE_CHANNEL_ID } from '$const';
+import { YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET } from '$app/env/private';
+import { db } from '$server/db/client';
+import { oauth_connection } from '$server/db/schema';
+import { as_array, as_number, as_string, read_path } from '#lib/utils/narrow.ts';
 
-// An access token for the Syntax channel's owner, from the refresh token saved when Scott signed
-// in once (Google Cloud project 481665326493, "Syntax website" client). Only the owner can
-// download captions. Google expires the refresh token after 7 days while the app is in Testing,
-// and whenever access is revoked; then every call fails with YouTubeDisconnectedError until
-// someone signs in again.
+// Acting as the Syntax channel's owner, which downloading captions needs. An admin connects once
+// with Connect YouTube (src/routes/(site)/admin/youtube): Google returns a refresh token, saved in
+// oauth_connections, that scheduled jobs trade for an hour-long access token. The OAuth client
+// ("Syntax website", an internal app in our Google org) is YOUTUBE_CLIENT_ID / _SECRET. If Google
+// refuses the refresh token, the row is marked failed and admin asks for a reconnect.
 
+const PROVIDER = 'youtube';
+const AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
+// Download captions (captions.download takes this or youtubepartner)
+const SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl';
 // Refresh a minute early so a token never expires mid-request
 const EXPIRY_MARGIN_MS = 60 * 1000;
 
+export type YouTubeConnection =
+	| { status: 'missing' }
+	| { status: 'connected'; account_name: string | null; connected_at: Date }
+	| { status: 'failed'; account_name: string | null; failed_at: Date; failure: string };
+
 export class YouTubeDisconnectedError extends Error {
 	constructor(reason: string) {
-		super(`YouTube is disconnected: ${reason}. Sign in again as the Syntax channel owner.`);
+		super(`YouTube is disconnected: ${reason}`);
 		this.name = 'YouTubeDisconnectedError';
 	}
 }
 
 let cached: { token: string; expires_at: number } | null = null;
 
-export function has_youtube_owner_sign_in(): boolean {
-	return Boolean(YOUTUBE_CLIENT_ID && YOUTUBE_CLIENT_SECRET && YOUTUBE_REFRESH_TOKEN);
+function client_credentials() {
+	if (!YOUTUBE_CLIENT_ID || !YOUTUBE_CLIENT_SECRET) {
+		throw new Error('YOUTUBE_CLIENT_ID and YOUTUBE_CLIENT_SECRET must be set to connect YouTube');
+	}
+	return { client_id: YOUTUBE_CLIENT_ID, client_secret: YOUTUBE_CLIENT_SECRET };
+}
+
+async function post_token(params: Record<string, string>) {
+	const response = await fetch(TOKEN_URL, {
+		method: 'POST',
+		body: new URLSearchParams({ ...client_credentials(), ...params })
+	});
+	const body: unknown = await response.json();
+	return { ok: response.ok, body, error: as_string(read_path(body, ['error'])) };
+}
+
+export async function get_youtube_connection(): Promise<YouTubeConnection> {
+	const row = await db.query.oauth_connection.findFirst({
+		where: eq(oauth_connection.provider, PROVIDER),
+		columns: { account_name: true, connected_at: true, failed_at: true, failure: true }
+	});
+	if (!row) return { status: 'missing' };
+	if (row.failed_at) {
+		return {
+			status: 'failed',
+			account_name: row.account_name,
+			failed_at: row.failed_at,
+			failure: row.failure ?? 'Google refused the sign-in'
+		};
+	}
+	return { status: 'connected', account_name: row.account_name, connected_at: row.connected_at };
+}
+
+// Google's sign-in page. `offline` + `consent` makes Google return a refresh token every time.
+export function get_youtube_consent_url(redirect_uri: string, state: string): string {
+	const url = new URL(AUTH_URL);
+	url.search = new URLSearchParams({
+		client_id: client_credentials().client_id,
+		redirect_uri,
+		response_type: 'code',
+		scope: SCOPE,
+		access_type: 'offline',
+		prompt: 'consent',
+		state
+	}).toString();
+	return url.toString();
+}
+
+/**
+ * Finishes Connect YouTube: trades Google's code for tokens, checks the account owns the Syntax
+ * channel, and saves the refresh token. Throws with a message for the admin when it can't.
+ */
+export async function save_youtube_connection(
+	code: string,
+	redirect_uri: string,
+	profile_id: string | null
+): Promise<{ account_name: string }> {
+	const exchange = await post_token({ code, redirect_uri, grant_type: 'authorization_code' });
+	const access_token = as_string(read_path(exchange.body, ['access_token']));
+	const refresh_token = as_string(read_path(exchange.body, ['refresh_token']));
+	if (!exchange.ok || !access_token || !refresh_token) {
+		throw new Error(`Google didn't finish the sign-in (${exchange.error ?? 'no refresh token'})`);
+	}
+
+	const channels = await fetch(
+		'https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true',
+		{ headers: { authorization: `Bearer ${access_token}` } }
+	).then((response) => response.json() as Promise<unknown>);
+	const channel = as_array(read_path(channels, ['items'])).find(
+		(item) => as_string(read_path(item, ['id'])) === YOUTUBE_CHANNEL_ID
+	);
+	if (!channel) {
+		throw new Error(
+			'That Google account doesn’t manage the Syntax channel. Pick the Syntax channel when Google asks.'
+		);
+	}
+	const account_name = as_string(read_path(channel, ['snippet', 'title'])) ?? 'Syntax';
+
+	const now = new Date();
+	await db
+		.insert(oauth_connection)
+		.values({
+			provider: PROVIDER,
+			refresh_token,
+			account_name,
+			connected_by: profile_id,
+			connected_at: now
+		})
+		.onConflictDoUpdate({
+			target: oauth_connection.provider,
+			set: {
+				refresh_token,
+				account_name,
+				connected_by: profile_id,
+				connected_at: now,
+				failed_at: null,
+				failure: null
+			}
+		});
+	cached = null;
+	return { account_name };
 }
 
 export async function get_youtube_owner_token(): Promise<string> {
 	if (cached && cached.expires_at > Date.now()) return cached.token;
-	if (!YOUTUBE_CLIENT_ID || !YOUTUBE_CLIENT_SECRET || !YOUTUBE_REFRESH_TOKEN) {
-		throw new YouTubeDisconnectedError('the OAuth client or refresh token is not set');
-	}
 
-	const response = await fetch(TOKEN_URL, {
-		method: 'POST',
-		body: new URLSearchParams({
-			client_id: YOUTUBE_CLIENT_ID,
-			client_secret: YOUTUBE_CLIENT_SECRET,
-			refresh_token: YOUTUBE_REFRESH_TOKEN,
-			grant_type: 'refresh_token'
-		})
+	const row = await db.query.oauth_connection.findFirst({
+		where: eq(oauth_connection.provider, PROVIDER),
+		columns: { refresh_token: true, failed_at: true }
 	});
-	const body: unknown = await response.json();
-	const token = as_string(read_path(body, ['access_token']));
-	if (!response.ok || !token) {
-		const reason = as_string(read_path(body, ['error'])) ?? `HTTP ${response.status}`;
-		// invalid_grant: the refresh token expired or was revoked
-		if (reason === 'invalid_grant') throw new YouTubeDisconnectedError(reason);
-		throw new Error(`Could not refresh the YouTube owner token: ${reason}`);
+	if (!row) throw new YouTubeDisconnectedError('nobody has connected YouTube yet');
+	if (row.failed_at) throw new YouTubeDisconnectedError('Google refused the last sign-in');
+
+	const refreshed = await post_token({
+		refresh_token: row.refresh_token,
+		grant_type: 'refresh_token'
+	});
+	const token = as_string(read_path(refreshed.body, ['access_token']));
+	if (!refreshed.ok || !token) {
+		// invalid_grant: the refresh token expired or was revoked, so ask an admin to reconnect
+		if (refreshed.error === 'invalid_grant') {
+			await db
+				.update(oauth_connection)
+				.set({ failed_at: new Date(), failure: 'Google expired or revoked the sign-in' })
+				.where(eq(oauth_connection.provider, PROVIDER));
+			throw new YouTubeDisconnectedError('Google expired or revoked the sign-in');
+		}
+		throw new Error(`Could not refresh the YouTube owner token: ${refreshed.error ?? 'no token'}`);
 	}
 
-	const expires_in_seconds = as_number(read_path(body, ['expires_in'])) ?? 3600;
+	const expires_in_seconds = as_number(read_path(refreshed.body, ['expires_in'])) ?? 3600;
 	cached = { token, expires_at: Date.now() + expires_in_seconds * 1000 - EXPIRY_MARGIN_MS };
 	return token;
 }

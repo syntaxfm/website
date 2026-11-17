@@ -14,7 +14,7 @@
 		read_picklist,
 		read_string
 	} from '#lib/admin/admin_filters.ts';
-	import { list_videos } from './admin_videos.remote';
+	import { get_youtube_status, list_videos } from './admin_videos.remote';
 
 	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 	const ORDER_VALUES = ['desc', 'asc'] as const;
@@ -47,6 +47,10 @@
 
 	let selected_video_ids = $state<string[]>([]);
 
+	let youtube = $derived(await get_youtube_status());
+	// Set by /admin/youtube/callback after Connect YouTube
+	let connect_result = $derived(current_page.url.searchParams.get('youtube'));
+
 	let list_result = $derived(
 		await list_videos({
 			search_text,
@@ -72,10 +76,38 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<div class="admin-actions">
-		<a class="button small" data-intent="primary" href={resolve('admin/content/videos/import')}
-			>Import New Videos</a
-		>
+	<div class="admin-control-row">
+		{#if youtube.connection.status === 'connected'}
+			<p class="fs-2">
+				YouTube: {youtube.connection.account_name ?? 'connected'} · captions for {youtube.with_captions.toLocaleString()}
+				of {youtube.videos.toLocaleString()} videos
+			</p>
+			<a
+				class="button small"
+				data-intent="quiet"
+				href="/admin/youtube/connect"
+				data-sveltekit-reload>Reconnect YouTube</a
+			>
+		{:else}
+			{#if youtube.connection.status === 'failed'}
+				<p class="admin-feedback" data-tone="negative" role="status">
+					YouTube disconnected: {youtube.connection.failure}
+				</p>
+			{/if}
+			<a
+				class="button small"
+				data-intent="primary"
+				href="/admin/youtube/connect"
+				data-sveltekit-reload>Connect YouTube</a
+			>
+		{/if}
+		{#if connect_result === 'connected'}
+			<p class="admin-feedback" data-tone="positive" role="status">YouTube connected</p>
+		{:else if connect_result === 'cancelled'}
+			<p class="admin-feedback" data-tone="negative" role="status">Sign-in cancelled</p>
+		{:else if connect_result}
+			<p class="admin-feedback" data-tone="negative" role="alert">{connect_result}</p>
+		{/if}
 	</div>
 
 	<AdminList

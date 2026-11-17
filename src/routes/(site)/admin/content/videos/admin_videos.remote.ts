@@ -7,9 +7,11 @@ import {
 	playlist,
 	playlistOnVideo,
 	showVideo,
+	transcript,
 	video
 } from '$server/db/schema';
 import { get_youtube_playlists, import_youtube_playlist } from '$server/video/youtube_api';
+import { get_youtube_connection } from '$server/video/youtube_owner';
 import { error } from '@sveltejs/kit';
 import { and, asc, desc, eq, gte, ilike, lte, sql } from 'drizzle-orm';
 import * as v from 'valibot';
@@ -140,6 +142,23 @@ export const list_videos = query(list_videos_schema, async (input) => {
 		page_size,
 		total_pages: Math.max(1, Math.ceil(total / page_size))
 	};
+});
+
+// Whether captions can be downloaded, and how far the caption backlog has got
+export const get_youtube_status = query(async () => {
+	await assert_admin();
+	const [connection, [counts]] = await Promise.all([
+		get_youtube_connection(),
+		db
+			.select({
+				videos: sql<number>`count(*)::int`,
+				with_captions: sql<number>`count(${transcript.id})::int`
+			})
+			.from(content)
+			.leftJoin(transcript, eq(transcript.content_id, content.id))
+			.where(and(eq(content.type, 'VIDEO'), eq(content.status, 'PUBLISHED')))
+	]);
+	return { connection, videos: counts?.videos ?? 0, with_captions: counts?.with_captions ?? 0 };
 });
 
 export const get_remote_playlists = query(async () => {

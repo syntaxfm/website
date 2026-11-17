@@ -9,7 +9,6 @@ export const variables = defineEnvVars({
 	YOUTUBE_API_KEY: { schema: optional },
 	YOUTUBE_CLIENT_ID: { schema: optional },
 	YOUTUBE_CLIENT_SECRET: { schema: optional },
-	YOUTUBE_REFRESH_TOKEN: { schema: optional },
 	FIRECRAWL_API_KEY: { schema: optional },
 	XAI_API_KEY: { schema: optional },
 	POSTGRES_DATABASE_URL: { schema: optional },

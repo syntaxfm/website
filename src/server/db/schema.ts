@@ -617,3 +617,22 @@ export const seo_snapshot = pgTable(
 	},
 	(table) => [index('seo_snapshots_taken_at_idx').on(table.taken_at)]
 );
+
+// ============================================================================
+// OAUTH CONNECTIONS
+// ============================================================================
+
+// Accounts an admin connected so scheduled jobs can act as them: 'youtube' is the Syntax channel's
+// owner, for downloading captions (src/server/video/youtube_owner.ts). Written when an admin signs
+// in through Connect YouTube; the refresh token never leaves the server.
+export const oauth_connection = pgTable('oauth_connections', {
+	provider: varchar('provider', { length: 32 }).primaryKey(),
+	refresh_token: text('refresh_token').notNull(),
+	// What the sign-in was for, e.g. the YouTube channel's name, to show in admin
+	account_name: text('account_name'),
+	connected_by: uuid('connected_by').references(() => profile.id, { onDelete: 'set null' }),
+	connected_at: timestamp('connected_at', { withTimezone: true }).notNull(),
+	// Set when the provider refuses the refresh token (expired or revoked); cleared on reconnect
+	failed_at: timestamp('failed_at', { withTimezone: true }),
+	failure: text('failure')
+});
