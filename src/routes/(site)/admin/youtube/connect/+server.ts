@@ -14,5 +14,8 @@ export const GET = async function connect_youtube({ url, cookies }) {
 		sameSite: 'lax',
 		maxAge: 60 * 10
 	});
-	redirect(303, get_youtube_consent_url(`${url.origin}/admin/youtube/callback`, state));
+	// SvelteKit only redirects off-site to origins it's told about
+	redirect(303, get_youtube_consent_url(`${url.origin}/admin/youtube/callback`, state), {
+		external: ['https://accounts.google.com']
+	});
 };
