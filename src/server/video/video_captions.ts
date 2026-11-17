@@ -98,13 +98,41 @@ export function pick_caption_track(list: unknown): string | null {
 	return track ? as_string(read_path(track, ['id'])) : null;
 }
 
-async function fetch_caption_passages(video_id: string): Promise<CaptionPassage[]> {
-	const token = await get_youtube_owner_token();
+// The video's captions as SRT, or null when it has no English track
+async function fetch_caption_srt(video_id: string, token: string): Promise<string | null> {
 	const list = await youtube_get('captions', { part: 'snippet', videoId: video_id }, token);
 	const track_id = pick_caption_track(await list.json());
-	if (!track_id) return [];
+	if (!track_id) return null;
 	const download = await youtube_get(`captions/${track_id}`, { tfmt: 'srt' }, token);
-	return cues_to_passages(parse_srt(await download.text()));
+	return download.text();
+}
+
+async function fetch_caption_passages(video_id: string): Promise<CaptionPassage[]> {
+	const srt = await fetch_caption_srt(video_id, await get_youtube_owner_token());
+	return srt ? cues_to_passages(parse_srt(srt)) : [];
+}
+
+/**
+ * Connect YouTube's check: downloads the newest video's captions with the new sign-in, since
+ * that's the one thing it's for. YouTube only lets some channel roles do it.
+ */
+export async function check_caption_access(access_token: string): Promise<void> {
+	const [newest] = await db
+		.select({ youtube_id: video.id })
+		.from(content)
+		.innerJoin(video, eq(video.content_id, content.id))
+		.where(and(eq(content.type, 'VIDEO'), eq(content.status, 'PUBLISHED')))
+		.orderBy(desc(content.published_at))
+		.limit(1);
+	if (!newest) return;
+	try {
+		await fetch_caption_srt(newest.youtube_id, access_token);
+	} catch (download_error) {
+		console.error('Connect YouTube: caption check failed', download_error);
+		throw new Error(
+			'That account can’t download Syntax’s captions. YouTube only allows it for the channel’s owner.'
+		);
+	}
 }
 
 // The newest published video still without a transcript

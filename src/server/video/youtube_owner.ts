@@ -82,35 +82,36 @@ export function get_youtube_consent_url(redirect_uri: string, state: string): st
 }
 
 /**
- * Finishes Connect YouTube: trades Google's code for tokens, checks the account owns the Syntax
- * channel, and saves the refresh token. Throws with a message for the admin when it can't.
+ * Connect YouTube, step 1: trades Google's code for an access token (to check the account can
+ * download Syntax's captions) and the refresh token to keep.
  */
-export async function save_youtube_connection(
-	code: string,
-	redirect_uri: string,
-	profile_id: string | null
-): Promise<{ account_name: string }> {
+export async function exchange_youtube_code(code: string, redirect_uri: string) {
 	const exchange = await post_token({ code, redirect_uri, grant_type: 'authorization_code' });
 	const access_token = as_string(read_path(exchange.body, ['access_token']));
 	const refresh_token = as_string(read_path(exchange.body, ['refresh_token']));
 	if (!exchange.ok || !access_token || !refresh_token) {
 		throw new Error(`Google didn't finish the sign-in (${exchange.error ?? 'no refresh token'})`);
 	}
+	return { access_token, refresh_token };
+}
 
+// The name of the account's own channel, if it has one, to show in admin
+export async function get_signed_in_channel_name(access_token: string): Promise<string | null> {
 	const channels = await fetch(
 		'https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true',
 		{ headers: { authorization: `Bearer ${access_token}` } }
 	).then((response) => response.json() as Promise<unknown>);
-	const channel = as_array(read_path(channels, ['items'])).find(
-		(item) => as_string(read_path(item, ['id'])) === YOUTUBE_CHANNEL_ID
-	);
-	if (!channel) {
-		throw new Error(
-			'That Google account doesn’t manage the Syntax channel. Pick the Syntax channel when Google asks.'
-		);
-	}
-	const account_name = as_string(read_path(channel, ['snippet', 'title'])) ?? 'Syntax';
+	const items = as_array(read_path(channels, ['items']));
+	const syntax = items.find((item) => as_string(read_path(item, ['id'])) === YOUTUBE_CHANNEL_ID);
+	return as_string(read_path(syntax ?? items[0], ['snippet', 'title']));
+}
 
+/** Connect YouTube, step 2: keeps the refresh token once the account has proved it can download. */
+export async function save_youtube_connection(
+	refresh_token: string,
+	account_name: string | null,
+	profile_id: string | null
+): Promise<void> {
 	const now = new Date();
 	await db
 		.insert(oauth_connection)
@@ -133,7 +134,6 @@ export async function save_youtube_connection(
 			}
 		});
 	cached = null;
-	return { account_name };
 }
 
 export async function get_youtube_owner_token(): Promise<string> {
