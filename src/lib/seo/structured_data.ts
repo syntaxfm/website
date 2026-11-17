@@ -150,6 +150,50 @@ export function podcast_episode_schema(show: EpisodeSchemaShow, site_url: string
 	};
 }
 
+export type VideoSchemaVideo = {
+	youtube_id: string;
+	slug: string;
+	title: string;
+	description: string;
+	thumbnail: string;
+	published_at: DateValue;
+	duration: string | null;
+	view_count: number | null;
+	tags: { name: string; slug: string | null }[];
+};
+
+/** A video page: the video itself, so Google can show it in video results. */
+export function video_object_schema(video: VideoSchemaVideo, site_url: string): JsonLd {
+	const url = `${site_url}/videos/${video.slug}`;
+	const tags = video.tags.flatMap((tag) =>
+		tag.slug ? [{ '@type': 'Thing', name: tag.name, url: `${site_url}/tags/${tag.slug}` }] : []
+	);
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'VideoObject',
+		'@id': `${url}#video`,
+		url,
+		name: video.title,
+		description: video.description || video.title,
+		thumbnailUrl: video.thumbnail,
+		uploadDate: new Date(video.published_at).toISOString(),
+		duration: video.duration ?? undefined,
+		embedUrl: `https://www.youtube.com/embed/${video.youtube_id}`,
+		contentUrl: `https://www.youtube.com/watch?v=${video.youtube_id}`,
+		inLanguage: 'en',
+		interactionStatistic:
+			video.view_count === null
+				? undefined
+				: {
+						'@type': 'InteractionCounter',
+						interactionType: { '@type': 'WatchAction' },
+						userInteractionCount: video.view_count
+					},
+		about: tags.length > 0 ? tags : undefined,
+		publisher: { '@type': 'Organization', name: 'Syntax', url: site_url }
+	};
+}
+
 // An episode as a list entry or a mention: just enough to name it and find its page
 export type EpisodeReference = { number: number; title: string; slug: string };
 

@@ -19,8 +19,14 @@
 <!-- TODO make this if item type === show, swag social ect -->
 {#if content.type === 'PODCAST'}
 	<FeedItemPodcast show={content.show} {content} />
-{:else if content.type === 'VIDEO'}
-	<FeedItemVideo video={content.video} published_at={content.published_at} />
+{:else if content.type === 'VIDEO' && content.video}
+	<FeedItemVideo
+		youtube_id={content.video.id}
+		title={content.title}
+		slug={content.slug}
+		published_at={content.published_at}
+		tags={content.tags}
+	/>
 {:else if content.type === 'NEWSLETTER' && content.newsletter_issue}
 	<FeedItemNewsletter
 		title={content.title}

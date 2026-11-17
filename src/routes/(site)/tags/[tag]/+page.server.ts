@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	const description = topic_description(
 		tag.name,
 		{ episodes: episodes.length, videos: items.filter((item) => item.type === 'VIDEO').length },
-		latest?.show?.title ?? latest?.video?.title ?? null
+		latest?.show?.title ?? (latest?.type === 'VIDEO' ? latest.title : null) ?? null
 	);
 	const canonical = `${url.origin}/tags/${params.tag}`;
 

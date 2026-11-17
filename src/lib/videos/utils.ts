@@ -103,11 +103,12 @@ export function get_embed_url_from_url(url: string) {
 
 /**
  * The embed url for the plain YouTube iframe, which plays on its own, apart from the site's player.
- * `muted` is what lets a browser start it without a click.
+ * `muted` is what lets a browser start it without a click; `start` is in seconds.
  */
-export function get_autoplay_embed_url_from_id(id: string, { muted = false } = {}) {
+export function get_autoplay_embed_url_from_id(id: string, { muted = false, start = 0 } = {}) {
 	const search_params = new URLSearchParams({ autoplay: '1', playsinline: '1', rel: '0' });
 	if (muted) search_params.set('mute', '1');
+	if (start > 0) search_params.set('start', String(Math.floor(start)));
 	return `https://www.youtube-nocookie.com/embed/${id}?${search_params.toString()}`;
 }
 

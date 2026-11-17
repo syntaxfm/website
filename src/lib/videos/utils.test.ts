@@ -40,6 +40,12 @@ describe('get_autoplay_embed_url_from_id', () => {
 		);
 	});
 
+	it('starts at a chapter or transcript time', () => {
+		expect(get_autoplay_embed_url_from_id('dj6tUUTDXAo', { start: 135.6 })).toBe(
+			'https://www.youtube-nocookie.com/embed/dj6tUUTDXAo?autoplay=1&playsinline=1&rel=0&start=135'
+		);
+	});
+
 	it('is muted when it starts by itself', () => {
 		expect(get_autoplay_embed_url_from_id('dj6tUUTDXAo', { muted: true })).toBe(
 			'https://www.youtube-nocookie.com/embed/dj6tUUTDXAo?autoplay=1&playsinline=1&rel=0&mute=1'
