@@ -1,3 +1,6 @@
+// YouTube's API doesn't say what is a Short. They can run up to 3 minutes.
+export const SHORT_MAX_SECONDS = 3 * 60;
+
 // YouTube's WebP thumbnails are about half the bytes of its JPEGs (1280 wide: 87 KB vs 202 KB).
 const YOUTUBE_THUMBNAIL_BASE = 'https://i.ytimg.com/vi_webp';
 

@@ -226,10 +226,13 @@ export const transcript = pgTable(
 	'transcripts',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
+		// Episodes find their transcript by show number; videos only have content_id
 		show_number: integer('show_number')
-			.notNull()
 			.unique()
 			.references(() => show.number, { onDelete: 'cascade' }),
+		content_id: uuid('content_id')
+			.unique()
+			.references(() => content.id, { onDelete: 'cascade' }),
 		// Migration tracking for incremental sync
 		pg_migrated_at: timestamp('pg_migrated_at', { withTimezone: true })
 	},
@@ -384,6 +387,9 @@ export const video = pgTable(
 		url: text('url').notNull(),
 		thumbnail: text('thumbnail').notNull(),
 		published_at: timestamp('published_at', { withTimezone: true }).notNull(),
+		// From YouTube on each sync; null for rows from the old playlist importer until resynced
+		duration_seconds: integer('duration_seconds'),
+		view_count: integer('view_count'),
 		content_id: uuid('content_id').references(() => content.id, { onDelete: 'cascade' }) // nullable until migration complete, no unique constraint yet
 	},
 	(table) => [

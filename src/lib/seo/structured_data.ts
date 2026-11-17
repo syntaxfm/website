@@ -22,7 +22,7 @@ export type EpisodeSchemaShow = {
 		tags: { tag: { name: string; slug: string | null } }[];
 	} | null;
 	// Present once the episode has a transcript
-	transcript?: { show_number: number } | null;
+	transcript?: { show_number: number | null } | null;
 };
 
 function series_id(site_url: string): string {

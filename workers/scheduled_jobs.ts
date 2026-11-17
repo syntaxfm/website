@@ -2,6 +2,7 @@
 // a service binding, to run one job:
 // - every 20 minutes: transcribe the newest released episode without a transcript
 // - Mondays: take the weekly SEO snapshot
+// - hourly: copy new YouTube videos into the site (the whole channel once a day)
 // It never throws, so Cloudflare never retries a run (a retry could pay Grok or Firecrawl twice).
 
 // alchemy.run.ts binds WEBSITE to the website Worker (Alchemy types a Worker binding as the
@@ -12,6 +13,7 @@ type Env = {
 	WEBSITE_URL: string;
 	TRANSCRIPT_SCHEDULE: string;
 	SEO_SCHEDULE: string;
+	VIDEO_SCHEDULE: string;
 	CRON_SECRET?: string;
 };
 
@@ -19,7 +21,8 @@ export default {
 	async scheduled(controller: { cron: string }, env: Env) {
 		const jobs: Record<string, string> = {
 			[env.TRANSCRIPT_SCHEDULE]: '/webhooks/transcripts',
-			[env.SEO_SCHEDULE]: '/webhooks/seo'
+			[env.SEO_SCHEDULE]: '/webhooks/seo',
+			[env.VIDEO_SCHEDULE]: '/webhooks/videos'
 		};
 		const path = jobs[controller.cron];
 		if (!path) {

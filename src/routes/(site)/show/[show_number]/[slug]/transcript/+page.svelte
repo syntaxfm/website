@@ -22,7 +22,7 @@
 	<Transcript
 		{show}
 		ai_show_note={show.aiShowNote}
-		{transcript}
+		transcript={{ ...transcript, show_number: show.number }}
 		people_on_show={people_on_show(
 			show.hosts.flatMap(({ profile }) => profile.name ?? []),
 			show.guests.map(({ guest }) => guest.name)

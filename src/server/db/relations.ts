@@ -152,6 +152,10 @@ export const transcriptRelations = relations(transcript, ({ one, many }) => ({
 		fields: [transcript.show_number],
 		references: [show.number]
 	}),
+	content: one(content, {
+		fields: [transcript.content_id],
+		references: [content.id]
+	}),
 	utterances: many(transcriptUtterance),
 	showGuests: many(showGuest)
 }));
@@ -254,6 +258,10 @@ export const contentRelations = relations(content, ({ one, many }) => ({
 	video: one(video, {
 		fields: [content.id],
 		references: [video.content_id]
+	}),
+	transcript: one(transcript, {
+		fields: [content.id],
+		references: [transcript.content_id]
 	}),
 	newsletter_issue: one(newsletter_issue, {
 		fields: [content.id],

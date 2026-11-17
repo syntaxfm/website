@@ -54,3 +54,5 @@ export const PER_PAGE = 10;
 
 // Youtube
 export const YOUTUBE_CHANNEL_ID = 'UCyU5wkjgQYGRB0hIHMwm2Sg';
+// Every public upload on the channel, newest first
+export const YOUTUBE_UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID.replace(/^UC/, 'UU');

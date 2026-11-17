@@ -1,16 +1,13 @@
 import { YOUTUBE_API_KEY } from '$app/env/private';
-import { YOUTUBE_CHANNEL_ID } from '$const';
+import { YOUTUBE_CHANNEL_ID, YOUTUBE_UPLOADS_PLAYLIST_ID } from '$const';
 import { edge_cached } from '$server/edge_cache';
-import { get_seconds_from_iso_duration } from '#lib/videos/utils.ts';
+import { get_seconds_from_iso_duration, SHORT_MAX_SECONDS } from '#lib/videos/utils.ts';
 
 // The video in Home's hero: the live stream while Syntax is live, otherwise the newest thing the
 // channel put out that isn't a Short. Read straight from YouTube, so it covers episodes, live
 // stream replays and the videos that never become an episode.
 
 const CACHE_TTL_MS = 60 * 1000;
-const UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID.replace(/^UC/, 'UU');
-// YouTube's API doesn't say what is a Short. They can run up to 3 minutes.
-const SHORT_MAX_SECONDS = 3 * 60;
 
 type Fetcher = typeof globalThis.fetch;
 
@@ -129,7 +126,7 @@ async function fetch_youtube_hero_video(fetcher: Fetcher): Promise<YouTubeHeroVi
 	const playlist_url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
 	playlist_url.search = new URLSearchParams({
 		part: 'contentDetails',
-		playlistId: UPLOADS_PLAYLIST_ID,
+		playlistId: YOUTUBE_UPLOADS_PLAYLIST_ID,
 		maxResults: '50',
 		key: YOUTUBE_API_KEY
 	}).toString();

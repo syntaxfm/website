@@ -35,10 +35,18 @@ export const load: PageServerLoad = async () => {
 		])
 	);
 
+	// Episode transcripts only; video transcripts have no show
 	return {
-		transcripts: transcript_rows.map((transcript_item) => ({
-			...transcript_item,
-			utterance_count: utterance_counts_by_id.get(transcript_item.id) ?? 0
-		}))
+		transcripts: transcript_rows.flatMap(({ show, ...transcript_item }) =>
+			show
+				? [
+						{
+							...transcript_item,
+							show,
+							utterance_count: utterance_counts_by_id.get(transcript_item.id) ?? 0
+						}
+					]
+				: []
+		)
 	};
 };
