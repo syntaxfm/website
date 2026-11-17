@@ -64,6 +64,13 @@
       "when": 1794953138682,
       "tag": "0008_drop_playlists",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794956644964,
+      "tag": "0009_drop_show_videos",
+      "breakpoints": true
     }
   ]
 }

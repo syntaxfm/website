@@ -399,23 +399,6 @@ export const video = pgTable(
 	]
 );
 
-export const showVideo = pgTable(
-	'show_videos',
-	{
-		show_id: text('show_id')
-			.notNull()
-			.references(() => show.id, { onDelete: 'cascade' }),
-		video_id: text('video_id')
-			.notNull()
-			.references(() => video.id, { onDelete: 'cascade' })
-	},
-	(table) => [
-		primaryKey({ columns: [table.show_id, table.video_id] }),
-		index('show_videos_show_id_idx').on(table.show_id),
-		index('show_videos_video_id_idx').on(table.video_id)
-	]
-);
-
 // ============================================================================
 // USER SUBMISSION TABLE
 // ============================================================================

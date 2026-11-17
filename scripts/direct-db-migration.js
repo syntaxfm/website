@@ -66,7 +66,6 @@ const DEFAULT_MIGRATION_ORDER = [
 	'Transcript',
 	'AiShowNote',
 	'SocialLink',
-	'ShowVideo',
 	// Level 2: Depends on Level 1
 	'TranscriptUtterance',
 	'AiSummaryEntry',
@@ -216,10 +215,6 @@ const COLUMN_MAPPING = {
 		thumbnail: 'thumbnail',
 		published_at: 'published_at'
 	},
-	ShowVideo: {
-		showId: 'show_id',
-		videoId: 'video_id'
-	},
 	UserSubmission: {
 		id: 'id',
 		name: 'name',
@@ -262,7 +257,6 @@ const TABLE_NAME_MAPPING = {
 	AiGuest: 'ai_guests',
 	Topic: 'topics',
 	Video: 'videos',
-	ShowVideo: 'show_videos',
 	UserSubmission: 'user_submissions',
 	Tag: 'tags',
 	ContentTag: 'content_tags'

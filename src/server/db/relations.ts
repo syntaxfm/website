@@ -16,7 +16,6 @@ import {
 	show,
 	showGuest,
 	showToProfile,
-	showVideo,
 	socialLink,
 	tag,
 	topic,
@@ -104,7 +103,6 @@ export const showRelations = relations(show, ({ one, many }) => ({
 	}),
 	guests: many(showGuest),
 	hosts: many(showToProfile),
-	videos: many(showVideo),
 	transcript: one(transcript, {
 		fields: [show.number],
 		references: [transcript.show_number]
@@ -174,25 +172,13 @@ export const transcriptUtteranceWordRelations = relations(transcriptUtteranceWor
 }));
 
 // ============================================================================
-// VIDEO & PLAYLIST RELATIONS
+// VIDEO RELATIONS
 // ============================================================================
 
-export const videoRelations = relations(video, ({ one, many }) => ({
+export const videoRelations = relations(video, ({ one }) => ({
 	meta: one(content, {
 		fields: [video.content_id],
 		references: [content.id]
-	}),
-	shows: many(showVideo)
-}));
-
-export const showVideoRelations = relations(showVideo, ({ one }) => ({
-	show: one(show, {
-		fields: [showVideo.show_id],
-		references: [show.id]
-	}),
-	video: one(video, {
-		fields: [showVideo.video_id],
-		references: [video.id]
 	})
 }));
 

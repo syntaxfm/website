@@ -24,7 +24,6 @@
 		get_show_editor,
 		search_guests,
 		search_users_for_host,
-		search_videos,
 		sync_spotify_for_show,
 		update_ai_guest,
 		update_ai_show_note,
@@ -42,13 +41,6 @@
 		id: string;
 		name: string;
 		name_slug: string;
-	}
-
-	interface VideoItem {
-		id: string;
-		title: string;
-		slug: string;
-		url: string;
 	}
 
 	interface TagOption {
@@ -74,14 +66,12 @@
 		youtube_url: string | null;
 		host_ids?: string[];
 		guest_ids?: string[];
-		video_ids?: string[];
 		tag_ids?: string[];
 	}
 
 	type ShowRelationshipUpdate =
 		| { relationship: 'guests'; ids: string[] }
 		| { relationship: 'hosts'; ids: string[] }
-		| { relationship: 'videos'; ids: string[] }
 		| { relationship: 'tags'; ids: string[] };
 
 	interface AiSummaryEntryRow {
@@ -134,18 +124,8 @@
 		])
 	);
 
-	const initial_video_lookup = Object.fromEntries(
-		(show?.videos ?? []).map((show_video: { video: VideoItem }) => [
-			show_video.video.id,
-			show_video.video
-		])
-	);
-
 	const initial_selected_guest_ids = (show?.guests ?? []).map(
 		(show_guest: { guest_id: string }) => show_guest.guest_id
-	);
-	const initial_selected_video_ids = (show?.videos ?? []).map(
-		(show_video: { video_id: string }) => show_video.video_id
 	);
 	const initial_selected_tag_ids =
 		show?.meta?.tags.map((content_tag: { tag: { id: string } }) => content_tag.tag.id) ?? [];
@@ -162,17 +142,13 @@
 	let youtube_url = $state(show?.youtube_url ?? '');
 
 	let selected_guest_ids = $state<string[]>([...initial_selected_guest_ids]);
-	let selected_video_ids = $state<string[]>([...initial_selected_video_ids]);
 	let selected_tag_ids = $state<string[]>([...initial_selected_tag_ids]);
 
 	let guest_lookup = $state<Record<string, GuestItem>>(initial_guest_lookup);
-	let video_lookup = $state<Record<string, VideoItem>>(initial_video_lookup);
 
 	let guest_search_text = $state('');
-	let video_search_text = $state('');
 	let host_search_text = $state('');
 	let guest_search_results = $state<GuestItem[]>([]);
-	let video_search_results = $state<VideoItem[]>([]);
 	let host_search_results = $state<HostUser[]>([]);
 
 	let attached_hosts = $state<HostUser[]>(
@@ -231,7 +207,6 @@
 
 	let syncing_spotify = $state(false);
 	let is_searching_guests = $state(false);
-	let is_searching_videos = $state(false);
 	let is_searching_hosts = $state(false);
 	let ai_busy = $state(false);
 
@@ -284,24 +259,6 @@
 		save_immediately({ relationship: 'guests', ids: selected_guest_ids });
 	}
 
-	function add_video(video: VideoItem) {
-		if (selected_video_ids.includes(video.id)) {
-			return;
-		}
-
-		video_lookup = {
-			...video_lookup,
-			[video.id]: video
-		};
-		selected_video_ids = [...selected_video_ids, video.id];
-		save_immediately({ relationship: 'videos', ids: selected_video_ids });
-	}
-
-	function remove_video(video_id: string) {
-		selected_video_ids = selected_video_ids.filter((id) => id !== video_id);
-		save_immediately({ relationship: 'videos', ids: selected_video_ids });
-	}
-
 	async function run_guest_search() {
 		if (!show) {
 			return;
@@ -329,34 +286,6 @@
 		}
 	}
 
-	async function run_video_search() {
-		if (!show) {
-			return;
-		}
-
-		is_searching_videos = true;
-		clear_feedback();
-
-		try {
-			const result = await search_videos({
-				search_text: video_search_text.trim() || undefined,
-				limit: 30
-			});
-			video_search_results = result;
-			for (const video_item of result) {
-				video_lookup = {
-					...video_lookup,
-					[video_item.id]: video_item
-				};
-			}
-		} catch (error) {
-			console.error(error);
-			status_error = 'Unable to search videos.';
-		} finally {
-			is_searching_videos = false;
-		}
-	}
-
 	function create_show_editor_payload(
 		relationship_update?: ShowRelationshipUpdate
 	): ShowEditorPayload | null {
@@ -380,8 +309,6 @@
 				return { ...payload, guest_ids: [...relationship_update.ids] };
 			case 'hosts':
 				return { ...payload, host_ids: [...relationship_update.ids] };
-			case 'videos':
-				return { ...payload, video_ids: [...relationship_update.ids] };
 			case 'tags':
 				return { ...payload, tag_ids: [...relationship_update.ids] };
 			default:
@@ -1191,65 +1118,6 @@
 						{syncing_spotify ? 'Syncing Spotify…' : 'Sync Spotify'}
 					</button>
 				</div>
-
-				<h3>Videos</h3>
-				<div class="admin-field">
-					<label for="video-search">Find video</label>
-					<div class="admin-control-row">
-						<input
-							id="video-search"
-							type="search"
-							bind:value={video_search_text}
-							onkeydown={(event) => {
-								if (event.key === 'Enter') {
-									event.preventDefault();
-									void run_video_search();
-								}
-							}}
-						/>
-						<button
-							type="button"
-							data-intent="quiet"
-							onclick={run_video_search}
-							disabled={is_searching_videos}
-						>
-							{is_searching_videos ? 'Searching…' : 'Search'}
-						</button>
-					</div>
-				</div>
-
-				{#if video_search_results.length > 0}
-					<ul class="no-list stack" aria-label="Video search results">
-						{#each video_search_results as video_item (video_item.id)}
-							<li class="admin-control-row">
-								<span>{video_item.title} /{video_item.slug}</span>
-								<button
-									type="button"
-									data-intent="primary"
-									onclick={() => add_video(video_item)}
-									disabled={selected_video_ids.includes(video_item.id)}
-								>
-									{selected_video_ids.includes(video_item.id) ? 'Added' : 'Add'}
-								</button>
-							</li>
-						{/each}
-					</ul>
-				{/if}
-
-				{#if selected_video_ids.length === 0}
-					<p class="admin-feedback">No videos selected.</p>
-				{:else}
-					<ul class="no-list stack" aria-label="Selected videos">
-						{#each selected_video_ids as video_id (video_id)}
-							<li class="admin-control-row">
-								<span>{video_lookup[video_id]?.title ?? video_id}</span>
-								<button type="button" data-intent="quiet" onclick={() => remove_video(video_id)}
-									>Remove</button
-								>
-							</li>
-						{/each}
-					</ul>
-				{/if}
 			</section>
 		</form>
 

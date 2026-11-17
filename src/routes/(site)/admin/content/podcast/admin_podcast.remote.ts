@@ -17,13 +17,11 @@ import {
 	show,
 	showGuest,
 	showToProfile,
-	showVideo,
 	socialLink,
 	topic,
 	transcript,
 	transcriptUtterance,
-	transcriptUtteranceWord,
-	video
+	transcriptUtteranceWord
 } from '$server/db/schema';
 import {
 	syncAllEpisodesSpotifyData,
@@ -73,7 +71,6 @@ const update_show_editor_schema = v.object({
 	youtube_url: v.optional(v.nullable(v.string())),
 	host_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
 	guest_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
-	video_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
 	tag_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1))))
 });
 
@@ -92,12 +89,6 @@ const show_number_schema = v.object({ show_number: v.number() });
 const guest_search_schema = v.object({ search_text: v.optional(v.string()) });
 const show_guest_schema = v.object({ show_id: v.string(), guest_id: v.string() });
 
-const video_search_schema = v.object({
-	search_text: v.optional(v.string()),
-	limit: v.optional(v.number())
-});
-
-const show_video_schema = v.object({ show_id: v.string(), video_id: v.string() });
 const user_search_schema = v.object({ search_text: v.optional(v.string()) });
 const show_host_schema = v.object({ show_id: v.string(), user_id: v.string() });
 
@@ -377,15 +368,6 @@ export const get_show_editor = query(v.number(), async (show_number) => {
 					profile: true
 				}
 			},
-			videos: {
-				with: {
-					video: {
-						with: {
-							meta: true
-						}
-					}
-				}
-			},
 			transcript: {
 				columns: {
 					id: true
@@ -587,20 +569,6 @@ export const update_show_editor = command(update_show_editor_schema, async (inpu
 			}
 		}
 
-		if (input.video_ids !== undefined) {
-			const video_ids = [...new Set(input.video_ids)].sort();
-
-			await tx.delete(showVideo).where(eq(showVideo.show_id, existing_show.id));
-			if (video_ids.length > 0) {
-				await tx.insert(showVideo).values(
-					video_ids.map((video_id) => ({
-						show_id: existing_show.id,
-						video_id
-					}))
-				);
-			}
-		}
-
 		if (input.tag_ids !== undefined && content_id) {
 			const tag_ids = [...new Set(input.tag_ids)].sort();
 
@@ -680,46 +648,6 @@ export const remove_show_guest = command(show_guest_schema, async ({ show_id, gu
 	await db
 		.delete(showGuest)
 		.where(and(eq(showGuest.show_id, show_id), eq(showGuest.guest_id, guest_id)));
-
-	return { success: true };
-});
-
-export const search_videos = query(video_search_schema, async ({ search_text, limit }) => {
-	await assert_admin();
-
-	const normalized_search = search_text?.trim() || '';
-	const max_results = Math.min(100, Math.max(1, limit || 25));
-
-	return db.query.video.findMany({
-		where: normalized_search ? ilike(video.title, `%${normalized_search}%`) : undefined,
-		with: {
-			meta: true
-		},
-		orderBy: (video_item, { desc }) => [desc(video_item.published_at)],
-		limit: max_results
-	});
-});
-
-export const add_show_video = command(show_video_schema, async ({ show_id, video_id }) => {
-	await assert_admin();
-
-	await db
-		.insert(showVideo)
-		.values({
-			show_id,
-			video_id
-		})
-		.onConflictDoNothing();
-
-	return { success: true };
-});
-
-export const remove_show_video = command(show_video_schema, async ({ show_id, video_id }) => {
-	await assert_admin();
-
-	await db
-		.delete(showVideo)
-		.where(and(eq(showVideo.show_id, show_id), eq(showVideo.video_id, video_id)));
 
 	return { success: true };
 });
