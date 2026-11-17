@@ -58,6 +58,14 @@ export async function import_or_update_all_changed_shows() {
 	try {
 		// Filter only .md files
 		const md_files = await import_all_md_files_from_glob();
+		// Every show's hash in one query: the cron Worker runs this hourly, and asking per file was
+		// over a thousand round trips to find nothing changed
+		const saved_hashes = new Map(
+			(await db.select({ number: show.number, hash: show.hash }).from(show)).map((row) => [
+				row.number,
+				row.hash
+			])
+		);
 
 		// Read and process each .md file
 		for (const md_file_path in md_files) {
@@ -73,20 +81,11 @@ export async function import_or_update_all_changed_shows() {
 				throw new Error(`Failed to import ${md_file_path}`, { cause: err });
 			}
 
-			const existing_show = await db.query.show.findFirst({
-				where: eq(show.number, number)
-			});
-
 			// If show doesn't exist or the hash has changed. Refresh
-			if (!existing_show || existing_show.hash !== hash) {
+			if (saved_hashes.get(number) !== hash) {
 				console.log(`Refreshing Show # ${number}`);
 				await parse_and_save_show_notes(md_file_contents, hash, number, md_file_path);
 				updated_shows.push(number);
-			} else {
-				console.log(`Skipping Show # ${number}`, {
-					existing_show: !!existing_show,
-					hash_changed: existing_show.hash !== hash
-				});
 			}
 		}
 	} catch (err) {
