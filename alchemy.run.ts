@@ -72,6 +72,10 @@ const state_store = Layer.unwrap(
 // connections time out). Looked up by name, so a deploy never needs the database password: the
 // connection was created by an earlier version of this stack and kept (RemovalPolicy.retain).
 // Changing its origin (a new host or password) is done on the Hyperdrive config in Cloudflare.
+// Its origin connection limit is 12 (set there 2026-11-17): the database allows 25 connections, and
+// at 60 Hyperdrive asked for more than exist, so pages failed right after each deploy. Keep it
+// below the database's limit (Hyperdrive's is soft). Connect on 5432, not PgBouncer's 6432:
+// Hyperdrive pools already, and PgBouncer doesn't keep prepared statements across transactions.
 const syntax_database = Cloudflare.Hyperdrive.lookup('SyntaxDatabase', {
 	name: 'syntaxwebsite-syntaxdatabase-beta-jaw3qpwy5oak63dt'
 });
