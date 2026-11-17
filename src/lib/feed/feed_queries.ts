@@ -1,4 +1,5 @@
-// Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo,
+// The Home feed is edge cached by this shape: bump HOME_FEED_CACHE_KEY in feed.remote.ts when it
+// changes. Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo,
 // FeedItemNewsletter).
 // Selecting whole rows sent show notes, search vectors and AI notes: 494 KB for the Home feed's
 // 100 cards, 2.1 MB for the 201 on #javascript.

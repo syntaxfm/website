@@ -16,17 +16,24 @@ import { feed_card_query } from './feed_queries';
 import { refresh_newsletter_issues_if_stale } from '$server/newsletter/issues';
 
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
+// A stale copy is served for up to a day, so change HOME_FEED_CACHE_KEY whenever feed_card_query
+// changes shape, or cards get yesterday's fields (video cards once rendered `undefined` ids).
+const HOME_FEED_CACHE_KEY = 'home-feed-2';
 export const get_feed_content = query(() =>
-	edge_cached('home-feed', { fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 }, async () => {
-		// Snack Pack issues are in the feed, and nothing else on the home page would notice a new one
-		await refresh_newsletter_issues_if_stale();
-		return db.query.content.findMany({
-			...feed_card_query,
-			where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
-			orderBy: (c, { desc }) => [desc(c.published_at)],
-			limit: 100
-		});
-	})
+	edge_cached(
+		HOME_FEED_CACHE_KEY,
+		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
+		async () => {
+			// Snack Pack issues are in the feed, and nothing else on the home page would notice a new one
+			await refresh_newsletter_issues_if_stale();
+			return db.query.content.findMany({
+				...feed_card_query,
+				where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
+				orderBy: (c, { desc }) => [desc(c.published_at)],
+				limit: 100
+			});
+		}
+	)
 );
 
 // The sidebar beside every feed and on show pages. Only what RankedItem renders, edge cached for
