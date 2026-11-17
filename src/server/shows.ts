@@ -136,12 +136,23 @@ async function parse_and_save_show_notes(
 		});
 
 		let content_id: string;
+		// Content slugs are unique across every type, and a YouTube video (src/server/video) can get
+		// there first with the same title. The show's own slug, which its URL uses, stays as it is.
+		const [slug_owner] = await db
+			.select({ id: content.id })
+			.from(content)
+			.where(eq(content.slug, show_slug))
+			.limit(1);
+		const content_slug =
+			slug_owner && slug_owner.id !== existing_show?.content_id
+				? `${show_slug}-${number}`
+				: show_slug;
 
 		if (existing_show?.content_id) {
 			// Update existing content
 			const update_data = {
 				title: data.title,
-				slug: show_slug,
+				slug: content_slug,
 				updated_at: new Date(),
 				published_at: date
 			};
@@ -153,7 +164,7 @@ async function parse_and_save_show_notes(
 				.insert(content)
 				.values({
 					title: data.title,
-					slug: show_slug,
+					slug: content_slug,
 					type: 'PODCAST',
 					status: 'PUBLISHED',
 					published_at: date
