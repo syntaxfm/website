@@ -15,8 +15,12 @@ export const SYNTAX_YOUTUBE_CHANNEL: YoutubeChannel = { id: YOUTUBE_CHANNEL_ID, 
 // The API's maximum per call. syntax.fm ranked for 604 keywords on 2026-11-15.
 export const RANKED_KEYWORD_LIMIT = 700;
 export const COMPETITOR_LIMIT = 10;
-// Google results checked per tracked search (2 credits per 10)
+// Google results checked live per tracked search (2 credits per 10). Past it, positions come free
+// from the ranked keywords, which go to GOOGLE_MAX_POSITION.
 export const GOOGLE_RESULT_DEPTH = 20;
+export const GOOGLE_MAX_POSITION = 100;
+// YouTube search returns one page of results, about this many
+export const YOUTUBE_MAX_POSITION = 20;
 
 // Searches checked on both Google and YouTube on every snapshot, chosen 2026-11-17 for the mission
 // "Videos and Podcasts about Development and AI Engineering". People search the topic, not

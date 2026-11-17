@@ -1,9 +1,19 @@
 <script lang="ts">
 	import type { StatTile } from './seo_charts';
-	import { format_change, format_count } from './seo_format';
+	import { format_change, format_count, format_percent, format_share_change } from './seo_format';
 	import Sparkline from './Sparkline.svelte';
 
 	let { tiles }: { tiles: StatTile[] } = $props();
+
+	function value_text(tile: StatTile): string {
+		return tile.format === 'percent' ? format_percent(tile.value) : format_count(tile.value);
+	}
+
+	function change_text(tile: StatTile): string {
+		const text =
+			tile.format === 'percent' ? format_share_change(tile.change) : format_change(tile.change);
+		return text || 'No change';
+	}
 </script>
 
 <dl class="stat-tiles">
@@ -11,9 +21,9 @@
 		{#if tile.value !== null}
 			<div class="stat-tile">
 				<dt>{tile.label}</dt>
-				<dd class="stat-value">{format_count(tile.value)}</dd>
+				<dd class="stat-value">{value_text(tile)}</dd>
 				{#if tile.change !== null}
-					<dd class="stat-change">{format_change(tile.change) || 'No change'}</dd>
+					<dd class="stat-change">{change_text(tile)}</dd>
 				{/if}
 				{#if tile.trend.length > 1}
 					<dd>

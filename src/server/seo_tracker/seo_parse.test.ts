@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest';
 import backlinks_fixture from './fixtures/backlinks_summary.json';
 import competitors_fixture from './fixtures/competitors.json';
 import google_fixture from './fixtures/google_organic.json';
+import difficulty_fixture from './fixtures/keyword_difficulty.json';
 import ranked_fixture from './fixtures/ranked_keywords.json';
+import volume_fixture from './fixtures/search_volume.json';
 import youtube_fixture from './fixtures/youtube_search.json';
 import {
 	google_result_site,
@@ -10,11 +12,29 @@ import {
 	parse_backlinks,
 	parse_competitors,
 	parse_google_search,
+	parse_keyword_difficulty,
 	parse_ranked_keywords,
+	parse_search_volume,
 	parse_youtube_search
 } from './seo_parse';
 
-// Fixtures are trimmed real Alexandria responses from 2026-11-15
+// Fixtures are trimmed real Alexandria responses from 2026-11-15 (search volume and difficulty
+// from 2026-11-17)
+
+describe('search demand', () => {
+	it('reads volume with its months oldest first', () => {
+		const ai_coding = parse_search_volume(volume_fixture).get('ai coding');
+		expect(ai_coding?.search_volume).toBe(60500);
+		expect(ai_coding?.monthly).toHaveLength(12);
+		// November 2025, then October 2026
+		expect(ai_coding?.monthly[0]).toBe(22200);
+		expect(ai_coding?.monthly.at(-1)).toBe(246000);
+	});
+
+	it('reads difficulty by keyword', () => {
+		expect(parse_keyword_difficulty(difficulty_fixture).get('ai coding')).toBe(29);
+	});
+});
 
 const SYNTAX_CHANNEL = { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' };
 

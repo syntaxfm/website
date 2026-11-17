@@ -1,0 +1,41 @@
+{
+	"version": "0.1.20261103",
+	"status_code": 20000,
+	"status_message": "Ok.",
+	"time": "0.5431 sec.",
+	"cost": 0.02328,
+	"tasks_count": 1,
+	"tasks_error": 0,
+	"tasks": [
+		{
+			"id": "11170115-3093-0392-0000-dfc77e8a9b91",
+			"status_code": 20000,
+			"status_message": "Ok.",
+			"time": "0.4406 sec.",
+			"cost": 0.02328,
+			"result_count": 1,
+			"path": ["v3", "dataforseo_labs", "google", "bulk_keyword_difficulty", "live"],
+			"result": [
+				{
+					"se_type": "google",
+					"location_code": 2840,
+					"language_code": "en",
+					"total_count": 94,
+					"items_count": 2,
+					"items": [
+						{
+							"se_type": "google",
+							"keyword": "web development podcast",
+							"keyword_difficulty": 0
+						},
+						{
+							"se_type": "google",
+							"keyword": "ai coding",
+							"keyword_difficulty": 29
+						}
+					]
+				}
+			]
+		}
+	]
+}

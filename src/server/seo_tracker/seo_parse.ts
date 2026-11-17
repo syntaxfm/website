@@ -16,14 +16,18 @@ const DATAFORSEO_OK = 20000;
 const TOP_LIST_LENGTH = 3;
 
 // DataForSEO wraps every answer in { status_code, tasks: [{ status_code, result: [...] }] }
-function read_dataforseo_result(data: unknown): Record<string, unknown> {
+function read_dataforseo_task(data: unknown): unknown {
 	const task = read_path(data, ['tasks', 0]);
 	const status_code = as_number(read_path(task, ['status_code']));
 	if (status_code !== DATAFORSEO_OK) {
 		const message = as_string(read_path(task, ['status_message'])) ?? 'no task in response';
 		throw new Error(`DataForSEO task failed (${status_code ?? 'no status'}): ${message}`);
 	}
-	const result = read_path(task, ['result', 0]);
+	return task;
+}
+
+function read_dataforseo_result(data: unknown): Record<string, unknown> {
+	const result = read_path(read_dataforseo_task(data), ['result', 0]);
 	if (!is_record(result)) throw new Error('DataForSEO task returned no result');
 	return result;
 }
@@ -159,6 +163,7 @@ export function parse_google_search(
 		search,
 		syntax_position: syntax_result ? as_number(read_path(syntax_result, ['rank_group'])) : null,
 		syntax_title: syntax_result ? as_string(read_path(syntax_result, ['title'])) : null,
+		syntax_url: syntax_result ? as_string(read_path(syntax_result, ['url'])) : null,
 		result_types: as_array(result.item_types).filter(
 			(type): type is string => typeof type === 'string'
 		),
@@ -167,6 +172,44 @@ export function parse_google_search(
 			.map(google_result_site)
 			.filter((site): site is string => site !== null)
 	};
+}
+
+export type SearchVolume = { search_volume: number | null; monthly: number[] };
+
+// keywords/search-volume: one row per keyword (not under result[0].items like the Labs calls),
+// with its monthly searches newest first
+export function parse_search_volume(data: unknown): Map<string, SearchVolume> {
+	const volumes = new Map<string, SearchVolume>();
+	for (const row of as_array(read_path(read_dataforseo_task(data), ['result']))) {
+		const keyword = as_string(read_path(row, ['keyword']));
+		if (keyword === null) continue;
+		const months = as_array(read_path(row, ['monthly_searches']))
+			.map((month) => ({
+				order:
+					(as_number(read_path(month, ['year'])) ?? 0) * 12 +
+					(as_number(read_path(month, ['month'])) ?? 0),
+				searches: count(read_path(month, ['search_volume']))
+			}))
+			.sort((a, b) => a.order - b.order);
+		volumes.set(keyword.toLowerCase(), {
+			search_volume: as_number(read_path(row, ['search_volume'])),
+			monthly: months.map((month) => month.searches)
+		});
+	}
+	return volumes;
+}
+
+// keywords/difficulty: 0 to 100 for each keyword
+export function parse_keyword_difficulty(data: unknown): Map<string, number> {
+	const result = read_dataforseo_result(data);
+	const difficulties = new Map<string, number>();
+	for (const item of as_array(result.items)) {
+		const keyword = as_string(read_path(item, ['keyword']));
+		const difficulty = as_number(read_path(item, ['keyword_difficulty']));
+		if (keyword !== null && difficulty !== null)
+			difficulties.set(keyword.toLowerCase(), difficulty);
+	}
+	return difficulties;
 }
 
 // Collab videos ("Syntax and Scott Tolinski") come back with no channel id, only the joint name

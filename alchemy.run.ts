@@ -118,18 +118,24 @@ const syntax_website = Cloudflare.Website.SvelteKit('SyntaxWebsite', website_pro
 
 export type SyntaxWebsiteEnv = Cloudflare.InferEnv<typeof syntax_website>;
 
-// Transcripts (src/routes/webhooks/transcripts): a small Worker whose cron asks the website for
-// one episode at a time. The SvelteKit Worker can't take a `scheduled` handler of its own.
-// CRON_SECRET is set on it like the website's secrets.
-const transcript_cron = Cloudflare.Worker('TranscriptCron', {
-	main: './workers/transcript_cron.ts',
+// The website's scheduled jobs: a small Worker whose crons ask the website to run them, since the
+// SvelteKit Worker can't take a `scheduled` handler of its own. CRON_SECRET is set on it like the
+// website's secrets. Transcripts (src/routes/webhooks/transcripts) one episode at a time; the SEO
+// snapshot (src/routes/webhooks/seo) Mondays at 14:00 UTC, 7am in Denver. Its id stays
+// TranscriptCron from when it only ran transcripts: a new id would be a new Worker without the secret.
+const TRANSCRIPT_SCHEDULE = '*/20 * * * *';
+const SEO_SCHEDULE = '0 14 * * 1';
+const scheduled_jobs = Cloudflare.Worker('TranscriptCron', {
+	main: './workers/scheduled_jobs.ts',
 	compatibility: { date: COMPATIBILITY.date },
-	crons: ['*/20 * * * *'],
+	crons: [TRANSCRIPT_SCHEDULE, SEO_SCHEDULE],
 	workersDev: false,
 	observability: { enabled: true },
 	env: {
 		WEBSITE: syntax_website,
-		WEBSITE_URL: `https://${BETA_DOMAIN}`
+		WEBSITE_URL: `https://${BETA_DOMAIN}`,
+		TRANSCRIPT_SCHEDULE,
+		SEO_SCHEDULE
 	}
 });
 
@@ -138,7 +144,7 @@ export default Alchemy.Stack(
 	{ providers: Cloudflare.providers(), state: state_store },
 	Effect.gen(function* () {
 		const website = yield* syntax_website;
-		yield* transcript_cron;
+		yield* scheduled_jobs;
 		return { url: website.url };
 	})
 );

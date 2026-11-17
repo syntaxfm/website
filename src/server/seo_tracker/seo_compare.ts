@@ -4,9 +4,15 @@ import type { RankedKeyword, SeoReport } from './seo_report';
 export const MIN_POSITION_MOVE = 3;
 // Rows per change list on the dashboard
 export const CHANGE_LIST_LIMIT = 20;
-// "Striking distance": already on page 1 or 2 but below the top 3, where a better page moves the
-// needle most
-export const OPPORTUNITY_POSITIONS = { from: 4, to: 20 } as const;
+// Changes are listed only for keywords Syntax held or reached within this position: the homepage
+// ranks #40–90 for things like song lyrics, and those come and go every week
+export const CHANGE_MAX_POSITION = 30;
+// "Striking distance": below the top 3 but within the first three pages, where a better page or
+// title moves the needle most
+export const OPPORTUNITY_POSITIONS = { from: 4, to: 30 } as const;
+// A tracked search counts toward niche visibility when Syntax is this high on Google (the first
+// two pages) or in YouTube's results
+export const VISIBLE_POSITION = 20;
 export const MIN_OPPORTUNITY_SEARCH_VOLUME = 20;
 export const OPPORTUNITY_LIMIT = 50;
 
@@ -57,7 +63,20 @@ function search_moves(
 	});
 }
 
-export function compare_reports(previous: SeoReport, current: SeoReport): SeoComparison {
+function is_worth_listing(move: KeywordMove, topic_names: readonly string[]): boolean {
+	const best = Math.min(move.from ?? Infinity, move.to ?? Infinity);
+	return best <= CHANGE_MAX_POSITION && is_on_topic(move.keyword, topic_names);
+}
+
+/**
+ * What changed between two snapshots.
+ * @param topic_names Syntax's topics and guests: keyword changes are listed only for these
+ */
+export function compare_reports(
+	previous: SeoReport,
+	current: SeoReport,
+	topic_names: readonly string[]
+): SeoComparison {
 	const previous_keywords = new Map(previous.keywords.map((keyword) => [keyword.keyword, keyword]));
 	const current_keywords = new Map(current.keywords.map((keyword) => [keyword.keyword, keyword]));
 
@@ -88,7 +107,11 @@ export function compare_reports(previous: SeoReport, current: SeoReport): SeoCom
 			url: keyword.url
 		}));
 
-	const top = (moves: KeywordMove[]) => moves.sort(by_search_volume).slice(0, CHANGE_LIST_LIMIT);
+	const top = (moves: KeywordMove[]) =>
+		moves
+			.filter((move) => is_worth_listing(move, topic_names))
+			.sort(by_search_volume)
+			.slice(0, CHANGE_LIST_LIMIT);
 
 	return {
 		keyword_count_change:
@@ -123,6 +146,31 @@ export function is_on_topic(keyword: string, topic_names: readonly string[]): bo
 		const topic = normalize_words(name);
 		return topic.trim().length > 0 && words.includes(topic);
 	});
+}
+
+// The share of the tracked searches' monthly volume where Syntax shows up (Google's first two
+// pages, or YouTube's results), 0 to 1. Null for snapshots without search volumes.
+export function niche_visibility(
+	report: Pick<SeoReport, 'google_searches' | 'youtube_searches' | 'demand'>
+): number | null {
+	if (!report.demand) return null;
+	const google = new Map(report.google_searches.map((check) => [check.search, check]));
+	const youtube = new Map(report.youtube_searches.map((check) => [check.search, check]));
+	const is_visible = (position: number | null | undefined) =>
+		position !== null && position !== undefined && position <= VISIBLE_POSITION;
+	let total = 0;
+	let visible = 0;
+	for (const { search, search_volume } of report.demand) {
+		const volume = search_volume ?? 0;
+		total += volume;
+		if (
+			is_visible(google.get(search)?.syntax_position) ||
+			is_visible(youtube.get(search)?.syntax_position)
+		) {
+			visible += volume;
+		}
+	}
+	return total > 0 ? visible / total : null;
 }
 
 export type Opportunities = {

@@ -1,55 +1,63 @@
 <script lang="ts">
-	import type { GoogleSearchCheck, YoutubeSearchCheck } from '$server/seo_tracker/seo_report';
-	import { position_percent } from './seo_charts';
-	import { format_position } from './seo_format';
+	import { position_percent, type TrackedPlacement, type TrackedRow } from './seo_charts';
+	import {
+		format_count,
+		format_page,
+		format_position,
+		format_volume,
+		format_volume_trend
+	} from './seo_format';
+	import PositionHistory from './PositionHistory.svelte';
 
-	// Each tracked search's position on Google and on YouTube, #1 on the left. Searches where
-	// Syntax isn't in the results get a hollow marker in the last column.
+	// Each tracked search's position on Google and on YouTube, #1 on the left on a log scale.
+	// Searches where Syntax isn't in the results get a hollow marker in the next column, and the
+	// last column shows positions across snapshots.
 
 	let {
-		google,
-		youtube,
+		rows,
 		max_position
-	}: { google: GoogleSearchCheck[]; youtube: YoutubeSearchCheck[]; max_position: number } =
-		$props();
+	}: { rows: TrackedRow[]; max_position: { google: number; youtube: number } } = $props();
 
-	const TICKS = [1, 3, 10, 20];
+	const TICKS = [1, 3, 10, 20, 50, 100];
+	// The track runs to Google's depth; YouTube results stop well before it
+	let track_max = $derived(max_position.google);
 
-	type Platform = { key: 'google' | 'youtube'; name: string; position: number | null };
+	type Platform = TrackedPlacement & { key: 'google' | 'youtube'; name: string; depth: number };
 
-	let rows = $derived.by(() => {
-		const youtube_by_search = new Map(youtube.map((check) => [check.search, check]));
-		const searches = [
-			...new Set([...google.map((check) => check.search), ...youtube.map((check) => check.search)])
-		];
-		const google_by_search = new Map(google.map((check) => [check.search, check]));
-		return searches.map((search) => {
+	let chart_rows = $derived(
+		rows.map((row) => {
 			const platforms: Platform[] = [
-				{
-					key: 'google',
-					name: 'Google',
-					position: google_by_search.get(search)?.syntax_position ?? null
-				},
-				{
-					key: 'youtube',
-					name: 'YouTube',
-					position: youtube_by_search.get(search)?.syntax_position ?? null
-				}
+				{ ...row.google, key: 'google', name: 'Google', depth: max_position.google },
+				{ ...row.youtube, key: 'youtube', name: 'YouTube', depth: max_position.youtube }
 			];
+			const demand = row.demand
+				? [
+						`${format_volume(row.demand.search_volume)} a month`,
+						`difficulty ${format_count(row.demand.keyword_difficulty)}`,
+						format_volume_trend(row.demand.monthly)
+					]
+						.filter(Boolean)
+						.join(' · ')
+				: '';
 			const summary = platforms
 				.map(
 					(platform) =>
 						`${platform.name} ${platform.position === null ? 'not found' : format_position(platform.position)}`
 				)
 				.join(', ');
-			return { search, platforms, summary };
-		});
-	});
+			const has_history =
+				row.google_history.length > 1 &&
+				[...row.google_history, ...row.youtube_history].some((position) => position !== null);
+			return { ...row, platforms, demand, summary, has_history };
+		})
+	);
 
 	function marker_title(platform: Platform): string {
-		return platform.position === null
-			? `${platform.name}: not in the top ${max_position}`
-			: `${platform.name}: ${format_position(platform.position)}`;
+		if (platform.position === null) return `${platform.name}: not in the top ${platform.depth}`;
+		const page = platform.key === 'google' && platform.url ? format_page(platform.url) : null;
+		return [`${platform.name}: ${format_position(platform.position)}`, page ?? platform.title]
+			.filter(Boolean)
+			.join(' · ');
 	}
 </script>
 
@@ -64,28 +72,34 @@
 		<span></span>
 		<span class="tracked-track">
 			{#each TICKS as tick (tick)}
-				<span class="tick-label" style:inset-inline-start="{position_percent(tick, max_position)}%"
+				<span class="tick-label" style:inset-inline-start="{position_percent(tick, track_max)}%"
 					>#{tick}</span
 				>
 			{/each}
 		</span>
 		<span></span>
+		<span></span>
 	</div>
 
 	<ul class="tracked-rows">
-		{#each rows as row (row.search)}
+		{#each chart_rows as row (row.search)}
 			<li class="tracked-row" aria-label={`${row.search}: ${row.summary}`}>
-				<span class="tracked-search">{row.search}</span>
+				<span class="tracked-search">
+					<span>{row.search}</span>
+					{#if row.demand}
+						<span class="tracked-demand">{row.demand}</span>
+					{/if}
+				</span>
 				<span class="tracked-track" aria-hidden="true">
 					{#each TICKS as tick (tick)}
-						<span class="tick" style:inset-inline-start="{position_percent(tick, max_position)}%"
+						<span class="tick" style:inset-inline-start="{position_percent(tick, track_max)}%"
 						></span>
 					{/each}
 					{#each row.platforms as platform (platform.key)}
 						{#if platform.position !== null}
 							<span
 								class="marker-hit {platform.key}"
-								style:inset-inline-start="{position_percent(platform.position, max_position)}%"
+								style:inset-inline-start="{position_percent(platform.position, track_max)}%"
 								title={marker_title(platform)}
 							>
 								<span class="marker {platform.key}"></span>
@@ -99,6 +113,16 @@
 							<span class="marker {platform.key} missing" title={marker_title(platform)}></span>
 						{/if}
 					{/each}
+				</span>
+				<span class="tracked-history">
+					{#if row.has_history}
+						<PositionHistory
+							google={row.google_history}
+							youtube={row.youtube_history}
+							max={track_max}
+							label={`${row.search} over the last ${row.google_history.length} snapshots`}
+						/>
+					{/if}
 				</span>
 			</li>
 		{/each}
@@ -134,11 +158,22 @@
 
 	.tracked-row {
 		display: grid;
-		grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr) 3rem;
+		grid-template-columns: minmax(10rem, 17rem) minmax(0, 1fr) 3rem 72px;
 		align-items: center;
 		gap: var(--pad-small);
-		min-block-size: 32px;
+		min-block-size: 40px;
 		font-size: var(--fs-2);
+	}
+
+	.tracked-search {
+		display: grid;
+		padding-block: var(--pad-xsmall);
+	}
+
+	.tracked-demand {
+		font-size: var(--fs-1);
+		color: var(--admin-muted);
+		font-variant-numeric: tabular-nums;
 	}
 
 	.tracked-rows {
@@ -233,14 +268,13 @@
 		gap: var(--pad-xsmall);
 	}
 
-	@container (width < 32rem) {
+	@container (width < 40rem) {
 		.tracked-row {
-			grid-template-columns: minmax(0, 1fr) 3rem;
+			grid-template-columns: minmax(0, 1fr) 3rem 72px;
 		}
 
 		.tracked-search {
 			grid-column: 1 / -1;
-			padding-block-start: var(--pad-xsmall);
 		}
 
 		.tracked-axis > span:first-child {

@@ -47,8 +47,12 @@ export type Backlinks = {
 
 export type GoogleSearchCheck = {
 	search: string;
+	// From the live check of Google's top 20, or else from the ranked keywords (Google's top 100).
+	// Snapshots before 2026-11-17 only have the top 20.
 	syntax_position: number | null;
 	syntax_title: string | null;
+	// Snapshots before 2026-11-17 don't have it
+	syntax_url?: string | null;
 	// Google's result types on the page, such as ai_overview, video, people_also_ask
 	result_types: string[];
 	top_sites: string[];
@@ -64,6 +68,17 @@ export type YoutubeSearchCheck = {
 	top_channels: string[];
 };
 
+// How much a tracked search is searched for, and how hard it is to reach Google's top 10
+export type SearchDemand = {
+	search: string;
+	// US Google searches a month, averaged over the last year
+	search_volume: number | null;
+	// 0 to 100
+	keyword_difficulty: number | null;
+	// Searches in each of the last 12 months, oldest first
+	monthly: number[];
+};
+
 export type SeoReport = {
 	version: 1;
 	settings: { domain: string; location_code: number; language_code: string };
@@ -73,6 +88,8 @@ export type SeoReport = {
 	backlinks: Backlinks | null;
 	google_searches: GoogleSearchCheck[];
 	youtube_searches: YoutubeSearchCheck[];
+	// Snapshots before 2026-11-17 don't have it
+	demand?: SearchDemand[];
 };
 
 export type SeoCallError = {

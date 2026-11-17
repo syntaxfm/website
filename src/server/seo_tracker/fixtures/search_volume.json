@@ -1,0 +1,154 @@
+{
+	"version": "0.1.20261103",
+	"status_code": 20000,
+	"status_message": "Ok.",
+	"time": "3.3904 sec.",
+	"cost": 0.09,
+	"tasks_count": 1,
+	"tasks_error": 0,
+	"tasks": [
+		{
+			"id": "11170115-3093-0367-0000-f9b6beb995f6",
+			"status_code": 20000,
+			"status_message": "Ok.",
+			"time": "3.3334 sec.",
+			"cost": 0.09,
+			"result_count": 94,
+			"path": ["v3", "keywords_data", "google_ads", "search_volume", "live"],
+			"result": [
+				{
+					"keyword": "web development podcast",
+					"search_volume": 30,
+					"monthly_searches": [
+						{
+							"year": 2026,
+							"month": 10,
+							"search_volume": 10
+						},
+						{
+							"year": 2026,
+							"month": 9,
+							"search_volume": 20
+						},
+						{
+							"year": 2026,
+							"month": 8,
+							"search_volume": 50
+						},
+						{
+							"year": 2026,
+							"month": 7,
+							"search_volume": 10
+						},
+						{
+							"year": 2026,
+							"month": 6,
+							"search_volume": 10
+						},
+						{
+							"year": 2026,
+							"month": 5,
+							"search_volume": 20
+						},
+						{
+							"year": 2026,
+							"month": 4,
+							"search_volume": 40
+						},
+						{
+							"year": 2026,
+							"month": 3,
+							"search_volume": 90
+						},
+						{
+							"year": 2026,
+							"month": 2,
+							"search_volume": 50
+						},
+						{
+							"year": 2026,
+							"month": 1,
+							"search_volume": 30
+						},
+						{
+							"year": 2025,
+							"month": 12,
+							"search_volume": 30
+						},
+						{
+							"year": 2025,
+							"month": 11,
+							"search_volume": 10
+						}
+					]
+				},
+				{
+					"keyword": "ai coding",
+					"search_volume": 60500,
+					"monthly_searches": [
+						{
+							"year": 2026,
+							"month": 10,
+							"search_volume": 246000
+						},
+						{
+							"year": 2026,
+							"month": 9,
+							"search_volume": 201000
+						},
+						{
+							"year": 2026,
+							"month": 8,
+							"search_volume": 90500
+						},
+						{
+							"year": 2026,
+							"month": 7,
+							"search_volume": 22200
+						},
+						{
+							"year": 2026,
+							"month": 6,
+							"search_volume": 27100
+						},
+						{
+							"year": 2026,
+							"month": 5,
+							"search_volume": 22200
+						},
+						{
+							"year": 2026,
+							"month": 4,
+							"search_volume": 27100
+						},
+						{
+							"year": 2026,
+							"month": 3,
+							"search_volume": 27100
+						},
+						{
+							"year": 2026,
+							"month": 2,
+							"search_volume": 27100
+						},
+						{
+							"year": 2026,
+							"month": 1,
+							"search_volume": 22200
+						},
+						{
+							"year": 2025,
+							"month": 12,
+							"search_volume": 22200
+						},
+						{
+							"year": 2025,
+							"month": 11,
+							"search_volume": 22200
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -15,19 +15,45 @@ import {
 	parse_backlinks,
 	parse_competitors,
 	parse_google_search,
+	parse_keyword_difficulty,
 	parse_ranked_keywords,
-	parse_youtube_search
+	parse_search_volume,
+	parse_youtube_search,
+	type SearchVolume
 } from './seo_parse';
-import type { SeoCallError, SeoReport } from './seo_report';
+import type { GoogleSearchCheck, RankedKeyword, SeoCallError, SeoReport } from './seo_report';
 
-type PlannedCall =
-	| { kind: 'ranked_keywords'; subject: string; call: AlexandriaCall }
-	| { kind: 'competitors'; subject: string; call: AlexandriaCall }
-	| { kind: 'backlinks'; subject: string; call: AlexandriaCall }
-	| { kind: 'google_search'; subject: string; call: AlexandriaCall }
-	| { kind: 'youtube_search'; subject: string; call: AlexandriaCall };
+type PlannedCall = {
+	kind:
+		| 'ranked_keywords'
+		| 'competitors'
+		| 'backlinks'
+		| 'search_volume'
+		| 'keyword_difficulty'
+		| 'google_search'
+		| 'youtube_search';
+	subject: string;
+	call: AlexandriaCall;
+};
 
 const PLACE = { location_code: SEO_LOCATION_CODE, language_code: SEO_LANGUAGE_CODE };
+const TRACKED_SUBJECT = 'tracked searches';
+
+// The live check only looks at Google's top 20. Past that, a tracked search's position comes from
+// the ranked keywords, which cover the top 100.
+export function with_top_100_positions(
+	checks: readonly GoogleSearchCheck[],
+	keywords: readonly RankedKeyword[]
+): GoogleSearchCheck[] {
+	const ranked = new Map(keywords.map((keyword) => [keyword.keyword.toLowerCase(), keyword]));
+	return checks.map((check) => {
+		if (check.syntax_position !== null) return check;
+		const keyword = ranked.get(check.search.toLowerCase());
+		return keyword
+			? { ...check, syntax_position: keyword.position, syntax_url: keyword.url }
+			: check;
+	});
+}
 
 export function plan_seo_calls(searches: readonly string[] = TRACKED_SEARCHES): PlannedCall[] {
 	return [
@@ -67,6 +93,24 @@ export function plan_seo_calls(searches: readonly string[] = TRACKED_SEARCHES): 
 				provider: 'dataforseo',
 				capability: 'backlinks/summary',
 				options: { target: SEO_TARGET_DOMAIN }
+			}
+		},
+		{
+			kind: 'search_volume',
+			subject: TRACKED_SUBJECT,
+			call: {
+				provider: 'dataforseo',
+				capability: 'keywords/search-volume',
+				options: { ...PLACE, keywords: [...searches] }
+			}
+		},
+		{
+			kind: 'keyword_difficulty',
+			subject: TRACKED_SUBJECT,
+			call: {
+				provider: 'dataforseo',
+				capability: 'keywords/difficulty',
+				options: { ...PLACE, keywords: [...searches] }
 			}
 		},
 		...searches.map(
@@ -115,6 +159,8 @@ export function build_seo_report(
 	};
 	const errors: SeoCallError[] = [];
 	let credits_cost = 0;
+	let volumes: Map<string, SearchVolume> | null = null;
+	let difficulties: Map<string, number> | null = null;
 
 	planned.forEach((plan, index) => {
 		const outcome = outcomes[index];
@@ -133,6 +179,10 @@ export function build_seo_report(
 				report.competitors = parse_competitors(outcome.data, SEO_TARGET_DOMAIN);
 			} else if (plan.kind === 'backlinks') {
 				report.backlinks = parse_backlinks(outcome.data);
+			} else if (plan.kind === 'search_volume') {
+				volumes = parse_search_volume(outcome.data);
+			} else if (plan.kind === 'keyword_difficulty') {
+				difficulties = parse_keyword_difficulty(outcome.data);
 			} else if (plan.kind === 'google_search') {
 				report.google_searches.push(
 					parse_google_search(plan.subject, outcome.data, SEO_TARGET_DOMAIN)
@@ -151,6 +201,20 @@ export function build_seo_report(
 			});
 		}
 	});
+
+	report.google_searches = with_top_100_positions(report.google_searches, report.keywords);
+	if (volumes || difficulties) {
+		const searches = planned.filter((plan) => plan.kind === 'google_search');
+		report.demand = searches.map(({ subject }) => {
+			const volume = volumes?.get(subject.toLowerCase());
+			return {
+				search: subject,
+				search_volume: volume?.search_volume ?? null,
+				keyword_difficulty: difficulties?.get(subject.toLowerCase()) ?? null,
+				monthly: volume?.monthly ?? []
+			};
+		});
+	}
 
 	return { report, errors, credits_cost };
 }

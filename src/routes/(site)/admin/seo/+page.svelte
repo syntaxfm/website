@@ -3,7 +3,12 @@
 	import { error_message } from '#lib/utils/error_message.ts';
 	import { get_seo_dashboard, run_seo_snapshot } from './admin_seo.remote';
 	import BarList from './BarList.svelte';
-	import { build_stat_tiles, opportunity_rows, position_band_rows } from './seo_charts';
+	import {
+		build_stat_tiles,
+		build_tracked_rows,
+		opportunity_rows,
+		position_band_rows
+	} from './seo_charts';
 	import StatTiles from './StatTiles.svelte';
 	import TrackedSearchChart from './TrackedSearchChart.svelte';
 	import {
@@ -24,6 +29,9 @@
 	const OPPORTUNITY_CHART_ROWS = 10;
 
 	let stat_tiles = $derived(build_stat_tiles(dashboard.history));
+	let tracked_rows = $derived(
+		dashboard.latest ? build_tracked_rows(dashboard.latest.report, dashboard.history) : []
+	);
 	let google_moves = $derived(
 		new Map(dashboard.comparison?.google.map((move) => [move.search, move]) ?? [])
 	);
@@ -102,16 +110,12 @@
 
 		<section class="admin-section stack">
 			<h2 class="h5">Where Syntax shows up for tracked searches</h2>
-			<TrackedSearchChart
-				google={report.google_searches}
-				youtube={report.youtube_searches}
-				max_position={dashboard.max_position}
-			/>
+			<TrackedSearchChart rows={tracked_rows} max_position={dashboard.max_position} />
 		</section>
 
 		{#if dashboard.opportunities && dashboard.opportunities.on_topic.length > 0}
 			<section class="admin-section stack">
-				<h2 class="h5">Close to the top: Syntax topics at #4–20 on Google, by monthly searches</h2>
+				<h2 class="h5">Close to the top: Syntax topics at #4–30 on Google, by monthly searches</h2>
 				<BarList
 					rows={opportunity_rows(dashboard.opportunities.on_topic, OPPORTUNITY_CHART_ROWS)}
 				/>
@@ -136,6 +140,7 @@
 							<th>Search</th>
 							<th>Syntax</th>
 							<th>Change</th>
+							<th>Syntax page</th>
 							<th>On the page</th>
 							<th>Top 3</th>
 						</tr>
@@ -150,6 +155,13 @@
 								</td>
 								<td>
 									{move ? format_position_move(move.from, move.to, move.was_tracked) : ''}
+								</td>
+								<td class="fs-1">
+									{#if check.syntax_url}
+										<a href={check.syntax_url} target="_blank" rel="noopener noreferrer"
+											>{format_page(check.syntax_url)}</a
+										>
+									{/if}
 								</td>
 								<td class="fs-1">{format_result_types(check.result_types)}</td>
 								<td class="fs-1">{check.top_sites.join(', ')}</td>
