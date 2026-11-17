@@ -146,6 +146,13 @@ export function google_result_site(item: unknown): string | null {
 	return as_string(read_path(item, ['website_name']))?.replace(/\s+/gu, ' ') ?? null;
 }
 
+// The result's own page; a google.com/goto link hides it, so that gives null
+function google_result_url(item: unknown): string | null {
+	const url = as_string(read_path(item, ['url']));
+	if (url === null || !URL.canParse(url)) return null;
+	return strip_www(new URL(url).hostname) === 'google.com' ? null : url;
+}
+
 // serp/google-organic for one tracked search
 export function parse_google_search(
 	search: string,
@@ -163,7 +170,7 @@ export function parse_google_search(
 		search,
 		syntax_position: syntax_result ? as_number(read_path(syntax_result, ['rank_group'])) : null,
 		syntax_title: syntax_result ? as_string(read_path(syntax_result, ['title'])) : null,
-		syntax_url: syntax_result ? as_string(read_path(syntax_result, ['url'])) : null,
+		syntax_url: syntax_result ? google_result_url(syntax_result) : null,
 		result_types: as_array(result.item_types).filter(
 			(type): type is string => typeof type === 'string'
 		),

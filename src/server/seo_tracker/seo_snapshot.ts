@@ -47,10 +47,15 @@ export function with_top_100_positions(
 ): GoogleSearchCheck[] {
 	const ranked = new Map(keywords.map((keyword) => [keyword.keyword.toLowerCase(), keyword]));
 	return checks.map((check) => {
-		if (check.syntax_position !== null) return check;
+		if (check.syntax_position !== null && check.syntax_url) return check;
 		const keyword = ranked.get(check.search.toLowerCase());
+		// The live position wins; the ranked keyword fills the page Google's link hid
 		return keyword
-			? { ...check, syntax_position: keyword.position, syntax_url: keyword.url }
+			? {
+					...check,
+					syntax_position: check.syntax_position ?? keyword.position,
+					syntax_url: keyword.url
+				}
 			: check;
 	});
 }

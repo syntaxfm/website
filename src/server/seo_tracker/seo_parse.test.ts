@@ -114,7 +114,9 @@ describe('parse_google_search', () => {
 		expect(check).toMatchObject({
 			search: 'web development podcast',
 			syntax_position: 1,
-			syntax_title: 'Syntax - Web Development Podcast'
+			syntax_title: 'Syntax - Web Development Podcast',
+			// The fixture's link is a google.com/goto redirect, not the page
+			syntax_url: null
 		});
 		expect(check.result_types).toContain('ai_overview');
 		expect(check.top_sites).toEqual(['syntax.fm', 'Reddit · r/Frontend', 'podcast.feedspot.com']);

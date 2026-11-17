@@ -117,8 +117,8 @@ describe('with_top_100_positions', () => {
 		);
 		expect(checks.map((item) => [item.search, item.syntax_position, item.syntax_url])).toEqual([
 			['CSS Layers', 24, 'https://syntax.fm/show/698/why-you-should-be-using-css-layers'],
-			// The live check wins over the ranked keywords
-			['state of js', 3, null],
+			// The live position wins; the ranked keyword fills in the page
+			['state of js', 3, 'https://syntax.fm/show/989/state-of-js-2025'],
 			['vibe coding', null, null]
 		]);
 	});
