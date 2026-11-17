@@ -6,7 +6,6 @@ on:
       - 'shows/*.md'
 
 env:
-  DEEPGRAM_SECRET: ${{ secrets.DEEPGRAM_SECRET }}
   PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
   SENTRY_AUTH_TOKEN: ''
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
