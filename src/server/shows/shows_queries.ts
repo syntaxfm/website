@@ -6,10 +6,8 @@ import type {
 	AiTweet,
 	Guest,
 	Link,
-	Playlist,
 	Show,
-	Topic,
-	Video
+	Topic
 } from '$server/db/types';
 import { and, desc, eq, like, lte } from 'drizzle-orm';
 import { edge_cached } from '$server/edge_cache';
@@ -97,19 +95,6 @@ export function get_show_detail_query(number: number) {
 					}
 				}
 			},
-			videos: {
-				with: {
-					video: {
-						with: {
-							playlists: {
-								with: {
-									playlist: true
-								}
-							}
-						}
-					}
-				}
-			},
 			aiShowNote: with_ai_show_note_full,
 			// Whether there is one, for the episode's JSON-LD; the lines load on the transcript page
 			transcript: { columns: { show_number: true } }
@@ -123,7 +108,6 @@ export type ShowDetail = Show & {
 	hosts: Array<{
 		user: { id: string; username: string | null; name: string | null; twitter: string | null };
 	}>;
-	videos: Array<{ video: Video & { playlists: Array<{ playlist: Playlist }> } }>;
 	aiShowNote: AiShowNote & {
 		topics: Topic[];
 		links: Link[];

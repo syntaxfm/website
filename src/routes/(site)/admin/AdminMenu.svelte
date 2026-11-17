@@ -24,17 +24,7 @@
 				},
 				{
 					text: 'Video',
-					path: '/admin/content/videos',
-					subroutes: [
-						{
-							text: 'Import',
-							path: '/admin/content/videos/import'
-						},
-						{
-							text: 'Playlists',
-							path: '/admin/content/videos/playlists'
-						}
-					]
+					path: '/admin/content/videos'
 				},
 				{
 					text: 'Articles',

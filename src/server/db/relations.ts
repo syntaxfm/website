@@ -10,8 +10,6 @@ import {
 	guest,
 	link,
 	newsletter_issue,
-	playlist,
-	playlistOnVideo,
 	profile,
 	profileRole,
 	role,
@@ -184,7 +182,6 @@ export const videoRelations = relations(video, ({ one, many }) => ({
 		fields: [video.content_id],
 		references: [content.id]
 	}),
-	playlists: many(playlistOnVideo),
 	shows: many(showVideo)
 }));
 
@@ -195,21 +192,6 @@ export const showVideoRelations = relations(showVideo, ({ one }) => ({
 	}),
 	video: one(video, {
 		fields: [showVideo.video_id],
-		references: [video.id]
-	})
-}));
-
-export const playlistRelations = relations(playlist, ({ many }) => ({
-	videos: many(playlistOnVideo)
-}));
-
-export const playlistOnVideoRelations = relations(playlistOnVideo, ({ one }) => ({
-	playlist: one(playlist, {
-		fields: [playlistOnVideo.playlist_id],
-		references: [playlist.id]
-	}),
-	video: one(video, {
-		fields: [playlistOnVideo.video_id],
 		references: [video.id]
 	})
 }));

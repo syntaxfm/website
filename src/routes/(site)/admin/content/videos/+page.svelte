@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import format_time from '$utilities/format_time';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
@@ -117,7 +118,7 @@
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 		bind:selected_ids={selected_video_ids}
-		visible_ids={list_result.items.map((item) => item.id)}
+		visible_ids={list_result.items.map((item) => item.content_id)}
 	>
 		{#snippet filters()}
 			<div class="admin-control-row">
@@ -170,43 +171,52 @@
 		{/snippet}
 
 		{#snippet table_head()}
-			<th>Title</th>
+			<th>Video</th>
 			<th>Status</th>
 			<th>Published</th>
-			<th>YouTube</th>
+			<th>Length</th>
+			<th>Views</th>
+			<th>Captions</th>
 		{/snippet}
 
 		{#snippet table_body()}
-			{#each list_result.items as video_row (video_row.id)}
-				{@const has_content = video_row.meta !== null && video_row.meta !== undefined}
-				{@const display_title = video_row.meta?.title ?? video_row.title}
+			{#each list_result.items as video_row (video_row.content_id)}
 				<tr>
 					<td>
 						<div class="admin-row">
-							<p>{display_title}</p>
-							{#if has_content}
-								<a href={resolve(`admin/content/videos/${video_row.meta?.id}`)}>Edit</a>
+							<img
+								src={`https://i.ytimg.com/vi/${video_row.youtube_id}/mqdefault.jpg`}
+								alt=""
+								width="96"
+								height="54"
+								loading="lazy"
+							/>
+							<p>{video_row.title}</p>
+							<a href={resolve(`admin/content/videos/${video_row.content_id}`)}>Edit</a>
+							{#if video_row.status === 'PUBLISHED'}
+								<a href={resolve(`videos/${video_row.slug}`)}>Page</a>
 							{/if}
+							<a
+								href={`https://www.youtube.com/watch?v=${video_row.youtube_id}`}
+								target="_blank"
+								rel="noopener noreferrer external">YouTube</a
+							>
 						</div>
 					</td>
-					<td><StatusBadge status={video_row.meta?.status} /></td>
+					<td><StatusBadge status={video_row.status} /></td>
 					<td>
-						{#if video_row.published_at}
-							{format(video_row.published_at, 'MMM d, yyyy HH:mm')}
-						{:else}
-							-
-						{/if}
+						{video_row.published_at ? format(video_row.published_at, 'MMM d, yyyy') : '—'}
 					</td>
-					<td>
-						<a href={video_row.url} target="_blank" rel="noopener noreferrer external">YouTube</a>
-					</td>
+					<td>{video_row.duration_seconds ? format_time(video_row.duration_seconds) : '—'}</td>
+					<td>{video_row.view_count?.toLocaleString() ?? '—'}</td>
+					<td>{video_row.has_transcript ? '✓' : '—'}</td>
 				</tr>
 			{/each}
 		{/snippet}
 
 		{#snippet empty()}
 			<tr>
-				<td colspan="4">No matching videos found.</td>
+				<td colspan="6">No matching videos found.</td>
 			</tr>
 		{/snippet}
 	</AdminList>

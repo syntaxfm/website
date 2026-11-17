@@ -6,7 +6,7 @@
  *
  * Features:
  * - Incremental sync for transcript tables (only migrate changed data)
- * - UUID conversion for show/video/playlist IDs
+ * - UUID conversion for show/video IDs
  * - Full-text search vector generation
  * - Upsert mode for repeatable migrations
  */
@@ -58,9 +58,7 @@ const DEFAULT_MIGRATION_ORDER = [
 	'Show',
 	'Guest',
 	'Video',
-	'Playlist',
 	'UserSubmission',
-	'RemotePlaylist',
 	// Level 1: Depends on Level 0
 	// 'Session', // EXCLUDED: Contains sensitive session data
 	'UserRole',
@@ -68,7 +66,6 @@ const DEFAULT_MIGRATION_ORDER = [
 	'Transcript',
 	'AiShowNote',
 	'SocialLink',
-	'PlaylistOnVideo',
 	'ShowVideo',
 	// Level 2: Depends on Level 1
 	'TranscriptUtterance',
@@ -219,28 +216,9 @@ const COLUMN_MAPPING = {
 		thumbnail: 'thumbnail',
 		published_at: 'published_at'
 	},
-	Playlist: {
-		id: 'id',
-		title: 'title',
-		slug: 'slug',
-		description: 'description',
-		unlisted: 'unlisted',
-		created_at: 'created_at'
-	},
-	PlaylistOnVideo: {
-		playlist_id: 'playlist_id',
-		video_id: 'video_id',
-		order: 'order'
-	},
 	ShowVideo: {
 		showId: 'show_id',
 		videoId: 'video_id'
-	},
-	RemotePlaylist: {
-		playlist_id: 'playlist_id',
-		title: 'title',
-		videos_count: 'videos_count',
-		created_at: 'created_at'
 	},
 	UserSubmission: {
 		id: 'id',
@@ -284,10 +262,7 @@ const TABLE_NAME_MAPPING = {
 	AiGuest: 'ai_guests',
 	Topic: 'topics',
 	Video: 'videos',
-	Playlist: 'playlists',
-	PlaylistOnVideo: 'playlist_videos',
 	ShowVideo: 'show_videos',
-	RemotePlaylist: 'remote_playlists',
 	UserSubmission: 'user_submissions',
 	Tag: 'tags',
 	ContentTag: 'content_tags'

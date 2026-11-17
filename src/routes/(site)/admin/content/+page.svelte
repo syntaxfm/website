@@ -425,7 +425,7 @@
 				</button>
 				<AdminConfirmDialog
 					title="Delete selected content?"
-					description="Selected Articles and Videos will be permanently deleted. All Show and Playlist associations for selected Videos will also be permanently deleted. Unsupported Content types will be skipped."
+					description="Selected Articles will be permanently deleted. Other content is skipped: archive Videos instead, since the YouTube sync would bring them back."
 					action_label="Delete selected"
 					onconfirm={run_bulk_delete}
 				/>

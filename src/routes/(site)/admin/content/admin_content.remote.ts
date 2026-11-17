@@ -1,15 +1,7 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
-import {
-	article,
-	content,
-	content_tags,
-	playlistOnVideo,
-	show,
-	showVideo,
-	video
-} from '$server/db/schema';
+import { article, content, content_tags, show, video } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
 import { and, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
 import * as v from 'valibot';
@@ -557,44 +549,20 @@ export const bulk_delete_content = command(bulk_delete_schema, async (input) => 
 		.filter((item) => item.type === 'ARTICLE')
 		.map((item) => item.id);
 
-	const video_content_ids = existing_items
-		.filter((item) => item.type === 'VIDEO')
-		.map((item) => item.id);
+	// Videos are skipped too: the YouTube sync would bring a deleted one back, so they're archived
+	const skipped = existing_items.filter((item) => item.type !== 'ARTICLE').map((item) => item.id);
 
-	const skipped = existing_items
-		.filter((item) => item.type !== 'ARTICLE' && item.type !== 'VIDEO')
-		.map((item) => item.id);
-
-	const linked_videos = video_content_ids.length
-		? await db.query.video.findMany({
-				where: inArray(video.content_id, video_content_ids),
-				columns: {
-					id: true
-				}
-			})
-		: [];
-	const video_row_ids = linked_videos.map((video_row) => video_row.id);
-
-	if (article_ids.length > 0 || video_content_ids.length > 0) {
+	if (article_ids.length > 0) {
 		await db.transaction(async (tx) => {
-			if (video_row_ids.length > 0) {
-				await tx.delete(playlistOnVideo).where(inArray(playlistOnVideo.video_id, video_row_ids));
-				await tx.delete(showVideo).where(inArray(showVideo.video_id, video_row_ids));
-				await tx.delete(video).where(inArray(video.id, video_row_ids));
-			}
-
-			const all_deletable_ids = [...article_ids, ...video_content_ids];
-			await tx.delete(content_tags).where(inArray(content_tags.content_id, all_deletable_ids));
-			if (article_ids.length > 0) {
-				await tx.delete(article).where(inArray(article.content_id, article_ids));
-			}
-			await tx.delete(content).where(inArray(content.id, all_deletable_ids));
+			await tx.delete(content_tags).where(inArray(content_tags.content_id, article_ids));
+			await tx.delete(article).where(inArray(article.content_id, article_ids));
+			await tx.delete(content).where(inArray(content.id, article_ids));
 		});
 	}
 
 	return {
 		success: true,
-		deleted_count: article_ids.length + video_content_ids.length,
+		deleted_count: article_ids.length,
 		skipped_count: skipped.length,
 		skipped_ids: skipped
 	};

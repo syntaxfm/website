@@ -57,6 +57,13 @@
       "when": 1794948176276,
       "tag": "0007_oauth_connections",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794953138682,
+      "tag": "0008_drop_playlists",
+      "breakpoints": true
     }
   ]
 }

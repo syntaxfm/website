@@ -1,6 +1,7 @@
 import { eq, like } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { content, show, video } from '$server/db/schema';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 
 // Where the old site's video URLs live now. It had /videos/[playlist] and
 // /videos/[playlist]/[video]; videos now have one URL, /videos/[slug] (src/routes/(site)/videos),
@@ -31,11 +32,13 @@ export async function find_video_destination(old_slug: string): Promise<string |
 	if (!row) return null;
 	if (row.status === 'PUBLISHED') return `/videos/${row.slug}`;
 
-	// Archived because it's an episode's video (the sync leaves those out)
-	const [episode] = await db
-		.select({ number: show.number, slug: show.slug })
+	// Archived because it's an episode's video (the sync leaves those out). `_` in a video id
+	// matches any character in LIKE, so the ids themselves are compared.
+	const candidates = await db
+		.select({ number: show.number, slug: show.slug, youtube_url: show.youtube_url })
 		.from(show)
 		.where(like(show.youtube_url, `%${row.youtube_id}%`))
-		.limit(1);
+		.limit(5);
+	const episode = candidates.find((c) => get_id_from_url(c.youtube_url) === row.youtube_id);
 	return episode ? `/show/${episode.number}/${episode.slug}` : null;
 }

@@ -387,7 +387,7 @@ export const video = pgTable(
 		url: text('url').notNull(),
 		thumbnail: text('thumbnail').notNull(),
 		published_at: timestamp('published_at', { withTimezone: true }).notNull(),
-		// From YouTube on each sync; null for rows from the old playlist importer until resynced
+		// From YouTube on each sync (src/server/video/video_sync.ts)
 		duration_seconds: integer('duration_seconds'),
 		view_count: integer('view_count'),
 		content_id: uuid('content_id').references(() => content.id, { onDelete: 'cascade' }) // nullable until migration complete, no unique constraint yet
@@ -396,38 +396,6 @@ export const video = pgTable(
 		uniqueIndex('videos_slug_idx').on(table.slug),
 		index('videos_published_at_idx').on(table.published_at)
 		// contentIdIdx will be added after migration when all videos have content_id
-	]
-);
-
-export const playlist = pgTable(
-	'playlists',
-	{
-		id: text('id').primaryKey(),
-		title: text('title').notNull(),
-		slug: text('slug').notNull().unique(),
-		description: text('description'),
-		unlisted: boolean('unlisted').default(false), // deprecated
-		created_at: timestamp('created_at', { withTimezone: true }).defaultNow().notNull()
-	},
-	(table) => [uniqueIndex('playlists_slug_idx').on(table.slug)]
-);
-
-export const playlistOnVideo = pgTable(
-	'playlist_videos',
-	{
-		playlist_id: text('playlist_id')
-			.notNull()
-			.references(() => playlist.id, { onDelete: 'cascade' }),
-		video_id: text('video_id')
-			.notNull()
-			.references(() => video.id, { onDelete: 'cascade' }),
-		order: integer('order').notNull()
-	},
-	(table) => [
-		primaryKey({ columns: [table.playlist_id, table.video_id] }),
-		index('playlist_videos_playlist_id_idx').on(table.playlist_id),
-		index('playlist_videos_video_id_idx').on(table.video_id),
-		index('playlist_videos_order_idx').on(table.playlist_id, table.order)
 	]
 );
 
@@ -447,13 +415,6 @@ export const showVideo = pgTable(
 		index('show_videos_video_id_idx').on(table.video_id)
 	]
 );
-
-export const remotePlaylist = pgTable('remote_playlists', {
-	playlist_id: varchar('playlist_id', { length: 255 }).primaryKey(),
-	title: text('title').notNull(),
-	videos_count: integer('videos_count').notNull(),
-	created_at: timestamp('created_at', { withTimezone: true }).notNull()
-});
 
 // ============================================================================
 // USER SUBMISSION TABLE
