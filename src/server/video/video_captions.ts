@@ -81,7 +81,14 @@ async function youtube_get(path: string, params: Record<string, string>, token: 
 	url.search = new URLSearchParams(params).toString();
 	const response = await fetch(url, { headers: { authorization: `Bearer ${token}` } });
 	if (!response.ok) {
-		throw new Error(`YouTube ${path} failed: ${response.status} ${await response.text()}`);
+		const body: unknown = await response.json().catch(() => null);
+		const reason =
+			as_string(read_path(body, ['error', 'errors', 0, 'reason'])) ??
+			as_string(read_path(body, ['error', 'status']));
+		const message = as_string(read_path(body, ['error', 'message'])) ?? response.statusText;
+		throw new Error(
+			`YouTube ${path.split('/')[0]} ${response.status}${reason ? ` ${reason}` : ''}: ${message}`
+		);
 	}
 	return response;
 }
@@ -129,9 +136,8 @@ export async function check_caption_access(access_token: string): Promise<void> 
 		await fetch_caption_srt(newest.youtube_id, access_token);
 	} catch (download_error) {
 		console.error('Connect YouTube: caption check failed', download_error);
-		throw new Error(
-			'That account can’t download Syntax’s captions. YouTube only allows it for the channel’s owner.'
-		);
+		const youtube_says = download_error instanceof Error ? download_error.message : 'no answer';
+		throw new Error(`That account couldn’t download Syntax’s captions. ${youtube_says}`);
 	}
 }
 
