@@ -88,7 +88,7 @@ const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
 // (src/server/og/og_image.ts)
 const og_images = Cloudflare.R2.Bucket('OgImages');
 
-// The app's secrets (CRON_SECRET, Kit, Deepgram, Megaphone, OpenAI, YouTube) aren't here: they're
+// The app's secrets (CRON_SECRET, Kit, xAI, Megaphone, OpenAI, YouTube) aren't here: they're
 // set on the Worker itself (Cloudflare dashboard, or wrangler secret put) and Alchemy leaves
 // secrets it didn't upload alone. So a deploy, including one Cloudflare runs on every push to v_3,
 // needs no 1Password. $app/env/private reads them from the Worker env.
@@ -114,11 +114,27 @@ const syntax_website = Cloudflare.Website.SvelteKit('SyntaxWebsite', website_pro
 
 export type SyntaxWebsiteEnv = Cloudflare.InferEnv<typeof syntax_website>;
 
+// Transcripts (src/routes/webhooks/transcripts): a small Worker whose cron asks the website for
+// one episode at a time. The SvelteKit Worker can't take a `scheduled` handler of its own.
+// CRON_SECRET is set on it like the website's secrets.
+const transcript_cron = Cloudflare.Worker('TranscriptCron', {
+	main: './workers/transcript_cron.ts',
+	compatibility: { date: COMPATIBILITY.date },
+	crons: ['*/20 * * * *'],
+	workersDev: false,
+	observability: { enabled: true },
+	env: {
+		WEBSITE: syntax_website,
+		WEBSITE_URL: `https://${BETA_DOMAIN}`
+	}
+});
+
 export default Alchemy.Stack(
 	'SyntaxWebsite',
 	{ providers: Cloudflare.providers(), state: state_store },
 	Effect.gen(function* () {
 		const website = yield* syntax_website;
+		yield* transcript_cron;
 		return { url: website.url };
 	})
 );

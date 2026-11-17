@@ -9,6 +9,7 @@
 		"src",
 		"vite.config.ts",
 		"alchemy.run.ts",
+		"workers",
 		"drizzle.config.ts",
 		"playwright.config.ts",
 		"tests"

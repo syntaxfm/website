@@ -18,6 +18,9 @@ const STT_URL = 'https://api.x.ai/v1/stt';
 const STT_MODEL = 'grok-voice-transcribe-2.0';
 // An hour-long episode took 31 s on 2026-11-16
 const STT_TIMEOUT_MS = 10 * 60 * 1000;
+// Saving waits 15 s, then 30 s, before trying again
+const SAVE_ATTEMPTS = 3;
+const SAVE_RETRY_WAIT_MS = 15 * 1000;
 
 // Wes and Scott each saying a set line ("my dog eats food on the moon", "purple cheese before
 // meeting my brother"), played after the episode so Grok puts each line in that host's voice and
@@ -29,14 +32,21 @@ function is_record(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null;
 }
 
-function is_word(value: unknown): value is TranscribedWord {
-	return (
-		is_record(value) &&
-		typeof value.text === 'string' &&
-		typeof value.start === 'number' &&
-		typeof value.end === 'number' &&
-		typeof value.speaker === 'number'
-	);
+// Grok has already charged for the audio by the time its words arrive, so an odd word mustn't
+// fail the run (the cron would pay again next time): one without text or times is dropped, one
+// without a voice keeps the voice before it.
+function words_from(body: unknown): TranscribedWord[] {
+	if (!is_record(body) || !Array.isArray(body.words)) {
+		throw new Error('Grok speech-to-text returned no words');
+	}
+	const words: TranscribedWord[] = [];
+	for (const word of body.words) {
+		if (!is_record(word) || typeof word.text !== 'string') continue;
+		if (typeof word.start !== 'number' || typeof word.end !== 'number') continue;
+		const speaker = typeof word.speaker === 'number' ? word.speaker : (words.at(-1)?.speaker ?? 0);
+		words.push({ text: word.text, start: word.start, end: word.end, speaker });
+	}
+	return words;
 }
 
 // A multipart/form-data body that streams `file_chunks` as its last part (Grok wants the file
@@ -133,10 +143,7 @@ export async function transcribe_audio(
 		throw new Error(`Grok speech-to-text ${response.status}: ${await response.text()}`);
 	}
 	const body: unknown = await response.json();
-	if (!is_record(body) || !Array.isArray(body.words) || !body.words.every(is_word)) {
-		throw new Error('Grok speech-to-text returned words without text, times or speakers');
-	}
-	return body.words;
+	return words_from(body);
 }
 
 /** Transcribes a released episode and saves it. Fails if it already has a transcript. */
@@ -163,7 +170,21 @@ export async function get_transcript(show_number: number) {
 	);
 	console.log(`Transcribing show #${show_number} - ${active_show.title}...`);
 	const words = await transcribe_audio(active_show.url, [...keywords, ...people]);
-	const saved = await save_transcript_to_db(active_show, words_to_utterances(words), people);
-	console.log(`Transcript for show #${show_number} saved: ${words.length} words.`);
-	return saved;
+	const utterances = words_to_utterances(words);
+
+	// Grok has charged by now, so a database blip mustn't lose the words (the cron would pay again)
+	for (let attempt = 1; ; attempt++) {
+		try {
+			const saved = await save_transcript_to_db(active_show, utterances, people);
+			console.log(`Transcript for show #${show_number} saved: ${words.length} words.`);
+			return saved;
+		} catch (save_error) {
+			if (attempt === SAVE_ATTEMPTS) throw save_error;
+			console.error(
+				`Saving show #${show_number}'s transcript failed (try ${attempt} of ${SAVE_ATTEMPTS})`,
+				save_error
+			);
+			await new Promise((resolve) => setTimeout(resolve, attempt * SAVE_RETRY_WAIT_MS));
+		}
+	}
 }
