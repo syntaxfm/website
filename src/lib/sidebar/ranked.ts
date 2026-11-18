@@ -13,3 +13,13 @@ export type RankedContent = {
 	date: string;
 	people: string[];
 };
+
+export const POPULAR_COUNT = 5;
+
+/** The Most Popular items a page shows: without the episode being viewed, which can't rank itself. */
+export function get_shown_popular(
+	items: RankedContent[],
+	viewed_show_number: string | undefined
+): RankedContent[] {
+	return items.filter((item) => String(item.number) !== viewed_show_number).slice(0, POPULAR_COUNT);
+}

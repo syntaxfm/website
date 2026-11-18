@@ -7,6 +7,7 @@
 	import SwaggyNewsletterForm from '../newsletter/SwaggyNewsletterForm.svelte';
 	import PageTitle from '../layout/PageTitle.svelte';
 	import MostPopularThisWeek from '../sidebar/MostPopularThisWeek.svelte';
+	import RelatedContent from '../sidebar/RelatedContent.svelte';
 	import TrendingTopics from '../sidebar/TrendingTopics.svelte';
 	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
 	import VideoBezel from '#lib/videos/VideoBezel.svelte';
@@ -110,6 +111,9 @@
 		{@render children()}
 	</section>
 	<aside class="stack">
+		{#if show.content_id}
+			<RelatedContent content_id={show.content_id} />
+		{/if}
 		<SwaggyNewsletterForm />
 		<MostPopularThisWeek />
 		<TrendingTopics />

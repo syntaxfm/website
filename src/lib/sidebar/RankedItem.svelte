@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { format } from 'date-fns';
+	import { format, isThisYear } from 'date-fns';
 	import { resolve } from '$app/paths';
 	import no_thumb from '../shows/no_thumb.png';
 	import type { RankedContent } from './ranked';
@@ -31,7 +31,8 @@
 			<p class="fs-caption">{item.people.join(', ')}</p>
 		{/if}
 		<p class="fs-micro">
-			{format(item.date, 'MMM d')}
+			<!-- Related items can be years old -->
+			{format(item.date, isThisYear(item.date) ? 'MMM d' : 'MMM d, yyyy')}
 		</p>
 	</div>
 </a>

@@ -11,6 +11,7 @@
 <Story
 	name="Default"
 	args={{
+		title: '_MOST_POPULAR_THIS_WEEK()',
 		items: [
 			{
 				id: '1',

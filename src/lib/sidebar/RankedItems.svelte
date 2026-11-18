@@ -4,13 +4,14 @@
 	import type { RankedContent } from './ranked';
 
 	type Props = {
+		title: string;
 		items: RankedContent[];
 	};
-	let { items }: Props = $props();
+	let { title, items }: Props = $props();
 </script>
 
 <div>
-	<SidebarTitle title="_MOST_POPULAR_THIS_WEEK()" />
+	<SidebarTitle {title} />
 	<div class="ranked-items stack">
 		{#each items as item, index (item.id)}
 			<RankedItem {item} rank={index + 1} />

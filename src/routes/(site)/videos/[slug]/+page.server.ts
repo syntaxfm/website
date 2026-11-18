@@ -19,7 +19,7 @@ const META_DESCRIPTION_LENGTH = 160;
 async function load_video_page(slug: string) {
 	const row = await db.query.content.findFirst({
 		where: and(eq(content.slug, slug), eq(content.type, 'VIDEO'), eq(content.status, 'PUBLISHED')),
-		columns: { title: true, slug: true, published_at: true, updated_at: true },
+		columns: { id: true, title: true, slug: true, published_at: true, updated_at: true },
 		with: {
 			video: {
 				columns: {
@@ -45,6 +45,7 @@ async function load_video_page(slug: string) {
 	if (!row?.video || !row.published_at) return null;
 
 	return {
+		content_id: row.id,
 		youtube_id: row.video.id,
 		slug: row.slug,
 		title: row.title,
@@ -67,7 +68,7 @@ async function load_video_page(slug: string) {
 export const load: PageServerLoad = async ({ params, url }) => {
 	// Served stale for up to a day: change the key when the page's data changes shape
 	const video = await edge_cached(
-		`video-page-2-${params.slug}`,
+		`video-page-3-${params.slug}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		() => load_video_page(params.slug)
 	);

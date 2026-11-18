@@ -5,6 +5,7 @@
 	import { chapters_as_topics } from '#lib/videos/video_description.ts';
 	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
 	import MostPopularThisWeek from '#lib/sidebar/MostPopularThisWeek.svelte';
+	import RelatedContent from '#lib/sidebar/RelatedContent.svelte';
 	import TrendingTopics from '#lib/sidebar/TrendingTopics.svelte';
 	import { VIDEO_LABEL } from '#lib/shows/show_label.ts';
 	import { to_json_ld, video_object_schema } from '#lib/seo/structured_data.ts';
@@ -82,6 +83,7 @@
 		{/if}
 	</section>
 	<aside class="stack">
+		<RelatedContent content_id={video.content_id} />
 		<SwaggyNewsletterForm />
 		<MostPopularThisWeek />
 		<TrendingTopics />
