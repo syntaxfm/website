@@ -27,7 +27,14 @@ function thumbnail_fields(youtube_id: string) {
 }
 
 async function load_related_content(content_id: string): Promise<RankedContent[]> {
-	const ids = await find_related_content_ids(content_id, RELATED_CANDIDATES);
+	let ids: string[];
+	try {
+		ids = await find_related_content_ids(content_id, RELATED_CANDIDATES);
+	} catch (error) {
+		// A sidebar extra: the page shows without it rather than failing
+		console.error(`Related content failed for ${content_id}`, error);
+		return [];
+	}
 	if (ids.length === 0) return [];
 
 	const rows = await db.query.content.findMany({

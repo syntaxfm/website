@@ -44,7 +44,8 @@ export async function find_related_content_ids(content_id: string, limit: number
 		group by p.id, p.published_at
 		order by
 			sum(
-				(case when m.kind = 'LIBRARY' then ${LIBRARY_WEIGHT} else ${TOPIC_WEIGHT} end)
+				-- Parameters arrive as text, so the weights are cast
+				(case when m.kind = 'LIBRARY' then ${LIBRARY_WEIGHT}::float else ${TOPIC_WEIGHT}::float end)
 				* ln((select count(*) from published)::float / tc.items)
 			) desc,
 			p.published_at desc
