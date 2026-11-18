@@ -142,9 +142,9 @@ export const count_browse_items = query(browse_filter_schema, (filters) =>
 	})
 );
 
-// The topic menu: the tags on the most episodes and videos
+// The topic menu: the curated topics (src/server/tags) on the most episodes and videos
 export const get_browse_topics = query(() =>
-	edge_cached('browse-topics', TOPICS_CACHE, async () => {
+	edge_cached('browse-topics-2', TOPICS_CACHE, async () => {
 		const rows = await db
 			.select({ name: tag.name, slug: tag.slug, uses: count(content_tags.content_id) })
 			.from(content_tags)
@@ -154,6 +154,7 @@ export const get_browse_topics = query(() =>
 				and(
 					eq(content.status, 'PUBLISHED'),
 					inArray(content.type, [...CONTENT_TYPES_BY_BROWSE_TYPE.all]),
+					eq(tag.kind, 'TOPIC'),
 					isNotNull(tag.slug)
 				)
 			)

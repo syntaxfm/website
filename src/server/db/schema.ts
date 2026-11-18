@@ -455,14 +455,21 @@ export const article = pgTable(
 // Tags can be generated via AI or by hand for shows, articles, videos, tools
 // ============================================================================
 
+// TOPIC: a broad subject from the curated list (CSS, AI Coding). LIBRARY: a named library, framework
+// or tool (Effect, Nuxt). Null: a legacy tag from before the tag engine (src/server/tags).
+export const tag_kinds = pgEnum('tag_kinds', ['TOPIC', 'LIBRARY']);
+
 export const tag = pgTable(
 	'tags',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
 		name: varchar('name', { length: 50 }).notNull().unique(),
-		slug: varchar('slug', { length: 64 })
+		slug: varchar('slug', { length: 64 }),
+		kind: tag_kinds(),
+		// A topic's meaning, given to the model that tags content
+		description: text('description')
 	},
-	(t) => [uniqueIndex('tags_slug_idx').on(t.slug)]
+	(t) => [uniqueIndex('tags_slug_idx').on(t.slug), index('tags_kind_idx').on(t.kind)]
 );
 
 // ============================================================================
@@ -503,6 +510,8 @@ export const content = pgTable(
 	]
 );
 
+export const content_tag_sources = pgEnum('content_tag_sources', ['AI', 'EDITOR']);
+
 export const content_tags = pgTable(
 	'content_tags',
 	{
@@ -511,7 +520,9 @@ export const content_tags = pgTable(
 			.references(() => content.id, { onDelete: 'cascade' }),
 		tag_id: uuid('tag_id')
 			.notNull()
-			.references(() => tag.id, { onDelete: 'cascade' })
+			.references(() => tag.id, { onDelete: 'cascade' }),
+		// AI tags are replaced each time the tag engine runs on the content; an editor's are kept
+		source: content_tag_sources('source').default('EDITOR').notNull()
 	},
 	(t) => [
 		primaryKey({ columns: [t.content_id, t.tag_id] }),
@@ -519,6 +530,17 @@ export const content_tags = pgTable(
 		index('content_tags_content_idx').on(t.content_id)
 	]
 );
+
+// When the tag engine last tagged a piece of content, and from what. Content tagged before its
+// transcript existed is tagged again once it has one.
+export const content_tagging = pgTable('content_tagging', {
+	content_id: uuid('content_id')
+		.primaryKey()
+		.references(() => content.id, { onDelete: 'cascade' }),
+	model: text('model').notNull(),
+	from_transcript: boolean('from_transcript').notNull(),
+	tagged_at: timestamp('tagged_at', { withTimezone: true }).defaultNow().notNull()
+});
 
 // ============================================================================
 // Newsletter Issues Table

@@ -3,21 +3,27 @@ import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
 import { content, content_tags, tag } from '$server/db/schema';
 import { error } from '@sveltejs/kit';
-import { asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, ilike, inArray, isNull, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 import get_slug from 'speakingurl';
 
 const TAG_DETAIL_LIMIT = 100;
 
+// TOPIC and LIBRARY are the tag engine's kinds (src/server/tags); LEGACY is a tag from before it
+const TAG_KIND_FILTERS = ['TOPIC', 'LIBRARY', 'LEGACY'] as const;
+
 const create_tag_schema = v.object({
 	name: v.pipe(v.string(), v.trim(), v.minLength(1)),
-	slug: v.optional(v.string())
+	slug: v.optional(v.string()),
+	kind: v.optional(v.picklist(['TOPIC', 'LIBRARY']))
 });
 
 const update_tag_schema = v.object({
 	id: v.string(),
 	name: v.pipe(v.string(), v.trim(), v.minLength(1)),
-	slug: v.optional(v.string())
+	slug: v.optional(v.string()),
+	// A topic's meaning, read by the model that tags content
+	description: v.optional(v.nullable(v.pipe(v.string(), v.trim())))
 });
 
 const search_tag_schema = v.object({
@@ -26,6 +32,7 @@ const search_tag_schema = v.object({
 
 const list_tags_schema = v.object({
 	search_text: v.optional(v.string()),
+	kind: v.optional(v.picklist(TAG_KIND_FILTERS)),
 	page: v.optional(v.number()),
 	page_size: v.optional(v.number())
 });
@@ -46,30 +53,32 @@ export const list_tags = query(list_tags_schema, async (input) => {
 	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
 	const offset = (page - 1) * page_size;
 
-	const search_clause = search_text
-		? or(ilike(tag.name, `%${search_text}%`), ilike(tag.slug, `%${search_text}%`))
-		: undefined;
+	const where_clause = and(
+		search_text
+			? or(ilike(tag.name, `%${search_text}%`), ilike(tag.slug, `%${search_text}%`))
+			: undefined,
+		input.kind === 'LEGACY' ? isNull(tag.kind) : input.kind ? eq(tag.kind, input.kind) : undefined
+	);
 
-	const total_rows = search_clause
-		? await db
-				.select({ total: sql<number>`count(*)` })
-				.from(tag)
-				.where(search_clause)
-		: await db.select({ total: sql<number>`count(*)` }).from(tag);
+	const total_rows = await db
+		.select({ total: sql<number>`count(*)` })
+		.from(tag)
+		.where(where_clause);
 
 	const total = Number(total_rows[0]?.total || 0);
 
-	const base_select = db
+	const items = await db
 		.select({
 			id: tag.id,
 			name: tag.name,
 			slug: tag.slug,
+			kind: tag.kind,
+			description: tag.description,
 			content_count: sql<number>`count(${content_tags.content_id})`
 		})
 		.from(tag)
-		.leftJoin(content_tags, eq(tag.id, content_tags.tag_id));
-
-	const items = await (search_clause ? base_select.where(search_clause) : base_select)
+		.leftJoin(content_tags, eq(tag.id, content_tags.tag_id))
+		.where(where_clause)
 		.groupBy(tag.id)
 		.orderBy(asc(tag.name))
 		.limit(page_size)
@@ -80,6 +89,8 @@ export const list_tags = query(list_tags_schema, async (input) => {
 			id: row.id,
 			name: row.name,
 			slug: row.slug ?? '',
+			kind: row.kind,
+			description: row.description ?? '',
 			content_count: Number(row.content_count)
 		})),
 		total,
@@ -173,7 +184,8 @@ export const create_tag = command(create_tag_schema, async (input) => {
 		.insert(tag)
 		.values({
 			name: input.name,
-			slug: normalized_slug
+			slug: normalized_slug,
+			kind: input.kind ?? null
 		})
 		.returning();
 
@@ -192,7 +204,8 @@ export const update_tag = command(update_tag_schema, async (input) => {
 		.update(tag)
 		.set({
 			name: input.name,
-			slug: normalized_slug
+			slug: normalized_slug,
+			...(input.description === undefined ? {} : { description: input.description || null })
 		})
 		.where(eq(tag.id, input.id));
 

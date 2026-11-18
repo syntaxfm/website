@@ -4,6 +4,7 @@
 // - Mondays: take the weekly SEO snapshot
 // - hourly at :05: import new or changed episodes from the shows/ markdown files
 // - hourly at :15: copy new YouTube videos into the site (the whole channel once a day)
+// - hourly at :35: tag new episodes and videos with topics and libraries
 // It never throws, so Cloudflare never retries a run (a retry could pay Grok or Firecrawl twice).
 
 // alchemy.run.ts binds WEBSITE to the website Worker (Alchemy types a Worker binding as the
@@ -16,6 +17,7 @@ type Env = {
 	SEO_SCHEDULE: string;
 	SHOW_SCHEDULE: string;
 	VIDEO_SCHEDULE: string;
+	TAG_SCHEDULE: string;
 	CRON_SECRET?: string;
 };
 
@@ -25,7 +27,8 @@ export default {
 			[env.TRANSCRIPT_SCHEDULE]: '/webhooks/transcripts',
 			[env.SEO_SCHEDULE]: '/webhooks/seo',
 			[env.SHOW_SCHEDULE]: '/webhooks/refresh',
-			[env.VIDEO_SCHEDULE]: '/webhooks/videos'
+			[env.VIDEO_SCHEDULE]: '/webhooks/videos',
+			[env.TAG_SCHEDULE]: '/webhooks/tags'
 		};
 		const path = jobs[controller.cron];
 		if (!path) {

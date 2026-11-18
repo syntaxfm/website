@@ -124,16 +124,18 @@ export type SyntaxWebsiteEnv = Cloudflare.InferEnv<typeof syntax_website>;
 // snapshot (src/routes/webhooks/seo) Mondays at 14:00 UTC, 7am in Denver; episodes from the
 // shows/ markdown files (src/routes/webhooks/refresh) hourly, then YouTube videos
 // (src/routes/webhooks/videos) ten minutes later, so a new episode's YouTube video is already
-// known as an episode. Its id stays TranscriptCron from when it only ran transcripts: a new id
-// would be a new Worker without the secret.
+// known as an episode; then tags (src/routes/webhooks/tags) after the video job's new captions. Its
+// id stays TranscriptCron from when it only ran transcripts: a new id would be a new Worker without
+// the secret.
 const TRANSCRIPT_SCHEDULE = '*/20 * * * *';
 const SEO_SCHEDULE = '0 14 * * 1';
 const SHOW_SCHEDULE = '5 * * * *';
 const VIDEO_SCHEDULE = '15 * * * *';
+const TAG_SCHEDULE = '35 * * * *';
 const scheduled_jobs = Cloudflare.Worker('TranscriptCron', {
 	main: './workers/scheduled_jobs.ts',
 	compatibility: { date: COMPATIBILITY.date },
-	crons: [TRANSCRIPT_SCHEDULE, SEO_SCHEDULE, SHOW_SCHEDULE, VIDEO_SCHEDULE],
+	crons: [TRANSCRIPT_SCHEDULE, SEO_SCHEDULE, SHOW_SCHEDULE, VIDEO_SCHEDULE, TAG_SCHEDULE],
 	workersDev: false,
 	observability: { enabled: true },
 	env: {
@@ -142,7 +144,8 @@ const scheduled_jobs = Cloudflare.Worker('TranscriptCron', {
 		TRANSCRIPT_SCHEDULE,
 		SEO_SCHEDULE,
 		SHOW_SCHEDULE,
-		VIDEO_SCHEDULE
+		VIDEO_SCHEDULE,
+		TAG_SCHEDULE
 	}
 });
 

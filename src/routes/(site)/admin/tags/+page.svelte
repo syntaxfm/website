@@ -4,21 +4,42 @@
 	import { page as current_page } from '$app/state';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
-	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
+	import {
+		build_url,
+		has_any_filter,
+		read_int,
+		read_picklist,
+		read_string
+	} from '#lib/admin/admin_filters.ts';
+	import SelectMenu from '#lib/SelectMenu.svelte';
 	import AdminSearch from '../AdminSearch.svelte';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
-	const FILTER_KEYS = ['q'] as const;
+	const FILTER_KEYS = ['q', 'kind'] as const;
+	// The tag engine's kinds (src/server/tags), and tags from before it
+	const KIND_FILTERS = ['ALL', 'TOPIC', 'LIBRARY', 'LEGACY'] as const;
+	const KIND_LABELS = { ALL: 'All', TOPIC: 'Topics', LIBRARY: 'Libraries', LEGACY: 'Old tags' };
+	const KIND_OPTIONS = KIND_FILTERS.map((value) => ({
+		value: value === 'ALL' ? '' : value,
+		label: KIND_LABELS[value]
+	}));
+	type KindFilter = (typeof KIND_FILTERS)[number];
 	const PAGE_SIZE = 25;
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
+	let kind_filter = $derived(
+		read_picklist<KindFilter>(current_page.url.searchParams, 'kind', KIND_FILTERS, 'ALL')
+	);
+	let list_kind = $derived(kind_filter === 'ALL' ? undefined : kind_filter);
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let new_name = $state('');
+	let new_kind: 'TOPIC' | 'LIBRARY' = $state('TOPIC');
 	let creating = $state(false);
 
-	let draft_by_id = $state<Record<string, { name: string }>>({});
+	type TagDraft = { name: string; description: string };
+	let draft_by_id = $state<Record<string, TagDraft>>({});
 	let row_busy = $state<Record<string, boolean>>({});
 
 	let action_message = $state('');
@@ -30,6 +51,7 @@
 	const list_result = $derived(
 		await list_tags({
 			search_text,
+			kind: list_kind,
 			page: page_number,
 			page_size: PAGE_SIZE
 		})
@@ -54,11 +76,11 @@
 		};
 	}
 
-	function get_draft(row: TagListItem) {
-		return draft_by_id[row.id] ?? { name: row.name };
+	function get_draft(row: TagListItem): TagDraft {
+		return draft_by_id[row.id] ?? { name: row.name, description: row.description };
 	}
 
-	function set_draft(tag_id: string, draft: { name: string }) {
+	function set_draft(tag_id: string, draft: TagDraft) {
 		draft_by_id = {
 			...draft_by_id,
 			[tag_id]: draft
@@ -82,11 +104,12 @@
 		clear_feedback();
 
 		try {
-			await create_tag({ name: trimmed_name });
+			await create_tag({ name: trimmed_name, kind: new_kind });
 			new_name = '';
 			action_message = 'Tag created.';
 			await list_tags({
 				search_text,
+				kind: list_kind,
 				page: page_number,
 				page_size: PAGE_SIZE
 			}).refresh();
@@ -113,12 +136,15 @@
 		try {
 			await update_tag({
 				id: row.id,
-				name: trimmed_name
+				name: trimmed_name,
+				// Only topics have one: it tells the tagging model what the topic covers
+				...(row.kind === 'TOPIC' ? { description: draft.description } : {})
 			});
 			action_message = 'Tag updated.';
 			clear_draft(row.id);
 			await list_tags({
 				search_text,
+				kind: list_kind,
 				page: page_number,
 				page_size: PAGE_SIZE
 			}).refresh();
@@ -140,6 +166,7 @@
 			clear_draft(row.id);
 			await list_tags({
 				search_text,
+				kind: list_kind,
 				page: page_number,
 				page_size: PAGE_SIZE
 			}).refresh();
@@ -168,6 +195,11 @@
 			required
 			disabled={creating}
 		/>
+		<label class="admin-visually-hidden" for="new-tag-kind">Kind</label>
+		<select id="new-tag-kind" bind:value={new_kind} disabled={creating}>
+			<option value="TOPIC">Topic</option>
+			<option value="LIBRARY">Library</option>
+		</select>
 		<button type="submit" data-intent="primary" disabled={creating}>
 			{creating ? 'Creating…' : 'Create tag'}
 		</button>
@@ -188,6 +220,14 @@
 					on_input={(value) => update_url({ q: value || null, page: null })}
 					placeholder="Search tags"
 				/>
+				<SelectMenu
+					popover_id="filter-kind"
+					button_text={KIND_LABELS[kind_filter]}
+					button_icon="filter"
+					value={kind_filter === 'ALL' ? '' : kind_filter}
+					options={KIND_OPTIONS}
+					onselect={(value) => update_url({ kind: value || null, page: null })}
+				/>
 				{#if show_clear_filters}
 					<div class="admin-control-row">
 						<a class="button" data-intent="quiet" href={resolve('admin/tags')}>× Clear</a>
@@ -207,6 +247,8 @@
 
 		{#snippet table_head(_params)}
 			<th>Name</th>
+			<th>Kind</th>
+			<th>Description</th>
 			<th>Slug</th>
 			<th>Usage count</th>
 			<th>Actions</th>
@@ -222,12 +264,21 @@
 							type="text"
 							value={draft.name}
 							disabled={row_busy[row.id]}
-							oninput={(event) => {
-								const target = event.currentTarget;
-								if (!(target instanceof HTMLInputElement)) return;
-								set_draft(row.id, { name: target.value });
-							}}
+							oninput={(event) => set_draft(row.id, { ...draft, name: event.currentTarget.value })}
 						/>
+					</td>
+					<td>{row.kind ? KIND_LABELS[row.kind] : KIND_LABELS.LEGACY}</td>
+					<td>
+						{#if row.kind === 'TOPIC'}
+							<textarea
+								aria-label={`Description of ${row.name}`}
+								rows="2"
+								value={draft.description}
+								disabled={row_busy[row.id]}
+								oninput={(event) =>
+									set_draft(row.id, { ...draft, description: event.currentTarget.value })}
+							></textarea>
+						{/if}
 					</td>
 					<td>/{row.slug}</td>
 					<td><a href={resolve(`admin/tags/${row.id}`)}>{row.content_count}</a></td>
@@ -256,7 +307,7 @@
 
 		{#snippet empty()}
 			<tr>
-				<td colspan="4">No tags found.</td>
+				<td colspan="6">No tags found.</td>
 			</tr>
 		{/snippet}
 	</AdminList>

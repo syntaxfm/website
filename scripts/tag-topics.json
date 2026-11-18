@@ -1,0 +1,412 @@
+[
+	{
+		"slug": "javascript",
+		"name": "JavaScript",
+		"description": "The JavaScript language itself: syntax, new features, the event loop, language proposals."
+	},
+	{
+		"slug": "typescript",
+		"name": "TypeScript",
+		"description": "TypeScript: types, generics, type checking, tsconfig, type-level tricks."
+	},
+	{
+		"slug": "css",
+		"name": "CSS",
+		"description": "Styling with CSS: selectors, layout, grid, flexbox, container queries, new CSS features."
+	},
+	{
+		"slug": "html",
+		"name": "HTML",
+		"description": "HTML elements and semantics, forms, dialogs, popovers, native browser elements."
+	},
+	{
+		"slug": "web-platform",
+		"name": "Web Platform APIs",
+		"description": "Browser APIs and new web platform features: View Transitions, Web Components, service workers, storage, WebGPU."
+	},
+	{
+		"slug": "browsers",
+		"name": "Browsers",
+		"description": "Web browsers themselves: Chrome, Safari, Firefox, browser engines, browser news."
+	},
+	{
+		"slug": "react",
+		"name": "React",
+		"description": "React: components, hooks, server components, the React ecosystem."
+	},
+	{
+		"slug": "nextjs",
+		"name": "Next.js",
+		"description": "Next.js and Vercel's React framework."
+	},
+	{
+		"slug": "svelte",
+		"name": "Svelte",
+		"description": "Svelte and SvelteKit."
+	},
+	{
+		"slug": "vue",
+		"name": "Vue",
+		"description": "Vue.js and Nuxt."
+	},
+	{
+		"slug": "angular",
+		"name": "Angular",
+		"description": "Angular."
+	},
+	{
+		"slug": "solid",
+		"name": "Solid",
+		"description": "SolidJS and SolidStart."
+	},
+	{
+		"slug": "astro",
+		"name": "Astro",
+		"description": "Astro and content-focused site frameworks."
+	},
+	{
+		"slug": "remix",
+		"name": "Remix and React Router",
+		"description": "Remix and React Router."
+	},
+	{
+		"slug": "frameworks",
+		"name": "Frontend Frameworks",
+		"description": "Comparing or choosing JavaScript frameworks, framework trends, signals and reactivity in general."
+	},
+	{
+		"slug": "css-frameworks",
+		"name": "CSS Tooling",
+		"description": "Tailwind, StyleX, CSS-in-JS, Sass, PostCSS and other ways to write and ship CSS."
+	},
+	{
+		"slug": "node",
+		"name": "Node.js",
+		"description": "Node.js: the runtime, its APIs, and running JavaScript on the server."
+	},
+	{
+		"slug": "bun",
+		"name": "Bun",
+		"description": "The Bun runtime and toolkit."
+	},
+	{
+		"slug": "deno",
+		"name": "Deno",
+		"description": "The Deno runtime and Deno Deploy."
+	},
+	{
+		"slug": "rust",
+		"name": "Rust",
+		"description": "The Rust language, and JavaScript tools written in Rust."
+	},
+	{
+		"slug": "go",
+		"name": "Go",
+		"description": "The Go language."
+	},
+	{
+		"slug": "python",
+		"name": "Python",
+		"description": "Python."
+	},
+	{
+		"slug": "php",
+		"name": "PHP",
+		"description": "PHP, Laravel and WordPress development."
+	},
+	{
+		"slug": "ruby",
+		"name": "Ruby and Rails",
+		"description": "Ruby and Ruby on Rails."
+	},
+	{
+		"slug": "zig",
+		"name": "Zig",
+		"description": "The Zig language."
+	},
+	{
+		"slug": "wasm",
+		"name": "WebAssembly",
+		"description": "WebAssembly in and outside the browser."
+	},
+	{
+		"slug": "build-tools",
+		"name": "Build Tools",
+		"description": "Bundlers and build tooling: Vite, webpack, esbuild, Rollup, Turbopack, monorepo tools."
+	},
+	{
+		"slug": "package-managers",
+		"name": "Packages and npm",
+		"description": "npm, pnpm, yarn, JSR, dependencies, publishing packages, supply chain."
+	},
+	{
+		"slug": "linting-formatting",
+		"name": "Linting and Formatting",
+		"description": "ESLint, Prettier, Biome, oxc and code quality tools."
+	},
+	{
+		"slug": "testing",
+		"name": "Testing",
+		"description": "Writing and running tests: unit, integration, end-to-end, Vitest, Playwright."
+	},
+	{
+		"slug": "debugging",
+		"name": "Debugging",
+		"description": "Finding and fixing bugs, devtools, logging, error tracking."
+	},
+	{
+		"slug": "performance",
+		"name": "Performance",
+		"description": "Making sites and apps fast: Core Web Vitals, loading, rendering, profiling."
+	},
+	{
+		"slug": "accessibility",
+		"name": "Accessibility",
+		"description": "Building for everyone: a11y, screen readers, keyboard use, ARIA."
+	},
+	{
+		"slug": "security",
+		"name": "Security",
+		"description": "Security: vulnerabilities, hacks, auth flaws, supply chain attacks, keeping apps safe."
+	},
+	{
+		"slug": "privacy",
+		"name": "Privacy",
+		"description": "User privacy, tracking, cookies, data protection."
+	},
+	{
+		"slug": "auth",
+		"name": "Authentication",
+		"description": "Logins, sessions, OAuth, passkeys, auth providers."
+	},
+	{
+		"slug": "apis",
+		"name": "APIs",
+		"description": "Designing and consuming APIs: REST, GraphQL, RPC, webhooks."
+	},
+	{
+		"slug": "graphql",
+		"name": "GraphQL",
+		"description": "GraphQL specifically."
+	},
+	{
+		"slug": "databases",
+		"name": "Databases",
+		"description": "Databases and data storage: Postgres, SQLite, MySQL, Redis, ORMs, schemas, queries."
+	},
+	{
+		"slug": "local-first",
+		"name": "Local-First and Sync",
+		"description": "Local-first apps, sync engines, offline data, CRDTs."
+	},
+	{
+		"slug": "serverless",
+		"name": "Serverless and Edge",
+		"description": "Serverless functions, edge computing, Workers, Lambda."
+	},
+	{
+		"slug": "cloudflare",
+		"name": "Cloudflare",
+		"description": "Cloudflare products: Workers, R2, D1, Durable Objects, Workers AI."
+	},
+	{
+		"slug": "hosting",
+		"name": "Hosting and Deployment",
+		"description": "Hosting and shipping apps: Vercel, Netlify, VPSs, CI/CD, deploys."
+	},
+	{
+		"slug": "devops",
+		"name": "DevOps and Infrastructure",
+		"description": "Servers, Docker, containers, Kubernetes, networking, infrastructure as code."
+	},
+	{
+		"slug": "self-hosting",
+		"name": "Self-Hosting and Home Lab",
+		"description": "Running your own servers and services at home: home labs, NAS, Tailscale, Raspberry Pi."
+	},
+	{
+		"slug": "linux",
+		"name": "Linux",
+		"description": "Linux desktops and distros, Omarchy, terminal-centric setups."
+	},
+	{
+		"slug": "terminal",
+		"name": "Terminal and CLI",
+		"description": "The command line, shells, terminal apps, CLI tools, remote shells."
+	},
+	{
+		"slug": "editors",
+		"name": "Code Editors",
+		"description": "Code editors and IDEs: VS Code, Zed, Cursor, Neovim, editor setups and extensions."
+	},
+	{
+		"slug": "git",
+		"name": "Git and GitHub",
+		"description": "Git, GitHub, pull requests, code review workflows, GitHub news."
+	},
+	{
+		"slug": "dev-setup",
+		"name": "Dev Setups and Hardware",
+		"description": "Computers, keyboards, monitors, desks, and how developers set up their machines."
+	},
+	{
+		"slug": "productivity",
+		"name": "Productivity",
+		"description": "Getting work done: workflows, focus, note taking, productivity apps and habits."
+	},
+	{
+		"slug": "ai-coding",
+		"name": "AI Coding",
+		"description": "Writing software with AI: coding agents, Claude Code, Cursor, Copilot, vibe coding, reviewing AI code."
+	},
+	{
+		"slug": "ai-agents",
+		"name": "AI Agents",
+		"description": "Building and running AI agents, tool use, MCP, agent frameworks, automations driven by AI."
+	},
+	{
+		"slug": "llms",
+		"name": "LLMs and AI Models",
+		"description": "Large language models themselves: how they work, model releases, benchmarks, open-weight models."
+	},
+	{
+		"slug": "ai-industry",
+		"name": "AI Industry",
+		"description": "AI companies, deals, pricing, funding, lawsuits and AI news."
+	},
+	{
+		"slug": "ai-in-apps",
+		"name": "Building with AI APIs",
+		"description": "Adding AI to your own app: calling model APIs, embeddings, RAG, structured output, AI SDKs."
+	},
+	{
+		"slug": "ai-society",
+		"name": "AI and Society",
+		"description": "How AI affects people: jobs, skills atrophy, ethics, burnout, addiction, how normal people use AI."
+	},
+	{
+		"slug": "mobile",
+		"name": "Mobile Apps",
+		"description": "iOS and Android apps, React Native, Expo, mobile web."
+	},
+	{
+		"slug": "desktop-apps",
+		"name": "Desktop Apps",
+		"description": "Desktop apps: Electron, Tauri, GPUI, native app development."
+	},
+	{
+		"slug": "hardware-hacking",
+		"name": "Hardware and Hacking Devices",
+		"description": "Electronics and gadgets: microcontrollers, jailbreaking devices, robots, building physical things."
+	},
+	{
+		"slug": "game-dev",
+		"name": "Game Development",
+		"description": "Making games, game engines, retro and console development."
+	},
+	{
+		"slug": "graphics",
+		"name": "Graphics and Animation",
+		"description": "Canvas, WebGL, WebGPU, SVG, 3D, shaders and animation on the web."
+	},
+	{
+		"slug": "design",
+		"name": "Design",
+		"description": "UI design, Figma, design systems, typography, colour."
+	},
+	{
+		"slug": "ux",
+		"name": "UX",
+		"description": "User experience: usability, interaction design, user research."
+	},
+	{
+		"slug": "design-engineering",
+		"name": "Design Engineering",
+		"description": "The space between design and code: design engineers, prototyping in code, polish."
+	},
+	{
+		"slug": "content-sites",
+		"name": "CMS and Content",
+		"description": "CMSs, blogs, markdown, static sites, publishing content."
+	},
+	{
+		"slug": "ecommerce",
+		"name": "E-commerce and Payments",
+		"description": "Online stores, Stripe, payments, checkouts, Shopify."
+	},
+	{
+		"slug": "email",
+		"name": "Email",
+		"description": "Sending and building email, newsletters, email deliverability."
+	},
+	{
+		"slug": "realtime",
+		"name": "Real-time",
+		"description": "WebSockets, live updates, multiplayer and collaboration features."
+	},
+	{
+		"slug": "video-audio",
+		"name": "Video and Audio",
+		"description": "Video and audio on the web, streaming, encoding, recording, podcast production."
+	},
+	{
+		"slug": "seo",
+		"name": "SEO",
+		"description": "Search engine optimisation, getting found, structured data."
+	},
+	{
+		"slug": "web-standards",
+		"name": "Web Standards and the Open Web",
+		"description": "Standards bodies, browser vendors, the open web vs platforms, interop."
+	},
+	{
+		"slug": "open-source",
+		"name": "Open Source",
+		"description": "Open source projects, maintainers, licensing, funding open source."
+	},
+	{
+		"slug": "tech-industry",
+		"name": "Tech Industry News",
+		"description": "Tech company news: acquisitions, shutdowns, layoffs, platform drama."
+	},
+	{
+		"slug": "career",
+		"name": "Career",
+		"description": "Developer careers: getting hired, interviews, salaries, changing or quitting jobs, growing as a developer."
+	},
+	{
+		"slug": "learning",
+		"name": "Learning to Code",
+		"description": "Learning and teaching programming, beginners, courses, staying current."
+	},
+	{
+		"slug": "freelancing",
+		"name": "Freelancing and Business",
+		"description": "Freelancing, running a business, clients, pricing, products, side projects that make money."
+	},
+	{
+		"slug": "teams",
+		"name": "Teams and Process",
+		"description": "Working on a team: code review, process, management, meetings, remote work."
+	},
+	{
+		"slug": "architecture",
+		"name": "Software Architecture",
+		"description": "How to structure software: patterns, state management, monoliths vs services, rewrites."
+	},
+	{
+		"slug": "functional",
+		"name": "Functional Programming",
+		"description": "Functional programming ideas and libraries like Effect."
+	},
+	{
+		"slug": "content-creation",
+		"name": "Content Creation",
+		"description": "Making YouTube videos, podcasts, streams and courses as a developer."
+	},
+	{
+		"slug": "coding-challenges",
+		"name": "Coding Challenges",
+		"description": "Coding battles, challenges, puzzles, building something under constraints or from memory."
+	}
+]
