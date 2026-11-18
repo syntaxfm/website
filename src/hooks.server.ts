@@ -24,6 +24,7 @@ import {
 	syntax_auth_diagnostic_response,
 	syntax_auth_failure_response
 } from '$server/auth/syntax_auth_failure';
+import { is_mcp_request } from '$server/mcp/mcp_route';
 
 // import { ADMIN_LOGIN } from '$env/static/private';
 
@@ -50,6 +51,10 @@ const auth: Handle = async function ({ event, resolve }) {
 	// asking Auth. Matched on the URL the browser requested, never a remote call's claimed page.
 	const diagnostic_response = dev ? syntax_auth_diagnostic_response(event.request) : null;
 	if (diagnostic_response) return diagnostic_response;
+
+	// The MCP endpoint and its metadata: an agent signs in with a bearer token, which the endpoint
+	// checks itself (server/mcp). No cookie is read and no cookie is set.
+	if (is_mcp_request(event)) return resolve(event);
 
 	// Admin remote queries carry no page, so their route is null here; they check with
 	// assert_admin(). Commands and forms carry the admin page that called them.
@@ -133,6 +138,8 @@ const SENTRY_TRACE_TAGS = /<meta name="(?:sentry-trace|baggage)"[^>]*>/g;
 
 const page_cache: Handle = async function ({ event, resolve }) {
 	const response = await resolve(event);
+	// The MCP endpoint answers per caller and sets its own no-store; never shared-cached
+	if (is_mcp_request(event)) return response;
 	const is_page = response.headers.get('x-sveltekit-page') === 'true';
 	if (!is_page && !event.isDataRequest) return response;
 

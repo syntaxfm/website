@@ -1,11 +1,12 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
+import * as articles from '$server/articles/articles';
 import { db } from '$server/db/client';
 import { article, content, content_tags } from '$server/db/schema';
+import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
 import { error } from '@sveltejs/kit';
-import { and, asc, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gte, ilike, inArray, lte, sql } from 'drizzle-orm';
 import * as v from 'valibot';
-import get_slug from 'speakingurl';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
@@ -43,27 +44,6 @@ const delete_article_schema = v.object({
 	content_id: v.pipe(v.string(), v.trim(), v.minLength(1)),
 	confirm_text: v.string()
 });
-
-function normalize_slug(input_text: string) {
-	return get_slug(input_text, {
-		separator: '-',
-		truncate: 120,
-		symbols: false
-	});
-}
-
-function parse_optional_iso_date(maybe_iso: string | null | undefined) {
-	if (!maybe_iso) {
-		return null;
-	}
-
-	const parsed_date = new Date(maybe_iso);
-	if (Number.isNaN(parsed_date.getTime())) {
-		return null;
-	}
-
-	return parsed_date;
-}
 
 export const get_all_articles = query(async () => {
 	await assert_admin();
@@ -171,55 +151,9 @@ export const list_articles = query(list_articles_schema, async (input) => {
 	return fetch_article_list(input);
 });
 
-export const create_article = command(create_article_schema, async (input) => {
-	const admin = await assert_admin();
-
-	const author_id = admin.profile_id;
-	if (!author_id) {
-		error(401, 'Missing authenticated user');
-	}
-
-	const normalized_slug = normalize_slug(input.slug?.trim() || input.title);
-	if (!normalized_slug) {
-		error(400, 'Unable to generate slug from title. Please provide a valid title/slug.');
-	}
-
-	const duplicate_slug = await db.query.content.findFirst({
-		where: eq(content.slug, normalized_slug),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_slug) {
-		error(409, 'Slug already exists');
-	}
-
-	const created_content = await db.transaction(async (tx) => {
-		const [inserted_content] = await tx
-			.insert(content)
-			.values({
-				title: input.title,
-				slug: normalized_slug,
-				type: 'ARTICLE',
-				status: 'DRAFT'
-			})
-			.returning({ id: content.id });
-
-		await tx.insert(article).values({
-			id: inserted_content.id,
-			body: '',
-			author_id,
-			content_id: inserted_content.id
-		});
-
-		return inserted_content;
-	});
-
-	return {
-		content_id: created_content.id
-	};
-});
+export const create_article = command(create_article_schema, async (input) =>
+	articles.create_article(await assert_admin(), input)
+);
 
 export const get_article_editor = query(v.string(), async (content_id) => {
 	await assert_admin();
@@ -255,79 +189,9 @@ export const get_article_authors = query(async () => {
 	});
 });
 
-export const update_article = command(update_article_schema, async (input) => {
-	await assert_admin();
-
-	const normalized_slug = normalize_slug(input.slug);
-	if (!normalized_slug) {
-		error(400, 'Slug is invalid');
-	}
-
-	const duplicate_slug = await db.query.content.findFirst({
-		where: and(eq(content.slug, normalized_slug), ne(content.id, input.content_id)),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_slug) {
-		error(409, 'Slug already exists');
-	}
-
-	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
-	if (input.status === 'PUBLISHED' && !next_published_at) {
-		next_published_at = new Date();
-	}
-
-	await db.transaction(async (tx) => {
-		const updated_content = await tx
-			.update(content)
-			.set({
-				title: input.title,
-				slug: normalized_slug,
-				status: input.status,
-				published_at: next_published_at,
-				updated_at: new Date()
-			})
-			.where(and(eq(content.id, input.content_id), eq(content.type, 'ARTICLE')))
-			.returning({ id: content.id });
-
-		if (updated_content.length === 0) {
-			error(404, 'Article not found');
-		}
-
-		const updated_article = await tx
-			.update(article)
-			.set({
-				body: input.body,
-				author_id: input.author_id
-			})
-			.where(eq(article.content_id, input.content_id))
-			.returning({ id: article.id });
-
-		if (updated_article.length === 0) {
-			error(404, 'Article not found');
-		}
-
-		if (input.tag_ids !== undefined) {
-			const tag_ids = [...new Set(input.tag_ids)].sort();
-
-			await tx.delete(content_tags).where(eq(content_tags.content_id, input.content_id));
-			if (tag_ids.length > 0) {
-				await tx.insert(content_tags).values(
-					tag_ids.map((tag_id) => ({
-						content_id: input.content_id,
-						tag_id
-					}))
-				);
-			}
-		}
-	});
-
-	return {
-		success: true
-	};
-});
+export const update_article = command(update_article_schema, async (input) =>
+	articles.update_article(await assert_admin(), input)
+);
 
 export const delete_article = command(delete_article_schema, async (input) => {
 	await assert_admin();

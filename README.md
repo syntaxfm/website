@@ -241,6 +241,30 @@ to sign in, a write fails with "Sign in needed … Nothing was changed", and a s
 role gets "Admin access required". None of these change roles: a failure never grants or keeps
 one. Public pages don't ask Auth unless you have a cookie, and they keep working signed out.
 
+### MCP endpoint
+
+Agents (such as Tasty, Syntax's Slack agent) use the site through MCP at `/mcp`
+(`https://beta.syntax.fm/mcp`, `http://localhost:5740/mcp` in development), acting as the person
+who signed in.
+
+- **Sign-in:** the agent signs in with Syntax Auth itself (dynamic client registration and PKCE,
+  scopes `openid profile email offline_access`) and sends the access token as
+  `Authorization: Bearer`. A request without a valid token gets 401 with a `WWW-Authenticate`
+  header that points to `/.well-known/oauth-protected-resource/mcp`, which names Syntax Auth.
+- **Token check:** the site verifies the JWT itself against Syntax Auth's published keys (cached
+  per Worker), and requires its issuer and its audience to be this site's own `/mcp` URL. Syntax
+  Auth must list that URL as an allowed audience. No cookie is read and no token is stored.
+- **Roles:** read from the person's Profile on every request. Anyone signed in can search and read
+  released Shows, videos, content, guests and tags. The admin role adds drafts and scheduled
+  content, the dashboard, submissions, the SEO report, and the writes (Shows, articles, video
+  status, tags, guests, submission status). Nothing deletes, and nothing changes Users or roles.
+- **One set of rules:** each tool calls the same server function as the admin page that does the
+  same thing (`src/server/**`, taking the acting person), so the admin pages and the endpoint
+  follow the same checks. Tools live in `src/server/mcp/mcp_tools.ts`.
+- **Protocol:** MCP `2026-07-28` only, served statelessly by Effect's `McpServer`; there are no
+  sessions. Clients must negotiate it (`@modelcontextprotocol/client` 2.x with
+  `versionNegotiation: { mode: 'auto' }`, which the Cloudflare Agents SDK sets by default).
+
 # Our Contributors
 
 <a href="https://github.com/syntaxfm/website/graphs/contributors">

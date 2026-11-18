@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
 import { db } from '$server/db/client';
@@ -72,10 +73,32 @@ export function get_admin_remote_guard_response(
 	});
 }
 
-export async function get_authenticated_user(user: SyntaxAuthUser): Promise<AuthenticatedUser> {
+/**
+ * Who a server function acts for: the central User ID, the Profile mapped to it, and that Profile's
+ * roles. A browser session (get_authenticated_user) and an MCP access token (server/mcp) both
+ * resolve to one, so the same function answers both with the same rules.
+ */
+export type Actor = Pick<AuthenticatedUser, 'id' | 'profile_id' | 'roles'>;
+
+export function is_admin(actor: Actor): boolean {
+	return actor.roles.includes('admin');
+}
+
+/** For server functions only admins may run: a 403 before anything is read or changed. */
+export function assert_admin_actor(actor: Actor): void {
+	if (!is_admin(actor)) error(403, ADMIN_ACCESS_REQUIRED);
+}
+
+/**
+ * The Profile mapped to a central User ID and its roles. A User without one has no roles, and so
+ * does everyone while the database can't answer: a failure never grants or keeps a role.
+ */
+export async function get_profile_authorization(
+	central_user_id: string
+): Promise<Pick<AuthenticatedUser, 'profile_id' | 'roles'>> {
 	try {
 		const user_profile = await db.query.profile.findFirst({
-			where: eq(profile.central_user_id, user.id),
+			where: eq(profile.central_user_id, central_user_id),
 			columns: { id: true },
 			with: {
 				roles: {
@@ -85,12 +108,15 @@ export async function get_authenticated_user(user: SyntaxAuthUser): Promise<Auth
 		});
 
 		return {
-			...user,
 			profile_id: user_profile?.id ?? null,
 			roles: user_profile?.roles.map((profile_role) => profile_role.role.name) ?? []
 		};
-	} catch (error) {
-		console.error('Failed to load Syntax application authorization', error);
-		return { ...user, profile_id: null, roles: [] };
+	} catch (load_error) {
+		console.error('Failed to load Syntax application authorization', load_error);
+		return { profile_id: null, roles: [] };
 	}
+}
+
+export async function get_authenticated_user(user: SyntaxAuthUser): Promise<AuthenticatedUser> {
+	return { ...user, ...(await get_profile_authorization(user.id)) };
 }

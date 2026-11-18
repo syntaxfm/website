@@ -10,7 +10,6 @@ import {
 	aiSummaryEntry,
 	aiTweet,
 	content,
-	content_tags,
 	guest,
 	link,
 	profile,
@@ -29,19 +28,13 @@ import {
 	type MegaphoneCredentials
 } from '$server/megaphone/sync';
 import * as v from 'valibot';
-import {
-	get_id_from_show_number,
-	import_or_update_all_changed_shows,
-	import_or_update_all_shows
-} from '$server/shows';
+import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
+import * as show_editor from '$server/shows/show_editor';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, gte, ilike, inArray, lte, ne, notInArray, or, sql } from 'drizzle-orm';
+import { and, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
 import { generate_ai_notes } from '$server/ai/openai';
 import { import_transcripts } from '$server/transcripts/transcripts';
-import { DAYS_OF_WEEK_TYPES } from '$const';
-import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
-import { left_pad } from '$utilities/left_pad';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
@@ -171,19 +164,6 @@ async function assert_ai_show_note_exists(show_note_id: number) {
 	}
 }
 
-function parse_optional_iso_date(maybe_iso: string | null | undefined) {
-	if (!maybe_iso) {
-		return null;
-	}
-
-	const parsed_date = new Date(maybe_iso);
-	if (Number.isNaN(parsed_date.getTime())) {
-		return null;
-	}
-
-	return parsed_date;
-}
-
 // Helper function to sync Spotify data for specific shows
 async function syncShowsSpotifyData(showNumbers: number[]): Promise<void> {
 	const credentials: MegaphoneCredentials = {
@@ -223,69 +203,9 @@ export const get_all_shows = query(async () => {
 	});
 });
 
-export const list_shows = query(list_shows_schema, async (input) => {
-	await assert_admin();
-
-	const search_text = input.search_text?.trim() || '';
-	const status = input.status || 'ALL';
-	const page = Math.max(1, input.page || 1);
-	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
-	const offset = (page - 1) * page_size;
-
-	const where_clauses = [];
-
-	if (search_text.length > 0) {
-		where_clauses.push(ilike(show.title, `%${search_text}%`));
-	}
-
-	if (status !== 'ALL') {
-		where_clauses.push(
-			inArray(
-				show.content_id,
-				db.select({ id: content.id }).from(content).where(eq(content.status, status))
-			)
-		);
-	}
-
-	const date_from = parse_optional_iso_date(input.date_from_iso);
-	if (date_from) {
-		where_clauses.push(gte(show.date, date_from));
-	}
-
-	const date_to = parse_optional_iso_date(input.date_to_iso);
-	if (date_to) {
-		where_clauses.push(lte(show.date, date_to));
-	}
-
-	const where_clause = where_clauses.length > 0 ? and(...where_clauses) : undefined;
-
-	const total_rows = where_clause
-		? await db
-				.select({ total: sql<number>`count(*)` })
-				.from(show)
-				.where(where_clause)
-		: await db.select({ total: sql<number>`count(*)` }).from(show);
-
-	const total = Number(total_rows[0]?.total || 0);
-
-	const items = await db.query.show.findMany({
-		where: where_clause,
-		with: {
-			meta: true
-		},
-		orderBy: [desc(show.number)],
-		limit: page_size,
-		offset
-	});
-
-	return {
-		items,
-		total,
-		page,
-		page_size,
-		total_pages: Math.max(1, Math.ceil(total / page_size))
-	};
-});
+export const list_shows = query(list_shows_schema, async (input) =>
+	show_editor.list_shows(await assert_admin(), input)
+);
 
 export const bulk_update_show_status = command(bulk_show_status_schema, async (input) => {
 	await assert_admin();
@@ -334,258 +254,17 @@ export const bulk_update_show_status = command(bulk_show_status_schema, async (i
 	};
 });
 
-export const get_show_editor = query(v.number(), async (show_number) => {
-	await assert_admin();
+export const get_show_editor = query(v.number(), async (show_number) =>
+	show_editor.get_show_editor(await assert_admin(), show_number)
+);
 
-	return db.query.show.findFirst({
-		where: eq(show.number, show_number),
-		with: {
-			meta: {
-				with: {
-					tags: {
-						with: {
-							tag: true
-						}
-					}
-				}
-			},
-			aiShowNote: {
-				with: {
-					summary: true,
-					tweets: true,
-					links: true,
-					guests: true,
-					topics: true
-				}
-			},
-			guests: {
-				with: {
-					guest: true
-				}
-			},
-			hosts: {
-				with: {
-					profile: true
-				}
-			},
-			transcript: {
-				columns: {
-					id: true
-				}
-			}
-		}
-	});
-});
+export const create_show_editor = command(create_show_editor_schema, async (input) =>
+	show_editor.create_show(await assert_admin(), input)
+);
 
-export const create_show_editor = command(create_show_editor_schema, async (input) => {
-	await assert_admin();
-
-	const duplicate_show_number = await db.query.show.findFirst({
-		where: eq(show.number, input.show_number),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_show_number) {
-		error(409, 'Show number already exists');
-	}
-
-	const duplicate_slug = await db.query.content.findFirst({
-		where: eq(content.slug, input.slug),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_slug) {
-		error(409, 'Slug already exists on another content item');
-	}
-
-	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
-	if (input.status === 'PUBLISHED' && !next_published_at) {
-		next_published_at = new Date();
-	}
-
-	const show_date = next_published_at || new Date();
-	const show_id = get_id_from_show_number(input.show_number);
-	const day_of_week = show_date.getDay();
-	const show_type = DAYS_OF_WEEK_TYPES[day_of_week] || 'SPECIAL';
-	const md_file = `/shows/${left_pad(input.show_number)} - ${input.slug}.md`;
-	const hash = await get_hash_from_content(
-		`${input.show_number}:${input.title}:${input.slug}:${input.url}:${input.show_notes}`
-	);
-
-	const created_content = await db.transaction(async (tx) => {
-		const [inserted_content] = await tx
-			.insert(content)
-			.values({
-				title: input.title,
-				slug: input.slug,
-				type: 'PODCAST',
-				status: input.status,
-				published_at: next_published_at
-			})
-			.returning({ id: content.id });
-
-		await tx.insert(show).values({
-			id: show_id,
-			number: input.show_number,
-			title: input.title,
-			slug: input.slug,
-			date: show_date,
-			url: input.url,
-			youtube_url: input.youtube_url || null,
-			show_notes: input.show_notes,
-			show_type,
-			hash,
-			md_file,
-			content_id: inserted_content.id,
-			updated_at: new Date()
-		});
-
-		return inserted_content;
-	});
-
-	return {
-		success: true,
-		show_number: input.show_number,
-		content_id: created_content.id,
-		show_id
-	};
-});
-
-export const update_show_editor = command(update_show_editor_schema, async (input) => {
-	await assert_admin();
-
-	const existing_show = await db.query.show.findFirst({
-		where: eq(show.number, input.show_number),
-		columns: {
-			id: true,
-			date: true,
-			content_id: true
-		}
-	});
-
-	if (!existing_show) {
-		error(404, 'Show not found');
-	}
-	const content_id = existing_show.content_id;
-
-	const duplicate_slug = await db.query.content.findFirst({
-		where: content_id
-			? and(eq(content.slug, input.slug), ne(content.id, content_id))
-			: eq(content.slug, input.slug),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_slug) {
-		error(409, 'Slug already exists on another content item');
-	}
-
-	if (input.tag_ids !== undefined && !content_id) {
-		error(409, 'Show is not linked to content; tags cannot be replaced');
-	}
-
-	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
-	if (input.status === 'PUBLISHED' && !next_published_at) {
-		next_published_at = new Date();
-	}
-
-	await db.transaction(async (tx) => {
-		const updated_show = await tx
-			.update(show)
-			.set({
-				title: input.title,
-				slug: input.slug,
-				show_notes: input.show_notes,
-				url: input.url,
-				youtube_url: input.youtube_url || null,
-				date: next_published_at || existing_show.date,
-				updated_at: new Date()
-			})
-			.where(eq(show.number, input.show_number))
-			.returning({ id: show.id });
-
-		if (updated_show.length === 0) {
-			error(404, 'Show not found');
-		}
-
-		if (content_id) {
-			const updated_content = await tx
-				.update(content)
-				.set({
-					title: input.title,
-					slug: input.slug,
-					status: input.status,
-					published_at: next_published_at,
-					updated_at: new Date()
-				})
-				.where(and(eq(content.id, content_id), eq(content.type, 'PODCAST')))
-				.returning({ id: content.id });
-
-			if (updated_content.length === 0) {
-				error(404, 'Show content not found');
-			}
-		}
-
-		if (input.guest_ids !== undefined) {
-			const guest_ids = [...new Set(input.guest_ids)].sort();
-
-			if (guest_ids.length === 0) {
-				await tx.delete(showGuest).where(eq(showGuest.show_id, existing_show.id));
-			} else {
-				await tx
-					.delete(showGuest)
-					.where(
-						and(eq(showGuest.show_id, existing_show.id), notInArray(showGuest.guest_id, guest_ids))
-					);
-
-				await tx
-					.insert(showGuest)
-					.values(
-						guest_ids.map((guest_id) => ({
-							show_id: existing_show.id,
-							guest_id
-						}))
-					)
-					.onConflictDoNothing();
-			}
-		}
-
-		if (input.host_ids !== undefined) {
-			const host_ids = [...new Set(input.host_ids)].sort();
-
-			await tx.delete(showToProfile).where(eq(showToProfile.show_id, existing_show.id));
-			if (host_ids.length > 0) {
-				await tx.insert(showToProfile).values(
-					host_ids.map((profile_id) => ({
-						show_id: existing_show.id,
-						profile_id
-					}))
-				);
-			}
-		}
-
-		if (input.tag_ids !== undefined && content_id) {
-			const tag_ids = [...new Set(input.tag_ids)].sort();
-
-			await tx.delete(content_tags).where(eq(content_tags.content_id, content_id));
-			if (tag_ids.length > 0) {
-				await tx.insert(content_tags).values(
-					tag_ids.map((tag_id) => ({
-						content_id,
-						tag_id
-					}))
-				);
-			}
-		}
-	});
-
-	return { success: true };
-});
+export const update_show_editor = command(update_show_editor_schema, async (input) =>
+	show_editor.update_show(await assert_admin(), input)
+);
 
 export const sync_spotify_for_show = command(show_number_schema, async ({ show_number }) => {
 	await assert_admin();

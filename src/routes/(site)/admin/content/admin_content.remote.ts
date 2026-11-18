@@ -1,11 +1,15 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
+import * as content_library from '$server/content/content';
 import { article, content, content_tags, show, video } from '$server/db/schema';
+import { normalize_slug } from '$utilities/normalize_slug';
+import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, gte, ilike, inArray, lte, ne, sql } from 'drizzle-orm';
+import { and, eq, inArray, ne } from 'drizzle-orm';
 import * as v from 'valibot';
-import get_slug from 'speakingurl';
+
+const CONTENT_SLUG_MAX_LENGTH = 120;
 
 const CONTENT_TYPE_VALUES = ['PODCAST', 'ARTICLE', 'VIDEO', 'TOOL', 'NEWSLETTER', 'EVENT'] as const;
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
@@ -57,112 +61,6 @@ const bulk_delete_schema = v.object({
 	content_ids: v.pipe(v.array(v.string()), v.minLength(1)),
 	confirm_text: v.string()
 });
-
-type ListContentInput = v.InferOutput<typeof list_content_schema>;
-
-function normalize_slug(input_text: string) {
-	return get_slug(input_text, {
-		separator: '-',
-		truncate: 120,
-		symbols: false
-	});
-}
-
-function parse_optional_iso_date(maybe_iso: string | null | undefined) {
-	if (!maybe_iso) {
-		return null;
-	}
-
-	const parsed_date = new Date(maybe_iso);
-	if (Number.isNaN(parsed_date.getTime())) {
-		return null;
-	}
-
-	return parsed_date;
-}
-
-async function fetch_content_list(input: ListContentInput) {
-	const search_text = input.search_text?.trim() || '';
-	const status = input.status || 'ALL';
-	type FilterType = (typeof FILTER_TYPE_VALUES)[number];
-	const type = (input.type || 'ALL') as FilterType;
-	const page = Math.max(1, input.page || 1);
-	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
-	const offset = (page - 1) * page_size;
-
-	const where_clauses = [];
-
-	if (search_text.length > 0) {
-		where_clauses.push(ilike(content.title, `%${search_text}%`));
-	}
-
-	if (status !== 'ALL') {
-		where_clauses.push(eq(content.status, status));
-	}
-
-	if (type !== 'ALL') {
-		where_clauses.push(eq(content.type, type));
-	}
-
-	const date_from = parse_optional_iso_date(input.date_from_iso);
-	if (date_from) {
-		where_clauses.push(gte(content.published_at, date_from));
-	}
-
-	const date_to = parse_optional_iso_date(input.date_to_iso);
-	if (date_to) {
-		where_clauses.push(lte(content.published_at, date_to));
-	}
-
-	const tag_id = input.tag_id?.trim() || '';
-	if (tag_id.length > 0) {
-		where_clauses.push(
-			inArray(
-				content.id,
-				db
-					.select({ id: content_tags.content_id })
-					.from(content_tags)
-					.where(eq(content_tags.tag_id, tag_id))
-			)
-		);
-	}
-
-	const where_clause = where_clauses.length > 0 ? and(...where_clauses) : undefined;
-
-	const total_rows = where_clause
-		? await db
-				.select({ total: sql<number>`count(*)` })
-				.from(content)
-				.where(where_clause)
-		: await db.select({ total: sql<number>`count(*)` }).from(content);
-
-	const total = Number(total_rows[0]?.total || 0);
-
-	const items = await db.query.content.findMany({
-		where: where_clause,
-		with: {
-			show: true,
-			video: true,
-			article: true,
-			tags: {
-				with: {
-					tag: true
-				}
-			}
-		},
-		orderBy: [desc(content.published_at), desc(content.updated_at)],
-		limit: page_size,
-		offset
-	});
-
-	return {
-		items,
-		total,
-		page,
-		page_size,
-		total_pages: Math.max(1, Math.ceil(total / page_size))
-	};
-}
 
 // TEMP FUNCTION CAN BE REMOVED AFTER MIGRATION
 // this finds shows and videos and makes content from them
@@ -278,15 +176,12 @@ export const populate_content_from_existing_data = command(async () => {
 	}
 });
 
-export const list_content = query(list_content_schema, async (input) => {
-	await assert_admin();
-	return fetch_content_list(input);
-});
+export const list_content = query(list_content_schema, async (input) =>
+	content_library.list_content(await assert_admin(), input)
+);
 
 export const get_all_content = query(async () => {
-	await assert_admin();
-
-	const content_result = await fetch_content_list({
+	const content_result = await content_library.list_content(await assert_admin(), {
 		status: 'ALL',
 		type: 'ALL',
 		page: 1,
@@ -309,7 +204,7 @@ export const create_content = command(create_content_schema, async (input) => {
 	}
 
 	const maybe_slug = input.slug?.trim() || input.title;
-	const normalized_slug = normalize_slug(maybe_slug);
+	const normalized_slug = normalize_slug(maybe_slug, CONTENT_SLUG_MAX_LENGTH);
 	if (!normalized_slug) {
 		error(400, 'Unable to generate slug from title. Please provide a valid title/slug.');
 	}
@@ -357,32 +252,14 @@ export const create_content = command(create_content_schema, async (input) => {
 	};
 });
 
-export const get_content_detail = query(v.string(), async (content_id) => {
-	await assert_admin();
-
-	return db.query.content.findFirst({
-		where: eq(content.id, content_id),
-		with: {
-			article: {
-				with: {
-					author: true
-				}
-			},
-			show: true,
-			video: true,
-			tags: {
-				with: {
-					tag: true
-				}
-			}
-		}
-	});
-});
+export const get_content_detail = query(v.string(), async (content_id) =>
+	content_library.get_content_detail(await assert_admin(), content_id)
+);
 
 export const update_content_meta = command(update_content_schema, async (input) => {
 	await assert_admin();
 
-	const normalized_slug = normalize_slug(input.slug);
+	const normalized_slug = normalize_slug(input.slug, CONTENT_SLUG_MAX_LENGTH);
 	if (!normalized_slug) {
 		error(400, 'Slug is invalid');
 	}
@@ -439,7 +316,7 @@ export const update_content_meta = command(update_content_schema, async (input) 
 export const check_slug_available = query(slug_check_schema, async (input) => {
 	await assert_admin();
 
-	const normalized_slug = normalize_slug(input.slug);
+	const normalized_slug = normalize_slug(input.slug, CONTENT_SLUG_MAX_LENGTH);
 	if (!normalized_slug) {
 		return {
 			normalized_slug,
@@ -472,63 +349,17 @@ export const get_tag_options = query(async () => {
 	});
 });
 
-export const assign_content_tags = command(bulk_tag_schema, async (input) => {
-	await assert_admin();
+export const assign_content_tags = command(bulk_tag_schema, async (input) =>
+	content_library.assign_content_tags(await assert_admin(), input)
+);
 
-	const values = input.content_ids.flatMap((content_id) =>
-		input.tag_ids.map((tag_id) => ({
-			content_id,
-			tag_id
-		}))
-	);
+export const remove_content_tags = command(bulk_tag_schema, async (input) =>
+	content_library.remove_content_tags(await assert_admin(), input)
+);
 
-	await db.insert(content_tags).values(values).onConflictDoNothing();
-
-	return { success: true, count: values.length };
-});
-
-export const remove_content_tags = command(bulk_tag_schema, async (input) => {
-	await assert_admin();
-
-	await db
-		.delete(content_tags)
-		.where(
-			and(
-				inArray(content_tags.content_id, input.content_ids),
-				inArray(content_tags.tag_id, input.tag_ids)
-			)
-		);
-
-	return { success: true };
-});
-
-export const bulk_update_status = command(bulk_status_schema, async (input) => {
-	await assert_admin();
-
-	const set_values: {
-		status: (typeof CONTENT_STATUS_VALUES)[number];
-		updated_at: Date;
-		published_at?: Date | null | ReturnType<typeof sql>;
-	} = {
-		status: input.status,
-		updated_at: new Date()
-	};
-
-	if (input.status === 'PUBLISHED') {
-		set_values.published_at = sql`coalesce(${content.published_at}, now())`;
-	}
-
-	if (input.status === 'DRAFT') {
-		set_values.published_at = null;
-	}
-
-	await db.update(content).set(set_values).where(inArray(content.id, input.content_ids));
-
-	return {
-		success: true,
-		count: input.content_ids.length
-	};
-});
+export const bulk_update_status = command(bulk_status_schema, async (input) =>
+	content_library.bulk_update_status(await assert_admin(), input)
+);
 
 export const bulk_delete_content = command(bulk_delete_schema, async (input) => {
 	await assert_admin();
@@ -569,9 +400,9 @@ export const bulk_delete_content = command(bulk_delete_schema, async (input) => 
 });
 
 export const export_content = command(list_content_schema, async (input) => {
-	await assert_admin();
+	const admin = await assert_admin();
 
-	const export_result = await fetch_content_list({
+	const export_result = await content_library.list_content(admin, {
 		...input,
 		page: 1,
 		page_size: 1000

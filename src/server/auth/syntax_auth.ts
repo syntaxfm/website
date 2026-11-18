@@ -14,6 +14,9 @@ import {
 // Dev uses the shared local Syntax Auth (@syntaxfm/auth-local). Production is fixed in code so no
 // environment setting can point it anywhere else.
 const SYNTAX_AUTH_ORIGIN = dev ? 'http://localhost:37960' : 'https://auth.syntax.fm';
+// The OAuth issuer of Syntax Auth's access tokens (https://auth.syntax.fm/api/auth in production);
+// its signing keys are at `${SYNTAX_AUTH_ISSUER}/jwks`. The MCP endpoint (server/mcp) checks them.
+export const SYNTAX_AUTH_ISSUER = `${SYNTAX_AUTH_ORIGIN}/api/auth`;
 const SYNTAX_SESSION_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/get-session`;
 const SYNTAX_SIGN_OUT_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/sign-out`;
 // Browsers sign in here only in production builds.

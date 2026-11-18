@@ -1,11 +1,11 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
-import { guest, show, showGuest, socialLink } from '$server/db/schema';
+import { guest, socialLink } from '$server/db/schema';
+import * as guests from '$server/guests/guests';
 import { error } from '@sveltejs/kit';
-import { and, asc, desc, eq, ilike, ne, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
-import get_slug from 'speakingurl';
 
 const list_guests_schema = v.object({
 	search_text: v.optional(v.string()),
@@ -41,150 +41,21 @@ const remove_social_link_schema = v.object({
 	social_link_id: v.pipe(v.string(), v.trim(), v.minLength(1))
 });
 
-function normalize_slug(input_text: string) {
-	return get_slug(input_text, {
-		separator: '-',
-		truncate: 120,
-		symbols: false
-	});
-}
+export const list_guests = query(list_guests_schema, async (input) =>
+	guests.list_guests(await assert_admin(), input)
+);
 
-function nullify_optional(value: string | null | undefined): string | null {
-	if (value === null || value === undefined) {
-		return null;
-	}
+export const get_guest_detail = query(v.string(), async (guest_id) =>
+	guests.get_guest_detail(await assert_admin(), guest_id)
+);
 
-	const trimmed = value.trim();
-	return trimmed.length > 0 ? trimmed : null;
-}
+export const create_guest = command(create_guest_schema, async (input) =>
+	guests.create_guest(await assert_admin(), input)
+);
 
-export const list_guests = query(list_guests_schema, async (input) => {
-	await assert_admin();
-
-	const search_text = input.search_text?.trim() || '';
-	const page = Math.max(1, input.page || 1);
-	const page_size = Math.min(100, Math.max(1, input.page_size || 25));
-	const offset = (page - 1) * page_size;
-
-	const where_clause = search_text.length > 0 ? ilike(guest.name, `%${search_text}%`) : undefined;
-
-	const total_rows = where_clause
-		? await db
-				.select({ total: sql<number>`count(*)` })
-				.from(guest)
-				.where(where_clause)
-		: await db.select({ total: sql<number>`count(*)` }).from(guest);
-
-	const total = Number(total_rows[0]?.total || 0);
-
-	const items = await db.query.guest.findMany({
-		where: where_clause,
-		orderBy: [asc(guest.name)],
-		limit: page_size,
-		offset
-	});
-
-	return {
-		items,
-		total,
-		page,
-		page_size,
-		total_pages: Math.max(1, Math.ceil(total / page_size))
-	};
-});
-
-export const get_guest_detail = query(v.string(), async (guest_id) => {
-	await assert_admin();
-
-	const result = await db.query.guest.findFirst({
-		where: eq(guest.id, guest_id),
-		with: {
-			socialLinks: true
-		}
-	});
-
-	if (!result) {
-		return null;
-	}
-
-	const shows = await db
-		.select({
-			number: show.number,
-			slug: show.slug,
-			title: show.title,
-			date: show.date
-		})
-		.from(showGuest)
-		.innerJoin(show, eq(show.id, showGuest.show_id))
-		.where(eq(showGuest.guest_id, guest_id))
-		.orderBy(desc(show.date));
-
-	return { ...result, shows };
-});
-
-export const create_guest = command(create_guest_schema, async (input) => {
-	await assert_admin();
-
-	const normalized_slug = normalize_slug(input.name);
-	if (!normalized_slug) {
-		error(400, 'Unable to generate slug from name. Please provide a valid name.');
-	}
-
-	const existing_slug = await db.query.guest.findFirst({
-		where: eq(guest.name_slug, normalized_slug),
-		columns: {
-			id: true
-		}
-	});
-
-	if (existing_slug) {
-		error(409, 'A guest with that name (slug) already exists');
-	}
-
-	const [created_guest] = await db
-		.insert(guest)
-		.values({
-			name: input.name,
-			name_slug: normalized_slug
-		})
-		.returning({ id: guest.id });
-
-	return { id: created_guest.id };
-});
-
-export const update_guest = command(update_guest_schema, async (input) => {
-	await assert_admin();
-
-	const normalized_slug = normalize_slug(input.name_slug);
-	if (!normalized_slug) {
-		error(400, 'Slug is invalid');
-	}
-
-	const slug_conflict = await db.query.guest.findFirst({
-		where: and(eq(guest.name_slug, normalized_slug), ne(guest.id, input.id)),
-		columns: {
-			id: true
-		}
-	});
-
-	if (slug_conflict) {
-		error(409, 'Slug already exists');
-	}
-
-	await db
-		.update(guest)
-		.set({
-			name: input.name.trim(),
-			name_slug: normalized_slug,
-			twitter: nullify_optional(input.twitter),
-			github: nullify_optional(input.github),
-			url: nullify_optional(input.url),
-			of: nullify_optional(input.of) ?? ''
-		})
-		.where(eq(guest.id, input.id));
-
-	return { success: true };
-});
+export const update_guest = command(update_guest_schema, async (input) =>
+	guests.update_guest(await assert_admin(), input)
+);
 
 export const delete_guest = command(delete_guest_schema, async (input) => {
 	await assert_admin();

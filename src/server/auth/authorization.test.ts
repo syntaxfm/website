@@ -15,9 +15,11 @@ vi.mock('$server/db/client', () => ({
 }));
 
 import {
+	assert_admin_actor,
 	get_admin_guard_response,
 	get_admin_remote_guard_response,
-	get_authenticated_user
+	get_authenticated_user,
+	get_profile_authorization
 } from './authorization';
 import type { SyntaxAuthUser } from './syntax_auth';
 
@@ -57,6 +59,36 @@ describe('get_authenticated_user', () => {
 			profile_id: 'profile-id',
 			roles: ['admin', 'editor']
 		});
+	});
+});
+
+describe('get_profile_authorization', () => {
+	beforeEach(() => {
+		find_profile.mockReset();
+	});
+
+	it('grants no roles while the database cannot answer', async () => {
+		vi.spyOn(console, 'error').mockReturnValueOnce(undefined);
+		find_profile.mockRejectedValue(new Error('connection refused'));
+
+		await expect(get_profile_authorization('central-user-id')).resolves.toEqual({
+			profile_id: null,
+			roles: []
+		});
+	});
+});
+
+describe('assert_admin_actor', () => {
+	it('refuses an actor without the admin role with 403', () => {
+		expect(() =>
+			assert_admin_actor({ id: 'central-user-id', profile_id: null, roles: [] })
+		).toThrow(expect.objectContaining({ status: 403 }));
+	});
+
+	it('lets an admin through', () => {
+		expect(() =>
+			assert_admin_actor({ id: 'central-user-id', profile_id: 'profile-id', roles: ['admin'] })
+		).not.toThrow();
 	});
 });
 
