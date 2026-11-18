@@ -5,6 +5,7 @@ import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { content, content_tags, show, tag } from '$server/db/schema';
 import { llms_txt } from '#lib/seo/llms_txt.ts';
+import { released_content_clause } from '$server/content/released';
 
 const LATEST_EPISODE_COUNT = 50;
 const TOPIC_COUNT = 50;
@@ -30,7 +31,7 @@ async function load_llms_rows() {
 			.from(tag)
 			.innerJoin(content_tags, eq(content_tags.tag_id, tag.id))
 			.innerJoin(content, eq(content.id, content_tags.content_id))
-			.where(and(eq(content.status, 'PUBLISHED'), isNotNull(tag.slug)))
+			.where(and(released_content_clause(), isNotNull(tag.slug)))
 			.groupBy(tag.id)
 			.orderBy(desc(count(content_tags.content_id)))
 			.limit(TOPIC_COUNT)

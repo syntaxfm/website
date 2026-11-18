@@ -4,6 +4,7 @@ import { assert_admin_actor, is_admin, type Actor } from '$server/auth/authoriza
 import { db } from '$server/db/client';
 import { content, content_tags, type content_status, type content_types } from '$server/db/schema';
 import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
+import { released_content_clause } from './released';
 
 // Content: the wrapper for every content type (docs/CONTEXT.md). The admin Content pages
 // (admin_content.remote.ts) and the MCP endpoint (server/mcp) both call these with the person
@@ -31,14 +32,6 @@ export interface BulkContentStatusInput {
 export interface BulkContentTagsInput {
 	content_ids: string[];
 	tag_ids: string[];
-}
-
-/**
- * Content the site has released: published and dated now or earlier (episodes are imported ahead
- * of their release date). Everyone but an admin sees only this.
- */
-function released_content_clause() {
-	return and(eq(content.status, 'PUBLISHED'), lte(content.published_at, new Date()));
 }
 
 /**

@@ -64,9 +64,11 @@ export const get_content_by_tag = query(v.string(), async (slug) => {
 				}),
 				db.query.content.findMany({
 					...feed_card_query,
-					where: (c, { and, eq, inArray }) =>
+					where: (c, { and, eq, inArray, lte }) =>
 						and(
 							eq(c.status, 'PUBLISHED'),
+							// Scheduled episodes are published ahead of their date
+							lte(c.published_at, new Date()),
 							inArray(
 								c.id,
 								db

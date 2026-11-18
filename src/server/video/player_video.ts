@@ -2,6 +2,7 @@ import { and, eq } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { content, video } from '$server/db/schema';
 import { edge_cached } from '$server/edge_cache';
+import { released_content_clause } from '$server/content/released';
 import type { PlayerVideo } from '$state/player_utils';
 import { get_watch_url_from_url } from '#lib/videos/utils.ts';
 
@@ -18,7 +19,7 @@ export function get_player_video(video_id: string): Promise<PlayerVideo | null> 
 				.select({ title: content.title, slug: content.slug })
 				.from(video)
 				.innerJoin(content, eq(content.id, video.content_id))
-				.where(and(eq(video.id, video_id), eq(content.status, 'PUBLISHED')))
+				.where(and(eq(video.id, video_id), released_content_clause()))
 				.limit(1);
 			if (!row) return null;
 			return {

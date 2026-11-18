@@ -7,6 +7,7 @@ import {
 import { and, eq } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
+import { released_content_clause } from '$server/content/released';
 import { content } from '$server/db/schema';
 import { read_video_description, to_iso_duration } from '#lib/videos/video_description.ts';
 import type { PageServerLoad } from './$types';
@@ -18,7 +19,7 @@ const META_DESCRIPTION_LENGTH = 160;
 // its transcript. Edge cached like episode pages: new captions show within five minutes.
 async function load_video_page(slug: string) {
 	const row = await db.query.content.findFirst({
-		where: and(eq(content.slug, slug), eq(content.type, 'VIDEO'), eq(content.status, 'PUBLISHED')),
+		where: and(eq(content.slug, slug), eq(content.type, 'VIDEO'), released_content_clause()),
 		columns: { id: true, title: true, slug: true, published_at: true, updated_at: true },
 		with: {
 			video: {

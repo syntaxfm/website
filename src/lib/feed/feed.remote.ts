@@ -14,6 +14,7 @@ import type { RankedContent } from '#lib/sidebar/ranked.ts';
 import { get_show_label } from '#lib/shows/show_label.ts';
 import { feed_card_query } from './feed_queries';
 import { refresh_newsletter_issues_if_stale } from '$server/newsletter/issues';
+import { released_content_clause } from '$server/content/released';
 
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
 // A stale copy is served for up to a day, so change HOME_FEED_CACHE_KEY whenever feed_card_query
@@ -28,7 +29,7 @@ export const get_feed_content = query(() =>
 			await refresh_newsletter_issues_if_stale();
 			return db.query.content.findMany({
 				...feed_card_query,
-				where: (c, { eq }) => eq(c.status, 'PUBLISHED'),
+				where: released_content_clause(),
 				orderBy: (c, { desc }) => [desc(c.published_at)],
 				limit: 100
 			});
@@ -78,7 +79,7 @@ async function load_recent_episodes(): Promise<(RankedContent & { youtube_id: st
 	const rows = await db.query.content.findMany({
 		columns: { id: true, title: true, published_at: true },
 		// Episodes only: other content types would take their places in the ranking
-		where: (c, { and, eq }) => and(eq(c.status, 'PUBLISHED'), eq(c.type, 'PODCAST')),
+		where: and(released_content_clause(), eq(content.type, 'PODCAST')),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
 		limit: RECENT_EPISODES_TO_RANK,
 		with: {
@@ -142,7 +143,7 @@ async function load_trending_tags(): Promise<{ name: string; slug: string | null
 			.from(content_tags)
 			.innerJoin(tag, eq(tag.id, content_tags.tag_id))
 			.innerJoin(content, eq(content.id, content_tags.content_id))
-			.where(and(eq(content.status, 'PUBLISHED'), gte(content.published_at, ninety_days_ago)))
+			.where(and(released_content_clause(), gte(content.published_at, ninety_days_ago)))
 			.groupBy(tag.id, tag.name, tag.slug)
 			.orderBy(desc(count(content_tags.content_id)))
 			.limit(20),

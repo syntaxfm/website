@@ -3,7 +3,8 @@ import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { get_request_user } from '$server/auth/request_auth';
 import { show } from '$server/db/schema';
-import { inArray } from 'drizzle-orm';
+import { and, inArray } from 'drizzle-orm';
+import { released_show_clause } from '$server/content/released';
 import { get_show_detail_query } from '$server/shows/shows_queries';
 import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { episode_dates } from '#lib/seo/structured_data.ts';
@@ -16,7 +17,8 @@ async function load_show_page(show_number: number) {
 	const [show_data, prev_next] = await Promise.all([
 		db.query.show.findFirst(get_show_detail_query(show_number)),
 		db.query.show.findMany({
-			where: inArray(show.number, [show_number - 1, show_number + 1]),
+			// The next episode may be scheduled, not out yet
+			where: and(inArray(show.number, [show_number - 1, show_number + 1]), released_show_clause()),
 			columns: {
 				number: true,
 				title: true,
