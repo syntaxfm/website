@@ -4,8 +4,9 @@
 // views. The slug is set once, at first import, so a renamed video keeps its URL. Status is never
 // overwritten, so a video archived in admin stays archived; a full sync archives videos that are
 // no longer public on YouTube.
-import { and, eq, isNotNull, notInArray, sql } from 'drizzle-orm';
+import { and, eq, inArray, isNotNull, notInArray, sql } from 'drizzle-orm';
 import slugify from 'speakingurl';
+import { released_show_clause } from '$server/content/released';
 import { db } from '$server/db/client';
 import { content, show, video } from '$server/db/schema';
 import { get_id_from_url, SHORT_MAX_SECONDS } from '#lib/videos/utils.ts';
@@ -41,11 +42,13 @@ function chunk<T>(items: readonly T[], size: number): T[][] {
 	return chunks;
 }
 
+// Released episodes' videos. A scheduled episode's video is often public on YouTube days before the
+// episode is out, so it stays a video page until then.
 async function get_episode_video_ids(): Promise<Set<string>> {
 	const rows = await db
 		.select({ youtube_url: show.youtube_url })
 		.from(show)
-		.where(isNotNull(show.youtube_url));
+		.where(and(isNotNull(show.youtube_url), released_show_clause()));
 	return new Set(rows.map((row) => get_id_from_url(row.youtube_url)).filter(Boolean));
 }
 
@@ -161,6 +164,29 @@ export async function sync_channel_videos(
 				});
 		}
 
+		// A video whose episode is now out becomes the episode: its page is archived and its URL
+		// redirects to the episode (old_video_urls.ts). Every run, so it happens within the hour.
+		if (episode_ids.size > 0) {
+			const merged_rows = await tx
+				.update(content)
+				.set({ status: 'ARCHIVED', updated_at: now })
+				.where(
+					and(
+						eq(content.type, 'VIDEO'),
+						eq(content.status, 'PUBLISHED'),
+						inArray(
+							content.id,
+							tx
+								.select({ id: video.content_id })
+								.from(video)
+								.where(inArray(video.id, [...episode_ids]))
+						)
+					)
+				)
+				.returning({ id: content.id });
+			archived += merged_rows.length;
+		}
+
 		// Only a full read of the channel knows what left it
 		if (!every_page) return;
 		const archived_rows = await tx
@@ -174,7 +200,7 @@ export async function sync_channel_videos(
 				)
 			)
 			.returning({ id: content.id });
-		archived = archived_rows.length;
+		archived += archived_rows.length;
 	});
 
 	return {
