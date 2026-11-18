@@ -55,6 +55,19 @@ describe('tag writes', () => {
 			name: 'Web Components',
 			slug: 'web-components'
 		});
-		expect(values).toHaveBeenCalledWith({ name: 'Web Components', slug: 'web-components' });
+		expect(values).toHaveBeenCalledWith({
+			name: 'Web Components',
+			slug: 'web-components',
+			kind: null
+		});
+	});
+
+	it('keeps a tag engine kind given when creating', async () => {
+		const returning = vi.fn().mockResolvedValue([{ id: 'tag-2' }]);
+		const values = vi.fn(() => ({ returning }));
+		insert.mockReturnValue({ values });
+
+		await create_tag(admin, { name: 'Effect', kind: 'LIBRARY' });
+		expect(values).toHaveBeenCalledWith({ name: 'Effect', slug: 'effect', kind: 'LIBRARY' });
 	});
 });
