@@ -75,7 +75,7 @@
 	let { data } = $props();
 </script>
 
-<main style:margin-bottom="2rem">
+<div style:margin-bottom="2rem">
 	<div style:margin-bottom="2rem">
 		<h1 class="h3 lines">About Syntax</h1>
 		<p>Syntax is a Podcast about Web Development.</p>
@@ -228,7 +228,7 @@
 			</div>
 		</div>
 	</div>
-</main>
+</div>
 
 <style lang="postcss">
 	img.avatar {
