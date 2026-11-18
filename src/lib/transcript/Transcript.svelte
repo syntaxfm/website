@@ -1,11 +1,9 @@
 <script lang="ts">
 	import {
-		getSlimUtterances,
 		GUEST,
 		group_by_topic,
 		nearest_passage_id,
 		passage_ids,
-		remove_flagging_utterances,
 		topic_anchor,
 		type TopicSummary
 	} from '#lib/transcript/utils.ts';
@@ -15,35 +13,38 @@
 	import Squiggle from './Squiggle.svelte';
 	import TableOfContents from './TableOfContents.svelte';
 
-	import type { AINoteWithFriends } from '$server/ai/queries';
-	import type { DBUtterance, SlimUtterance } from '$server/transcripts/types';
-	import { get_episode_number, type PlayerShow } from '$state/player_utils';
+	import { is_same_media, type PlayerItem } from '$state/player_utils';
+
+	// A passage of the transcript, in start order
+	type Passage = { transcript: string; start: number; end: number; speakerName?: string };
 
 	interface Props {
-		// Utterances in start order (transcript/+page.server.ts)
-		transcript: {
-			show_number: number;
-			utterances: Pick<DBUtterance, 'speaker' | 'start' | 'end' | 'transcript_value'>[];
-		};
-		ai_show_note: AINoteWithFriends | null;
-		show: PlayerShow;
-		// Hosts and guests, to name a voice the transcript couldn't
-		people_on_show: string[];
+		// What plays from a passage's time: the episode, or the video
+		show: PlayerItem;
+		passages: Passage[];
+		// An episode's AI topics, or a video's chapters. The passages are grouped under them.
+		topics: TopicSummary[];
+		// An episode's AI summary
+		description?: string | null;
+		// YouTube's captions don't say who's speaking, so a video's passages have no names
+		has_speakers?: boolean;
+		// What a topic is called: an episode's AI topics, or a video's chapters
+		topic_name?: 'Topic' | 'Chapter';
 	}
 
-	let { transcript, ai_show_note, show, people_on_show }: Props = $props();
-
-	// Derived so moving between two shows' transcripts, which reuses this component, shows the new one
-	const slim_transcript: SlimUtterance[] = $derived(
-		remove_flagging_utterances(
-			getSlimUtterances(transcript.utterances, transcript.show_number, true, people_on_show)
-		)
-	);
+	let {
+		show,
+		passages,
+		topics,
+		description = null,
+		has_speakers = true,
+		topic_name = 'Topic'
+	}: Props = $props();
 
 	// Each passage's anchor (#t-<second>), so a link can point at one moment
 	let passage_anchors = $derived.by(() => {
-		const ids = passage_ids(slim_transcript.map((utterance) => utterance.start));
-		return slim_transcript.map((utterance, index) => ({ utterance, id: ids[index] }));
+		const ids = passage_ids(passages.map((utterance) => utterance.start));
+		return passages.map((utterance, index) => ({ utterance, id: ids[index] }));
 	});
 	let id_by_utterance = $derived(
 		new Map(passage_anchors.map(({ utterance, id }) => [utterance, id]))
@@ -70,26 +71,26 @@
 	const UNTITLED_TOPIC: TopicSummary = { time: '00:00', text: '' };
 
 	let topic_groups = $derived(
-		group_by_topic(slim_transcript, ai_show_note?.summary ?? [], tsToS).map((group) => ({
+		group_by_topic(passages, topics, tsToS).map((group) => ({
 			summary: group.topic ?? UNTITLED_TOPIC,
 			utterances: group.utterances
 		}))
 	);
 
-	// Transcript times are on the audio timeline, read every frame while the show plays. This is null
-	// while a video with a different timeline plays.
+	// An episode's transcript is on its audio timeline, a video's on its own. Read every frame while it
+	// plays. Null while an episode's video with a different timeline plays.
 	let current_time = $derived($audio_timeline_time ?? 0);
 
 	let current_utterance = $derived(
-		slim_transcript.find((utterance, index) => {
-			const next_utterance_start = slim_transcript[index + 1]?.start || utterance.end;
+		passages.find((utterance, index) => {
+			const next_utterance_start = passages[index + 1]?.start || utterance.end;
 			return current_time >= utterance.start && current_time <= next_utterance_start;
 		})
 	);
 
 	let current_topic = $derived(
-		ai_show_note?.summary.find((summary, index) => {
-			const next_summary = ai_show_note?.summary[index + 1];
+		topics.find((summary, index) => {
+			const next_summary = topics[index + 1];
 			const topic_end = next_summary ? tsToS(next_summary.time) : Infinity;
 			const topic_start = tsToS(summary.time);
 			return current_time >= topic_start && current_time <= topic_end;
@@ -97,8 +98,7 @@
 	);
 
 	let playing_show_is_this_show = $derived(
-		get_episode_number($player.current_show) === transcript.show_number &&
-			$audio_timeline_time !== null
+		is_same_media($player.current_show, show) && $audio_timeline_time !== null
 	);
 
 	// const words = transcript.utterances
@@ -121,7 +121,7 @@
 	// 	.map((word) => word.word)
 	// 	.join(' ');
 
-	let label_utterance = $derived(function (utterance: SlimUtterance) {
+	let label_utterance = $derived(function (utterance: Passage) {
 		if (!playing_show_is_this_show) return ''; // not playing this show
 		if (utterance === current_utterance) {
 			return 'current';
@@ -131,10 +131,11 @@
 			return 'future';
 		}
 	});
-	let place_topic = $derived(function (summary: TopicSummary, utterances: SlimUtterance[]) {
+	let place_topic = $derived(function (summary: TopicSummary, utterances: Passage[]) {
 		const summary_end = utterances.at(-1)?.end || Infinity;
 		if (!playing_show_is_this_show) return ''; // not playing this show
-		if (current_topic?.id === summary.id) {
+		// The same object: chapters have no id to compare
+		if (current_topic === summary) {
 			return 'current';
 		} else if (current_time > summary_end) {
 			return 'past';
@@ -146,22 +147,28 @@
 
 <svelte:window onhashchange={follow_outdated_passage_link} />
 
-{#if ai_show_note?.description}
-	<p class="transcript-summary">{ai_show_note.description}</p>
+{#if description}
+	<p class="transcript-summary">{description}</p>
 {/if}
 
-{#if ai_show_note}
-	<TableOfContents {ai_show_note} />
+{#if topics.length > 0}
+	<TableOfContents {topics} />
 {/if}
 
 <div class="timeline">
-	{#each topic_groups as { summary, utterances }, i (summary.id ?? summary.text)}
+	<!-- Two chapters can share a name, so the time is part of the key -->
+	{#each topic_groups as { summary, utterances }, i (summary.id ?? `${summary.time} ${summary.text}`)}
 		<!-- The anchor is on the section: the gutter it used to be on is hidden on phones -->
 		<section id={summary.text ? topic_anchor(summary.text) : undefined}>
 			<header class="topic {place_topic(summary, utterances)}">
 				<div class="gutter">
-					<strong>Topic {i + 1}</strong>
-					<span>{summary.time}</span>
+					<strong>{topic_name} {i + 1}</strong>
+					<!-- Plays from here, like a passage's time -->
+					<a
+						class="timestamp"
+						href={summary.text ? `#${topic_anchor(summary.text)}` : undefined}
+						onclick={() => player.play_timestamp(show, tsToS(summary.time))}>{summary.time}</a
+					>
 				</div>
 				<div class="marker">
 					<Squiggle top={true} />
@@ -191,9 +198,11 @@
 								onclick={() => player.play_timestamp(show, utterance.start)}
 								>{format_time(utterance.start)}</a
 							>
-							<p class="speaker fv-600">
-								{utterance.speakerName || GUEST}
-							</p>
+							{#if has_speakers}
+								<p class="speaker fv-600">
+									{utterance.speakerName || GUEST}
+								</p>
+							{/if}
 						</div>
 						<div class="marker">
 							<span class="dot"></span>
@@ -353,6 +362,11 @@
 			align-self: center;
 			font-size: var(--fs-1);
 			white-space: nowrap;
+
+			.timestamp {
+				font-size: inherit;
+				font-variation-settings: inherit;
+			}
 		}
 
 		@media (--below-med) {

@@ -35,7 +35,7 @@ async function load_video_page(slug: string) {
 				columns: {},
 				with: {
 					utterances: {
-						columns: { start: true, transcript_value: true },
+						columns: { start: true, end: true, transcript_value: true },
 						orderBy: (utterance, { asc }) => [asc(utterance.start)]
 					}
 				}
@@ -55,16 +55,19 @@ async function load_video_page(slug: string) {
 		view_count: row.video.view_count,
 		description: read_video_description(row.video.description ?? ''),
 		tags: row.tags.map(({ tag }) => tag),
+		// Shaped for Transcript.svelte, like an episode's
 		passages: (row.transcript?.utterances ?? []).map((utterance) => ({
+			transcript: utterance.transcript_value,
 			start: utterance.start,
-			text: utterance.transcript_value
+			end: utterance.end
 		}))
 	};
 }
 
 export const load: PageServerLoad = async ({ params, url }) => {
+	// Served stale for up to a day: change the key when the page's data changes shape
 	const video = await edge_cached(
-		`video-page-${params.slug}`,
+		`video-page-2-${params.slug}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		() => load_video_page(params.slug)
 	);

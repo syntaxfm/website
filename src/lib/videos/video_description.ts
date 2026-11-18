@@ -1,4 +1,5 @@
-import { tsToS } from '$utilities/format_time';
+import format_time, { tsToS } from '$utilities/format_time';
+import type { TopicSummary } from '#lib/transcript/utils.ts';
 
 // A YouTube description as a video page shows it: the prose, and the chapters as their own list.
 // Link, hashtag and promo lines are left out; on old Level Up uploads they're most of the text and
@@ -35,6 +36,11 @@ export function read_video_description(text: string): VideoDescription {
 	if (current.length) paragraphs.push(current.join(' '));
 
 	return { paragraphs, chapters };
+}
+
+/** Chapters as transcript topics (Transcript.svelte), the way an episode's AI topics are given. */
+export function chapters_as_topics(chapters: VideoChapter[]): TopicSummary[] {
+	return chapters.map((chapter) => ({ time: format_time(chapter.seconds), text: chapter.label }));
 }
 
 /** Seconds as an ISO 8601 duration (PT1H2M3S), the form schema.org wants. */

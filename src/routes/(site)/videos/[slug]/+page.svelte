@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import format_time from '$utilities/format_time';
 	import PageTitle from '#lib/layout/PageTitle.svelte';
+	import Transcript from '#lib/transcript/Transcript.svelte';
+	import { chapters_as_topics } from '#lib/videos/video_description.ts';
 	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
 	import MostPopularThisWeek from '#lib/sidebar/MostPopularThisWeek.svelte';
 	import TrendingTopics from '#lib/sidebar/TrendingTopics.svelte';
@@ -10,7 +11,6 @@
 	import VideoBezel from '#lib/videos/VideoBezel.svelte';
 	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
 	import { get_watch_url_from_url } from '#lib/videos/utils.ts';
-	import { player } from '$state/player';
 	import type { PlayerVideo } from '$state/player_utils';
 
 	let { data } = $props();
@@ -25,10 +25,8 @@
 		youtube_url: watch_url
 	});
 
-	// Chapter and transcript times
-	function play_from(seconds: number) {
-		void player.start_show(player_video, seconds);
-	}
+	let topics = $derived(chapters_as_topics(video.description.chapters));
+
 	let schema_json = $derived(
 		to_json_ld(
 			video_object_schema(
@@ -70,32 +68,17 @@
 			<p>{paragraph}</p>
 		{/each}
 
-		{#if video.description.chapters.length > 0}
-			<h2 class="h5">Chapters</h2>
-			<ol class="times">
-				{#each video.description.chapters as chapter (chapter.seconds)}
-					<li>
-						<button type="button" onclick={() => play_from(chapter.seconds)}
-							>{format_time(chapter.seconds)}</button
-						>
-						{chapter.label}
-					</li>
-				{/each}
-			</ol>
-		{/if}
-
-		{#if video.passages.length > 0}
-			<h2 class="h5">Transcript</h2>
-			<ol class="times">
-				{#each video.passages as passage, index (index)}
-					<li>
-						<button type="button" onclick={() => play_from(passage.start)}
-							>{format_time(passage.start)}</button
-						>
-						<p>{passage.text}</p>
-					</li>
-				{/each}
-			</ol>
+		<!-- The same transcript as an episode's, its chapters as the topics -->
+		{#if video.passages.length > 0 || topics.length > 0}
+			<div>
+				<Transcript
+					show={player_video}
+					passages={video.passages}
+					{topics}
+					has_speakers={false}
+					topic_name="Chapter"
+				/>
+			</div>
 		{/if}
 	</section>
 	<aside class="stack">
@@ -104,34 +87,3 @@
 		<TrendingTopics />
 	</aside>
 </div>
-
-<style>
-	.times {
-		display: grid;
-		gap: 0.75rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-
-		li {
-			display: grid;
-			grid-template-columns: 5ch 1fr;
-			gap: 1rem;
-			align-items: baseline;
-		}
-
-		p {
-			margin: 0;
-		}
-	}
-
-	.times button {
-		padding: 0;
-		border: 0;
-		background: none;
-		color: var(--c-primary);
-		font-variant-numeric: tabular-nums;
-		text-align: start;
-		cursor: pointer;
-	}
-</style>

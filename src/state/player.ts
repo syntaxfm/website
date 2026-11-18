@@ -574,11 +574,12 @@ const new_player_state = () => {
 		/**
 		 * Current position on the audio timeline, or null if the video is playing and
 		 * we don't know that its timeline matches the audio (transcripts, share links).
-		 * Null for a video that isn't an episode, it has no audio timeline.
+		 * A video that isn't an episode has only its own timeline, which its transcript is on.
 		 */
 		get_audio_timeline_time(): number | null {
 			const { current_show, media_kind, audio } = get(player_state);
-			if (!current_show || is_player_video(current_show)) return null;
+			if (!current_show) return null;
+			if (is_player_video(current_show)) return youtube_player.get_current_time();
 			if (media_kind === 'AUDIO') return audio?.currentTime ?? 0;
 			return timelines_match_cached(get_media_key(current_show))
 				? youtube_player.get_current_time()

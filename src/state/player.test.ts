@@ -313,12 +313,13 @@ describe('player videos that are not episodes', () => {
 		expect(audio.play).not.toHaveBeenCalled();
 	});
 
-	it("leaves the audio alone for a video's timeline", async () => {
-		attach_audio();
+	it("follows the video's own timeline for its transcript, not the audio's", async () => {
+		const audio = attach_audio();
+		audio.currentTime = 999;
 
-		await player.start_show(site_video);
+		await player.start_show(site_video, 135);
 
-		expect(player.get_audio_timeline_time()).toBeNull();
+		expect(player.get_audio_timeline_time()).toBe(135);
 	});
 });
 

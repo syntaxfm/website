@@ -1,17 +1,18 @@
 <script lang="ts">
-	import type { AINoteWithFriends } from '$server/ai/queries';
-	import { topic_anchor } from '#lib/transcript/utils.ts';
+	import { topic_anchor, type TopicSummary } from '#lib/transcript/utils.ts';
 
 	interface Props {
-		ai_show_note: AINoteWithFriends;
+		// An episode's AI topics, or a video's chapters
+		topics: TopicSummary[];
 	}
 
-	let { ai_show_note }: Props = $props();
+	let { topics }: Props = $props();
 </script>
 
 <div>
 	<ul>
-		{#each ai_show_note?.summary || [] as summary (summary.text)}
+		<!-- Two chapters can share a name, so the time is part of the key -->
+		{#each topics as summary (`${summary.time} ${summary.text}`)}
 			<li>
 				<a href="#{topic_anchor(summary.text)}">
 					<span class="timestamp fv-900">{summary.time}</span>

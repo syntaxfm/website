@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { read_video_description, to_iso_duration } from './video_description';
+import { tsToS } from '$utilities/format_time';
+import { chapters_as_topics, read_video_description, to_iso_duration } from './video_description';
 
 describe('read_video_description', () => {
 	it('keeps the prose and leaves out links and promos', () => {
@@ -41,6 +42,22 @@ describe('read_video_description', () => {
 		const { paragraphs, chapters } = read_video_description('At 2:15 we break it.');
 		expect(chapters).toEqual([]);
 		expect(paragraphs).toEqual(['At 2:15 we break it.']);
+	});
+});
+
+describe('chapters_as_topics', () => {
+	it('gives chapters the time and text of transcript topics', () => {
+		const topics = chapters_as_topics([
+			{ seconds: 0, label: 'Intro' },
+			{ seconds: 135, label: 'Images' },
+			{ seconds: 3800, label: 'Wrap up' }
+		]);
+		expect(topics).toEqual([
+			{ time: '0:00', text: 'Intro' },
+			{ time: '2:15', text: 'Images' },
+			{ time: '1:03:20', text: 'Wrap up' }
+		]);
+		expect(topics.map((topic) => tsToS(topic.time))).toEqual([0, 135, 3800]);
 	});
 });
 
