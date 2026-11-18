@@ -50,7 +50,7 @@ export function llms_txt({
 		'',
 		`> Syntax is a web development podcast hosted by Wes Bos and Scott Tolinski. ${episode_count} episodes cover JavaScript, TypeScript, CSS, frameworks, tooling, servers and the business of being a developer.`,
 		'',
-		`Every episode has a page at ${site_url}/show/{number}/{slug} with show notes and links. Most have a full transcript, with speaker names and timestamps, at ${site_url}/show/{number}/{slug}/transcript, and the same as Markdown at ${site_url}/show/{number}/{slug}/transcript.md. Each passage has its own link, ${site_url}/show/{number}/{slug}/transcript#t-{seconds}, for citing the exact moment. Topic pages at ${site_url}/tags/{slug} list everything on a topic. Guest pages at ${site_url}/guest/{name-slug} list a guest's episodes.`,
+		`Every episode has a page at ${site_url}/show/{number}/{slug} with show notes and links. Most have a full transcript, with speaker names and timestamps, at ${site_url}/show/{number}/{slug}/transcript, and the same as Markdown at ${site_url}/show/{number}/{slug}/transcript.md. Each passage has its own link, ${site_url}/show/{number}/{slug}/transcript#t-{seconds}, for citing the exact moment. Topic pages at ${site_url}/tags/{slug} list everything on a topic. Guest pages at ${site_url}/guest/{name-slug} list a guest's episodes. Videos that aren't episodes each have a page at ${site_url}/videos/{slug}, most with YouTube's captions as a timestamped transcript.`,
 		'',
 		'## Start here',
 		'',

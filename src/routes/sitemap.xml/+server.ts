@@ -20,10 +20,10 @@ const STATIC_PATHS = [
 	'/pages/giveaway-rules'
 ];
 
-// Three queries (~100 ms each from the Worker), and the answer only changes when a show is
-// released or edited, so the rows are edge cached.
+// Four queries (~100 ms each from the Worker), and the answer only changes when a show is
+// released or edited or the hourly video sync runs, so the rows are edge cached.
 async function load_sitemap_rows() {
-	const [shows, guests, tags] = await Promise.all([
+	const [shows, guests, tags, videos] = await Promise.all([
 		db
 			.select({
 				number: show.number,
@@ -55,15 +55,28 @@ async function load_sitemap_rows() {
 					isNotNull(tag.slug)
 				)
 			)
-			.groupBy(tag.slug)
+			.groupBy(tag.slug),
+		// Video pages (/videos/[slug]). Not updated_at: every hourly sync sets it, and a lastmod that
+		// always says "now" teaches search engines to ignore it.
+		db
+			.select({ slug: content.slug, lastmod: content.published_at })
+			.from(content)
+			.where(
+				and(
+					eq(content.type, 'VIDEO'),
+					eq(content.status, 'PUBLISHED'),
+					lte(content.published_at, new Date())
+				)
+			)
 	]);
-	return { shows, guests, tags };
+	return { shows, guests, tags, videos };
 }
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
-	const [{ shows, guests, tags }, snackpack_issues] = await Promise.all([
+	const [{ shows, guests, tags, videos }, snackpack_issues] = await Promise.all([
 		edge_cached(
-			'sitemap-rows',
+			// Served stale for up to a day: change the key when the rows change shape
+			'sitemap-rows-2',
 			{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
 			load_sitemap_rows
 		),
@@ -79,6 +92,7 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
 				? [{ path, lastmod }]
 				: [{ path, lastmod }, { path: `${path}/transcript` }];
 		}),
+		...videos.map((row) => ({ path: `/videos/${row.slug}`, lastmod: row.lastmod })),
 		...guests.map((row) => ({ path: `/guest/${row.name_slug}`, lastmod: row.lastmod })),
 		...tags.flatMap((row) =>
 			row.slug ? [{ path: `/tags/${row.slug}`, lastmod: row.lastmod }] : []
