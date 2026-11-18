@@ -39,6 +39,8 @@
 
 	function generate_search_params(id: string, value: string): ResolvedPathname {
 		const search_params = new SvelteURLSearchParams(page.url.search);
+		// A new filter starts the list over, an old page number could be past its end
+		search_params.delete('page');
 		if (!value) {
 			search_params.delete(id);
 		} else {

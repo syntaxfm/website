@@ -54,7 +54,7 @@ export function llms_txt({
 		'',
 		'## Start here',
 		'',
-		`- [All episodes](${site_url}/shows): every episode, newest first`,
+		`- [All episodes and videos](${site_url}/videos): every episode and video, newest first`,
 		`- [Guests](${site_url}/guests): everyone who has been on the show`,
 		`- [About](${site_url}/about): the hosts and the show`,
 		`- [RSS feed](${PODCAST_FEED_URL}): every episode with its audio`,

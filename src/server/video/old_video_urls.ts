@@ -18,8 +18,8 @@ export const OLD_PLAYLIST_SLUGS: ReadonlySet<string> = new Set([
 	'local-first-from-scratch'
 ]);
 
-// Where the old playlist pages go, until /videos lists everything
-export const OLD_PLAYLIST_DESTINATION = '/shows';
+// Where the old playlist pages go: the list of every episode and video
+export const OLD_PLAYLIST_DESTINATION = '/videos';
 
 /** The current page for an old video slug, or null when there's none. */
 export async function find_video_destination(old_slug: string): Promise<string | null> {

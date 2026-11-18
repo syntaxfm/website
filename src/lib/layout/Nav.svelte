@@ -149,7 +149,7 @@
 
 <nav {@attach attach_nav} aria-label="Primary navigation">
 	<ul {@attach attach_menu} id={nav_id} class:open={is_open}>
-		<li><a href={resolve('shows')} onclick={close}>Shows</a></li>
+		<li><a href={resolve('videos')} onclick={close}>Videos</a></li>
 		<li><a href={resolve('about')} onclick={close}>About</a></li>
 		<li><a href={resolve('snackpack')} onclick={close}>Newsletter</a></li>
 		<li><a href={resolve('potluck')} onclick={close}>Potluck Qs</a></li>

@@ -6,7 +6,7 @@
 <section>
 	<div class="flex">
 		<ul>
-			<li><a href={resolve('shows')}>Podcast</a></li>
+			<li><a href={`${resolve('videos')}?type=podcast`}>Podcast</a></li>
 
 			<li>
 				<a target="_blank" rel="noopener" href="https://feed.syntax.fm">RSS Feed</a>

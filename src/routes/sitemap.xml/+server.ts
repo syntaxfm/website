@@ -9,7 +9,7 @@ import { get_newsletter_issues } from '$server/newsletter/issues';
 
 const STATIC_PATHS = [
 	'',
-	'/shows',
+	'/videos',
 	'/guests',
 	'/about',
 	'/potluck',

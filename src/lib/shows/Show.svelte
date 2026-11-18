@@ -2,20 +2,24 @@
 	import Dot from '#lib/utilities/Dot.svelte';
 	import { resolve } from '$app/paths';
 	import type { Path } from '$app/types';
+	import { get_media_path, is_player_video, type PlayerVideo } from '$state/player_utils';
 	import get_show_path from '$utilities/slug';
 	import ShowThumbnail from './ShowThumbnail.svelte';
 
 	interface Props {
-		show: {
-			title: string;
-			date: Date | string;
-			show: string;
-			thumbnail?: string | null;
-			youtube_url?: string | null;
-			url?: string | null;
-			number: number;
-			slug: string;
-		};
+		// An episode, or a video that isn't one. `show` is the label: Syntax Podcast, Syntax Video
+		show:
+			| {
+					title: string;
+					date: Date | string;
+					show: string;
+					thumbnail?: string | null;
+					youtube_url?: string | null;
+					url?: string | null;
+					number: number;
+					slug: string;
+			  }
+			| (PlayerVideo & { date: Date | string; show: string });
 		type: 'grid' | 'list';
 		href?: string;
 		onselect?: () => void;
@@ -24,7 +28,9 @@
 	}
 
 	let { show, type, href, onselect, data_has_node = false, preload_data = false }: Props = $props();
-	let show_href = $derived(href || get_show_path(show));
+	let show_href = $derived(
+		href || (is_player_video(show) ? get_media_path(show) : get_show_path(show))
+	);
 	let show_date = $derived(show.date instanceof Date ? show.date : new Date(show.date));
 	let formatted_date = $derived(
 		show_date.toLocaleDateString('en-US', {
@@ -62,7 +68,9 @@
 				{/if}
 				<Dot color="var(--c-primary)" />
 				<p class="fs-caption">{show.show}</p>
-				<p class="fs-caption">{show.number}</p>
+				{#if !is_player_video(show)}
+					<p class="fs-caption">{show.number}</p>
+				{/if}
 			</div>
 		</div>
 	</article>

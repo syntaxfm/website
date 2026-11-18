@@ -1,24 +1,19 @@
 <script lang="ts">
+	import type { ComponentProps } from 'svelte';
+	import { get_media_key } from '$state/player_utils';
 	import Show from './Show.svelte';
 
 	type Props = {
 		type: 'grid' | 'list';
-		shows: {
-			title: string;
-			show: string;
-			thumbnail?: string;
-			youtube_url?: string;
-			date: Date | string;
-			number: number;
-			slug: string;
-		}[];
+		// Episodes, and on /videos the videos that aren't one
+		shows: ComponentProps<typeof Show>['show'][];
 	};
 
 	let { type, shows }: Props = $props();
 </script>
 
 <ul class={type === 'grid' ? 'grid show-episodes' : 'stack show-episodes'}>
-	{#each shows as show (show.number)}
+	{#each shows as show (get_media_key(show))}
 		<li>
 			<Show {show} {type} />
 		</li>
