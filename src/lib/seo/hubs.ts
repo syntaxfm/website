@@ -1,6 +1,10 @@
 // Topic pages (/tags/[tag]) and guest pages (/guest/[name_slug]): their search descriptions and the
 // transcript moments a topic page links to.
 
+// A tag page with fewer items than this is too thin to be worth a search result: it's noindex and
+// left out of the sitemap. Most library tags (src/server/tags) are on a single item.
+export const MIN_ITEMS_TO_INDEX_TAG = 3;
+
 export type KeyMomentRow = {
 	show_number: number;
 	show_slug: string;

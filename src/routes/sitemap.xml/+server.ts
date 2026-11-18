@@ -1,9 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$app/env/public';
-import { and, eq, isNotNull, lte, max } from 'drizzle-orm';
+import { and, eq, isNotNull, lte, max, sql } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { content, content_tags, guest, show, showGuest, tag, transcript } from '$server/db/schema';
+import { MIN_ITEMS_TO_INDEX_TAG } from '#lib/seo/hubs.ts';
 import { sitemap_xml, type SitemapUrl } from '#lib/seo/sitemap.ts';
 import { get_newsletter_issues } from '$server/newsletter/issues';
 
@@ -55,7 +56,9 @@ async function load_sitemap_rows() {
 					isNotNull(tag.slug)
 				)
 			)
-			.groupBy(tag.slug),
+			.groupBy(tag.slug)
+			// Thinner tag pages are noindex (src/routes/(site)/tags/[tag])
+			.having(sql`count(*) >= ${MIN_ITEMS_TO_INDEX_TAG}`),
 		// Video pages (/videos/[slug]). Not updated_at: every hourly sync sets it, and a lastmod that
 		// always says "now" teaches search engines to ignore it.
 		db
