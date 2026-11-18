@@ -1,317 +1,225 @@
 <script lang="ts">
-	import HostSocialLink from '#lib/hosts/HostSocialLink.svelte';
-	import type { Action } from 'svelte/action';
-	import { fly } from 'svelte/transition';
+	import Icon from '#lib/Icon.svelte';
+	import TeamMember from '#lib/about/TeamMember.svelte';
+	import mesh from '$assets/about/mesh.svg';
+	import wes from '$assets/team/wes.webp';
+	import scott from '$assets/team/scott.webp';
+	import cj from '$assets/team/cj.webp';
+	import kaitlin from '$assets/team/kaitlin.webp';
+	import randy from '$assets/team/randy.webp';
+	import niki from '$assets/team/niki.webp';
 	import emo from '$assets/emo.jpg';
 	import bboy from '$assets/bboy.jpg';
+	import cj_throwback from '$assets/cj.jpg';
 	import number1fan from '$assets/kaitlin.jpg';
 	import runonlove from '$assets/runonlove.jpg';
-	import cj from '$assets/cj.jpg';
-	import niki from '$assets/niki.jpeg';
 	import komatsu from '$assets/komatsu.jpeg';
-	import { count_podcasts } from '#lib/shows/shows.remote.ts';
-
-	let hosts = {
-		wes: {
-			name: 'Wes Bos',
-			github: 'wesbos',
-			twitter: 'wesbos'
-		},
-		scott: {
-			name: 'Scott Tolinski',
-			github: 'stolinski',
-			twitter: 'stolinski'
-		},
-		kaitlin: {
-			name: 'Kaitlin Bloom',
-			github: 'bl0om',
-			twitter: 'kaitlinblooom'
-		},
-		randy: {
-			name: 'Randy Rektor',
-			github: 'randyrektor',
-			twitter: 'randyrektor'
-		},
-		cj: {
-			name: 'CJ Reynolds',
-			github: 'w3cj',
-			twitter: 'coding_garden'
-		},
-		niki: {
-			name: 'Niki Brandner'
-		}
-	};
-
-	const lol: Action = function (node) {
-		const src = node.getAttribute('src');
-		const swapper = node.dataset.lol;
-		function swap() {
-			const to_swap = node.getAttribute('src') === src ? swapper : src;
-			if (!swapper || !to_swap) return;
-			node.setAttribute('src', to_swap);
-		}
-		// the node has been mounted in the DOM
-		node.addEventListener('pointerenter', swap);
-		node.addEventListener('pointerleave', swap);
-		return {
-			destroy() {
-				node.removeEventListener('pointerenter', swap);
-				node.removeEventListener('pointerleave', swap);
-			}
-		};
-	};
-
-	const speed = 169;
-	let since_start = $state(Date.now() - 1499256000000);
-
-	let interval: ReturnType<typeof setInterval>;
-	$effect(() => {
-		interval = setInterval(() => {
-			since_start = Date.now() - 1499256000000;
-		}, 500);
-		return () => clearInterval(interval);
-	});
-
-	let digits = $derived(since_start.toString().split(''));
-
-	const count = await count_podcasts();
 </script>
 
-<main class="about-page">
-	<section class="about-intro stack">
-		<h1 class="h3 fv-700-i">About Syntax</h1>
-		<p>Syntax is a Podcast about Web Development.</p>
+<main class="about">
+	<h1 class="h1 fv-700-i">About us</h1>
 
+	<div class="intro">
 		<p>
-			Started by Wes and Scott in 2017 <span
-				>(
-				{#each Array.from({ length: digits.length }, (_, i) => i) as i (i)}
-					<span>
-						{#key `${digits.at(i)}-${i + 1}`}
-							<span
-								in:fly={{ duration: speed, y: -15, delay: i * 10 }}
-								out:fly={{ duration: speed, y: 15, delay: i * 10 }}>{digits.at(i)}</span
-							>
-						{/key}
-					</span>
-				{/each} milliseconds ago to be exact)</span
-			>, Syntax has published
-			{count} podcast episodes on full-stack web development, covering JavaScript Server + Client, the
-			latest Frameworks, HTML, CSS, databases, deployment environments, and a whole lot more!
+			<strong class="fv-700-i">Syntax is more than just a podcast —</strong> it’s a hub for developers
+			who want to build, learn, and stay ahead in the world of tech. Founded by Scott Tolinski and Wes
+			Bos, Syntax delivers high-quality content across podcasts, video tutorials, deep dives, and more,
+			covering everything from frontend frameworks to backend performance. Whether you're leveling up
+			your skills or just keeping up with the latest in web development, Syntax is your go-to resource
+			for insightful, fun, and practical tech content.
 		</p>
+		<p class="fv-700-i">Dive in! It's pretty good.</p>
+	</div>
 
-		<p>You should listen! It's pretty good.</p>
-	</section>
+	<section class="team" aria-label="Syntax team" style:--mesh="url({mesh})">
+		<span class="doodle coffee" aria-hidden="true"
+			><Icon name="coffee" width={40} height={40} /></span
+		>
+		<span class="doodle robot" aria-hidden="true"><Icon name="robot" width={40} height={40} /></span
+		>
+		<span class="doodle devto" aria-hidden="true"><Icon name="devto" width={40} height={40} /></span
+		>
 
-	<section aria-label="Syntax team">
-		<div class="team-grid">
-			<article class="host-card">
-				<div class="profile-box">
-					<img
-						class="host-portrait"
-						use:lol
-						src={`https://github.com/${hosts.wes.github}.png`}
-						alt={hosts.wes.name}
-						data-lol={emo}
-					/>
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">Wes</span>
-						<span class="h6">Bos</span>
-					</h2>
-					<HostSocialLink host={hosts.wes} />
-					<p>
-						Wes Bos is co-host of Syntax and a <a href="https://wesbos.com"
-							>web development educator</a
-						>. Constantly learning, he creates web development courses focused on JavaScript,
-						TypeScript, React, CSS, Node.js and whatever else comes his way.
-					</p>
-				</div>
-			</article>
+		<TeamMember
+			first_name="Wes"
+			last_name="Bos"
+			face={wes}
+			throwback={emo}
+			github="wesbos"
+			twitter="wesbos"
+		>
+			Wes Bos is co-host of Syntax and a <a href="https://wesbos.com">web development educator</a>.
+			Constantly learning, he creates web development courses focused on JavaScript, TypeScript,
+			React, CSS, Node.js and whatever else comes his way.
+		</TeamMember>
 
-			<article class="host-card">
-				<div class="profile-box">
-					<img
-						class="host-portrait"
-						src={`https://github.com/${hosts.scott.github}.png`}
-						alt={hosts.scott.name}
-						use:lol
-						data-lol={bboy}
-					/>
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">Scott</span>
-						<span class="h6">Tolinski</span>
-					</h2>
-					<HostSocialLink host={hosts.scott} />
-					<p>
-						Scott Tolinski is co-host of Syntax and the creator of <a
-							href="https://leveluptutorials.com">Level Up Tutorials</a
-						>. In his free time Scott is a dedicated Bboy (breakdancer) & enjoys pushing himself
-						athletically through dance, working out and snowboarding.
-					</p>
-				</div>
-			</article>
+		<TeamMember
+			first_name="Scott"
+			last_name="Tolinski"
+			face={scott}
+			throwback={bboy}
+			github="stolinski"
+			twitter="stolinski"
+		>
+			Scott Tolinski is co-host of Syntax and the creator of
+			<a href="https://leveluptutorials.com">Level Up Tutorials</a>. In his free time Scott is a
+			dedicated Bboy (breakdancer) & enjoys pushing himself athletically through dance, working out
+			and snowboarding.
+		</TeamMember>
 
-			<article class="host-card">
-				<div class="profile-box">
-					<img
-						class="host-portrait"
-						src={`https://github.com/${hosts.kaitlin.github}.png`}
-						alt={hosts.kaitlin.name}
-						data-lol={number1fan}
-						use:lol
-					/>
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">Kaitlin</span>
-						<span class="h6">Bloom</span>
-					</h2>
-					<HostSocialLink host={hosts.kaitlin} />
-					<p>
-						Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax
-						Newsletter, manages the Syntax social accounts, and generally tries to figure out how
-						Syntax can better reach its audience.
-					</p>
-				</div>
-			</article>
+		<TeamMember
+			first_name="CJ"
+			last_name="Reynolds"
+			face={cj}
+			throwback={cj_throwback}
+			github="w3cj"
+			twitter="coding_garden"
+		>
+			CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/"
+				>Coding Garden</a
+			>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes and
+			hanging out with his dog.
+		</TeamMember>
 
-			<article class="host-card">
-				<div class="profile-box">
-					<img
-						class="host-portrait"
-						use:lol
-						src={`https://github.com/${hosts.randy.github}.png`}
-						alt={hosts.randy.name}
-						data-lol={runonlove}
-					/>
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">Randy</span>
-						<span class="h6">Rektor</span>
-					</h2>
-					<HostSocialLink host={hosts.randy} />
-					<p>
-						Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for
-						YouTube, and helps keep Syntax's production gears oiled. He is a musician, <a
-							href="https://www.youtube.com/@randyrektor">YouTuber</a
-						>, and a self-proclaimed ‘massive audio geek’.
-					</p>
-				</div>
-			</article>
+		<TeamMember
+			first_name="Kaitlin"
+			last_name="Bloom"
+			face={kaitlin}
+			throwback={number1fan}
+			github="bl0om"
+			twitter="kaitlinblooom"
+		>
+			Kaitlin Bloom is Syntax's digital marketing manager. She publishes the Syntax Newsletter,
+			manages the Syntax social accounts, and generally tries to figure out how Syntax can better
+			reach its audience.
+		</TeamMember>
 
-			<article class="host-card">
-				<div class="profile-box">
-					<img
-						class="host-portrait"
-						use:lol
-						src={`https://github.com/${hosts.cj.github}.png`}
-						alt={hosts.cj.name}
-						data-lol={cj}
-					/>
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">CJ</span>
-						<span class="h6">Reynolds</span>
-					</h2>
-					<HostSocialLink host={hosts.cj} />
-					<p>
-						CJ is a Senior Creator at Syntax and the host of <a href="https://coding.garden/"
-							>Coding Garden</a
-						>. In his spare time CJ enjoys skateboarding, playing board games, collecting VHS tapes
-						and hanging out with his dog.
-					</p>
-				</div>
-			</article>
+		<TeamMember
+			first_name="Randy"
+			last_name="Rektor"
+			face={randy}
+			throwback={runonlove}
+			github="randyrektor"
+			twitter="randyrektor"
+		>
+			Randy Rektor is Syntax's producer. He edits the episodes, produces the videos for YouTube, and
+			helps keep Syntax's production gears oiled. He is a musician,
+			<a href="https://www.youtube.com/@randyrektor">YouTuber</a>, and a self-proclaimed ‘massive
+			audio geek’.
+		</TeamMember>
 
-			<article class="host-card">
-				<div class="profile-box">
-					<img class="host-portrait" use:lol src={niki} alt={hosts.niki.name} data-lol={komatsu} />
-					<h2 class="host-name">
-						<span class="h4 fv-800-i">Niki</span>
-						<span class="h6">Brandner</span>
-					</h2>
-					<HostSocialLink host={hosts.niki} />
-					<p>
-						Niki Brandner is an Amsterdam-based video and audio engineer who studied at SAE
-						Amsterdam. From fine-tuning podcasts and editing videos to preparing promotional
-						material, mixing, and mastering music, she's passionate about making content sound and
-						look its best.
-					</p>
-				</div>
-			</article>
-		</div>
+		<TeamMember first_name="Niki" last_name="Brandner" face={niki} throwback={komatsu}>
+			Niki Brandner is an Amsterdam-based video and audio engineer who studied at SAE Amsterdam.
+			From fine-tuning podcasts and editing videos to preparing promotional material, mixing, and
+			mastering music, she's passionate about making content sound and look its best.
+		</TeamMember>
 	</section>
 </main>
 
 <style lang="postcss">
-	.about-page {
-		margin-bottom: 2rem;
-	}
-
-	.about-intro {
-		margin-bottom: 2rem;
-	}
-
-	.team-grid {
+	.about {
 		display: grid;
-		gap: 1.5rem;
-		grid-template-columns: 1fr;
+		gap: 3rem;
+		max-width: 1000px;
+		margin-inline: auto;
+		margin-block-end: 4rem;
 	}
 
-	.host-card {
+	.intro {
+		display: grid;
+		gap: 1.25rem;
+		font-size: var(--fs-5);
+		line-height: 1.7;
+
+		p {
+			margin: 0;
+		}
+
+		strong {
+			font-size: var(--fs-7);
+			line-height: 1.4;
+		}
+	}
+
+	/* Two staggered columns of members: the right-hand column hangs lower. */
+	.team {
+		--stagger: 5.5rem;
+
 		position: relative;
-		padding-top: 2.75rem;
+		display: grid;
+		gap: 4rem clamp(2rem, 11vw, 8rem);
+		padding-block: 4rem calc(var(--stagger) + 2rem);
+		padding-inline: 1.25rem;
+		overflow-x: clip;
+		isolation: isolate;
+
+		/* Wireframe mesh and two soft colour glows behind the cards. */
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: -2;
+			inset: 0 0 auto;
+			aspect-ratio: 1804 / 704;
+			background: var(--c-fg-6);
+			mask: var(--mesh, none) center / 100% 100% no-repeat;
+			scale: 1 -1;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			z-index: -3;
+			inset: 0;
+			background:
+				radial-gradient(closest-side, oklch(from var(--c-pink) l c h / 0.12), transparent) -30%
+					10% / 60% 40% no-repeat,
+				radial-gradient(closest-side, oklch(from var(--c-teal) l c h / 0.15), transparent) 130%
+					40% / 60% 40% no-repeat;
+		}
+
+		@media (--above-med) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+
+			& > :global(.member:nth-of-type(even)) {
+				translate: 0 var(--stagger);
+			}
+		}
 	}
 
-	.profile-box {
-		position: relative;
-		padding: 1rem;
-		border: var(--b-medium);
-		border-radius: var(--br-medium);
-		background-color: var(--c-bg);
-		background-image: var(--c-bg-grit, none);
-		box-shadow: var(--s-graphic-medium);
-	}
-
-	.host-portrait {
+	.doodle {
 		position: absolute;
-		top: 0;
-		right: 1rem;
-		width: 6.25rem;
-		height: 6.25rem;
-		object-fit: cover;
-		border-radius: var(--br-medium);
-		border: var(--b-medium);
-		background-color: var(--c-bg);
-		transform: translateY(-45%);
-		box-shadow: 0 0 0 1px color-mix(in lch, var(--c-fg), transparent 78%);
+		color: var(--c-fg);
 	}
 
-	.host-name {
-		display: grid;
-		gap: 0;
-		margin: 0 0 0.25rem;
+	.coffee {
+		inset-block-start: 0.5rem;
+		inset-inline-start: 1.5rem;
+		rotate: -15deg;
 	}
 
-	.profile-box :global(p) {
-		margin-bottom: 0;
+	.robot {
+		inset-block-start: 34%;
+		inset-inline-start: 0;
+		rotate: -15deg;
+	}
+
+	.devto {
+		inset-block-start: 38%;
+		inset-inline-end: 0;
+		rotate: 15deg;
 	}
 
 	@media (--below-med) {
-		.host-card {
-			padding-top: 2.35rem;
+		.intro {
+			font-size: var(--fs-4);
+
+			strong {
+				font-size: var(--fs-5);
+			}
 		}
 
-		.host-portrait {
-			width: 5.5rem;
-			height: 5.5rem;
-		}
-	}
-
-	@media (--above-med) {
-		.team-grid {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-			gap: 1.4rem 2rem;
-		}
-
-		.host-card:nth-child(2n) {
-			margin-top: 2.5rem;
+		.doodle {
+			display: none;
 		}
 	}
 </style>

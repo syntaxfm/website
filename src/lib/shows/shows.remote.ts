@@ -2,7 +2,7 @@ import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { show } from '$server/db/schema';
 import { query } from '$app/server';
-import { desc, count } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 
 // Shows come out a few times a week. Postgres answers these in under 2 ms; the time was round
 // trips and payload (whole show rows), so they select only what's rendered and are edge cached.
@@ -16,12 +16,5 @@ export const get_latest_podcast = query(() =>
 			orderBy: [desc(show.number)]
 		});
 		return latest ?? null;
-	})
-);
-
-export const count_podcasts = query(() =>
-	edge_cached('podcast-count', SHOW_LIST_CACHE, async () => {
-		const result = await db.select({ count: count() }).from(show);
-		return result[0].count;
 	})
 );

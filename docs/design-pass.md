@@ -52,7 +52,7 @@ under the epic `iw15n6bh` (Public site design pass); the Dex task is in the last
 | 9 | `/snackpack/[issue_id]` | Snackpack issue | ✅ | | |
 | 10 | `/sickpicks` | Sick picks | ⬜ | Not close. Needs a design first (no ✅ frame) and paging (1,717 links) | `glyultqh` |
 | 11 | `/potluck` | Potluck | ✅ | | |
-| 12 | `/about` | About | ⬜ | Not close. Rebuild to the ✅ LIST \| About Us (Team) frame | `v1plttsx` |
+| 12 | `/about` | About | 🟨 | Rebuilt to the ✅ LIST \| About Us (Team) frame, with Niki (no Chad). Faces cut from the headshots by `scripts/face_cutout.swift`. Waiting on Scott's review | `v1plttsx` |
 | 13 | `/oss` | Open source | ⏭️ | Not needed. Archive it, redirect to episode 894 | `k9t6g4y5` |
 | 14 | `/pages/[page]` | CMS pages | ⬜ | Privacy, Terms, Giveaway rules. Fix through the default element CSS, not route styles | `1m5z73wn` |
 | 15 | `/login` | Login | ✅ | Central Syntax Auth | |
