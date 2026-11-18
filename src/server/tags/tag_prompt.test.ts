@@ -25,6 +25,7 @@ describe('build_tag_system_prompt', () => {
 		expect(prompt).toContain('Nuxt, Next.js');
 		expect(prompt).toContain('ignore sponsor reads');
 		expect(prompt).toContain('Sick Picks and Shameless Plugs');
+		expect(prompt).toContain('only tag Sentry when the item is actually about Sentry');
 	});
 });
 

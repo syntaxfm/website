@@ -42,7 +42,7 @@ export function build_tag_system_prompt(topics: TagTopic[], library_names: strin
 
 2. libraries: the specific libraries, frameworks, languages, tools, products and services this item spends real time on (e.g. Effect, Nuxt, StyleX, Tailscale, Caddy). 0 to ${MAX_LIBRARIES}, most central first.
 
-For both kinds, ignore sponsor reads and ads ("this episode is brought to you by..."), and the Sick Picks and Shameless Plugs segments at the end of an episode: they aren't what the item is about.
+For both kinds, ignore sponsor reads and ads ("this episode is brought to you by..."), and the Sick Picks and Shameless Plugs segments at the end of an episode: they aren't what the item is about. Syntax is made by Sentry and Sentry sponsors most episodes, so only tag Sentry when the item is actually about Sentry.
 
 Library rules:
 - A passing mention doesn't count.
