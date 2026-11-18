@@ -258,6 +258,13 @@ who signed in.
   released Shows, videos, content, guests and tags. The admin role adds drafts and scheduled
   content, the dashboard, submissions, the SEO report, and the writes (Shows, articles, video
   status, tags, guests, submission status). Nothing deletes, and nothing changes Users or roles.
+- **SEO:** small read-only admin tools over the stored snapshots, so an agent loads only what one
+  question needs: `get_seo_overview` (totals, bands, backlinks, competitors, change),
+  `list_seo_searches` (one row per tracked search), `get_seo_search` (one search in depth: position
+  history and the top 10 results on Google and YouTube), `search_seo_keywords` (filtered ranked
+  keywords) and `list_seo_opportunities`. None takes a snapshot or calls a paid API. Snapshots from
+  2026-11-18 keep each tracked search's top 10 results in detail (about 180 kB of JSON per
+  snapshot); the SEO page doesn't read that detail.
 - **One set of rules:** each tool calls the same server function as the admin page that does the
   same thing (`src/server/**`, taking the acting person), so the admin pages and the endpoint
   follow the same checks. Tools live in `src/server/mcp/mcp_tools.ts`.

@@ -15,6 +15,7 @@ import {
 	parse_keyword_difficulty,
 	parse_ranked_keywords,
 	parse_search_volume,
+	parse_view_count,
 	parse_youtube_search
 } from './seo_parse';
 
@@ -122,6 +123,27 @@ describe('parse_google_search', () => {
 		expect(check.top_sites).toEqual(['syntax.fm', 'Reddit · r/Frontend', 'podcast.feedspot.com']);
 	});
 
+	it('keeps the organic results in detail, flagging syntax.fm', () => {
+		const { top_results } = parse_google_search(
+			'web development podcast',
+			google_fixture,
+			'syntax.fm'
+		);
+
+		expect(top_results).toHaveLength(9);
+		expect(top_results?.[0]).toEqual({
+			position: 1,
+			title: 'Syntax - Web Development Podcast',
+			url: null,
+			domain: 'syntax.fm',
+			description:
+				'Full Stack Web Developers Wes Bos and Scott Tolinski dive deep into web development, CSS, JavaScript, Frameworks, Typescript, Servers and more.',
+			is_syntax: true
+		});
+		expect(top_results?.slice(1).every((result) => !result.is_syntax)).toBe(true);
+		expect(top_results?.map((result) => result.position)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+	});
+
 	it('reports no position when syntax.fm is not in the results', () => {
 		const check = parse_google_search('web development podcast', google_fixture, 'example.org');
 		expect(check.syntax_position).toBeNull();
@@ -145,6 +167,28 @@ describe('parse_youtube_search', () => {
 		]);
 	});
 
+	it('keeps each video in detail, with its view count as a number', () => {
+		const { top_results } = parse_youtube_search('svelte podcast', youtube_fixture, SYNTAX_CHANNEL);
+
+		expect(top_results).toHaveLength(4);
+		expect(top_results?.[0]).toEqual({
+			position: 1,
+			title:
+				'Svelte’s Creator Rich Harris on Rethinking Web Dev, Building Svelte & the Power of Tech Conferences',
+			url: 'https://www.youtube.com/watch?v=Tvth3_H5N8o',
+			video_id: 'Tvth3_H5N8o',
+			channel_name: 'JavaScript Conferences by GitNation',
+			channel_handle: '@JavaScriptConferences',
+			view_count: 14344,
+			length_text: '30:05',
+			published_text: '1 year ago',
+			// The fixture's text, which has a non-breaking space
+			description_snippet: youtube_fixture.videos[0].description_snippet,
+			is_syntax: false
+		});
+		expect(top_results?.map((result) => result.is_syntax)).toEqual([false, false, true, false]);
+	});
+
 	it('throws when the response has no video list', () => {
 		expect(() => parse_youtube_search('svelte podcast', {}, SYNTAX_CHANNEL)).toThrow(
 			'no video list'
@@ -166,5 +210,18 @@ describe('is_channel_video', () => {
 		expect(by_name('Syntax and Scott Tolinski')).toBe(true);
 		expect(by_name('Wes Bos and Syntax')).toBe(true);
 		expect(by_name('Syntax Error Podcast')).toBe(false);
+	});
+});
+
+describe('parse_view_count', () => {
+	it.each([
+		['14,344 views', 14344],
+		['1 view', 1],
+		['No views', 0],
+		['1.2M views', null],
+		['', null],
+		[null, null]
+	])('reads %j as %j', (text, expected) => {
+		expect(parse_view_count(text)).toBe(expected);
 	});
 });

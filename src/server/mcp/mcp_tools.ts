@@ -13,7 +13,7 @@ import {
 	SUBMISSION_TYPE_VALUES
 } from '$server/db/schema';
 import * as guests from '$server/guests/guests';
-import * as seo_dashboard from '$server/seo_tracker/seo_dashboard';
+import * as seo_queries from '$server/seo_tracker/seo_queries';
 import * as show_editor from '$server/shows/show_editor';
 import * as submissions from '$server/submissions/submissions';
 import * as tags from '$server/tags/tags';
@@ -433,15 +433,126 @@ const search_submissions = define_tool({
 		})
 });
 
-const get_seo_report = define_tool({
-	name: 'get_seo_report',
+// SEO: read-only views of the stored snapshots (seo_queries.ts), small enough for one question.
+// None takes a new snapshot or calls a paid API.
+
+const get_seo_overview = define_tool({
+	name: 'get_seo_overview',
 	description:
-		"Admin only. The SEO page's data: the latest search snapshot (Google keywords, tracked searches on Google and YouTube, competitors, backlinks), how it changed since the previous one, keyword opportunities, and the trend history.",
+		"Admin only. Start here for how syntax.fm does in search overall: the latest SEO snapshot's Google keyword totals and position bands, estimated traffic, backlinks, top competing domains, niche visibility, and the change since the snapshot before. No keyword lists; see search_seo_keywords.",
 	access: 'admin',
 	is_read_only: true,
 	is_idempotent: true,
 	input: no_input,
-	run: (actor) => seo_dashboard.get_seo_dashboard(actor)
+	run: (actor) => seo_queries.get_seo_overview(actor)
+});
+
+const list_seo_searches = define_tool({
+	name: 'list_seo_searches',
+	description:
+		"Admin only. Start here for a topic: every tracked search (such as 'ai engineering') in one row: Syntax's Google and YouTube positions, their change since the previous snapshot (positive = moved up), monthly searches, difficulty, and Syntax's ranking page or video. Then use get_seo_search for one in depth.",
+	access: 'admin',
+	is_read_only: true,
+	is_idempotent: true,
+	input: no_input,
+	run: (actor) => seo_queries.list_seo_searches(actor)
+});
+
+const get_seo_search = define_tool({
+	name: 'get_seo_search',
+	description:
+		"Admin only. One tracked search in depth, to see who outranks Syntax and why: Syntax's position over recent snapshots, and the latest top 10 results (YouTube: title, channel, views, length, age, description; Google: title, site, URL, description), Google's result types, and monthly demand. Snapshots before 2026-11-18 have only the top 3 names (results_detail_available: false).",
+	access: 'admin',
+	is_read_only: true,
+	is_idempotent: true,
+	input: Schema.Struct({
+		search: text_input('The tracked search, exactly as list_seo_searches names it.'),
+		platform: Schema.optionalKey(
+			Schema.Literals(['google', 'youtube', 'both']).annotate({
+				description: 'Which results: google, youtube, or both (the default).'
+			})
+		),
+		history_limit: Schema.optionalKey(
+			Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 20 })).annotate({
+				description: 'How many snapshots of position history, 1 to 20. Defaults to 8.'
+			})
+		)
+	}),
+	run: (actor, input) =>
+		seo_queries.get_seo_search(actor, {
+			search: input.search,
+			platform: input.platform ?? 'both',
+			history_limit: input.history_limit ?? 8
+		})
+});
+
+const search_seo_keywords = define_tool({
+	name: 'search_seo_keywords',
+	description:
+		"Admin only. The Google keywords syntax.fm ranks for in the latest snapshot (up to its top 100), filtered and sorted: each with monthly searches, position, ranking URL, difficulty, intent, and whether Google shows an AI overview. On-topic only by default (Syntax's tags and guests).",
+	access: 'admin',
+	is_read_only: true,
+	is_idempotent: true,
+	input: Schema.Struct({
+		query: Schema.optionalKey(
+			Schema.String.annotate({ description: 'Only keywords containing this text.' })
+		),
+		min_volume: Schema.optionalKey(
+			Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({
+				description: 'Only keywords with at least this many monthly searches.'
+			})
+		),
+		position_min: Schema.optionalKey(
+			Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 100 })).annotate({
+				description: 'Only keywords where syntax.fm is at this Google position or lower.'
+			})
+		),
+		position_max: Schema.optionalKey(
+			Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 100 })).annotate({
+				description: 'Only keywords where syntax.fm is at this Google position or higher.'
+			})
+		),
+		on_topic_only: Schema.optionalKey(
+			Schema.Boolean.annotate({
+				description:
+					"Only keywords about Syntax's topics or guests (true, the default); false includes everything, such as song lyrics the homepage ranks for."
+			})
+		),
+		sort: Schema.optionalKey(
+			Schema.Literals(['volume', 'position', 'difficulty']).annotate({
+				description:
+					'volume (most searched first, the default), position (best first), or difficulty (easiest first).'
+			})
+		),
+		limit: Schema.optionalKey(
+			Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 100 })).annotate({
+				description: 'Keywords to return, 1 to 100. Defaults to 25.'
+			})
+		),
+		offset: Schema.optionalKey(
+			Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({
+				description: 'Matches to skip, for the next page. Defaults to 0.'
+			})
+		)
+	}),
+	run: (actor, input) => seo_queries.search_seo_keywords(actor, input)
+});
+
+const list_seo_opportunities = define_tool({
+	name: 'list_seo_opportunities',
+	description:
+		'Admin only. On-topic Google keywords where syntax.fm is close to the top (positions 4 to 30, at least 20 monthly searches), most searched first: where a better page or title helps most.',
+	access: 'admin',
+	is_read_only: true,
+	is_idempotent: true,
+	input: Schema.Struct({
+		limit: Schema.optionalKey(
+			Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 50 })).annotate({
+				description: 'Keywords to return, 1 to 50. Defaults to 20.'
+			})
+		)
+	}),
+	run: (actor, input) => seo_queries.list_seo_opportunities(actor, input.limit ?? 20)
 });
 
 const create_show = define_tool({
@@ -778,7 +889,11 @@ export const MCP_TOOLS: readonly McpTool[] = [
 	get_tag,
 	get_admin_dashboard,
 	search_submissions,
-	get_seo_report,
+	get_seo_overview,
+	list_seo_searches,
+	get_seo_search,
+	search_seo_keywords,
+	list_seo_opportunities,
 	create_show,
 	update_show,
 	update_video,

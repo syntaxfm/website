@@ -19,7 +19,8 @@ const { find_profile, server_functions } = vi.hoisted(() => ({
 		get_tag_detail: vi.fn(),
 		create_tag: vi.fn(),
 		update_tag: vi.fn(),
-		get_show: vi.fn()
+		get_show: vi.fn(),
+		get_seo_search: vi.fn()
 	}
 }));
 
@@ -54,7 +55,13 @@ vi.mock('$server/guests/guests', () => ({
 	create_guest: vi.fn(),
 	update_guest: vi.fn()
 }));
-vi.mock('$server/seo_tracker/seo_dashboard', () => ({ get_seo_dashboard: vi.fn() }));
+vi.mock('$server/seo_tracker/seo_queries', () => ({
+	get_seo_overview: vi.fn(),
+	list_seo_searches: vi.fn(),
+	get_seo_search: server_functions.get_seo_search,
+	search_seo_keywords: vi.fn(),
+	list_seo_opportunities: vi.fn()
+}));
 vi.mock('$server/submissions/submissions', () => ({
 	list_submissions: vi.fn(),
 	bulk_update_submission_status: vi.fn()
@@ -173,6 +180,46 @@ describe('answer_mcp_request', () => {
 		expect(server_functions.create_tag).toHaveBeenCalledWith(
 			{ id: CENTRAL_USER_ID, profile_id: 'profile-1', roles: ['admin'] },
 			{ name: 'Rust' }
+		);
+	});
+
+	it('serves SEO data as small admin-only tools, and no whole report', async () => {
+		signed_in_as([]);
+		const client = await open_client();
+		const tool_names = (await client.list_tools()).map((tool) => tool.name);
+
+		expect(tool_names).toEqual(
+			expect.arrayContaining([
+				'get_seo_overview',
+				'list_seo_searches',
+				'get_seo_search',
+				'search_seo_keywords',
+				'list_seo_opportunities'
+			])
+		);
+		expect(tool_names).not.toContain('get_seo_report');
+		expect(
+			MCP_TOOLS.filter((tool) => tool.name.includes('seo')).every(
+				(tool) => tool.access === 'admin' && tool.is_read_only
+			)
+		).toBe(true);
+
+		const refused = await client.call_tool('get_seo_search', { search: 'ai engineering' });
+		expect(refused.result).toMatchObject({ error: { status: 403 } });
+		expect(server_functions.get_seo_search).not.toHaveBeenCalled();
+	});
+
+	it('looks up one tracked search for an admin, both platforms and 8 snapshots by default', async () => {
+		signed_in_as(['admin']);
+		server_functions.get_seo_search.mockResolvedValue({ search: 'ai engineering' });
+		const client = await open_client();
+
+		const answer = await client.call_tool('get_seo_search', { search: 'ai engineering' });
+
+		expect(answer).toMatchObject({ is_error: false, result: { search: 'ai engineering' } });
+		expect(server_functions.get_seo_search).toHaveBeenCalledWith(
+			{ id: CENTRAL_USER_ID, profile_id: 'profile-1', roles: ['admin'] },
+			{ search: 'ai engineering', platform: 'both', history_limit: 8 }
 		);
 	});
 

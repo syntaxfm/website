@@ -3,9 +3,11 @@ import type {
 	Backlinks,
 	Competitor,
 	DomainOverview,
+	GoogleResult,
 	GoogleSearchCheck,
 	RankedKeyword,
 	YoutubeChannel,
+	YoutubeResult,
 	YoutubeSearchCheck
 } from './seo_report';
 
@@ -14,6 +16,9 @@ import type {
 
 const DATAFORSEO_OK = 20000;
 const TOP_LIST_LENGTH = 3;
+// Results kept in detail per tracked search, so an agent can see what outranks Syntax and why.
+// They come in the same response, so they cost nothing extra (about 180 kB per snapshot).
+export const SEARCH_RESULT_DETAIL_LENGTH = 10;
 
 // DataForSEO wraps every answer in { status_code, tasks: [{ status_code, result: [...] }] }
 function read_dataforseo_task(data: unknown): unknown {
@@ -166,6 +171,17 @@ export function parse_google_search(
 	const syntax_result = organic.find((item) =>
 		is_syntax_site(google_result_site(item), target_domain)
 	);
+	const top_results = organic.slice(0, SEARCH_RESULT_DETAIL_LENGTH).map((item): GoogleResult => {
+		const domain = google_result_site(item);
+		return {
+			position: as_number(read_path(item, ['rank_group'])),
+			title: as_string(read_path(item, ['title'])),
+			url: google_result_url(item),
+			domain,
+			description: as_string(read_path(item, ['description'])),
+			is_syntax: is_syntax_site(domain, target_domain)
+		};
+	});
 	return {
 		search,
 		syntax_position: syntax_result ? as_number(read_path(syntax_result, ['rank_group'])) : null,
@@ -177,7 +193,8 @@ export function parse_google_search(
 		top_sites: organic
 			.slice(0, TOP_LIST_LENGTH)
 			.map(google_result_site)
-			.filter((site): site is string => site !== null)
+			.filter((site): site is string => site !== null),
+		top_results
 	};
 }
 
@@ -232,6 +249,14 @@ export function is_channel_video(video: Record<string, unknown>, channel: Youtub
 	);
 }
 
+// "14,344 views" or "1 view" as a number; null for text without one ("No views" counts as 0)
+export function parse_view_count(view_count_text: string | null): number | null {
+	if (view_count_text === null) return null;
+	if (/^no views$/i.test(view_count_text.trim())) return 0;
+	const digits = view_count_text.match(/^\s*([\d,]+)\s+views?\b/i)?.[1];
+	return digits ? Number(digits.replaceAll(',', '')) : null;
+}
+
 // youtube-com videos/search_videos for one tracked search
 export function parse_youtube_search(
 	search: string,
@@ -251,6 +276,21 @@ export function parse_youtube_search(
 		syntax_position: syntax_index === -1 ? null : syntax_index + 1,
 		syntax_video_title: syntax_video ? as_string(syntax_video.title) : null,
 		syntax_video_url: syntax_video ? as_string(syntax_video.url) : null,
-		top_channels: [...new Set(channel_names)].slice(0, TOP_LIST_LENGTH)
+		top_channels: [...new Set(channel_names)].slice(0, TOP_LIST_LENGTH),
+		top_results: videos.slice(0, SEARCH_RESULT_DETAIL_LENGTH).map(
+			(video, index): YoutubeResult => ({
+				position: index + 1,
+				title: as_string(video.title),
+				url: as_string(video.url),
+				video_id: as_string(video.video_id),
+				channel_name: as_string(video.channel_name),
+				channel_handle: as_string(video.channel_handle),
+				view_count: parse_view_count(as_string(video.view_count_text)),
+				length_text: as_string(video.length_text),
+				published_text: as_string(video.published_text),
+				description_snippet: as_string(video.description_snippet),
+				is_syntax: is_channel_video(video, channel)
+			})
+		)
 	};
 }

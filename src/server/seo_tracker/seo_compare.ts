@@ -47,7 +47,7 @@ function by_search_volume(a: KeywordMove, b: KeywordMove): number {
 	return (b.search_volume ?? 0) - (a.search_volume ?? 0);
 }
 
-function search_moves(
+export function search_moves(
 	previous: readonly { search: string; syntax_position: number | null }[],
 	current: readonly { search: string; syntax_position: number | null }[]
 ): SearchMove[] {
