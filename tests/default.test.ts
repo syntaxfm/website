@@ -17,6 +17,12 @@ test('Got about page', async ({ page }) => {
 	await expect(page.locator('h1:has-text("About Syntax")')).toBeVisible();
 });
 
+test('Links page has a document title', async ({ page }) => {
+	await page.goto('/links');
+	await expect(page).toHaveTitle('Links - Syntax');
+	await expect(page.locator('head title')).toHaveCount(1);
+});
+
 test('admin action should require login', async ({ request, baseURL }) => {
 	const response = await request.post(`/admin/shows?/delete_all_shows`, {
 		headers: {
