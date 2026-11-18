@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
 	import { player } from '$state/player';
+	import { get_media_name, get_media_title } from '$state/player_utils';
 	import { player_window_status } from '$state/player_window_status';
 	import Icon from '#lib/Icon.svelte';
 	import YoutubeVideo from './YoutubeVideo.svelte';
@@ -17,6 +18,7 @@
 
 	let video_id = $derived($youtube_player.video_id);
 	let active_show = $derived($youtube_player.active_show);
+	let active_name = $derived(active_show ? get_media_name(active_show) : '');
 	let slot_el = $derived($youtube_player.slot_el);
 	let dock_el = $derived($youtube_player.dock_el);
 	let placement = $derived($youtube_player.target === 'SLOT' && slot_el ? 'SLOT' : 'DOCK');
@@ -148,8 +150,8 @@
 					type="button"
 					class="dock-cover"
 					onclick={toggle_playback}
-					aria-label={`${is_playing ? 'Pause' : 'Play'} episode ${active_show.number}`}
-					title={`#${active_show.number} - ${active_show.title}`}
+					aria-label={`${is_playing ? 'Pause' : 'Play'} ${active_name}`}
+					title={get_media_title(active_show)}
 				></button>
 			{/if}
 			{#if active_show && has_actions}
@@ -158,8 +160,8 @@
 						<button
 							type="button"
 							onclick={open_show_page}
-							aria-label={`Watch episode ${active_show.number} on its page`}
-							title="Watch on episode page"><Icon name="undock" /></button
+							aria-label={`Watch ${active_name} on its page`}
+							title="Watch on its page"><Icon name="undock" /></button
 						>
 					{:else}
 						<button

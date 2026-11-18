@@ -23,6 +23,12 @@ export function mark_youtube_unavailable() {
 	is_youtube_unavailable = true;
 }
 
+// A network connection and YouTube not having failed to load
+export function can_play_youtube() {
+	if (is_youtube_unavailable) return false;
+	return typeof navigator === 'undefined' || navigator.onLine !== false;
+}
+
 /**
  * Should this show play as a YouTube video?
  * Requires a video, a video preference, a network connection (offline always falls back to audio),
@@ -30,7 +36,6 @@ export function mark_youtube_unavailable() {
  */
 export function should_play_video(show: { youtube_url?: string | null } | null | undefined) {
 	if (!show || !get_id_from_url(show.youtube_url)) return false;
-	if (is_youtube_unavailable) return false;
-	if (typeof navigator !== 'undefined' && navigator.onLine === false) return false;
+	if (!can_play_youtube()) return false;
 	return get(media_preference) === 'VIDEO';
 }

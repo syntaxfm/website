@@ -8,23 +8,27 @@
 	import { VIDEO_LABEL } from '#lib/shows/show_label.ts';
 	import { to_json_ld, video_object_schema } from '#lib/seo/structured_data.ts';
 	import VideoBezel from '#lib/videos/VideoBezel.svelte';
-	import VideoPoster from '#lib/videos/VideoPoster.svelte';
-	import { get_autoplay_embed_url_from_id } from '#lib/videos/utils.ts';
+	import YoutubeEmbed from '#lib/videos/YoutubeEmbed.svelte';
+	import { get_watch_url_from_url } from '#lib/videos/utils.ts';
+	import { player } from '$state/player';
+	import type { PlayerVideo } from '$state/player_utils';
 
 	let { data } = $props();
 	let { video } = $derived(data);
 
-	// YouTube's own player only loads once the visitor plays; chapter and transcript times start it
-	// (again) from that point
-	let start_at: number | null = $state(null);
-	let player_el: HTMLDivElement | undefined = $state();
+	let watch_url = $derived(get_watch_url_from_url(video.youtube_id));
+	// Plays in the site's player, like an episode: it keeps going in the player bar after leaving
+	let player_video: PlayerVideo = $derived({
+		kind: 'VIDEO',
+		title: video.title,
+		slug: video.slug,
+		youtube_url: watch_url
+	});
 
+	// Chapter and transcript times
 	function play_from(seconds: number) {
-		start_at = seconds;
-		player_el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+		void player.start_show(player_video, seconds);
 	}
-
-	let watch_url = $derived(`https://www.youtube.com/watch?v=${video.youtube_id}`);
 	let schema_json = $derived(
 		to_json_ld(
 			video_object_schema(
@@ -49,27 +53,7 @@
 	<svelte:element this={"script"} type="application/ld+json">{schema_json}</svelte:element>
 </svelte:head>
 
-<VideoBezel>
-	<div class="player" bind:this={player_el}>
-		{#if start_at === null}
-			<VideoPoster
-				video_id={video.youtube_id}
-				label={`Play ${video.title}`}
-				sizes="(min-width: 1200px) 1136px, calc(100vw - 4rem)"
-				onplay={() => play_from(0)}
-			/>
-		{:else}
-			{#key start_at}
-				<iframe
-					src={get_autoplay_embed_url_from_id(video.youtube_id, { start: start_at })}
-					title={video.title}
-					allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-					allowfullscreen
-				></iframe>
-			{/key}
-		{/if}
-	</div>
-</VideoBezel>
+<VideoBezel><YoutubeEmbed show={player_video} /></VideoBezel>
 
 <PageTitle
 	title={video.title}
@@ -122,19 +106,6 @@
 </div>
 
 <style>
-	.player {
-		position: relative;
-		aspect-ratio: 16 / 9;
-		background: var(--c-black);
-	}
-
-	iframe {
-		display: block;
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-
 	.times {
 		display: grid;
 		gap: 0.75rem;

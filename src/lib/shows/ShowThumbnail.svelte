@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
 	import { player } from '$state/player';
+	import { get_media_key, is_player_video, type PlayerVideo } from '$state/player_utils';
 	import {
 		get_id_from_url,
 		get_thumbnail_from_id,
@@ -10,14 +11,17 @@
 	import no_thumb from './no_thumb.png';
 
 	interface Props {
-		show: {
-			title: string;
-			number: number;
-			slug: string;
-			url?: string | null;
-			youtube_url?: string | null;
-			thumbnail?: string | null;
-		};
+		// An episode, or a video that isn't one
+		show:
+			| {
+					title: string;
+					number: number;
+					slug: string;
+					url?: string | null;
+					youtube_url?: string | null;
+					thumbnail?: string | null;
+			  }
+			| PlayerVideo;
 		// Big enough for the video to play right here. Otherwise it plays docked in the player bar.
 		is_video_slot?: boolean;
 		class?: string;
@@ -39,16 +43,24 @@
 
 	let youtube_video_id = $derived(get_id_from_url(show.youtube_url));
 	let thumbnail_src = $derived(
-		(youtube_video_id ? get_thumbnail_from_id(youtube_video_id) : '') || show.thumbnail || no_thumb
+		(youtube_video_id ? get_thumbnail_from_id(youtube_video_id) : '') ||
+			(is_player_video(show) ? '' : show.thumbnail) ||
+			no_thumb
 	);
 	let thumbnail_srcset = $derived(
 		youtube_video_id ? get_thumbnail_srcset_from_id(youtube_video_id) : undefined
 	);
+	// An episode plays from its audio file or its video, a video that isn't one from YouTube
+	let is_playable = $derived(is_player_video(show) ? Boolean(youtube_video_id) : Boolean(show.url));
 
 	function play(event: MouseEvent) {
 		// The thumbnail can sit inside a link to the show
 		event.preventDefault();
 		event.stopPropagation();
+		if (is_player_video(show)) {
+			void player.start_show(show);
+			return;
+		}
 		const { number, title, slug, url, youtube_url } = show;
 		if (!url) return;
 		void player.start_show({ number, title, slug, url, youtube_url });
@@ -57,7 +69,7 @@
 
 <div
 	class={['thumbnail', class_name]}
-	{@attach is_video_slot && youtube_video_id ? youtube_slot(show.number) : undefined}
+	{@attach is_video_slot && youtube_video_id ? youtube_slot(get_media_key(show)) : undefined}
 >
 	<img
 		style:width
@@ -71,8 +83,14 @@
 		height="720"
 		alt={show.title}
 	/>
-	{#if show.url}
-		<button type="button" onclick={play} aria-label={`Play episode ${show.number}: ${show.title}`}>
+	{#if is_playable}
+		<button
+			type="button"
+			onclick={play}
+			aria-label={is_player_video(show)
+				? `Play ${show.title}`
+				: `Play episode ${show.number}: ${show.title}`}
+		>
 			<span aria-hidden="true">
 				<Icon name="play" width={18} height={18} aria_hidden={true} />
 			</span>

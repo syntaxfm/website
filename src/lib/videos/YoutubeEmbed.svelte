@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { youtube_player } from '$state/youtube_player';
-	import type { PlayerShow } from '$state/player_utils';
+	import { get_media_key, get_media_name, type PlayerItem } from '$state/player_utils';
 	import VideoPoster from './VideoPoster.svelte';
 	import { get_id_from_url } from './utils';
 	import { youtube_slot } from './video_actions';
 
 	interface Props {
-		show: PlayerShow;
-		// The episode's own page, where its video goes back to from the player bar
+		show: PlayerItem;
+		// The episode's or video's own page, where its video goes back to from the player bar
 		is_show_page?: boolean;
 		// How wide the picture renders, so the browser picks the smallest sharp file
 		sizes?: string;
@@ -30,11 +30,8 @@
 			$youtube_player.slot_el === slot_el &&
 			$youtube_player.target === 'DOCK'
 	);
-	let label = $derived(
-		is_docked_from_here
-			? `Bring video back to episode ${show.number}`
-			: `Play episode ${show.number}`
-	);
+	let name = $derived(get_media_name(show));
+	let label = $derived(is_docked_from_here ? `Bring video back to ${name}` : `Play ${name}`);
 
 	// Also how a docked video comes back here, it doesn't on scroll
 	function play() {
@@ -49,7 +46,7 @@
 {#if video_id}
 	<div
 		bind:this={slot_el}
-		{@attach youtube_slot(show.number, is_show_page)}
+		{@attach youtube_slot(get_media_key(show), is_show_page)}
 		class="youtube-embed"
 		data-testid="youtube-embed"
 	>

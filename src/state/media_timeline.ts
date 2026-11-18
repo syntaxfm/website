@@ -3,6 +3,7 @@
 // an audio timestamp to a video (or vice versa) unless we know the two line up.
 import { get_local_storage } from '$utilities/storage';
 import { get_id_from_url, get_watch_url_from_url } from '#lib/videos/utils.ts';
+import { get_episode_media_key } from './player_utils';
 
 export type MediaKind = 'AUDIO' | 'VIDEO';
 
@@ -17,18 +18,18 @@ interface EpisodeDurations {
 	video?: number;
 }
 
-const durations = new Map<number, EpisodeDurations>();
+const durations = new Map<string, EpisodeDurations>();
 const last_saved = new Map<string, number>();
 
-function position_key(show_number: number, kind: MediaKind) {
+function position_key(media_key: string, kind: MediaKind) {
 	// Audio keeps the original key so existing listening positions survive
 	return kind === 'AUDIO'
-		? `last_played_position_${show_number}`
-		: `last_played_video_position_${show_number}`;
+		? `last_played_position_${media_key}`
+		: `last_played_video_position_${media_key}`;
 }
 
-function durations_key(show_number: number) {
-	return `episode_durations_${show_number}`;
+function durations_key(media_key: string) {
+	return `episode_durations_${media_key}`;
 }
 
 function parse_durations(value: string | null | undefined): EpisodeDurations {
@@ -46,30 +47,30 @@ function parse_durations(value: string | null | undefined): EpisodeDurations {
 	}
 }
 
-function get_durations(show_number: number): EpisodeDurations {
-	const cached = durations.get(show_number);
+function get_durations(media_key: string): EpisodeDurations {
+	const cached = durations.get(media_key);
 	if (cached) return cached;
-	const stored = parse_durations(get_local_storage()?.getItem(durations_key(show_number)));
-	durations.set(show_number, stored);
+	const stored = parse_durations(get_local_storage()?.getItem(durations_key(media_key)));
+	durations.set(media_key, stored);
 	return stored;
 }
 
-export function record_duration(show_number: number, kind: MediaKind, seconds: number) {
+export function record_duration(media_key: string, kind: MediaKind, seconds: number) {
 	if (!Number.isFinite(seconds) || seconds <= 0) return;
-	const current = get_durations(show_number);
+	const current = get_durations(media_key);
 	const field = kind === 'AUDIO' ? 'audio' : 'video';
 	if (current[field] === seconds) return;
 	const next = { ...current, [field]: seconds };
-	durations.set(show_number, next);
-	get_local_storage()?.setItem(durations_key(show_number), JSON.stringify(next));
+	durations.set(media_key, next);
+	get_local_storage()?.setItem(durations_key(media_key), JSON.stringify(next));
 }
 
 /**
  * Synchronous check using only durations we've already seen.
  * Returns null when we don't know yet.
  */
-export function timelines_match_cached(show_number: number): boolean | null {
-	const { audio, video } = get_durations(show_number);
+export function timelines_match_cached(media_key: string): boolean | null {
+	const { audio, video } = get_durations(media_key);
 	if (!audio || !video) return null;
 	return Math.abs(audio - video) <= TIMELINE_TOLERANCE;
 }
@@ -138,33 +139,34 @@ export async function timelines_match(
 ): Promise<boolean> {
 	const { youtube_url } = show;
 	if (!youtube_url || !get_id_from_url(youtube_url)) return false;
-	const cached = timelines_match_cached(show.number);
+	const media_key = get_episode_media_key(show.number);
+	const cached = timelines_match_cached(media_key);
 	if (cached !== null) return cached;
 
-	const known = get_durations(show.number);
+	const known = get_durations(media_key);
 	const [audio_duration, video_duration] = await Promise.all([
 		known.audio ?? (show.url ? probe_audio_duration(show.url) : null),
 		known.video ??
 			(video_el ? wait_for_video_duration(video_el) : probe_video_duration(youtube_url))
 	]);
-	if (audio_duration) record_duration(show.number, 'AUDIO', audio_duration);
-	if (video_duration) record_duration(show.number, 'VIDEO', video_duration);
+	if (audio_duration) record_duration(media_key, 'AUDIO', audio_duration);
+	if (video_duration) record_duration(media_key, 'VIDEO', video_duration);
 
-	return timelines_match_cached(show.number) ?? false;
+	return timelines_match_cached(media_key) ?? false;
 }
 
 // This version's own saved position, without borrowing the other version's
-function get_own_position(show_number: number, kind: MediaKind): number {
-	const position = parseFloat(get_local_storage()?.getItem(position_key(show_number, kind)) ?? '');
+function get_own_position(media_key: string, kind: MediaKind): number {
+	const position = parseFloat(get_local_storage()?.getItem(position_key(media_key, kind)) ?? '');
 	return Number.isFinite(position) && position > 0 ? position : 0;
 }
 
-export function get_saved_position(show_number: number, kind: MediaKind): number {
-	const own = get_own_position(show_number, kind);
+export function get_saved_position(media_key: string, kind: MediaKind): number {
+	const own = get_own_position(media_key, kind);
 	if (own > 0) return own;
 	// No position for this version yet, but if the timelines match we can borrow the other one's
-	if (timelines_match_cached(show_number)) {
-		return get_own_position(show_number, kind === 'AUDIO' ? 'VIDEO' : 'AUDIO');
+	if (timelines_match_cached(media_key)) {
+		return get_own_position(media_key, kind === 'AUDIO' ? 'VIDEO' : 'AUDIO');
 	}
 	return 0;
 }
@@ -173,23 +175,18 @@ export function get_saved_position(show_number: number, kind: MediaKind): number
  * Was this show last listened to as audio? True when there's an audio position and no video one,
  * e.g. listeners from before video playback existed.
  */
-export function is_mid_audio(show_number: number): boolean {
-	return get_own_position(show_number, 'AUDIO') > 0 && get_own_position(show_number, 'VIDEO') === 0;
+export function is_mid_audio(media_key: string): boolean {
+	return get_own_position(media_key, 'AUDIO') > 0 && get_own_position(media_key, 'VIDEO') === 0;
 }
 
 /**
  * Saves the playback position. Throttled to once every SAVE_INTERVAL seconds of playback
  * unless `force` is set (pause, navigation, close, ended).
  */
-export function save_position(
-	show_number: number,
-	kind: MediaKind,
-	seconds: number,
-	force = false
-) {
+export function save_position(media_key: string, kind: MediaKind, seconds: number, force = false) {
 	const storage = get_local_storage();
 	if (!storage || !Number.isFinite(seconds) || seconds < 0) return;
-	const key = position_key(show_number, kind);
+	const key = position_key(media_key, kind);
 	const previous = last_saved.get(key);
 	if (!force && previous != null && Math.abs(seconds - previous) < SAVE_INTERVAL) return;
 	last_saved.set(key, seconds);

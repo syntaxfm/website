@@ -6,8 +6,11 @@
 	import { resolve } from '$app/paths';
 	import FeedByline from './FeedByline.svelte';
 	import { get_show_label, type LabeledShow } from '#lib/shows/show_label.ts';
+	import type { PlayerVideo } from '$state/player_utils';
 
-	type Feed_show = ComponentProps<typeof ShowThumbnail>['show'] & FaceShow & LabeledShow;
+	type Feed_show = Exclude<ComponentProps<typeof ShowThumbnail>['show'], PlayerVideo> &
+		FaceShow &
+		LabeledShow;
 	type Feed_content = {
 		published_at: string | Date | null;
 		tags: Array<{ tag: { name: string; slug: string | null } }>;

@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { PlayerShow } from './player_utils';
+import { get_episode_number, type PlayerShow } from './player_utils';
 import { youtube_player, type YoutubeVideoElementLike } from './youtube_player';
 
 function create_mock_video(initial_time = 0) {
@@ -32,8 +32,8 @@ function create_mock_slot(top = 100, bottom = 300, width = 400) {
 	} as unknown as HTMLElement;
 }
 
-function register_slot(show_number: number, slot_el = create_mock_slot(), is_show_page = false) {
-	return youtube_player.register_slot({ show_number, slot_el, is_show_page });
+function register_slot(media_key: string, slot_el = create_mock_slot(), is_show_page = false) {
+	return youtube_player.register_slot({ media_key, slot_el, is_show_page });
 }
 
 const show_790: PlayerShow = {
@@ -59,7 +59,7 @@ describe('youtube_player store', () => {
 
 	it('first play over a slot starts once the global element mounts', async () => {
 		const slot_el = create_mock_slot();
-		const unregister = register_slot(790, slot_el);
+		const unregister = register_slot('790', slot_el);
 
 		await youtube_player.play_in_slot(show_790, slot_el);
 
@@ -95,7 +95,7 @@ describe('youtube_player store', () => {
 		const el = create_mock_video();
 		const unregister_element = youtube_player.register_element(el);
 		const slot_el = create_mock_slot();
-		const unregister = register_slot(790, slot_el);
+		const unregister = register_slot('790', slot_el);
 
 		await youtube_player.play_in_slot(show_790, slot_el);
 
@@ -113,8 +113,8 @@ describe('youtube_player store', () => {
 		const unregister_element = youtube_player.register_element(el);
 		const slot_el = create_mock_slot();
 		const other_slot_el = create_mock_slot();
-		const unregister = register_slot(790, slot_el);
-		const unregister_other = register_slot(790, other_slot_el);
+		const unregister = register_slot('790', slot_el);
+		const unregister_other = register_slot('790', other_slot_el);
 
 		await youtube_player.play_in_slot(show_790, slot_el);
 
@@ -154,7 +154,7 @@ describe('youtube_player store', () => {
 		youtube_player.prewarm(show_790);
 		const unregister_element = youtube_player.register_element(el);
 		const slot_el = create_mock_slot();
-		const unregister = register_slot(790, slot_el);
+		const unregister = register_slot('790', slot_el);
 		await youtube_player.play_in_slot(show_790, slot_el);
 
 		youtube_player.before_navigate();
@@ -168,7 +168,7 @@ describe('youtube_player store', () => {
 
 		// The episode's show page mounting doesn't take it out of the dock
 		const show_page_slot = create_mock_slot();
-		const unregister_show_page = register_slot(790, show_page_slot, true);
+		const unregister_show_page = register_slot('790', show_page_slot, true);
 		state = get(youtube_player);
 		expect(state.slot_el).toBeNull();
 		expect(state.target).toBe('DOCK');
@@ -184,15 +184,15 @@ describe('youtube_player store', () => {
 		const unregister_element = youtube_player.register_element(el);
 		const slot_790 = create_mock_slot();
 		const slot_760 = create_mock_slot();
-		const unregister_790 = register_slot(790, slot_790);
-		const unregister_760 = register_slot(760, slot_760);
+		const unregister_790 = register_slot('790', slot_790);
+		const unregister_760 = register_slot('760', slot_760);
 
 		await youtube_player.play_in_slot(show_790, slot_790);
 		vi.mocked(el.play).mockClear();
 		await youtube_player.play_in_slot(show_760, slot_760);
 
 		let state = get(youtube_player);
-		expect(state.active_show?.number).toBe(760);
+		expect(get_episode_number(state.active_show)).toBe(760);
 		expect(state.video_id).toBe('VIdM5VSlJVw');
 		expect(state.slot_el).toBe(slot_760);
 		expect(state.active_element).toBe(el);
@@ -227,14 +227,14 @@ describe('youtube_player store', () => {
 		expect(get(youtube_player).target).toBe('DOCK');
 
 		const hidden_slot = create_mock_slot(0, 0, 0);
-		const unregister_hidden = register_slot(760, hidden_slot);
+		const unregister_hidden = register_slot('760', hidden_slot);
 		await youtube_player.start_show(show_760);
 		expect(get(youtube_player).target).toBe('DOCK');
 		expect(get(youtube_player).slot_el).toBe(hidden_slot);
 		unregister_hidden();
 
 		const visible_slot = create_mock_slot();
-		const unregister_visible = register_slot(760, visible_slot);
+		const unregister_visible = register_slot('760', visible_slot);
 		await youtube_player.start_show(show_760);
 		expect(get(youtube_player).target).toBe('SLOT');
 		expect(get(youtube_player).slot_el).toBe(visible_slot);
@@ -252,14 +252,14 @@ describe('youtube_player store', () => {
 
 		// A full width show page video: 627px tall, its bottom 40px under the bar
 		const mostly_visible = create_mock_slot(85, 712, 1116);
-		const unregister_visible = register_slot(790, mostly_visible, true);
+		const unregister_visible = register_slot('790', mostly_visible, true);
 		await youtube_player.start_show(show_790);
 		expect(get(youtube_player).target).toBe('SLOT');
 		unregister_visible();
 
 		// Scrolled so most of it is under the bar
 		const mostly_hidden = create_mock_slot(500, 1127, 1116);
-		const unregister_hidden = register_slot(790, mostly_hidden, true);
+		const unregister_hidden = register_slot('790', mostly_hidden, true);
 		await youtube_player.start_show(show_790);
 		expect(get(youtube_player).target).toBe('DOCK');
 

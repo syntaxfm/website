@@ -1,4 +1,4 @@
-import type { PlayerShow } from './player_utils';
+import { get_media_key, is_same_media, type PlayerItem } from './player_utils';
 import { get, writable } from 'svelte/store';
 import { get_id_from_url } from '#lib/videos/utils.ts';
 import { get_saved_position, record_duration, save_position } from './media_timeline';
@@ -23,7 +23,7 @@ export interface YoutubeVideoElementLike extends HTMLElement {
 }
 
 interface SlotEntry {
-	show_number: number;
+	media_key: string;
 	slot_el: HTMLElement;
 	is_show_page: boolean;
 }
@@ -31,8 +31,8 @@ interface SlotEntry {
 export type YoutubeTarget = 'SLOT' | 'DOCK';
 
 export interface YoutubePlayerState {
-	// The episode loaded in the global player
-	active_show: PlayerShow | null;
+	// The episode or video loaded in the global player
+	active_show: PlayerItem | null;
 	status: 'IDLE' | 'PLAYING' | 'PAUSED';
 	// Last known playback position, for when the element can't be asked
 	current_time: number;
@@ -41,7 +41,7 @@ export interface YoutubePlayerState {
 	start_seconds: number;
 	// The single global <youtube-video>, once mounted
 	active_element: YoutubeVideoElementLike | null;
-	// The episode slot the video belongs to on the current page
+	// The slot the video belongs to on the current page
 	slot_el: HTMLElement | null;
 	// Laid over slot_el, or docked in the bottom player bar
 	target: YoutubeTarget;
@@ -59,7 +59,7 @@ const SWITCHING_TIMEOUT = 10000;
 const LOAD_TIMEOUT = 10000;
 const YOUTUBE_API_SCRIPT = 'youtube.com/iframe_api';
 
-export type YoutubeFailureHandler = (show: PlayerShow, video_time: number) => void;
+export type YoutubeFailureHandler = (show: PlayerItem, video_time: number) => void;
 
 function element_time(el: YoutubeVideoElementLike | null | undefined): number | null {
 	if (!el) return null;
@@ -187,10 +187,10 @@ function create_youtube_player() {
 	function tick() {
 		const { active_show, active_element } = get(store);
 		if (!active_show || !active_element || is_switching_video) return;
-		record_duration(active_show.number, 'VIDEO', active_element.duration);
+		record_duration(get_media_key(active_show), 'VIDEO', active_element.duration);
 		const time = element_time(active_element);
 		if (time === null) return;
-		save_position(active_show.number, 'VIDEO', time);
+		save_position(get_media_key(active_show), 'VIDEO', time);
 		active_element.dispatchEvent(new Event('timeupdate'));
 	}
 
@@ -212,12 +212,16 @@ function create_youtube_player() {
 
 	function save_now(state: YoutubePlayerState) {
 		if (state.active_show) {
-			save_position(state.active_show.number, 'VIDEO', live_time(state), true);
+			save_position(get_media_key(state.active_show), 'VIDEO', live_time(state), true);
 		}
 	}
 
-	function active_show_is(state: YoutubePlayerState, show_number: number) {
-		return state.status !== 'IDLE' && state.active_show?.number === show_number;
+	function active_show_is(state: YoutubePlayerState, media_key: string) {
+		return (
+			state.status !== 'IDLE' &&
+			state.active_show !== null &&
+			get_media_key(state.active_show) === media_key
+		);
 	}
 
 	function is_slot_in_view(slot_el: HTMLElement): boolean {
@@ -291,7 +295,7 @@ function create_youtube_player() {
 
 	// SLOTS
 	/**
-	 * Registers an episode's <YoutubeEmbed> slot. Returns a cleanup function to call on unmount.
+	 * Registers an episode's or video's <YoutubeEmbed> slot. Returns a cleanup function to call on unmount.
 	 */
 	function register_slot(entry: SlotEntry) {
 		slots.set(entry.slot_el, entry);
@@ -329,9 +333,9 @@ function create_youtube_player() {
 	}
 
 	// The slot a show plays over: the show page's if mounted, otherwise the latest mounted card
-	function find_slot(show_number: number) {
+	function find_slot(media_key: string) {
 		const candidates = [...slots.values()].filter(
-			(e) => e.show_number === show_number && e.slot_el.isConnected
+			(e) => e.media_key === media_key && e.slot_el.isConnected
 		);
 		return candidates.find((e) => e.is_show_page) ?? candidates.at(-1) ?? null;
 	}
@@ -359,7 +363,7 @@ function create_youtube_player() {
 	 * The global <youtube-video>, once it's showing this show's video, to read the video's length
 	 * from. Null otherwise: the show page shows a picture of the video until it's played.
 	 */
-	function find_video(show: PlayerShow): YoutubeVideoElementLike | null {
+	function find_video(show: PlayerItem): YoutubeVideoElementLike | null {
 		const state = get(store);
 		if (is_switching_video || state.video_id !== get_id_from_url(show.youtube_url)) return null;
 		return state.active_element;
@@ -368,10 +372,14 @@ function create_youtube_player() {
 	/**
 	 * Warms up the global player before the first play, so the click doesn't wait on the iframe and YouTube API.
 	 */
-	function prewarm(show: PlayerShow) {
+	function prewarm(show: PlayerItem) {
 		const video_id = get_id_from_url(show.youtube_url);
 		if (!video_id || get(store).video_id) return;
-		update((s) => ({ ...s, video_id, start_seconds: get_saved_position(show.number, 'VIDEO') }));
+		update((s) => ({
+			...s,
+			video_id,
+			start_seconds: get_saved_position(get_media_key(show), 'VIDEO')
+		}));
 	}
 
 	/**
@@ -379,7 +387,7 @@ function create_youtube_player() {
 	 * Switching shows changes video_id, which the element's wrapper loads in place with loadVideoById.
 	 */
 	async function load(
-		show: PlayerShow,
+		show: PlayerItem,
 		video_id: string,
 		start: number,
 		placement: Partial<YoutubePlayerState>
@@ -388,7 +396,7 @@ function create_youtube_player() {
 		const element = state.active_element;
 		const is_loaded = Boolean(element) && state.video_id === video_id;
 
-		if (state.status !== 'IDLE' && state.active_show?.number !== show.number) save_now(state);
+		if (state.status !== 'IDLE' && !is_same_media(state.active_show, show)) save_now(state);
 		if (element && !is_loaded) set_switching_video(true);
 		has_ended = false;
 
@@ -409,13 +417,13 @@ function create_youtube_player() {
 	/**
 	 * Plays a show over one of its slots, from a click on that slot.
 	 */
-	async function play_in_slot(show: PlayerShow, slot_el: HTMLElement) {
+	async function play_in_slot(show: PlayerItem, slot_el: HTMLElement) {
 		const video_id = get_id_from_url(show.youtube_url);
 		if (!video_id) return false;
 		const state = get(store);
-		const start = active_show_is(state, show.number)
+		const start = active_show_is(state, get_media_key(show))
 			? live_time(state)
-			: get_saved_position(show.number, 'VIDEO');
+			: get_saved_position(get_media_key(show), 'VIDEO');
 		await load(show, video_id, start, { slot_el, target: 'SLOT' });
 		return true;
 	}
@@ -424,8 +432,8 @@ function create_youtube_player() {
 	 * Takes a show's video out of the dock, scrolls to its slot on the show page and plays it there.
 	 * Call once the show page is mounted, so its slot is registered.
 	 */
-	async function play_on_show_page(show: PlayerShow) {
-		const slot = find_slot(show.number);
+	async function play_on_show_page(show: PlayerItem) {
+		const slot = find_slot(get_media_key(show));
 		if (!slot) return false;
 		// Instant, so the slot is in view before it's targeted and doesn't dock again mid-scroll
 		slot.slot_el.scrollIntoView({ block: 'center', behavior: 'instant' });
@@ -438,18 +446,20 @@ function create_youtube_player() {
 	 * A docked video stays docked when jumping to a timestamp, only playing a card brings it back.
 	 * `play_from_position` is on the video's timeline.
 	 */
-	async function start_show(show: PlayerShow, play_from_position?: number) {
+	async function start_show(show: PlayerItem, play_from_position?: number) {
 		const video_id = get_id_from_url(show.youtube_url);
 		if (!video_id) return false;
 		const state = get(store);
 		const start =
 			play_from_position ??
-			(active_show_is(state, show.number)
+			(active_show_is(state, get_media_key(show))
 				? live_time(state)
-				: get_saved_position(show.number, 'VIDEO'));
+				: get_saved_position(get_media_key(show), 'VIDEO'));
 		const stays_docked =
-			play_from_position != null && active_show_is(state, show.number) && state.target === 'DOCK';
-		const slot = stays_docked ? null : find_slot(show.number);
+			play_from_position != null &&
+			active_show_is(state, get_media_key(show)) &&
+			state.target === 'DOCK';
+		const slot = stays_docked ? null : find_slot(get_media_key(show));
 		await load(
 			show,
 			video_id,
@@ -484,7 +494,7 @@ function create_youtube_player() {
 		const state = get(store);
 		if (!state.active_show || state.status === 'IDLE' || is_switching_video) return;
 		const time = live_time(state);
-		save_position(state.active_show.number, 'VIDEO', time, true);
+		save_position(get_media_key(state.active_show), 'VIDEO', time, true);
 		update((s) => ({ ...s, status: 'PAUSED', current_time: time }));
 	}
 
@@ -493,7 +503,7 @@ function create_youtube_player() {
 		const state = get(store);
 		if (!state.active_show || state.status === 'IDLE' || is_switching_video) return;
 		has_ended = true;
-		save_position(state.active_show.number, 'VIDEO', 0, true);
+		save_position(get_media_key(state.active_show), 'VIDEO', 0, true);
 		update((s) => ({ ...s, status: 'PAUSED', current_time: 0 }));
 	}
 
@@ -525,9 +535,9 @@ function create_youtube_player() {
 		safe_pause(state.active_element);
 	}
 
-	async function seek(show: PlayerShow, seconds: number) {
+	async function seek(show: PlayerItem, seconds: number) {
 		const state = get(store);
-		if (active_show_is(state, show.number) && state.active_element && !is_switching_video) {
+		if (active_show_is(state, get_media_key(show)) && state.active_element && !is_switching_video) {
 			update((s) => ({ ...s, current_time: seconds, status: 'PLAYING' }));
 			await seek_and_play(state.active_element, seconds);
 		} else {

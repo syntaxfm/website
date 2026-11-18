@@ -3,7 +3,7 @@ import { get } from 'svelte/store';
 import { goto } from '$app/navigation';
 import { resolve } from '$app/paths';
 import { youtube_player, type YoutubeVideoElementLike } from '$state/youtube_player';
-import get_show_path from '$utilities/slug';
+import { get_media_path } from '$state/player_utils';
 
 // Actions on the global YouTube video, shared by its own overlay buttons and the player bar's
 
@@ -12,12 +12,12 @@ const SLOT_RETRY_MS = 100;
 const SLOT_RETRIES = 20;
 
 /**
- * Moves the video out of the bar and onto the episode's embed at the top of its show page
+ * Moves the video out of the bar and onto the embed at the top of its episode or video page
  */
 export async function open_show_page() {
 	const show = get(youtube_player).active_show;
 	if (!show) return;
-	const path = resolve(get_show_path(show));
+	const path = resolve(get_media_path(show));
 	if (location.pathname !== path) await goto(path);
 	await tick();
 	for (let attempt = 0; attempt < SLOT_RETRIES; attempt++) {
@@ -38,10 +38,10 @@ export function enter_fullscreen() {
 }
 
 /**
- * Attachment for an episode's thumbnail: the global video plays laid over it when it's in view.
- * Returns the cleanup Svelte runs when the element goes away.
+ * Attachment for an episode's or video's thumbnail: the global video plays laid over it when it's
+ * in view. Returns the cleanup Svelte runs when the element goes away.
  */
-export function youtube_slot(show_number: number, is_show_page = false) {
+export function youtube_slot(media_key: string, is_show_page = false) {
 	return (slot_el: HTMLElement) =>
-		youtube_player.register_slot({ show_number, slot_el, is_show_page });
+		youtube_player.register_slot({ media_key, slot_el, is_show_page });
 }

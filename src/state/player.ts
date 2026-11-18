@@ -6,13 +6,17 @@ import { get_id_from_url } from '#lib/videos/utils.ts';
 import { minimize, player_window_status, toggle_minimize } from './player_window_status';
 import { get_device_audio_url, is_on_limited_data, keep_audio_on_device } from './player_offline';
 import {
+	get_media_key,
+	is_player_video,
+	is_same_media,
 	load_state_from_indexed_db,
 	open_db,
 	STORE_NAME,
+	type PlayerItem,
 	type PlayerShow,
 	type PlayerState
 } from './player_utils';
-import { media_preference, should_play_video } from './media_preference';
+import { can_play_youtube, media_preference, should_play_video } from './media_preference';
 import {
 	get_saved_position,
 	is_mid_audio,
@@ -50,9 +54,11 @@ function is_media_controller(el: unknown): el is MediaControllerElement {
 // Someone who has listened this long is likely to keep going or come back to the episode
 const LISTENED_SECONDS_BEFORE_KEEPING = 30;
 
-// Shows someone was partway through listening to keep playing as audio, so they pick up where they left off
-function plays_as_video(show: PlayerShow) {
-	return should_play_video(show) && !is_mid_audio(show.number);
+// Shows someone was partway through listening to keep playing as audio, so they pick up where they left off.
+// A video that isn't an episode has no audio, so it plays as video whatever the preference.
+function plays_as_video(item: PlayerItem) {
+	if (is_player_video(item)) return can_play_youtube();
+	return should_play_video(item) && !is_mid_audio(get_media_key(item));
 }
 
 const new_player_state = () => {
@@ -120,22 +126,26 @@ const new_player_state = () => {
 
 	// Saves the audio listening position. Throttled unless forced.
 	function save_position(force = false, position?: number) {
-		const current_state = get(player_state);
-		if (current_state.audio && current_state?.current_show?.number) {
+		const { audio, current_show } = get(player_state);
+		if (audio && current_show && !is_player_video(current_show)) {
 			save_media_position(
-				current_state.current_show.number,
+				get_media_key(current_show),
 				'AUDIO',
-				position ?? current_state.audio.currentTime,
+				position ?? audio.currentTime,
 				force
 			);
 		}
 	}
 
-	function track_episode_start(show: PlayerShow) {
+	function track_episode_start(show: PlayerItem) {
 		try {
 			// Analytics
-			Sentry.metrics.count('episode_start', 1, { attributes: { episode: show.number } });
-			Sentry.metrics.count('all_episode_start', 1);
+			if (is_player_video(show)) {
+				Sentry.metrics.count('video_start', 1, { attributes: { video: show.slug } });
+			} else {
+				Sentry.metrics.count('episode_start', 1, { attributes: { episode: show.number } });
+				Sentry.metrics.count('all_episode_start', 1);
+			}
 
 			// Load incomming show into media session
 			// Side note: the mediaSession API is neat
@@ -152,12 +162,17 @@ const new_player_state = () => {
 	// `latest_show` is undefined when there is no published show to fall back to.
 	async function initialize(latest_show: PlayerShow | undefined) {
 		const saved_state = await load_state_from_indexed_db();
+		const saved_item = saved_state?.current_show;
 		// Older visits could remember a show by a device copy's address, which died with that visit
-		const saved_show = saved_state?.current_show?.url.startsWith('blob:')
-			? null
-			: saved_state?.current_show;
-		const show = saved_show ?? latest_show;
+		const is_dead_device_copy =
+			saved_item && !is_player_video(saved_item) && saved_item.url.startsWith('blob:');
+		const show = (is_dead_device_copy ? null : saved_item) ?? latest_show;
 		if (!show) return;
+		if (is_player_video(show)) {
+			// No audio to load. The bar's play hands over to the video (onplay).
+			update((state) => ({ ...state, current_show: show, status: 'LOADED', media_kind: 'VIDEO' }));
+			return;
+		}
 		await load_show(show, true);
 		update((state) => ({ ...state, media_kind: plays_as_video(show) ? 'VIDEO' : 'AUDIO' }));
 	}
@@ -181,7 +196,8 @@ const new_player_state = () => {
 		const device_url = await get_device_audio_url(requested_show.url);
 
 		// If playback is coming from timestamp, use timestamp, otherwise user last played position or 0.
-		const resume_time = play_from_position ?? get_saved_position(requested_show.number, 'AUDIO');
+		const resume_time =
+			play_from_position ?? get_saved_position(get_media_key(requested_show), 'AUDIO');
 
 		// Update state for new incomming show
 		update((state) => {
@@ -232,8 +248,8 @@ const new_player_state = () => {
 		audio.preload = 'metadata';
 	}
 
-	function is_video_active_for(show: PlayerShow | null) {
-		return Boolean(show) && get(youtube_player).active_show?.number === show?.number;
+	function is_video_active_for(show: PlayerItem | null) {
+		return is_same_media(get(youtube_player).active_show, show);
 	}
 
 	// Plays a show's audio file. Positions are on the audio timeline.
@@ -261,7 +277,7 @@ const new_player_state = () => {
 	// resume_in_place: keep playing wherever the video already is (bottom bar play/resume).
 	// Otherwise the video moves over the show's embed when it's in view (e.g. a card's play button).
 	async function start_video(
-		requested_show: PlayerShow,
+		requested_show: PlayerItem,
 		play_from_position?: number,
 		{ resume_in_place = false } = {}
 	) {
@@ -299,22 +315,49 @@ const new_player_state = () => {
 		});
 	}
 
+	function close() {
+		youtube_player.close();
+		if (get(player_state).media_kind === 'AUDIO') save_position(true);
+		update((state) => {
+			if (state.audio) {
+				state.audio.pause();
+				state.audio.removeAttribute('src');
+			}
+			return { ...initial_state, audio: state.audio, media_controller: state.media_controller };
+		});
+		attach_media(get(player_state).audio);
+		player_window_status.set('HIDDEN');
+	}
+
 	// The video can't play, so play the audio instead. The position carries over when the timelines match.
+	// A video that isn't an episode has no audio, so the player closes.
 	youtube_player.on_failure((show, video_time) => {
+		if (is_player_video(show)) {
+			toast.error("Couldn't load the video");
+			close();
+			return;
+		}
 		toast.error("Couldn't load the video, playing the audio instead");
-		void start_audio(show, timelines_match_cached(show.number) ? video_time : undefined);
+		const position = timelines_match_cached(get_media_key(show)) ? video_time : undefined;
+		void start_audio(show, position);
 	});
 
-	// The bottom bar is set to a video that can't play anymore (YouTube failed to load)
+	// The bottom bar is set to an episode's video that can't play anymore (YouTube failed to load)
 	function should_fall_back_to_audio({ media_kind, current_show }: PlayerState) {
-		return media_kind === 'VIDEO' && Boolean(current_show) && !should_play_video(current_show);
+		if (!current_show || is_player_video(current_show)) return false;
+		return media_kind === 'VIDEO' && !should_play_video(current_show);
 	}
 
 	/**
 	 * Plays a show from a timestamp on the audio timeline (show notes, transcript, ?t= links).
 	 * Uses the video when its timeline matches the audio, otherwise the audio for exact timing.
+	 * A video that isn't an episode only has its own timeline (chapters, transcript).
 	 */
-	async function play_timestamp(show: PlayerShow, seconds: number) {
+	async function play_timestamp(show: PlayerItem, seconds: number) {
+		if (is_player_video(show)) {
+			await start_video(show, seconds);
+			return;
+		}
 		if (should_play_video(show)) {
 			if (await timelines_match(show, youtube_player.find_video(show))) {
 				await start_video(show, seconds);
@@ -323,7 +366,7 @@ const new_player_state = () => {
 		}
 
 		const state = get(player_state);
-		if (state.media_kind === 'AUDIO' && state.current_show?.number === show.number && state.audio) {
+		if (state.media_kind === 'AUDIO' && is_same_media(state.current_show, show) && state.audio) {
 			state.audio.currentTime = seconds;
 			if (state.status !== 'PLAYING') play_audio();
 		} else {
@@ -364,7 +407,7 @@ const new_player_state = () => {
 	// it, then gets that copy ready to play from.
 	async function keep_listened_audio() {
 		const { audio, current_show, media_kind } = get(player_state);
-		if (!audio || !current_show || media_kind !== 'AUDIO') return;
+		if (!audio || !current_show || media_kind !== 'AUDIO' || is_player_video(current_show)) return;
 		if (device_audio_url || keeping_audio_url === current_show.url) return;
 		let listened_seconds = 0;
 		for (let index = 0; index < audio.played.length; index++) {
@@ -387,8 +430,8 @@ const new_player_state = () => {
 
 	function ondurationchange() {
 		const { audio, current_show } = get(player_state);
-		if (audio && current_show) {
-			record_duration(current_show.number, 'AUDIO', audio.duration);
+		if (audio && current_show && !is_player_video(current_show)) {
+			record_duration(get_media_key(current_show), 'AUDIO', audio.duration);
 		}
 	}
 
@@ -401,7 +444,7 @@ const new_player_state = () => {
 		if (!active_show || status === 'IDLE') return;
 		const state = get(player_state);
 		const next_status = status === 'PLAYING' ? 'PLAYING' : 'PAUSED';
-		const is_new_show = state.current_show?.number !== active_show.number;
+		const is_new_show = !is_same_media(state.current_show, active_show);
 
 		if (is_new_show || state.status !== next_status || state.media_kind !== 'VIDEO') {
 			update((s) => ({
@@ -443,15 +486,19 @@ const new_player_state = () => {
 		warm_audio,
 		play_timestamp,
 
-		// The main method for playing a show.
+		// The main method for playing a show or video.
 		// Plays the YouTube video when there is one (and the user prefers video), otherwise the audio.
 		// play_from_position is on the audio timeline (timestamps, share links).
-		async start_show(requested_show: PlayerShow, play_from_position?: number) {
+		async start_show(requested_show: PlayerItem, play_from_position?: number) {
 			if (play_from_position != null) {
 				return play_timestamp(requested_show, play_from_position);
 			}
 			if (plays_as_video(requested_show)) {
 				return start_video(requested_show);
+			}
+			if (is_player_video(requested_show)) {
+				toast.error("Couldn't load the video");
+				return;
 			}
 			return start_audio(requested_show);
 		},
@@ -459,7 +506,7 @@ const new_player_state = () => {
 		play() {
 			const state = get(player_state);
 			const { current_show, media_kind } = state;
-			if (should_fall_back_to_audio(state) && current_show) {
+			if (current_show && !is_player_video(current_show) && should_fall_back_to_audio(state)) {
 				void start_audio(current_show);
 				return;
 			}
@@ -495,7 +542,8 @@ const new_player_state = () => {
 			media_preference.set(kind);
 			const state = get(player_state);
 			const show = state.current_show;
-			if (!show || state.media_kind === kind || !get_id_from_url(show.youtube_url)) return;
+			if (!show || is_player_video(show) || state.media_kind === kind) return;
+			if (!get_id_from_url(show.youtube_url)) return;
 			if (kind === 'VIDEO' && !should_play_video(show)) return;
 
 			const was_playing = state.status === 'PLAYING';
@@ -511,7 +559,7 @@ const new_player_state = () => {
 				await start_video(show, position);
 			} else {
 				// Paused: the next play picks up the video from here
-				if (position != null) save_media_position(show.number, 'VIDEO', position, true);
+				if (position != null) save_media_position(get_media_key(show), 'VIDEO', position, true);
 				update((s) => ({ ...s, media_kind: 'VIDEO' }));
 			}
 		},
@@ -526,12 +574,15 @@ const new_player_state = () => {
 		/**
 		 * Current position on the audio timeline, or null if the video is playing and
 		 * we don't know that its timeline matches the audio (transcripts, share links).
+		 * Null for a video that isn't an episode, it has no audio timeline.
 		 */
 		get_audio_timeline_time(): number | null {
 			const { current_show, media_kind, audio } = get(player_state);
-			if (!current_show) return null;
+			if (!current_show || is_player_video(current_show)) return null;
 			if (media_kind === 'AUDIO') return audio?.currentTime ?? 0;
-			return timelines_match_cached(current_show.number) ? youtube_player.get_current_time() : null;
+			return timelines_match_cached(get_media_key(current_show))
+				? youtube_player.get_current_time()
+				: null;
 		},
 
 		reset() {
@@ -566,21 +617,7 @@ const new_player_state = () => {
 			});
 		},
 
-		close() {
-			youtube_player.close();
-			update((state) => {
-				if (state.audio) {
-					if (state.current_show && state.media_kind === 'AUDIO') {
-						save_media_position(state.current_show.number, 'AUDIO', state.audio.currentTime, true);
-					}
-					state.audio.pause();
-					state.audio.removeAttribute('src');
-				}
-				return { ...initial_state, audio: state.audio, media_controller: state.media_controller };
-			});
-			attach_media(get(player_state).audio);
-			player_window_status.set('HIDDEN');
-		},
+		close,
 
 		toggle_minimize,
 		minimize

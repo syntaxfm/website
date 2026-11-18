@@ -17,7 +17,7 @@
 
 	import type { AINoteWithFriends } from '$server/ai/queries';
 	import type { DBUtterance, SlimUtterance } from '$server/transcripts/types';
-	import type { PlayerShow } from '$state/player_utils';
+	import { get_episode_number, type PlayerShow } from '$state/player_utils';
 
 	interface Props {
 		// Utterances in start order (transcript/+page.server.ts)
@@ -97,7 +97,8 @@
 	);
 
 	let playing_show_is_this_show = $derived(
-		$player.current_show?.number === transcript.show_number && $audio_timeline_time !== null
+		get_episode_number($player.current_show) === transcript.show_number &&
+			$audio_timeline_time !== null
 	);
 
 	// const words = transcript.utterances

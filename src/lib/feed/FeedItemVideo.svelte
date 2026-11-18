@@ -5,10 +5,12 @@
 	import { resolve } from '$app/paths';
 	import TagRow from '../tags/TagRow.svelte';
 	import FeedByline from './FeedByline.svelte';
+	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { VIDEO_LABEL } from '#lib/shows/show_label.ts';
-	import { get_thumbnail_from_id, get_thumbnail_srcset_from_id } from '#lib/videos/utils.ts';
+	import { get_watch_url_from_url } from '#lib/videos/utils.ts';
+	import type { PlayerVideo } from '$state/player_utils';
 
-	// Laid out like FeedItemPodcast, linking to the video's own page
+	// Laid out like FeedItemPodcast, and plays the same way: here, then docked in the player bar
 	type Props = {
 		youtube_id: string;
 		title: string;
@@ -18,25 +20,25 @@
 	};
 
 	const { youtube_id, title, slug, published_at, tags }: Props = $props();
-	const href = $derived(resolve(`videos/${slug}`));
+	const player_video: PlayerVideo = $derived({
+		kind: 'VIDEO',
+		title,
+		slug,
+		youtube_url: get_watch_url_from_url(youtube_id)
+	});
 </script>
 
 <article class="stack">
-	<a class="thumb-container" {href} tabindex="-1" aria-hidden="true">
-		<img
+	<div class="thumb-container">
+		<ShowThumbnail
+			show={player_video}
 			class="br-medium"
-			src={get_thumbnail_from_id(youtube_id)}
-			srcset={get_thumbnail_srcset_from_id(youtube_id)}
 			sizes="(min-width: 1200px) 748px, (min-width: 900px) calc(100vw - 452px), calc(100vw - 88px)"
-			width="1280"
-			height="720"
-			alt=""
-			loading="lazy"
-			decoding="async"
+			is_video_slot
 		/>
-	</a>
+	</div>
 
-	<h3 class="fv-700-i"><a {href}>{title}</a></h3>
+	<h3 class="fv-700-i"><a href={resolve(`videos/${slug}`)}>{title}</a></h3>
 
 	<FeedByline label={VIDEO_LABEL} {published_at} />
 
@@ -61,17 +63,8 @@
 	.thumb-container {
 		--frame-width: clamp(6px, 1.6vw, 12px);
 
-		display: block;
+		position: relative;
 		border-radius: calc(var(--br-medium) + var(--frame-width));
 		border: solid var(--frame-width) var(--c-primary);
-		overflow: hidden;
-	}
-
-	img {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
 	}
 </style>

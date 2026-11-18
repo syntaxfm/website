@@ -6,7 +6,12 @@
 	import { youtube_player } from '$state/youtube_player';
 	import AlbumArt from './AlbumArt.svelte';
 	import { resolve } from '$app/paths';
-	import get_show_path from '$utilities/slug';
+	import {
+		is_player_video,
+		get_media_name,
+		get_media_path,
+		get_media_title
+	} from '$state/player_utils';
 	import { page_idle } from '$utilities/page_idle';
 	import Icon from '../Icon.svelte';
 	import ShareButton from '../share/HairButton.svelte';
@@ -29,7 +34,11 @@
 
 	let current_show = $derived($player.current_show ?? (is_restoring ? latest_show : null));
 	let mix_max_verb = $derived($player_window_status === 'MINI' ? 'Maximize' : 'Minimize');
-	let has_video = $derived(Boolean(get_id_from_url(current_show?.youtube_url)));
+	// An episode with a video can switch between the two. A video that isn't an episode has no audio.
+	let current_episode = $derived(
+		current_show && !is_player_video(current_show) ? current_show : null
+	);
+	let has_video = $derived(Boolean(get_id_from_url(current_episode?.youtube_url)));
 	// Episodes with a video play it unless the visitor chose audio, which only the browser knows
 	let is_video = $derived(is_restoring ? has_video : $player.media_kind === 'VIDEO');
 	let media_kind_label = $derived(is_video ? 'Switch to Audio' : 'Switch to Video');
@@ -103,7 +112,7 @@
 				title={media_kind_label}><Icon name={is_video ? 'headphones' : 'video'} /></button
 			>
 		{/if}
-		{#if current_show}<ShareButton show={current_show} />{/if}
+		{#if current_episode}<ShareButton show={current_episode} />{/if}
 		<button
 			class="minimize"
 			onclick={player.toggle_minimize}
@@ -127,8 +136,8 @@
 		<div class="player-content stack" style:--stack-gap="0.5rem">
 			{#if current_show}
 				<p>
-					<a id="player_show_title" href={resolve(get_show_path(current_show))}
-						>Show #{current_show.number} - {current_show.title}</a
+					<a id="player_show_title" href={resolve(get_media_path(current_show))}
+						>{get_media_title(current_show)}</a
 					>
 				</p>
 			{/if}
@@ -213,8 +222,8 @@
 							<div class="video-actions">
 								<button
 									onclick={open_show_page}
-									aria-label={`Watch episode ${$player.current_show.number} on its page`}
-									title="Watch on episode page"><Icon name="undock" /></button
+									aria-label={`Watch ${get_media_name($player.current_show)} on its page`}
+									title="Watch on its page"><Icon name="undock" /></button
 								>
 								<button
 									onclick={enter_fullscreen}

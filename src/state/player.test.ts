@@ -1,7 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { get } from 'svelte/store';
 import type { Show } from '$server/db/types';
-import type { PlayerShow } from './player_utils';
+import {
+	get_episode_number,
+	get_media_key,
+	type PlayerItem,
+	type PlayerShow,
+	type PlayerVideo
+} from './player_utils';
+import { media_preference } from './media_preference';
 
 const { metrics_count, device_copies, keep_audio_on_device, remembered, connection } = vi.hoisted(
 	() => ({
@@ -10,7 +17,7 @@ const { metrics_count, device_copies, keep_audio_on_device, remembered, connecti
 		device_copies: new Map<string, string>(),
 		keep_audio_on_device: vi.fn(),
 		// What an earlier visit left in IndexedDB
-		remembered: { state: null as { current_show: PlayerShow } | null },
+		remembered: { state: null as { current_show: PlayerItem } | null },
 		connection: { is_limited: false }
 	})
 );
@@ -22,7 +29,8 @@ vi.mock('./player_offline', () => ({
 	is_on_limited_data: () => connection.is_limited,
 	keep_audio_on_device
 }));
-vi.mock('./player_utils', () => ({
+vi.mock('./player_utils', async (import_original) => ({
+	...(await import_original<typeof import('./player_utils')>()),
 	STORE_NAME: 'player_state',
 	// Never settles, so the fire-and-forget IndexedDB save stays out of the way.
 	open_db: () => new Promise(() => {}),
@@ -120,7 +128,7 @@ describe('player show input', () => {
 
 		expect(audio.src).toBe(show.url);
 		expect(audio.play).not.toHaveBeenCalled();
-		expect(get(player).current_show?.number).toBe(900);
+		expect(get_episode_number(get(player).current_show)).toBe(900);
 		expect(get(player).status).toBe('LOADED');
 	});
 
@@ -224,8 +232,8 @@ describe('player video playback', () => {
 		await player.start_show(video_show);
 
 		expect(get(player).media_kind).toBe('VIDEO');
-		expect(get(player).current_show?.number).toBe(790);
-		expect(get(youtube_player).active_show?.number).toBe(790);
+		expect(get_episode_number(get(player).current_show)).toBe(790);
+		expect(get_episode_number(get(youtube_player).active_show)).toBe(790);
 		expect(get(youtube_player).status).toBe('PLAYING');
 		expect(audio.play).not.toHaveBeenCalled();
 	});
@@ -243,6 +251,74 @@ describe('player video playback', () => {
 		expect(audio.currentTime).toBe(120);
 		expect(audio.play).toHaveBeenCalledOnce();
 		expect(get(youtube_player).status).toBe('IDLE');
+	});
+});
+
+describe('player videos that are not episodes', () => {
+	const site_video: PlayerVideo = {
+		kind: 'VIDEO',
+		title: 'TypeScript utilities you should know',
+		slug: 'typescript-utilities-you-should-know',
+		youtube_url: 'https://www.youtube.com/watch?v=VIdM5VSlJVw'
+	};
+
+	beforeEach(() => {
+		metrics_count.mockReset();
+		vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => undefined });
+		remembered.state = null;
+		media_preference.set('VIDEO');
+		player.reset();
+	});
+
+	it('plays as video even for a visitor who prefers audio, as there is no audio', async () => {
+		media_preference.set('AUDIO');
+		const audio = attach_audio();
+
+		await player.start_show(site_video);
+
+		expect(get(player).media_kind).toBe('VIDEO');
+		expect(get(player).current_show).toEqual(site_video);
+		expect(get(youtube_player).active_show).toEqual(site_video);
+		expect(get(youtube_player).status).toBe('PLAYING');
+		expect(audio.play).not.toHaveBeenCalled();
+		expect(metrics_count).toHaveBeenCalledWith('video_start', 1, {
+			attributes: { video: site_video.slug }
+		});
+	});
+
+	it('starts from a chapter or transcript time on its own timeline', async () => {
+		attach_audio();
+
+		await player.start_show(site_video, 135);
+
+		expect(get(youtube_player).start_seconds).toBe(135);
+		expect(get(youtube_player).status).toBe('PLAYING');
+	});
+
+	it('is told apart from an episode by its own key', () => {
+		expect(get_media_key(site_video)).toBe('video-VIdM5VSlJVw');
+		expect(get_media_key(show)).toBe('900');
+	});
+
+	it('brings back a remembered video without loading any audio', async () => {
+		const audio = attach_audio();
+		remembered.state = { current_show: site_video };
+
+		await player.initialize(show);
+		await settle();
+
+		expect(get(player).current_show).toEqual(site_video);
+		expect(get(player).media_kind).toBe('VIDEO');
+		expect(audio.src).toBe('');
+		expect(audio.play).not.toHaveBeenCalled();
+	});
+
+	it("leaves the audio alone for a video's timeline", async () => {
+		attach_audio();
+
+		await player.start_show(site_video);
+
+		expect(player.get_audio_timeline_time()).toBeNull();
 	});
 });
 
@@ -266,7 +342,7 @@ describe('player audio kept on the device', () => {
 
 		expect(audio.src).toBe('blob:device-copy');
 		expect(audio.preload).toBe('metadata');
-		expect(get(player).current_show?.url).toBe(show.url);
+		expect(get(player).current_show).toMatchObject({ url: show.url });
 	});
 
 	it('frees the copy it was playing when another show takes over', async () => {
@@ -288,7 +364,7 @@ describe('player audio kept on the device', () => {
 		await settle();
 
 		expect(audio.src).toBe(show.url);
-		expect(get(player).current_show?.number).toBe(900);
+		expect(get_episode_number(get(player).current_show)).toBe(900);
 	});
 
 	it('keeps the audio once someone has listened for half a minute', async () => {
@@ -352,7 +428,7 @@ describe('player audio kept on the device', () => {
 		expect(audio.currentTime).toBe(95);
 		expect(audio.playbackRate).toBe(1.5);
 		expect(audio.play).toHaveBeenCalledOnce();
-		expect(get(player).current_show?.url).toBe(show.url);
+		expect(get(player).current_show).toMatchObject({ url: show.url });
 	});
 
 	it("keeps playing through a jump, from the device's copy", async () => {

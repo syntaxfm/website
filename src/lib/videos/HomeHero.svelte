@@ -3,7 +3,7 @@
 	import Logo from '#lib/layout/Logo.svelte';
 	import LiveTag from '#lib/tags/LiveTag.svelte';
 	import { player } from '$state/player';
-	import type { PlayerShow } from '$state/player_utils';
+	import { is_same_media, type PlayerItem } from '$state/player_utils';
 	import { youtube_player } from '$state/youtube_player';
 	import VideoPoster from './VideoPoster.svelte';
 	import YoutubeEmbed from './YoutubeEmbed.svelte';
@@ -19,8 +19,8 @@
 
 	interface Props {
 		video: HeroVideo | null;
-		// The episode the video belongs to, if it's one: it then plays in the site's player
-		show?: PlayerShow | null;
+		// The episode or site video it is, if it's one: it then plays in the site's player
+		show?: PlayerItem | null;
 		// Development: shows the hero as it looks during a live stream
 		debug?: boolean;
 	}
@@ -38,16 +38,16 @@
 	const displayed_video = $derived(debug ? debug_video : video);
 	const is_live = $derived(Boolean(displayed_video?.is_live));
 
-	// A video that isn't an episode plays here in YouTube's own player, once asked for. The id, so
+	// A video that isn't on the site plays here in YouTube's own player, once asked for. The id, so
 	// a different video arriving starts as a picture again.
 	let playing_here_id: string | null = $state(null);
 	const is_embedded = $derived(is_live || playing_here_id === displayed_video?.id);
-	// An episode plays in the site's player, which is laid over the frame
+	// An episode or site video plays in the site's player, which is laid over the frame
 	const is_episode_playing_here = $derived(
 		show !== null &&
 			$youtube_player.status !== 'IDLE' &&
 			$youtube_player.target === 'SLOT' &&
-			$youtube_player.active_show?.number === show.number
+			is_same_media($youtube_player.active_show, show)
 	);
 	// The title leans over the picture, and gets out of the way of a video that's playing
 	const is_playing = $derived(is_embedded || is_episode_playing_here);

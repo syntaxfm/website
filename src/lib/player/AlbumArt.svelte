@@ -2,6 +2,7 @@
 	import { PUBLIC_URL } from '$app/env/public';
 	import Album from './Album.svelte';
 	import { player } from '$state/player';
+	import { get_media_key } from '$state/player_utils';
 	import type { Show } from '$server/db/types';
 
 	interface Props {
@@ -20,7 +21,7 @@
 	<div class="art-wrapper" class:loading={$player.status === 'LOADING'}>
 		<Album />
 		{#if !$player.initial_load}
-			{#key $player?.current_show?.id}
+			{#key $player.current_show ? get_media_key($player.current_show) : null}
 				<div class="cd">📀</div>
 			{/key}
 		{/if}
