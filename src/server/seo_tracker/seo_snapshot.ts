@@ -1,3 +1,4 @@
+import { YOUTUBE_CHANNEL_ID } from '$const';
 import { db } from '$server/db/client';
 import { seo_snapshot, show, video } from '$server/db/schema';
 import { get_id_from_url } from '#lib/videos/utils.ts';
@@ -308,7 +309,10 @@ async function read_youtube_search_terms(
 ): Promise<{ terms: YoutubeSearchTerms | null; error: SeoCallError | null }> {
 	try {
 		const access_token = await get_youtube_owner_token();
-		return { terms: await fetch_youtube_search_terms(access_token, video_titles), error: null };
+		return {
+			terms: await fetch_youtube_search_terms(access_token, YOUTUBE_CHANNEL_ID, video_titles),
+			error: null
+		};
 	} catch (analytics_error) {
 		console.error('YouTube search terms failed', analytics_error);
 		return {

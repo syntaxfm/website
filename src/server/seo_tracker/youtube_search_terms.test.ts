@@ -73,7 +73,18 @@ describe('fetch_youtube_search_terms', () => {
 			const dimensions = url.searchParams.get('dimensions');
 			const filters = url.searchParams.get('filters') ?? '';
 			let body: unknown;
-			if (dimensions === 'insightTrafficSourceType') {
+			if (dimensions === 'insightTrafficSourceType' && filters === 'video==PaS6FUtgAh8') {
+				body = report(
+					['insightTrafficSourceType', 'views'],
+					[
+						['YT_SEARCH', 90],
+						['SUBSCRIBER', 400]
+					]
+				);
+			} else if (dimensions === 'insightTrafficSourceType' && filters.startsWith('video==')) {
+				// Watched a lot, but never through search
+				body = report(['insightTrafficSourceType', 'views'], [['SUBSCRIBER', 800]]);
+			} else if (dimensions === 'insightTrafficSourceType') {
 				body = report(
 					['insightTrafficSourceType', 'views'],
 					[
@@ -83,7 +94,13 @@ describe('fetch_youtube_search_terms', () => {
 					]
 				);
 			} else if (dimensions === 'video') {
-				body = report(['video', 'views'], [['PaS6FUtgAh8', 90]]);
+				body = report(
+					['video', 'views'],
+					[
+						['noSearch123', 800],
+						['PaS6FUtgAh8', 490]
+					]
+				);
 			} else if (filters.startsWith('video==')) {
 				body = report(['insightTrafficSourceDetail', 'views'], [['planning a build', 40]]);
 			} else {
@@ -104,6 +121,7 @@ describe('fetch_youtube_search_terms', () => {
 		const { asked, fetch_fn } = fake_youtube();
 		const terms = await fetch_youtube_search_terms(
 			'token',
+			'UCsyntax',
 			new Map([['PaS6FUtgAh8', 'Planning A Build']]),
 			new Date('2026-11-19T03:00:00Z'),
 			fetch_fn
@@ -127,8 +145,10 @@ describe('fetch_youtube_search_terms', () => {
 				}
 			]
 		});
-		expect(asked).toHaveLength(4);
-		expect(asked.every((url) => url.searchParams.get('ids') === 'channel==MINE')).toBe(true);
+		// Channel sources, channel terms, most watched, each video's sources, then terms for the one
+		// video search found
+		expect(asked).toHaveLength(6);
+		expect(asked.every((url) => url.searchParams.get('ids') === 'channel==UCsyntax')).toBe(true);
 		expect(asked.map((url) => url.searchParams.get('filters'))).toContain(
 			'video==PaS6FUtgAh8;insightTrafficSourceType==YT_SEARCH'
 		);
@@ -143,7 +163,7 @@ describe('fetch_youtube_search_terms', () => {
 				{ status: 403 }
 			)) as typeof fetch;
 		await expect(
-			fetch_youtube_search_terms('token', new Map(), new Date(), fetch_fn)
+			fetch_youtube_search_terms('token', 'UCsyntax', new Map(), new Date(), fetch_fn)
 		).rejects.toMatchObject({ code: 'missing_analytics_access' });
 	});
 });

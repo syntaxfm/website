@@ -2,7 +2,7 @@ import { as_array, as_number, as_string, read_path } from '#lib/utils/narrow.ts'
 import type { YoutubeSearchTerm, YoutubeSearchTerms, YoutubeVideoSearchTerms } from './seo_report';
 
 // What people typed into YouTube search before watching a Syntax video, from YouTube Analytics
-// (first-party, free). It acts as the channel's owner, so YouTube must be connected in admin with
+// (first-party, free). It acts as the channel's owner or a manager, so YouTube must be connected in admin with
 // analytics access (src/server/video/youtube_owner.ts). YouTube only gives the top 25 terms per
 // report, so the channel's top terms come with each top video's own.
 
@@ -10,7 +10,9 @@ const REPORTS_URL = 'https://youtubeanalytics.googleapis.com/v2/reports';
 const SEARCH_SOURCE = 'YT_SEARCH';
 // YouTube's most terms per report
 const TERMS_PER_REPORT = 25;
-// Videos most found through search that get their own terms
+// The most-watched videos checked for how many views came from search
+const VIDEO_POOL = 25;
+// Of those, the ones search found most get their own terms
 const TOP_VIDEO_COUNT = 10;
 const TERMS_PER_VIDEO = 10;
 // The window ends yesterday, since YouTube's numbers for today are still filling in
@@ -60,6 +62,18 @@ function read_terms(body: unknown): YoutubeSearchTerm[] {
 	});
 }
 
+/** All views and the views from YouTube search, from a views-by-traffic-source report. */
+export function count_search_views(body: unknown): { total_views: number; search_views: number } {
+	let total_views = 0;
+	let search_views = 0;
+	for (const row of read_report_rows(body)) {
+		const views = typeof row.views === 'number' ? row.views : 0;
+		total_views += views;
+		if (row.insightTrafficSourceType === SEARCH_SOURCE) search_views += views;
+	}
+	return { total_views, search_views };
+}
+
 // Turns Google's refusal into what an admin has to do about it
 export function read_analytics_error(status: number, body: unknown): YoutubeAnalyticsError {
 	const message = as_string(read_path(body, ['error', 'message'])) ?? `HTTP ${status}`;
@@ -91,13 +105,16 @@ type ReportQuery = {
 
 async function fetch_report(
 	access_token: string,
+	channel_id: string,
 	window: { start_date: string; end_date: string },
 	query: ReportQuery,
 	fetch_fn: typeof fetch
 ): Promise<unknown> {
 	const url = new URL(REPORTS_URL);
 	url.search = new URLSearchParams({
-		ids: 'channel==MINE',
+		// Named, not channel==MINE: the connected account manages the Syntax channel without owning
+		// it, and Google answers MINE with 403 Forbidden for a manager
+		ids: `channel==${channel_id}`,
 		startDate: window.start_date,
 		endDate: window.end_date,
 		dimensions: query.dimensions,
@@ -118,14 +135,16 @@ async function fetch_report(
  */
 export async function fetch_youtube_search_terms(
 	access_token: string,
+	channel_id: string,
 	video_titles: ReadonlyMap<string, string>,
 	today: Date = new Date(),
 	fetch_fn: typeof fetch = fetch
 ): Promise<YoutubeSearchTerms> {
 	const window = search_term_window(today);
-	const report = (query: ReportQuery) => fetch_report(access_token, window, query, fetch_fn);
+	const report = (query: ReportQuery) =>
+		fetch_report(access_token, channel_id, window, query, fetch_fn);
 
-	const [sources, channel_terms, top_videos] = await Promise.all([
+	const [sources, channel_terms, most_watched] = await Promise.all([
 		report({ dimensions: 'insightTrafficSourceType', metrics: 'views' }),
 		report({
 			dimensions: 'insightTrafficSourceDetail',
@@ -134,44 +153,48 @@ export async function fetch_youtube_search_terms(
 			sort: '-views',
 			max_results: TERMS_PER_REPORT
 		}),
-		report({
-			dimensions: 'video',
-			metrics: 'views',
-			filters: `insightTrafficSourceType==${SEARCH_SOURCE}`,
-			sort: '-views',
-			max_results: TOP_VIDEO_COUNT
-		})
+		report({ dimensions: 'video', metrics: 'views', sort: '-views', max_results: VIDEO_POOL })
 	]);
 
-	const source_rows = read_report_rows(sources);
-	const view_count = (row: (typeof source_rows)[number]) =>
-		typeof row.views === 'number' ? row.views : 0;
-	const total_views = source_rows.reduce((total, row) => total + view_count(row), 0);
-	const search_views = source_rows
-		.filter((row) => row.insightTrafficSourceType === SEARCH_SOURCE)
-		.reduce((total, row) => total + view_count(row), 0);
+	const { total_views, search_views } = count_search_views(sources);
 
-	const videos = await Promise.all(
-		read_report_rows(top_videos).flatMap((row) => {
+	// Google won't rank videos by search views directly, so each most-watched video's views are
+	// split by source, and the ones search found most get their terms
+	const pool = await Promise.all(
+		read_report_rows(most_watched).flatMap((row) => {
 			const video_id = row.video;
 			if (typeof video_id !== 'string') return [];
 			return [
 				report({
-					dimensions: 'insightTrafficSourceDetail',
+					dimensions: 'insightTrafficSourceType',
 					metrics: 'views',
-					filters: `video==${video_id};insightTrafficSourceType==${SEARCH_SOURCE}`,
-					sort: '-views',
-					max_results: TERMS_PER_VIDEO
-				}).then(
-					(body): YoutubeVideoSearchTerms => ({
-						video_id,
-						title: video_titles.get(video_id) ?? null,
-						search_views: typeof row.views === 'number' ? row.views : 0,
-						terms: read_terms(body)
-					})
-				)
+					filters: `video==${video_id}`
+				}).then((body) => ({ video_id, search_views: count_search_views(body).search_views }))
 			];
 		})
+	);
+	const found_by_search = pool
+		.filter((video) => video.search_views > 0)
+		.sort((a, b) => b.search_views - a.search_views)
+		.slice(0, TOP_VIDEO_COUNT);
+
+	const videos = await Promise.all(
+		found_by_search.map(({ video_id, search_views: video_search_views }) =>
+			report({
+				dimensions: 'insightTrafficSourceDetail',
+				metrics: 'views',
+				filters: `video==${video_id};insightTrafficSourceType==${SEARCH_SOURCE}`,
+				sort: '-views',
+				max_results: TERMS_PER_VIDEO
+			}).then(
+				(body): YoutubeVideoSearchTerms => ({
+					video_id,
+					title: video_titles.get(video_id) ?? null,
+					search_views: video_search_views,
+					terms: read_terms(body)
+				})
+			)
+		)
 	);
 
 	return {
