@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import PlatformLinks from '#lib/layout/PlatformLinks.svelte';
-	import prefooter from './prefooter.webp';
+	import AsciiWordmark from './AsciiWordmark.svelte';
 
 	const speed = 169;
 	let since_start = $state(Date.now() - 1499256000000);
@@ -17,8 +17,7 @@
 	let digits = $derived(since_start.toString().split(''));
 </script>
 
-<img src={prefooter} />
-<!-- TODO make this a flip transition -->
+<AsciiWordmark />
 
 <p>
 	Empowering developers for over
@@ -41,10 +40,6 @@
 <PlatformLinks />
 
 <style>
-	img {
-		margin: 2rem auto;
-	}
-
 	p {
 		max-width: 24rem;
 		margin: 0 auto 2rem;

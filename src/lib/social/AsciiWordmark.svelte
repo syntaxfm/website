@@ -1,0 +1,206 @@
+<script lang="ts">
+	import Collage from '#lib/collage/Collage.svelte';
+	import {
+		build_ascii_wordmark,
+		frame_glyph,
+		wordmark_layers,
+		type WordmarkLayers
+	} from './ascii_wordmark';
+
+	/** How long the left-to-right sweep takes to start every column. */
+	const SWEEP_MS = 700;
+	/** How long each cell flickers before it settles. */
+	const FLICKER_MS = 260;
+	const HEAT_RADIUS_COLUMNS = 9;
+	/** A row is about twice as tall as a column is wide. */
+	const ROW_STRETCH = 2.2;
+	/** Per frame: the trail behind the pointer fades over about half a second. */
+	const HEAT_DECAY = 0.95;
+
+	let shuffles = $state(0);
+	const seed = $derived(`syntax-footer-${shuffles}`);
+	const wordmark = $derived(build_ascii_wordmark(seed));
+	const settled = $derived(wordmark_layers(wordmark));
+	/** Set only while something is moving; otherwise the settled text renders. */
+	let frame = $state<WordmarkLayers | null>(null);
+	const layers = $derived(frame ?? settled);
+
+	let card: HTMLElement | undefined = $state();
+	let heat = new Float32Array(0);
+	let reveal_delays = new Float32Array(0);
+	let decode_started_at = -1;
+	let animation_frame = 0;
+
+	function prefers_reduced_motion() {
+		return matchMedia('(prefers-reduced-motion: reduce)').matches;
+	}
+
+	function ensure_buffers() {
+		const cells = wordmark.kinds.length;
+		if (heat.length !== cells) heat = new Float32Array(cells);
+	}
+
+	function tick(now: number) {
+		animation_frame = 0;
+		const elapsed = decode_started_at < 0 ? Infinity : now - decode_started_at;
+		const is_decoding = elapsed < SWEEP_MS + FLICKER_MS * 2;
+		let is_warm = false;
+		const glyphs = wordmark.kinds.map((_, index) => {
+			const reveal = is_decoding ? (elapsed - reveal_delays[index]) / FLICKER_MS : 1;
+			heat[index] *= HEAT_DECAY;
+			if (heat[index] < 0.02) heat[index] = 0;
+			else is_warm = true;
+			return frame_glyph(wordmark, index, reveal, heat[index], Math.random);
+		});
+		if (!is_decoding) decode_started_at = -1;
+		if (is_decoding || is_warm) {
+			frame = wordmark_layers(wordmark, glyphs);
+			animation_frame = requestAnimationFrame(tick);
+		} else {
+			frame = null;
+		}
+	}
+
+	function animate() {
+		if (!animation_frame) animation_frame = requestAnimationFrame(tick);
+	}
+
+	function decode() {
+		if (prefers_reduced_motion()) return;
+		ensure_buffers();
+		const { columns, kinds } = wordmark;
+		reveal_delays = Float32Array.from(
+			kinds,
+			(_, index) => ((index % columns) / columns) * SWEEP_MS + Math.random() * FLICKER_MS
+		);
+		decode_started_at = performance.now();
+		animate();
+	}
+
+	function warm(event: PointerEvent) {
+		if (!card || prefers_reduced_motion()) return;
+		ensure_buffers();
+		const box = card.getBoundingClientRect();
+		const { columns, rows } = wordmark;
+		const pointer_column = ((event.clientX - box.left) / box.width) * columns;
+		const pointer_row = ((event.clientY - box.top) / box.height) * rows;
+		for (let row = 0; row < rows; row++) {
+			for (let column = 0; column < columns; column++) {
+				const distance = Math.hypot(
+					column + 0.5 - pointer_column,
+					(row + 0.5 - pointer_row) * ROW_STRETCH
+				);
+				const warmth = 1 - distance / HEAT_RADIUS_COLUMNS;
+				const index = row * columns + column;
+				if (warmth > heat[index]) heat[index] = warmth;
+			}
+		}
+		animate();
+	}
+
+	function shuffle() {
+		shuffles += 1;
+		decode();
+	}
+
+	// Decode the first time the wordmark scrolls into view.
+	$effect(() => {
+		if (!card) return;
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				observer.disconnect();
+				decode();
+			},
+			{ threshold: 0.6 }
+		);
+		observer.observe(card);
+		return () => {
+			observer.disconnect();
+			cancelAnimationFrame(animation_frame);
+		};
+	});
+</script>
+
+<button
+	type="button"
+	class="ascii-wordmark"
+	aria-label="Shuffle the Syntax logo"
+	onclick={shuffle}
+	onpointermove={warm}
+>
+	<span class="collage" aria-hidden="true">
+		<Collage {seed} width={1100} height={300} />
+	</span>
+	<span class="card" bind:this={card} style:--columns={wordmark.columns} aria-hidden="true">
+		<span class="layer field">{layers.field}</span>
+		<span class="layer trace">{layers.trace}</span>
+		<span class="layer letter">{layers.letter}</span>
+	</span>
+</button>
+
+<style>
+	.ascii-wordmark {
+		position: relative;
+		isolation: isolate;
+		display: block;
+		width: min(100% - 2.5rem, 860px);
+		margin: 3rem auto 2.5rem;
+		padding: 0;
+		border: 0;
+		background: none;
+		font: inherit;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.ascii-wordmark:focus-visible {
+		outline: 3px solid var(--c-yellow);
+		outline-offset: 1.5rem;
+	}
+
+	.collage {
+		position: absolute;
+		inset: -11% -3% -5% -6%;
+		z-index: -1;
+		rotate: 1.5deg;
+	}
+
+	.card {
+		container-type: inline-size;
+		display: grid;
+		background: var(--c-black);
+		rotate: -1deg;
+		box-shadow: 0 0.75rem 1.5rem rgb(from var(--c-black) r g b / 0.35);
+	}
+
+	.layer {
+		grid-area: 1 / 1;
+		white-space: pre;
+		text-align: start;
+
+		/* Every glyph is 0.6em wide, so this fits the grid to the card exactly. */
+		font-size: calc(100cqi / (var(--columns, 74) * 0.6));
+		line-height: 1.3;
+		letter-spacing: 0;
+		font-variant-ligatures: none;
+		font-feature-settings:
+			'liga' 0,
+			'calt' 0;
+		user-select: none;
+	}
+
+	.letter,
+	.trace {
+		color: var(--c-yellow);
+	}
+
+	/* Side by side, █ glyphs leave hairline seams; a sliver of shadow fills them. */
+	.letter {
+		text-shadow: 0.05em 0 currentcolor;
+	}
+
+	.field {
+		color: var(--c-yellow-6);
+	}
+</style>
