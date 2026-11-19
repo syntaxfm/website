@@ -1,5 +1,6 @@
 import { db } from '$server/db/client';
-import { seo_snapshot } from '$server/db/schema';
+import { seo_snapshot, show, video } from '$server/db/schema';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 import { run_alexandria_calls, type AlexandriaCall, type AlexandriaOutcome } from './alexandria';
 import {
 	COMPETITOR_LIMIT,
@@ -12,6 +13,8 @@ import {
 	TRACKED_SEARCHES
 } from './seo_config';
 import {
+	has_channel_video,
+	normalize_title,
 	parse_backlinks,
 	parse_competitors,
 	parse_google_search,
@@ -19,7 +22,9 @@ import {
 	parse_ranked_keywords,
 	parse_search_volume,
 	parse_youtube_search,
-	type SearchVolume
+	read_youtube_continuation,
+	type SearchVolume,
+	type SyntaxIdentity
 } from './seo_parse';
 import type { GoogleSearchCheck, RankedKeyword, SeoCallError, SeoReport } from './seo_report';
 
@@ -31,7 +36,8 @@ type PlannedCall = {
 		| 'search_volume'
 		| 'keyword_difficulty'
 		| 'google_search'
-		| 'youtube_search';
+		| 'youtube_search'
+		| 'youtube_page_two';
 	subject: string;
 	call: AlexandriaCall;
 };
@@ -39,24 +45,50 @@ type PlannedCall = {
 const PLACE = { location_code: SEO_LOCATION_CODE, language_code: SEO_LANGUAGE_CODE };
 const TRACKED_SUBJECT = 'tracked searches';
 
-// The live check only looks at Google's top 20. Past that, a tracked search's position comes from
-// the ranked keywords, which cover the top 100.
+// The live check only looks at Google's first page. Past that, a tracked search's position comes
+// from the ranked keywords, which cover syntax.fm in the top 100.
 export function with_top_100_positions(
 	checks: readonly GoogleSearchCheck[],
 	keywords: readonly RankedKeyword[]
 ): GoogleSearchCheck[] {
 	const ranked = new Map(keywords.map((keyword) => [keyword.keyword.toLowerCase(), keyword]));
 	return checks.map((check) => {
-		if (check.syntax_position !== null && check.syntax_url) return check;
+		const is_site = check.syntax_site === SEO_TARGET_DOMAIN;
+		if (check.syntax_position !== null && (check.syntax_url || !is_site)) return check;
 		const keyword = ranked.get(check.search.toLowerCase());
+		if (!keyword) return check;
 		// The live position wins; the ranked keyword fills the page Google's link hid
-		return keyword
-			? {
-					...check,
-					syntax_position: check.syntax_position ?? keyword.position,
-					syntax_url: keyword.url
+		return {
+			...check,
+			syntax_position: check.syntax_position ?? keyword.position,
+			syntax_url: keyword.url,
+			syntax_site: SEO_TARGET_DOMAIN
+		};
+	});
+}
+
+// YouTube's second page of results for each search whose first page has no Syntax video
+export function plan_youtube_page_two(
+	planned: readonly PlannedCall[],
+	outcomes: readonly AlexandriaOutcome[]
+): PlannedCall[] {
+	return planned.flatMap((plan, index): PlannedCall[] => {
+		const outcome = outcomes[index];
+		if (plan.kind !== 'youtube_search' || !outcome?.ok) return [];
+		try {
+			const continuation = read_youtube_continuation(outcome.data);
+			if (!continuation || has_channel_video(outcome.data, SYNTAX_YOUTUBE_CHANNEL)) return [];
+			return [
+				{
+					kind: 'youtube_page_two',
+					subject: plan.subject,
+					call: { ...plan.call, options: { continuation } }
 				}
-			: check;
+			];
+		} catch {
+			// An unreadable first page is reported by build_seo_report
+			return [];
+		}
 	});
 }
 
@@ -147,7 +179,8 @@ export function plan_seo_calls(searches: readonly string[] = TRACKED_SEARCHES): 
 // empty and is listed in errors, so one bad call doesn't lose the whole snapshot.
 export function build_seo_report(
 	planned: readonly PlannedCall[],
-	outcomes: readonly AlexandriaOutcome[]
+	outcomes: readonly AlexandriaOutcome[],
+	syntax: SyntaxIdentity
 ): { report: SeoReport; errors: SeoCallError[]; credits_cost: number } {
 	if (planned.length !== outcomes.length) {
 		throw new Error(`Expected ${planned.length} outcomes, got ${outcomes.length}`);
@@ -166,6 +199,7 @@ export function build_seo_report(
 	let credits_cost = 0;
 	let volumes: Map<string, SearchVolume> | null = null;
 	let difficulties: Map<string, number> | null = null;
+	const youtube_pages = new Map<string, { first: unknown; second: unknown }>();
 
 	planned.forEach((plan, index) => {
 		const outcome = outcomes[index];
@@ -189,13 +223,15 @@ export function build_seo_report(
 			} else if (plan.kind === 'keyword_difficulty') {
 				difficulties = parse_keyword_difficulty(outcome.data);
 			} else if (plan.kind === 'google_search') {
-				report.google_searches.push(
-					parse_google_search(plan.subject, outcome.data, SEO_TARGET_DOMAIN)
-				);
+				report.google_searches.push(parse_google_search(plan.subject, outcome.data, syntax));
+			} else if (plan.kind === 'youtube_search') {
+				// Read now so an unreadable page is reported here; parsed with its second page below
+				parse_youtube_search(plan.subject, [outcome.data], SYNTAX_YOUTUBE_CHANNEL);
+				youtube_pages.set(plan.subject, { first: outcome.data, second: null });
 			} else {
-				report.youtube_searches.push(
-					parse_youtube_search(plan.subject, outcome.data, SYNTAX_YOUTUBE_CHANNEL)
-				);
+				parse_youtube_search(plan.subject, [outcome.data], SYNTAX_YOUTUBE_CHANNEL);
+				const pages = youtube_pages.get(plan.subject);
+				if (pages) pages.second = outcome.data;
 			}
 		} catch (error) {
 			errors.push({
@@ -207,6 +243,10 @@ export function build_seo_report(
 		}
 	});
 
+	for (const [search, { first, second }] of youtube_pages) {
+		const pages = second === null ? [first] : [first, second];
+		report.youtube_searches.push(parse_youtube_search(search, pages, SYNTAX_YOUTUBE_CHANNEL));
+	}
 	report.google_searches = with_top_100_positions(report.google_searches, report.keywords);
 	if (volumes || difficulties) {
 		const searches = planned.filter((plan) => plan.kind === 'google_search');
@@ -224,15 +264,40 @@ export function build_seo_report(
 	return { report, errors, credits_cost };
 }
 
+// Syntax's episodes and videos, so its YouTube videos count when they show up on Google
+async function load_syntax_identity(): Promise<SyntaxIdentity> {
+	const [shows, videos] = await Promise.all([
+		db.select({ title: show.title, youtube_url: show.youtube_url }).from(show),
+		db.select({ id: video.id, title: video.title }).from(video)
+	]);
+	return {
+		domain: SEO_TARGET_DOMAIN,
+		channel: SYNTAX_YOUTUBE_CHANNEL,
+		video_ids: new Set([
+			...videos.map((row) => row.id),
+			...shows.map((row) => get_id_from_url(row.youtube_url)).filter(Boolean)
+		]),
+		titles: new Set([...shows, ...videos].map((row) => normalize_title(row.title)).filter(Boolean))
+	};
+}
+
 export async function take_seo_snapshot(
 	api_key: string
 ): Promise<{ id: string; credits_cost: number; error_count: number }> {
-	const planned = plan_seo_calls();
-	const outcomes = await run_alexandria_calls(
-		planned.map((plan) => plan.call),
-		api_key
+	const run = (plans: readonly PlannedCall[]) =>
+		run_alexandria_calls(
+			plans.map((plan) => plan.call),
+			api_key
+		);
+	const first_plans = plan_seo_calls();
+	const [first_outcomes, syntax] = await Promise.all([run(first_plans), load_syntax_identity()]);
+	const page_two_plans = plan_youtube_page_two(first_plans, first_outcomes);
+	const page_two_outcomes = page_two_plans.length > 0 ? await run(page_two_plans) : [];
+	const { report, errors, credits_cost } = build_seo_report(
+		[...first_plans, ...page_two_plans],
+		[...first_outcomes, ...page_two_outcomes],
+		syntax
 	);
-	const { report, errors, credits_cost } = build_seo_report(planned, outcomes);
 	const [row] = await db
 		.insert(seo_snapshot)
 		.values({ credits_cost, report, errors })

@@ -141,6 +141,7 @@
 							<th>Syntax</th>
 							<th>Change</th>
 							<th>Syntax page</th>
+							<th>Video box</th>
 							<th>On the page</th>
 							<th>Top 3</th>
 						</tr>
@@ -161,6 +162,20 @@
 										<a href={check.syntax_url} target="_blank" rel="noopener noreferrer"
 											>{format_page(check.syntax_url)}</a
 										>
+									{:else if check.syntax_site}
+										{check.syntax_site}: {check.syntax_title}
+									{/if}
+								</td>
+								<td class="fs-1">
+									{#if check.syntax_video_box}
+										{@const box = check.syntax_video_box}
+										{#if box.url}
+											<a href={box.url} target="_blank" rel="noopener noreferrer external"
+												>#{box.position} {box.title}</a
+											>
+										{:else}
+											#{box.position} {box.title}
+										{/if}
 									{/if}
 								</td>
 								<td class="fs-1">{format_result_types(check.result_types)}</td>

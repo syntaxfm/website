@@ -5,9 +5,32 @@ import ranked_fixture from './fixtures/ranked_keywords.json';
 import volume_fixture from './fixtures/search_volume.json';
 import youtube_fixture from './fixtures/youtube_search.json';
 import type { AlexandriaOutcome } from './alexandria';
-import { build_seo_report, plan_seo_calls, with_top_100_positions } from './seo_snapshot';
+import type { SyntaxIdentity } from './seo_parse';
+import {
+	build_seo_report,
+	plan_seo_calls,
+	plan_youtube_page_two,
+	with_top_100_positions
+} from './seo_snapshot';
 
 vi.mock('$server/db/client', () => ({ db: {} }));
+
+const SYNTAX: SyntaxIdentity = {
+	domain: 'syntax.fm',
+	channel: { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' },
+	video_ids: new Set(),
+	titles: new Set()
+};
+
+const youtube_page = (channel_names: string[], continuation: string | null) => ({
+	continuation,
+	videos: channel_names.map((channel_name, index) => ({
+		channel_id: null,
+		channel_name,
+		title: `Video ${index + 1}`,
+		url: `https://www.youtube.com/watch?v=video${index}`
+	}))
+});
 
 describe('plan_seo_calls', () => {
 	it('gets demand for the tracked searches, then checks each on Google and YouTube', () => {
@@ -42,7 +65,7 @@ describe('build_seo_report', () => {
 			{ ok: true, call: youtube.call, data: youtube_fixture, credits_cost: 5 }
 		];
 
-		const { report, errors, credits_cost } = build_seo_report(planned, outcomes);
+		const { report, errors, credits_cost } = build_seo_report(planned, outcomes, SYNTAX);
 
 		expect(credits_cost).toBe(86);
 		expect(report.demand).toEqual([
@@ -75,25 +98,101 @@ describe('build_seo_report', () => {
 	});
 
 	it('refuses outcomes that do not line up with the plan', () => {
-		expect(() => build_seo_report(plan_seo_calls(['css podcast']), [])).toThrow(
+		expect(() => build_seo_report(plan_seo_calls(['css podcast']), [], SYNTAX)).toThrow(
 			'Expected 7 outcomes, got 0'
 		);
 	});
 });
 
+describe('YouTube page two', () => {
+	const planned = plan_seo_calls(['css if statement', 'svelte']).filter(
+		(plan) => plan.kind === 'youtube_search'
+	);
+	const first_pages = [
+		youtube_page(['Kevin Powell', 'Theo'], 'next-css'),
+		youtube_page(['Syntax'], 'next-svelte')
+	];
+	const outcomes: AlexandriaOutcome[] = planned.map((plan, index) => ({
+		ok: true,
+		call: plan.call,
+		data: first_pages[index],
+		credits_cost: 5
+	}));
+
+	it('asks for the second page only where the first has no Syntax video', () => {
+		const page_two = plan_youtube_page_two(planned, outcomes);
+		expect(page_two).toEqual([
+			{
+				kind: 'youtube_page_two',
+				subject: 'css if statement',
+				call: {
+					provider: 'youtube-com',
+					capability: 'videos/search_videos',
+					options: { continuation: 'next-css' }
+				}
+			}
+		]);
+	});
+
+	it('counts positions on the second page after the first', () => {
+		const page_two = plan_youtube_page_two(planned, outcomes);
+		const { report, credits_cost } = build_seo_report(
+			[...planned, ...page_two],
+			[
+				...outcomes,
+				{
+					ok: true,
+					call: page_two[0].call,
+					data: youtube_page(['Net Ninja', 'Syntax'], null),
+					credits_cost: 5
+				}
+			],
+			SYNTAX
+		);
+		expect(credits_cost).toBe(15);
+		expect(report.youtube_searches.map((check) => [check.search, check.syntax_position])).toEqual([
+			['css if statement', 4],
+			['svelte', 1]
+		]);
+	});
+
+	it('keeps the first page when the second fails', () => {
+		const page_two = plan_youtube_page_two(planned, outcomes);
+		const { report, errors } = build_seo_report(
+			[...planned, ...page_two],
+			[
+				...outcomes,
+				{ ok: false, call: page_two[0].call, error: { code: 'timeout', message: 'slow' } }
+			],
+			SYNTAX
+		);
+		expect(report.youtube_searches[0]).toMatchObject({
+			search: 'css if statement',
+			syntax_position: null
+		});
+		expect(errors).toHaveLength(1);
+	});
+});
+
 describe('with_top_100_positions', () => {
-	const check = (search: string, syntax_position: number | null) => ({
+	const check = (search: string, syntax_position: number | null, syntax_site: string | null) => ({
 		search,
 		syntax_position,
 		syntax_title: null,
 		syntax_url: null,
+		syntax_site,
 		result_types: [],
 		top_sites: []
 	});
 
-	it('takes the position past the top 20 from the ranked keywords', () => {
+	it('takes the position past the first page from the ranked keywords', () => {
 		const checks = with_top_100_positions(
-			[check('CSS Layers', null), check('state of js', 3), check('vibe coding', null)],
+			[
+				check('CSS Layers', null, null),
+				check('state of js', 3, 'syntax.fm'),
+				check('svelte', 2, 'YouTube · Syntax'),
+				check('vibe coding', null, null)
+			],
 			[
 				{
 					keyword: 'css layers',
@@ -112,6 +211,15 @@ describe('with_top_100_positions', () => {
 					keyword_difficulty: 11,
 					intent: null,
 					has_ai_overview: false
+				},
+				{
+					keyword: 'svelte',
+					search_volume: 40500,
+					position: 30,
+					url: 'https://syntax.fm/show/800/svelte',
+					keyword_difficulty: 40,
+					intent: null,
+					has_ai_overview: false
 				}
 			]
 		);
@@ -119,6 +227,8 @@ describe('with_top_100_positions', () => {
 			['CSS Layers', 24, 'https://syntax.fm/show/698/why-you-should-be-using-css-layers'],
 			// The live position wins; the ranked keyword fills in the page
 			['state of js', 3, 'https://syntax.fm/show/989/state-of-js-2025'],
+			// A Syntax YouTube video ranks: syntax.fm's page doesn't stand in for it
+			['svelte', 2, null],
 			['vibe coding', null, null]
 		]);
 	});

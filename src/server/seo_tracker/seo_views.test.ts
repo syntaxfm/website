@@ -15,6 +15,12 @@ import {
 } from './seo_views';
 
 const SYNTAX_CHANNEL = { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' };
+const SYNTAX = {
+	domain: 'syntax.fm',
+	channel: SYNTAX_CHANNEL,
+	video_ids: new Set<string>(),
+	titles: new Set<string>()
+};
 
 function keyword(
 	name: string,
@@ -173,8 +179,12 @@ describe('build_seo_search_rows', () => {
 });
 
 describe('build_seo_search_detail', () => {
-	const detailed_google = parse_google_search('ai engineering', google_fixture, 'syntax.fm');
-	const detailed_youtube = parse_youtube_search('ai engineering', youtube_fixture, SYNTAX_CHANNEL);
+	const detailed_google = parse_google_search('ai engineering', google_fixture, SYNTAX);
+	const detailed_youtube = parse_youtube_search(
+		'ai engineering',
+		[youtube_fixture],
+		SYNTAX_CHANNEL
+	);
 	const history = [
 		{
 			taken_at: new Date('2026-11-24T15:00:00Z'),
@@ -307,8 +317,8 @@ describe('without_result_detail', () => {
 			keywords: [],
 			competitors: [],
 			backlinks: null,
-			google_searches: [parse_google_search('ai engineering', google_fixture, 'syntax.fm')],
-			youtube_searches: [parse_youtube_search('ai engineering', youtube_fixture, SYNTAX_CHANNEL)]
+			google_searches: [parse_google_search('ai engineering', google_fixture, SYNTAX)],
+			youtube_searches: [parse_youtube_search('ai engineering', [youtube_fixture], SYNTAX_CHANNEL)]
 		};
 
 		const stripped = without_result_detail(report);

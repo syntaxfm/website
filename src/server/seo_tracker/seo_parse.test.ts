@@ -9,6 +9,8 @@ import youtube_fixture from './fixtures/youtube_search.json';
 import {
 	google_result_site,
 	is_channel_video,
+	is_syntax_result,
+	normalize_title,
 	parse_backlinks,
 	parse_competitors,
 	parse_google_search,
@@ -16,7 +18,9 @@ import {
 	parse_ranked_keywords,
 	parse_search_volume,
 	parse_view_count,
-	parse_youtube_search
+	parse_youtube_search,
+	read_youtube_site,
+	type SyntaxIdentity
 } from './seo_parse';
 
 // Fixtures are trimmed real Alexandria responses from 2026-11-15 (search volume and difficulty
@@ -38,6 +42,12 @@ describe('search demand', () => {
 });
 
 const SYNTAX_CHANNEL = { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' };
+const SYNTAX: SyntaxIdentity = {
+	domain: 'syntax.fm',
+	channel: SYNTAX_CHANNEL,
+	video_ids: new Set(['PaS6FUtgAh8']),
+	titles: new Set(['planning a build', '14 web development tips i wish i knew sooner'])
+};
 
 describe('parse_ranked_keywords', () => {
 	it('reads the domain totals and every ranked keyword', () => {
@@ -110,7 +120,7 @@ describe('google_result_site', () => {
 
 describe('parse_google_search', () => {
 	it("finds syntax.fm's organic position behind google.com/goto links", () => {
-		const check = parse_google_search('web development podcast', google_fixture, 'syntax.fm');
+		const check = parse_google_search('web development podcast', google_fixture, SYNTAX);
 
 		expect(check).toMatchObject({
 			search: 'web development podcast',
@@ -124,11 +134,7 @@ describe('parse_google_search', () => {
 	});
 
 	it('keeps the organic results in detail, flagging syntax.fm', () => {
-		const { top_results } = parse_google_search(
-			'web development podcast',
-			google_fixture,
-			'syntax.fm'
-		);
+		const { top_results } = parse_google_search('web development podcast', google_fixture, SYNTAX);
 
 		expect(top_results).toHaveLength(9);
 		expect(top_results?.[0]).toEqual({
@@ -145,15 +151,142 @@ describe('parse_google_search', () => {
 	});
 
 	it('reports no position when syntax.fm is not in the results', () => {
-		const check = parse_google_search('web development podcast', google_fixture, 'example.org');
+		const check = parse_google_search('web development podcast', google_fixture, {
+			...SYNTAX,
+			domain: 'example.org'
+		});
 		expect(check.syntax_position).toBeNull();
 		expect(check.syntax_title).toBeNull();
+	});
+
+	// Trimmed from a live check of "css if statement" on 2026-11-18
+	const with_youtube = {
+		tasks: [
+			{
+				status_code: 20000,
+				result: [
+					{
+						item_types: ['organic', 'video'],
+						items: [
+							{
+								type: 'organic',
+								rank_group: 1,
+								domain: 'google.com',
+								website_name: 'MDN Web Docs',
+								breadcrumb: 'https://developer.mozilla.org › if',
+								title: 'if() - CSS'
+							},
+							{
+								type: 'organic',
+								rank_group: 2,
+								domain: 'google.com',
+								website_name: 'YouTube\u00a0·\u00a0Syntax',
+								breadcrumb: '20K+ views · 1 year ago',
+								title: 'If Statements in CSS?'
+							},
+							{
+								type: 'video',
+								rank_group: 1,
+								items: [
+									{
+										type: 'video_element',
+										source: 'YouTube · Web Dev Simplified',
+										title: 'CSS Finally Has if() Statements',
+										url: 'https://www.youtube.com/watch?v=mvgY3GvcSCo'
+									},
+									{
+										type: 'video_element',
+										source: 'YouTube · Syntax',
+										title: 'If Statements in CSS?',
+										url: 'https://www.youtube.com/watch?v=fTdqR9ZmHHU'
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	};
+
+	it("counts Syntax's YouTube videos, in the results and in the video box", () => {
+		const check = parse_google_search('css if statement', with_youtube, SYNTAX);
+		expect(check).toMatchObject({
+			syntax_position: 2,
+			syntax_title: 'If Statements in CSS?',
+			syntax_url: null,
+			syntax_site: 'YouTube · Syntax',
+			syntax_video_box: {
+				position: 2,
+				title: 'If Statements in CSS?',
+				url: 'https://www.youtube.com/watch?v=fTdqR9ZmHHU'
+			}
+		});
+		expect(check.top_results?.map((result) => result.is_syntax)).toEqual([false, true]);
+	});
+});
+
+describe('is_syntax_result', () => {
+	const is_syntax = (site: string, title: string, url: string | null = null) =>
+		is_syntax_result(site, title, url, SYNTAX);
+
+	it('counts syntax.fm and its subdomains', () => {
+		expect(is_syntax('syntax.fm', 'Anything')).toBe(true);
+		expect(is_syntax('beta.syntax.fm', 'Anything')).toBe(true);
+		expect(is_syntax('notsyntax.fm', 'Anything')).toBe(false);
+	});
+
+	it('counts a YouTube video by its channel, including collabs', () => {
+		expect(is_syntax('YouTube · Syntax', 'Planning ahead')).toBe(true);
+		expect(is_syntax('YouTube · Wes Bos and Syntax', 'Anything')).toBe(true);
+		// Another channel's upload with a Syntax title isn't Syntax's ranking
+		expect(is_syntax('YouTube · Some Clips', 'Planning A Build')).toBe(false);
+	});
+
+	it('counts a video by its id', () => {
+		expect(
+			is_syntax('youtube.com', 'Untitled', 'https://www.youtube.com/watch?v=PaS6FUtgAh8')
+		).toBe(true);
+		expect(
+			is_syntax('youtube.com', 'Untitled', 'https://www.youtube.com/watch?v=xxxxxxxxxxx')
+		).toBe(false);
+	});
+
+	it('matches the title when Google gives no channel, as for YouTube Music', () => {
+		expect(is_syntax('YouTube Music', 'Planning A Build')).toBe(true);
+		expect(is_syntax('music.youtube.com', '14 Web Development Tips I Wish I ...')).toBe(true);
+		expect(is_syntax('YouTube', 'Planning ...')).toBe(false);
+		expect(is_syntax('YouTube Music', 'Planning A Building')).toBe(false);
+		// Not YouTube, so the title doesn't count
+		expect(is_syntax('Spotify', 'Planning A Build')).toBe(false);
+	});
+});
+
+describe('read_youtube_site', () => {
+	it.each([
+		['YouTube · Syntax', 'Syntax'],
+		['YouTube Music', null],
+		['youtube.com', null],
+		['music.youtube.com', null]
+	])('reads %j', (site, channel_name) => {
+		expect(read_youtube_site(site)).toEqual({ channel_name });
+	});
+
+	it('is null for other sites', () => {
+		expect(read_youtube_site('Reddit · r/css')).toBeNull();
+		expect(read_youtube_site('youtube-dl.org')).toBeNull();
+	});
+});
+
+describe('normalize_title', () => {
+	it('ignores case and punctuation', () => {
+		expect(normalize_title('Svelte 5: Runes & More!')).toBe('svelte 5 runes more');
 	});
 });
 
 describe('parse_youtube_search', () => {
 	it('counts a collab video, which has no channel id, as the channel’s', () => {
-		const check = parse_youtube_search('svelte podcast', youtube_fixture, SYNTAX_CHANNEL);
+		const check = parse_youtube_search('svelte podcast', [youtube_fixture], SYNTAX_CHANNEL);
 
 		expect(check).toMatchObject({
 			syntax_position: 3,
@@ -168,7 +301,11 @@ describe('parse_youtube_search', () => {
 	});
 
 	it('keeps each video in detail, with its view count as a number', () => {
-		const { top_results } = parse_youtube_search('svelte podcast', youtube_fixture, SYNTAX_CHANNEL);
+		const { top_results } = parse_youtube_search(
+			'svelte podcast',
+			[youtube_fixture],
+			SYNTAX_CHANNEL
+		);
 
 		expect(top_results).toHaveLength(4);
 		expect(top_results?.[0]).toEqual({
@@ -190,7 +327,7 @@ describe('parse_youtube_search', () => {
 	});
 
 	it('throws when the response has no video list', () => {
-		expect(() => parse_youtube_search('svelte podcast', {}, SYNTAX_CHANNEL)).toThrow(
+		expect(() => parse_youtube_search('svelte podcast', [{}], SYNTAX_CHANNEL)).toThrow(
 			'no video list'
 		);
 	});

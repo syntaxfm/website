@@ -54,17 +54,33 @@ export type GoogleResult = {
 	url: string | null;
 	domain: string | null;
 	description: string | null;
+	// A syntax.fm page or one of Syntax's YouTube videos. The first five snapshots only flag
+	// syntax.fm.
 	is_syntax: boolean;
+};
+
+// A Syntax video in Google's video box, which sits among the results but has no organic position
+export type GoogleVideoBoxResult = {
+	// 1 for the box's first video
+	position: number;
+	title: string | null;
+	url: string | null;
 };
 
 export type GoogleSearchCheck = {
 	search: string;
-	// From the live check of Google's top 20, or else from the ranked keywords (Google's top 100).
-	// Snapshots before 2026-11-17 only have the top 20.
+	// Syntax's best organic position: a syntax.fm page or one of Syntax's YouTube videos, from the
+	// live check of Google's first page, or else syntax.fm's from the ranked keywords (Google's top
+	// 100). The first five snapshots (2026-11-16 to 2026-11-18) checked 20 results live, which gave
+	// a different, wrong list, and only counted syntax.fm.
 	syntax_position: number | null;
 	syntax_title: string | null;
 	// Snapshots before 2026-11-17 don't have it
 	syntax_url?: string | null;
+	// Where the result is: "syntax.fm" or "YouTube · Syntax". The first five snapshots don't have it
+	syntax_site?: string | null;
+	// The first five snapshots don't have it
+	syntax_video_box?: GoogleVideoBoxResult | null;
 	// Google's result types on the page, such as ai_overview, video, people_also_ask
 	result_types: string[];
 	top_sites: string[];
@@ -92,6 +108,7 @@ export type YoutubeResult = {
 
 export type YoutubeSearchCheck = {
 	search: string;
+	// In YouTube's first two pages (about 40 results). The first five snapshots only have the first.
 	syntax_position: number | null;
 	syntax_video_title: string | null;
 	syntax_video_url: string | null;

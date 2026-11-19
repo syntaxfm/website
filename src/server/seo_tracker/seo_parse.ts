@@ -1,10 +1,12 @@
 import { as_array, as_number, as_string, is_record, read_path } from '#lib/utils/narrow.ts';
+import { get_id_from_url } from '#lib/videos/utils.ts';
 import type {
 	Backlinks,
 	Competitor,
 	DomainOverview,
 	GoogleResult,
 	GoogleSearchCheck,
+	GoogleVideoBoxResult,
 	RankedKeyword,
 	YoutubeChannel,
 	YoutubeResult,
@@ -158,43 +160,138 @@ function google_result_url(item: unknown): string | null {
 	return strip_www(new URL(url).hostname) === 'google.com' ? null : url;
 }
 
+// What marks a search result as Syntax's
+export type SyntaxIdentity = {
+	domain: string;
+	channel: YoutubeChannel;
+	// Every Syntax episode's and video's YouTube id, from the database
+	video_ids: ReadonlySet<string>;
+	// Every Syntax episode's and video's title, as normalize_title gives it
+	titles: ReadonlySet<string>;
+};
+
+// A Google title cut short ends in "..."; past this many letters a cut title is still Syntax's
+const MIN_CUT_TITLE_LENGTH = 15;
+
+/** Lowercase letters and numbers, single spaced, so titles compare across punctuation. */
+export function normalize_title(title: string): string {
+	return title
+		.toLowerCase()
+		.replace(/[^\p{L}\p{N}]+/gu, ' ')
+		.trim();
+}
+
+function is_syntax_title(title: string, titles: ReadonlySet<string>): boolean {
+	const is_cut = /(?:\.\.\.|…)\s*$/.test(title);
+	const normalized = normalize_title(title);
+	if (!is_cut) return titles.has(normalized);
+	if (normalized.length < MIN_CUT_TITLE_LENGTH) return false;
+	for (const syntax_title of titles) if (syntax_title.startsWith(normalized)) return true;
+	return false;
+}
+
+// Google names a YouTube result's site "YouTube · Channel", or just "YouTube", "YouTube Music" or
+// "youtube.com" when it doesn't say whose it is. Null for any other site.
+export function read_youtube_site(site: string | null): { channel_name: string | null } | null {
+	if (site === null) return null;
+	if (/^(?:[a-z]+\.)?youtube\.com$/i.test(site)) return { channel_name: null };
+	const match = site.match(/^YouTube(?: Music)?(?: · (.+))?$/i);
+	return match ? { channel_name: match[1]?.trim() ?? null } : null;
+}
+
+// A YouTube video is Syntax's by its id, else by its channel, else (when Google doesn't name the
+// channel, as for YouTube Music) by its title matching an episode's or video's
+function is_syntax_video(
+	site: string | null,
+	title: string | null,
+	url: string | null,
+	syntax: SyntaxIdentity
+): boolean {
+	const video_id = get_id_from_url(url);
+	if (video_id) return syntax.video_ids.has(video_id) || is_youtube_channel(site, syntax);
+	const youtube = read_youtube_site(site);
+	if (!youtube) return false;
+	if (youtube.channel_name !== null) return is_youtube_channel(site, syntax);
+	return title !== null && is_syntax_title(title, syntax.titles);
+}
+
+function is_youtube_channel(site: string | null, syntax: SyntaxIdentity): boolean {
+	const channel_name = read_youtube_site(site)?.channel_name ?? null;
+	return channel_name !== null && is_channel_video({ channel_name }, syntax.channel);
+}
+
+export function is_syntax_result(
+	site: string | null,
+	title: string | null,
+	url: string | null,
+	syntax: SyntaxIdentity
+): boolean {
+	return is_syntax_site(site, syntax.domain) || is_syntax_video(site, title, url, syntax);
+}
+
+// The first Syntax video in Google's video box (type "video": three or so YouTube videos)
+function read_video_box(items: unknown[], syntax: SyntaxIdentity): GoogleVideoBoxResult | null {
+	for (const item of items) {
+		if (as_string(read_path(item, ['type'])) !== 'video') continue;
+		const videos = as_array(read_path(item, ['items']));
+		for (const [index, video] of videos.entries()) {
+			const title = as_string(read_path(video, ['title']));
+			const url = as_string(read_path(video, ['url']));
+			const source = as_string(read_path(video, ['source']))?.replace(/\s+/gu, ' ') ?? null;
+			if (is_syntax_video(source, title, url, syntax)) return { position: index + 1, title, url };
+		}
+	}
+	return null;
+}
+
 // serp/google-organic for one tracked search
 export function parse_google_search(
 	search: string,
 	data: unknown,
-	target_domain: string
+	syntax: SyntaxIdentity
 ): GoogleSearchCheck {
 	const result = read_dataforseo_result(data);
-	const organic = as_array(result.items).filter(
-		(item) => as_string(read_path(item, ['type'])) === 'organic'
-	);
-	const syntax_result = organic.find((item) =>
-		is_syntax_site(google_result_site(item), target_domain)
-	);
-	const top_results = organic.slice(0, SEARCH_RESULT_DETAIL_LENGTH).map((item): GoogleResult => {
-		const domain = google_result_site(item);
-		return {
-			position: as_number(read_path(item, ['rank_group'])),
-			title: as_string(read_path(item, ['title'])),
-			url: google_result_url(item),
-			domain,
-			description: as_string(read_path(item, ['description'])),
-			is_syntax: is_syntax_site(domain, target_domain)
-		};
-	});
+	const items = as_array(result.items);
+	const organic = items
+		.filter((item) => as_string(read_path(item, ['type'])) === 'organic')
+		.map((item) => {
+			const site = google_result_site(item);
+			const title = as_string(read_path(item, ['title']));
+			const url = google_result_url(item);
+			return {
+				position: as_number(read_path(item, ['rank_group'])),
+				title,
+				url,
+				site,
+				description: as_string(read_path(item, ['description'])),
+				is_syntax: is_syntax_result(site, title, url, syntax)
+			};
+		});
+	const syntax_result = organic.find((item) => item.is_syntax);
 	return {
 		search,
-		syntax_position: syntax_result ? as_number(read_path(syntax_result, ['rank_group'])) : null,
-		syntax_title: syntax_result ? as_string(read_path(syntax_result, ['title'])) : null,
-		syntax_url: syntax_result ? google_result_url(syntax_result) : null,
+		syntax_position: syntax_result?.position ?? null,
+		syntax_title: syntax_result?.title ?? null,
+		syntax_url: syntax_result?.url ?? null,
+		syntax_site: syntax_result?.site ?? null,
+		syntax_video_box: read_video_box(items, syntax),
 		result_types: as_array(result.item_types).filter(
 			(type): type is string => typeof type === 'string'
 		),
 		top_sites: organic
 			.slice(0, TOP_LIST_LENGTH)
-			.map(google_result_site)
+			.map((item) => item.site)
 			.filter((site): site is string => site !== null),
-		top_results
+		top_results: organic.slice(0, SEARCH_RESULT_DETAIL_LENGTH).map(
+			(item): GoogleResult => ({
+				position: item.position,
+				title: item.title,
+				url: item.url,
+				domain: item.site,
+				description: item.description,
+				is_syntax: item.is_syntax
+			})
+		)
 	};
 }
 
@@ -257,15 +354,29 @@ export function parse_view_count(view_count_text: string | null): number | null 
 	return digits ? Number(digits.replaceAll(',', '')) : null;
 }
 
-// youtube-com videos/search_videos for one tracked search
+function read_youtube_videos(data: unknown): Record<string, unknown>[] {
+	const videos = read_path(data, ['videos']);
+	if (!Array.isArray(videos)) throw new Error('YouTube search returned no video list');
+	return videos.filter(is_record);
+}
+
+/** The token for a search's next page of results; null on the last page. */
+export function read_youtube_continuation(data: unknown): string | null {
+	return as_string(read_path(data, ['continuation']));
+}
+
+/** Whether a page of YouTube results has one of the channel's videos. */
+export function has_channel_video(data: unknown, channel: YoutubeChannel): boolean {
+	return read_youtube_videos(data).some((video) => is_channel_video(video, channel));
+}
+
+// youtube-com videos/search_videos for one tracked search: its pages of results, first page first
 export function parse_youtube_search(
 	search: string,
-	data: unknown,
+	pages: readonly unknown[],
 	channel: YoutubeChannel
 ): YoutubeSearchCheck {
-	const videos_value = read_path(data, ['videos']);
-	if (!Array.isArray(videos_value)) throw new Error('YouTube search returned no video list');
-	const videos = videos_value.filter(is_record);
+	const videos = pages.flatMap(read_youtube_videos);
 	const syntax_index = videos.findIndex((video) => is_channel_video(video, channel));
 	const syntax_video = syntax_index === -1 ? null : videos[syntax_index];
 	const channel_names = videos
