@@ -117,6 +117,35 @@ export type YoutubeSearchCheck = {
 	top_results?: YoutubeResult[];
 };
 
+export type YoutubeSearchTerm = {
+	term: string;
+	views: number;
+	// Null where YouTube's report doesn't give it (a video's own terms)
+	minutes_watched: number | null;
+};
+
+export type YoutubeVideoSearchTerms = {
+	video_id: string;
+	// From the site's episodes and videos; null for a video the site doesn't have
+	title: string | null;
+	// Views that came from YouTube search
+	search_views: number;
+	terms: YoutubeSearchTerm[];
+};
+
+// What people typed into YouTube search before watching a Syntax video, from YouTube Analytics
+export type YoutubeSearchTerms = {
+	// YYYY-MM-DD, 28 days ending the day before the snapshot
+	start_date: string;
+	end_date: string;
+	total_views: number;
+	search_views: number;
+	// The channel's top 25 terms, most views first
+	terms: YoutubeSearchTerm[];
+	// The 10 videos search found most, each with its top terms
+	videos: YoutubeVideoSearchTerms[];
+};
+
 // How much a tracked search is searched for, and how hard it is to reach Google's top 10
 export type SearchDemand = {
 	search: string;
@@ -139,6 +168,9 @@ export type SeoReport = {
 	youtube_searches: YoutubeSearchCheck[];
 	// Snapshots before 2026-11-17 don't have it
 	demand?: SearchDemand[];
+	// Null when YouTube Analytics failed (see the snapshot's errors). Snapshots before 2026-11-19
+	// don't have it.
+	youtube_search_terms?: YoutubeSearchTerms | null;
 };
 
 export type SeoCallError = {

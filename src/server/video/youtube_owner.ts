@@ -5,7 +5,8 @@ import { db } from '$server/db/client';
 import { oauth_connection } from '$server/db/schema';
 import { as_array, as_number, as_string, read_path } from '#lib/utils/narrow.ts';
 
-// Acting as the Syntax channel's owner, which downloading captions needs. An admin connects once
+// Acting as the Syntax channel's owner, which downloading captions and reading YouTube Analytics
+// need. An admin connects once
 // with Connect YouTube (src/routes/(site)/admin/youtube): Google returns a refresh token, saved in
 // oauth_connections, that scheduled jobs trade for an hour-long access token. The OAuth client
 // ("Syntax website", an internal app in our Google org) is YOUTUBE_CLIENT_ID / _SECRET. If Google
@@ -14,8 +15,12 @@ import { as_array, as_number, as_string, read_path } from '#lib/utils/narrow.ts'
 const PROVIDER = 'youtube';
 const AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
-// Download captions (captions.download takes this or youtubepartner)
-const SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl';
+// Download captions (captions.download takes youtube.force-ssl or youtubepartner), and read the
+// channel's YouTube Analytics for the SEO tracker's search terms
+const SCOPE = [
+	'https://www.googleapis.com/auth/youtube.force-ssl',
+	'https://www.googleapis.com/auth/yt-analytics.readonly'
+].join(' ');
 // Refresh a minute early so a token never expires mid-request
 const EXPIRY_MARGIN_MS = 60 * 1000;
 

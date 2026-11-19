@@ -132,6 +132,19 @@ export function opportunity_rows(
 	}));
 }
 
+// YouTube search terms by views, with the watch hours each brought beside the bar
+export function search_term_rows(
+	terms: readonly { term: string; views: number; minutes_watched: number | null }[]
+): BarRow[] {
+	return terms.map((term) => ({
+		key: term.term,
+		label: term.term,
+		value: term.views,
+		value_text: term.views.toLocaleString(),
+		detail: term.minutes_watched === null ? undefined : `${Math.round(term.minutes_watched / 60)} h`
+	}));
+}
+
 // Where a position sits along a #1…#max track, as a percentage from the left. The scale is
 // logarithmic, so #1–10 get as much room as #10–100: that's where moves matter.
 export function position_percent(position: number, max: number): number {

@@ -7,6 +7,7 @@ import {
 	position_band_rows,
 	position_history_runs,
 	position_percent,
+	search_term_rows,
 	sparkline_points,
 	type SnapshotSummary
 } from './seo_charts';
@@ -198,6 +199,18 @@ describe('bar rows', () => {
 				value_text: (2900).toLocaleString(),
 				detail: '#19'
 			}
+		]);
+	});
+
+	it('lists YouTube search terms with the watch hours they brought', () => {
+		expect(
+			search_term_rows([
+				{ term: 'syntax', views: 1200, minutes_watched: 5430 },
+				{ term: 'svelte 5', views: 80, minutes_watched: null }
+			]).map((row) => [row.label, row.value, row.detail])
+		).toEqual([
+			['syntax', 1200, '91 h'],
+			['svelte 5', 80, undefined]
 		]);
 	});
 });

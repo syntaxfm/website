@@ -7,13 +7,15 @@
 		build_stat_tiles,
 		build_tracked_rows,
 		opportunity_rows,
-		position_band_rows
+		position_band_rows,
+		search_term_rows
 	} from './seo_charts';
 	import StatTiles from './StatTiles.svelte';
 	import TrackedSearchChart from './TrackedSearchChart.svelte';
 	import {
 		format_count,
 		format_page,
+		format_percent,
 		format_position,
 		format_position_move,
 		format_result_types
@@ -112,6 +114,55 @@
 			<h2 class="h5">Where Syntax shows up for tracked searches</h2>
 			<TrackedSearchChart rows={tracked_rows} max_position={dashboard.max_position} />
 		</section>
+
+		{#if report.youtube_search_terms}
+			{@const search_terms = report.youtube_search_terms}
+			<section class="admin-section stack">
+				<h2 class="h5">
+					YouTube searches that led to Syntax videos, {search_terms.start_date} to {search_terms.end_date}
+					· {format_percent(
+						search_terms.total_views > 0
+							? search_terms.search_views / search_terms.total_views
+							: null
+					)} of views came from search
+				</h2>
+				<BarList rows={search_term_rows(search_terms.terms)} />
+			</section>
+
+			<details class="admin-section">
+				<summary
+					>YouTube searches for the {search_terms.videos.length} videos search found most</summary
+				>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>Video</th>
+								<th>Views from search</th>
+								<th>Top searches</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each search_terms.videos as video (video.video_id)}
+								<tr>
+									<td>
+										<a
+											href={`https://www.youtube.com/watch?v=${video.video_id}`}
+											target="_blank"
+											rel="noopener noreferrer external">{video.title ?? video.video_id}</a
+										>
+									</td>
+									<td>{format_count(video.search_views)}</td>
+									<td class="fs-1">
+										{video.terms.map((term) => `${term.term} (${term.views})`).join(', ')}
+									</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			</details>
+		{/if}
 
 		{#if dashboard.opportunities && dashboard.opportunities.on_topic.length > 0}
 			<section class="admin-section stack">

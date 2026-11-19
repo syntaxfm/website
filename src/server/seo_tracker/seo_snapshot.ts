@@ -1,6 +1,7 @@
 import { db } from '$server/db/client';
 import { seo_snapshot, show, video } from '$server/db/schema';
 import { get_id_from_url } from '#lib/videos/utils.ts';
+import { get_youtube_owner_token, YouTubeDisconnectedError } from '$server/video/youtube_owner';
 import { run_alexandria_calls, type AlexandriaCall, type AlexandriaOutcome } from './alexandria';
 import {
 	COMPETITOR_LIMIT,
@@ -26,7 +27,14 @@ import {
 	type SearchVolume,
 	type SyntaxIdentity
 } from './seo_parse';
-import type { GoogleSearchCheck, RankedKeyword, SeoCallError, SeoReport } from './seo_report';
+import type {
+	GoogleSearchCheck,
+	RankedKeyword,
+	SeoCallError,
+	SeoReport,
+	YoutubeSearchTerms
+} from './seo_report';
+import { fetch_youtube_search_terms, YoutubeAnalyticsError } from './youtube_search_terms';
 
 type PlannedCall = {
 	kind:
@@ -265,20 +273,60 @@ export function build_seo_report(
 }
 
 // Syntax's episodes and videos, so its YouTube videos count when they show up on Google
-async function load_syntax_identity(): Promise<SyntaxIdentity> {
+// Syntax's episodes and videos: their YouTube ids name the videos in YouTube Analytics
+async function load_syntax_identity(): Promise<{
+	syntax: SyntaxIdentity;
+	video_titles: Map<string, string>;
+}> {
 	const [shows, videos] = await Promise.all([
 		db.select({ title: show.title, youtube_url: show.youtube_url }).from(show),
 		db.select({ id: video.id, title: video.title }).from(video)
 	]);
+	const video_titles = new Map([
+		...shows.flatMap((row): [string, string][] => {
+			const video_id = get_id_from_url(row.youtube_url);
+			return video_id ? [[video_id, row.title]] : [];
+		}),
+		...videos.map((row): [string, string] => [row.id, row.title])
+	]);
 	return {
-		domain: SEO_TARGET_DOMAIN,
-		channel: SYNTAX_YOUTUBE_CHANNEL,
-		video_ids: new Set([
-			...videos.map((row) => row.id),
-			...shows.map((row) => get_id_from_url(row.youtube_url)).filter(Boolean)
-		]),
-		titles: new Set([...shows, ...videos].map((row) => normalize_title(row.title)).filter(Boolean))
+		syntax: {
+			domain: SEO_TARGET_DOMAIN,
+			channel: SYNTAX_YOUTUBE_CHANNEL,
+			video_ids: new Set(video_titles.keys()),
+			titles: new Set(
+				[...shows, ...videos].map((row) => normalize_title(row.title)).filter(Boolean)
+			)
+		},
+		video_titles
 	};
+}
+
+// A failure is recorded with the snapshot's errors, so it never loses the rest of the snapshot
+async function read_youtube_search_terms(
+	video_titles: ReadonlyMap<string, string>
+): Promise<{ terms: YoutubeSearchTerms | null; error: SeoCallError | null }> {
+	try {
+		const access_token = await get_youtube_owner_token();
+		return { terms: await fetch_youtube_search_terms(access_token, video_titles), error: null };
+	} catch (analytics_error) {
+		console.error('YouTube search terms failed', analytics_error);
+		return {
+			terms: null,
+			error: {
+				capability: 'youtube-analytics reports',
+				subject: 'Syntax channel',
+				code:
+					analytics_error instanceof YoutubeAnalyticsError
+						? analytics_error.code
+						: analytics_error instanceof YouTubeDisconnectedError
+							? 'youtube_disconnected'
+							: 'youtube_analytics_failed',
+				message:
+					analytics_error instanceof Error ? analytics_error.message : String(analytics_error)
+			}
+		};
+	}
 }
 
 export async function take_seo_snapshot(
@@ -290,7 +338,11 @@ export async function take_seo_snapshot(
 			api_key
 		);
 	const first_plans = plan_seo_calls();
-	const [first_outcomes, syntax] = await Promise.all([run(first_plans), load_syntax_identity()]);
+	const { syntax, video_titles } = await load_syntax_identity();
+	const [first_outcomes, search_terms] = await Promise.all([
+		run(first_plans),
+		read_youtube_search_terms(video_titles)
+	]);
 	const page_two_plans = plan_youtube_page_two(first_plans, first_outcomes);
 	const page_two_outcomes = page_two_plans.length > 0 ? await run(page_two_plans) : [];
 	const { report, errors, credits_cost } = build_seo_report(
@@ -298,6 +350,8 @@ export async function take_seo_snapshot(
 		[...first_outcomes, ...page_two_outcomes],
 		syntax
 	);
+	report.youtube_search_terms = search_terms.terms;
+	if (search_terms.error) errors.push(search_terms.error);
 	const [row] = await db
 		.insert(seo_snapshot)
 		.values({ credits_cost, report, errors })
