@@ -16,7 +16,7 @@
 	import komatsu from '$assets/komatsu.jpeg';
 </script>
 
-<main class="about">
+<div class="about">
 	<h1 class="h1 fv-700-i">About us</h1>
 
 	<div class="intro">
@@ -114,20 +114,19 @@
 			mastering music, she's passionate about making content sound and look its best.
 		</TeamMember>
 	</section>
-</main>
+</div>
 
 <style lang="postcss">
 	.about {
 		display: grid;
 		gap: 3rem;
-		max-width: 1000px;
-		margin-inline: auto;
 		margin-block-end: 4rem;
 	}
 
 	.intro {
 		display: grid;
 		gap: 1.25rem;
+		max-inline-size: 75ch;
 		font-size: var(--fs-5);
 		line-height: 1.7;
 
