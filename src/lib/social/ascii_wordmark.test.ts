@@ -13,6 +13,21 @@ describe('build_ascii_wordmark', () => {
 		expect(second.field_levels).not.toEqual(first.field_levels);
 	});
 
+	it('sets the caption right-aligned in the bottom row without moving the other dots', () => {
+		const plain = build_ascii_wordmark('footer');
+		const captioned = build_ascii_wordmark('footer', '1,234 ms');
+		const bottom_row = captioned.glyphs.slice(-captioned.columns).join('');
+		// A blank cell either side; the last cell is the right margin.
+		expect(bottom_row.slice(-11, -1)).toBe(' 1,234 ms ');
+		const caption_cells = captioned.kinds.filter((kind) => kind === 'caption');
+		// The text plus its blank cell either side.
+		expect(caption_cells).toHaveLength(' 1,234 ms '.length);
+
+		const untouched = plain.columns * (plain.rows - 1);
+		expect(captioned.glyphs.slice(0, untouched)).toEqual(plain.glyphs.slice(0, untouched));
+		expect(captioned.glyphs.at(-1)).toBe(plain.glyphs.at(-1));
+	});
+
 	it('fills every cell of the grid', () => {
 		const wordmark = build_ascii_wordmark('footer');
 		const cells = wordmark.columns * wordmark.rows;

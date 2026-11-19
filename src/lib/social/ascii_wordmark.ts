@@ -6,7 +6,7 @@
 
 import { make_rng, string_seed } from '#lib/utils/seeded_random.ts';
 
-export type WordmarkCellKind = 'letter' | 'trace' | 'field';
+export type WordmarkCellKind = 'letter' | 'trace' | 'field' | 'caption';
 
 export interface AsciiWordmark {
 	columns: number;
@@ -83,10 +83,24 @@ function letter_pixels(): { columns: number; pixels: Set<string> } {
 	return { columns, pixels };
 }
 
-export function build_ascii_wordmark(seed: string): AsciiWordmark {
+/**
+ * @param caption Text set into the dot field's bottom row, right-aligned, with a blank
+ * cell either side. Changing it never moves the dots elsewhere.
+ */
+export function build_ascii_wordmark(seed: string, caption = ''): AsciiWordmark {
 	const { columns, pixels } = letter_pixels();
 	const rows = MARGIN_TOP_ROWS + LETTER_ROWS + MARGIN_BOTTOM_ROWS;
 	const is_letter = (row: number, column: number) => pixels.has(`${row},${column}`);
+	const caption_glyphs = [...caption];
+	const caption_end = columns - MARGIN_COLUMNS;
+	const caption_start = caption_end - caption_glyphs.length;
+	const caption_at = (row: number, column: number) =>
+		row === rows - 1 &&
+		caption_glyphs.length > 0 &&
+		column >= caption_start - 1 &&
+		column <= caption_end
+			? (caption_glyphs[column - caption_start] ?? ' ')
+			: undefined;
 
 	// Traces: the letters' shadow one cell right and down, minus the letters themselves.
 	const traces = new Set<string>();
@@ -140,7 +154,16 @@ export function build_ascii_wordmark(seed: string): AsciiWordmark {
 				density = Math.max(density, 1 - distance / cloud.radius);
 			}
 			density += rng.range(-0.15, 0.15);
+			// Drawn even under the caption, so the caption never shifts the random stream.
 			const level = density > 0.55 ? 2 : density > 0.2 || rng() < 0.12 ? 1 : 0;
+			const caption_glyph = caption_at(row, column);
+			// Caption spaces stay caption cells, so the pointer glow never fills them.
+			if (caption_glyph !== undefined) {
+				kinds.push('caption');
+				glyphs.push(caption_glyph);
+				field_levels.push(0);
+				continue;
+			}
 			kinds.push('field');
 			glyphs.push(FIELD_RAMP[level]);
 			field_levels.push(level);
@@ -184,7 +207,7 @@ export function wordmark_layers(
 	wordmark: AsciiWordmark,
 	glyphs: readonly string[] = wordmark.glyphs
 ): WordmarkLayers {
-	const layers: WordmarkLayers = { letter: '', trace: '', field: '' };
+	const layers: WordmarkLayers = { letter: '', trace: '', field: '', caption: '' };
 	const kinds = Object.keys(layers) as WordmarkCellKind[];
 	wordmark.kinds.forEach((cell_kind, index) => {
 		const is_row_end = (index + 1) % wordmark.columns === 0 && index + 1 < wordmark.kinds.length;

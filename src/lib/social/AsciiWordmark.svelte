@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
+	import { page } from '$app/state';
 	import Collage from '#lib/collage/Collage.svelte';
 	import {
 		build_ascii_wordmark,
@@ -17,9 +19,21 @@
 	/** Per frame: the trail behind the pointer fades over about half a second. */
 	const HEAT_DECAY = 0.95;
 
+	/** The first Syntax episode, 2017-07-05. */
+	const SYNTAX_STARTED_AT = 1499256000000;
+	const COUNTER_MS = 50;
+	const REDUCED_MOTION_COUNTER_MS = 1000;
+
 	let shuffles = $state(0);
-	const seed = $derived(`syntax-footer-${shuffles}`);
-	const wordmark = $derived(build_ascii_wordmark(seed));
+	let now = $state(Date.now());
+	/** Only true while the card is on screen: the counter and decode only run then. */
+	let is_in_view = $state(false);
+	// Each page gets its own collage and dots; a click reshuffles on top of that.
+	const seed = $derived(`syntax-footer:${page.url.pathname}:${shuffles}`);
+	const caption = $derived(
+		`empowering developers for ${(now - SYNTAX_STARTED_AT).toLocaleString('en-US')} ms`
+	);
+	const wordmark = $derived(build_ascii_wordmark(seed, caption));
 	const settled = $derived(wordmark_layers(wordmark));
 	/** Set only while something is moving; otherwise the settled text renders. */
 	let frame = $state<WordmarkLayers | null>(null);
@@ -103,14 +117,11 @@
 		decode();
 	}
 
-	// Decode the first time the wordmark scrolls into view.
 	$effect(() => {
 		if (!card) return;
 		const observer = new IntersectionObserver(
 			(entries) => {
-				if (!entries.some((entry) => entry.isIntersecting)) return;
-				observer.disconnect();
-				decode();
+				is_in_view = entries.some((entry) => entry.isIntersecting);
 			},
 			{ threshold: 0.6 }
 		);
@@ -120,6 +131,24 @@
 			cancelAnimationFrame(animation_frame);
 		};
 	});
+
+	// Decode when the wordmark comes into view, and again on a new page if it's on screen.
+	let decoded_path = '';
+	$effect(() => {
+		const path = page.url.pathname;
+		if (!is_in_view || path === decoded_path) return;
+		decoded_path = path;
+		untrack(decode);
+	});
+
+	$effect(() => {
+		if (!is_in_view) return;
+		const interval = setInterval(
+			() => (now = Date.now()),
+			prefers_reduced_motion() ? REDUCED_MOTION_COUNTER_MS : COUNTER_MS
+		);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <button
@@ -127,6 +156,7 @@
 	class="ascii-wordmark"
 	aria-label="Shuffle the Syntax logo"
 	onclick={shuffle}
+	onpointerdown={warm}
 	onpointermove={warm}
 >
 	<span class="collage" aria-hidden="true">
@@ -136,6 +166,7 @@
 		<span class="layer field">{layers.field}</span>
 		<span class="layer trace">{layers.trace}</span>
 		<span class="layer letter">{layers.letter}</span>
+		<span class="layer caption">{layers.caption}</span>
 	</span>
 </button>
 
@@ -151,7 +182,9 @@
 		background: none;
 		font: inherit;
 		cursor: pointer;
-		touch-action: manipulation;
+
+		/* A sideways finger drag draws the glow trail; vertical drags still scroll. */
+		touch-action: pan-y;
 	}
 
 	.ascii-wordmark:focus-visible {
@@ -191,8 +224,13 @@
 	}
 
 	.letter,
-	.trace {
+	.trace,
+	.caption {
 		color: var(--c-yellow);
+	}
+
+	.caption {
+		font-variant-numeric: tabular-nums;
 	}
 
 	/* Side by side, █ glyphs leave hairline seams; a sliver of shadow fills them. */
