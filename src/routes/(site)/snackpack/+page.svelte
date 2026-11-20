@@ -47,8 +47,6 @@
 <style lang="postcss">
 	.past-issues {
 		container: past-issues / inline-size;
-		max-width: 1000px;
-		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(2rem, 5cqi, 3rem);
