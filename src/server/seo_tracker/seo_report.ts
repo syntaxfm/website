@@ -117,6 +117,46 @@ export type YoutubeSearchCheck = {
 	top_results?: YoutubeResult[];
 };
 
+// One show in Spotify's search results, as the snapshot saw it
+export type SpotifyShowResult = {
+	position: number;
+	name: string;
+	url: string;
+	publisher: string | null;
+	is_syntax: boolean;
+};
+
+// One episode in Spotify's search results, as the snapshot saw it
+export type SpotifyEpisodeResult = {
+	position: number;
+	title: string;
+	url: string;
+	show_name: string | null;
+	show_url: string | null;
+	// As Spotify shows it: "Oct 28", "Wednesday", "Dec 30, 2024"
+	published_text: string | null;
+	// "58 min 6 sec"
+	length_text: string | null;
+	description_snippet: string | null;
+	is_syntax: boolean;
+};
+
+// A tracked search on Spotify's search page, logged out. Snapshots before 2026-11-20 don't have it.
+export type SpotifySearchCheck = {
+	search: string;
+	// Syntax's show among the top 10 shows
+	syntax_show_position: number | null;
+	// Syntax's best episode among the top 30 episodes
+	syntax_episode_position: number | null;
+	syntax_episode_title: string | null;
+	syntax_episode_url: string | null;
+	top_shows: string[];
+	// Every show on the page. Left out of summaries, like top_results
+	show_results?: SpotifyShowResult[];
+	// The first SEARCH_RESULT_DETAIL_LENGTH episodes
+	top_results?: SpotifyEpisodeResult[];
+};
+
 export type YoutubeSearchTerm = {
 	term: string;
 	views: number;
@@ -166,6 +206,8 @@ export type SeoReport = {
 	backlinks: Backlinks | null;
 	google_searches: GoogleSearchCheck[];
 	youtube_searches: YoutubeSearchCheck[];
+	// Snapshots before 2026-11-20 don't have it
+	spotify_searches?: SpotifySearchCheck[];
 	// Snapshots before 2026-11-17 don't have it
 	demand?: SearchDemand[];
 	// Null when YouTube Analytics failed (see the snapshot's errors). Snapshots before 2026-11-19

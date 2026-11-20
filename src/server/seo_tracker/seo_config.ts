@@ -26,7 +26,15 @@ export const GOOGLE_MAX_POSITION = 100;
 // on 2026-11-18 "news" gave US networks (NBC, CNN, ABC, Fox) and two Canadian ones.
 export const YOUTUBE_MAX_POSITION = 40;
 
-// Searches checked on both Google and YouTube on every snapshot, chosen 2026-11-17 for the mission
+// Syntax's show on Spotify (open.spotify.com/show/…)
+export const SYNTAX_SPOTIFY_SHOW_ID = '4kYCRYJ3yK5DQbP5tbfZby';
+// Spotify's search page, read logged out through Firecrawl (1 credit), lists the top 10 shows and
+// the top 30 episodes in the order the Spotify app shows a new listener. Firecrawl loads it from a
+// US address. Spotify's developer API orders results its own way, so it isn't used.
+export const SPOTIFY_SHOW_MAX_POSITION = 10;
+export const SPOTIFY_EPISODE_MAX_POSITION = 30;
+
+// Searches checked on Google, YouTube and Spotify on every snapshot, chosen 2026-11-17 for the mission
 // "Videos and Podcasts about Development and AI Engineering". People search the topic, not
 // "podcast" ("web development podcast" gets 30 US searches a month), so most are topics. US monthly
 // Google searches and difficulty (0-100) from DataForSEO are in the comments.

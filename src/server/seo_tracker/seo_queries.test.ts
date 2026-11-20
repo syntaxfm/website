@@ -21,7 +21,7 @@ const seo_queries = await import('./seo_queries');
 
 const non_admin = { id: 'central-user-1', profile_id: 'profile-1', roles: [] };
 const admin = { ...non_admin, roles: ['admin'] };
-const search_input = { search: 'ai engineering', platform: 'both' as const, history_limit: 8 };
+const search_input = { search: 'ai engineering', platform: 'all' as const, history_limit: 8 };
 
 async function refusal_of(run: () => Promise<unknown>) {
 	try {

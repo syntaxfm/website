@@ -36,6 +36,7 @@ import type {
 	SeoReport,
 	YoutubeSearchTerms
 } from './seo_report';
+import { check_spotify_searches } from './spotify_search';
 import { fetch_youtube_search_terms, YoutubeAnalyticsError } from './youtube_search_terms';
 
 type PlannedCall = {
@@ -346,19 +347,24 @@ export async function take_seo_snapshot(
 		);
 	const first_plans = plan_seo_calls();
 	const { syntax, video_titles } = await load_syntax_identity();
-	const [first_outcomes, search_terms] = await Promise.all([
+	const [first_outcomes, search_terms, spotify] = await Promise.all([
 		run(first_plans),
-		read_youtube_search_terms(video_titles)
+		read_youtube_search_terms(video_titles),
+		check_spotify_searches(TRACKED_SEARCHES, api_key)
 	]);
 	const page_two_plans = plan_youtube_page_two(first_plans, first_outcomes);
 	const page_two_outcomes = page_two_plans.length > 0 ? await run(page_two_plans) : [];
-	const { report, errors, credits_cost } = build_seo_report(
+	const report_build = build_seo_report(
 		[...first_plans, ...page_two_plans],
 		[...first_outcomes, ...page_two_outcomes],
 		syntax
 	);
+	const { report, errors } = report_build;
+	const credits_cost = report_build.credits_cost + spotify.credits_cost;
 	report.youtube_search_terms = search_terms.terms;
 	if (search_terms.error) errors.push(search_terms.error);
+	report.spotify_searches = spotify.checks;
+	errors.push(...spotify.errors);
 	const [row] = await db
 		.insert(seo_snapshot)
 		.values({ credits_cost, report, errors })

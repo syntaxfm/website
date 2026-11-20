@@ -121,6 +121,32 @@ describe('compare_reports', () => {
 			{ search: 'svelte podcast', from: null, to: null, was_tracked: false }
 		]);
 	});
+
+	it('moves Spotify shows and episodes separately, from snapshots before Spotify too', () => {
+		const spotify = (show: number | null, episode: number | null) => ({
+			search: 'coding podcast',
+			syntax_show_position: show,
+			syntax_episode_position: episode,
+			syntax_episode_title: null,
+			syntax_episode_url: null,
+			top_shows: []
+		});
+		const comparison = compare_reports(
+			report({ spotify_searches: [spotify(null, 30)] }),
+			report({ spotify_searches: [spotify(4, 12)] }),
+			TOPICS
+		);
+		expect(comparison.spotify_shows).toEqual([
+			{ search: 'coding podcast', from: null, to: 4, was_tracked: true }
+		]);
+		expect(comparison.spotify_episodes).toEqual([
+			{ search: 'coding podcast', from: 30, to: 12, was_tracked: true }
+		]);
+		expect(
+			compare_reports(report({}), report({ spotify_searches: [spotify(4, 12)] }), TOPICS)
+				.spotify_episodes
+		).toEqual([{ search: 'coding podcast', from: null, to: 12, was_tracked: false }]);
+	});
 });
 
 describe('is_on_topic', () => {

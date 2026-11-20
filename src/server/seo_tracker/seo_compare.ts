@@ -1,4 +1,4 @@
-import type { RankedKeyword, SeoReport } from './seo_report';
+import type { RankedKeyword, SeoReport, SpotifySearchCheck } from './seo_report';
 
 // Smallest position change worth listing: Google positions wobble by one or two week to week
 export const MIN_POSITION_MOVE = 3;
@@ -41,6 +41,8 @@ export type SeoComparison = {
 	declined: KeywordMove[];
 	google: SearchMove[];
 	youtube: SearchMove[];
+	spotify_shows: SearchMove[];
+	spotify_episodes: SearchMove[];
 };
 
 function by_search_volume(a: KeywordMove, b: KeywordMove): number {
@@ -61,6 +63,17 @@ export function search_moves(
 			was_tracked: before !== undefined
 		};
 	});
+}
+
+/** Spotify checks as search_moves reads them: Syntax's show position, or its best episode's. */
+export function spotify_positions(
+	checks: readonly SpotifySearchCheck[],
+	list: 'show' | 'episode'
+): { search: string; syntax_position: number | null }[] {
+	return checks.map((check) => ({
+		search: check.search,
+		syntax_position: list === 'show' ? check.syntax_show_position : check.syntax_episode_position
+	}));
 }
 
 function is_worth_listing(move: KeywordMove, topic_names: readonly string[]): boolean {
@@ -127,7 +140,15 @@ export function compare_reports(
 		improved: top(improved),
 		declined: top(declined),
 		google: search_moves(previous.google_searches, current.google_searches),
-		youtube: search_moves(previous.youtube_searches, current.youtube_searches)
+		youtube: search_moves(previous.youtube_searches, current.youtube_searches),
+		spotify_shows: search_moves(
+			spotify_positions(previous.spotify_searches ?? [], 'show'),
+			spotify_positions(current.spotify_searches ?? [], 'show')
+		),
+		spotify_episodes: search_moves(
+			spotify_positions(previous.spotify_searches ?? [], 'episode'),
+			spotify_positions(current.spotify_searches ?? [], 'episode')
+		)
 	};
 }
 

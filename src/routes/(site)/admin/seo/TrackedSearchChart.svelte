@@ -9,27 +9,74 @@
 	} from './seo_format';
 	import PositionHistory from './PositionHistory.svelte';
 
-	// Each tracked search's position on Google and on YouTube, #1 on the left on a log scale.
+	// Each tracked search's position on Google, on YouTube and among Spotify's episodes, #1 on the
+	// left on a log scale.
 	// Searches where Syntax isn't in the results get a hollow marker in the next column, and the
 	// last column shows positions across snapshots.
 
 	let {
 		rows,
 		max_position
-	}: { rows: TrackedRow[]; max_position: { google: number; youtube: number } } = $props();
+	}: {
+		rows: TrackedRow[];
+		max_position: {
+			google: number;
+			youtube: number;
+			spotify_show: number;
+			spotify_episode: number;
+		};
+	} = $props();
 
 	const TICKS = [1, 3, 10, 20, 50, 100];
 	// The track runs to Google's depth; YouTube results stop well before it
 	let track_max = $derived(max_position.google);
 
-	type Platform = TrackedPlacement & { key: 'google' | 'youtube'; name: string; depth: number };
+	type Platform = TrackedPlacement & {
+		key: 'google' | 'youtube' | 'spotify';
+		name: string;
+		depth: number;
+		marker_title: string;
+	};
+
+	function marker_title(platform: Omit<Platform, 'marker_title'>, row: TrackedRow): string {
+		if (platform.key === 'spotify') {
+			const show =
+				row.spotify_show_position === null
+					? `show not in the top ${max_position.spotify_show}`
+					: `show ${format_position(row.spotify_show_position)}`;
+			const episode =
+				platform.position === null
+					? `no episode in the top ${platform.depth}`
+					: `episode ${format_position(platform.position)}`;
+			return [`Spotify: ${episode}, ${show}`, platform.title].filter(Boolean).join(' · ');
+		}
+		if (platform.position === null) return `${platform.name}: not in the top ${platform.depth}`;
+		const page = platform.key === 'google' && platform.url ? format_page(platform.url) : null;
+		return [`${platform.name}: ${format_position(platform.position)}`, page ?? platform.title]
+			.filter(Boolean)
+			.join(' · ');
+	}
 
 	let chart_rows = $derived(
 		rows.map((row) => {
-			const platforms: Platform[] = [
+			const placements: Omit<Platform, 'marker_title'>[] = [
 				{ ...row.google, key: 'google', name: 'Google', depth: max_position.google },
-				{ ...row.youtube, key: 'youtube', name: 'YouTube', depth: max_position.youtube }
+				{ ...row.youtube, key: 'youtube', name: 'YouTube', depth: max_position.youtube },
+				...(row.spotify
+					? [
+							{
+								...row.spotify,
+								key: 'spotify' as const,
+								name: 'Spotify episode',
+								depth: max_position.spotify_episode
+							}
+						]
+					: [])
 			];
+			const platforms: Platform[] = placements.map((platform) => ({
+				...platform,
+				marker_title: marker_title(platform, row)
+			}));
 			const demand = row.demand
 				? [
 						`${format_volume(row.demand.search_volume)} a month`,
@@ -47,24 +94,19 @@
 				.join(', ');
 			const has_history =
 				row.google_history.length > 1 &&
-				[...row.google_history, ...row.youtube_history].some((position) => position !== null);
+				[...row.google_history, ...row.youtube_history, ...row.spotify_history].some(
+					(position) => position !== null
+				);
 			return { ...row, platforms, demand, summary, has_history };
 		})
 	);
-
-	function marker_title(platform: Platform): string {
-		if (platform.position === null) return `${platform.name}: not in the top ${platform.depth}`;
-		const page = platform.key === 'google' && platform.url ? format_page(platform.url) : null;
-		return [`${platform.name}: ${format_position(platform.position)}`, page ?? platform.title]
-			.filter(Boolean)
-			.join(' · ');
-	}
 </script>
 
 <div class="tracked-chart">
 	<ul class="tracked-legend">
 		<li><span class="marker google"></span>Google</li>
 		<li><span class="marker youtube"></span>YouTube</li>
+		<li><span class="marker spotify"></span>Spotify episode</li>
 		<li><span class="marker google missing"></span>Not found</li>
 	</ul>
 
@@ -100,7 +142,7 @@
 							<span
 								class="marker-hit {platform.key}"
 								style:inset-inline-start="{position_percent(platform.position, track_max)}%"
-								title={marker_title(platform)}
+								title={platform.marker_title}
 							>
 								<span class="marker {platform.key}"></span>
 							</span>
@@ -110,7 +152,7 @@
 				<span class="tracked-missing" aria-hidden="true">
 					{#each row.platforms as platform (platform.key)}
 						{#if platform.position === null}
-							<span class="marker {platform.key} missing" title={marker_title(platform)}></span>
+							<span class="marker {platform.key} missing" title={platform.marker_title}></span>
 						{/if}
 					{/each}
 				</span>
@@ -119,6 +161,7 @@
 						<PositionHistory
 							google={row.google_history}
 							youtube={row.youtube_history}
+							spotify={row.spotify_history}
 							max={track_max}
 							label={`${row.search} over the last ${row.google_history.length} snapshots`}
 						/>
@@ -235,6 +278,10 @@
 		inset-block-end: -6px;
 	}
 
+	.marker-hit.spotify {
+		inset-block-start: 2px;
+	}
+
 	.marker {
 		display: inline-block;
 		flex: none;
@@ -243,7 +290,7 @@
 		box-shadow: 0 0 0 2px var(--c-bg);
 	}
 
-	/* Shape tells the two apart without color: Google round, YouTube square */
+	/* Shape tells them apart without color: Google round, YouTube square, Spotify a diamond */
 	.marker.google {
 		background: var(--c-chart-1);
 		border-radius: 50%;
@@ -254,6 +301,13 @@
 		border-radius: 2px;
 	}
 
+	.marker.spotify {
+		inline-size: 8px;
+		block-size: 8px;
+		background: var(--c-chart-3);
+		rotate: 45deg;
+	}
+
 	.marker.missing {
 		background: transparent;
 		border: 2px solid var(--c-chart-1);
@@ -261,6 +315,10 @@
 
 	.marker.youtube.missing {
 		border-color: var(--c-chart-2);
+	}
+
+	.marker.spotify.missing {
+		border-color: var(--c-chart-3);
 	}
 
 	.tracked-missing {

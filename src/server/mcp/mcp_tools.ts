@@ -450,7 +450,7 @@ const get_seo_overview = define_tool({
 const list_seo_searches = define_tool({
 	name: 'list_seo_searches',
 	description:
-		"Admin only. Start here for a topic: every tracked search (such as 'ai engineering') in one row: Syntax's Google and YouTube positions, their change since the previous snapshot (positive = moved up), monthly searches, difficulty, and Syntax's ranking page or video. Then use get_seo_search for one in depth.",
+		"Admin only. Start here for a topic: every tracked search (such as 'ai engineering') in one row: Syntax's Google and YouTube positions, its Spotify show and best episode positions (logged-out Spotify search: top 10 shows, top 30 episodes), their change since the previous snapshot (positive = moved up), monthly Google searches, difficulty, and Syntax's ranking page, video or episode. Then use get_seo_search for one in depth.",
 	access: 'admin',
 	is_read_only: true,
 	is_idempotent: true,
@@ -461,15 +461,15 @@ const list_seo_searches = define_tool({
 const get_seo_search = define_tool({
 	name: 'get_seo_search',
 	description:
-		"Admin only. One tracked search in depth, to see who outranks Syntax and why: Syntax's position over recent snapshots, and the latest top 10 results (YouTube: title, channel, views, length, age, description; Google: title, site, URL, description), Google's result types, and monthly demand. Snapshots before 2026-11-18 have only the top 3 names (results_detail_available: false).",
+		"Admin only. One tracked search in depth, to see who outranks Syntax and why: Syntax's position over recent snapshots, and the latest top 10 results (YouTube: title, channel, views, length, age, description; Google: title, site, URL, description; Spotify: the top 10 shows and top 10 episodes with show, date, length, description), Google's result types, and monthly demand. Snapshots before 2026-11-18 have only the top 3 names (results_detail_available: false); before 2026-11-20 there is no Spotify.",
 	access: 'admin',
 	is_read_only: true,
 	is_idempotent: true,
 	input: Schema.Struct({
 		search: text_input('The tracked search, exactly as list_seo_searches names it.'),
 		platform: Schema.optionalKey(
-			Schema.Literals(['google', 'youtube', 'both']).annotate({
-				description: 'Which results: google, youtube, or both (the default).'
+			Schema.Literals(['google', 'youtube', 'spotify', 'all']).annotate({
+				description: 'Which results: google, youtube, spotify, or all (the default).'
 			})
 		),
 		history_limit: Schema.optionalKey(
@@ -481,7 +481,7 @@ const get_seo_search = define_tool({
 	run: (actor, input) =>
 		seo_queries.get_seo_search(actor, {
 			search: input.search,
-			platform: input.platform ?? 'both',
+			platform: input.platform ?? 'all',
 			history_limit: input.history_limit ?? 8
 		})
 });

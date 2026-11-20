@@ -5,7 +5,12 @@ import { assert_admin_actor, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
 import { seo_snapshot } from '$server/db/schema';
 import { compare_reports, find_opportunities, niche_visibility } from './seo_compare';
-import { GOOGLE_MAX_POSITION, YOUTUBE_MAX_POSITION } from './seo_config';
+import {
+	GOOGLE_MAX_POSITION,
+	SPOTIFY_EPISODE_MAX_POSITION,
+	SPOTIFY_SHOW_MAX_POSITION,
+	YOUTUBE_MAX_POSITION
+} from './seo_config';
 import { searches_without_detail_sql } from './seo_queries';
 import { get_seo_topic_names } from './seo_topics';
 import { without_result_detail } from './seo_views';
@@ -13,6 +18,7 @@ import type {
 	DomainOverview,
 	GoogleSearchCheck,
 	SearchDemand,
+	SpotifySearchCheck,
 	YoutubeSearchCheck
 } from './seo_report';
 
@@ -39,6 +45,7 @@ export async function get_seo_dashboard(actor: Actor) {
 			// Without each search's result detail (~180 kB a snapshot), which the page doesn't show
 			google_searches: searches_without_detail_sql<GoogleSearchCheck>('google_searches'),
 			youtube_searches: searches_without_detail_sql<YoutubeSearchCheck>('youtube_searches'),
+			spotify_searches: searches_without_detail_sql<SpotifySearchCheck>('spotify_searches'),
 			demand: sql<SearchDemand[] | null>`${seo_snapshot.report} -> 'demand'`
 		})
 		.from(seo_snapshot)
@@ -56,7 +63,12 @@ export async function get_seo_dashboard(actor: Actor) {
 	return {
 		is_online: Boolean(FIRECRAWL_API_KEY),
 		// Positions are known this deep; past it a search counts as not found
-		max_position: { google: GOOGLE_MAX_POSITION, youtube: YOUTUBE_MAX_POSITION },
+		max_position: {
+			google: GOOGLE_MAX_POSITION,
+			youtube: YOUTUBE_MAX_POSITION,
+			spotify_show: SPOTIFY_SHOW_MAX_POSITION,
+			spotify_episode: SPOTIFY_EPISODE_MAX_POSITION
+		},
 		latest: latest ? { ...latest, report: without_result_detail(latest.report) } : null,
 		comparison:
 			latest && previous ? compare_reports(previous.report, latest.report, topic_names) : null,

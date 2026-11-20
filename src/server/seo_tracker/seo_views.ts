@@ -5,6 +5,7 @@ import {
 	OPPORTUNITY_POSITIONS,
 	MIN_OPPORTUNITY_SEARCH_VOLUME,
 	search_moves,
+	spotify_positions,
 	type SearchMove
 } from './seo_compare';
 import type {
@@ -16,6 +17,7 @@ import type {
 	RankedKeyword,
 	SearchDemand,
 	SeoReport,
+	SpotifySearchCheck,
 	YoutubeSearchCheck
 } from './seo_report';
 
@@ -30,6 +32,8 @@ export interface SnapshotSummary {
 	competitors: Competitor[];
 	google_searches: GoogleSearchCheck[];
 	youtube_searches: YoutubeSearchCheck[];
+	// Empty for snapshots before Spotify was tracked
+	spotify_searches: SpotifySearchCheck[];
 	demand: SearchDemand[] | null;
 }
 
@@ -38,8 +42,19 @@ export function without_result_detail(report: SeoReport): SeoReport {
 	return {
 		...report,
 		google_searches: report.google_searches.map(({ top_results: _detail, ...check }) => check),
-		youtube_searches: report.youtube_searches.map(({ top_results: _detail, ...check }) => check)
+		youtube_searches: report.youtube_searches.map(({ top_results: _detail, ...check }) => check),
+		...(report.spotify_searches
+			? {
+					spotify_searches: report.spotify_searches.map(
+						({ top_results: _detail, show_results: _shows, ...check }) => check
+					)
+				}
+			: {})
 	};
+}
+
+function moves_by_search(moves: readonly SearchMove[]): Map<string, SearchMove> {
+	return new Map(moves.map((move) => [move.search, move]));
 }
 
 function difference(current: number | null | undefined, previous: number | null | undefined) {
@@ -109,24 +124,29 @@ function position_change(move: SearchMove | undefined) {
 
 /** Every tracked search in one compact row: Syntax's positions, their change, and demand. */
 export function build_seo_search_rows(latest: SnapshotSummary, previous: SnapshotSummary | null) {
-	const google_moves = new Map(
-		search_moves(previous?.google_searches ?? [], latest.google_searches).map((move) => [
-			move.search,
-			move
-		])
+	const google_moves = moves_by_search(
+		search_moves(previous?.google_searches ?? [], latest.google_searches)
 	);
-	const youtube_moves = new Map(
-		search_moves(previous?.youtube_searches ?? [], latest.youtube_searches).map((move) => [
-			move.search,
-			move
-		])
+	const youtube_moves = moves_by_search(
+		search_moves(previous?.youtube_searches ?? [], latest.youtube_searches)
 	);
+	const spotify_moves = (list: 'show' | 'episode') =>
+		moves_by_search(
+			search_moves(
+				spotify_positions(previous?.spotify_searches ?? [], list),
+				spotify_positions(latest.spotify_searches, list)
+			)
+		);
+	const spotify_show_moves = spotify_moves('show');
+	const spotify_episode_moves = spotify_moves('episode');
 	const youtube = new Map(latest.youtube_searches.map((check) => [check.search, check]));
+	const spotify = new Map(latest.spotify_searches.map((check) => [check.search, check]));
 	const demand = new Map((latest.demand ?? []).map((row) => [row.search, row]));
 	const searches = [
 		...new Set([
 			...latest.google_searches.map((check) => check.search),
-			...latest.youtube_searches.map((check) => check.search)
+			...latest.youtube_searches.map((check) => check.search),
+			...latest.spotify_searches.map((check) => check.search)
 		])
 	];
 	const google = new Map(latest.google_searches.map((check) => [check.search, check]));
@@ -134,6 +154,8 @@ export function build_seo_search_rows(latest: SnapshotSummary, previous: Snapsho
 	return searches.map((search) => {
 		const google_move = google_moves.get(search);
 		const youtube_move = youtube_moves.get(search);
+		const spotify_show_move = spotify_show_moves.get(search);
+		const spotify_episode_move = spotify_episode_moves.get(search);
 		return {
 			search,
 			google_position: google.get(search)?.syntax_position ?? null,
@@ -142,21 +164,29 @@ export function build_seo_search_rows(latest: SnapshotSummary, previous: Snapsho
 			youtube_position: youtube.get(search)?.syntax_position ?? null,
 			youtube_previous_position: youtube_move?.from ?? null,
 			youtube_change: position_change(youtube_move),
+			spotify_show_position: spotify.get(search)?.syntax_show_position ?? null,
+			spotify_show_previous_position: spotify_show_move?.from ?? null,
+			spotify_show_change: position_change(spotify_show_move),
+			spotify_episode_position: spotify.get(search)?.syntax_episode_position ?? null,
+			spotify_episode_previous_position: spotify_episode_move?.from ?? null,
+			spotify_episode_change: position_change(spotify_episode_move),
 			search_volume: demand.get(search)?.search_volume ?? null,
 			keyword_difficulty: demand.get(search)?.keyword_difficulty ?? null,
 			google_url: google.get(search)?.syntax_url ?? null,
-			youtube_url: youtube.get(search)?.syntax_video_url ?? null
+			youtube_url: youtube.get(search)?.syntax_video_url ?? null,
+			spotify_episode_url: spotify.get(search)?.syntax_episode_url ?? null
 		};
 	});
 }
 
-export type SeoPlatform = 'google' | 'youtube' | 'both';
+export type SeoPlatform = 'google' | 'youtube' | 'spotify' | 'all';
 
 /** One snapshot's checks of one tracked search, newest snapshot first. */
 export interface SearchHistoryRow {
 	taken_at: Date;
 	google: GoogleSearchCheck | null;
 	youtube: YoutubeSearchCheck | null;
+	spotify: SpotifySearchCheck | null;
 }
 
 /**
@@ -172,11 +202,13 @@ export function build_seo_search_detail(
 	const [latest] = history;
 	const google = latest?.google;
 	const youtube = latest?.youtube;
+	const spotify = latest?.spotify;
 	const position_history = (read: (row: SearchHistoryRow) => number | null | undefined) =>
 		history.map((row) => ({ taken_at: row.taken_at, position: read(row) ?? null }));
+	const includes = (wanted: SeoPlatform) => platform === 'all' || platform === wanted;
 
 	return {
-		search: google?.search ?? youtube?.search ?? null,
+		search: google?.search ?? youtube?.search ?? spotify?.search ?? null,
 		taken_at: latest?.taken_at ?? null,
 		demand: demand
 			? {
@@ -185,7 +217,7 @@ export function build_seo_search_detail(
 					monthly_searches_oldest_first: demand.monthly
 				}
 			: null,
-		...(platform !== 'youtube' && google
+		...(includes('google') && google
 			? {
 					google: {
 						syntax_position: google.syntax_position,
@@ -199,7 +231,7 @@ export function build_seo_search_detail(
 					}
 				}
 			: {}),
-		...(platform !== 'google' && youtube
+		...(includes('youtube') && youtube
 			? {
 					youtube: {
 						syntax_position: youtube.syntax_position,
@@ -209,6 +241,22 @@ export function build_seo_search_detail(
 						top_channels: youtube.top_channels,
 						top_results: youtube.top_results ?? null,
 						position_history: position_history((row) => row.youtube?.syntax_position)
+					}
+				}
+			: {}),
+		...(includes('spotify') && spotify
+			? {
+					spotify: {
+						syntax_show_position: spotify.syntax_show_position,
+						syntax_episode_position: spotify.syntax_episode_position,
+						syntax_episode_title: spotify.syntax_episode_title,
+						syntax_episode_url: spotify.syntax_episode_url,
+						show_results: spotify.show_results ?? null,
+						top_episodes: spotify.top_results ?? null,
+						show_position_history: position_history((row) => row.spotify?.syntax_show_position),
+						episode_position_history: position_history(
+							(row) => row.spotify?.syntax_episode_position
+						)
 					}
 				}
 			: {})

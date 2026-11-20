@@ -11,6 +11,7 @@ import type {
 	GoogleSearchCheck,
 	RankedKeyword,
 	SearchDemand,
+	SpotifySearchCheck,
 	YoutubeSearchCheck
 } from './seo_report';
 import { get_seo_topic_names } from './seo_topics';
@@ -31,12 +32,15 @@ import {
 
 const NO_SNAPSHOT = 'No SEO snapshot has been taken yet.';
 
-type SearchList = 'google_searches' | 'youtube_searches';
+type SearchList = 'google_searches' | 'youtube_searches' | 'spotify_searches';
 
-/** A tracked-search list without each search's result detail (top_results), in stored order. */
+/**
+ * A tracked-search list without each search's result detail (top_results, and Spotify's
+ * show_results), in stored order. Empty for snapshots without the list.
+ */
 export function searches_without_detail_sql<Check>(list: SearchList): SQL<Check[]> {
 	return sql<Check[]>`coalesce((
-		select jsonb_agg(search_check.value - 'top_results' order by search_check.position)
+		select jsonb_agg(search_check.value - array['top_results', 'show_results'] order by search_check.position)
 		from jsonb_array_elements(${seo_snapshot.report} -> ${list}) with ordinality as search_check(value, position)
 	), '[]'::jsonb)`;
 }
@@ -62,6 +66,7 @@ async function read_latest_summaries(): Promise<SnapshotSummary[]> {
 			>`coalesce(${seo_snapshot.report} -> 'competitors', '[]'::jsonb)`,
 			google_searches: searches_without_detail_sql<GoogleSearchCheck>('google_searches'),
 			youtube_searches: searches_without_detail_sql<YoutubeSearchCheck>('youtube_searches'),
+			spotify_searches: searches_without_detail_sql<SpotifySearchCheck>('spotify_searches'),
 			demand: sql<SearchDemand[] | null>`${seo_snapshot.report} -> 'demand'`
 		})
 		.from(seo_snapshot)
@@ -118,6 +123,7 @@ export async function get_seo_search(actor: Actor, input: SeoSearchInput) {
 			taken_at: seo_snapshot.taken_at,
 			google: search_check_sql<GoogleSearchCheck>('google_searches', search),
 			youtube: search_check_sql<YoutubeSearchCheck>('youtube_searches', search),
+			spotify: search_check_sql<SpotifySearchCheck>('spotify_searches', search),
 			demand: search_check_sql<SearchDemand>('demand', search)
 		})
 		.from(seo_snapshot)
@@ -126,7 +132,7 @@ export async function get_seo_search(actor: Actor, input: SeoSearchInput) {
 
 	const [latest] = history;
 	if (!latest) error(404, NO_SNAPSHOT);
-	if (!latest.google && !latest.youtube) {
+	if (!latest.google && !latest.youtube && !latest.spotify) {
 		error(404, `"${input.search}" isn't a tracked search. list_seo_searches lists them.`);
 	}
 

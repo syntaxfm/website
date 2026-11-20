@@ -209,7 +209,7 @@ describe('answer_mcp_request', () => {
 		expect(server_functions.get_seo_search).not.toHaveBeenCalled();
 	});
 
-	it('looks up one tracked search for an admin, both platforms and 8 snapshots by default', async () => {
+	it('looks up one tracked search for an admin, all platforms and 8 snapshots by default', async () => {
 		signed_in_as(['admin']);
 		server_functions.get_seo_search.mockResolvedValue({ search: 'ai engineering' });
 		const client = await open_client();
@@ -219,7 +219,7 @@ describe('answer_mcp_request', () => {
 		expect(answer).toMatchObject({ is_error: false, result: { search: 'ai engineering' } });
 		expect(server_functions.get_seo_search).toHaveBeenCalledWith(
 			{ id: CENTRAL_USER_ID, profile_id: 'profile-1', roles: ['admin'] },
-			{ search: 'ai engineering', platform: 'both', history_limit: 8 }
+			{ search: 'ai engineering', platform: 'all', history_limit: 8 }
 		);
 	});
 

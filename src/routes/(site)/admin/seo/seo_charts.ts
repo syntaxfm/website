@@ -3,6 +3,7 @@ import type {
 	GoogleSearchCheck,
 	SearchDemand,
 	SeoReport,
+	SpotifySearchCheck,
 	YoutubeSearchCheck
 } from '$server/seo_tracker/seo_report';
 
@@ -16,6 +17,8 @@ export type SnapshotSummary = {
 	niche_visibility: number | null;
 	google_searches: GoogleSearchCheck[];
 	youtube_searches: YoutubeSearchCheck[];
+	// Empty for snapshots before Spotify was tracked
+	spotify_searches: SpotifySearchCheck[];
 };
 
 export type StatTile = {
@@ -163,9 +166,14 @@ export type TrackedRow = {
 	demand: SearchDemand | null;
 	google: TrackedPlacement;
 	youtube: TrackedPlacement;
+	// Syntax's best episode in Spotify's search; null when Spotify wasn't checked
+	spotify: TrackedPlacement | null;
+	// Syntax's show among Spotify's top shows
+	spotify_show_position: number | null;
 	// Oldest first, one per snapshot that tracked the search (null: not found that time)
 	google_history: (number | null)[];
 	youtube_history: (number | null)[];
+	spotify_history: (number | null)[];
 };
 
 function history_of(
@@ -181,14 +189,16 @@ function history_of(
 
 // One row per search tracked in the latest snapshot, with its position history
 export function build_tracked_rows(
-	report: Pick<SeoReport, 'google_searches' | 'youtube_searches' | 'demand'>,
+	report: Pick<SeoReport, 'google_searches' | 'youtube_searches' | 'spotify_searches' | 'demand'>,
 	newest_first: readonly SnapshotSummary[]
 ): TrackedRow[] {
 	const oldest_first = [...newest_first].reverse();
 	const youtube = new Map(report.youtube_searches.map((check) => [check.search, check]));
+	const spotify = new Map((report.spotify_searches ?? []).map((check) => [check.search, check]));
 	const demand = new Map((report.demand ?? []).map((entry) => [entry.search, entry]));
 	return report.google_searches.map((check) => {
 		const video = youtube.get(check.search);
+		const podcast = spotify.get(check.search);
 		return {
 			search: check.search,
 			demand: demand.get(check.search) ?? null,
@@ -202,8 +212,29 @@ export function build_tracked_rows(
 				url: video?.syntax_video_url ?? null,
 				title: video?.syntax_video_title ?? null
 			},
+			spotify: podcast
+				? {
+						position: podcast.syntax_episode_position,
+						url: podcast.syntax_episode_url,
+						title: podcast.syntax_episode_title
+					}
+				: null,
+			spotify_show_position: podcast?.syntax_show_position ?? null,
 			google_history: history_of(oldest_first, check.search, (summary) => summary.google_searches),
-			youtube_history: history_of(oldest_first, check.search, (summary) => summary.youtube_searches)
+			youtube_history: history_of(
+				oldest_first,
+				check.search,
+				(summary) => summary.youtube_searches
+			),
+			// Lined up with google_history: null where a snapshot had no Spotify check
+			spotify_history: oldest_first.flatMap((summary) =>
+				summary.google_searches.some((candidate) => candidate.search === check.search)
+					? [
+							summary.spotify_searches.find((candidate) => candidate.search === check.search)
+								?.syntax_episode_position ?? null
+						]
+					: []
+			)
 		};
 	});
 }

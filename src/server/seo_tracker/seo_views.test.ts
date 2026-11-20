@@ -1,9 +1,16 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 import google_fixture from './fixtures/google_organic.json';
 import youtube_fixture from './fixtures/youtube_search.json';
 import { parse_google_search, parse_youtube_search } from './seo_parse';
-import type { GoogleSearchCheck, RankedKeyword, SeoReport, YoutubeSearchCheck } from './seo_report';
+import type {
+	GoogleSearchCheck,
+	RankedKeyword,
+	SeoReport,
+	SpotifySearchCheck,
+	YoutubeSearchCheck
+} from './seo_report';
 import {
 	build_seo_opportunities,
 	build_seo_overview,
@@ -13,6 +20,9 @@ import {
 	without_result_detail,
 	type SnapshotSummary
 } from './seo_views';
+import { parse_spotify_search } from './spotify_search';
+
+const spotify_page = readFileSync(new URL('./fixtures/spotify_search.txt', import.meta.url), 'utf8');
 
 const SYNTAX_CHANNEL = { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' };
 const SYNTAX = {
@@ -60,6 +70,23 @@ function youtube(search: string, syntax_position: number | null): YoutubeSearchC
 	};
 }
 
+function spotify(
+	search: string,
+	syntax_show_position: number | null,
+	syntax_episode_position: number | null
+): SpotifySearchCheck {
+	return {
+		search,
+		syntax_show_position,
+		syntax_episode_position,
+		syntax_episode_title: null,
+		syntax_episode_url: syntax_episode_position
+			? `https://open.spotify.com/episode/${search}`
+			: null,
+		top_shows: ['Lex Fridman Podcast']
+	};
+}
+
 function summary(overrides: Partial<SnapshotSummary>): SnapshotSummary {
 	return {
 		taken_at: new Date('2026-11-17T15:00:00Z'),
@@ -68,6 +95,7 @@ function summary(overrides: Partial<SnapshotSummary>): SnapshotSummary {
 		competitors: [],
 		google_searches: [],
 		youtube_searches: [],
+		spotify_searches: [],
 		demand: null,
 		...overrides
 	};
@@ -137,11 +165,13 @@ describe('build_seo_search_rows', () => {
 	it('gives each tracked search its positions, their change and its demand', () => {
 		const previous = summary({
 			google_searches: [google('ai engineering', 15), google('vibe coding', null)],
-			youtube_searches: [youtube('ai engineering', 4)]
+			youtube_searches: [youtube('ai engineering', 4)],
+			spotify_searches: [spotify('ai engineering', null, 9)]
 		});
 		const latest = summary({
 			google_searches: [google('ai engineering', 12), google('vibe coding', 30)],
 			youtube_searches: [youtube('ai engineering', 6), youtube('vibe coding', null)],
+			spotify_searches: [spotify('ai engineering', 4, 5)],
 			demand: [
 				{ search: 'ai engineering', search_volume: 22200, keyword_difficulty: 42, monthly: [1, 2] }
 			]
@@ -156,10 +186,17 @@ describe('build_seo_search_rows', () => {
 				youtube_position: 6,
 				youtube_previous_position: 4,
 				youtube_change: -2,
+				spotify_show_position: 4,
+				spotify_show_previous_position: null,
+				spotify_show_change: null,
+				spotify_episode_position: 5,
+				spotify_episode_previous_position: 9,
+				spotify_episode_change: 4,
 				search_volume: 22200,
 				keyword_difficulty: 42,
 				google_url: 'https://syntax.fm/ai engineering',
-				youtube_url: null
+				youtube_url: null,
+				spotify_episode_url: 'https://open.spotify.com/episode/ai engineering'
 			},
 			{
 				search: 'vibe coding',
@@ -169,10 +206,17 @@ describe('build_seo_search_rows', () => {
 				youtube_position: null,
 				youtube_previous_position: null,
 				youtube_change: null,
+				spotify_show_position: null,
+				spotify_show_previous_position: null,
+				spotify_show_change: null,
+				spotify_episode_position: null,
+				spotify_episode_previous_position: null,
+				spotify_episode_change: null,
 				search_volume: null,
 				keyword_difficulty: null,
 				google_url: 'https://syntax.fm/vibe coding',
-				youtube_url: null
+				youtube_url: null,
+				spotify_episode_url: null
 			}
 		]);
 	});
@@ -189,12 +233,15 @@ describe('build_seo_search_detail', () => {
 		{
 			taken_at: new Date('2026-11-24T15:00:00Z'),
 			google: detailed_google,
-			youtube: detailed_youtube
+			youtube: detailed_youtube,
+			spotify: parse_spotify_search('ai engineering', spotify_page)
 		},
 		{
 			taken_at: new Date('2026-11-17T15:00:00Z'),
 			google: google('ai engineering', 4),
-			youtube: youtube('ai engineering', null)
+			youtube: youtube('ai engineering', null),
+			// Before Spotify was tracked
+			spotify: null
 		}
 	];
 	const demand = {
@@ -205,7 +252,7 @@ describe('build_seo_search_detail', () => {
 	};
 
 	it('shows the latest results in detail and the position over time', () => {
-		const detail = build_seo_search_detail(history, demand, 'both');
+		const detail = build_seo_search_detail(history, demand, 'all');
 
 		expect(detail).toMatchObject({
 			search: 'ai engineering',
@@ -231,6 +278,23 @@ describe('build_seo_search_detail', () => {
 			channel_name: 'JavaScript Conferences by GitNation',
 			view_count: 14344
 		});
+		expect(detail.spotify).toMatchObject({
+			syntax_show_position: null,
+			syntax_episode_position: 30,
+			episode_position_history: [
+				{ taken_at: history[0].taken_at, position: 30 },
+				{ taken_at: history[1].taken_at, position: null }
+			]
+		});
+		expect(detail.spotify?.show_results).toHaveLength(10);
+		expect(detail.spotify?.top_episodes?.[0]).toMatchObject({ show_name: 'Lex Fridman Podcast' });
+	});
+
+	it('shows only the platform asked for', () => {
+		const detail = build_seo_search_detail(history, demand, 'spotify');
+		expect(detail).toHaveProperty('spotify');
+		expect(detail).not.toHaveProperty('google');
+		expect(detail).not.toHaveProperty('youtube');
 	});
 
 	it('says when a snapshot predates result detail, and falls back to the top names', () => {
@@ -242,6 +306,7 @@ describe('build_seo_search_detail', () => {
 			top_results: null
 		});
 		expect(detail).not.toHaveProperty('youtube');
+		expect(detail).not.toHaveProperty('spotify');
 		expect(detail.demand).toBeNull();
 	});
 });
@@ -318,7 +383,8 @@ describe('without_result_detail', () => {
 			competitors: [],
 			backlinks: null,
 			google_searches: [parse_google_search('ai engineering', google_fixture, SYNTAX)],
-			youtube_searches: [parse_youtube_search('ai engineering', [youtube_fixture], SYNTAX_CHANNEL)]
+			youtube_searches: [parse_youtube_search('ai engineering', [youtube_fixture], SYNTAX_CHANNEL)],
+			spotify_searches: [parse_spotify_search('coding podcast', spotify_page)]
 		};
 
 		const stripped = without_result_detail(report);
@@ -328,5 +394,8 @@ describe('without_result_detail', () => {
 		expect(stripped.youtube_searches[0].top_channels).toEqual(
 			report.youtube_searches[0].top_channels
 		);
+		expect(stripped.spotify_searches?.[0]).not.toHaveProperty('top_results');
+		expect(stripped.spotify_searches?.[0]).not.toHaveProperty('show_results');
+		expect(stripped.spotify_searches?.[0].syntax_episode_position).toBe(30);
 	});
 });

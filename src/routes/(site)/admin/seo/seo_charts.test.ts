@@ -36,7 +36,8 @@ function summary(
 		referring_domains,
 		niche_visibility,
 		google_searches: [],
-		youtube_searches: []
+		youtube_searches: [],
+		spotify_searches: []
 	};
 }
 
@@ -55,6 +56,16 @@ const youtube_check = (search: string, syntax_position: number | null) => ({
 	syntax_video_title: null,
 	syntax_video_url: null,
 	top_channels: []
+});
+
+const spotify_check = (search: string, show: number | null, episode: number | null) => ({
+	search,
+	syntax_show_position: show,
+	syntax_episode_position: episode,
+	syntax_episode_title: episode === null ? null : 'Mourning the Death of Code',
+	syntax_episode_url:
+		episode === null ? null : 'https://open.spotify.com/episode/12g4lXEKt55L5R36tIvGAy',
+	top_shows: []
 });
 
 describe('build_stat_tiles', () => {
@@ -112,11 +123,12 @@ describe('position_percent', () => {
 });
 
 describe('build_tracked_rows', () => {
-	it('joins each search with its demand, YouTube result and history', () => {
+	it('joins each search with its demand, YouTube and Spotify results and history', () => {
 		const rows = build_tracked_rows(
 			{
 				google_searches: [google_check('vibe coding', 42)],
 				youtube_searches: [youtube_check('vibe coding', null)],
+				spotify_searches: [spotify_check('vibe coding', 7, 12)],
 				demand: [
 					{ search: 'vibe coding', search_volume: 110000, keyword_difficulty: 35, monthly: [] }
 				]
@@ -125,8 +137,10 @@ describe('build_tracked_rows', () => {
 				{
 					...summary(15, null, null),
 					google_searches: [google_check('vibe coding', 42)],
-					youtube_searches: [youtube_check('vibe coding', null)]
+					youtube_searches: [youtube_check('vibe coding', null)],
+					spotify_searches: [spotify_check('vibe coding', 7, 12)]
 				},
+				// Before Spotify was tracked
 				{
 					...summary(8, null, null),
 					google_searches: [google_check('vibe coding', null)],
@@ -152,10 +166,32 @@ describe('build_tracked_rows', () => {
 					title: null
 				},
 				youtube: { position: null, url: null, title: null },
+				spotify: {
+					position: 12,
+					url: 'https://open.spotify.com/episode/12g4lXEKt55L5R36tIvGAy',
+					title: 'Mourning the Death of Code'
+				},
+				spotify_show_position: 7,
 				google_history: [null, 42],
-				youtube_history: [18, null]
+				youtube_history: [18, null],
+				spotify_history: [null, 12]
 			}
 		]);
+	});
+
+	it('has no Spotify placement for a snapshot without Spotify', () => {
+		const [row] = build_tracked_rows(
+			{
+				google_searches: [google_check('vibe coding', 42)],
+				youtube_searches: [youtube_check('vibe coding', null)]
+			},
+			[{ ...summary(15, null, null), google_searches: [google_check('vibe coding', 42)] }]
+		);
+		expect(row).toMatchObject({
+			spotify: null,
+			spotify_show_position: null,
+			spotify_history: [null]
+		});
 	});
 });
 

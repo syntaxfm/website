@@ -114,10 +114,10 @@ Word-level timing inside an Utterance. Optional and very large (millions of rows
 ### Search tracking
 
 **SEO snapshot** (`seo_snapshot`):
-One saved reading of how syntax.fm shows up in search, taken from `/admin/seo`: the Google keywords it ranks for, its position on a fixed list of **Tracked searches** on Google and YouTube, competitors, and backlinks. Snapshots use identical settings so any two can be compared.
+One saved reading of how syntax.fm shows up in search, taken from `/admin/seo`: the Google keywords it ranks for, its position on a fixed list of **Tracked searches** on Google, YouTube and Spotify, competitors, and backlinks. Snapshots use identical settings so any two can be compared.
 
 **Tracked search**:
-A search phrase (`TRACKED_SEARCHES` in `src/server/seo_tracker/seo_config.ts`) checked on Google and YouTube in every SEO snapshot. Distinct from a **Tag**, though Tags decide which ranked keywords count as on topic.
+A search phrase (`TRACKED_SEARCHES` in `src/server/seo_tracker/seo_config.ts`) checked on Google, YouTube and Spotify in every SEO snapshot. On Spotify, Syntax has two positions: its show among the top shows, and its best episode among the top episodes. Distinct from a **Tag**, though Tags decide which ranked keywords count as on topic.
 
 ### Issue reports
 

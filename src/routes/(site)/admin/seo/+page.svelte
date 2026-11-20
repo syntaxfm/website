@@ -40,6 +40,12 @@
 	let youtube_moves = $derived(
 		new Map(dashboard.comparison?.youtube.map((move) => [move.search, move]) ?? [])
 	);
+	let spotify_show_moves = $derived(
+		new Map(dashboard.comparison?.spotify_shows.map((move) => [move.search, move]) ?? [])
+	);
+	let spotify_episode_moves = $derived(
+		new Map(dashboard.comparison?.spotify_episodes.map((move) => [move.search, move]) ?? [])
+	);
 
 	async function take_snapshot(): Promise<void> {
 		if (is_running) return;
@@ -277,6 +283,63 @@
 				</table>
 			</div>
 		</details>
+
+		{#if report.spotify_searches}
+			<details class="admin-section">
+				<summary>Spotify details</summary>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>Search</th>
+								<th>Show</th>
+								<th>Change</th>
+								<th>Best episode</th>
+								<th>Change</th>
+								<th>Syntax episode</th>
+								<th>Top 3 shows</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each report.spotify_searches as check (check.search)}
+								{@const show_move = spotify_show_moves.get(check.search)}
+								{@const episode_move = spotify_episode_moves.get(check.search)}
+								<tr>
+									<td>{check.search}</td>
+									<td>{format_position(check.syntax_show_position)}</td>
+									<td>
+										{show_move
+											? format_position_move(show_move.from, show_move.to, show_move.was_tracked)
+											: ''}
+									</td>
+									<td>{format_position(check.syntax_episode_position)}</td>
+									<td>
+										{episode_move
+											? format_position_move(
+													episode_move.from,
+													episode_move.to,
+													episode_move.was_tracked
+												)
+											: ''}
+									</td>
+									<td class="fs-1">
+										{#if check.syntax_episode_url}
+											<a
+												href={check.syntax_episode_url}
+												target="_blank"
+												rel="noopener noreferrer external"
+												>{check.syntax_episode_title ?? check.syntax_episode_url}</a
+											>
+										{/if}
+									</td>
+									<td class="fs-1">{check.top_shows.join(', ')}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			</details>
+		{/if}
 
 		{#if dashboard.opportunities}
 			<details class="admin-section">

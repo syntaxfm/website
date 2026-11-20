@@ -17,7 +17,7 @@ import type {
 // the response isn't usable, so the snapshot records that call as failed instead of storing zeros.
 
 const DATAFORSEO_OK = 20000;
-const TOP_LIST_LENGTH = 3;
+export const TOP_LIST_LENGTH = 3;
 // Results kept in detail per tracked search, so an agent can see what outranks Syntax and why.
 // They come in the same response, so they cost nothing extra (about 180 kB per snapshot).
 export const SEARCH_RESULT_DETAIL_LENGTH = 10;

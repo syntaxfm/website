@@ -1,22 +1,29 @@
 <script lang="ts">
 	import { position_history_runs } from './seo_charts';
 
-	// A tracked search's Google and YouTube positions across snapshots, #1 at the top
+	// A tracked search's Google, YouTube and Spotify episode positions across snapshots, #1 at the top
 
 	let {
 		google,
 		youtube,
+		spotify,
 		max,
 		label
-	}: { google: (number | null)[]; youtube: (number | null)[]; max: number; label: string } =
-		$props();
+	}: {
+		google: (number | null)[];
+		youtube: (number | null)[];
+		spotify: (number | null)[];
+		max: number;
+		label: string;
+	} = $props();
 
 	const WIDTH = 72;
 	const HEIGHT = 28;
 
 	let lines = $derived([
 		{ key: 'google', runs: position_history_runs(google, max, WIDTH, HEIGHT) },
-		{ key: 'youtube', runs: position_history_runs(youtube, max, WIDTH, HEIGHT) }
+		{ key: 'youtube', runs: position_history_runs(youtube, max, WIDTH, HEIGHT) },
+		{ key: 'spotify', runs: position_history_runs(spotify, max, WIDTH, HEIGHT) }
 	]);
 </script>
 
@@ -59,5 +66,13 @@
 
 	circle.youtube {
 		fill: var(--c-chart-2);
+	}
+
+	polyline.spotify {
+		stroke: var(--c-chart-3);
+	}
+
+	circle.spotify {
+		fill: var(--c-chart-3);
 	}
 </style>
