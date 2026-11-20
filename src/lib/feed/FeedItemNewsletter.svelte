@@ -21,10 +21,7 @@
 
 <article>
 	<div class="card">
-		<p class="sticker">
-			<img src={snack_box} alt="" width="500" height="500" loading="lazy" />
-			<span class="tag">Newsletter</span>
-		</p>
+		<img src={snack_box} alt="" width="500" height="500" loading="lazy" />
 		<h3 class="fv-700-i"><a href={resolve(`snackpack/${issue.id}`)}>{title}</a></h3>
 		<FeedByline {label} {published_at} />
 	</div>
@@ -46,9 +43,7 @@
 		--box-size: clamp(8.5rem, 15vw, 11rem);
 
 		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
+		display: flow-root;
 		padding: 2rem;
 		padding-inline-end: calc(var(--box-size) + 4rem);
 		border-radius: var(--br-medium);
@@ -56,11 +51,14 @@
 		background-image: var(--c-bg-grit-light);
 		color: var(--c-black);
 
-		/* The sticker moves up onto the top corner, so the text takes the whole width under it */
 		@media (--below-med) {
-			--box-size: 6.5rem;
+			--box-size: 6rem;
 
-			padding: 3.75rem 1.25rem 1.5rem;
+			padding: 1.5rem 1.25rem;
+		}
+
+		> :global(footer) {
+			margin-block-start: 12px;
 		}
 	}
 
@@ -93,43 +91,23 @@
 		outline-offset: 4px;
 	}
 
-	/* The snack box with a "Newsletter" tag stuck across its bottom, on the card's right edge.
-	   On a phone it hangs off the top corner. */
-	.sticker {
+	/* The snack box on the card's right edge. On a phone it hangs off the top corner and the
+	   title wraps round it. */
+	img {
 		position: absolute;
 		inset-block-start: 50%;
 		inset-inline-end: 2rem;
-		display: grid;
-		justify-items: center;
-		margin: 0;
-		translate: 0 -50%;
-
-		@media (--below-med) {
-			inset-block-start: -3.25rem;
-			inset-inline-end: 0.5rem;
-			translate: none;
-		}
-	}
-
-	img {
 		width: var(--box-size);
 		height: auto;
+		translate: 0 -50%;
 		rotate: 8deg;
 		transition: rotate 0.2s ease;
-	}
-
-	.tag {
-		align-self: start;
-		margin-block-start: -3rem;
-		padding: 4px 10px;
-		border-radius: var(--br-small);
-		background: var(--c-black);
-		color: var(--c-primary);
-		font-size: var(--fs-2);
-		rotate: -6deg;
 
 		@media (--below-med) {
-			margin-block-start: -1.5rem;
+			position: static;
+			float: inline-end;
+			margin: -2.75rem -0.75rem 0 0.5rem;
+			translate: none;
 		}
 	}
 
