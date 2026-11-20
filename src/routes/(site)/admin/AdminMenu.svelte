@@ -117,10 +117,6 @@
 				aria-current={page.url.pathname === link.path ? 'page' : undefined}>{link.text}</a
 			>
 		{/each}
-		<!-- Loaded on its own: this menu is in every visitor's bundle, the reporter only in admins' -->
-		{#await import('#lib/issue_reports/IssueReporter.svelte') then { default: IssueReporter }}
-			<IssueReporter />
-		{/await}
 	</div>
 
 	{#if show_subnav}

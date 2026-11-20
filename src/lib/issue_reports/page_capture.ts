@@ -1,21 +1,21 @@
-// What the Report button captures in the browser: a screenshot of the selected area (through the
-// browser's own tab capture, so it's exactly what the admin sees), the elements in it, and facts
-// about the page and the browser.
+// What the Report button captures in the browser: screenshots (drawn from the page itself, so they
+// work on phones too), the elements in the selected area, and facts about the page, the window and
+// the browser.
+import { domToCanvas } from 'modern-screenshot';
+import { browser_name, type ClientHints } from './browser_name';
+import { proxied_image_url } from './image_proxy';
 import {
 	MAX_SCREENSHOT_BYTES,
 	type IssueReportPage,
 	type PageElement,
 	type PageError,
+	type Screenshot,
 	type ScreenshotMediaType,
 	type ViewportRect
 } from './issue_report_schema';
 
-// Anything smaller is a click, which reports the whole viewport
+// Anything smaller is a click, which reports the whole screen
 const MIN_SELECTION_SIZE = 8;
-// Bigger screenshots are scaled down; Claude scales anything over ~1600px down anyway
-const MAX_SCREENSHOT_SIDE = 2560;
-// PNG keeps text sharp; photo-heavy areas are smaller as WebP or JPEG
-const MAX_PNG_BYTES = 1.5 * 1024 * 1024;
 const MAX_ELEMENTS = 12;
 // Points sampled per side of the selection, to find the elements in it
 const MAX_SAMPLES_PER_SIDE = 6;
@@ -23,7 +23,28 @@ const SAMPLE_SPACING = 80;
 // Svelte's scoped-style classes (svelte-1a2b3c) say nothing about the element
 const SVELTE_SCOPE_CLASS = /^svelte-[a-z0-9]+$/;
 
+// The reporter's own overlay and dialog carry `data-issue-reporter`, so they stay out of the
+// screenshots
+const REPORTER_ATTRIBUTE = 'data-issue-reporter';
+// Sharp enough for text on any screen, without making phone screenshots huge
+const MAX_SCREEN_SCALE = 2;
+// iOS Safari won't draw a canvas bigger than this many pixels, nor (anywhere) this wide or tall
+const MAX_CANVAS_AREA = 16_777_216;
+const MAX_CANVAS_SIDE = 16_384;
+// How long drawing waits for the page's images to finish loading, and for an asset to download.
+// Lazy images further down never load until scrolled to, so every draw waits this long for them.
+// Other sites' images come through the proxy, which has its own wait.
+const RENDER_TIMEOUT_MS = 2_000;
+// Taller pages get the slice around the screen: past this the image is too thin to read, and
+// phones run out of memory drawing it
+const MAX_FULL_PAGE_HEIGHT = 16_384;
+// PNG keeps text sharp; photo-heavy shots are smaller as WebP or JPEG
+const MAX_PNG_BYTES = 1.5 * 1024 * 1024;
+// Drawn on the full page: the selection solid, the screen dashed. A canvas color, not CSS.
+const OUTLINE_COLOR = '#ff2d55';
+
 type Point = { x: number; y: number };
+type Size = { width: number; height: number };
 
 export function rect_between(start: Point, end: Point): ViewportRect {
 	return {
@@ -145,18 +166,12 @@ export function page_error_from(event: ErrorEvent | PromiseRejectionEvent): Page
 }
 
 // User-Agent Client Hints, which only Chromium browsers have
-interface UserAgentData {
-	brands: { brand: string; version: string }[];
-	mobile: boolean;
-	platform: string;
-}
-
-function user_agent_data(): UserAgentData | null {
+function client_hints(): ClientHints | null {
 	const data: unknown = Reflect.get(navigator, 'userAgentData');
 	if (typeof data !== 'object' || data === null) return null;
 	if (!('brands' in data) || !Array.isArray(data.brands)) return null;
 	const brands = data.brands.filter(
-		(entry): entry is UserAgentData['brands'][number] =>
+		(entry): entry is ClientHints['brands'][number] =>
 			typeof entry === 'object' &&
 			entry !== null &&
 			typeof Reflect.get(entry, 'brand') === 'string' &&
@@ -169,11 +184,16 @@ function user_agent_data(): UserAgentData | null {
 	};
 }
 
-// "Google Chrome 142" rather than "Chromium" or the made-up "Not_A Brand"
-function primary_brand(brands: UserAgentData['brands']): string | null {
-	const real = brands.filter(({ brand }) => !/not.a.brand/i.test(brand));
-	const named = real.find(({ brand }) => brand !== 'Chromium') ?? real[0];
-	return named ? `${named.brand} ${named.version}` : null;
+/** The rows a full-page screenshot covers: the whole page, or a slice centered on the screen */
+export function full_page_rows(
+	scroll_y: number,
+	viewport_height: number,
+	document_height: number
+): IssueReportPage['full_page'] {
+	if (document_height <= MAX_FULL_PAGE_HEIGHT) return { top: 0, height: document_height };
+	const centered = scroll_y + viewport_height / 2 - MAX_FULL_PAGE_HEIGHT / 2;
+	const top = Math.round(Math.min(Math.max(0, centered), document_height - MAX_FULL_PAGE_HEIGHT));
+	return { top, height: MAX_FULL_PAGE_HEIGHT };
 }
 
 /** Everything about the page right now. Taken while the selection still matches the layout. */
@@ -186,21 +206,45 @@ export function collect_page({
 	selection: ViewportRect | null;
 	errors: PageError[];
 }): IssueReportPage {
-	const viewport = { width: innerWidth, height: innerHeight, device_pixel_ratio: devicePixelRatio };
-	const agent = user_agent_data();
+	const viewport = { width: innerWidth, height: innerHeight };
+	const document_size = {
+		width: document.documentElement.scrollWidth,
+		height: document.documentElement.scrollHeight
+	};
+	const scroll = { x: Math.round(scrollX), y: Math.round(scrollY) };
+	const hints = client_hints();
+	const is_touch = navigator.maxTouchPoints > 0;
 	return {
 		url: location.href,
 		route_id,
 		title: clip(document.title, 300),
 		captured_at: new Date().toISOString(),
-		viewport,
-		scroll: { x: Math.round(scrollX), y: Math.round(scrollY) },
+		window: {
+			viewport,
+			visual_viewport: visualViewport
+				? {
+						width: Math.round(visualViewport.width),
+						height: Math.round(visualViewport.height),
+						scale: visualViewport.scale
+					}
+				: null,
+			outer: { width: outerWidth, height: outerHeight },
+			screen: {
+				width: screen.width,
+				height: screen.height,
+				orientation: screen.orientation?.type ?? null
+			},
+			document: document_size,
+			device_pixel_ratio: devicePixelRatio
+		},
+		scroll,
+		full_page: full_page_rows(scroll.y, viewport.height, document_size.height),
 		selection,
 		browser: {
+			name: clip(browser_name(navigator.userAgent, hints, navigator.maxTouchPoints), 150),
 			user_agent: clip(navigator.userAgent, 500),
-			brand: agent ? primary_brand(agent.brands) : null,
-			platform: agent?.platform || null,
-			is_mobile: agent ? agent.mobile : null,
+			is_mobile: hints?.mobile ?? /Mobi|Android|iPhone|iPod/.test(navigator.userAgent),
+			is_touch,
 			language: navigator.language,
 			time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone
 		},
@@ -213,158 +257,277 @@ export function collect_page({
 	};
 }
 
-// --- Screenshot ---
+// --- Screenshots ---
 
-export interface TabCapture {
-	stream: MediaStream;
-	video: HTMLVideoElement;
+/** The largest scale up to `wanted` at which a canvas this size can still be drawn */
+export function fit_scale({ width, height }: Size, wanted: number): number {
+	return Math.min(
+		wanted,
+		Math.sqrt(MAX_CANVAS_AREA / (width * height)),
+		MAX_CANVAS_SIDE / width,
+		MAX_CANVAS_SIDE / height
+	);
 }
 
-// Chromium's options for offering this tab first; other browsers ignore them
-type TabCaptureOptions = DisplayMediaStreamOptions & {
-	preferCurrentTab?: boolean;
-	selfBrowserSurface?: 'include' | 'exclude';
-	surfaceSwitching?: 'include' | 'exclude';
-};
+function is_transparent(color: string): boolean {
+	return color === 'transparent' || /^rgba\(.*,\s*0\)$/.test(color);
+}
 
-/** Asks to capture this tab. Null when the browser can't, or the admin says no. */
-export async function start_tab_capture(): Promise<TabCapture | null> {
-	if (!navigator.mediaDevices?.getDisplayMedia) return null;
-	const options: TabCaptureOptions = {
-		video: { displaySurface: 'browser' },
-		audio: false,
-		preferCurrentTab: true,
-		selfBrowserSurface: 'include',
-		surfaceSwitching: 'exclude'
-	};
-	try {
-		const stream = await navigator.mediaDevices.getDisplayMedia(options);
-		const video = document.createElement('video');
-		video.muted = true;
-		video.playsInline = true;
-		video.srcObject = stream;
-		await video.play();
-		return { stream, video };
-	} catch (capture_error) {
-		console.error('The browser didn’t start a tab capture', capture_error);
-		return null;
+// The color behind the page, so the screenshots aren't transparent where the page is
+function page_background(): string {
+	for (const element of [document.body, document.documentElement]) {
+		const color = getComputedStyle(element).backgroundColor;
+		if (!is_transparent(color)) return color;
 	}
+	// Nothing paints it, so the page shows the browser's own color for its light or dark scheme
+	const probe = document.createElement('div');
+	probe.style.backgroundColor = 'Canvas';
+	document.documentElement.append(probe);
+	const canvas_color = getComputedStyle(probe).backgroundColor;
+	probe.remove();
+	return canvas_color;
 }
 
-export function stop_tab_capture({ stream, video }: TabCapture): void {
-	for (const track of stream.getTracks()) track.stop();
-	video.srcObject = null;
+function is_reporter(node: Node): boolean {
+	return node instanceof Element && node.hasAttribute(REPORTER_ATTRIBUTE);
 }
 
-function next_animation_frame(): Promise<void> {
-	return new Promise((resolve) => requestAnimationFrame(() => resolve()));
-}
-
-export interface CapturedFrame {
+export interface Rendered {
 	canvas: HTMLCanvasElement;
-	// The capture shows a tab (this one), so viewport positions map onto it
-	is_tab: boolean;
+	// Canvas pixels per CSS pixel
+	scale: number;
 }
 
-/**
- * The tab as it looks now. Call it once the selection overlay is gone: it waits for the page to
- * repaint and for the capture to catch up.
- */
-export async function grab_frame({ stream, video }: TabCapture): Promise<CapturedFrame | null> {
-	const [track] = stream.getVideoTracks();
-	if (!track || track.readyState === 'ended') return null;
-	await next_animation_frame();
-	await next_animation_frame();
-	await new Promise((resolve) => setTimeout(resolve, 200));
-	if (video.videoWidth === 0 || video.videoHeight === 0) return null;
-
-	const canvas = document.createElement('canvas');
-	canvas.width = video.videoWidth;
-	canvas.height = video.videoHeight;
-	canvas.getContext('2d')?.drawImage(video, 0, 0);
-	return { canvas, is_tab: track.getSettings().displaySurface === 'browser' };
+function read_data_url(blob: Blob): Promise<string> {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = () => resolve(String(reader.result));
+		reader.onerror = () => reject(reader.error ?? new Error('Could not read the image'));
+		reader.readAsDataURL(blob);
+	});
 }
 
-/**
- * Where the viewport sits in a captured frame. Usually all of it, but Chrome letterboxes the tab
- * when it changes size during the capture (the "sharing this tab" bar shrinks it).
- */
-export function viewport_in_frame(
-	frame: { width: number; height: number },
-	viewport: { width: number; height: number }
-): { x: number; y: number; scale: number } {
-	const scale = Math.min(frame.width / viewport.width, frame.height / viewport.height);
-	return {
-		x: (frame.width - viewport.width * scale) / 2,
-		y: (frame.height - viewport.height * scale) / 2,
-		scale
-	};
-}
-
-/** The selected part of the frame (all of it when there's no selection or it isn't this tab) */
-export function crop_frame(
-	frame: CapturedFrame,
-	selection: ViewportRect | null,
-	viewport: { width: number; height: number }
-): HTMLCanvasElement {
-	let source = { x: 0, y: 0, width: frame.canvas.width, height: frame.canvas.height };
-	if (selection && frame.is_tab) {
-		const placement = viewport_in_frame(frame.canvas, viewport);
-		source = {
-			x: placement.x + selection.x * placement.scale,
-			y: placement.y + selection.y * placement.scale,
-			width: selection.width * placement.scale,
-			height: selection.height * placement.scale
-		};
+// Other sites' images the browser won't share with the page come through the admin image proxy.
+// False: fetch it as usual.
+async function fetch_through_proxy(url: string): Promise<string | false> {
+	const proxied = proxied_image_url(url);
+	if (!proxied) return false;
+	try {
+		const response = await fetch(proxied);
+		return response.ok ? await read_data_url(await response.blob()) : false;
+	} catch (proxy_error) {
+		console.error(`Could not read ${url} through the image proxy`, proxy_error);
+		return false;
 	}
-	const scale = Math.min(1, MAX_SCREENSHOT_SIDE / Math.max(source.width, source.height));
-	const canvas = document.createElement('canvas');
-	canvas.width = Math.max(1, Math.round(source.width * scale));
-	canvas.height = Math.max(1, Math.round(source.height * scale));
-	canvas
-		.getContext('2d')
-		?.drawImage(
-			frame.canvas,
-			source.x,
-			source.y,
-			source.width,
-			source.height,
-			0,
-			0,
-			canvas.width,
-			canvas.height
+}
+
+/**
+ * The outermost elements wholly above or below the rows. Drawing keeps their boxes, so nothing
+ * moves, but skips what's inside them: a long page then draws (and fetches images for) only the
+ * part that shows. Empty boxes (display: contents) are looked inside.
+ */
+function elements_outside(top: number, height: number): WeakSet<Element> {
+	const outside = new WeakSet<Element>();
+	const bottom = top + height;
+	const visit = (parent: Element) => {
+		for (const child of parent.children) {
+			const rect = child.getBoundingClientRect();
+			const child_top = rect.top + scrollY;
+			const is_empty_box = rect.width === 0 && rect.height === 0;
+			if (!is_empty_box && (child_top >= bottom || child_top + rect.height <= top)) {
+				outside.add(child);
+			} else {
+				visit(child);
+			}
+		}
+	};
+	visit(document.body);
+	return outside;
+}
+
+// modern-screenshot fills its canvas with the background, but on Safari and Firefox it clears and
+// redraws the page to get images decoded, which wipes the fill: lay the drawing over it again
+function on_background(canvas: HTMLCanvasElement, color: string): HTMLCanvasElement {
+	const filled = document.createElement('canvas');
+	filled.width = canvas.width;
+	filled.height = canvas.height;
+	const context = filled.getContext('2d');
+	if (!context) return canvas;
+	context.fillStyle = color;
+	context.fillRect(0, 0, filled.width, filled.height);
+	context.drawImage(canvas, 0, 0);
+	return filled;
+}
+
+function is_fixed(node: Node): boolean {
+	return node instanceof Element && getComputedStyle(node).position === 'fixed';
+}
+
+/**
+ * Draws the rows from `top` down, `size` big. The body is pulled up by `top`, so position: fixed
+ * elements land where they'd be in a window that size, unless `without_fixed` leaves them out.
+ */
+async function render_rows(
+	size: Size,
+	{
+		top,
+		left,
+		scale: wanted_scale,
+		without_fixed
+	}: Record<'top' | 'left' | 'scale', number> & {
+		without_fixed: boolean;
+	}
+): Promise<Rendered> {
+	const scale = fit_scale(size, wanted_scale);
+	const outside = elements_outside(top, size.height);
+	const background = page_background();
+	const drawn = await domToCanvas(document.body, {
+		...size,
+		scale,
+		backgroundColor: background,
+		style: { marginTop: `${-top}px`, marginLeft: `${-left}px` },
+		filter: (node) =>
+			!is_reporter(node) &&
+			!(node.parentElement && outside.has(node.parentElement)) &&
+			!(without_fixed && is_fixed(node)),
+		fetchFn: fetch_through_proxy,
+		timeout: RENDER_TIMEOUT_MS
+	});
+	return { canvas: on_background(drawn, background), scale };
+}
+
+/** The visible screen, fixed bars included */
+export function render_screen(page: IssueReportPage): Promise<Rendered> {
+	const size = { width: document.documentElement.clientWidth, height: page.window.viewport.height };
+	return render_rows(size, {
+		top: page.scroll.y,
+		left: page.scroll.x,
+		scale: Math.min(page.window.device_pixel_ratio, MAX_SCREEN_SCALE),
+		without_fixed: false
+	});
+}
+
+/**
+ * The whole page (or its slice around the screen), at most 1 canvas pixel per CSS pixel. Fixed
+ * bars (the player) are left out: they'd land over the top of the page, and the screen has them.
+ */
+export function render_page(page: IssueReportPage): Promise<Rendered> {
+	const size = { width: page.window.document.width, height: page.full_page.height };
+	return render_rows(size, {
+		top: page.full_page.top,
+		left: 0,
+		scale: Math.min(page.window.device_pixel_ratio, 1),
+		without_fixed: true
+	});
+}
+
+/** Part of a rendered canvas, in CSS pixels */
+export function crop({ canvas, scale }: Rendered, rect: ViewportRect): HTMLCanvasElement {
+	const x = Math.max(0, Math.round(rect.x * scale));
+	const y = Math.max(0, Math.round(rect.y * scale));
+	const width = Math.max(1, Math.min(canvas.width - x, Math.round(rect.width * scale)));
+	const height = Math.max(1, Math.min(canvas.height - y, Math.round(rect.height * scale)));
+	const cropped = document.createElement('canvas');
+	cropped.width = width;
+	cropped.height = height;
+	cropped.getContext('2d')?.drawImage(canvas, x, y, width, height, 0, 0, width, height);
+	return cropped;
+}
+
+/** Marks where the screen (dashed) and the selection (solid) were on the full page */
+export function outline_on_page({ canvas, scale }: Rendered, page: IssueReportPage): void {
+	const context = canvas.getContext('2d');
+	if (!context) return;
+	const line = Math.max(2, Math.round(3 * scale));
+	context.strokeStyle = OUTLINE_COLOR;
+	context.lineWidth = line;
+	const x = page.scroll.x;
+	const y = page.scroll.y - page.full_page.top;
+	const { width, height } = page.window.viewport;
+	context.setLineDash([line * 4, line * 3]);
+	context.strokeRect(x * scale, y * scale, width * scale, height * scale);
+	if (page.selection) {
+		context.setLineDash([]);
+		const selected = page.selection;
+		context.strokeRect(
+			(x + selected.x) * scale,
+			(y + selected.y) * scale,
+			selected.width * scale,
+			selected.height * scale
 		);
-	return canvas;
+	}
 }
 
 function canvas_blob(canvas: HTMLCanvasElement, type: string, quality?: number) {
 	return new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, quality));
 }
 
-export async function encode_screenshot(
-	canvas: HTMLCanvasElement
-): Promise<{ blob: Blob; media_type: ScreenshotMediaType }> {
-	const attempts: [ScreenshotMediaType, number | undefined, number][] = [
-		['image/png', undefined, MAX_PNG_BYTES],
-		['image/webp', 0.92, MAX_SCREENSHOT_BYTES],
-		['image/jpeg', 0.85, MAX_SCREENSHOT_BYTES]
-	];
-	for (const [media_type, quality, max_bytes] of attempts) {
-		const blob = await canvas_blob(canvas, media_type, quality);
-		// A browser that can't write the type hands back a PNG instead
-		if (blob && blob.type === media_type && blob.size <= max_bytes) return { blob, media_type };
-	}
-	throw new Error('The screenshot is too big to send, even as a JPEG');
+function scaled_down(canvas: HTMLCanvasElement, factor: number): HTMLCanvasElement {
+	const smaller = document.createElement('canvas');
+	smaller.width = Math.max(1, Math.round(canvas.width * factor));
+	smaller.height = Math.max(1, Math.round(canvas.height * factor));
+	smaller.getContext('2d')?.drawImage(canvas, 0, 0, smaller.width, smaller.height);
+	return smaller;
 }
 
-export function blob_to_base64(blob: Blob): Promise<string> {
-	return new Promise((resolve, reject) => {
-		const reader = new FileReader();
-		reader.onload = () => {
-			const data_url = String(reader.result);
-			resolve(data_url.slice(data_url.indexOf(',') + 1));
-		};
-		reader.onerror = () => reject(reader.error ?? new Error('Could not read the screenshot'));
-		reader.readAsDataURL(blob);
-	});
+async function blob_to_base64(blob: Blob): Promise<string> {
+	const data_url = await read_data_url(blob);
+	return data_url.slice(data_url.indexOf(',') + 1);
+}
+
+/**
+ * The screen and the selection on it. `preview` shows in the dialog: the selection, or the screen
+ * after a click.
+ */
+export async function screen_screenshots(page: IssueReportPage): Promise<{
+	selection: Screenshot | null;
+	screen: Screenshot;
+	preview: Blob;
+}> {
+	const rendered = await render_screen(page);
+	const screen = await encode_screenshot(rendered.canvas, 'sharp');
+	if (!page.selection) return { selection: null, screen: screen.screenshot, preview: screen.blob };
+	const selection = await encode_screenshot(crop(rendered, page.selection), 'sharp');
+	return { selection: selection.screenshot, screen: screen.screenshot, preview: selection.blob };
+}
+
+/** The whole page with the screen and selection outlined, or null when it can't be drawn */
+export async function full_page_screenshot(page: IssueReportPage): Promise<Screenshot | null> {
+	try {
+		const rendered = await render_page(page);
+		outline_on_page(rendered, page);
+		return (await encode_screenshot(rendered.canvas, 'photo')).screenshot;
+	} catch (render_error) {
+		console.error('Could not draw the full page for the issue report', render_error);
+		return null;
+	}
+}
+
+/**
+ * The smallest good-looking file under the size limit. `sharp` (selections, screens) tries PNG
+ * first; the full page goes straight to WebP or JPEG. Scales down until it fits.
+ */
+export async function encode_screenshot(
+	canvas: HTMLCanvasElement,
+	kind: 'sharp' | 'photo'
+): Promise<{ screenshot: Screenshot; blob: Blob }> {
+	type Attempt = [ScreenshotMediaType, number | undefined, number];
+	const lossy: Attempt[] = [
+		['image/webp', 0.85, MAX_SCREENSHOT_BYTES],
+		['image/jpeg', 0.8, MAX_SCREENSHOT_BYTES]
+	];
+	const png: Attempt = ['image/png', undefined, MAX_PNG_BYTES];
+	const attempts = kind === 'sharp' ? [png, ...lossy] : lossy;
+	let source = canvas;
+	for (let shrink = 0; shrink < 4; shrink++) {
+		for (const [media_type, quality, max_bytes] of attempts) {
+			const blob = await canvas_blob(source, media_type, quality);
+			// A browser that can't write the type hands back a PNG instead
+			if (blob && blob.type === media_type && blob.size <= max_bytes) {
+				return { screenshot: { media_type, base64: await blob_to_base64(blob) }, blob };
+			}
+		}
+		source = scaled_down(source, 0.7);
+	}
+	throw new Error('The screenshot is too big to send, even scaled down');
 }

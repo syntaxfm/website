@@ -1,32 +1,41 @@
 <script lang="ts">
-	// The admin menu's Report button: capture this tab, drag over the area to report (a click takes
-	// the whole viewport), write what needs to change, and it's filed as a GitHub issue.
+	// The admins' Report tab: drag over the area to report (a tap or click takes the whole screen),
+	// write what needs to change, and it's filed as a GitHub issue with screenshots of the
+	// selection, the screen and the full page.
 	import { tick } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import { page } from '$app/state';
 	import { error_message as message_of } from '#lib/utils/error_message.ts';
 	import IssueReportDialog from './IssueReportDialog.svelte';
 	import { file_report } from './issue_report.remote';
-	import type { FiledIssue, IssueReport, PageError, ViewportRect } from './issue_report_schema';
+	import type {
+		FiledIssue,
+		IssueReportPage,
+		PageError,
+		Screenshot,
+		ViewportRect
+	} from './issue_report_schema';
 	import {
-		blob_to_base64,
 		collect_page,
-		crop_frame,
-		encode_screenshot,
-		grab_frame,
+		full_page_screenshot,
 		is_click,
 		page_error_from,
 		rect_between,
-		start_tab_capture,
-		stop_tab_capture,
-		type TabCapture
+		screen_screenshots
 	} from './page_capture';
 
-	type Stage = 'idle' | 'starting' | 'selecting' | 'capturing' | 'writing';
+	type Stage = 'idle' | 'selecting' | 'capturing' | 'writing';
 	type Filing =
 		| { id: number; status: 'filing' }
 		| { id: number; status: 'filed'; issue: FiledIssue };
-	type Draft = Omit<IssueReport, 'request'> & { preview_url: string | null };
+	interface Draft {
+		page: IssueReportPage;
+		selection: Screenshot | null;
+		screen: Screenshot | null;
+		// Drawn while the admin writes
+		full_page: Promise<Screenshot | null>;
+		preview_url: string | null;
+	}
 
 	// Script errors are worth knowing about in a report; the last few are kept
 	const MAX_PAGE_ERRORS = 10;
@@ -39,7 +48,6 @@
 	let error_message = $state('');
 	let filings = $state<Filing[]>([]);
 
-	let tab_capture: TabCapture | null = null;
 	let drag_start: { x: number; y: number } | null = null;
 	let next_filing_id = 0;
 	const page_errors: PageError[] = [];
@@ -57,24 +65,16 @@
 		error_message = '';
 	}
 
-	async function start_report() {
+	function start_report() {
 		if (stage !== 'idle') return;
 		discard_draft();
-		stage = 'starting';
-		tab_capture = await start_tab_capture();
 		selection = null;
 		stage = 'selecting';
-	}
-
-	function end_capture() {
-		if (tab_capture) stop_tab_capture(tab_capture);
-		tab_capture = null;
 	}
 
 	function cancel_selection(event: Event) {
 		event.preventDefault();
 		drag_start = null;
-		end_capture();
 		stage = 'idle';
 	}
 
@@ -108,31 +108,27 @@
 	async function capture(rect: ViewportRect | null) {
 		stage = 'capturing';
 		selection = null;
-		// The overlay leaves the page before the frame is grabbed
+		// The overlay leaves the page before anything is measured or drawn
 		await tick();
-
-		const frame = tab_capture ? await grab_frame(tab_capture) : null;
-		// Before the capture ends: the "sharing this tab" bar going away changes the layout
 		const page_facts = collect_page({
 			route_id: page.route.id,
 			selection: rect,
 			errors: [...page_errors]
 		});
-		end_capture();
 
-		let screenshot: Draft['screenshot'] = null;
-		let preview_url: string | null = null;
-		if (frame) {
-			try {
-				const encoded = await encode_screenshot(crop_frame(frame, rect, page_facts.viewport));
-				screenshot = { media_type: encoded.media_type, base64: await blob_to_base64(encoded.blob) };
-				preview_url = URL.createObjectURL(encoded.blob);
-			} catch (screenshot_error) {
-				console.error('Could not make the issue report screenshot', screenshot_error);
-			}
+		let shots: Pick<Draft, 'selection' | 'screen' | 'preview_url'> = {
+			selection: null,
+			screen: null,
+			preview_url: null
+		};
+		try {
+			const { preview, ...screenshots } = await screen_screenshots(page_facts);
+			shots = { ...screenshots, preview_url: URL.createObjectURL(preview) };
+		} catch (screen_error) {
+			console.error('Could not draw the screen for the issue report', screen_error);
 		}
 
-		draft = { screenshot, page: page_facts, preview_url };
+		draft = { page: page_facts, ...shots, full_page: full_page_screenshot(page_facts) };
 		stage = 'writing';
 	}
 
@@ -154,7 +150,11 @@
 		try {
 			const issue = await file_report({
 				request: submitted_request,
-				screenshot: submitted.screenshot,
+				screenshots: {
+					selection: submitted.selection,
+					screen: submitted.screen,
+					page: await submitted.full_page
+				},
 				page: submitted.page
 			});
 			filings = filings
@@ -183,9 +183,11 @@
 
 <svelte:window onerror={record_error} onunhandledrejection={record_error} />
 
-<div class="issue-reporter">
-	<button type="button" onclick={start_report} disabled={stage !== 'idle'}>Report</button>
+<div class="issue-reporter" data-issue-reporter>
 	<output>
+		{#if stage === 'capturing'}
+			<span>Capturing…</span>
+		{/if}
 		{#each filings as filing (filing.id)}
 			{#if filing.status === 'filing'}
 				<span>Filing…</span>
@@ -196,12 +198,14 @@
 			{/if}
 		{/each}
 	</output>
+	<button type="button" onclick={start_report} disabled={stage !== 'idle'}>Report</button>
 </div>
 
 {#if stage === 'selecting'}
 	<dialog
 		class="issue-report-selector"
 		aria-label="Select the area to report"
+		data-issue-reporter
 		{@attach show_modal}
 		oncancel={cancel_selection}
 		onpointerdown={begin_selection}
@@ -232,35 +236,34 @@
 {/if}
 
 <style>
-	/* At the end of the admin menu, and still in view when the menu scrolls sideways on phones */
-
-	/* It reaches over the menu's end padding, so links scrolling under it don't show past it */
+	/*
+		A tab on the right edge, halfway down, so it's in reach wherever the admin has scrolled to, on
+		a phone too, and clear of the header and the player. Above the site's own layers (Nav is 60).
+	*/
 	.issue-reporter {
-		position: sticky;
-		inset-inline-end: calc(var(--pad-medium) * -1);
+		position: fixed;
+		inset-inline-end: 0;
+		inset-block-start: 50%;
+		z-index: 70;
 		display: flex;
 		align-items: center;
-		gap: var(--pad-small);
-		margin-inline: auto calc(var(--pad-medium) * -1);
-		padding-inline: var(--pad-small) var(--pad-medium);
-		background-color: var(--c-bg);
+		gap: var(--pad-xsmall);
+		translate: 0 -50%;
 	}
 
 	button {
-		padding: 0;
-		font-size: var(--fs-2);
-		line-height: inherit;
-		color: var(--c-fg-7);
+		padding: var(--pad-small) var(--pad-xsmall);
+		font-size: var(--fs-1);
+		line-height: 1;
+		color: var(--c-bg);
 		white-space: nowrap;
-		background: none;
-		text-underline-offset: var(--pad-xsmall);
+		writing-mode: vertical-rl;
+		background-color: var(--c-fg);
+		border-radius: var(--br-small) 0 0 var(--br-small);
+		box-shadow: var(--s-graphic);
 
-		&:hover,
-		&:focus-visible {
-			color: var(--c-fg);
-			text-decoration: underline;
-			text-decoration-color: var(--c-primary);
-			background: none;
+		&:hover {
+			background-color: var(--c-fg-8);
 		}
 
 		&:focus-visible {
@@ -275,13 +278,20 @@
 
 	output {
 		display: flex;
-		gap: var(--pad-small);
-		font-size: var(--fs-2);
-		color: var(--c-fg-7);
-		white-space: nowrap;
+		flex-direction: column;
+		align-items: end;
+		gap: var(--pad-xsmall);
+
+		& > * {
+			padding: var(--pad-xsmall) var(--pad-small);
+			font-size: var(--fs-1);
+			color: var(--c-bg);
+			white-space: nowrap;
+			background-color: var(--c-fg);
+			border-radius: var(--br-small);
+		}
 
 		a {
-			color: var(--c-fg);
 			text-decoration-color: var(--c-primary);
 		}
 	}

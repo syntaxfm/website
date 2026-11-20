@@ -46,6 +46,7 @@
 <dialog
 	class="admin issue-report-dialog"
 	aria-labelledby="{uid}-label"
+	data-issue-reporter
 	{@attach show_modal}
 	oncancel={handle_cancel}
 >

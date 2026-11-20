@@ -1,40 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { IssueReport } from '#lib/issue_reports/issue_report_schema.ts';
+import { SAMPLE_REPORT } from '#lib/issue_reports/issue_report.fixture.ts';
 
 vi.mock('$app/env/private', () => ({ OPENROUTER_API_KEY: 'test-key' }));
 
 const { build_triage_request } = await import('./triage');
 
-const report: IssueReport = {
-	request: 'The logo is cut off',
-	screenshot: { media_type: 'image/png', base64: 'iVBORw0KGgo=' },
-	page: {
-		url: 'https://beta.syntax.fm/',
-		route_id: '/(site)',
-		title: 'Syntax',
-		captured_at: '2026-11-20T18:00:00.000Z',
-		viewport: { width: 390, height: 844, device_pixel_ratio: 3 },
-		scroll: { x: 0, y: 0 },
-		selection: null,
-		browser: {
-			user_agent: 'Mozilla/5.0',
-			brand: null,
-			platform: null,
-			is_mobile: null,
-			language: 'en-US',
-			time_zone: 'America/Denver'
-		},
-		color_scheme: 'light',
-		theme: null,
-		reduced_motion: false,
-		elements: [],
-		errors: []
-	}
-};
-
 describe('build_triage_request', () => {
 	it('asks Opus 5.5 at medium effort for the issue as strict JSON', () => {
-		const request = build_triage_request(report);
+		const request = build_triage_request(SAMPLE_REPORT);
 		expect(request.model).toBe('anthropic/claude-opus-5.5');
 		expect(request.reasoning).toEqual({ effort: 'medium' });
 		expect(request.response_format.json_schema.strict).toBe(true);
@@ -43,18 +16,33 @@ describe('build_triage_request', () => {
 		);
 	});
 
-	it('sends the screenshot as an image, then the request and page facts', () => {
-		const [, user] = build_triage_request(report).messages;
+	it('sends the selection and the screen, named, then the request and page facts', () => {
+		const [, user] = build_triage_request(SAMPLE_REPORT).messages;
 		expect(user.content).toEqual([
-			{ type: 'image_url', image_url: { url: 'data:image/png;base64,iVBORw0KGgo=' } },
-			{ type: 'text', text: expect.stringContaining('<request>\nThe logo is cut off\n</request>') }
+			{ type: 'text', text: 'The selected area:' },
+			{ type: 'image_url', image_url: { url: 'data:image/png;base64,c2VsZWN0aW9u' } },
+			{ type: 'text', text: 'The whole screen:' },
+			{ type: 'image_url', image_url: { url: 'data:image/png;base64,c2NyZWVu' } },
+			{
+				type: 'text',
+				text: expect.stringContaining('<request>\nThis title is busted on my phone')
+			}
 		]);
 	});
 
-	it('says so when there is no screenshot', () => {
-		const [, user] = build_triage_request({ ...report, screenshot: null }).messages;
+	it('leaves the tall full page out', () => {
+		const [, user] = build_triage_request(SAMPLE_REPORT).messages;
+		expect(JSON.stringify(user.content)).not.toContain('cGFnZQ==');
+	});
+
+	it('says so when the browser drew nothing', () => {
+		const report = {
+			...SAMPLE_REPORT,
+			screenshots: { selection: null, screen: null, page: null }
+		};
+		const [, user] = build_triage_request(report).messages;
 		expect(user.content).toEqual([
-			{ type: 'text', text: expect.stringContaining('There is no screenshot') }
+			{ type: 'text', text: expect.stringContaining('There are no screenshots') }
 		]);
 	});
 });

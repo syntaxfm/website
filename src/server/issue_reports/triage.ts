@@ -3,7 +3,7 @@
 import { error } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { OPENROUTER_API_KEY } from '$app/env/private';
-import type { IssueReport } from '#lib/issue_reports/issue_report_schema.ts';
+import type { IssueReport, Screenshot } from '#lib/issue_reports/issue_report_schema.ts';
 import { OPENROUTER_CHAT_URL, read_chat_message } from '$server/ai/openrouter';
 
 const TRIAGE_MODEL = 'anthropic/claude-opus-5.5';
@@ -67,35 +67,53 @@ const TRIAGE_SYSTEM_PROMPT = `You turn issue reports from the Syntax website int
 
 The site is syntax.fm, home of the Syntax podcast: SvelteKit with Svelte 5, deployed as a Cloudflare Worker. Pages live in src/routes, shared components in src/lib, global CSS in src/styles.
 
-An admin selected an area of a page, a screenshot of that area was taken, and the admin wrote a request. You get the request, the screenshot (when there is one) and facts about the page: its route, the viewport, the elements in the selected area (with their Svelte source location when the site ran in development), and any script errors.
+An admin, on a computer or a phone, selected an area of a page and wrote a request. You get the request, screenshots of the selected area and of the whole screen (when the browser could draw them), and facts about the page: its route, the browser, the window and screen sizes, the elements in the selected area (with their Svelte source location when the site ran in development), and any script errors. With no selected area, the admin meant the whole screen.
 
-A coding agent will pick up your issue and make the change without asking anyone, so the issue has to say exactly what to change and how to tell it's done.
+The screenshots are drawn from the page's HTML, not taken by the screen, so an embedded video or an image from another site can come out blank. Don't treat a blank like that as the problem unless the admin says so.
+
+A coding agent will make the change from your issue alone, so the issue has to say exactly what to change and how to tell it's done.
 
 - Keep to what the admin asked for. Don't widen the scope or add fixes they didn't ask for.
-- Use the screenshot and the page facts to make the request concrete: name the element, the page and the viewport where it happens. Don't guess at causes or files the facts don't show.
+- Use the screenshots and the page facts to make the request concrete: name the element, the page, the browser and the screen size where it happens. Don't guess at causes or files the facts don't show.
 - An open question holds the issue back until the admin answers, so ask one only when the agent could otherwise build the wrong thing. Where there's a sensible default (keep other screen sizes working, match the site's existing style), write it into the details as the plan instead.
 - The repository is public. Never copy personal data from the screenshot into the issue: names or emails of listeners, private messages, account details.
 - Write plainly and briefly.`;
 
-function triage_user_content(report: IssueReport) {
+type ContentPart =
+	| { type: 'text'; text: string }
+	| { type: 'image_url'; image_url: { url: string } };
+
+// The selected area and the whole screen, each named. The full page is too tall to read once
+// scaled down, so it's only for the issue.
+function screenshot_parts(report: IssueReport): ContentPart[] {
+	const { selection, screen } = report.screenshots;
+	const labelled: [string, Screenshot | null][] = [
+		['The selected area:', selection],
+		['The whole screen:', screen]
+	];
+	return labelled.flatMap(([label, screenshot]): ContentPart[] =>
+		screenshot
+			? [
+					{ type: 'text', text: label },
+					{
+						type: 'image_url',
+						image_url: { url: `data:${screenshot.media_type};base64,${screenshot.base64}` }
+					}
+				]
+			: []
+	);
+}
+
+function triage_user_content(report: IssueReport): ContentPart[] {
+	const parts = screenshot_parts(report);
 	const text = [
 		`<request>\n${report.request}\n</request>`,
 		`<page>\n${JSON.stringify(report.page, null, 2)}\n</page>`,
-		report.screenshot ? '' : 'There is no screenshot: the browser could not take one.'
+		parts.length > 0 ? '' : 'There are no screenshots: the browser could not draw the page.'
 	]
 		.filter(Boolean)
 		.join('\n\n');
-	const screenshot = report.screenshot
-		? [
-				{
-					type: 'image_url',
-					image_url: {
-						url: `data:${report.screenshot.media_type};base64,${report.screenshot.base64}`
-					}
-				}
-			]
-		: [];
-	return [...screenshot, { type: 'text', text }];
+	return [...parts, { type: 'text', text }];
 }
 
 export function build_triage_request(report: IssueReport) {

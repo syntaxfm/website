@@ -1,5 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { is_click, rect_between, viewport_in_frame } from './page_capture';
+import { fit_scale, full_page_rows, is_click, rect_between } from './page_capture';
+
+describe('full_page_rows', () => {
+	it('covers a page that fits', () => {
+		expect(full_page_rows(1200, 664, 9120)).toEqual({ top: 0, height: 9120 });
+	});
+
+	it('takes the slice centered on the screen of a very long page', () => {
+		expect(full_page_rows(30_000, 800, 61_766)).toEqual({
+			top: 30_000 + 400 - 8192,
+			height: 16_384
+		});
+	});
+
+	it('keeps the slice inside the page at its top and bottom', () => {
+		expect(full_page_rows(0, 800, 61_766).top).toBe(0);
+		expect(full_page_rows(61_000, 766, 61_766)).toEqual({ top: 61_766 - 16_384, height: 16_384 });
+	});
+});
 
 describe('rect_between', () => {
 	it('is the same rectangle whichever way the drag went', () => {
@@ -16,21 +34,18 @@ describe('is_click', () => {
 	});
 });
 
-describe('viewport_in_frame', () => {
-	it('scales the viewport onto a frame of the same shape', () => {
-		expect(viewport_in_frame({ width: 2880, height: 1800 }, { width: 1440, height: 900 })).toEqual({
-			x: 0,
-			y: 0,
-			scale: 2
-		});
+describe('fit_scale', () => {
+	it('keeps the wanted scale when the canvas fits', () => {
+		expect(fit_scale({ width: 390, height: 844 }, 2)).toBe(2);
 	});
 
-	it('finds the viewport inside a letterboxed frame', () => {
-		// The tab got shorter after the capture started, so Chrome pads it left and right
-		expect(viewport_in_frame({ width: 1440, height: 900 }, { width: 1440, height: 1000 })).toEqual({
-			x: 72,
-			y: 0,
-			scale: 0.9
-		});
+	it('scales a long page down to what iOS Safari can draw', () => {
+		const scale = fit_scale({ width: 1280, height: 20_000 }, 1);
+		expect(1280 * scale * 20_000 * scale).toBeLessThanOrEqual(16_777_216);
+	});
+
+	it('keeps a very tall page within the canvas side limit', () => {
+		const scale = fit_scale({ width: 390, height: 60_000 }, 1);
+		expect(60_000 * scale).toBeLessThanOrEqual(16_384);
 	});
 });
