@@ -1,6 +1,6 @@
 <script lang="ts">
-	// The admins' Report tab: drag over the area to report (a tap or click takes the whole screen),
-	// write what needs to change, and it's filed as a GitHub issue with screenshots of the
+	// The admin menu's Report button: drag over the area to report (a tap or click takes the whole
+	// screen), write what needs to change, and it's filed as a GitHub issue with screenshots of the
 	// selection, the screen and the full page.
 	import { tick } from 'svelte';
 	import toast from 'svelte-french-toast';
@@ -49,6 +49,9 @@
 	let filings = $state<Filing[]>([]);
 
 	let drag_start: { x: number; y: number } | null = null;
+	// Fingers on the selection overlay, by pointer id, where each last was
+	let touches: Record<number, { x: number; y: number }> = {};
+	const finger_count = () => Object.keys(touches).length;
 	let next_filing_id = 0;
 	const page_errors: PageError[] = [];
 
@@ -69,6 +72,7 @@
 		if (stage !== 'idle') return;
 		discard_draft();
 		selection = null;
+		touches = {};
 		stage = 'selecting';
 	}
 
@@ -83,22 +87,45 @@
 		return () => dialog.close();
 	}
 
+	// While selecting, one finger draws the box and two fingers scroll the page (a mouse wheel
+	// scrolls it anyway), so the Report button at the top can reach anything further down
 	function begin_selection(event: PointerEvent & { currentTarget: HTMLDialogElement }) {
 		if (event.button !== 0) return;
 		event.currentTarget.setPointerCapture(event.pointerId);
+		if (event.pointerType === 'touch') {
+			touches[event.pointerId] = { x: event.clientX, y: event.clientY };
+			if (finger_count() > 1) {
+				drag_start = null;
+				selection = null;
+				return;
+			}
+		}
 		drag_start = { x: event.clientX, y: event.clientY };
 		selection = rect_between(drag_start, drag_start);
 	}
 
 	function extend_selection(event: PointerEvent) {
+		const last_touch = touches[event.pointerId];
+		const fingers = finger_count();
+		if (fingers > 1 && last_touch) {
+			// Each finger moves the page by its share, so two fingers together move it as far as they go
+			scrollBy((last_touch.x - event.clientX) / fingers, (last_touch.y - event.clientY) / fingers);
+			touches[event.pointerId] = { x: event.clientX, y: event.clientY };
+			return;
+		}
 		if (drag_start) selection = rect_between(drag_start, { x: event.clientX, y: event.clientY });
 	}
 
 	function finish_selection(event: PointerEvent) {
+		delete touches[event.pointerId];
 		if (!drag_start) return;
 		const rect = rect_between(drag_start, { x: event.clientX, y: event.clientY });
 		drag_start = null;
 		void capture(is_click(rect) ? null : rect);
+	}
+
+	function forget_touch(event: PointerEvent) {
+		delete touches[event.pointerId];
 	}
 
 	function select_by_key(event: KeyboardEvent) {
@@ -184,6 +211,7 @@
 <svelte:window onerror={record_error} onunhandledrejection={record_error} />
 
 <div class="issue-reporter" data-issue-reporter>
+	<button type="button" onclick={start_report} disabled={stage !== 'idle'}>Report</button>
 	<output>
 		{#if stage === 'capturing'}
 			<span>Capturing…</span>
@@ -198,7 +226,6 @@
 			{/if}
 		{/each}
 	</output>
-	<button type="button" onclick={start_report} disabled={stage !== 'idle'}>Report</button>
 </div>
 
 {#if stage === 'selecting'}
@@ -211,6 +238,7 @@
 		onpointerdown={begin_selection}
 		onpointermove={extend_selection}
 		onpointerup={finish_selection}
+		onpointercancel={forget_touch}
 		onkeydown={select_by_key}
 	>
 		{#if selection}
@@ -237,33 +265,35 @@
 
 <style>
 	/*
-		A tab on the right edge, halfway down, so it's in reach wherever the admin has scrolled to, on
-		a phone too, and clear of the header and the player. Above the site's own layers (Nav is 60).
+		At the end of the admin menu, and still in view when the menu scrolls sideways on phones. It
+		reaches over the menu's end padding, so links scrolling under it don't show past it.
 	*/
 	.issue-reporter {
-		position: fixed;
-		inset-inline-end: 0;
-		inset-block-start: 50%;
-		z-index: 70;
+		position: sticky;
+		inset-inline-end: calc(var(--pad-medium) * -1);
 		display: flex;
 		align-items: center;
-		gap: var(--pad-xsmall);
-		translate: 0 -50%;
+		gap: var(--pad-small);
+		margin-inline: auto calc(var(--pad-medium) * -1);
+		padding-inline: var(--pad-small) var(--pad-medium);
+		background-color: var(--c-bg);
 	}
 
 	button {
-		padding: var(--pad-small) var(--pad-xsmall);
-		font-size: var(--fs-1);
-		line-height: 1;
-		color: var(--c-bg);
+		padding: 0;
+		font-size: var(--fs-2);
+		line-height: inherit;
+		color: var(--c-fg-7);
 		white-space: nowrap;
-		writing-mode: vertical-rl;
-		background-color: var(--c-fg);
-		border-radius: var(--br-small) 0 0 var(--br-small);
-		box-shadow: var(--s-graphic);
+		background: none;
+		text-underline-offset: var(--pad-xsmall);
 
-		&:hover {
-			background-color: var(--c-fg-8);
+		&:hover,
+		&:focus-visible {
+			color: var(--c-fg);
+			text-decoration: underline;
+			text-decoration-color: var(--c-primary);
+			background: none;
 		}
 
 		&:focus-visible {
@@ -278,20 +308,13 @@
 
 	output {
 		display: flex;
-		flex-direction: column;
-		align-items: end;
-		gap: var(--pad-xsmall);
-
-		& > * {
-			padding: var(--pad-xsmall) var(--pad-small);
-			font-size: var(--fs-1);
-			color: var(--c-bg);
-			white-space: nowrap;
-			background-color: var(--c-fg);
-			border-radius: var(--br-small);
-		}
+		gap: var(--pad-small);
+		font-size: var(--fs-2);
+		color: var(--c-fg-7);
+		white-space: nowrap;
 
 		a {
+			color: var(--c-fg);
 			text-decoration-color: var(--c-primary);
 		}
 	}

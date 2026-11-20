@@ -67,10 +67,6 @@
 
 {#if is_admin}
 	<AdminMenu />
-	<!-- Loaded on its own: the layout is in every visitor's bundle, the reporter only in admins' -->
-	{#await import('#lib/issue_reports/IssueReporter.svelte') then { default: IssueReporter }}
-		<IssueReporter />
-	{/await}
 {/if}
 <div class="theme-wrapper">
 	<Header />
