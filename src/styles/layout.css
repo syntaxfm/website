@@ -42,7 +42,7 @@
 
 	.sticky {
 		position: sticky;
-		top: 0;
+		top: var(--admin-nav-height);
 	}
 
 	.layout-main {

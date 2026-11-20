@@ -6,6 +6,11 @@
 		padding-block-start: var(--admin-menu-height);
 	}
 
+	/* The admin menu is pinned to the top (AdminMenu.svelte), so links to #anchors land below it */
+	:root {
+		scroll-padding-block-start: var(--admin-nav-height);
+	}
+
 	.admin {
 		--admin-bg: var(--c-bg);
 		--admin-fg: var(--c-fg);
@@ -20,7 +25,9 @@
 		--admin-danger-surface: var(--c-red-1);
 		--admin-control-height: 2.5rem;
 		--admin-content-width: 76ch;
-		--admin-sticky-offset: 4.75rem;
+
+		/* Where the editors' metadata rail sticks: below the pinned admin menu */
+		--admin-sticky-offset: calc(var(--admin-nav-height) + var(--pad-medium));
 
 		padding-block: var(--pad-medium) calc(var(--pad-xlarge) * 2);
 		font-size: var(--fs-3);

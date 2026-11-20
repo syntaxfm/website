@@ -287,7 +287,7 @@
 
 	h2 {
 		position: sticky;
-		top: 0;
+		top: var(--admin-nav-height);
 		font-size: var(--fs-5);
 		font-variation-settings: var(--fv-700-italic);
 		text-wrap: balance;
@@ -339,7 +339,7 @@
 		gap: 20px;
 		font-size: var(--fs-2);
 		position: sticky;
-		top: 0;
+		top: var(--admin-nav-height);
 		/* The page's speckled paper, so the stuck header doesn't read as a solid band. The page sets
 		   no color under its specks, so it shows the browser's own (Canvas). */
 		background-color: Canvas;
@@ -386,7 +386,7 @@
 
 	.gutter {
 		position: sticky;
-		top: 100px;
+		top: calc(100px + var(--admin-nav-height));
 		left: 0;
 		align-self: start;
 		text-align: right;

@@ -126,7 +126,7 @@ Bass!
 	}
 
 	thead {
-		top: 0;
+		top: var(--admin-nav-height);
 		position: sticky;
 	}
 

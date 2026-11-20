@@ -106,9 +106,23 @@
 	// Derive third level subroutes
 	let active_nested_subroutes = $derived(active_subroute?.subroutes ?? []);
 	let show_nested_subnav = $derived(active_nested_subroutes.length > 0);
+
+	// The menu is pinned to the top, one to three rows tall: --admin-nav-height (variables.css)
+	// tells whatever else sticks to the top of the page where to stop
+	function publish_height(nav: HTMLElement) {
+		const root = document.documentElement;
+		const observer = new ResizeObserver(() => {
+			root.style.setProperty('--admin-nav-height', `${nav.offsetHeight}px`);
+		});
+		observer.observe(nav);
+		return () => {
+			observer.disconnect();
+			root.style.removeProperty('--admin-nav-height');
+		};
+	}
 </script>
 
-<nav class="admin-nav" aria-label="Admin navigation">
+<nav class="admin-nav" aria-label="Admin navigation" {@attach publish_height}>
 	<div class="admin-menu">
 		{#each links as link (link.path + 'admin-nav')}
 			<a
@@ -149,9 +163,14 @@
 </nav>
 
 <style>
+	/*
+		Pinned to the top, so the admin links and Report stay in reach however far down the page is
+		scrolled. Above the site header (10), which scrolls under it, and its full-screen phone menu.
+	*/
 	.admin-nav {
-		position: relative;
-		z-index: 2;
+		position: sticky;
+		inset-block-start: 0;
+		z-index: 20;
 		color: var(--c-fg);
 		background-color: var(--c-bg);
 		border-bottom: 1px solid var(--c-fg-2);
