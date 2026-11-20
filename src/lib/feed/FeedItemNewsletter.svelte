@@ -15,17 +15,18 @@
 	const { title, issue, published_at }: Props = $props();
 
 	const label = $derived(
-		issue.issue_number == null
-			? 'Snack Pack Newsletter'
-			: `Snack Pack Newsletter #${issue.issue_number}`
+		issue.issue_number == null ? 'Snack Pack' : `Snack Pack #${issue.issue_number}`
 	);
 </script>
 
 <article>
 	<div class="card">
+		<p class="sticker">
+			<img src={snack_box} alt="" width="500" height="500" loading="lazy" />
+			<span class="tag">Newsletter</span>
+		</p>
 		<h3 class="fv-700-i"><a href={resolve(`snackpack/${issue.id}`)}>{title}</a></h3>
 		<FeedByline {label} {published_at} />
-		<img src={snack_box} alt="" width="500" height="500" loading="lazy" />
 	</div>
 </article>
 
@@ -42,7 +43,7 @@
 		--c-fg-7: oklch(from var(--c-black) l c h / 0.7);
 
 		/* The drawing fills about 60% of its square file */
-		--box-size: clamp(9rem, 16vw, 12rem);
+		--box-size: clamp(8.5rem, 15vw, 11rem);
 
 		position: relative;
 		display: flex;
@@ -55,7 +56,7 @@
 		background-image: var(--c-bg-grit-light);
 		color: var(--c-black);
 
-		/* The box moves up onto the top corner, so the text takes the whole width under it */
+		/* The sticker moves up onto the top corner, so the text takes the whole width under it */
 		@media (--below-med) {
 			--box-size: 5.5rem;
 
@@ -92,21 +93,47 @@
 		outline-offset: 4px;
 	}
 
-	/* A sticker on the card's right edge; on a phone it hangs off the top corner */
-	img {
+	/* The snack box with a "Newsletter" tag stuck across its bottom, on the card's right edge.
+	   On a phone it sits on the top corner, the tag beside the box. */
+	.sticker {
 		position: absolute;
 		inset-block-start: 50%;
 		inset-inline-end: 2rem;
-		width: var(--box-size);
-		height: auto;
+		display: grid;
+		justify-items: center;
+		margin: 0;
 		translate: 0 -50%;
-		rotate: 8deg;
-		transition: rotate 0.2s ease;
 
 		@media (--below-med) {
 			inset-block-start: -1.75rem;
 			inset-inline-end: 0.5rem;
+			grid-auto-flow: column;
+			align-items: center;
 			translate: none;
+		}
+	}
+
+	img {
+		width: var(--box-size);
+		height: auto;
+		rotate: 8deg;
+		transition: rotate 0.2s ease;
+	}
+
+	.tag {
+		align-self: start;
+		margin-block-start: -3rem;
+		padding: 4px 10px;
+		border-radius: var(--br-small);
+		background: var(--c-black);
+		color: var(--c-primary);
+		font-size: var(--fs-2);
+		rotate: -6deg;
+
+		@media (--below-med) {
+			order: -1;
+			align-self: center;
+			margin: 0 -0.75rem 0 0;
 		}
 	}
 
