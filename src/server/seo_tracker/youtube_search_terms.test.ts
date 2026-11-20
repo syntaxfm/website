@@ -1,8 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
 	fetch_youtube_search_terms,
 	read_analytics_error,
 	read_report_rows,
+	REPORT_RETRY_WAIT_MS,
 	search_term_window,
 	YoutubeAnalyticsError
 } from './youtube_search_terms';
@@ -55,10 +56,10 @@ describe('read_analytics_error', () => {
 		);
 	});
 
-	it("keeps Google's message otherwise", () => {
+	it("keeps Google's message and status otherwise", () => {
 		expect(read_analytics_error(400, { error: { message: 'Bad filter' } })).toMatchObject({
 			code: 'youtube_analytics_failed',
-			message: 'Bad filter'
+			message: 'Bad filter (HTTP 400)'
 		});
 	});
 });
@@ -165,5 +166,82 @@ describe('fetch_youtube_search_terms', () => {
 		await expect(
 			fetch_youtube_search_terms('token', 'UCsyntax', new Map(), new Date(), fetch_fn)
 		).rejects.toMatchObject({ code: 'missing_analytics_access' });
+	});
+
+	describe('when Google has a server error', () => {
+		beforeEach(() => {
+			vi.useFakeTimers();
+		});
+		afterEach(() => {
+			vi.useRealTimers();
+		});
+
+		const internal_error = () =>
+			new Response(JSON.stringify({ error: { message: 'Internal error encountered.' } }), {
+				status: 500
+			});
+
+		it('asks again after a wait', async () => {
+			const { asked, fetch_fn: answers } = fake_youtube();
+			let has_failed = false;
+			const fetch_fn = (async (input: string | URL | Request) => {
+				if (has_failed) return answers(input);
+				has_failed = true;
+				asked.push(new URL(String(input)));
+				return internal_error();
+			}) as typeof fetch;
+
+			const pending = fetch_youtube_search_terms(
+				'token',
+				'UCsyntax',
+				new Map(),
+				new Date('2026-11-19T03:00:00Z'),
+				fetch_fn
+			);
+			await vi.advanceTimersByTimeAsync(REPORT_RETRY_WAIT_MS);
+			const terms = await pending;
+
+			expect(terms.search_views).toBe(300);
+			expect(asked).toHaveLength(7);
+		});
+
+		it('gives up after three tries', async () => {
+			let tries = 0;
+			const fetch_fn = (async () => {
+				tries++;
+				return internal_error();
+			}) as typeof fetch;
+
+			const pending = fetch_youtube_search_terms(
+				'token',
+				'UCsyntax',
+				new Map(),
+				new Date(),
+				fetch_fn
+			);
+			const rejected = expect(pending).rejects.toMatchObject({
+				code: 'youtube_analytics_failed',
+				message: 'Internal error encountered. (HTTP 500)'
+			});
+			await vi.advanceTimersByTimeAsync(3 * REPORT_RETRY_WAIT_MS);
+			await rejected;
+			// The first three reports go out together, three tries each
+			expect(tries).toBe(9);
+		});
+
+		it('does not ask again when Google refuses', async () => {
+			let tries = 0;
+			const fetch_fn = (async () => {
+				tries++;
+				return new Response(JSON.stringify({ error: { message: 'Bad filter' } }), {
+					status: 400
+				});
+			}) as typeof fetch;
+
+			await expect(
+				fetch_youtube_search_terms('token', 'UCsyntax', new Map(), new Date(), fetch_fn)
+			).rejects.toMatchObject({ code: 'youtube_analytics_failed' });
+			expect(tries).toBe(3);
+		});
 	});
 });

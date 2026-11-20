@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/sveltekit';
 import { YOUTUBE_CHANNEL_ID } from '$const';
 import { db } from '$server/db/client';
 import { seo_snapshot, show, video } from '$server/db/schema';
@@ -303,7 +304,8 @@ async function load_syntax_identity(): Promise<{
 	};
 }
 
-// A failure is recorded with the snapshot's errors, so it never loses the rest of the snapshot
+// A failure is recorded with the snapshot's errors, so it never loses the rest of the snapshot,
+// and sent to Sentry
 async function read_youtube_search_terms(
 	video_titles: ReadonlyMap<string, string>
 ): Promise<{ terms: YoutubeSearchTerms | null; error: SeoCallError | null }> {
@@ -315,6 +317,7 @@ async function read_youtube_search_terms(
 		};
 	} catch (analytics_error) {
 		console.error('YouTube search terms failed', analytics_error);
+		Sentry.captureException(analytics_error);
 		return {
 			terms: null,
 			error: {

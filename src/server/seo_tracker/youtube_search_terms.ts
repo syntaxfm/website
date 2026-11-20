@@ -17,6 +17,10 @@ const TOP_VIDEO_COUNT = 10;
 const TERMS_PER_VIDEO = 10;
 // The window ends yesterday, since YouTube's numbers for today are still filling in
 export const SEARCH_TERM_DAYS = 28;
+// Google's servers sometimes answer a report with 500 "Internal error encountered." or 503 for a
+// moment, and its docs say to ask again after a wait. One snapshot asks for about 38 reports.
+const REPORT_ATTEMPTS = 3;
+export const REPORT_RETRY_WAIT_MS = 1000;
 
 export class YoutubeAnalyticsError extends Error {
 	constructor(
@@ -92,7 +96,7 @@ export function read_analytics_error(status: number, body: unknown): YoutubeAnal
 			`Turn on the YouTube Analytics API in the Google Cloud project: ${message}`
 		);
 	}
-	return new YoutubeAnalyticsError('youtube_analytics_failed', message);
+	return new YoutubeAnalyticsError('youtube_analytics_failed', `${message} (HTTP ${status})`);
 }
 
 type ReportQuery = {
@@ -123,10 +127,19 @@ async function fetch_report(
 		...(query.sort ? { sort: query.sort } : {}),
 		...(query.max_results ? { maxResults: String(query.max_results) } : {})
 	}).toString();
-	const response = await fetch_fn(url, { headers: { authorization: `Bearer ${access_token}` } });
-	const body: unknown = await response.json();
-	if (!response.ok) throw read_analytics_error(response.status, body);
-	return body;
+	for (let attempt = 1; ; attempt++) {
+		const response = await fetch_fn(url, { headers: { authorization: `Bearer ${access_token}` } });
+		if (response.ok) {
+			const body: unknown = await response.json();
+			return body;
+		}
+		// A server error can come back as an HTML page, not JSON
+		const body: unknown = await response.json().catch(() => null);
+		if (response.status < 500 || attempt === REPORT_ATTEMPTS) {
+			throw read_analytics_error(response.status, body);
+		}
+		await new Promise((resolve) => setTimeout(resolve, attempt * REPORT_RETRY_WAIT_MS));
+	}
 }
 
 /**
