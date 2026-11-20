@@ -1,7 +1,9 @@
 <script lang="ts">
 	interface Props {
-		// The selected area; null when the browser couldn't take a screenshot
+		// The selected area (or the screen); null until it's taken, or when it couldn't be
 		preview_url: string | null;
+		// The screenshot is still being taken
+		is_shooting?: boolean;
 		request?: string;
 		error_message?: string;
 		onsubmit: (request: string) => void;
@@ -10,6 +12,7 @@
 
 	let {
 		preview_url,
+		is_shooting = false,
 		request = $bindable(''),
 		error_message = '',
 		onsubmit,
@@ -46,13 +49,14 @@
 <dialog
 	class="admin issue-report-dialog"
 	aria-labelledby="{uid}-label"
-	data-issue-reporter
 	{@attach show_modal}
 	oncancel={handle_cancel}
 >
 	<form class="stack" onsubmit={handle_submit}>
 		{#if preview_url}
 			<img src={preview_url} alt="Selected area" />
+		{:else if is_shooting}
+			<div class="shooting" role="status" aria-label="Taking the screenshot"></div>
 		{/if}
 
 		<div class="admin-field">
@@ -94,7 +98,8 @@
 		}
 	}
 
-	img {
+	img,
+	.shooting {
 		display: block;
 		width: 100%;
 		max-height: 40dvh;
@@ -102,6 +107,24 @@
 		background-color: var(--c-fg-05);
 		border: 1px solid var(--c-fg-2);
 		border-radius: var(--br-small);
+	}
+
+	/* Where the screenshot will be, pulsing until the server has taken it */
+	.shooting {
+		height: 12rem;
+		animation: shooting 1.2s ease-in-out infinite alternate;
+	}
+
+	@keyframes shooting {
+		to {
+			background-color: var(--c-fg-1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shooting {
+			animation: none;
+		}
 	}
 
 	textarea {

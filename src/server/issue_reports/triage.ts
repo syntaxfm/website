@@ -69,7 +69,7 @@ The site is syntax.fm, home of the Syntax podcast: SvelteKit with Svelte 5, depl
 
 An admin, on a computer or a phone, selected an area of a page and wrote a request. You get the request, screenshots of the selected area and of the whole screen (when the browser could draw them), and facts about the page: its route, the browser, the window and screen sizes, the elements in the selected area (with their Svelte source location when the site ran in development), and any script errors. With no selected area, the admin meant the whole screen.
 
-The screenshots are drawn from the page's HTML, not taken by the screen, so an embedded video or an image from another site can come out blank. Don't treat a blank like that as the problem unless the admin says so.
+The screenshots are taken by a headless Chrome that opened the same page at the admin's window size, scroll position and light or dark mode, signed in as them. It loaded the page fresh, so what the admin had opened or typed isn't in them, and a problem only their own browser draws (Safari, say) may not show. Then go by the request and the page facts.
 
 A coding agent will make the change from your issue alone, so the issue has to say exactly what to change and how to tell it's done.
 
@@ -109,7 +109,7 @@ function triage_user_content(report: IssueReport): ContentPart[] {
 	const text = [
 		`<request>\n${report.request}\n</request>`,
 		`<page>\n${JSON.stringify(report.page, null, 2)}\n</page>`,
-		parts.length > 0 ? '' : 'There are no screenshots: the browser could not draw the page.'
+		parts.length > 0 ? '' : 'There are no screenshots: the headless browser could not take them.'
 	]
 		.filter(Boolean)
 		.join('\n\n');

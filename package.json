@@ -109,7 +109,6 @@
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.8",
 		"media-chrome": "^4.19.2",
-		"modern-screenshot": "4.7.0",
 		"openai": "^7.51.0",
 		"p-map": "^7.0.4",
 		"postgres": "^3.4.9",

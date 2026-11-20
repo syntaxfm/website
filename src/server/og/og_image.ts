@@ -1,10 +1,10 @@
 // Share (OG) images: a screenshot of the /og/[show_number_or_title] page, taken with Cloudflare's
 // browser (Browser Rendering) and kept in R2. Each image is keyed by a hash of what it shows, so it
 // renders once, and a changed title or guest list gets a new image on its own.
-import { dev } from '$app/env';
 import { getRequestEvent } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
+import { with_headless_page } from '$server/headless_browser';
 import { add_timing } from '$server/server_timing';
 
 // Part of every stored image's key. Bump it when ShowOg.svelte's look changes, so stored images
@@ -49,39 +49,13 @@ export async function og_image_key(show_number_or_title: string): Promise<string
 	return `v${OG_DESIGN_VERSION}/pages/${(await sha256_hex(show_number_or_title)).slice(0, 32)}.jpg`;
 }
 
-async function screenshot_in_cloudflare(page_url: string): Promise<Uint8Array> {
-	const { platform } = getRequestEvent();
-	const binding = platform?.env.BROWSER;
-	if (!binding) throw new Error('No BROWSER binding (alchemy.run.ts)');
-	const { default: puppeteer } = await import('@cloudflare/puppeteer');
-	const browser = await puppeteer.launch(binding);
-	try {
-		const page = await browser.newPage();
+function render_og_image(page_url: string): Promise<Uint8Array> {
+	return with_headless_page(async (page) => {
 		await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 1 });
 		await page.goto(page_url);
 		await page.waitForSelector(READY_SELECTOR, { timeout: 10_000 });
 		return new Uint8Array(await page.screenshot({ type: 'jpeg' }));
-	} finally {
-		await browser.close();
-	}
-}
-
-// `pnpm dev` (Node) has no Browser Rendering, so it uses the Chrome installed on this Mac
-async function screenshot_with_local_chrome(page_url: string): Promise<Uint8Array> {
-	const { default: puppeteer } = await import('puppeteer-core');
-	const browser = await puppeteer.launch({
-		executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-		headless: true
 	});
-	try {
-		const page = await browser.newPage();
-		await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 1 });
-		await page.goto(page_url);
-		await page.waitForSelector(READY_SELECTOR, { timeout: 10_000 });
-		return new Uint8Array(await page.screenshot({ type: 'jpeg' }));
-	} finally {
-		await browser.close();
-	}
 }
 
 // The stored image if there is one; otherwise render it, store it, and return it
@@ -96,9 +70,7 @@ export async function get_og_image(key: string, page_url: string): Promise<Uint8
 	}
 
 	const start = performance.now();
-	const image = dev
-		? await screenshot_with_local_chrome(page_url)
-		: await screenshot_in_cloudflare(page_url);
+	const image = await render_og_image(page_url);
 	add_timing(event, 'og-render', performance.now() - start);
 
 	if (bucket) {

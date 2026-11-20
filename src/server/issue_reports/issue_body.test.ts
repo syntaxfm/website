@@ -143,7 +143,7 @@ describe('build_issue_body', () => {
 		});
 		expect(body).toContain('The screen screenshot couldn’t be stored: R2 said no');
 		expect(build_issue_body({ report, triage, screenshots: none, reporter })).toContain(
-			'The browser couldn’t draw any screenshots.'
+			'No screenshots: the headless browser couldn’t take them.'
 		);
 	});
 });

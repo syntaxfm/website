@@ -24,6 +24,7 @@ export const SAMPLE_REPORT: IssueReport = {
 		scroll: { x: 0, y: 1200 },
 		full_page: { top: 0, height: 9120 },
 		selection: { x: 10, y: 20, width: 300, height: 120.4 },
+		anchor: { path: 'body > div > main > section > h1', text: 'Some Episode', x: 16, y: 40 },
 		browser: {
 			name: 'Safari 18.2 on iOS 18.2',
 			user_agent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X)',

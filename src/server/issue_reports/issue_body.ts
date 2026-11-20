@@ -165,7 +165,9 @@ function describe_screenshots(screenshots: IssueScreenshots, page_facts: IssueRe
 			? 'Admins only: they show an admin page. Agents: fetch them with `Authorization: Bearer $CRON_SECRET`.'
 			: null
 	].filter(Boolean);
-	return parts.length > 0 ? parts.join('\n\n') : 'The browser couldn’t draw any screenshots.';
+	return parts.length > 0
+		? parts.join('\n\n')
+		: 'No screenshots: the headless browser couldn’t take them.';
 }
 
 export function build_issue_body({

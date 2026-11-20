@@ -26,6 +26,8 @@
 	}}
 />
 
+<Story name="Taking the screenshot" args={{ preview_url: null, is_shooting: true }} />
+
 <Story name="Without screenshot" args={{ preview_url: null }} />
 
 <Story

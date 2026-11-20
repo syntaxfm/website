@@ -1,45 +1,47 @@
 <script lang="ts">
 	// The admin menu's Report button: drag over the area to report (a tap or click takes the whole
 	// screen), write what needs to change, and it's filed as a GitHub issue with screenshots of the
-	// selection, the screen and the full page.
+	// selection, the screen and the full page, taken by the server's headless browser meanwhile.
 	import { tick } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import { page } from '$app/state';
 	import { error_message as message_of } from '#lib/utils/error_message.ts';
 	import IssueReportDialog from './IssueReportDialog.svelte';
-	import { file_report } from './issue_report.remote';
+	import { file_report, take_screenshots } from './issue_report.remote';
 	import type {
 		FiledIssue,
+		IssueReport,
 		IssueReportPage,
 		PageError,
-		Screenshot,
 		ViewportRect
 	} from './issue_report_schema';
 	import {
 		collect_page,
-		full_page_screenshot,
+		cut_selection,
 		is_click,
 		page_error_from,
 		rect_between,
-		screen_screenshots
+		screenshot_url
 	} from './page_capture';
 
-	type Stage = 'idle' | 'selecting' | 'capturing' | 'writing';
+	type Stage = 'idle' | 'selecting' | 'writing';
 	type Filing =
 		| { id: number; status: 'filing' }
 		| { id: number; status: 'filed'; issue: FiledIssue };
+	type Screenshots = IssueReport['screenshots'];
 	interface Draft {
+		id: number;
 		page: IssueReportPage;
-		selection: Screenshot | null;
-		screen: Screenshot | null;
-		// Drawn while the admin writes
-		full_page: Promise<Screenshot | null>;
+		// Taken while the admin writes
+		screenshots: Promise<Screenshots>;
 		preview_url: string | null;
+		is_shooting: boolean;
 	}
 
 	// Script errors are worth knowing about in a report; the last few are kept
 	const MAX_PAGE_ERRORS = 10;
 	const MAX_SHOWN_FILINGS = 3;
+	const NO_SCREENSHOTS: Screenshots = { selection: null, screen: null, page: null };
 
 	let stage = $state<Stage>('idle');
 	let selection = $state<ViewportRect | null>(null);
@@ -52,6 +54,7 @@
 	// Fingers on the selection overlay, by pointer id, where each last was
 	let touches: Record<number, { x: number; y: number }> = {};
 	const finger_count = () => Object.keys(touches).length;
+	let next_draft_id = 0;
 	let next_filing_id = 0;
 	const page_errors: PageError[] = [];
 
@@ -132,31 +135,40 @@
 		if (event.key === 'Enter') void capture(null);
 	}
 
+	// The server's headless browser shoots the screen and the full page; the selection is cut here
+	async function take_report_screenshots(page_facts: IssueReportPage): Promise<Screenshots> {
+		try {
+			const { screen, page: full_page } = await take_screenshots(page_facts);
+			return { selection: await cut_selection(screen, page_facts), screen, page: full_page };
+		} catch (screenshot_error) {
+			console.error('The headless browser could not take the report screenshots', screenshot_error);
+			return NO_SCREENSHOTS;
+		}
+	}
+
 	async function capture(rect: ViewportRect | null) {
-		stage = 'capturing';
+		stage = 'writing';
 		selection = null;
-		// The overlay leaves the page before anything is measured or drawn
+		// The overlay leaves the page before anything is measured
 		await tick();
 		const page_facts = collect_page({
 			route_id: page.route.id,
 			selection: rect,
 			errors: [...page_errors]
 		});
+		const id = next_draft_id++;
+		const screenshots = take_report_screenshots(page_facts);
+		draft = { id, page: page_facts, screenshots, preview_url: null, is_shooting: true };
+		void show_preview(id, screenshots);
+	}
 
-		let shots: Pick<Draft, 'selection' | 'screen' | 'preview_url'> = {
-			selection: null,
-			screen: null,
-			preview_url: null
-		};
-		try {
-			const { preview, ...screenshots } = await screen_screenshots(page_facts);
-			shots = { ...screenshots, preview_url: URL.createObjectURL(preview) };
-		} catch (screen_error) {
-			console.error('Could not draw the screen for the issue report', screen_error);
-		}
-
-		draft = { page: page_facts, ...shots, full_page: full_page_screenshot(page_facts) };
-		stage = 'writing';
+	// Once they're taken, unless that draft has gone (filed, cancelled) or already shows them
+	async function show_preview(id: number, screenshots: Promise<Screenshots>) {
+		const taken = await screenshots;
+		if (draft?.id !== id || !draft.is_shooting) return;
+		const preview = taken.selection ?? taken.screen;
+		draft.preview_url = preview ? screenshot_url(preview) : null;
+		draft.is_shooting = false;
 	}
 
 	function cancel_report() {
@@ -177,11 +189,7 @@
 		try {
 			const issue = await file_report({
 				request: submitted_request,
-				screenshots: {
-					selection: submitted.selection,
-					screen: submitted.screen,
-					page: await submitted.full_page
-				},
+				screenshots: await submitted.screenshots,
 				page: submitted.page
 			});
 			filings = filings
@@ -200,6 +208,7 @@
 				request = submitted_request;
 				error_message = `Not filed: ${message}`;
 				stage = 'writing';
+				void show_preview(submitted.id, submitted.screenshots);
 			} else {
 				if (submitted.preview_url) URL.revokeObjectURL(submitted.preview_url);
 				toast.error(`Not filed: ${message}`);
@@ -210,12 +219,9 @@
 
 <svelte:window onerror={record_error} onunhandledrejection={record_error} />
 
-<div class="issue-reporter" data-issue-reporter>
+<div class="issue-reporter">
 	<button type="button" onclick={start_report} disabled={stage !== 'idle'}>Report</button>
 	<output>
-		{#if stage === 'capturing'}
-			<span>Capturing…</span>
-		{/if}
 		{#each filings as filing (filing.id)}
 			{#if filing.status === 'filing'}
 				<span>Filing…</span>
@@ -232,7 +238,6 @@
 	<dialog
 		class="issue-report-selector"
 		aria-label="Select the area to report"
-		data-issue-reporter
 		{@attach show_modal}
 		oncancel={cancel_selection}
 		onpointerdown={begin_selection}
@@ -256,6 +261,7 @@
 {#if stage === 'writing' && draft}
 	<IssueReportDialog
 		preview_url={draft.preview_url}
+		is_shooting={draft.is_shooting}
 		bind:request
 		{error_message}
 		onsubmit={submit_report}
