@@ -14,8 +14,9 @@ const MAX_RETRY_AFTER_SECONDS = 60;
 // Spotify's web player fills in its results after the page loads
 const RENDER_WAIT_MS = 4000;
 export const BATCH_POLL_INTERVAL_MS = 3000;
-// 22 Spotify pages took about 10 s on 2026-11-20
-const BATCH_TIMEOUT_MS = 5 * 60 * 1000;
+// All 22 Spotify pages took 3 minutes 8 seconds on 2026-11-20: Firecrawl runs only a few browsers
+// at once on this plan. The weekly cron's Worker may run for 15 minutes.
+const BATCH_TIMEOUT_MINUTES = 10;
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -101,10 +102,12 @@ export async function batch_scrape_markdown(
 	const read_status = async (status_url: string) =>
 		read_firecrawl_json(await fetch_firecrawl(status_url, { headers }, fetch_fn), 'batch status');
 
-	const deadline = Date.now() + BATCH_TIMEOUT_MS;
+	const deadline = Date.now() + BATCH_TIMEOUT_MINUTES * 60 * 1000;
 	let status = await read_status(`${BATCH_SCRAPE_URL}/${batch_id}`);
 	while (as_string(read_path(status, ['status'])) === 'scraping') {
-		if (Date.now() > deadline) throw new Error('Firecrawl’s batch scrape took over 5 minutes');
+		if (Date.now() > deadline) {
+			throw new Error(`Firecrawl’s batch scrape took over ${BATCH_TIMEOUT_MINUTES} minutes`);
+		}
 		await wait(BATCH_POLL_INTERVAL_MS);
 		status = await read_status(`${BATCH_SCRAPE_URL}/${batch_id}`);
 	}
