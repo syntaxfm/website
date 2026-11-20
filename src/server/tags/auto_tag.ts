@@ -10,11 +10,11 @@ import {
 	transcript,
 	transcriptUtterance
 } from '$server/db/schema';
+import { OPENROUTER_CHAT_URL, read_chat_message } from '$server/ai/openrouter';
 import {
 	build_tag_request,
 	build_tag_system_prompt,
 	get_tag_slug,
-	read_chat_message,
 	read_tag_answer,
 	TAG_MODEL,
 	type TagAnswer,
@@ -25,7 +25,6 @@ import {
 // The tag engine: one Sonnet 5.5 call per episode or video picks its topics (from the curated TOPIC
 // tags) and names its libraries (LIBRARY tags, made as needed). Runs from /webhooks/tags.
 
-const OPENROUTER_CHAT_URL = 'https://openrouter.ai/api/v1/chat/completions';
 // The tags table's name column
 const MAX_TAG_NAME_LENGTH = 50;
 

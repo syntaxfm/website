@@ -1,39 +1,67 @@
 // Claude reads an issue report (the admin's request, their screenshot and the page facts) and
-// writes it up as a GitHub issue a coding agent can act on.
-import type Anthropic from '@anthropic-ai/sdk';
-import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
-import * as z from 'zod/v4';
+// writes it up as a GitHub issue a coding agent can act on. Through OpenRouter, like tagging.
+import { error } from '@sveltejs/kit';
+import * as v from 'valibot';
+import { OPENROUTER_API_KEY } from '$app/env/private';
 import type { IssueReport } from '#lib/issue_reports/issue_report_schema.ts';
-import { get_client } from '$server/ai/anthropic';
+import { OPENROUTER_CHAT_URL, read_chat_message } from '$server/ai/openrouter';
 
-const TRIAGE_MODEL = 'claude-opus-5-5';
+const TRIAGE_MODEL = 'anthropic/claude-opus-5.5';
+// OpenRouter sends it to Claude as Anthropic's effort. Opus 5.5 there defaults to high.
+const TRIAGE_EFFORT = 'medium';
+// Thinking counts against it too; an empty answer would mean it ran out
+const TRIAGE_MAX_TOKENS = 16000;
+// GitHub's limit on issue titles
+const MAX_TITLE_LENGTH = 256;
 
 export const ISSUE_KINDS = ['bug', 'enhancement', 'accessibility', 'performance'] as const;
 
-const triage_schema = z.object({
-	title: z
-		.string()
-		.describe(
-			'Imperative and specific, under 70 characters, no trailing period. E.g. "Stop episode titles overflowing the card on phones"'
-		),
-	kind: z.enum(ISSUE_KINDS),
-	summary: z.string().describe('One or two sentences: what needs to change, and where'),
-	details: z
-		.string()
-		.describe(
-			'Markdown. For a bug: what happens now, and what should happen instead. For a change: what to change. Short; no headings.'
-		),
-	acceptance_criteria: z
-		.array(z.string())
-		.describe('1 to 5 statements a reviewer can check on the page to call this done'),
-	open_questions: z
-		.array(z.string())
-		.describe(
-			'Questions the reporter must answer before anyone can build this. Empty when the request is clear enough to build.'
-		)
+// What Claude must answer (OpenRouter's strict structured output)
+const TRIAGE_JSON_SCHEMA = {
+	type: 'object',
+	properties: {
+		title: {
+			type: 'string',
+			description:
+				'Imperative and specific, under 70 characters, no trailing period. E.g. "Stop episode titles overflowing the card on phones"'
+		},
+		kind: { type: 'string', enum: [...ISSUE_KINDS] },
+		summary: {
+			type: 'string',
+			description: 'One or two sentences: what needs to change, and where'
+		},
+		details: {
+			type: 'string',
+			description:
+				'Markdown. For a bug: what happens now, and what should happen instead. For a change: what to change. Short; no headings.'
+		},
+		acceptance_criteria: {
+			type: 'array',
+			items: { type: 'string' },
+			description: '1 to 5 statements a reviewer can check on the page to call this done'
+		},
+		open_questions: {
+			type: 'array',
+			items: { type: 'string' },
+			description:
+				'Only questions whose answer would change what gets built and that have no sensible default. Usually empty.'
+		}
+	},
+	required: ['title', 'kind', 'summary', 'details', 'acceptance_criteria', 'open_questions'],
+	additionalProperties: false
+};
+
+// The same answer, checked when it arrives
+const triage_schema = v.object({
+	title: v.pipe(v.string(), v.trim(), v.minLength(1), v.maxLength(MAX_TITLE_LENGTH)),
+	kind: v.picklist(ISSUE_KINDS),
+	summary: v.pipe(v.string(), v.trim()),
+	details: v.pipe(v.string(), v.trim()),
+	acceptance_criteria: v.array(v.pipe(v.string(), v.trim())),
+	open_questions: v.array(v.pipe(v.string(), v.trim()))
 });
 
-export type IssueTriage = z.infer<typeof triage_schema>;
+export type IssueTriage = v.InferOutput<typeof triage_schema>;
 
 const TRIAGE_SYSTEM_PROMPT = `You turn issue reports from the Syntax website into GitHub issues for the syntaxfm/website repository.
 
@@ -45,56 +73,59 @@ A coding agent will pick up your issue and make the change without asking anyone
 
 - Keep to what the admin asked for. Don't widen the scope or add fixes they didn't ask for.
 - Use the screenshot and the page facts to make the request concrete: name the element, the page and the viewport where it happens. Don't guess at causes or files the facts don't show.
+- An open question holds the issue back until the admin answers, so ask one only when the agent could otherwise build the wrong thing. Where there's a sensible default (keep other screen sizes working, match the site's existing style), write it into the details as the plan instead.
 - The repository is public. Never copy personal data from the screenshot into the issue: names or emails of listeners, private messages, account details.
 - Write plainly and briefly.`;
 
-function triage_message(report: IssueReport): Anthropic.Beta.BetaMessageParam {
-	const content: Anthropic.Beta.BetaContentBlockParam[] = [];
-	if (report.screenshot) {
-		content.push({
-			type: 'image',
-			source: {
-				type: 'base64',
-				media_type: report.screenshot.media_type,
-				data: report.screenshot.base64
-			}
-		});
-	}
-	content.push({
-		type: 'text',
-		text: [
-			`<request>\n${report.request}\n</request>`,
-			`<page>\n${JSON.stringify(report.page, null, 2)}\n</page>`,
-			report.screenshot ? '' : 'There is no screenshot: the browser could not take one.'
-		]
-			.filter(Boolean)
-			.join('\n\n')
-	});
-	return { role: 'user', content };
+function triage_user_content(report: IssueReport) {
+	const text = [
+		`<request>\n${report.request}\n</request>`,
+		`<page>\n${JSON.stringify(report.page, null, 2)}\n</page>`,
+		report.screenshot ? '' : 'There is no screenshot: the browser could not take one.'
+	]
+		.filter(Boolean)
+		.join('\n\n');
+	const screenshot = report.screenshot
+		? [
+				{
+					type: 'image_url',
+					image_url: {
+						url: `data:${report.screenshot.media_type};base64,${report.screenshot.base64}`
+					}
+				}
+			]
+		: [];
+	return [...screenshot, { type: 'text', text }];
+}
+
+export function build_triage_request(report: IssueReport) {
+	return {
+		model: TRIAGE_MODEL,
+		reasoning: { effort: TRIAGE_EFFORT },
+		max_tokens: TRIAGE_MAX_TOKENS,
+		messages: [
+			{ role: 'system', content: TRIAGE_SYSTEM_PROMPT },
+			{ role: 'user', content: triage_user_content(report) }
+		],
+		response_format: {
+			type: 'json_schema',
+			json_schema: { name: 'issue_triage', strict: true, schema: TRIAGE_JSON_SCHEMA }
+		}
+	};
 }
 
 export async function triage_issue_report(report: IssueReport): Promise<IssueTriage> {
-	// fallbacks: 'default' re-runs a refused request on a suitable model
-	const response = await get_client().beta.messages.parse({
-		model: TRIAGE_MODEL,
-		max_tokens: 16000,
-		betas: ['server-side-fallback-2026-07-01'],
-		fallbacks: 'default',
-		output_config: { effort: 'medium', format: betaZodOutputFormat(triage_schema) },
-		system: TRIAGE_SYSTEM_PROMPT,
-		messages: [triage_message(report)]
-	});
+	if (!OPENROUTER_API_KEY) error(503, 'Issues can’t be triaged: OPENROUTER_API_KEY is not set');
 
-	if (response.stop_reason === 'refusal') {
-		throw new Error(
-			`Claude declined to triage the report (${response.stop_details?.category ?? 'no category'})`
-		);
-	}
-	if (response.stop_reason === 'max_tokens') {
-		throw new Error('Claude hit max_tokens before finishing the triage');
-	}
-	if (!response.parsed_output) {
-		throw new Error('Claude’s triage did not match the issue schema');
-	}
-	return response.parsed_output;
+	const response = await fetch(OPENROUTER_CHAT_URL, {
+		method: 'POST',
+		headers: { authorization: `Bearer ${OPENROUTER_API_KEY}`, 'content-type': 'application/json' },
+		body: JSON.stringify(build_triage_request(report))
+	});
+	const text = await response.text();
+	if (!response.ok) throw new Error(`OpenRouter ${response.status}: ${text.slice(0, 500)}`);
+
+	const answer = read_chat_message(JSON.parse(text));
+	if (!answer) throw new Error(`Claude’s triage came back empty: ${text.slice(0, 500)}`);
+	return v.parse(triage_schema, JSON.parse(answer));
 }

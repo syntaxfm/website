@@ -5,7 +5,6 @@ import {
 	build_tag_user_message,
 	get_tag_slug,
 	MAX_LIBRARIES,
-	read_chat_message,
 	read_tag_answer,
 	strip_show_note_extras,
 	type TagTopic
@@ -129,15 +128,6 @@ describe('read_tag_answer', () => {
 	it('fails loudly on an answer of the wrong shape', () => {
 		expect(() => read_tag_answer('{"topics":"css"}', topics)).toThrow(TypeError);
 		expect(() => read_tag_answer('not json', topics)).toThrow();
-	});
-});
-
-describe('read_chat_message', () => {
-	it('reads the first choice, or null for anything else', () => {
-		expect(read_chat_message({ choices: [{ message: { content: '{"a":1}' } }] })).toBe('{"a":1}');
-		expect(read_chat_message({ choices: [] })).toBeNull();
-		expect(read_chat_message({ error: 'nope' })).toBeNull();
-		expect(read_chat_message(null)).toBeNull();
 	});
 });
 

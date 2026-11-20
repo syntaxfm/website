@@ -119,18 +119,6 @@ export function build_tag_request(system_prompt: string, topic_slugs: string[], 
 	};
 }
 
-/** The first choice's message text from an OpenAI-style chat response, or null. */
-export function read_chat_message(response: unknown): string | null {
-	if (typeof response !== 'object' || response === null || !('choices' in response)) return null;
-	const { choices } = response;
-	if (!Array.isArray(choices)) return null;
-	const first: unknown = choices[0];
-	if (typeof first !== 'object' || first === null || !('message' in first)) return null;
-	const { message } = first;
-	if (typeof message !== 'object' || message === null || !('content' in message)) return null;
-	return typeof message.content === 'string' ? message.content : null;
-}
-
 function is_string_array(value: unknown): value is string[] {
 	return Array.isArray(value) && value.every((item) => typeof item === 'string');
 }

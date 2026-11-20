@@ -7,7 +7,7 @@ const MODEL = 'claude-opus-5-5';
 let client: Anthropic | undefined;
 
 // Created on first use, so the module loads (and builds) without a key
-export function get_client(): Anthropic {
+function get_client(): Anthropic {
 	if (!ANTHROPIC_KEY) throw new Error('ANTHROPIC_KEY is not set');
 	return (client ??= new Anthropic({ apiKey: ANTHROPIC_KEY }));
 }
