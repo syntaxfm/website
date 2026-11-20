@@ -119,6 +119,13 @@ One saved reading of how syntax.fm shows up in search, taken from `/admin/seo`: 
 **Tracked search**:
 A search phrase (`TRACKED_SEARCHES` in `src/server/seo_tracker/seo_config.ts`) checked on Google and YouTube in every SEO snapshot. Distinct from a **Tag**, though Tags decide which ranked keywords count as on topic.
 
+### Issue reports
+
+**Issue report**:
+An admin's report of something to change on the site, filed with the Report button in the admin menu: a screenshot of the area they selected, their request, and facts about the page (route, viewport, browser, the elements in the area and, under `pnpm dev`, their Svelte source lines). Claude triages it into an issue in the public `syntaxfm/website` GitHub repository, labelled `site-report`, for a coding agent to pick up. Not stored in the database: the GitHub issue is the record, and the screenshot lives in R2 (`/issue-screenshots/...`; screenshots of `/admin` pages are admin-only). Code: `src/lib/issue_reports`, `src/server/issue_reports`.
+
+_Avoid_: calling it feedback or a submission. A `FEEDBACK` **UserSubmission** comes from the audience; an Issue report only from an admin.
+
 ## Relationships
 
 - **Syntax** has many **Shows**.

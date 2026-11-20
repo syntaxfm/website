@@ -92,6 +92,10 @@ const submission_turnstile = Cloudflare.Turnstile.Widget('SubmissionForm', {
 // (src/server/og/og_image.ts)
 const og_images = Cloudflare.R2.Bucket('OgImages');
 
+// Screenshots attached to issue reports from the admin menu's Report button
+// (src/server/issue_reports/screenshots.ts)
+const issue_screenshots = Cloudflare.R2.Bucket('IssueScreenshots');
+
 // The app's secrets (CRON_SECRET, Kit, xAI, Megaphone, OpenAI, YouTube) aren't here: they're
 // set on the Worker itself (Cloudflare dashboard, or wrangler secret put) and Alchemy leaves
 // secrets it didn't upload alone. So a deploy, including one Cloudflare runs on every push to v_3,
@@ -106,6 +110,7 @@ export const website_props = Effect.gen(function* () {
 			HYPERDRIVE: syntax_database,
 			BROWSER: Cloudflare.Browser(),
 			OG_IMAGES: og_images,
+			ISSUE_SCREENSHOTS: issue_screenshots,
 			PUBLIC_TURNSTILE_SITE_KEY: turnstile.sitekey,
 			TURNSTILE_SECRET: turnstile.secret,
 			// Not secret: set in .env.schema
