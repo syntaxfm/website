@@ -46,7 +46,7 @@
 <section class="stack">
 	<h1 class="visually-hidden">Syntax episodes and videos</h1>
 
-	<div class="split">
+	<div class="split filters">
 		<div class="flex">
 			<SelectMenu
 				popover_id="filter-type"
@@ -97,3 +97,14 @@
 		<p>Nothing matches these filters yet.</p>
 	{/if}
 </section>
+
+<style>
+	/* Four menus and the view toggle don't fit a phone: the menus scroll sideways, the
+	   cut-off pill at the edge shows there are more */
+	.filters .flex {
+		flex: 1;
+		min-width: 0;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+</style>

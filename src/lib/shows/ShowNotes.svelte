@@ -17,6 +17,7 @@
 
 		:global(a) {
 			color: var(--c-fg);
+			overflow-wrap: anywhere;
 			text-decoration: underline;
 			text-decoration-style: solid;
 			text-decoration-color: var(--c-primary);

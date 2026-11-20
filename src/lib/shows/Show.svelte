@@ -27,6 +27,10 @@
 		preload_data?: boolean;
 	}
 
+	// One column on phones, two from 660px, three from 966px, capped by the 1200px site column
+	const GRID_THUMBNAIL_SIZES =
+		'(min-width: 1264px) 380px, (min-width: 966px) 33vw, (min-width: 660px) 50vw, 100vw';
+
 	let { show, type, href, onselect, data_has_node = false, preload_data = false }: Props = $props();
 	let show_href = $derived(
 		href || (is_player_video(show) ? get_media_path(show) : get_show_path(show))
@@ -55,7 +59,7 @@
 			show={show}
 			class={type === 'list' ? 'br-small' : 'br-medium grid-thumbnail'}
 			width={type === 'list' ? '135px' : '100%'}
-			sizes={type === 'list' ? '135px' : '300px'}
+			sizes={type === 'list' ? '135px' : GRID_THUMBNAIL_SIZES}
 			is_video_slot={type === 'grid'}
 		/>
 		<div class={['stack', type === 'grid' && 'stack-reverse']} style:--stack-gap="0.5rem">
@@ -86,10 +90,6 @@
 		color: inherit;
 		display: block;
 		text-decoration: none;
-	}
-
-	.show-grid-view {
-		max-width: 300px;
 	}
 
 	.show-grid-view :global(.grid-thumbnail) {

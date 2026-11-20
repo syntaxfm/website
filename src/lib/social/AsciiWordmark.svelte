@@ -175,7 +175,7 @@
 		position: relative;
 		isolation: isolate;
 		display: block;
-		width: min(100% - 2.5rem, 860px);
+		width: min(100% - 2 * var(--layout-padding, var(--padding, 2rem)), 860px);
 		margin: 3rem auto 2.5rem;
 		padding: 0;
 		border: 0;

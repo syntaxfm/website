@@ -32,4 +32,8 @@
 
 		--stack-gap: 1rem;
 	}
+
+	.grid.show-episodes {
+		gap: 2rem 1.25rem;
+	}
 </style>

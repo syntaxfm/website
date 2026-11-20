@@ -36,12 +36,21 @@ export const anchor: Action<HTMLElement, { id: string; position: Position }> = (
 		}
 	}
 
+	// The anchor moves when the page or a sideways-scrolling row scrolls, so place the
+	// popover again each time it opens
+	function update_on_open(event: Event) {
+		if (event instanceof ToggleEvent && event.newState === 'open') updatePosition();
+	}
+	const target = document.getElementById(id);
+	target?.addEventListener('beforetoggle', update_on_open);
+
 	// Use the ResizeObserver to watch for changes in size of 'node'
 	const resize_observer = new ResizeObserver(updatePosition);
 	resize_observer.observe(node);
 	window.addEventListener('resize', updatePosition);
 	return {
 		destroy() {
+			target?.removeEventListener('beforetoggle', update_on_open);
 			resize_observer.disconnect();
 			window.removeEventListener('resize', updatePosition);
 		}

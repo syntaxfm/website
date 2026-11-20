@@ -122,11 +122,16 @@
 		font-size: var(--fs-2);
 		display: flex;
 		flex-wrap: nowrap;
+		white-space: nowrap;
 		align-items: center;
 		gap: 10px;
 		border: none;
 		cursor: pointer;
 		color: var(--c-fg);
+
+		@media (--below-med) {
+			padding-inline: 1.25rem;
+		}
 
 		&:hover {
 			background: var(--c-fg-05);
