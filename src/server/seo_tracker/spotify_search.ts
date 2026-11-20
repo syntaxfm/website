@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/sveltekit';
-import { chunk } from '#lib/utils/chunk.ts';
-import { scrape_markdown, type ScrapedPage } from './firecrawl_scrape';
+import { batch_scrape_markdown } from './firecrawl';
 import { SYNTAX_SPOTIFY_SHOW_ID } from './seo_config';
 import { SEARCH_RESULT_DETAIL_LENGTH, TOP_LIST_LENGTH } from './seo_parse';
 import type {
@@ -14,8 +13,6 @@ import type {
 // page as a logged-out listener sees it, read through Firecrawl.
 
 const CAPABILITY = 'firecrawl open.spotify.com/search';
-// Pages loaded at once, to stay under Firecrawl's limit on browsers running together
-const PAGES_AT_ONCE = 5;
 const DESCRIPTION_SNIPPET_LENGTH = 200;
 
 // Lines of Firecrawl's markdown for the search page. Text in links keeps markdown escapes ("\#501").
@@ -148,65 +145,51 @@ export function parse_spotify_search(search: string, markdown: string): SpotifyS
 	};
 }
 
-type SpotifyOutcome = {
-	check: SpotifySearchCheck | null;
-	error: SeoCallError | null;
-	credits_cost: number;
-};
-
-// A failure is reported (and sent to Sentry), never thrown, so one bad page doesn't lose the rest
-async function check_spotify_search(
-	search: string,
-	api_key: string,
-	fetch_fn: typeof fetch
-): Promise<SpotifyOutcome> {
-	const fail = (code: string, failure: unknown, credits_cost: number): SpotifyOutcome => {
-		console.error(`Spotify search "${search}" failed`, failure);
-		Sentry.captureException(failure);
-		return {
-			check: null,
-			credits_cost,
-			error: {
-				capability: CAPABILITY,
-				subject: search,
-				code,
-				message: failure instanceof Error ? failure.message : String(failure)
-			}
-		};
+function call_error(search: string, code: string, failure: unknown): SeoCallError {
+	return {
+		capability: CAPABILITY,
+		subject: search,
+		code,
+		message: failure instanceof Error ? failure.message : String(failure)
 	};
-
-	let page: ScrapedPage;
-	try {
-		page = await scrape_markdown(spotify_search_url(search), api_key, fetch_fn);
-	} catch (scrape_error) {
-		return fail('scrape_failed', scrape_error, 0);
-	}
-	try {
-		return {
-			check: parse_spotify_search(search, page.markdown),
-			error: null,
-			credits_cost: page.credits_cost
-		};
-	} catch (parse_error) {
-		return fail('unreadable_response', parse_error, page.credits_cost);
-	}
 }
 
-/** Every search's Spotify check, in order. Failed searches are left out and listed in errors. */
+/**
+ * Every search's Spotify check, in order, from one Firecrawl batch. A failure is listed in errors
+ * and sent to Sentry, never thrown, so it doesn't lose the rest of the snapshot.
+ */
 export async function check_spotify_searches(
 	searches: readonly string[],
 	api_key: string,
 	fetch_fn: typeof fetch = fetch
 ): Promise<{ checks: SpotifySearchCheck[]; errors: SeoCallError[]; credits_cost: number }> {
-	const outcomes: SpotifyOutcome[] = [];
-	for (const batch of chunk(searches, PAGES_AT_ONCE)) {
-		outcomes.push(
-			...(await Promise.all(batch.map((search) => check_spotify_search(search, api_key, fetch_fn))))
-		);
+	let batch: Awaited<ReturnType<typeof batch_scrape_markdown>>;
+	try {
+		batch = await batch_scrape_markdown(searches.map(spotify_search_url), api_key, fetch_fn);
+	} catch (batch_error) {
+		console.error('Spotify searches failed', batch_error);
+		Sentry.captureException(batch_error);
+		return {
+			checks: [],
+			errors: searches.map((search) => call_error(search, 'scrape_failed', batch_error)),
+			credits_cost: 0
+		};
 	}
-	return {
-		checks: outcomes.flatMap((outcome) => (outcome.check ? [outcome.check] : [])),
-		errors: outcomes.flatMap((outcome) => (outcome.error ? [outcome.error] : [])),
-		credits_cost: outcomes.reduce((total, outcome) => total + outcome.credits_cost, 0)
-	};
+
+	const checks: SpotifySearchCheck[] = [];
+	const errors: SeoCallError[] = [];
+	for (const search of searches) {
+		const page = batch.pages.get(spotify_search_url(search));
+		try {
+			if (!page?.ok) throw new Error(page?.error ?? 'Firecrawl returned no page');
+			checks.push(parse_spotify_search(search, page.markdown));
+		} catch (search_error) {
+			console.error(`Spotify search "${search}" failed`, search_error);
+			Sentry.captureException(search_error);
+			errors.push(
+				call_error(search, page?.ok ? 'unreadable_response' : 'scrape_failed', search_error)
+			);
+		}
+	}
+	return { checks, errors, credits_cost: batch.credits_cost };
 }

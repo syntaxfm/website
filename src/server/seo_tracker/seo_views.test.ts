@@ -22,7 +22,10 @@ import {
 } from './seo_views';
 import { parse_spotify_search } from './spotify_search';
 
-const spotify_page = readFileSync(new URL('./fixtures/spotify_search.txt', import.meta.url), 'utf8');
+const spotify_page = readFileSync(
+	new URL('./fixtures/spotify_search.txt', import.meta.url),
+	'utf8'
+);
 
 const SYNTAX_CHANNEL = { id: 'UCyU5wkjgQYGRB0hIHMwm2Sg', name: 'Syntax' };
 const SYNTAX = {

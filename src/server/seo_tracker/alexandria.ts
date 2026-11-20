@@ -1,5 +1,6 @@
 import { chunk } from '#lib/utils/chunk.ts';
 import { as_array, as_number, as_string, is_record, read_path } from '#lib/utils/narrow.ts';
+import { fetch_firecrawl } from './firecrawl';
 
 // Firecrawl Alexandria: one API key for third-party data providers (DataForSEO, YouTube search).
 // Each call is { provider, capability, options } sent to /v2/scrape with no url.
@@ -48,15 +49,19 @@ async function send_alexandria_request(
 	api_key: string,
 	fetch_fn: typeof fetch
 ): Promise<AlexandriaOutcome[]> {
-	const response = await fetch_fn(ALEXANDRIA_URL, {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${api_key}`,
-			'Content-Type': 'application/json',
-			'x-request-id': crypto.randomUUID()
+	const response = await fetch_firecrawl(
+		ALEXANDRIA_URL,
+		{
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${api_key}`,
+				'Content-Type': 'application/json',
+				'x-request-id': crypto.randomUUID()
+			},
+			body: JSON.stringify({ alexandria: calls })
 		},
-		body: JSON.stringify({ alexandria: calls })
-	});
+		fetch_fn
+	);
 
 	if (!response.ok) {
 		const body = await response.text();

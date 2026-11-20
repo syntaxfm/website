@@ -80,35 +80,62 @@ describe('parse_spotify_search', () => {
 });
 
 describe('check_spotify_searches', () => {
-	// Answers the "coding podcast" page and refuses every other
-	const fetch_fn = (async (_input: string | URL | Request, init?: RequestInit) => {
-		const { url } = JSON.parse(String(init?.body)) as { url: string };
-		if (url.includes('coding%20podcast')) {
-			return new Response(
-				JSON.stringify({
-					success: true,
-					data: { markdown: page, metadata: { statusCode: 200, creditsUsed: 1 } }
-				})
-			);
-		}
-		return new Response('Payment required', { status: 402 });
+	// A finished Firecrawl batch: the "coding podcast" page read, "tech podcast" answering 403, and
+	// "ai podcast" missing
+	const fetch_fn = (async (input: string | URL | Request, init?: RequestInit) => {
+		if (init?.method === 'POST') return Response.json({ success: true, id: 'batch-1' });
+		expect(String(input)).toBe('https://api.firecrawl.dev/v2/batch/scrape/batch-1');
+		return Response.json({
+			success: true,
+			status: 'completed',
+			creditsUsed: 2,
+			data: [
+				{
+					markdown: page,
+					metadata: {
+						sourceURL: spotify_search_url('coding podcast'),
+						statusCode: 200
+					}
+				},
+				{
+					markdown: 'Forbidden',
+					metadata: { sourceURL: spotify_search_url('tech podcast'), statusCode: 403 }
+				}
+			]
+		});
 	}) as typeof fetch;
 
-	it('checks each search, and lists the ones that failed', async () => {
+	it('reads every search in one batch, and lists the ones that failed', async () => {
 		const result = await check_spotify_searches(
-			['coding podcast', 'tech podcast'],
+			['coding podcast', 'tech podcast', 'ai podcast'],
 			'key',
 			fetch_fn
 		);
 		expect(result.checks.map((check) => check.search)).toEqual(['coding podcast']);
-		expect(result.credits_cost).toBe(1);
+		expect(result.credits_cost).toBe(2);
 		expect(result.errors).toEqual([
 			{
 				capability: 'firecrawl open.spotify.com/search',
 				subject: 'tech podcast',
 				code: 'scrape_failed',
-				message: 'Firecrawl scrape failed (402): Payment required'
+				message: 'The page answered 403'
+			},
+			{
+				capability: 'firecrawl open.spotify.com/search',
+				subject: 'ai podcast',
+				code: 'scrape_failed',
+				message: 'Firecrawl returned no page'
 			}
+		]);
+	});
+
+	it('lists every search when the batch itself fails', async () => {
+		const refused = (async () => new Response('Payment required', { status: 402 })) as typeof fetch;
+		const result = await check_spotify_searches(['coding podcast', 'tech podcast'], 'key', refused);
+		expect(result.checks).toEqual([]);
+		expect(result.errors.map((error) => [error.subject, error.message])).toEqual([
+			['coding podcast', 'Firecrawl batch scrape failed (402): Payment required'],
+			['tech podcast', 'Firecrawl batch scrape failed (402): Payment required']
 		]);
 	});
 });
