@@ -5,7 +5,13 @@ vi.mock('$server/db/client', () => ({ db: {} }));
 vi.mock('$app/env/private', () => ({}));
 
 import captions_list from './fixtures/captions_list.json';
-import { cues_to_passages, parse_srt, pick_caption_track } from './video_captions';
+import {
+	build_caption_upload_multipart,
+	cues_to_passages,
+	parse_srt,
+	pick_caption_track,
+	pick_caption_track_info
+} from './video_captions';
 
 const srt = readFileSync(new URL('./fixtures/captions.srt', import.meta.url), 'utf8');
 
@@ -71,5 +77,36 @@ describe('pick_caption_track', () => {
 			snippet: { ...captions_list.items[0].snippet, language: 'fr' }
 		};
 		expect(pick_caption_track({ items: [french] })).toBe(null);
+	});
+
+	it('reports whether the picked track is asr or standard', () => {
+		expect(pick_caption_track_info(captions_list)).toEqual({
+			id: captions_list.items[0].id,
+			kind: 'asr'
+		});
+		const uploaded = {
+			...captions_list.items[0],
+			id: 'uploaded',
+			snippet: { ...captions_list.items[0].snippet, trackKind: 'standard' }
+		};
+		expect(pick_caption_track_info({ items: [...captions_list.items, uploaded] })).toEqual({
+			id: 'uploaded',
+			kind: 'standard'
+		});
+	});
+});
+
+describe('build_caption_upload_multipart', () => {
+	it('builds a valid multipart/related body with metadata JSON and SRT payload', () => {
+		const body = build_caption_upload_multipart(
+			'test-boundary',
+			{ snippet: { videoId: 'abc', language: 'en', name: '', isDraft: false } },
+			'1\n00:00:00,000 --> 00:00:02,000\nHello Claude Code'
+		);
+		expect(body).toContain('--test-boundary\r\nContent-Type: application/json; charset=UTF-8');
+		expect(body).toContain('"videoId":"abc"');
+		expect(body).toContain('--test-boundary\r\nContent-Type: application/octet-stream');
+		expect(body).toContain('Hello Claude Code');
+		expect(body.endsWith('--test-boundary--\r\n')).toBe(true);
 	});
 });

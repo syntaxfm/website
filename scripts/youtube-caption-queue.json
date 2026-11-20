@@ -1,0 +1,171 @@
+{
+	"note": "Priority YouTube ASR caption cleanup queue for Syntax SEO terms. Run `node scripts/clean-youtube-captions.ts --status` for progress or `--limit=3 --prod-token` to clean 3 videos (~1,950 quota units).",
+	"videos": [
+		{
+			"id": "QKdKcFjjZhE",
+			"title": "Local AI Explained | Hardware, Setup and Models",
+			"topic": "local llm",
+			"status": "done",
+			"cleaned_at": "2026-11-19T17:44:01Z",
+			"track_id": "AUieDaaL6KoNCNh1_hrSe2r5vBvnPcVqPZ2trv_fCrHP",
+			"words": 5205,
+			"cues_changed": 61,
+			"misheard_fixes": 43,
+			"format_fixes": 24,
+			"top_changes": [
+				"Llama CPP -> llama.cpp (8x)",
+				"Stricks -> Strix (4x)",
+				"Quinn -> Qwen (3x)",
+				"RockM -> ROCm (2x)",
+				"Vulcan -> Vulkan (2x)",
+				"Kimmy -> Kimi (2x)",
+				"Miniax -> MiniMax (2x)",
+				"Cloud -> Claude (2x)"
+			]
+		},
+		{
+			"id": "1FqiNnOsrgM",
+			"title": "MCP Explained | What, Why and How",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "cWBVMEHPgQU",
+			"title": "How to Give Your AI Agent Long-Term Memory",
+			"topic": "ai coding agents",
+			"status": "pending"
+		},
+		{
+			"id": "YmLp8qe87A0",
+			"title": "LLMs Explained: Tokens, Embeddings, Transformers and More",
+			"topic": "local llm",
+			"status": "pending"
+		},
+		{
+			"id": "a-Lj9moBlqE",
+			"title": "Open Weight AI Models Explained for Everyone",
+			"topic": "local llm",
+			"status": "pending"
+		},
+		{
+			"id": "CCaUnet8SB4",
+			"title": "How to Build an MCP Server (Model Context Protocol Explained)",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "xtVvkRTH5ck",
+			"title": "WebMCP is here (and you should care)",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "sOPhVSeimtI",
+			"title": "THIS is how to expose your apps to AI: WebMCP",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "5az_4IwTwAE",
+			"title": "S-Tier MCP Servers for Developers",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "iO6TIDdfqSk",
+			"title": "Chrome Dev Tools MCP Server",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "gFjk6uko-0U",
+			"title": "What Is MCP? Model Context Protocol Explained",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "xCO5pbW6h_0",
+			"title": "Browsers are cooked. MCP UI with Kent C. Dodds",
+			"topic": "mcp server",
+			"status": "pending"
+		},
+		{
+			"id": "BLRReTwV8Fc",
+			"title": "You need to check out Pi Durable",
+			"topic": "ai coding agents",
+			"status": "pending"
+		},
+		{
+			"id": "aYz9G3__Z4g",
+			"title": "WTF is a Software Factory?",
+			"topic": "agentic coding",
+			"status": "pending"
+		},
+		{
+			"id": "AEmHcFH1UgQ",
+			"title": "Claude Code is overkill - Pi is All you Need",
+			"topic": "claude code",
+			"status": "pending"
+		},
+		{
+			"id": "TZMX5cwo35k",
+			"title": "Cursor User Tries Claude Code",
+			"topic": "cursor vs claude code",
+			"status": "pending"
+		},
+		{
+			"id": "5He3_Lin5gE",
+			"title": "why claude, codex and cursor switched primitives (github take note)",
+			"topic": "codex cli",
+			"status": "pending"
+		},
+		{
+			"id": "0ZUkQF6boNg",
+			"title": "AI Coding Sucks",
+			"topic": "ai coding",
+			"status": "pending"
+		},
+		{
+			"id": "tCGju2JB5Fw",
+			"title": "We Tier Ranked Every AI Coding Assistant",
+			"topic": "best ai for coding",
+			"status": "pending"
+		},
+		{
+			"id": "8k1g-E1qGyQ",
+			"title": "Is Kiro Your Next AI Editor?",
+			"topic": "vibe coding",
+			"status": "pending"
+		},
+		{
+			"id": "LSq485DvILM",
+			"title": "How to Fix Vibe Coding",
+			"topic": "vibe coding",
+			"status": "pending"
+		},
+		{
+			"id": "2b_KlROMfp8",
+			"title": "Is Vibe Coding A Problem?",
+			"topic": "vibe coding",
+			"status": "pending"
+		},
+		{
+			"id": "8jbQZxMgIVs",
+			"title": "Wes and Scott's 2026 Coding Setup and Tools",
+			"topic": "ai coding",
+			"status": "pending"
+		},
+		{
+			"id": "KShA22Crumc",
+			"title": "This AI Agent Runs Your Entire Dev Workflow",
+			"topic": "ai coding agents",
+			"status": "pending"
+		},
+		{
+			"id": "S916GQVhRb8",
+			"title": "Remote Coding Agents",
+			"topic": "ai coding agents",
+			"status": "pending"
+		}
+	]
+}

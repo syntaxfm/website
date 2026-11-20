@@ -1,8 +1,10 @@
 // A video's transcript is YouTube's own captions: an uploaded track when there is one, otherwise
-// YouTube's automatic (ASR) one. Listing a video's tracks costs 50 quota units and downloading one
-// costs 200, and only the channel owner can download (youtube_owner.ts).
+// YouTube's automatic (ASR) one. Listing a video's tracks costs 50 quota units, downloading one
+// costs 200, and uploading a cleaned track costs 400; only the channel owner can download/upload
+// (youtube_owner.ts).
 import { and, asc, desc, eq, isNull } from 'drizzle-orm';
 import { randomUUID } from 'node:crypto';
+import { OPENROUTER_API_KEY } from '$app/env/private';
 import { db } from '$server/db/client';
 import {
 	content,
@@ -11,10 +13,19 @@ import {
 	video
 } from '$server/db/schema';
 import { as_array, as_string, read_path } from '#lib/utils/narrow.ts';
+import {
+	clean_caption_cues,
+	type CaptionCleanContext,
+	type CaptionCleanReport
+} from './caption_cleaner';
 import { get_youtube_owner_token } from './youtube_owner';
 
 const API_BASE = 'https://www.googleapis.com/youtube/v3';
+const UPLOAD_API_BASE = 'https://www.googleapis.com/upload/youtube/v3';
 const LANGUAGE = 'en';
+// Only auto-clean & re-upload recent uploads during the hourly cron so the 800-video historical
+// backfill doesn't burn the 10,000-unit daily YouTube quota on old videos.
+const AUTO_CLEAN_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 // Caption lines are a few words each; a passage ends at a sentence once it's this long, or at a
 // pause, so the transcript reads in paragraphs
 const PASSAGE_MIN_SECONDS = 20;
@@ -27,6 +38,8 @@ const ROWS_PER_INSERT = 2000;
 export type CaptionCue = { start: number; end: number; text: string };
 
 export type CaptionPassage = { start: number; end: number; text: string };
+
+export type CaptionTrackInfo = { id: string; kind: 'standard' | 'asr' };
 
 function srt_seconds(time: string): number {
 	const match = time.trim().match(/^(\d+):(\d{2}):(\d{2})[,.](\d{3})$/);
@@ -94,29 +107,180 @@ async function youtube_get(path: string, params: Record<string, string>, token: 
 }
 
 // The English track to use: an uploaded one first, YouTube's automatic one otherwise
-export function pick_caption_track(list: unknown): string | null {
+export function pick_caption_track_info(list: unknown): CaptionTrackInfo | null {
 	const tracks = as_array(read_path(list, ['items'])).filter((item) =>
 		as_string(read_path(item, ['snippet', 'language']))?.startsWith(LANGUAGE)
 	);
 	const kind = (item: unknown) => as_string(read_path(item, ['snippet', 'trackKind']));
-	const track =
-		tracks.find((item) => kind(item)?.toLowerCase() === 'standard') ??
-		tracks.find((item) => kind(item)?.toLowerCase() === 'asr');
-	return track ? as_string(read_path(track, ['id'])) : null;
+	const standard = tracks.find((item) => kind(item)?.toLowerCase() === 'standard');
+	if (standard) {
+		const id = as_string(read_path(standard, ['id']));
+		return id ? { id, kind: 'standard' } : null;
+	}
+	const asr = tracks.find((item) => kind(item)?.toLowerCase() === 'asr');
+	if (asr) {
+		const id = as_string(read_path(asr, ['id']));
+		return id ? { id, kind: 'asr' } : null;
+	}
+	return null;
+}
+
+export function pick_caption_track(list: unknown): string | null {
+	return pick_caption_track_info(list)?.id ?? null;
+}
+
+// The video's English captions track + SRT, or null when it has no English track
+async function fetch_caption_track_srt(
+	video_id: string,
+	token: string
+): Promise<{ track: CaptionTrackInfo; srt: string } | null> {
+	const list = await youtube_get('captions', { part: 'snippet', videoId: video_id }, token);
+	const track = pick_caption_track_info(await list.json());
+	if (!track) return null;
+	const download = await youtube_get(`captions/${track.id}`, { tfmt: 'srt' }, token);
+	return { track, srt: await download.text() };
 }
 
 // The video's captions as SRT, or null when it has no English track
 async function fetch_caption_srt(video_id: string, token: string): Promise<string | null> {
-	const list = await youtube_get('captions', { part: 'snippet', videoId: video_id }, token);
-	const track_id = pick_caption_track(await list.json());
-	if (!track_id) return null;
-	const download = await youtube_get(`captions/${track_id}`, { tfmt: 'srt' }, token);
-	return download.text();
+	const result = await fetch_caption_track_srt(video_id, token);
+	return result?.srt ?? null;
 }
 
-async function fetch_caption_passages(video_id: string): Promise<CaptionPassage[]> {
-	const srt = await fetch_caption_srt(video_id, await get_youtube_owner_token());
-	return srt ? cues_to_passages(parse_srt(srt)) : [];
+/** Builds the multipart/related payload for YouTube's captions upload API. */
+export function build_caption_upload_multipart(
+	boundary: string,
+	metadata: Record<string, unknown>,
+	srt: string
+): string {
+	return [
+		`--${boundary}`,
+		'Content-Type: application/json; charset=UTF-8',
+		'',
+		JSON.stringify(metadata),
+		`--${boundary}`,
+		'Content-Type: application/octet-stream',
+		'',
+		srt,
+		`--${boundary}--`,
+		''
+	].join('\r\n');
+}
+
+/**
+ * Uploads a cleaned English SRT track to YouTube via captions.insert (400 quota units) or updates
+ * an existing standard track via captions.update (450 quota units).
+ */
+export async function upload_caption_srt(
+	video_id: string,
+	srt: string,
+	token: string,
+	existing_standard_track_id?: string
+): Promise<string> {
+	const boundary = `syntax-captions-${randomUUID()}`;
+	const metadata = existing_standard_track_id
+		? { id: existing_standard_track_id, snippet: { isDraft: false } }
+		: {
+				snippet: {
+					videoId: video_id,
+					language: LANGUAGE,
+					name: '',
+					isDraft: false
+				}
+			};
+	const body = build_caption_upload_multipart(boundary, metadata, srt);
+	const response = await fetch(`${UPLOAD_API_BASE}/captions?part=snippet&uploadType=multipart`, {
+		method: existing_standard_track_id ? 'PUT' : 'POST',
+		headers: {
+			authorization: `Bearer ${token}`,
+			'content-type': `multipart/related; boundary=${boundary}`
+		},
+		body
+	});
+	const response_text = await response.text();
+	if (!response.ok) {
+		let parsed: unknown;
+		try {
+			parsed = JSON.parse(response_text);
+		} catch {
+			parsed = null;
+		}
+		const reason =
+			as_string(read_path(parsed, ['error', 'errors', 0, 'reason'])) ??
+			as_string(read_path(parsed, ['error', 'status']));
+		const message = as_string(read_path(parsed, ['error', 'message'])) ?? response.statusText;
+		throw new Error(
+			`YouTube captions upload ${response.status}${reason ? ` ${reason}` : ''}: ${message}`
+		);
+	}
+	const parsed: unknown = JSON.parse(response_text);
+	return as_string(read_path(parsed, ['id'])) ?? existing_standard_track_id ?? '';
+}
+
+export type CleanVideoCaptionsResult =
+	| { status: 'no_captions' }
+	| { status: 'already_standard'; track_id: string }
+	| {
+			status: 'cleaned';
+			uploaded: boolean;
+			track_id: string;
+			cues: CaptionCue[];
+			srt: string;
+			passages: CaptionPassage[];
+			report: CaptionCleanReport;
+	  };
+
+/**
+ * Downloads a video's YouTube ASR SRT, cleans technical/dev terms, returns the word-correction
+ * report, and optionally uploads the cleaned standard English track back to YouTube.
+ */
+export async function clean_video_captions(
+	video_id: string,
+	context: CaptionCleanContext,
+	options: {
+		upload?: boolean;
+		force?: boolean;
+		token?: string;
+		model?: string;
+		api_key?: string;
+		skip_llm?: boolean;
+	} = {}
+): Promise<CleanVideoCaptionsResult> {
+	const token = options.token ?? (await get_youtube_owner_token());
+	const fetched = await fetch_caption_track_srt(video_id, token);
+	if (!fetched) return { status: 'no_captions' };
+	if (fetched.track.kind === 'standard' && !options.force) {
+		return { status: 'already_standard', track_id: fetched.track.id };
+	}
+
+	const original_cues = parse_srt(fetched.srt);
+	const cleaned = await clean_caption_cues(original_cues, context, {
+		model: options.model,
+		api_key: options.api_key,
+		skip_llm: options.skip_llm
+	});
+
+	let uploaded = false;
+	let track_id = fetched.track.id;
+	if (options.upload && cleaned.report.cues_changed > 0) {
+		track_id = await upload_caption_srt(
+			video_id,
+			cleaned.srt,
+			token,
+			fetched.track.kind === 'standard' ? fetched.track.id : undefined
+		);
+		uploaded = true;
+	}
+
+	return {
+		status: 'cleaned',
+		uploaded,
+		track_id,
+		cues: cleaned.cues,
+		srt: cleaned.srt,
+		passages: cues_to_passages(cleaned.cues),
+		report: cleaned.report
+	};
 }
 
 /**
@@ -137,14 +301,22 @@ export async function check_caption_access(access_token: string): Promise<void> 
 	} catch (download_error) {
 		console.error('Connect YouTube: caption check failed', download_error);
 		const youtube_says = download_error instanceof Error ? download_error.message : 'no answer';
-		throw new Error(`That account couldn’t download Syntax’s captions. ${youtube_says}`);
+		throw new Error(`That account couldn’t download Syntax’s captions. ${youtube_says}`, {
+			cause: download_error
+		});
 	}
 }
 
 // The newest published video still without a transcript
 async function get_next_video() {
 	const [next] = await db
-		.select({ youtube_id: video.id, content_id: content.id, title: content.title })
+		.select({
+			youtube_id: video.id,
+			content_id: content.id,
+			title: content.title,
+			description: video.description,
+			published_at: content.published_at
+		})
 		.from(content)
 		.innerJoin(video, eq(video.content_id, content.id))
 		.leftJoin(transcripts, eq(transcripts.content_id, content.id))
@@ -155,14 +327,49 @@ async function get_next_video() {
 }
 
 /**
- * Saves YouTube's captions as the transcript of the newest video without one. A video with no
- * English captions gets an empty transcript, so the next run moves on instead of asking again.
+ * Saves YouTube's captions as the transcript of the newest video without one. Recent uploads
+ * with only ASR captions are cleaned for dev/AI terms and uploaded back to YouTube as a standard
+ * track when OPENROUTER_API_KEY is configured. A video with no English captions gets an empty
+ * transcript, so the next run moves on instead of asking again.
  */
 export async function import_next_video_captions(): Promise<string> {
 	const next = await get_next_video();
 	if (!next) return 'Every video has a transcript';
 
-	const passages = await fetch_caption_passages(next.youtube_id);
+	const token = await get_youtube_owner_token();
+	const fetched = await fetch_caption_track_srt(next.youtube_id, token);
+	let cues = fetched ? parse_srt(fetched.srt) : [];
+	let clean_note = '';
+
+	const is_recent =
+		next.published_at !== null && Date.now() - next.published_at.getTime() <= AUTO_CLEAN_MAX_AGE_MS;
+
+	if (fetched && fetched.track.kind === 'asr' && is_recent && OPENROUTER_API_KEY) {
+		try {
+			const cleaned = await clean_caption_cues(cues, {
+				title: next.title,
+				description: next.description ?? ''
+			});
+			cues = cleaned.cues;
+			let uploaded = false;
+			if (cleaned.report.cues_changed > 0) {
+				try {
+					await upload_caption_srt(next.youtube_id, cleaned.srt, token);
+					uploaded = true;
+				} catch (upload_error) {
+					console.error(
+						`Video captions: cleaned SRT upload failed for ${next.youtube_id}`,
+						upload_error
+					);
+				}
+			}
+			clean_note = ` (cleaned ${cleaned.report.misheard_fixes} misheard + ${cleaned.report.format_fixes} format fixes${uploaded ? ', uploaded to YouTube' : ''})`;
+		} catch (clean_error) {
+			console.error(`Video captions: ASR clean failed for ${next.youtube_id}`, clean_error);
+		}
+	}
+
+	const passages = cues_to_passages(cues);
 	const transcript_id = randomUUID();
 	const rows = passages.map((passage) => ({
 		transcript_id,
@@ -182,6 +389,6 @@ export async function import_next_video_captions(): Promise<string> {
 		}
 	});
 	return passages.length > 0
-		? `Captions for "${next.title}": ${passages.length} passages`
+		? `Captions for "${next.title}": ${passages.length} passages${clean_note}`
 		: `No English captions for "${next.title}"`;
 }
