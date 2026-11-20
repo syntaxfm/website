@@ -15,7 +15,9 @@
 	const { title, issue, published_at }: Props = $props();
 
 	const label = $derived(
-		issue.issue_number == null ? 'Snack Pack' : `Snack Pack #${issue.issue_number}`
+		issue.issue_number == null
+			? 'Snack Pack Newsletter'
+			: `Snack Pack Newsletter #${issue.issue_number}`
 	);
 </script>
 
