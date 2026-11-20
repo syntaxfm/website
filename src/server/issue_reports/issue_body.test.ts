@@ -20,6 +20,7 @@ const triage: IssueTriage = {
 };
 
 const reporter = { name: 'Scott Tolinski', roles: ['admin'] };
+const triage_usage = { prompt_tokens: 7812, completion_tokens: 1934, cost_usd: 0.0699 };
 const url = (kind: string) => `https://beta.syntax.fm/issue-screenshots/public/2026-11/${kind}.png`;
 const stored: IssueScreenshots = {
 	selection: { status: 'stored', url: url('selection'), is_admin_only: false },
@@ -56,7 +57,7 @@ describe('route_directory', () => {
 
 describe('build_issue_body', () => {
 	it('leads with the triage and keeps the request word for word', () => {
-		const body = build_issue_body({ report, triage, screenshots: none, reporter });
+		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
 		expect(body.startsWith(triage.summary)).toBe(true);
 		expect(body).toContain('- [ ] At 390px wide the title wraps inside the card');
 		expect(body).toContain(
@@ -66,7 +67,7 @@ describe('build_issue_body', () => {
 	});
 
 	it('says where the selection is and which code made it', () => {
-		const body = build_issue_body({ report, triage, screenshots: none, reporter });
+		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
 		expect(body).toContain('in `src/routes/(site)/show/[show_number]/[slug]/`');
 		expect(body).toContain('300×120 at (10, 20) in the viewport, (10, 1220) on the page');
 		expect(body).toContain('area `main > section.hero`');
@@ -78,12 +79,25 @@ describe('build_issue_body', () => {
 	});
 
 	it('names the browser, the window sizes and who was signed in', () => {
-		const body = build_issue_body({ report, triage, screenshots: none, reporter });
+		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
 		expect(body).toContain('- Browser: Safari 18.2 on iOS 18.2 · mobile · touch');
 		expect(body).toContain(
 			'- Window: viewport 390×664 · browser window 390×844 · screen 390×844 portrait-primary · page 390×9120 · 3x pixels'
 		);
 		expect(body).toContain('- Signed in as Scott Tolinski (admin)');
+	});
+
+	it('says what the triage used and cost', () => {
+		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
+		expect(body).toContain('Triage: 7,812 tokens in, 1,934 out, $0.0699.');
+		const unknown = build_issue_body({
+			report,
+			triage,
+			triage_usage: null,
+			screenshots: none,
+			reporter
+		});
+		expect(unknown).toContain('Triage: OpenRouter didn’t say what it used.');
 	});
 
 	it('mentions pinch zoom only when the page is zoomed', () => {
@@ -97,12 +111,18 @@ describe('build_issue_body', () => {
 				}
 			}
 		};
-		const body = build_issue_body({ report: zoomed, triage, screenshots: none, reporter });
+		const body = build_issue_body({
+			report: zoomed,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter
+		});
 		expect(body).toContain('pinch-zoomed 2x to 195×332');
 	});
 
 	it('shows the selection and screen, and folds the full page away', () => {
-		const body = build_issue_body({ report, triage, screenshots: stored, reporter });
+		const body = build_issue_body({ report, triage, triage_usage, screenshots: stored, reporter });
 		expect(body).toContain(`**Selection**\n\n![Selection](${url('selection')})`);
 		expect(body).toContain(`**Screen**\n\n![Screen](${url('screen')})`);
 		expect(body).toContain(
@@ -119,7 +139,13 @@ describe('build_issue_body', () => {
 				full_page: { top: 21_808, height: 16_384 }
 			}
 		};
-		const body = build_issue_body({ report: long_page, triage, screenshots: stored, reporter });
+		const body = build_issue_body({
+			report: long_page,
+			triage,
+			triage_usage,
+			screenshots: stored,
+			reporter
+		});
 		expect(body).toContain('<summary>Full page, rows 21,808–38,192 of 61,766 (screen dashed');
 	});
 
@@ -128,7 +154,13 @@ describe('build_issue_body', () => {
 			...stored,
 			selection: { status: 'stored', url: url('selection'), is_admin_only: true }
 		};
-		const body = build_issue_body({ report, triage, screenshots: admin_only, reporter });
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: admin_only,
+			reporter
+		});
 		expect(body).toContain(`[Selection](${url('selection')})`);
 		expect(body).not.toContain(`![Selection]`);
 		expect(body).toContain('Admins only');
@@ -138,12 +170,13 @@ describe('build_issue_body', () => {
 		const body = build_issue_body({
 			report,
 			triage,
+			triage_usage,
 			screenshots: { ...none, screen: { status: 'failed', reason: 'R2 said no' } },
 			reporter
 		});
 		expect(body).toContain('The screen screenshot couldn’t be stored: R2 said no');
-		expect(build_issue_body({ report, triage, screenshots: none, reporter })).toContain(
-			'No screenshots: the headless browser couldn’t take them.'
-		);
+		expect(
+			build_issue_body({ report, triage, triage_usage, screenshots: none, reporter })
+		).toContain('No screenshots: the headless browser couldn’t take them.');
 	});
 });

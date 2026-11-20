@@ -6,6 +6,7 @@ import type {
 	PageElement,
 	ScreenshotKind
 } from '#lib/issue_reports/issue_report_schema.ts';
+import type { ChatUsage } from '$server/ai/openrouter';
 import type { IssueTriage } from './triage';
 
 // Every issue from the Report button carries it, so the agent that fixes them can find them
@@ -170,14 +171,24 @@ function describe_screenshots(screenshots: IssueScreenshots, page_facts: IssueRe
 		: 'No screenshots: the headless browser couldn’t take them.';
 }
 
+// What Claude's triage used and cost, e.g. "Triage: 7,812 tokens in, 1,934 out, $0.0699"
+export function describe_triage_usage(usage: ChatUsage | null): string {
+	if (!usage) return 'Triage: OpenRouter didn’t say what it used.';
+	const count = (tokens: number) => tokens.toLocaleString('en-US');
+	const cost = usage.cost_usd === null ? '' : `, $${usage.cost_usd.toFixed(4)}`;
+	return `Triage: ${count(usage.prompt_tokens)} tokens in, ${count(usage.completion_tokens)} out${cost}.`;
+}
+
 export function build_issue_body({
 	report,
 	triage,
+	triage_usage,
 	screenshots,
 	reporter
 }: {
 	report: IssueReport;
 	triage: IssueTriage;
+	triage_usage: ChatUsage | null;
 	screenshots: IssueScreenshots;
 	reporter: Reporter;
 }): string {
@@ -214,7 +225,7 @@ export function build_issue_body({
 					)
 				)}`
 			: null,
-		`### Browser and window\n\n${describe_environment(page, reporter)}\n\nReported ${page.captured_at} from ${new URL(page.url).host}.`,
+		`### Browser and window\n\n${describe_environment(page, reporter)}\n\nReported ${page.captured_at} from ${new URL(page.url).host}. ${describe_triage_usage(triage_usage)}`,
 		`<details>\n<summary>Page facts (JSON)</summary>\n\n\`\`\`json\n${JSON.stringify(page, null, 2)}\n\`\`\`\n\n</details>`
 	];
 

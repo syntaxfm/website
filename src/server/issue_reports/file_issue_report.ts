@@ -62,7 +62,7 @@ export async function file_issue_report(
 	// Checked first, so a report that can't be filed doesn't pay for a triage
 	if (!GITHUB_ISSUES_TOKEN) error(503, 'Issues can’t be filed: GITHUB_ISSUES_TOKEN is not set');
 
-	const [triage, screenshots] = await Promise.all([
+	const [{ triage, usage }, screenshots] = await Promise.all([
 		triage_issue_report(report),
 		store_report_screenshots(report)
 	]);
@@ -71,6 +71,7 @@ export async function file_issue_report(
 		body: build_issue_body({
 			report,
 			triage,
+			triage_usage: usage,
 			screenshots,
 			reporter: { name: reporter.name, roles: reporter.roles }
 		}),

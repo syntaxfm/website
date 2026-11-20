@@ -4,7 +4,12 @@ import { error } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { OPENROUTER_API_KEY } from '$app/env/private';
 import type { IssueReport, Screenshot } from '#lib/issue_reports/issue_report_schema.ts';
-import { OPENROUTER_CHAT_URL, read_chat_message } from '$server/ai/openrouter';
+import {
+	OPENROUTER_CHAT_URL,
+	read_chat_message,
+	read_chat_usage,
+	type ChatUsage
+} from '$server/ai/openrouter';
 
 const TRIAGE_MODEL = 'anthropic/claude-opus-5.5';
 // OpenRouter sends it to Claude as Anthropic's effort. Opus 5.5 there defaults to high.
@@ -128,11 +133,15 @@ export function build_triage_request(report: IssueReport) {
 		response_format: {
 			type: 'json_schema',
 			json_schema: { name: 'issue_triage', strict: true, schema: TRIAGE_JSON_SCHEMA }
-		}
+		},
+		// The tokens and the price come back with the answer, for the issue to show
+		usage: { include: true }
 	};
 }
 
-export async function triage_issue_report(report: IssueReport): Promise<IssueTriage> {
+export async function triage_issue_report(
+	report: IssueReport
+): Promise<{ triage: IssueTriage; usage: ChatUsage | null }> {
 	if (!OPENROUTER_API_KEY) error(503, 'Issues can’t be triaged: OPENROUTER_API_KEY is not set');
 
 	const response = await fetch(OPENROUTER_CHAT_URL, {
@@ -143,7 +152,8 @@ export async function triage_issue_report(report: IssueReport): Promise<IssueTri
 	const text = await response.text();
 	if (!response.ok) throw new Error(`OpenRouter ${response.status}: ${text.slice(0, 500)}`);
 
-	const answer = read_chat_message(JSON.parse(text));
+	const parsed: unknown = JSON.parse(text);
+	const answer = read_chat_message(parsed);
 	if (!answer) throw new Error(`Claude’s triage came back empty: ${text.slice(0, 500)}`);
-	return v.parse(triage_schema, JSON.parse(answer));
+	return { triage: v.parse(triage_schema, JSON.parse(answer)), usage: read_chat_usage(parsed) };
 }

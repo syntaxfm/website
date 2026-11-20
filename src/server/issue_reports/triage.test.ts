@@ -14,6 +14,8 @@ describe('build_triage_request', () => {
 		expect(request.response_format.json_schema.schema.required).toEqual(
 			Object.keys(request.response_format.json_schema.schema.properties)
 		);
+		// So the issue can say what the triage cost
+		expect(request.usage).toEqual({ include: true });
 	});
 
 	it('sends the selection and the screen, named, then the request and page facts', () => {
