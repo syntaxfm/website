@@ -58,9 +58,9 @@
 
 		/* The sticker moves up onto the top corner, so the text takes the whole width under it */
 		@media (--below-med) {
-			--box-size: 5.5rem;
+			--box-size: 6.5rem;
 
-			padding: 3.25rem 1.25rem 1.5rem;
+			padding: 3.75rem 1.25rem 1.5rem;
 		}
 	}
 
@@ -94,7 +94,7 @@
 	}
 
 	/* The snack box with a "Newsletter" tag stuck across its bottom, on the card's right edge.
-	   On a phone it sits on the top corner, the tag beside the box. */
+	   On a phone it hangs off the top corner. */
 	.sticker {
 		position: absolute;
 		inset-block-start: 50%;
@@ -105,10 +105,8 @@
 		translate: 0 -50%;
 
 		@media (--below-med) {
-			inset-block-start: -1.75rem;
+			inset-block-start: -3.25rem;
 			inset-inline-end: 0.5rem;
-			grid-auto-flow: column;
-			align-items: center;
 			translate: none;
 		}
 	}
@@ -131,9 +129,7 @@
 		rotate: -6deg;
 
 		@media (--below-med) {
-			order: -1;
-			align-self: center;
-			margin: 0 -0.75rem 0 0;
+			margin-block-start: -1.5rem;
 		}
 	}
 
