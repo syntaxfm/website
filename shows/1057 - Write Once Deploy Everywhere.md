@@ -7,7 +7,6 @@ youtube_url: https://www.youtube.com/live/rVgRWm59ESU
 hosts:
   - stolinski
   - w3cj
-
 ---
 	
 Scott and CJ dig into Exact, Expo’s new Rust-based runtime that takes one codebase to web, iOS, macOS and Linux with no React Native involved, plus Bombadil’s property-based testing for web UIs. They also get into Claude Fable 5.2’s appetite for tokens, the hidden list of phrases your iPhone keyboard refuses to suggest, Safari’s Adaptive Dark Mode, an official AWS emulator, and more.
