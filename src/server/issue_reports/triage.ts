@@ -10,6 +10,7 @@ import {
 	read_chat_usage,
 	type ChatUsage
 } from '$server/ai/openrouter';
+import { public_page_facts } from './public_page_facts';
 
 const TRIAGE_MODEL = 'anthropic/claude-opus-5.5';
 // OpenRouter sends it to Claude as Anthropic's effort. Opus 5.5 there defaults to high.
@@ -72,7 +73,7 @@ const TRIAGE_SYSTEM_PROMPT = `You turn issue reports from the Syntax website int
 
 The site is syntax.fm, home of the Syntax podcast: SvelteKit with Svelte 5, deployed as a Cloudflare Worker. Pages live in src/routes, shared components in src/lib, global CSS in src/styles.
 
-An admin, on a computer or a phone, selected an area of a page and wrote a request. You get the request, screenshots of the selected area and of the whole screen (when the browser could draw them), and facts about the page: its route, the browser, the window and screen sizes, the elements in the selected area (with their Svelte source location when the site ran in development), and any script errors. With no selected area, the admin meant the whole screen.
+An admin, on a computer or a phone, selected an area of a page and wrote a request. You get the request, screenshots of the selected area and of the whole screen (when the browser could draw them), and facts about the page: its route, the browser, the window size, the elements in the selected area (with their Svelte source location when the site ran in development), and any script errors. With no selected area, the admin meant the whole screen.
 
 The screenshots are taken by a headless Chrome that opened the same page at the admin's window size, scroll position and light or dark mode, signed in as them. It loaded the page fresh, so what the admin had opened or typed isn't in them, and a problem only their own browser draws (Safari, say) may not show. Then go by the request and the page facts.
 
@@ -81,7 +82,7 @@ A coding agent will make the change from your issue alone, so the issue has to s
 - Keep to what the admin asked for. Don't widen the scope or add fixes they didn't ask for.
 - Use the screenshots and the page facts to make the request concrete: name the element, the page, the browser and the screen size where it happens. Don't guess at causes or files the facts don't show.
 - An open question holds the issue back until the admin answers, so ask one only when the agent could otherwise build the wrong thing. Where there's a sensible default (keep other screen sizes working, match the site's existing style), write it into the details as the plan instead.
-- The repository is public. Never copy personal data from the screenshot into the issue: names or emails of listeners, private messages, account details.
+- The repository is public. Never copy personal data from the screenshot into the issue: names or emails of listeners, private messages, account details, or who filed the report.
 - Write plainly and briefly.`;
 
 type ContentPart =
@@ -113,7 +114,7 @@ function triage_user_content(report: IssueReport): ContentPart[] {
 	const parts = screenshot_parts(report);
 	const text = [
 		`<request>\n${report.request}\n</request>`,
-		`<page>\n${JSON.stringify(report.page, null, 2)}\n</page>`,
+		`<page>\n${JSON.stringify(public_page_facts(report.page), null, 2)}\n</page>`,
 		parts.length > 0 ? '' : 'There are no screenshots: the headless browser could not take them.'
 	]
 		.filter(Boolean)

@@ -32,6 +32,11 @@ describe('build_triage_request', () => {
 		]);
 	});
 
+	it('leaves the user agent out', () => {
+		const [, user] = build_triage_request(SAMPLE_REPORT).messages;
+		expect(JSON.stringify(user.content)).not.toContain('user_agent');
+	});
+
 	it('leaves the tall full page out', () => {
 		const [, user] = build_triage_request(SAMPLE_REPORT).messages;
 		expect(JSON.stringify(user.content)).not.toContain('cGFnZQ==');

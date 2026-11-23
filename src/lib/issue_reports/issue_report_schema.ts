@@ -50,6 +50,8 @@ const window_size = (max: number) => v.pipe(v.number(), v.minValue(100), v.maxVa
 
 // Facts about the page, the window and the browser, as the admin had them. The headless browser
 // that takes the screenshots opens the page the same way (server/issue_reports/page_screenshots.ts).
+// They end up in a public GitHub issue, so nothing that locates or fingerprints the admin: no time
+// zone, language, or screen and browser window sizes.
 export const issue_report_page_schema = v.object({
 	url: v.pipe(v.string(), v.url()),
 	route_id: v.nullable(v.string()),
@@ -60,12 +62,6 @@ export const issue_report_page_schema = v.object({
 		viewport: v.object({ width: window_size(4000), height: window_size(4000) }),
 		// What's on screen when pinch-zoomed (phones); null where the browser doesn't say
 		visual_viewport: v.nullable(v.object({ ...size_schema.entries, scale: v.number() })),
-		// The browser window, toolbars and all
-		outer: size_schema,
-		screen: v.object({
-			...size_schema.entries,
-			orientation: v.nullable(v.pipe(v.string(), v.maxLength(50)))
-		}),
 		// The whole page's scrollable size
 		document: size_schema,
 		device_pixel_ratio: v.pipe(v.number(), v.minValue(0.5), v.maxValue(5))
@@ -90,11 +86,11 @@ export const issue_report_page_schema = v.object({
 	browser: v.object({
 		// e.g. "Safari 18.2 on iOS 18.2" (browser_name.ts)
 		name: v.pipe(v.string(), v.maxLength(150)),
+		// Only for the headless browser to open the page as this browser. Never in the issue or the
+		// triage (server/issue_reports/public_page_facts.ts).
 		user_agent: v.pipe(v.string(), v.maxLength(500)),
 		is_mobile: v.boolean(),
-		is_touch: v.boolean(),
-		language: v.pipe(v.string(), v.maxLength(50)),
-		time_zone: v.pipe(v.string(), v.maxLength(100))
+		is_touch: v.boolean()
 	}),
 	color_scheme: v.picklist(['light', 'dark']),
 	// The site theme's class on <html>, e.g. "theme-system"

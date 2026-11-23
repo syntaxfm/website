@@ -16,8 +16,6 @@ export const SAMPLE_REPORT: IssueReport = {
 		window: {
 			viewport: { width: 390, height: 664 },
 			visual_viewport: { width: 390, height: 664, scale: 1 },
-			outer: { width: 390, height: 844 },
-			screen: { width: 390, height: 844, orientation: 'portrait-primary' },
 			document: { width: 390, height: 9120 },
 			device_pixel_ratio: 3
 		},
@@ -29,9 +27,7 @@ export const SAMPLE_REPORT: IssueReport = {
 			name: 'Safari 18.2 on iOS 18.2',
 			user_agent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X)',
 			is_mobile: true,
-			is_touch: true,
-			language: 'en-US',
-			time_zone: 'America/Denver'
+			is_touch: true
 		},
 		color_scheme: 'dark',
 		theme: 'theme-system',

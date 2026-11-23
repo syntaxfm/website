@@ -260,12 +260,6 @@ export function collect_page({
 						scale: visualViewport.scale
 					}
 				: null,
-			outer: { width: outerWidth, height: outerHeight },
-			screen: {
-				width: screen.width,
-				height: screen.height,
-				orientation: screen.orientation?.type ?? null
-			},
 			document: document_size,
 			device_pixel_ratio: devicePixelRatio
 		},
@@ -276,9 +270,7 @@ export function collect_page({
 			name: clip(browser_name(navigator.userAgent, hints, navigator.maxTouchPoints), 150),
 			user_agent: clip(navigator.userAgent, 500),
 			is_mobile: hints?.mobile ?? /Mobi|Android|iPhone|iPod/.test(navigator.userAgent),
-			is_touch,
-			language: navigator.language,
-			time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone
+			is_touch
 		},
 		color_scheme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 		theme:

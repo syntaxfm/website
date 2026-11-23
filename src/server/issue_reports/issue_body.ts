@@ -1,12 +1,13 @@
 // The GitHub issue an issue report becomes: Claude's triage first, then the admin's own words, the
-// screenshots, and the page facts a coding agent needs to find the code.
+// screenshots, and the page facts a coding agent needs to find the code. The repository is public,
+// so it doesn't say who filed it, and only holds the public page facts.
 import type {
 	IssueReport,
-	IssueReportPage,
 	PageElement,
 	ScreenshotKind
 } from '#lib/issue_reports/issue_report_schema.ts';
 import type { ChatUsage } from '$server/ai/openrouter';
+import { public_page_facts, type PublicPageFacts } from './public_page_facts';
 import type { IssueTriage } from './triage';
 
 // Every issue from the Report button carries it, so the agent that fixes them can find them
@@ -27,12 +28,6 @@ export type IssueScreenshot =
 	| { status: 'none' };
 
 export type IssueScreenshots = Record<ScreenshotKind, IssueScreenshot>;
-
-// Who filed it. Only signed-in admins can.
-export interface Reporter {
-	name: string;
-	roles: string[];
-}
 
 export function issue_labels(triage: IssueTriage): string[] {
 	const labels = [SITE_REPORT_LABEL, KIND_LABELS[triage.kind]];
@@ -62,7 +57,7 @@ function list(items: string[], checkbox = false): string {
 	return items.map((item) => `- ${checkbox ? '[ ] ' : ''}${item}`).join('\n');
 }
 
-function describe_selection(page: IssueReportPage): string {
+function describe_selection(page: PublicPageFacts): string {
 	if (!page.selection) return 'the whole screen';
 	const { x, y, width, height } = page.selection;
 	const round = Math.round;
@@ -82,7 +77,8 @@ function size(dimensions: { width: number; height: number }): string {
 	return `${Math.round(dimensions.width)}×${Math.round(dimensions.height)}`;
 }
 
-function describe_environment(page: IssueReportPage, reporter: Reporter): string {
+// The roles say what the signed-in pages showed. Every reporter is an admin.
+function describe_environment(page: PublicPageFacts, reporter_roles: string[]): string {
 	const { browser, window } = page;
 	const zoomed = window.visual_viewport && window.visual_viewport.scale !== 1;
 	return list([
@@ -98,8 +94,6 @@ function describe_environment(page: IssueReportPage, reporter: Reporter): string
 			zoomed && window.visual_viewport
 				? `pinch-zoomed ${window.visual_viewport.scale}x to ${size(window.visual_viewport)}`
 				: null,
-			`browser window ${size(window.outer)}`,
-			`screen ${size(window.screen)}${window.screen.orientation ? ` ${window.screen.orientation}` : ''}`,
 			`page ${size(window.document)}`,
 			`${window.device_pixel_ratio}x pixels`
 		]
@@ -112,9 +106,7 @@ function describe_environment(page: IssueReportPage, reporter: Reporter): string
 		]
 			.filter(Boolean)
 			.join(' · ')}`,
-		`Locale: ${browser.language} · ${browser.time_zone}`,
-		`Signed in as ${reporter.name} (${reporter.roles.join(', ') || 'no roles'})`,
-		`User agent: ${code(browser.user_agent)}`
+		`Signed in: ${reporter_roles.join(', ') || 'no roles'}`
 	]);
 }
 
@@ -141,14 +133,14 @@ function describe_screenshot(kind: keyof IssueScreenshots, screenshot: IssueScre
 }
 
 // Which rows of the page the full-page screenshot shows, when it's a slice of a very long page
-function describe_full_page_rows({ full_page, window }: IssueReportPage): string {
+function describe_full_page_rows({ full_page, window }: PublicPageFacts): string {
 	const bottom = full_page.top + full_page.height;
 	if (full_page.top === 0 && bottom >= window.document.height) return '';
 	const format = (pixels: number) => Math.round(pixels).toLocaleString('en-US');
 	return `, rows ${format(full_page.top)}–${format(bottom)} of ${format(window.document.height)}`;
 }
 
-function describe_screenshots(screenshots: IssueScreenshots, page_facts: IssueReportPage): string {
+function describe_screenshots(screenshots: IssueScreenshots, page_facts: PublicPageFacts): string {
 	const selection = describe_screenshot('selection', screenshots.selection);
 	const screen = describe_screenshot('screen', screenshots.screen);
 	const page = describe_screenshot('page', screenshots.page);
@@ -184,15 +176,15 @@ export function build_issue_body({
 	triage,
 	triage_usage,
 	screenshots,
-	reporter
+	reporter_roles
 }: {
 	report: IssueReport;
 	triage: IssueTriage;
 	triage_usage: ChatUsage | null;
 	screenshots: IssueScreenshots;
-	reporter: Reporter;
+	reporter_roles: string[];
 }): string {
-	const { page } = report;
+	const page = public_page_facts(report.page);
 	const where = [
 		`- Page: [${page.title || page.url}](${page.url})`,
 		page.route_id
@@ -214,7 +206,7 @@ export function build_issue_body({
 		triage.open_questions.length > 0
 			? `### Open questions\n\n${list(triage.open_questions)}`
 			: null,
-		`### Request from ${reporter.name}\n\n${quote(report.request)}`,
+		`### Request\n\n${quote(report.request)}`,
 		`### Screenshots\n\n${describe_screenshots(screenshots, page)}`,
 		`### Where\n\n${where.join('\n')}`,
 		page.errors.length > 0
@@ -225,7 +217,7 @@ export function build_issue_body({
 					)
 				)}`
 			: null,
-		`### Browser and window\n\n${describe_environment(page, reporter)}\n\nReported ${page.captured_at} from ${new URL(page.url).host}. ${describe_triage_usage(triage_usage)}`,
+		`### Browser and window\n\n${describe_environment(page, reporter_roles)}\n\nReported ${page.captured_at} from ${new URL(page.url).host}. ${describe_triage_usage(triage_usage)}`,
 		`<details>\n<summary>Page facts (JSON)</summary>\n\n\`\`\`json\n${JSON.stringify(page, null, 2)}\n\`\`\`\n\n</details>`
 	];
 

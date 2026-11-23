@@ -19,7 +19,7 @@ const triage: IssueTriage = {
 	open_questions: []
 };
 
-const reporter = { name: 'Scott Tolinski', roles: ['admin'] };
+const reporter_roles = ['admin'];
 const triage_usage = { prompt_tokens: 7812, completion_tokens: 1934, cost_usd: 0.0699 };
 const url = (kind: string) => `https://beta.syntax.fm/issue-screenshots/public/2026-11/${kind}.png`;
 const stored: IssueScreenshots = {
@@ -57,17 +57,27 @@ describe('route_directory', () => {
 
 describe('build_issue_body', () => {
 	it('leads with the triage and keeps the request word for word', () => {
-		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter_roles
+		});
 		expect(body.startsWith(triage.summary)).toBe(true);
 		expect(body).toContain('- [ ] At 390px wide the title wraps inside the card');
-		expect(body).toContain(
-			'### Request from Scott Tolinski\n\n> This title is busted on my phone\n> fix it pls'
-		);
+		expect(body).toContain('### Request\n\n> This title is busted on my phone\n> fix it pls');
 		expect(body).not.toContain('### Open questions');
 	});
 
 	it('says where the selection is and which code made it', () => {
-		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter_roles
+		});
 		expect(body).toContain('in `src/routes/(site)/show/[show_number]/[slug]/`');
 		expect(body).toContain('300×120 at (10, 20) in the viewport, (10, 1220) on the page');
 		expect(body).toContain('area `main > section.hero`');
@@ -78,24 +88,46 @@ describe('build_issue_body', () => {
 		expect(body).toContain('"route_id": "/(site)/show/[show_number]/[slug]"');
 	});
 
-	it('names the browser, the window sizes and who was signed in', () => {
-		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
+	it('names the browser, the window and the signed-in roles', () => {
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter_roles
+		});
 		expect(body).toContain('- Browser: Safari 18.2 on iOS 18.2 · mobile · touch');
-		expect(body).toContain(
-			'- Window: viewport 390×664 · browser window 390×844 · screen 390×844 portrait-primary · page 390×9120 · 3x pixels'
-		);
-		expect(body).toContain('- Signed in as Scott Tolinski (admin)');
+		expect(body).toContain('- Window: viewport 390×664 · page 390×9120 · 3x pixels');
+		expect(body).toContain('- Signed in: admin');
+	});
+
+	it('leaves out the user agent, which fingerprints the admin', () => {
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter_roles
+		});
+		expect(body).not.toContain(report.page.browser.user_agent);
+		expect(body).not.toContain('user_agent');
 	});
 
 	it('says what the triage used and cost', () => {
-		const body = build_issue_body({ report, triage, triage_usage, screenshots: none, reporter });
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: none,
+			reporter_roles
+		});
 		expect(body).toContain('Triage: 7,812 tokens in, 1,934 out, $0.0699.');
 		const unknown = build_issue_body({
 			report,
 			triage,
 			triage_usage: null,
 			screenshots: none,
-			reporter
+			reporter_roles
 		});
 		expect(unknown).toContain('Triage: OpenRouter didn’t say what it used.');
 	});
@@ -116,13 +148,19 @@ describe('build_issue_body', () => {
 			triage,
 			triage_usage,
 			screenshots: none,
-			reporter
+			reporter_roles
 		});
 		expect(body).toContain('pinch-zoomed 2x to 195×332');
 	});
 
 	it('shows the selection and screen, and folds the full page away', () => {
-		const body = build_issue_body({ report, triage, triage_usage, screenshots: stored, reporter });
+		const body = build_issue_body({
+			report,
+			triage,
+			triage_usage,
+			screenshots: stored,
+			reporter_roles
+		});
 		expect(body).toContain(`**Selection**\n\n![Selection](${url('selection')})`);
 		expect(body).toContain(`**Screen**\n\n![Screen](${url('screen')})`);
 		expect(body).toContain(
@@ -144,7 +182,7 @@ describe('build_issue_body', () => {
 			triage,
 			triage_usage,
 			screenshots: stored,
-			reporter
+			reporter_roles
 		});
 		expect(body).toContain('<summary>Full page, rows 21,808–38,192 of 61,766 (screen dashed');
 	});
@@ -159,7 +197,7 @@ describe('build_issue_body', () => {
 			triage,
 			triage_usage,
 			screenshots: admin_only,
-			reporter
+			reporter_roles
 		});
 		expect(body).toContain(`[Selection](${url('selection')})`);
 		expect(body).not.toContain(`![Selection]`);
@@ -172,11 +210,11 @@ describe('build_issue_body', () => {
 			triage,
 			triage_usage,
 			screenshots: { ...none, screen: { status: 'failed', reason: 'R2 said no' } },
-			reporter
+			reporter_roles
 		});
 		expect(body).toContain('The screen screenshot couldn’t be stored: R2 said no');
 		expect(
-			build_issue_body({ report, triage, triage_usage, screenshots: none, reporter })
+			build_issue_body({ report, triage, triage_usage, screenshots: none, reporter_roles })
 		).toContain('No screenshots: the headless browser couldn’t take them.');
 	});
 });

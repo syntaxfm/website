@@ -73,7 +73,7 @@ export async function file_issue_report(
 			triage,
 			triage_usage: usage,
 			screenshots,
-			reporter: { name: reporter.name, roles: reporter.roles }
+			reporter_roles: reporter.roles
 		}),
 		labels: issue_labels(triage)
 	});

@@ -5,6 +5,7 @@
 import { CRON_SECRET } from '$app/env/private';
 import { getRequestEvent } from '$app/server';
 import type { ScreenshotMediaType } from '#lib/issue_reports/issue_report_schema.ts';
+import { is_admin_page } from './public_page_facts';
 
 // `pnpm dev` has no R2, so it hands screenshots to the deployed site, and every link points there
 export const SCREENSHOT_SITE_ORIGIN = 'https://beta.syntax.fm';
@@ -25,8 +26,7 @@ export function is_admin_screenshot_key(key: string): boolean {
 }
 
 export function screenshot_visibility(page_url: string): ScreenshotVisibility {
-	const { pathname } = new URL(page_url);
-	return pathname === '/admin' || pathname.startsWith('/admin/') ? 'admin' : 'public';
+	return is_admin_page(page_url) ? 'admin' : 'public';
 }
 
 export function new_screenshot_key(
