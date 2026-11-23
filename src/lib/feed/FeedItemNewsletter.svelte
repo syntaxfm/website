@@ -46,7 +46,7 @@
 		display: flow-root;
 		padding: 2rem;
 		padding-inline-end: calc(var(--box-size) + 4rem);
-		border-radius: var(--br-medium);
+		border-radius: var(--br-feed-card);
 		background-color: var(--c-primary);
 		background-image: var(--c-bg-grit-light);
 		color: var(--c-black);

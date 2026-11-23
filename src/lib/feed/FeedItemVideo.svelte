@@ -61,10 +61,8 @@
 
 	/* The same frame as an episode's thumbnail in FeedItemPodcast */
 	.thumb-container {
-		--frame-width: clamp(6px, 1.6vw, 12px);
-
 		position: relative;
-		border-radius: calc(var(--br-medium) + var(--frame-width));
-		border: solid var(--frame-width) var(--c-primary);
+		border-radius: var(--br-feed-card);
+		border: solid var(--feed-frame-width) var(--c-primary);
 	}
 </style>

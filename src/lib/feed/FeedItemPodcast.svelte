@@ -59,13 +59,8 @@
 	}
 
 	.thumb-container {
-		/* 12px on a wide screen, down to 6px on a phone */
-		--frame-width: clamp(6px, 1.6vw, 12px);
-
 		position: relative;
-
-		/* Follows the picture's own corner, so the frame keeps an even width around it */
-		border-radius: calc(var(--br-medium) + var(--frame-width));
-		border: solid var(--frame-width) var(--c-primary);
+		border-radius: var(--br-feed-card);
+		border: solid var(--feed-frame-width) var(--c-primary);
 	}
 </style>
