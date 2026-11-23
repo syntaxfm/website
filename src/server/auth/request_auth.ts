@@ -6,7 +6,7 @@ import { error, type RequestEvent } from '@sveltejs/kit';
 import { getRequestEvent } from '$app/server';
 import { add_timing } from '$server/server_timing';
 import { get_authenticated_user, type AuthenticatedUser } from './authorization';
-import { get_syntax_auth } from './syntax_auth';
+import { get_syntax_auth, get_syntax_auth_github_id } from './syntax_auth';
 import type { SyntaxAuthFailure } from './syntax_auth_failure';
 
 interface RequestAuth {
@@ -23,10 +23,13 @@ const auth_by_request = new WeakMap<Request, Promise<RequestAuth>>();
 
 async function ask_syntax_auth(event: RequestEvent, required: boolean): Promise<RequestAuth> {
 	const start = performance.now();
-	const result = await get_syntax_auth(event.request.headers.get('cookie'), event.fetch, {
-		required
-	});
-	const user = result.auth ? await get_authenticated_user(result.auth.user) : null;
+	const cookie_header = event.request.headers.get('cookie');
+	const result = await get_syntax_auth(cookie_header, event.fetch, { required });
+	const user = result.auth
+		? await get_authenticated_user(result.auth.user, () =>
+				get_syntax_auth_github_id(cookie_header, event.fetch)
+			)
+		: null;
 	add_timing(event, 'auth', performance.now() - start);
 	return { user, set_cookie_headers: result.set_cookie_headers, failure: result.failure };
 }

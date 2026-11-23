@@ -55,7 +55,7 @@ A centrally authenticated Syntax identity owned by `auth.syntax.fm`. The immutab
 _Avoid_: Account, member.
 
 **Profile**:
-Application-owned editorial and authorization data for a person, stored in the `profiles` table (Drizzle model `profile`). Roles are rows in `roles`, attached through `profile_roles`. A Profile keeps the historical UUID used by Shows and Articles and may map to one central **User** through `central_user_id`. Roles belong to the Profile and are resolved only after central authentication. A User without a mapped Profile is authenticated but has no website roles.
+Application-owned editorial and authorization data for a person, stored in the `profiles` table (Drizzle model `profile`). Roles are rows in `roles`, attached through `profile_roles`. A Profile keeps the historical UUID used by Shows and Articles and may map to one central **User** through `central_user_id`. Roles belong to the Profile and are resolved only after central authentication. A User without a mapped Profile is authenticated but has no website roles. The first time a User signs in, they are mapped to the Profile with the same GitHub ID, if no other User has it.
 
 **Host**:
 A **Profile** linked to a **Show** via the `show_to_profile` join table (Drizzle model `showToProfile`). Not a separate entity — Host is a relationship, not a record. Drizzle relations expose this as `hosts: many(showToProfile)`.

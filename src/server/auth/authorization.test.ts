@@ -1,6 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const { find_profile } = vi.hoisted(() => ({ find_profile: vi.fn() }));
+const { find_profile, update_returning } = vi.hoisted(() => ({
+	find_profile: vi.fn(),
+	update_returning: vi.fn()
+}));
 
 vi.mock('$app/env', () => ({ dev: false }));
 
@@ -10,7 +13,8 @@ vi.mock('$server/db/client', () => ({
 			profile: {
 				findFirst: find_profile
 			}
-		}
+		},
+		update: () => ({ set: () => ({ where: () => ({ returning: update_returning }) }) })
 	}
 }));
 
@@ -34,18 +38,34 @@ const central_user: SyntaxAuthUser = {
 };
 
 describe('get_authenticated_user', () => {
+	const admin_profile = { id: 'profile-id', roles: [{ role: { name: 'admin' } }] };
+	const no_github_id = () => Promise.resolve(null);
+
 	beforeEach(() => {
 		find_profile.mockReset();
+		update_returning.mockReset();
 	});
 
-	it('does not grant roles to an unmapped central user', async () => {
+	it('does not grant roles to a central user with no Profile for their GitHub ID', async () => {
 		find_profile.mockResolvedValue(undefined);
+		update_returning.mockResolvedValue([]);
 
-		await expect(get_authenticated_user(central_user)).resolves.toEqual({
+		await expect(get_authenticated_user(central_user, () => Promise.resolve(42))).resolves.toEqual({
 			...central_user,
 			profile_id: null,
 			roles: []
 		});
+	});
+
+	it('does not look for a GitHub ID when no account is linked to Syntax Auth', async () => {
+		find_profile.mockResolvedValue(undefined);
+
+		await expect(get_authenticated_user(central_user, no_github_id)).resolves.toEqual({
+			...central_user,
+			profile_id: null,
+			roles: []
+		});
+		expect(update_returning).not.toHaveBeenCalled();
 	});
 
 	it('loads application roles from the explicitly mapped Profile', async () => {
@@ -53,11 +73,36 @@ describe('get_authenticated_user', () => {
 			id: 'profile-id',
 			roles: [{ role: { name: 'admin' } }, { role: { name: 'editor' } }]
 		});
+		const find_github_id = vi.fn(no_github_id);
 
-		await expect(get_authenticated_user(central_user)).resolves.toEqual({
+		await expect(get_authenticated_user(central_user, find_github_id)).resolves.toEqual({
 			...central_user,
 			profile_id: 'profile-id',
 			roles: ['admin', 'editor']
+		});
+		expect(find_github_id).not.toHaveBeenCalled();
+	});
+
+	it('links the Profile with the same GitHub ID on first sign-in and loads its roles', async () => {
+		find_profile.mockResolvedValueOnce(undefined).mockResolvedValueOnce(admin_profile);
+		update_returning.mockResolvedValue([{ id: 'profile-id' }]);
+
+		await expect(get_authenticated_user(central_user, () => Promise.resolve(42))).resolves.toEqual({
+			...central_user,
+			profile_id: 'profile-id',
+			roles: ['admin']
+		});
+	});
+
+	it('grants no roles when linking fails', async () => {
+		vi.spyOn(console, 'error').mockImplementationOnce(() => undefined);
+		find_profile.mockResolvedValue(undefined);
+		update_returning.mockRejectedValue(new Error('connection refused'));
+
+		await expect(get_authenticated_user(central_user, () => Promise.resolve(42))).resolves.toEqual({
+			...central_user,
+			profile_id: null,
+			roles: []
 		});
 	});
 });

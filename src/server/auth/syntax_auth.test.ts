@@ -25,6 +25,7 @@ const {
 	get_sign_in_redirect,
 	get_sign_in_return_to,
 	get_syntax_auth,
+	get_syntax_auth_github_id,
 	is_trusted_syntax_url,
 	sign_in_redirect_response,
 	sign_out_syntax_auth
@@ -61,6 +62,52 @@ function response_with_cookies(body: unknown, cookies: string[], status = 200): 
 	}
 	return new Response(JSON.stringify(body), { status, headers });
 }
+
+describe('get_syntax_auth_github_id', () => {
+	it("reads the GitHub account ID from the session's accounts", async () => {
+		const server_fetch = vi.fn().mockResolvedValue(
+			Response.json([
+				{ providerId: 'email', accountId: 'other' },
+				{ providerId: 'github', accountId: '157041235' }
+			])
+		);
+
+		await expect(get_syntax_auth_github_id('session=abc', server_fetch)).resolves.toBe(157041235);
+		expect(server_fetch).toHaveBeenCalledWith(
+			'https://auth.syntax.fm/api/auth/list-accounts',
+			expect.objectContaining({
+				headers: expect.objectContaining({ Cookie: 'session=abc' })
+			})
+		);
+	});
+
+	it('does not ask without a cookie', async () => {
+		const server_fetch = vi.fn();
+
+		await expect(get_syntax_auth_github_id(null, server_fetch)).resolves.toBeNull();
+		expect(server_fetch).not.toHaveBeenCalled();
+	});
+
+	it.each([
+		['no GitHub account', Response.json([{ providerId: 'email', accountId: 'x' }])],
+		['a non-numeric account ID', Response.json([{ providerId: 'github', accountId: 'abc' }])],
+		['a refused request', new Response(null, { status: 401 })],
+		['a body that is not a list', Response.json({ accounts: [] })]
+	])('answers null for %s', async (_label, response) => {
+		const server_fetch = vi.fn().mockResolvedValue(response);
+
+		await expect(get_syntax_auth_github_id('session=abc', server_fetch)).resolves.toBeNull();
+	});
+
+	it('answers null when Syntax Auth is unreachable, without logging the error', async () => {
+		const console_error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+		const server_fetch = vi.fn().mockRejectedValue(new TypeError('fetch failed session=abc'));
+
+		await expect(get_syntax_auth_github_id('session=abc', server_fetch)).resolves.toBeNull();
+		expect(JSON.stringify(console_error.mock.calls)).not.toContain('session=abc');
+		console_error.mockRestore();
+	});
+});
 
 describe('get_syntax_auth', () => {
 	it('returns an anonymous context without a cookie', async () => {

@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
+import { and, eq, isNull } from 'drizzle-orm';
 
 import { db } from '$server/db/client';
 import { profile } from '$server/db/schema';
@@ -117,6 +117,42 @@ export async function get_profile_authorization(
 	}
 }
 
-export async function get_authenticated_user(user: SyntaxAuthUser): Promise<AuthenticatedUser> {
+/**
+ * Links the Profile with this GitHub user ID to a central User, if no User has it yet. Returns
+ * whether a Profile was linked. A failure links nothing, so it never grants a role.
+ */
+async function link_profile_by_github_id(
+	central_user_id: string,
+	github_id: number
+): Promise<boolean> {
+	try {
+		const linked = await db
+			.update(profile)
+			.set({ central_user_id, updated_at: new Date() })
+			.where(and(eq(profile.github_id, github_id), isNull(profile.central_user_id)))
+			.returning({ id: profile.id });
+		return linked.length > 0;
+	} catch (link_error) {
+		console.error('Failed to link a Profile to its Syntax Auth user', link_error);
+		return false;
+	}
+}
+
+/**
+ * The signed-in User with their Profile's roles. A User without a linked Profile is linked here, by
+ * the GitHub ID their session signed in with (`find_github_id`), to the Profile with that GitHub ID.
+ * So someone given a role before they ever signed in has it from their first sign-in.
+ */
+export async function get_authenticated_user(
+	user: SyntaxAuthUser,
+	find_github_id: () => Promise<number | null>
+): Promise<AuthenticatedUser> {
+	const authorization = await get_profile_authorization(user.id);
+	if (authorization.profile_id) return { ...user, ...authorization };
+
+	const github_id = await find_github_id();
+	if (github_id === null || !(await link_profile_by_github_id(user.id, github_id))) {
+		return { ...user, ...authorization };
+	}
 	return { ...user, ...(await get_profile_authorization(user.id)) };
 }

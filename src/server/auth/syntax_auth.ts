@@ -19,6 +19,7 @@ const SYNTAX_AUTH_ORIGIN = dev ? 'http://localhost:37960' : 'https://auth.syntax
 export const SYNTAX_AUTH_ISSUER = `${SYNTAX_AUTH_ORIGIN}/api/auth`;
 const SYNTAX_SESSION_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/get-session`;
 const SYNTAX_SIGN_OUT_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/sign-out`;
+const SYNTAX_ACCOUNTS_URL = `${SYNTAX_AUTH_ORIGIN}/api/auth/list-accounts`;
 // Browsers sign in here only in production builds.
 const PRODUCTION_SIGN_IN_URL = 'https://auth.syntax.fm/sign-in';
 // SvelteKit 3 refuses redirect() to another origin unless it is allowlisted; sign-in is the one.
@@ -276,6 +277,43 @@ export async function get_syntax_auth(
 		// The parser's message can quote the response body, so it is never logged.
 		console.error('Syntax Auth returned an invalid session response');
 		return { auth: null, set_cookie_headers, failure: null };
+	}
+}
+
+/**
+ * The GitHub user ID behind this request's central session, or null when the session has no GitHub
+ * account (the local developer) or Syntax Auth can't answer. It matches `profiles.github_id`, so a
+ * Profile can be linked to its User the first time they sign in. Development uses the platform fetch
+ * for the same reason as get_development_syntax_auth.
+ */
+export async function get_syntax_auth_github_id(
+	cookie_header: string | null,
+	server_fetch: ServerFetch
+): Promise<number | null> {
+	if (!cookie_header) return null;
+
+	try {
+		const response = await (dev ? fetch : server_fetch)(SYNTAX_ACCOUNTS_URL, {
+			headers: { 'Cache-Control': 'no-store', Cookie: cookie_header },
+			cache: 'no-store',
+			signal: dev ? AbortSignal.timeout(DEVELOPMENT_AUTH_TIMEOUT_MS) : undefined
+		});
+		if (!response.ok) {
+			discard_body(response);
+			return null;
+		}
+
+		const accounts: unknown = await response.json();
+		if (!Array.isArray(accounts)) return null;
+		const github = accounts.find(
+			(account: unknown) => is_record(account) && account.providerId === 'github'
+		);
+		const github_id = is_record(github) ? Number(github.accountId) : NaN;
+		return Number.isSafeInteger(github_id) && github_id > 0 ? github_id : null;
+	} catch {
+		// The error can quote the request, cookie included, so it is never logged.
+		console.error('Syntax Auth accounts request failed');
+		return null;
 	}
 }
 
