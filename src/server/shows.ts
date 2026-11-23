@@ -127,22 +127,18 @@ export async function parse_and_save_show_notes(
 		const hosts_key = Object.keys(data).find((key) => key.toLowerCase() === 'hosts');
 		const hosts = hosts_key ? data[hosts_key] : undefined;
 		let hosts_connection = {};
+		let hosts_update = {};
 		if (hosts && Array.isArray(hosts)) {
 			const host_users = await prisma.user.findMany({
-				where: {
-					username: {
-						in: hosts
-					}
-				}
+				where: { username: { in: hosts } },
+				select: { id: true }
 			});
-
-			if (host_users.length > 0) {
-				hosts_connection = {
-					hosts: {
-						connect: host_users.map((user) => ({ id: user.id }))
-					}
-				};
+			const host_ids = host_users.map((user) => ({ id: user.id }));
+			if (host_ids.length > 0) {
+				hosts_connection = { hosts: { connect: host_ids } };
 			}
+			// On update, replace hosts rather than adding to them so stale hosts get removed
+			hosts_update = { hosts: { set: host_ids } };
 		}
 
 		await prisma.show.upsert({
@@ -158,7 +154,7 @@ export async function parse_and_save_show_notes(
 				hash: hash,
 				md_file,
 				show_type, // Assign the calculated show_type
-				...hosts_connection
+				...hosts_update
 			},
 			create: {
 				id,
@@ -176,19 +172,26 @@ export async function parse_and_save_show_notes(
 			}
 		});
 
-		// If data guest
-		if (data?.guest && Array.isArray(data?.guest)) {
-			// Iterate through guests and save or update them
-			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, id));
-			// Save guests
-			await Promise.all(guest_promises);
-			// Otherwise as long as data.guest exists
-		} else if (data?.guest) {
-			try {
-				await add_or_update_guest(data?.guest, id);
-			} catch (err) {
-				console.error('Error Importing Show and Guests:', id, data.guest, err);
-			}
+		// Save guests. The markdown is the source of truth, so any guest no longer listed
+		// (e.g. after an episode is renumbered) gets unlinked from this show.
+		const front_matter_guests: FrontMatterGuest[] = data?.guest
+			? Array.isArray(data.guest)
+				? data.guest
+				: [data.guest]
+			: [];
+		const guest_records = await Promise.all(
+			front_matter_guests.map((guest) => add_or_update_guest(guest, id))
+		);
+		// Only prune when every guest saved, so a failed import never drops a real guest
+		if (guest_records.every(Boolean)) {
+			await prisma.showGuest.deleteMany({
+				where: {
+					showId: id,
+					guestId: { notIn: guest_records.map((guest) => guest!.id) }
+				}
+			});
+		} else {
+			console.error('Error Importing Show and Guests:', id, data.guest);
 		}
 		console.log(`Episode # ${id} imported successfully`);
 	} catch (err) {
