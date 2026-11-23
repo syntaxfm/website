@@ -198,6 +198,14 @@
 	--br-xxlarge: 20px;
 	--br-huge: 24px;
 
+	/* A feed card's frame: the yellow border round a feed thumbnail, 12px on a wide screen down to
+	   6px on a phone */
+	--feed-frame-width: clamp(6px, 1.6vw, 12px);
+
+	/* A feed card's outer corner: the thumbnail's corner plus its frame, so the frame keeps an even
+	   width. The Snack Pack card uses it too, so every card in the feed has the same corner. */
+	--br-feed-card: calc(var(--br-medium) + var(--feed-frame-width));
+
 	/* Padding */
 	--pad-xsmall: 4px;
 	--pad-small: 8px;
