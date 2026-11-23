@@ -3,15 +3,20 @@
 // light or dark mode, reduced motion, phone or not, and browser identity, signed in as them (their
 // cookies, only ever for this site). So they're real pixels from any device. What they can't have
 // is what only the admin's browser had: menus they opened, text they typed, Safari's own drawing.
+//
+// Loading the page is the slow part, so Report opens it as soon as it's clicked and keeps it open
+// (open_reported_page) while the admin selects. Letting go shoots the screen (shoot_screen) for the
+// dialog's preview, then the full page (shoot_full_page) while they write.
 import { error } from '@sveltejs/kit';
 import * as v from 'valibot';
+import { getRequestEvent } from '$app/server';
 import {
 	MAX_SCREENSHOT_BYTES,
 	type IssueReportPage,
 	type Screenshot,
 	type ViewportRect
 } from '#lib/issue_reports/issue_report_schema.ts';
-import { run_in_page, with_headless_page, type HeadlessPage } from '$server/headless_browser';
+import { run_in_page, with_kept_page, type HeadlessPage } from '$server/headless_browser';
 
 // Sharp enough for text on any screen, without huge phone screenshots
 const MAX_SCALE = 2;
@@ -19,6 +24,7 @@ const MAX_SCALE = 2;
 const LOAD_TIMEOUT_MS = 15_000;
 // How long images get to finish loading before a shot
 const IMAGE_WAIT_MS = 4_000;
+// JPEG: Cloudflare's browser writes it in half the time WebP takes
 const SCREEN_QUALITY = 90;
 // The full page as JPEG: WebP can't be taller than 16,383px. Smaller tries if it's over the limit.
 const FULL_PAGE_TRIES = [
@@ -26,12 +32,6 @@ const FULL_PAGE_TRIES = [
 	{ quality: 70, scale: 0.75 },
 	{ quality: 60, scale: 0.5 }
 ];
-
-export interface PageScreenshots {
-	screen: Screenshot;
-	// The whole page (or its slice), the screen outlined dashed and the selection solid
-	page: Screenshot | null;
-}
 
 function to_base64(bytes: Uint8Array): string {
 	let binary = '';
@@ -47,6 +47,13 @@ function cookies_for(cookie_header: string | null, url: string) {
 		const equals = pair.indexOf('=');
 		return equals > 0 ? [{ name: pair.slice(0, equals), value: pair.slice(equals + 1), url }] : [];
 	});
+}
+
+// Only ever this site: the browser carries the admin's cookies
+function assert_this_site(page: IssueReportPage) {
+	if (new URL(page.url).host !== getRequestEvent().url.host) {
+		error(400, 'Screenshots are only taken of this site');
+	}
 }
 
 const settled_schema = v.object({
@@ -108,8 +115,9 @@ async function settle_page(input: {
 	};
 }
 
-// Runs in the headless page: load every image (lazy ones never would off screen), then outline the
-// screen (dashed) and the selection (solid) where they are on the page
+// Runs in the headless page: load every image (lazy ones never would off screen) and decode it
+// (Chrome leaves `decoding="async"` images off screen blank in the shot), then outline the screen
+// (dashed) and the selection (solid) where they are on the page
 async function prepare_full_page(input: {
 	screen: ViewportRect;
 	selection: ViewportRect | null;
@@ -120,6 +128,12 @@ async function prepare_full_page(input: {
 	while (Date.now() < deadline && [...document.images].some((image) => !image.complete)) {
 		await new Promise((resolve) => setTimeout(resolve, 100));
 	}
+	// Not those still loading, which would hold decode() up
+	await Promise.all(
+		[...document.images]
+			.filter((image) => image.complete)
+			.map((image) => image.decode().catch(() => undefined))
+	);
 	const outlines: [ViewportRect | null, string][] = [
 		[input.screen, 'dashed'],
 		[input.selection, 'solid']
@@ -142,64 +156,27 @@ async function prepare_full_page(input: {
 	}
 }
 
-async function shoot_full_page(
-	headless: HeadlessPage,
-	page: IssueReportPage,
-	document_size: { width: number; height: number },
-	// Where the headless page is scrolled, which is where the screen was
-	scroll: { x: number; y: number }
-): Promise<Screenshot | null> {
-	const { selection } = page;
-	await run_in_page(headless, prepare_full_page, {
-		screen: { x: scroll.x, y: scroll.y, ...page.window.viewport },
-		selection: selection && { ...selection, x: selection.x + scroll.x, y: selection.y + scroll.y },
-		image_wait_ms: IMAGE_WAIT_MS
-	});
-	// This page may be shorter than the admin's (it loaded fresh), so the slice stays inside it
-	const top = Math.min(
-		page.full_page.top,
-		Math.max(0, document_size.height - page.full_page.height)
-	);
-	const height = Math.min(page.full_page.height, document_size.height - top);
-	for (const { quality, scale } of FULL_PAGE_TRIES) {
-		const bytes = await headless.screenshot({
-			type: 'jpeg',
-			quality,
-			clip: { x: 0, y: top, width: document_size.width, height, scale },
-			captureBeyondViewport: true
-		});
-		if (bytes.byteLength <= MAX_SCREENSHOT_BYTES) {
-			return { media_type: 'image/jpeg', base64: to_base64(bytes) };
-		}
-	}
-	return null;
+// The admin's window, light or dark, and browser, at `scale` pixels per CSS pixel. Cloudflare's
+// browser forgets these between requests, so every request sets them.
+async function emulate_admin(headless: HeadlessPage, page: IssueReportPage, scale: number) {
+	const emulation = { isMobile: page.browser.is_mobile, hasTouch: page.browser.is_touch };
+	await headless.setViewport({ ...page.window.viewport, deviceScaleFactor: scale, ...emulation });
+	await headless.setUserAgent(page.browser.user_agent);
+	await headless.emulateMediaFeatures([
+		{ name: 'prefers-color-scheme', value: page.color_scheme },
+		{ name: 'prefers-reduced-motion', value: page.reduced_motion ? 'reduce' : 'no-preference' }
+	]);
 }
 
-/**
- * The screen and the full page as the admin had them. The selection is cut from the screen by the
- * admin's browser, which knows where it was.
- */
-export async function take_page_screenshots(
-	page: IssueReportPage,
-	{ site_host, cookie_header }: { site_host: string; cookie_header: string | null }
-): Promise<PageScreenshots> {
-	// Only ever this site: the browser carries the admin's cookies
-	if (new URL(page.url).host !== site_host) error(400, 'Screenshots are only taken of this site');
+function screen_scale(page: IssueReportPage) {
+	return Math.min(page.window.device_pixel_ratio, MAX_SCALE);
+}
 
-	return with_headless_page(async (headless) => {
-		const { viewport, device_pixel_ratio } = page.window;
-		const emulation = { isMobile: page.browser.is_mobile, hasTouch: page.browser.is_touch };
-		await headless.setViewport({
-			...viewport,
-			deviceScaleFactor: Math.min(device_pixel_ratio, MAX_SCALE),
-			...emulation
-		});
-		await headless.setUserAgent(page.browser.user_agent);
-		await headless.emulateMediaFeatures([
-			{ name: 'prefers-color-scheme', value: page.color_scheme },
-			{ name: 'prefers-reduced-motion', value: page.reduced_motion ? 'reduce' : 'no-preference' }
-		]);
-		const cookies = cookies_for(cookie_header, page.url);
+// Opens the reported page in the headless browser, signed in as the admin
+function load_reported_page(page: IssueReportPage) {
+	const cookies = cookies_for(getRequestEvent().request.headers.get('cookie'), page.url);
+	return async (headless: HeadlessPage) => {
+		await emulate_admin(headless, page, screen_scale(page));
 		if (cookies.length > 0) await headless.setCookie(...cookies);
 		try {
 			await headless.goto(page.url, { waitUntil: 'networkidle2', timeout: LOAD_TIMEOUT_MS });
@@ -207,30 +184,97 @@ export async function take_page_screenshots(
 			// Still busy (analytics, a video): what has loaded is shot anyway
 			console.error(`The headless browser didn't finish loading ${page.url}`, load_error);
 		}
+	};
+}
 
-		const settled = v.parse(
-			settled_schema,
-			await run_in_page(headless, settle_page, {
-				scroll: page.scroll,
-				anchor: page.anchor,
-				image_wait_ms: IMAGE_WAIT_MS
-			})
-		);
-		const screen_bytes = await headless.screenshot({
-			type: 'webp',
-			quality: SCREEN_QUALITY,
-			captureBeyondViewport: false
-		});
-		const screen: Screenshot = { media_type: 'image/webp', base64: to_base64(screen_bytes) };
+async function settle(headless: HeadlessPage, page: IssueReportPage) {
+	return v.parse(
+		settled_schema,
+		await run_in_page(headless, settle_page, {
+			scroll: page.scroll,
+			anchor: page.anchor,
+			image_wait_ms: IMAGE_WAIT_MS
+		})
+	);
+}
 
-		// One pixel per CSS pixel for the full page: it's long, and only people look at it
-		await headless.setViewport({ ...viewport, deviceScaleFactor: 1, ...emulation });
-		let full_page: Screenshot | null = null;
-		try {
-			full_page = await shoot_full_page(headless, page, settled, settled.scroll);
-		} catch (full_page_error) {
-			console.error('The headless browser could not shoot the full page', full_page_error);
-		}
-		return { screen, page: full_page };
+/** Opens the reported page and keeps it open for the shots. Returns the kept page's id. */
+export async function open_reported_page(page: IssueReportPage): Promise<string> {
+	assert_this_site(page);
+	const { id } = await with_kept_page(null, {
+		load: load_reported_page(page),
+		// Scrolled where the admin is, so what's there loads while they select
+		use: (headless) => settle(headless, page),
+		should_close: false
 	});
+	return id;
+}
+
+/**
+ * The screen as the admin has it, from the page Report opened (`kept_page`) or a new one if that's
+ * gone. The selection is cut from it by the admin's browser, which knows where it was.
+ */
+export async function shoot_screen(
+	kept_page: string | null,
+	page: IssueReportPage
+): Promise<{ kept_page: string; screen: Screenshot }> {
+	assert_this_site(page);
+	const { id, result } = await with_kept_page(kept_page, {
+		load: load_reported_page(page),
+		use: async (headless) => {
+			await emulate_admin(headless, page, screen_scale(page));
+			await settle(headless, page);
+			return headless.screenshot({
+				type: 'jpeg',
+				quality: SCREEN_QUALITY,
+				captureBeyondViewport: false
+			});
+		},
+		should_close: false
+	});
+	return { kept_page: id, screen: { media_type: 'image/jpeg', base64: to_base64(result) } };
+}
+
+/**
+ * The whole page, or its slice, with the screen outlined dashed and the selection solid. Null if
+ * it's too big even scaled down. Closes the kept page.
+ */
+export async function shoot_full_page(
+	kept_page: string | null,
+	page: IssueReportPage
+): Promise<Screenshot | null> {
+	assert_this_site(page);
+	const { result } = await with_kept_page(kept_page, {
+		load: load_reported_page(page),
+		use: async (headless) => {
+			// One pixel per CSS pixel: it's long, and only people look at it
+			await emulate_admin(headless, page, 1);
+			const settled = await settle(headless, page);
+			const { selection } = page;
+			await run_in_page(headless, prepare_full_page, {
+				screen: { ...settled.scroll, ...page.window.viewport },
+				selection: selection && {
+					...selection,
+					x: selection.x + settled.scroll.x,
+					y: selection.y + settled.scroll.y
+				},
+				image_wait_ms: IMAGE_WAIT_MS
+			});
+			// This page may be shorter than the admin's (it loaded fresh), so the slice stays inside it
+			const top = Math.min(page.full_page.top, Math.max(0, settled.height - page.full_page.height));
+			const height = Math.min(page.full_page.height, settled.height - top);
+			for (const { quality, scale } of FULL_PAGE_TRIES) {
+				const bytes = await headless.screenshot({
+					type: 'jpeg',
+					quality,
+					clip: { x: 0, y: top, width: settled.width, height, scale },
+					captureBeyondViewport: true
+				});
+				if (bytes.byteLength <= MAX_SCREENSHOT_BYTES) return bytes;
+			}
+			return null;
+		},
+		should_close: true
+	});
+	return result && { media_type: 'image/jpeg', base64: to_base64(result) };
 }

@@ -104,6 +104,13 @@ export const issue_report_page_schema = v.object({
 	errors: v.pipe(v.array(page_error_schema), v.maxLength(10))
 });
 
+// A shot of the page the headless browser keeps open for a report: null, or once it has closed, it
+// opens the page again
+export const page_shot_schema = v.object({
+	kept_page: v.nullable(v.pipe(v.string(), v.maxLength(100))),
+	page: issue_report_page_schema
+});
+
 export const issue_report_schema = v.object({
 	request: v.pipe(v.string(), v.trim(), v.minLength(1), v.maxLength(5000)),
 	// Each is null when the headless browser couldn't take it

@@ -1,18 +1,25 @@
 <script lang="ts">
 	// The admin menu's Report button: drag over the area to report (a tap or click takes the whole
 	// screen), write what needs to change, and it's filed as a GitHub issue with screenshots of the
-	// selection, the screen and the full page, taken by the server's headless browser meanwhile.
+	// selection, the screen and the full page, taken by the server's headless browser meanwhile. It
+	// opens the page as soon as Report is clicked, so the page loads while the admin selects.
 	import { tick } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import { page } from '$app/state';
 	import { error_message as message_of } from '#lib/utils/error_message.ts';
 	import IssueReportDialog from './IssueReportDialog.svelte';
-	import { file_report, take_screenshots } from './issue_report.remote';
+	import {
+		file_report,
+		open_report_page,
+		take_full_page_screenshot,
+		take_screen_screenshot
+	} from './issue_report.remote';
 	import type {
 		FiledIssue,
 		IssueReport,
 		IssueReportPage,
 		PageError,
+		Screenshot,
 		ViewportRect
 	} from './issue_report_schema';
 	import {
@@ -29,10 +36,18 @@
 		| { id: number; status: 'filing' }
 		| { id: number; status: 'filed'; issue: FiledIssue };
 	type Screenshots = IssueReport['screenshots'];
+	interface ScreenAndSelection {
+		// The headless browser's page, to shoot the full page in
+		kept_page: string | null;
+		screen: Screenshot | null;
+		selection: Screenshot | null;
+	}
 	interface Draft {
 		id: number;
 		page: IssueReportPage;
-		// Taken while the admin writes
+		// For the preview, first
+		screen_and_selection: Promise<ScreenAndSelection>;
+		// All three, taken while the admin writes
 		screenshots: Promise<Screenshots>;
 		preview_url: string | null;
 		is_shooting: boolean;
@@ -41,7 +56,6 @@
 	// Script errors are worth knowing about in a report; the last few are kept
 	const MAX_PAGE_ERRORS = 10;
 	const MAX_SHOWN_FILINGS = 3;
-	const NO_SCREENSHOTS: Screenshots = { selection: null, screen: null, page: null };
 
 	let stage = $state<Stage>('idle');
 	let selection = $state<ViewportRect | null>(null);
@@ -49,6 +63,8 @@
 	let request = $state('');
 	let error_message = $state('');
 	let filings = $state<Filing[]>([]);
+	// The page Report opened in the headless browser (its id), loading while the admin selects
+	let opened_page: Promise<string | null> = Promise.resolve(null);
 
 	let drag_start: { x: number; y: number } | null = null;
 	// Fingers on the selection overlay, by pointer id, where each last was
@@ -76,6 +92,11 @@
 		discard_draft();
 		selection = null;
 		touches = {};
+		const page_facts = collect_page({ route_id: page.route.id, selection: null, errors: [] });
+		opened_page = open_report_page(page_facts).catch((open_error) => {
+			console.error('The headless browser could not open the page', open_error);
+			return null;
+		});
 		stage = 'selecting';
 	}
 
@@ -135,14 +156,33 @@
 		if (event.key === 'Enter') void capture(null);
 	}
 
-	// The server's headless browser shoots the screen and the full page; the selection is cut here
-	async function take_report_screenshots(page_facts: IssueReportPage): Promise<Screenshots> {
+	// The server's headless browser shoots the screen; the selection is cut from it here
+	async function shoot_screen(
+		page_facts: IssueReportPage,
+		opened: Promise<string | null>
+	): Promise<ScreenAndSelection> {
 		try {
-			const { screen, page: full_page } = await take_screenshots(page_facts);
-			return { selection: await cut_selection(screen, page_facts), screen, page: full_page };
+			const shot = await take_screen_screenshot({ kept_page: await opened, page: page_facts });
+			const selection = await cut_selection(shot.screen, page_facts);
+			return { kept_page: shot.kept_page, screen: shot.screen, selection };
 		} catch (screenshot_error) {
-			console.error('The headless browser could not take the report screenshots', screenshot_error);
-			return NO_SCREENSHOTS;
+			console.error('The headless browser could not shoot the screen', screenshot_error);
+			return { kept_page: null, screen: null, selection: null };
+		}
+	}
+
+	// Then the full page, in the same headless page
+	async function shoot_full_page(
+		page_facts: IssueReportPage,
+		screen_and_selection: Promise<ScreenAndSelection>
+	): Promise<Screenshots> {
+		const { kept_page, screen, selection } = await screen_and_selection;
+		try {
+			const full_page = await take_full_page_screenshot({ kept_page, page: page_facts });
+			return { selection, screen, page: full_page };
+		} catch (screenshot_error) {
+			console.error('The headless browser could not shoot the full page', screenshot_error);
+			return { selection, screen, page: null };
 		}
 	}
 
@@ -157,14 +197,21 @@
 			errors: [...page_errors]
 		});
 		const id = next_draft_id++;
-		const screenshots = take_report_screenshots(page_facts);
-		draft = { id, page: page_facts, screenshots, preview_url: null, is_shooting: true };
-		void show_preview(id, screenshots);
+		const screen_and_selection = shoot_screen(page_facts, opened_page);
+		draft = {
+			id,
+			page: page_facts,
+			screen_and_selection,
+			screenshots: shoot_full_page(page_facts, screen_and_selection),
+			preview_url: null,
+			is_shooting: true
+		};
+		void show_preview(id, screen_and_selection);
 	}
 
-	// Once they're taken, unless that draft has gone (filed, cancelled) or already shows them
-	async function show_preview(id: number, screenshots: Promise<Screenshots>) {
-		const taken = await screenshots;
+	// Once it's taken, unless that draft has gone (filed, cancelled) or already shows it
+	async function show_preview(id: number, screen_and_selection: Promise<ScreenAndSelection>) {
+		const taken = await screen_and_selection;
 		if (draft?.id !== id || !draft.is_shooting) return;
 		const preview = taken.selection ?? taken.screen;
 		draft.preview_url = preview ? screenshot_url(preview) : null;
@@ -208,7 +255,7 @@
 				request = submitted_request;
 				error_message = `Not filed: ${message}`;
 				stage = 'writing';
-				void show_preview(submitted.id, submitted.screenshots);
+				void show_preview(submitted.id, submitted.screen_and_selection);
 			} else {
 				if (submitted.preview_url) URL.revokeObjectURL(submitted.preview_url);
 				toast.error(`Not filed: ${message}`);
