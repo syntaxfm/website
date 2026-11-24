@@ -68,17 +68,26 @@ Started 2026-11-24. Fix shared pieces in `src/styles/admin.css` and `src/lib/adm
 one fix cleans every page that uses them. Admin content sits on a solid sheet (`.admin`) over the
 speckle texture.
 
-Shared pieces done on the Content list: one even filter row (`.admin-filters`,
-`.admin-inline-field`), live search (`AdminSearch`), count + pager row (`.admin-list-meta`),
-sticky one-row bulk bar (`.admin-list-bulk`), flat table rows, title opens the editor with a
-`.admin-link-out` icon to the public page. `SelectMenu` styles live in `@layer components` so
-admin.css can restyle them; the layer order is declared in `app.html`.
+Every list page is built from the same pieces in `src/lib/admin/`, so a fix there reaches all
+of them. Pages never hand-write these:
+
+- `AdminList`: lays the filters out in one row, adds `× Clear` (`clear_href`), shows the count,
+  pager and action messages (`message`/`error`), and draws the checkbox column when a `bulk`
+  snippet is given (`select_cell` for each row). Selecting turns the count row into the sticky
+  bulk bar at the same height, so the table never moves.
+- `AdminSearch` (live), `AdminDateRange`, `AdminFilterMenu` (with `to_filter_options`)
+- `AdminTitleCell` (editor link, public-page icon, optional thumbnail and muted detail line),
+  `AdminDateCell`
+- `content_links.ts`: where a Content item is edited and where it lives in public
+
+`SelectMenu` styles live in `@layer components` so admin.css can restyle them; the layer order is
+declared in `app.html`.
 
 | # | Route | Page | Status | Notes |
 |---|-------|------|--------|-------|
 | — | all | Admin menu (`AdminMenu.svelte`) | ⬜ | Overflows at phone width |
-| 1 | `/admin/content` | Content list | 🟨 | Filters, table, bulk bar done. Waiting on Scott's review |
-| 2 | `/admin/content/podcast` | Podcast list | ⬜ | |
+| 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
+| 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; action buttons above still need a look |
 | 3 | `/admin/content/podcast/[show_number]` | Podcast editor | ⬜ | |
 | 4 | `/admin/content/podcast/new` | New podcast | ⬜ | |
 | 5 | `/admin/content/podcast/transcripts` | Transcripts | ⬜ | |

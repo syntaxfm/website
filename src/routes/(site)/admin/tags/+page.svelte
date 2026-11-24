@@ -3,7 +3,9 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
+	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import {
 		build_url,
 		has_any_filter,
@@ -11,8 +13,6 @@
 		read_picklist,
 		read_string
 	} from '#lib/admin/admin_filters.ts';
-	import SelectMenu from '#lib/SelectMenu.svelte';
-	import AdminSearch from '../AdminSearch.svelte';
 	import { create_tag, delete_tag, list_tags, update_tag } from './admin_tags.remote';
 
 	const FILTER_KEYS = ['q', 'kind'] as const;
@@ -208,44 +208,28 @@
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
-		page_size={list_result.page_size}
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 		visible_ids={list_result.items.map((item) => item.id)}
+		message={action_message}
+		error={action_error}
+		clear_href={show_clear_filters ? resolve('admin/tags') : null}
 	>
 		{#snippet filters()}
-			<div class="admin-field">
-				<AdminSearch
-					text={search_text}
-					on_input={(value) => update_url({ q: value || null, page: null })}
-					placeholder="Search tags"
-				/>
-				<SelectMenu
-					popover_id="filter-kind"
-					button_text={KIND_LABELS[kind_filter]}
-					button_icon="filter"
-					value={kind_filter === 'ALL' ? '' : kind_filter}
-					options={KIND_OPTIONS}
-					onselect={(value) => update_url({ kind: value || null, page: null })}
-				/>
-				{#if show_clear_filters}
-					<div class="admin-control-row">
-						<a class="button" data-intent="quiet" href={resolve('admin/tags')}>× Clear</a>
-					</div>
-				{/if}
-			</div>
+			<AdminSearch
+				text={search_text}
+				on_input={(value) => update_url({ q: value || null, page: null })}
+				placeholder="Search tags"
+			/>
+			<AdminFilterMenu
+				label="Kind"
+				value={kind_filter === 'ALL' ? '' : kind_filter}
+				options={KIND_OPTIONS}
+				onselect={(value) => update_url({ kind: value || null, page: null })}
+			/>
 		{/snippet}
 
-		{#snippet action_feedback()}
-			{#if action_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
-			{/if}
-			{#if action_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
-			{/if}
-		{/snippet}
-
-		{#snippet table_head(_params)}
+		{#snippet table_head()}
 			<th>Name</th>
 			<th>Kind</th>
 			<th>Description</th>
@@ -254,7 +238,7 @@
 			<th>Actions</th>
 		{/snippet}
 
-		{#snippet table_body(_params)}
+		{#snippet table_body()}
 			{#each list_result.items as row (row.id)}
 				{@const draft = get_draft(row)}
 				<tr>

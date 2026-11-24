@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
-	import AdminSearch from '../AdminSearch.svelte';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
-	import SelectMenu from '#lib/SelectMenu.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { build_url, read_int, read_string } from '#lib/admin/admin_filters.ts';
 	import { bulk_assign_role, bulk_remove_role, list_roles, list_users } from './admin_users.remote';
 
@@ -144,10 +145,6 @@
 	let role_select_options = $derived(
 		role_options.map((role_item) => ({ value: role_item.id, label: role_item.name }))
 	);
-
-	let bulk_role_label = $derived(
-		role_options.find((role_item) => role_item.id === bulk_role_id)?.name ?? 'Select role'
-	);
 </script>
 
 <svelte:head>
@@ -158,12 +155,13 @@
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
-		page_size={list_result.page_size}
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 		bind:selected_ids={selected_user_ids}
 		visible_ids={list_result.items.map((item) => item.id)}
 		{busy}
+		message={action_message}
+		error={action_error}
 	>
 		{#snippet filters()}
 			<AdminSearch
@@ -174,99 +172,45 @@
 		{/snippet}
 
 		{#snippet bulk()}
-			<div class="admin-inline-form admin-actions">
-				<SelectMenu
-					popover_id="filter-bulk_role"
-					button_text={`Role (${bulk_role_label})`}
-					value={bulk_role_id}
-					options={role_select_options}
-					onselect={(value) => (bulk_role_id = value)}
-				/>
-				<button
-					type="button"
-					data-intent="primary"
-					onclick={run_bulk_assign}
-					disabled={busy || !bulk_role_id}
-				>
-					Assign role
-				</button>
-				<button
-					type="button"
-					data-intent="danger"
-					onclick={run_bulk_remove}
-					disabled={busy || !bulk_role_id}
-				>
-					Remove role
-				</button>
-			</div>
+			<AdminFilterMenu
+				label="Role"
+				value={bulk_role_id}
+				options={role_select_options}
+				onselect={(value) => (bulk_role_id = value)}
+			/>
+			<button type="button" onclick={run_bulk_assign} disabled={busy || !bulk_role_id}>
+				Assign role
+			</button>
+			<button
+				type="button"
+				data-intent="danger"
+				onclick={run_bulk_remove}
+				disabled={busy || !bulk_role_id}
+			>
+				Remove role
+			</button>
 		{/snippet}
 
-		{#snippet action_feedback()}
-			{#if action_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
-			{/if}
-			{#if action_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
-			{/if}
-		{/snippet}
-
-		{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
-			<th>
-				<input
-					type="checkbox"
-					aria-label="Select all rows on this page"
-					checked={all_visible_selected}
-					{indeterminate}
-					onchange={(event) => {
-						const target = event.currentTarget;
-						if (!(target instanceof HTMLInputElement)) return;
-						toggle_all_visible(target.checked);
-					}}
-				/>
-			</th>
-			<th>Name / Email</th>
+		{#snippet table_head()}
+			<th>User</th>
 			<th>Roles</th>
 			<th>Created</th>
 		{/snippet}
 
-		{#snippet table_body({ toggle_selected, is_selected })}
+		{#snippet table_body({ select_cell })}
 			{#each list_result.items as user_row (user_row.id)}
+				{@const user_label = user_row.username || user_row.name || user_row.email || user_row.id}
 				<tr>
-					<td>
-						<input
-							type="checkbox"
-							aria-label={`Select ${user_row.username || user_row.email || user_row.id}`}
-							checked={is_selected(user_row.id)}
-							onchange={(event) => {
-								const target = event.currentTarget;
-								if (!(target instanceof HTMLInputElement)) return;
-								toggle_selected(user_row.id, target.checked);
-							}}
-						/>
-					</td>
-					<td>
-						<div class="admin-control">
-							<p>{user_row.username || '-'}</p>
-							{#if user_row.name}
-								<p class="fs-2">{user_row.name}</p>
-							{/if}
-							{#if user_row.email}
-								<p class="fs-2">{user_row.email}</p>
-							{/if}
-
-							<a class="button" data-intent="quiet" href={resolve(`admin/users/${user_row.id}`)}
-								>Edit</a
-							>
-						</div>
-					</td>
-					<td>{format_roles(user_row)}</td>
-					<td>
-						{#if user_row.created_at}
-							{format(user_row.created_at, 'MMM d, yyyy')}
-						{:else}
-							-
-						{/if}
-					</td>
+					{@render select_cell(user_row.id, user_label)}
+					<AdminTitleCell
+						title={user_label}
+						edit_href={resolve(`admin/users/${user_row.id}`)}
+						detail={[user_row.name, user_row.email]
+							.filter((part) => part && part !== user_label)
+							.join(' · ')}
+					/>
+					<td class="admin-cell-muted">{format_roles(user_row)}</td>
+					<AdminDateCell value={user_row.created_at} />
 				</tr>
 			{/each}
 		{/snippet}

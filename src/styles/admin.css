@@ -110,7 +110,6 @@
 	.admin-section,
 	.admin-field,
 	.admin-control,
-	.admin-list-bulk,
 	.admin-source-facts {
 		display: flex;
 		flex-direction: column;
@@ -473,9 +472,11 @@
 
 	.admin-table-container,
 	.admin .table-container {
-		max-height: min(72vh, 51rem);
+		/* The page scrolls, not the table, so the header can stick under the admin menu */
+		max-width: none;
 		margin: 0;
-		overflow: auto;
+		overflow: visible;
+		border: 0;
 		border-top: 1px solid var(--admin-border);
 	}
 
@@ -489,7 +490,7 @@
 
 	.admin thead th {
 		position: sticky;
-		top: 0;
+		top: var(--admin-nav-height);
 		z-index: 1;
 		padding: var(--pad-small);
 		white-space: nowrap;
@@ -524,6 +525,21 @@
 
 	.admin-cell-title {
 		line-height: 1.5;
+
+		/* A thumbnail sits beside the title, so rows stay short */
+		> img {
+			float: inline-start;
+			width: 64px;
+			height: auto;
+			margin-inline-end: var(--pad-small);
+			border-radius: var(--br-small);
+		}
+
+		> small {
+			display: block;
+			font-size: var(--fs-1);
+			color: var(--admin-muted);
+		}
 	}
 
 	.admin-cell-title > a:not(.admin-link-out):hover {
@@ -555,11 +571,17 @@
 		}
 	}
 
+	/* The count + pager row. Selecting rows turns this same row into the bulk bar, so its height is
+	   fixed and the table below never moves. */
 	.admin-list-meta {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		gap: var(--pad-small);
+		min-block-size: calc(var(--admin-control-height) + 2 * var(--pad-xsmall) + 2px);
+		padding: var(--pad-xsmall);
+		font-size: var(--fs-2);
+		border: 1px solid transparent;
+		border-radius: var(--br-small);
 	}
 
 	.admin-list-pagination {
@@ -695,27 +717,23 @@
 		color: var(--admin-muted);
 	}
 
-	/* One row of actions for the selected rows, kept in reach under the admin menu */
-	.admin-list-bulk {
+	/* The bulk bar: actions for the selected rows, kept in reach under the admin menu */
+	.admin-list-meta[data-selecting='true'] {
 		position: sticky;
 		top: var(--admin-nav-height);
 		z-index: 2;
-		display: flex;
-		flex-flow: row wrap;
-		align-items: center;
-		padding: var(--pad-small);
-		font-size: var(--fs-2);
 		background-color: var(--admin-bg);
-		border: 1px solid var(--admin-accent);
-		border-radius: var(--br-small);
+		border-color: var(--admin-accent);
 
 		> strong {
 			margin-inline-end: auto;
 		}
 
-		/* The tag picker sits in the row: its label is read out, not shown */
+		/* The tag picker sits in the row, chosen tags beside it; its label is read out, not shown */
 		.admin-multi-select {
-			flex: 0 1 16rem;
+			flex-direction: row;
+			align-items: center;
+			min-width: 16rem;
 
 			> label {
 				position: absolute;
@@ -771,6 +789,11 @@
 		/* Titles keep a readable width; the table scrolls sideways instead */
 		.admin-cell-title {
 			min-width: 14rem;
+		}
+
+		.admin-table-container,
+		.admin .table-container {
+			overflow-x: auto;
 		}
 
 		.admin-control-row > :is(input, select, textarea),

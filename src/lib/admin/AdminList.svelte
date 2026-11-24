@@ -1,49 +1,49 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	type TableHeadParams = {
-		all_visible_selected: boolean;
-		indeterminate: boolean;
-		toggle_all_visible: (checked: boolean) => void;
-	};
-
 	type TableBodyParams = {
-		toggle_selected: (id: string, checked: boolean) => void;
-		is_selected: (id: string) => boolean;
+		// The row's checkbox cell; only lists with bulk actions render it
+		select_cell: Snippet<[id: string, label: string]>;
 	};
 
 	type Props = {
 		total: number;
-		page: number;
-		page_size: number;
-		total_pages: number;
-		on_page_change: (next_page: number) => void;
+		page?: number;
+		total_pages?: number;
+		on_page_change?: (next_page: number) => void;
 		selected_ids?: string[];
 		visible_ids: string[];
 		busy?: boolean;
+		// What the last action did, or why it failed
+		message?: string;
+		error?: string;
+		// The filter controls; the list lays them out in one row
 		filters?: Snippet;
+		// Where "× Clear" goes while any filter is set
+		clear_href?: string | null;
+		// Actions for the selected rows. Giving it adds the checkbox column.
 		bulk?: Snippet;
-		table_head: Snippet<[TableHeadParams]>;
+		table_head: Snippet;
 		table_body: Snippet<[TableBodyParams]>;
 		empty?: Snippet;
-		action_feedback?: Snippet;
 	};
 
 	let {
 		total,
-		page,
-		page_size: _page_size,
-		total_pages,
+		page = 1,
+		total_pages = 1,
 		on_page_change,
 		selected_ids = $bindable<string[]>([]),
 		visible_ids,
 		busy = false,
+		message = '',
+		error = '',
 		filters,
+		clear_href,
 		bulk,
 		table_head,
 		table_body,
-		empty,
-		action_feedback
+		empty
 	}: Props = $props();
 
 	let all_visible_selected = $derived(
@@ -54,6 +54,8 @@
 	let indeterminate = $derived(
 		!all_visible_selected && visible_ids.some((id) => selected_ids.includes(id))
 	);
+
+	let is_selecting = $derived(selected_ids.length > 0 && Boolean(bulk));
 
 	function toggle_selected(id: string, checked: boolean) {
 		if (checked) {
@@ -78,34 +80,59 @@
 		];
 	}
 
-	function is_selected(id: string): boolean {
-		return selected_ids.includes(id);
-	}
-
-	function go_previous() {
-		if (page <= 1 || busy) {
-			return;
-		}
-
-		on_page_change(page - 1);
-	}
-
-	function go_next() {
-		if (page >= total_pages || busy) {
-			return;
-		}
-
-		on_page_change(page + 1);
+	function go_to_page(next_page: number) {
+		if (busy || next_page < 1 || next_page > total_pages) return;
+		on_page_change?.(next_page);
 	}
 </script>
 
+{#snippet select_cell(id: string, label: string)}
+	<td>
+		<input
+			type="checkbox"
+			aria-label={`Select ${label}`}
+			checked={selected_ids.includes(id)}
+			onchange={(event) => toggle_selected(id, event.currentTarget.checked)}
+		/>
+	</td>
+{/snippet}
+
+{#snippet pager()}
+	<nav class="admin-list-pagination" aria-label="Pagination">
+		<p>Page {page} of {total_pages}</p>
+		<button
+			type="button"
+			onclick={() => go_to_page(page - 1)}
+			disabled={page <= 1 || busy}
+			aria-label="Previous page">←</button
+		>
+		<button
+			type="button"
+			onclick={() => go_to_page(page + 1)}
+			disabled={page >= total_pages || busy}
+			aria-label="Next page">→</button
+		>
+	</nav>
+{/snippet}
+
 <div class="admin-list stack">
 	{#if filters}
-		{@render filters()}
+		<div class="admin-filters">
+			{@render filters()}
+			{#if clear_href}
+				<a class="button" data-intent="quiet" href={clear_href}>× Clear</a>
+			{/if}
+		</div>
 	{/if}
 
-	{#if selected_ids.length > 0 && bulk}
-		<div class="admin-list-bulk" role="group" aria-label="Bulk actions">
+	<!-- One row that swaps between the count and the bulk actions, so selecting never moves the table -->
+	<div
+		class="admin-list-meta"
+		data-selecting={is_selecting}
+		role={is_selecting ? 'group' : undefined}
+		aria-label={is_selecting ? 'Bulk actions' : undefined}
+	>
+		{#if is_selecting && bulk}
 			<button
 				type="button"
 				data-intent="quiet"
@@ -114,38 +141,20 @@
 			>
 			<strong>{selected_ids.length} selected</strong>
 			{@render bulk()}
-		</div>
-	{/if}
-
-	{#if action_feedback}
-		{@render action_feedback()}
-	{/if}
-
-	{#snippet pager()}
-		<nav class="admin-list-pagination" aria-label="Pagination">
-			<p>Page {page} of {total_pages}</p>
-			<button
-				type="button"
-				onclick={go_previous}
-				disabled={page <= 1 || busy}
-				aria-label="Previous page">←</button
-			>
-			<button
-				type="button"
-				onclick={go_next}
-				disabled={page >= total_pages || busy}
-				aria-label="Next page">→</button
-			>
-		</nav>
-	{/snippet}
-
-	<div class="admin-list-meta">
-		<p class="admin-list-count">
-			{total.toLocaleString()}
-			{total === 1 ? 'item' : 'items'}
-		</p>
-		{#if total_pages > 1}
-			{@render pager()}
+		{:else}
+			<p class="admin-list-count">
+				{total.toLocaleString()}
+				{total === 1 ? 'item' : 'items'}
+			</p>
+			{#if message}
+				<p class="admin-feedback" data-tone="positive" role="status">{message}</p>
+			{/if}
+			{#if error}
+				<p class="admin-feedback" data-tone="negative" role="alert">{error}</p>
+			{/if}
+			{#if total_pages > 1}
+				{@render pager()}
+			{/if}
 		{/if}
 	</div>
 
@@ -153,7 +162,18 @@
 		<table>
 			<thead>
 				<tr>
-					{@render table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
+					{#if bulk}
+						<th>
+							<input
+								type="checkbox"
+								aria-label="Select all rows on this page"
+								checked={all_visible_selected}
+								{indeterminate}
+								onchange={(event) => toggle_all_visible(event.currentTarget.checked)}
+							/>
+						</th>
+					{/if}
+					{@render table_head()}
 				</tr>
 			</thead>
 			<tbody>
@@ -166,7 +186,7 @@
 						</tr>
 					{/if}
 				{:else}
-					{@render table_body({ toggle_selected, is_selected })}
+					{@render table_body({ select_cell })}
 				{/if}
 			</tbody>
 		</table>

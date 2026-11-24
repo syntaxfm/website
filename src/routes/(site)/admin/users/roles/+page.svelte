@@ -71,21 +71,10 @@
 
 	<AdminList
 		total={roles.length}
-		page={1}
-		page_size={roles.length}
-		total_pages={1}
-		on_page_change={() => {}}
 		visible_ids={roles.map((role_item) => role_item.id)}
+		message={status_message}
+		error={status_error}
 	>
-		{#snippet action_feedback()}
-			{#if status_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
-			{/if}
-			{#if status_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
-			{/if}
-		{/snippet}
-
 		{#snippet table_head()}
 			<th>Name</th>
 		{/snippet}

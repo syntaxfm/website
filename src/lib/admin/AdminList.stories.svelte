@@ -1,7 +1,12 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { fn } from 'storybook/test';
+	import AdminDateRange from './AdminDateRange.svelte';
+	import AdminFilterMenu from './AdminFilterMenu.svelte';
 	import AdminList from './AdminList.svelte';
+	import AdminSearch from './AdminSearch.svelte';
+	import AdminTitleCell from './AdminTitleCell.svelte';
+	import { to_filter_options } from './admin_filters.ts';
 
 	interface ShowRow {
 		id: string;
@@ -31,6 +36,8 @@
 		}
 	];
 
+	const STATUS_OPTIONS = to_filter_options(['DRAFT', 'PUBLISHED']);
+
 	const { Story } = defineMeta({
 		title: 'Admin/List',
 		component: AdminList
@@ -42,7 +49,6 @@
 	args={{
 		total: 48,
 		page: 2,
-		page_size: 20,
 		total_pages: 3,
 		on_page_change: fn(),
 		selected_ids: ['show-842'],
@@ -53,74 +59,27 @@
 		<div class="admin">
 			<AdminList {...args}>
 				{#snippet filters()}
-					<div class="admin-control-row">
-						<label class="admin-field">
-							<span>Search shows</span>
-							<input type="search" value="svelte" />
-						</label>
-						<label class="admin-field">
-							<span>Status</span>
-							<select value="ALL">
-								<option value="ALL">All statuses</option>
-								<option value="DRAFT">Draft</option>
-								<option value="PUBLISHED">Published</option>
-							</select>
-						</label>
-					</div>
+					<AdminSearch text="svelte" />
+					<AdminDateRange from="" to="" onchange={fn()} />
+					<AdminFilterMenu label="Status" options={STATUS_OPTIONS} onselect={fn()} />
 				{/snippet}
 
 				{#snippet bulk()}
-					<div class="admin-control-row">
-						<select aria-label="Bulk status" value="PUBLISHED">
-							<option value="PUBLISHED">Publish selected</option>
-							<option value="DRAFT">Move selected to draft</option>
-						</select>
-						<button type="button" data-intent="primary">Apply to selected shows</button>
-					</div>
+					<AdminFilterMenu label="Set status" options={STATUS_OPTIONS} onselect={fn()} />
 				{/snippet}
 
-				{#snippet action_feedback()}
-					<p class="admin-feedback" data-tone="positive" role="status">
-						The previous bulk update completed.
-					</p>
-				{/snippet}
-
-				{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
-					<th>
-						<input
-							type="checkbox"
-							aria-label="Select all rows on this page"
-							checked={all_visible_selected}
-							{indeterminate}
-							onchange={(event) => {
-								const target = event.currentTarget;
-								if (!(target instanceof HTMLInputElement)) return;
-								toggle_all_visible(target.checked);
-							}}
-						/>
-					</th>
+				{#snippet table_head()}
 					<th>Show</th>
 					<th>Title</th>
 					<th>Status</th>
 				{/snippet}
 
-				{#snippet table_body({ toggle_selected, is_selected })}
+				{#snippet table_body({ select_cell })}
 					{#each shows as show (show.id)}
 						<tr>
-							<td>
-								<input
-									type="checkbox"
-									aria-label={`Select ${show.title}`}
-									checked={is_selected(show.id)}
-									onchange={(event) => {
-										const target = event.currentTarget;
-										if (!(target instanceof HTMLInputElement)) return;
-										toggle_selected(show.id, target.checked);
-									}}
-								/>
-							</td>
+							{@render select_cell(show.id, show.title)}
 							<td>#{show.number}</td>
-							<td>{show.title}</td>
+							<AdminTitleCell title={show.title} edit_href="#" public_href="#" />
 							<td>{show.status}</td>
 						</tr>
 					{/each}
@@ -134,10 +93,6 @@
 	name="Empty"
 	args={{
 		total: 0,
-		page: 1,
-		page_size: 20,
-		total_pages: 1,
-		on_page_change: fn(),
 		visible_ids: []
 	}}
 >
@@ -145,19 +100,16 @@
 		<div class="admin">
 			<AdminList {...args}>
 				{#snippet filters()}
-					<label class="admin-field">
-						<span>Search shows</span>
-						<input type="search" value="no matching title" />
-					</label>
+					<AdminSearch text="no matching title" />
 				{/snippet}
 
-				{#snippet table_head(_params)}
+				{#snippet table_head()}
 					<th>Show</th>
 					<th>Title</th>
 					<th>Status</th>
 				{/snippet}
 
-				{#snippet table_body(_params)}{/snippet}
+				{#snippet table_body()}{/snippet}
 
 				{#snippet empty()}
 					<tr>

@@ -1,19 +1,23 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminSearch from '../../AdminSearch.svelte';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
+	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
-	import SelectMenu from '#lib/SelectMenu.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
 	import RemoteFormButton from '#lib/forms/RemoteFormButton.svelte';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
-		read_string
+		read_string,
+		to_filter_options
 	} from '#lib/admin/admin_filters.ts';
 	import {
 		bulk_update_show_status,
@@ -22,30 +26,20 @@
 		refresh_all
 	} from './admin_podcast.remote';
 
-	const STATUS_FILTERS = ['ALL', 'DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
-	const BULK_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
+	const STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 	const FILTER_KEYS = ['q', 'status', 'date_from', 'date_to'] as const;
 	const PAGE_SIZE = 25;
 
-	type ShowStatusFilter = (typeof STATUS_FILTERS)[number];
-	type ShowStatus = (typeof BULK_STATUSES)[number];
-
-	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
-		value: value === 'ALL' ? '' : value,
-		label: value === 'ALL' ? 'All' : value
-	}));
-	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
+	const STATUS_FILTER_OPTIONS = to_filter_options(STATUSES, { include_all: true });
+	const BULK_STATUS_OPTIONS = to_filter_options(STATUSES);
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
-		read_picklist<ShowStatusFilter>(current_page.url.searchParams, 'status', STATUS_FILTERS, 'ALL')
+		read_picklist(current_page.url.searchParams, 'status', ['', ...STATUSES] as const, '')
 	);
 	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
 	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
-	let bulk_status = $derived(
-		read_picklist<ShowStatus>(current_page.url.searchParams, 'bulk_status', BULK_STATUSES, 'DRAFT')
-	);
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let selected_ids = $state<string[]>([]);
@@ -53,19 +47,17 @@
 	let action_error = $state('');
 	let busy = $state(false);
 
-	type ShowListResult = Awaited<ReturnType<typeof list_shows>>;
-	type ShowListItem = ShowListResult['items'][number];
+	// The list's query, also used to refresh it after a bulk action
+	let list_query = $derived<Parameters<typeof list_shows>[0]>({
+		search_text,
+		status: status_filter || 'ALL',
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
+		page: page_number,
+		page_size: PAGE_SIZE
+	});
 
-	let list_result = $derived(
-		await list_shows({
-			search_text,
-			status: status_filter,
-			date_from_iso: date_from || undefined,
-			date_to_iso: date_to || undefined,
-			page: page_number,
-			page_size: PAGE_SIZE
-		})
-	);
+	let list_result = $derived(await list_shows(list_query));
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -74,59 +66,31 @@
 		});
 	}
 
-	function clear_feedback() {
+	async function run_bulk_status_update(value: string) {
+		const status = STATUSES.find((known_status) => known_status === value);
+		if (!status) return;
+
 		action_message = '';
 		action_error = '';
-	}
-
-	async function run_bulk_status_update() {
-		if (selected_ids.length === 0) {
-			action_error = 'Select at least one row first.';
-			return;
-		}
-
-		clear_feedback();
 		busy = true;
 
 		try {
 			const show_numbers = selected_ids
 				.map((id) => Number.parseInt(id, 10))
-				.filter((value) => Number.isFinite(value));
-			const result = await bulk_update_show_status({ show_numbers, status: bulk_status });
+				.filter((show_number) => Number.isFinite(show_number));
+			const result = await bulk_update_show_status({ show_numbers, status });
 
 			const skipped_suffix =
 				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
 
-			action_message = `Updated ${result.count} show(s) to ${bulk_status}.${skipped_suffix}`;
+			action_message = `Set ${result.count} show(s) to ${humanize_enum(status)}.${skipped_suffix}`;
 			selected_ids = [];
-			await list_shows({
-				search_text,
-				status: status_filter,
-				date_from_iso: date_from || undefined,
-				date_to_iso: date_to || undefined,
-				page: page_number,
-				page_size: PAGE_SIZE
-			}).refresh();
+			await list_shows(list_query).refresh();
 		} catch (error) {
 			console.error(error);
 			action_error = 'Unable to update status. Please try again.';
 		} finally {
 			busy = false;
-		}
-	}
-
-	function to_show_type_label(show_row: ShowListItem): string {
-		switch (show_row.show_type) {
-			case 'HASTY':
-				return 'Hasty';
-			case 'TASTY':
-				return 'Tasty';
-			case 'SUPPER':
-				return 'Supper Club';
-			case 'SPECIAL':
-				return 'Special';
-			default:
-				return show_row.show_type;
 		}
 	}
 </script>
@@ -157,92 +121,43 @@
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
-		page_size={list_result.page_size}
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 		bind:selected_ids
 		visible_ids={list_result.items.map((item) => String(item.number))}
 		{busy}
+		message={action_message}
+		error={action_error}
+		clear_href={show_clear_filters ? resolve('admin/content/podcast') : null}
 	>
 		{#snippet filters()}
-			<div class="admin-control-row">
-				<AdminSearch
-					text={search_text}
-					on_input={(value) => update_url({ q: value || null, page: null })}
-				/>
-				<div class="admin-control-row">
-					<label class="admin-field">
-						<span class="fs-1">From</span>
-						<input
-							type="date"
-							value={date_from}
-							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
-						/>
-					</label>
-					<label class="admin-field">
-						<span class="fs-1">To</span>
-						<input
-							type="date"
-							value={date_to}
-							onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
-						/>
-					</label>
-					<SelectMenu
-						popover_id="filter-status"
-						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-						button_icon="filter"
-						value={status_filter === 'ALL' ? '' : status_filter}
-						options={STATUS_FILTER_OPTIONS}
-						onselect={(value) => update_url({ status: value || null, page: null })}
-					/>
-					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('admin/content/podcast')}
-							>× Clear</a
-						>
-					{/if}
-				</div>
-			</div>
+			<AdminSearch
+				text={search_text}
+				on_input={(value) => update_url({ q: value || null, page: null })}
+			/>
+			<AdminDateRange
+				from={date_from}
+				to={date_to}
+				onchange={(key, value) => update_url({ [key]: value || null, page: null })}
+			/>
+			<AdminFilterMenu
+				label="Status"
+				value={status_filter}
+				options={STATUS_FILTER_OPTIONS}
+				onselect={(value) => update_url({ status: value || null, page: null })}
+			/>
 		{/snippet}
 
 		{#snippet bulk()}
-			<div class="admin-control-row">
-				<SelectMenu
-					popover_id="filter-bulk_status"
-					button_text={`Bulk status (${bulk_status})`}
-					button_icon="filter"
-					value={bulk_status}
-					options={BULK_STATUS_OPTIONS}
-					onselect={(value) => update_url({ bulk_status: value || null })}
-				/>
-				<button type="button" data-intent="quiet" onclick={run_bulk_status_update} disabled={busy}>
-					Update status
-				</button>
-			</div>
+			<AdminFilterMenu
+				label="Set status"
+				options={BULK_STATUS_OPTIONS}
+				disabled={busy}
+				onselect={run_bulk_status_update}
+			/>
 		{/snippet}
 
-		{#snippet action_feedback()}
-			{#if action_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
-			{/if}
-			{#if action_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
-			{/if}
-		{/snippet}
-
-		{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
-			<th>
-				<input
-					type="checkbox"
-					aria-label="Select all rows on this page"
-					checked={all_visible_selected}
-					{indeterminate}
-					onchange={(event) => {
-						const target = event.currentTarget;
-						if (!(target instanceof HTMLInputElement)) return;
-						toggle_all_visible(target.checked);
-					}}
-				/>
-			</th>
+		{#snippet table_head()}
 			<th>Number</th>
 			<th>Title</th>
 			<th>Status</th>
@@ -250,36 +165,19 @@
 			<th>Show type</th>
 		{/snippet}
 
-		{#snippet table_body({ toggle_selected, is_selected })}
+		{#snippet table_body({ select_cell })}
 			{#each list_result.items as show_row (show_row.number)}
-				{@const row_id = String(show_row.number)}
-				{@const public_link = resolve(`show/${show_row.number}/${show_row.slug}`)}
-				{@const edit_link = resolve(`admin/content/podcast/${show_row.number}`)}
 				<tr>
-					<td>
-						<input
-							type="checkbox"
-							aria-label={`Select ${show_row.title}`}
-							checked={is_selected(row_id)}
-							onchange={(event) => {
-								const target = event.currentTarget;
-								if (!(target instanceof HTMLInputElement)) return;
-								toggle_selected(row_id, target.checked);
-							}}
-						/>
-					</td>
-					<td>#{show_row.number}</td>
-					<td>
-						<div class="admin-row">
-							<a href={public_link} target="_blank" rel="noopener noreferrer">
-								{show_row.title}
-							</a>
-							<a href={edit_link}>Edit</a>
-						</div>
-					</td>
+					{@render select_cell(String(show_row.number), show_row.title)}
+					<td class="admin-cell-muted">#{show_row.number}</td>
+					<AdminTitleCell
+						title={show_row.title}
+						edit_href={resolve(`admin/content/podcast/${show_row.number}`)}
+						public_href={resolve(`show/${show_row.number}/${show_row.slug}`)}
+					/>
 					<td><StatusBadge status={show_row.meta?.status} /></td>
-					<td>{format(show_row.date, 'MMM d, yyyy')}</td>
-					<td>{to_show_type_label(show_row)}</td>
+					<AdminDateCell value={show_row.date} />
+					<td class="admin-cell-muted">{humanize_enum(show_row.show_type)}</td>
 				</tr>
 			{/each}
 		{/snippet}

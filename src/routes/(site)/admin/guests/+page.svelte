@@ -3,8 +3,9 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
-	import AdminSearch from '../AdminSearch.svelte';
 	import { create_guest, list_guests } from './admin_guests.remote';
 
 	const FILTER_KEYS = ['q'] as const;
@@ -14,8 +15,6 @@
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
-	let selected_guest_ids = $state<string[]>([]);
-	let busy = $state(false);
 	let action_message = $state('');
 	let action_error = $state('');
 
@@ -90,35 +89,19 @@
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}
-		page_size={list_result.page_size}
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
-		bind:selected_ids={selected_guest_ids}
 		visible_ids={list_result.items.map((item) => item.id)}
-		{busy}
+		message={action_message}
+		error={action_error}
+		clear_href={show_clear_filters ? resolve('admin/guests') : null}
 	>
 		{#snippet filters()}
-			<div class="admin-field">
-				<AdminSearch
-					text={search_text}
-					on_input={(value) => update_url({ q: value || null, page: null })}
-					placeholder="Search guests"
-				/>
-				{#if show_clear_filters}
-					<div class="admin-control-row">
-						<a class="button" data-intent="quiet" href={resolve('admin/guests')}>× Clear</a>
-					</div>
-				{/if}
-			</div>
-		{/snippet}
-
-		{#snippet action_feedback()}
-			{#if action_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
-			{/if}
-			{#if action_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
-			{/if}
+			<AdminSearch
+				text={search_text}
+				on_input={(value) => update_url({ q: value || null, page: null })}
+				placeholder="Search guests"
+			/>
 		{/snippet}
 
 		{#snippet table_head()}
@@ -132,8 +115,12 @@
 		{#snippet table_body()}
 			{#each list_result.items as guest_row (guest_row.id)}
 				<tr>
-					<td><a href={resolve(`admin/guests/${guest_row.id}`)}>{guest_row.name}</a></td>
-					<td>/{guest_row.name_slug}</td>
+					<AdminTitleCell
+						title={guest_row.name}
+						edit_href={resolve(`admin/guests/${guest_row.id}`)}
+						public_href={resolve(`guest/${guest_row.name_slug}`)}
+					/>
+					<td class="admin-cell-muted">/{guest_row.name_slug}</td>
 					<td>
 						{#if guest_row.twitter}
 							<a

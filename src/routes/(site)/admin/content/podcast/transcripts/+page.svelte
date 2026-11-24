@@ -101,10 +101,6 @@
 
 	<AdminList
 		total={transcripts.length}
-		page={1}
-		page_size={transcripts.length}
-		total_pages={1}
-		on_page_change={() => {}}
 		visible_ids={transcripts.map((transcript) => transcript.id)}
 	>
 		{#snippet table_head()}

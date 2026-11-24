@@ -1,5 +1,17 @@
 import type { ReadonlyURL, ReadonlyURLSearchParams } from '$app/state';
 import type { ResolvedPathname } from '$app/types';
+import { humanize_enum } from '#lib/utils/format_enum.ts';
+
+export type FilterOption = { value: string; label: string };
+
+/** Menu options for enum values, readable ("PUBLISHED" → "Published"), with "All" ('') first when asked. */
+export function to_filter_options(
+	values: readonly string[],
+	{ include_all = false } = {}
+): FilterOption[] {
+	const options = values.map((value) => ({ value, label: humanize_enum(value) }));
+	return include_all ? [{ value: '', label: 'All' }, ...options] : options;
+}
 
 type ReadIntOptions = {
 	min?: number;

@@ -3,16 +3,19 @@
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import AdminSearch from '../AdminSearch.svelte';
+	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
+	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
-	import SelectMenu from '#lib/SelectMenu.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		build_url,
 		has_any_filter,
 		read_int,
 		read_picklist,
-		read_string
+		read_string,
+		to_filter_options
 	} from '#lib/admin/admin_filters.ts';
 	import {
 		bulk_update_submission_status,
@@ -35,37 +38,24 @@
 	] as const;
 	const DEFAULT_PAGE_SIZE = '20';
 
-	type SubmissionStatus = (typeof STATUS_VALUES)[number];
-	type SubmissionType = (typeof TYPE_VALUES)[number];
-	type SubmissionOrder = (typeof ORDER_VALUES)[number];
-	type PageSizeValue = (typeof PAGE_SIZE_VALUES)[number];
-
-	const STATUS_FILTER_OPTIONS = [
-		{ value: '', label: 'All' },
-		...STATUS_VALUES.map((value) => ({ value, label: value }))
-	];
-	const TYPE_FILTER_OPTIONS = [
-		{ value: '', label: 'All' },
-		...TYPE_VALUES.map((value) => ({ value, label: value }))
-	];
+	const STATUS_FILTER_OPTIONS = to_filter_options(STATUS_VALUES, { include_all: true });
+	const TYPE_FILTER_OPTIONS = to_filter_options(TYPE_VALUES, { include_all: true });
+	const STATUS_OPTIONS = to_filter_options(STATUS_VALUES);
 	const ORDER_OPTIONS = [
-		{ value: 'desc', label: 'Newest To Oldest' },
-		{ value: 'asc', label: 'Oldest To Newest' }
+		{ value: 'desc', label: 'Newest first' },
+		{ value: 'asc', label: 'Oldest first' }
 	];
-	const PAGE_SIZE_OPTIONS = PAGE_SIZE_VALUES.map((value) => ({ value, label: value }));
-	const BULK_STATUS_OPTIONS = STATUS_VALUES.map((value) => ({ value, label: value }));
+	const PAGE_SIZE_OPTIONS = PAGE_SIZE_VALUES.map((value) => ({
+		value,
+		label: `${value} per page`
+	}));
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
-		read_picklist<SubmissionStatus | ''>(
-			current_page.url.searchParams,
-			'status',
-			['', ...STATUS_VALUES] as const,
-			''
-		)
+		read_picklist(current_page.url.searchParams, 'status', ['', ...STATUS_VALUES] as const, '')
 	);
 	let type_filter = $derived(
-		read_picklist<SubmissionType | ''>(
+		read_picklist(
 			current_page.url.searchParams,
 			'submission_type',
 			['', ...TYPE_VALUES] as const,
@@ -74,28 +64,11 @@
 	);
 	let date_from = $derived(read_string(current_page.url.searchParams, 'date_from'));
 	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
-	let order = $derived(
-		read_picklist<SubmissionOrder>(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc')
-	);
-
+	let order = $derived(read_picklist(current_page.url.searchParams, 'order', ORDER_VALUES, 'desc'));
 	let page_size_value = $derived(
-		read_picklist<PageSizeValue>(
-			current_page.url.searchParams,
-			'page_size',
-			PAGE_SIZE_VALUES,
-			DEFAULT_PAGE_SIZE
-		)
+		read_picklist(current_page.url.searchParams, 'page_size', PAGE_SIZE_VALUES, DEFAULT_PAGE_SIZE)
 	);
-
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
-	let bulk_status = $derived(
-		read_picklist<SubmissionStatus>(
-			current_page.url.searchParams,
-			'bulk_status',
-			STATUS_VALUES,
-			'APPROVED'
-		)
-	);
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 
 	let selected_submission_ids = $state<string[]>([]);
@@ -103,18 +76,19 @@
 	let action_error = $state('');
 	let busy = $state(false);
 
-	const submission_results = $derived(
-		get_submissions({
-			search_text,
-			status: status_filter,
-			submission_type: type_filter,
-			date_from_iso: date_from || undefined,
-			date_to_iso: date_to || undefined,
-			order,
-			page: page_number,
-			page_size: Number.parseInt(page_size_value, 10)
-		})
-	);
+	// The list's query, also used to refresh it after a status change
+	let list_query = $derived({
+		search_text,
+		status: status_filter,
+		submission_type: type_filter,
+		date_from_iso: date_from || undefined,
+		date_to_iso: date_to || undefined,
+		order,
+		page: page_number,
+		page_size: Number.parseInt(page_size_value, 10)
+	});
+
+	const submission_results = $derived(get_submissions(list_query));
 
 	function update_url(updates: Record<string, string | number | null | undefined>) {
 		void goto(build_url(current_page.url, updates), {
@@ -123,27 +97,14 @@
 		});
 	}
 
-	function clear_feedback() {
+	async function set_submission_status(submission_id: string, next_status: string) {
 		action_message = '';
 		action_error = '';
-	}
-
-	async function set_submission_status(submission_id: string, next_status: string) {
-		clear_feedback();
 		busy = true;
 		try {
 			await update_submission_status({ id: submission_id, status: next_status });
-			action_message = `Updated submission to ${next_status}.`;
-			await get_submissions({
-				search_text,
-				status: status_filter,
-				submission_type: type_filter,
-				date_from_iso: date_from || undefined,
-				date_to_iso: date_to || undefined,
-				order,
-				page: page_number,
-				page_size: Number.parseInt(page_size_value, 10)
-			}).refresh();
+			action_message = `Set submission to ${humanize_enum(next_status)}.`;
+			await get_submissions(list_query).refresh();
 		} catch (error_value) {
 			console.error('update_submission_status failed', error_value);
 			action_error = 'Unable to update submission status. Please try again.';
@@ -152,31 +113,19 @@
 		}
 	}
 
-	async function run_bulk_status_update() {
-		if (selected_submission_ids.length === 0) {
-			action_error = 'Select at least one submission first.';
-			return;
-		}
-		clear_feedback();
+	async function run_bulk_status_update(next_status: string) {
+		action_message = '';
+		action_error = '';
 		busy = true;
 
 		try {
 			const result = await bulk_update_submission_status({
 				submission_ids: selected_submission_ids,
-				status: bulk_status
+				status: next_status
 			});
-			action_message = `Updated ${result.count} submission(s) to ${bulk_status}.`;
+			action_message = `Set ${result.count} submission(s) to ${humanize_enum(next_status)}.`;
 			selected_submission_ids = [];
-			await get_submissions({
-				search_text,
-				status: status_filter,
-				submission_type: type_filter,
-				date_from_iso: date_from || undefined,
-				date_to_iso: date_to || undefined,
-				order,
-				page: page_number,
-				page_size: Number.parseInt(page_size_value, 10)
-			}).refresh();
+			await get_submissions(list_query).refresh();
 		} catch (error_value) {
 			console.error('bulk_update_submission_status failed', error_value);
 			action_error = 'Unable to update submissions. Please try again.';
@@ -194,134 +143,66 @@
 	{#await submission_results}
 		<p class="admin-feedback" role="status">Loading submissions...</p>
 	{:then list_result}
-		{@const list_items = list_result.items}
-		{@const visible_ids = list_items.map((item) => item.id)}
-
 		<AdminList
 			total={list_result.total}
 			page={list_result.page}
-			page_size={list_result.page_size}
 			total_pages={list_result.total_pages}
 			on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 			bind:selected_ids={selected_submission_ids}
-			{visible_ids}
+			visible_ids={list_result.items.map((item) => item.id)}
 			{busy}
+			message={action_message}
+			error={action_error}
+			clear_href={show_clear_filters ? resolve('admin/submissions') : null}
 		>
 			{#snippet filters()}
-				<div class="admin-control">
-					<AdminSearch
-						text={search_text}
-						on_input={(value) => update_url({ q: value || null, page: null })}
-						placeholder="Search name, email, or body"
-					/>
-					<div class="admin-control-row">
-						<label class="admin-field">
-							<span class="fs-1">From</span>
-							<input
-								type="date"
-								value={date_from}
-								onchange={(e) =>
-									update_url({ date_from: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						<label class="admin-field">
-							<span class="fs-1">To</span>
-							<input
-								type="date"
-								value={date_to}
-								onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
-							/>
-						</label>
-						<SelectMenu
-							popover_id="filter-submission_type"
-							button_text={`Type ${type_filter !== '' ? `(${type_filter})` : ''}`}
-							button_icon="filter"
-							value={type_filter}
-							options={TYPE_FILTER_OPTIONS}
-							onselect={(value) => update_url({ submission_type: value || null, page: null })}
-						/>
-						<SelectMenu
-							popover_id="filter-status"
-							button_text={`Status ${status_filter !== '' ? `(${status_filter})` : ''}`}
-							button_icon="filter"
-							value={status_filter}
-							options={STATUS_FILTER_OPTIONS}
-							onselect={(value) => update_url({ status: value || null, page: null })}
-						/>
-						<SelectMenu
-							popover_id="filter-order"
-							button_text="Sort"
-							button_icon="sort"
-							value={order}
-							options={ORDER_OPTIONS}
-							onselect={(value) =>
-								update_url({ order: value === 'desc' ? null : value, page: null })}
-						/>
-						<SelectMenu
-							popover_id="filter-page_size"
-							value_as_label
-							button_text="Per Page"
-							value={page_size_value}
-							options={PAGE_SIZE_OPTIONS}
-							onselect={(value) =>
-								update_url({
-									page_size: value === DEFAULT_PAGE_SIZE ? null : value,
-									page: null
-								})}
-						/>
-						{#if show_clear_filters}
-							<a class="button small" data-intent="quiet" href={resolve('admin/submissions')}
-								>× Clear</a
-							>
-						{/if}
-					</div>
-				</div>
+				<AdminSearch
+					text={search_text}
+					on_input={(value) => update_url({ q: value || null, page: null })}
+					placeholder="Search name, email, or body"
+				/>
+				<AdminDateRange
+					from={date_from}
+					to={date_to}
+					onchange={(key, value) => update_url({ [key]: value || null, page: null })}
+				/>
+				<AdminFilterMenu
+					label="Type"
+					value={type_filter}
+					options={TYPE_FILTER_OPTIONS}
+					onselect={(value) => update_url({ submission_type: value || null, page: null })}
+				/>
+				<AdminFilterMenu
+					label="Status"
+					value={status_filter}
+					options={STATUS_FILTER_OPTIONS}
+					onselect={(value) => update_url({ status: value || null, page: null })}
+				/>
+				<AdminFilterMenu
+					label="Sort"
+					value={order}
+					options={ORDER_OPTIONS}
+					onselect={(value) => update_url({ order: value === 'desc' ? null : value, page: null })}
+				/>
+				<AdminFilterMenu
+					label="Per page"
+					value={page_size_value}
+					options={PAGE_SIZE_OPTIONS}
+					onselect={(value) =>
+						update_url({ page_size: value === DEFAULT_PAGE_SIZE ? null : value, page: null })}
+				/>
 			{/snippet}
 
 			{#snippet bulk()}
-				<div class="admin-actions">
-					<SelectMenu
-						popover_id="filter-bulk_status"
-						button_text={`Bulk status (${bulk_status})`}
-						button_icon="filter"
-						value={bulk_status}
-						options={BULK_STATUS_OPTIONS}
-						onselect={(value) => update_url({ bulk_status: value || null })}
-					/>
-					<button
-						type="button"
-						data-intent="primary"
-						onclick={run_bulk_status_update}
-						disabled={busy}
-					>
-						Update status
-					</button>
-				</div>
+				<AdminFilterMenu
+					label="Set status"
+					options={STATUS_OPTIONS}
+					disabled={busy}
+					onselect={run_bulk_status_update}
+				/>
 			{/snippet}
 
-			{#snippet action_feedback()}
-				{#if action_message}
-					<p class="admin-feedback" data-tone="positive" role="status">{action_message}</p>
-				{/if}
-				{#if action_error}
-					<p class="admin-feedback" data-tone="negative" role="alert">{action_error}</p>
-				{/if}
-			{/snippet}
-
-			{#snippet table_head({ all_visible_selected, indeterminate, toggle_all_visible })}
-				<th>
-					<input
-						type="checkbox"
-						aria-label="Select all submissions on this page"
-						checked={all_visible_selected}
-						{indeterminate}
-						onchange={(event) => {
-							const target = event.currentTarget;
-							if (!(target instanceof HTMLInputElement)) return;
-							toggle_all_visible(target.checked);
-						}}
-					/>
-				</th>
+			{#snippet table_head()}
 				<th>From</th>
 				<th>Type</th>
 				<th>Body</th>
@@ -330,52 +211,30 @@
 				<th>Actions</th>
 			{/snippet}
 
-			{#snippet table_body({ toggle_selected, is_selected })}
-				{#each list_items as submission (submission.id)}
+			{#snippet table_body({ select_cell })}
+				{#each list_result.items as submission (submission.id)}
 					<tr>
-						<td>
-							<input
-								type="checkbox"
-								aria-label={`Select submission from ${submission.name || 'Anon'}`}
-								checked={is_selected(submission.id)}
-								onchange={(event) => {
-									const target = event.currentTarget;
-									if (!(target instanceof HTMLInputElement)) return;
-									toggle_selected(submission.id, target.checked);
-								}}
-							/>
-						</td>
-						<td>
-							<div class="admin-control">
-								<span>{submission.name || 'Anon'}</span>
-								<span class="fs-1">{submission.email || 'No email'}</span>
-							</div>
-						</td>
-						<td>{humanize_enum(submission.submission_type)}</td>
+						{@render select_cell(submission.id, `submission from ${submission.name || 'Anon'}`)}
+						<AdminTitleCell title={submission.name || 'Anon'} detail={submission.email} />
+						<td class="admin-cell-muted">{humanize_enum(submission.submission_type)}</td>
 						<td>
 							<details class="submission-body">
 								<summary>{submission.body.trim()}</summary>
 								<p>{submission.body.trim()}</p>
 							</details>
 						</td>
-						<td class="fs-1">
+						<td class="admin-cell-muted">
 							{formatDistance(new Date(submission.created_at), new Date(), {
 								addSuffix: true
 							})}
 						</td>
 						<td>
-							<SelectMenu
-								popover_id="status-{submission.id}"
-								button_text={submission.status}
+							<AdminFilterMenu
+								label={humanize_enum(submission.status)}
 								value={submission.status}
+								options={STATUS_OPTIONS}
 								disabled={busy}
-								options={STATUS_VALUES.map((status_value) => ({
-									value: status_value,
-									label: status_value
-								}))}
-								onselect={(next_status) => {
-									void set_submission_status(submission.id, next_status);
-								}}
+								onselect={(next_status) => set_submission_status(submission.id, next_status)}
 							/>
 						</td>
 						<td>
@@ -384,9 +243,7 @@
 									type="button"
 									data-intent="quiet"
 									disabled={busy}
-									onclick={() => {
-										void set_submission_status(submission.id, 'PENDING');
-									}}
+									onclick={() => set_submission_status(submission.id, 'PENDING')}
 								>
 									Reopen
 								</button>
@@ -395,9 +252,7 @@
 									type="button"
 									data-intent="primary"
 									disabled={busy}
-									onclick={() => {
-										void set_submission_status(submission.id, 'COMPLETED');
-									}}
+									onclick={() => set_submission_status(submission.id, 'COMPLETED')}
 								>
 									Close
 								</button>
