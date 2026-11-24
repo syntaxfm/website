@@ -401,3 +401,35 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 
 	return { success: true };
 }
+
+/**
+ * Gives a Show a new number. Its id follows (it is built from the number), and the database carries
+ * both to its transcript, AI notes, guests and hosts (ON UPDATE CASCADE).
+ */
+export async function renumber_show(actor: Actor, show_number: number, new_show_number: number) {
+	assert_admin_actor(actor);
+
+	if (!Number.isInteger(new_show_number) || new_show_number < 1) {
+		error(400, 'A show number is a whole number above 0');
+	}
+	if (new_show_number === show_number) return { show_number };
+
+	const taken = await db.query.show.findFirst({
+		where: eq(show.number, new_show_number),
+		columns: { id: true }
+	});
+	if (taken) error(409, `Show #${new_show_number} already exists`);
+
+	const renumbered = await db
+		.update(show)
+		.set({
+			number: new_show_number,
+			id: get_id_from_show_number(new_show_number),
+			updated_at: new Date()
+		})
+		.where(eq(show.number, show_number))
+		.returning({ number: show.number });
+	if (renumbered.length === 0) error(404, 'Show not found');
+
+	return { show_number: new_show_number };
+}

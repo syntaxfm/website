@@ -11,6 +11,7 @@
 	import SlugEditor from '#lib/admin/SlugEditor.svelte';
 	import StatusSelect from '#lib/admin/StatusSelect.svelte';
 	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
+	import { error_message } from '#lib/utils/error_message.ts';
 	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		add_ai_guest,
@@ -28,6 +29,7 @@
 		get_show_editor,
 		search_guests,
 		search_users_for_host,
+		renumber_show,
 		sync_spotify_for_show,
 		transcribe_show,
 		update_ai_guest,
@@ -216,6 +218,7 @@
 	}));
 
 	let syncing_spotify = $state(false);
+	let renumbering = $state(false);
 	let ai_busy = $state(false);
 
 	let status_message = $state('');
@@ -397,6 +400,31 @@
 		event.preventDefault();
 		schedule_save();
 		await autosave.save_now();
+	}
+
+	// A new number moves the episode to a new editor URL, so the page loads again there
+	async function handle_number_change(event: Event): Promise<void> {
+		const input = event.currentTarget;
+		if (!(input instanceof HTMLInputElement) || !show) return;
+		const new_show_number = input.valueAsNumber;
+		if (!Number.isInteger(new_show_number) || new_show_number < 1) {
+			input.value = String(show.number);
+			return;
+		}
+
+		renumbering = true;
+		clear_feedback();
+		try {
+			// Pending edits are saved under the old number first
+			await autosave.save_now();
+			const result = await renumber_show({ show_number: show.number, new_show_number });
+			window.location.replace(resolve(`admin/content/podcast/${result.show_number}`));
+		} catch (error) {
+			console.error('Unable to renumber show', error);
+			status_error = error_message(error, 'Unable to change the number.');
+			input.value = String(show.number);
+			renumbering = false;
+		}
 	}
 
 	async function sync_spotify() {
@@ -999,6 +1027,18 @@
 				</div>
 
 				<aside class="admin-metadata-rail" aria-label="Show settings">
+					<div class="admin-field">
+						<label for="show-number">Number</label>
+						<input
+							id="show-number"
+							type="number"
+							min="1"
+							step="1"
+							value={show.number}
+							disabled={renumbering}
+							onchange={handle_number_change}
+						/>
+					</div>
 					<StatusSelect {status} onchange={handle_status_change} />
 					<DateTimePicker
 						value={published_at}

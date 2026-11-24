@@ -35,6 +35,31 @@ relying on it.
 
 ---
 
+## 2026-11-24 - Episode numbers can change
+
+**Type**: Constraint
+**Status**: 🚧 In Progress (local only; production waits on Scott's approval)
+**Affects**: transcripts, ai_show_notes, show_guests, show_to_profile
+
+### Changes
+- Migration `0011_show_renumber_cascade`: the four foreign keys to `shows.number` / `shows.id` add
+  `ON UPDATE CASCADE`, so renumbering an episode carries its transcript, AI notes, guests and hosts
+
+### Migration Script Changes
+- None
+
+### Application Code Changes
+- `renumber_show` in `src/server/shows/show_editor.ts`; Number field in the podcast editor's rail
+
+### Rollback Plan
+- Drop and re-add the four constraints without `ON UPDATE CASCADE` (the previous definitions)
+
+### Deployment Notes
+- Apply before or with the deploy; until it runs, renumbering fails on the foreign keys and
+  changes nothing
+
+---
+
 ## 2026-11-15 - SEO snapshots
 
 **Type**: Additive

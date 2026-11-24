@@ -139,7 +139,7 @@ export const showToProfile = pgTable(
 	{
 		show_id: text('show_id')
 			.notNull()
-			.references(() => show.id, { onDelete: 'cascade' }),
+			.references(() => show.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
 		profile_id: uuid('profile_id')
 			.notNull()
 			.references(() => profile.id, { onDelete: 'cascade' })
@@ -189,7 +189,7 @@ export const showGuest = pgTable(
 		id: uuid('id').defaultRandom().primaryKey(),
 		show_id: text('show_id')
 			.notNull()
-			.references(() => show.id, { onDelete: 'cascade' }),
+			.references(() => show.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
 		guest_id: uuid('guest_id')
 			.notNull()
 			.references(() => guest.id, { onDelete: 'cascade' }),
@@ -229,7 +229,7 @@ export const transcript = pgTable(
 		// Episodes find their transcript by show number; videos only have content_id
 		show_number: integer('show_number')
 			.unique()
-			.references(() => show.number, { onDelete: 'cascade' }),
+			.references(() => show.number, { onDelete: 'cascade', onUpdate: 'cascade' }),
 		content_id: uuid('content_id')
 			.unique()
 			.references(() => content.id, { onDelete: 'cascade' }),
@@ -299,7 +299,7 @@ export const aiShowNote = pgTable(
 		show_number: integer('show_number')
 			.notNull()
 			.unique()
-			.references(() => show.number, { onDelete: 'cascade' }),
+			.references(() => show.number, { onDelete: 'cascade', onUpdate: 'cascade' }),
 		title: text('title').notNull(),
 		description: text('description').notNull(),
 		provider: varchar('provider', { length: 100 }).default('gpt3.5').notNull()

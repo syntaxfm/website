@@ -257,6 +257,12 @@ export const get_show_editor = query(v.number(), async (show_number) =>
 	show_editor.get_show_editor(await assert_admin(), show_number)
 );
 
+export const renumber_show = command(
+	v.object({ show_number: v.number(), new_show_number: v.number() }),
+	async ({ show_number, new_show_number }) =>
+		show_editor.renumber_show(await assert_admin(), show_number, new_show_number)
+);
+
 export const create_show_editor = command(create_show_editor_schema, async (input) =>
 	show_editor.create_show(await assert_admin(), input)
 );
