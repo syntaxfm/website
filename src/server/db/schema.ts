@@ -134,26 +134,8 @@ export const show = pgTable(
 	]
 );
 
-export const showToProfile = pgTable(
-	'show_to_profile',
-	{
-		show_id: text('show_id')
-			.notNull()
-			.references(() => show.id, { onDelete: 'cascade' }),
-		profile_id: uuid('profile_id')
-			.notNull()
-			.references(() => profile.id, { onDelete: 'cascade' })
-	},
-	(table) => [
-		primaryKey({ columns: [table.show_id, table.profile_id] }),
-		index('show_to_profile_show_id_idx').on(table.show_id),
-		index('show_to_profile_profile_id_idx').on(table.profile_id)
-	]
-);
-
 // Who hosts a piece of content (an episode, a video), by its permanent content id. Replaces
-// show_to_profile (dropped by migration 0012), which linked by show id and so broke when an
-// episode was renumbered.
+// show_to_profile, which linked by show id and so broke when an episode was renumbered.
 export const contentHost = pgTable(
 	'content_hosts',
 	{
@@ -204,28 +186,8 @@ export const guest = pgTable(
 	]
 );
 
-export const showGuest = pgTable(
-	'show_guests',
-	{
-		id: uuid('id').defaultRandom().primaryKey(),
-		show_id: text('show_id')
-			.notNull()
-			.references(() => show.id, { onDelete: 'cascade' }),
-		guest_id: uuid('guest_id')
-			.notNull()
-			.references(() => guest.id, { onDelete: 'cascade' }),
-		transcript_id: uuid('transcript_id').references(() => transcript.id, { onDelete: 'set null' })
-	},
-	(table) => [
-		uniqueIndex('show_guests_show_guest_idx').on(table.show_id, table.guest_id),
-		index('show_guests_show_id_idx').on(table.show_id),
-		index('show_guests_guest_id_idx').on(table.guest_id),
-		index('show_guests_transcript_id_idx').on(table.transcript_id)
-	]
-);
-
 // Who guests on a piece of content (an episode, a video), by its permanent content id. Replaces
-// show_guests (dropped by migration 0012), which linked by show id.
+// show_guests, which linked by show id.
 export const contentGuest = pgTable(
 	'content_guests',
 	{
@@ -263,23 +225,15 @@ export const socialLink = pgTable(
 // TRANSCRIPT TABLES
 // ============================================================================
 
-export const transcript = pgTable(
-	'transcripts',
-	{
-		id: uuid('id').defaultRandom().primaryKey(),
-		// Legacy link, replaced by content_id; dropped by migration 0012
-		show_number: integer('show_number')
-			.unique()
-			.references(() => show.number, { onDelete: 'cascade' }),
-		// The episode or video this is the transcript of
-		content_id: uuid('content_id')
-			.unique()
-			.references(() => content.id, { onDelete: 'cascade' }),
-		// Migration tracking for incremental sync
-		pg_migrated_at: timestamp('pg_migrated_at', { withTimezone: true })
-	},
-	(table) => [uniqueIndex('transcripts_show_number_idx').on(table.show_number)]
-);
+export const transcript = pgTable('transcripts', {
+	id: uuid('id').defaultRandom().primaryKey(),
+	// The episode or video this is the transcript of
+	content_id: uuid('content_id')
+		.unique()
+		.references(() => content.id, { onDelete: 'cascade' }),
+	// Migration tracking for incremental sync
+	pg_migrated_at: timestamp('pg_migrated_at', { withTimezone: true })
+});
 
 export const transcriptUtterance = pgTable(
 	'transcript_utterances',
@@ -334,24 +288,16 @@ export const transcriptUtteranceWord = pgTable(
 // AI SHOW NOTE TABLES
 // ============================================================================
 
-export const aiShowNote = pgTable(
-	'ai_show_notes',
-	{
-		id: serial('id').primaryKey(),
-		// Legacy link, replaced by content_id; dropped by migration 0012
-		show_number: integer('show_number')
-			.unique()
-			.references(() => show.number, { onDelete: 'cascade' }),
-		// The episode or video these notes are for
-		content_id: uuid('content_id')
-			.unique()
-			.references(() => content.id, { onDelete: 'cascade' }),
-		title: text('title').notNull(),
-		description: text('description').notNull(),
-		provider: varchar('provider', { length: 100 }).default('gpt3.5').notNull()
-	},
-	(table) => [uniqueIndex('ai_show_notes_show_number_idx').on(table.show_number)]
-);
+export const aiShowNote = pgTable('ai_show_notes', {
+	id: serial('id').primaryKey(),
+	// The episode or video these notes are for
+	content_id: uuid('content_id')
+		.unique()
+		.references(() => content.id, { onDelete: 'cascade' }),
+	title: text('title').notNull(),
+	description: text('description').notNull(),
+	provider: varchar('provider', { length: 100 }).default('gpt3.5').notNull()
+});
 
 export const aiSummaryEntry = pgTable(
 	'ai_summary_entries',
