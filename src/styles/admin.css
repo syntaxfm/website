@@ -29,9 +29,13 @@
 		/* Where the editors' metadata rail sticks: below the pinned admin menu */
 		--admin-sticky-offset: calc(var(--admin-nav-height) + var(--pad-medium));
 
-		padding-block: var(--pad-medium) calc(var(--pad-xlarge) * 2);
+		/* A solid sheet over the site's speckle texture, so forms and tables read cleanly */
+		margin-block-end: var(--pad-xlarge);
+		padding: var(--pad-large);
 		font-size: var(--fs-3);
 		color: var(--admin-fg);
+		background-color: var(--admin-bg);
+		border-radius: var(--br-large);
 	}
 
 	.admin > .stack,
