@@ -6,6 +6,7 @@ import { getRequestEvent } from '$app/server';
 import { CONVERT_KIT_V4_API_KEY } from '$app/env/private';
 import { db } from '$server/db/client';
 import { content, newsletter_issue } from '$server/db/schema';
+import { get_newsletter_issue_slug } from '#lib/newsletter/issue_slug.ts';
 import { fetch_snackpack_issues } from './kit';
 
 // A new issue goes out about every two weeks
@@ -18,10 +19,6 @@ export type NewsletterIssue = {
 	title: string;
 	published_at: string;
 };
-
-export function get_newsletter_issue_slug(kit_broadcast_id: string) {
-	return `snack-pack-${kit_broadcast_id}`;
-}
 
 // Every sync stamps updated_at on each issue it copies, so the newest stamp is the last sync
 async function get_last_sync(): Promise<Date | null> {

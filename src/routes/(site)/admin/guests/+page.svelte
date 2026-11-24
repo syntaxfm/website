@@ -135,8 +135,6 @@
 							>
 								@{guest_row.twitter}
 							</a>
-						{:else}
-							-
 						{/if}
 					</td>
 					<td>
@@ -148,11 +146,9 @@
 							>
 								{guest_row.github}
 							</a>
-						{:else}
-							-
 						{/if}
 					</td>
-					<td>{guest_row.of || '-'}</td>
+					<td>{guest_row.of ?? ''}</td>
 				</tr>
 			{/each}
 		{/snippet}

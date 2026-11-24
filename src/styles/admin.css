@@ -309,7 +309,13 @@
 		gap: var(--pad-small);
 	}
 
-	.admin-editor-main {
+	/* One field rhythm in an editor: the main column, its form and the side rail all space fields
+	   the same */
+	.admin-editor-main,
+	.admin-metadata-rail,
+	.admin form.admin-editor {
+		--stack-gap: var(--pad-medium);
+
 		gap: var(--pad-medium);
 	}
 
@@ -766,6 +772,12 @@
 		border-bottom: 1px solid var(--admin-border);
 	}
 
+	/* A cell with nothing in it shows a quiet dash, so pages never hand-write "-" or "–" */
+	.admin td:empty::before {
+		content: '–';
+		color: var(--admin-muted);
+	}
+
 	.admin tbody tr:hover {
 		background-color: var(--admin-surface);
 	}
@@ -859,8 +871,17 @@
 		grid-column: 1 / -1;
 	}
 
-	.admin-panel > button {
-		justify-self: start;
+	/* "Show all" reads as the table's last row: text lined up with the cells, not a button */
+	.admin .admin-panel > button {
+		justify-content: flex-start;
+		padding-inline: var(--pad-small);
+		font-size: var(--fs-2);
+		color: var(--admin-muted);
+		border-radius: 0;
+
+		&:hover {
+			color: var(--admin-accent);
+		}
 	}
 
 	/* The checkbox column hugs its box */
@@ -881,11 +902,16 @@
 			border-radius: var(--br-small);
 		}
 
+		/* One line; a long email or path ends in "…" (the full text is its title) instead of
+		   breaking mid-word */
 		> small {
 			display: block;
+			max-inline-size: 22rem;
+			overflow: hidden;
 			font-size: var(--fs-1);
 			color: var(--admin-muted);
-			overflow-wrap: anywhere;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 	}
 
@@ -931,7 +957,7 @@
 
 	/* Delete in a row or item card is muted until that row is hovered, so a column of Deletes
 	   doesn't shout */
-	:is(.admin-cell-actions, .admin-item-list) [data-intent='danger'] {
+	:is(.admin-cell-actions, .admin-item-list, .admin-pick-list) [data-intent='danger'] {
 		color: var(--admin-muted);
 		background-color: transparent;
 		border-color: transparent;
@@ -1033,8 +1059,9 @@
 		display: flex;
 	}
 
+	/* Search takes the room the other filters leave, so they share one row on a laptop */
 	.admin-filters > .admin-search {
-		flex: 1 1 18rem;
+		flex: 1 1 10rem;
 	}
 
 	:is(.admin-filters, .admin-search) :is(input, button) {

@@ -137,9 +137,6 @@
 	}
 
 	function format_roles(user_row: UserListItem) {
-		if (user_row.roles.length === 0) {
-			return '-';
-		}
 		return user_row.roles.map((user_role_item) => user_role_item.role.name).join(', ');
 	}
 

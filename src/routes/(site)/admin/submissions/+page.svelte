@@ -288,7 +288,8 @@
 		-webkit-line-clamp: 2;
 		line-clamp: 2;
 		overflow: hidden;
-		white-space: pre-wrap;
+		/* Line breaks fold into spaces, so two lines of preview show two lines of words */
+		white-space: normal;
 		/* Long words and links break, so they can't force the table wider */
 		overflow-wrap: anywhere;
 	}

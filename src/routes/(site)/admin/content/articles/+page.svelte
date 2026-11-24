@@ -139,7 +139,7 @@
 					/>
 					<td><StatusBadge status={article_item.meta.status} /></td>
 					<td class="admin-cell-muted">
-						{article_item.author?.name || article_item.author?.username || '-'}
+						{article_item.author?.name || article_item.author?.username || ''}
 					</td>
 					<AdminDateCell value={article_item.meta.updated_at} show_time />
 				</tr>

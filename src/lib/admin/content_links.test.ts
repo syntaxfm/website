@@ -29,6 +29,18 @@ describe('to_content_public_href', () => {
 		expect(
 			to_content_public_href({ id: 'v1', type: 'VIDEO', video: { url: 'https://youtu.be/x' } })
 		).toBe('https://youtu.be/x');
+		expect(
+			to_content_public_href({
+				id: 'v2',
+				type: 'VIDEO',
+				status: 'PUBLISHED',
+				slug: 'the-cure-for-ai-burnout',
+				video: { url: 'https://youtu.be/x' }
+			})
+		).toBe('/videos/the-cure-for-ai-burnout');
 		expect(to_content_public_href({ id: 'n1', type: 'NEWSLETTER' })).toBeNull();
+		expect(
+			to_content_public_href({ id: 'n2', type: 'NEWSLETTER', slug: 'snack-pack-21983475' })
+		).toBe('/snackpack/21983475');
 	});
 });

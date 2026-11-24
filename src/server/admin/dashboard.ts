@@ -1,4 +1,4 @@
-import { and, asc, count, desc, eq, gt, gte, lt, lte } from 'drizzle-orm';
+import { and, asc, count, desc, eq, gt, gte, lt, lte, ne } from 'drizzle-orm';
 
 import { assert_admin_actor, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
@@ -114,8 +114,10 @@ export async function get_admin_dashboard(actor: Actor) {
 		limit: 10
 	});
 
+	// Snack Pack issues are left out: the Kit sync restamps every one each time it runs, so they'd
+	// fill the list without anyone having edited anything
 	const recent_content_updates = await db.query.content.findMany({
-		where: gte(content.updated_at, seven_days_ago),
+		where: and(gte(content.updated_at, seven_days_ago), ne(content.type, 'NEWSLETTER')),
 		with: {
 			show: { columns: { number: true, slug: true } },
 			video: { columns: { url: true } }

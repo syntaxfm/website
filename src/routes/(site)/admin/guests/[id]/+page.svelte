@@ -226,7 +226,7 @@
 			back_href={resolve('admin/guests')}
 			back_label="Guests"
 			title={name}
-			detail="Guest"
+			detail={`/guest/${name_slug}`}
 			public_href={resolve(`guest/${name_slug}`)}
 			{autosave}
 		/>
@@ -280,7 +280,7 @@
 								</a>
 								<button
 									type="button"
-									data-intent="quiet"
+									data-intent="danger"
 									onclick={() => handle_remove_social_link(social_link_row.id)}
 								>
 									Remove

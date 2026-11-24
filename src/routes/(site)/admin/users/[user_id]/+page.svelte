@@ -234,7 +234,7 @@
 							{user_role.role.name}
 							<button
 								type="button"
-								data-intent="quiet"
+								data-intent="danger"
 								onclick={() => remove_role(user_role.role.id)}
 								disabled={saving}
 							>

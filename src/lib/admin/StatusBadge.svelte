@@ -24,8 +24,6 @@
 
 {#if status}
 	<span class="status-badge" data-tone={tone}>{humanize_enum(status)}</span>
-{:else}
-	<span class="status-empty">-</span>
 {/if}
 
 <style lang="postcss">
@@ -53,9 +51,5 @@
 	.status-badge[data-tone='muted'] {
 		background: var(--c-fg-05);
 		color: color-mix(in oklch, var(--c-fg) 60%, transparent);
-	}
-
-	.status-empty {
-		color: color-mix(in oklch, var(--c-fg) 50%, transparent);
 	}
 </style>

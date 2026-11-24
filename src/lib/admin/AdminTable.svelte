@@ -16,11 +16,14 @@
 
 <div class="admin-table-container table-container">
 	<table>
-		<thead>
-			<tr>
-				{@render head()}
-			</tr>
-		</thead>
+		<!-- An empty table says so without column names over nothing -->
+		{#if !is_empty}
+			<thead>
+				<tr>
+					{@render head()}
+				</tr>
+			</thead>
+		{/if}
 		<tbody>
 			{#if is_empty}
 				{#if empty}

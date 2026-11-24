@@ -1010,7 +1010,7 @@
 							{#each selected_guest_ids as guest_id (guest_id)}
 								<li>
 									{guest_lookup[guest_id]?.name ?? guest_id}
-									<button type="button" data-intent="quiet" onclick={() => remove_guest(guest_id)}
+									<button type="button" data-intent="danger" onclick={() => remove_guest(guest_id)}
 										>Remove</button
 									>
 								</li>
@@ -1056,7 +1056,7 @@
 									{host_label(host_item)}
 									<button
 										type="button"
-										data-intent="quiet"
+										data-intent="danger"
 										onclick={() => detach_host(host_item.id)}>Remove</button
 									>
 								</li>

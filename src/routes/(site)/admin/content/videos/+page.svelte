@@ -137,8 +137,8 @@
 			<th>Video</th>
 			<th>Status</th>
 			<th>Published</th>
-			<th>Length</th>
-			<th>Views</th>
+			<th class="admin-cell-number">Length</th>
+			<th class="admin-cell-number">Views</th>
 			<th>Captions</th>
 		{/snippet}
 
@@ -155,11 +155,13 @@
 					/>
 					<td><StatusBadge status={video_row.status} /></td>
 					<AdminDateCell value={video_row.published_at} />
-					<td class="admin-cell-muted">
-						{video_row.duration_seconds ? format_time(video_row.duration_seconds) : '-'}
+					<td class="admin-cell-number admin-cell-muted">
+						{video_row.duration_seconds ? format_time(video_row.duration_seconds) : ''}
 					</td>
-					<td class="admin-cell-muted">{video_row.view_count?.toLocaleString() ?? '-'}</td>
-					<td class="admin-cell-muted">{video_row.has_transcript ? '✓' : '-'}</td>
+					<td class="admin-cell-number admin-cell-muted"
+						>{video_row.view_count?.toLocaleString() ?? ''}</td
+					>
+					<td class="admin-cell-muted">{video_row.has_transcript ? '✓' : ''}</td>
 				</tr>
 			{/each}
 		{/snippet}

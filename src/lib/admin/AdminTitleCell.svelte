@@ -36,6 +36,6 @@
 		</a>
 	{/if}
 	{#if detail}
-		<small>{detail}</small>
+		<small title={detail}>{detail}</small>
 	{/if}
 </td>
