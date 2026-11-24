@@ -35,7 +35,7 @@ Number ADRs sequentially. Keep them short — one paragraph is often enough. See
 ## Project snapshot
 
 - Stack: SvelteKit 3 + Svelte 5 + TypeScript + Vite.
-- Runtime target: Cloudflare Worker (beta.syntax.fm), deployed by Alchemy (`alchemy.run.ts`, `pnpm deploy:beta`, run by hand: a push to `v_3` does not deploy); app secrets are set on the Worker. Kit config lives in `vite.config.ts` (no `svelte.config.js`). `pnpm dev` runs on Node.
+- Runtime target: Cloudflare Worker (beta.syntax.fm), deployed by Alchemy (`alchemy.run.ts`, `pnpm deploy:beta`) on every push to `v_3`; app secrets are set on the Worker. Kit config lives in `vite.config.ts` (no `svelte.config.js`). `pnpm dev` runs on Node.
 - Package manager: `pnpm`.
 - Database: PostgreSQL via Drizzle ORM. Schema in `src/server/db/schema.ts`. See [ADR-0001](./docs/adr/0001-drizzle-postgres-over-prisma-mysql.md). Local dev uses the Docker Postgres from `docker-compose.yml` on port 5434.
 - Auth: central Syntax Auth (`auth.syntax.fm`; local Syntax Auth in dev); roles live on local Profiles. See [ADR-0007](./docs/adr/0007-central-syntax-auth.md) and the README's "Admin sign-in" section.
