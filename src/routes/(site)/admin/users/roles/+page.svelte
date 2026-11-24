@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import { create_role, list_roles } from '../admin_users.remote';
 
 	interface RoleItem {
@@ -53,21 +54,29 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<form
-		class="admin-inline-form admin-actions"
-		onsubmit={(event) => {
-			event.preventDefault();
-			void add_role();
-		}}
-	>
-		<label class="admin-field">
-			<span>Role name</span>
-			<input type="text" bind:value={role_name} placeholder="editor" required />
-		</label>
-		<button type="submit" data-intent="primary" disabled={creating}>
-			{creating ? 'Creating...' : 'Add role'}
-		</button>
-	</form>
+	<AdminPageHeader title="Roles">
+		{#snippet actions()}
+			<form
+				class="admin-inline-form"
+				onsubmit={(event) => {
+					event.preventDefault();
+					void add_role();
+				}}
+			>
+				<label class="admin-visually-hidden" for="new-role-name">Role name</label>
+				<input
+					id="new-role-name"
+					type="text"
+					bind:value={role_name}
+					placeholder="New role name"
+					required
+				/>
+				<button type="submit" data-intent="primary" disabled={creating}>
+					{creating ? 'Adding…' : 'Add role'}
+				</button>
+			</form>
+		{/snippet}
+	</AdminPageHeader>
 
 	<AdminList
 		total={roles.length}
@@ -82,14 +91,14 @@
 		{#snippet table_body()}
 			{#each roles as role_item (role_item.id)}
 				<tr>
-					<td>{role_item.name}</td>
+					<td class="admin-cell-title">{role_item.name}</td>
 				</tr>
 			{/each}
 		{/snippet}
 
 		{#snippet empty()}
 			<tr>
-				<td>No roles found.</td>
+				<td class="admin-cell-muted">No roles yet.</td>
 			</tr>
 		{/snippet}
 	</AdminList>

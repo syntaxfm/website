@@ -6,6 +6,7 @@
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
@@ -81,11 +82,13 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<div class="admin-actions">
-		<button type="button" data-intent="primary" onclick={create_new_article} disabled={creating}>
-			{creating ? 'Creating...' : 'Create Article'}
-		</button>
-	</div>
+	<AdminPageHeader title="Articles">
+		{#snippet actions()}
+			<button type="button" data-intent="primary" onclick={create_new_article} disabled={creating}>
+				{creating ? 'Creating…' : 'New article'}
+			</button>
+		{/snippet}
+	</AdminPageHeader>
 
 	<AdminList
 		total={list_result.total}

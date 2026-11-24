@@ -6,6 +6,7 @@
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { humanize_enum } from '#lib/utils/format_enum.ts';
@@ -140,6 +141,8 @@
 </svelte:head>
 
 <div class="admin-page stack">
+	<AdminPageHeader title="Submissions" />
+
 	{#await submission_results}
 		<p class="admin-feedback" role="status">Loading submissions...</p>
 	{:then list_result}

@@ -8,6 +8,7 @@
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
@@ -229,6 +230,8 @@
 </svelte:head>
 
 <div class="admin-page stack">
+	<AdminPageHeader title="Content" />
+
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}

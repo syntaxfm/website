@@ -7,6 +7,7 @@
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
@@ -70,39 +71,35 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<div class="admin-control-row">
-		{#if youtube.connection.status === 'connected'}
-			<p class="fs-2">
-				YouTube: {youtube.connection.account_name ?? 'connected'} · captions for {youtube.with_captions.toLocaleString()}
-				of {youtube.videos.toLocaleString()} videos
-			</p>
+	<AdminPageHeader
+		title="Videos"
+		detail={youtube.connection.status === 'connected'
+			? `YouTube: ${youtube.connection.account_name ?? 'connected'} · captions for ${youtube.with_captions.toLocaleString()} of ${youtube.videos.toLocaleString()} videos`
+			: undefined}
+	>
+		{#snippet actions()}
 			<a
-				class="button small"
-				data-intent="quiet"
+				class="button"
+				data-intent={youtube.connection.status === 'connected' ? 'quiet' : 'primary'}
 				href="/admin/youtube/connect"
-				data-sveltekit-reload>Reconnect YouTube</a
+				data-sveltekit-reload
+				>{youtube.connection.status === 'connected' ? 'Reconnect YouTube' : 'Connect YouTube'}</a
 			>
-		{:else}
-			{#if youtube.connection.status === 'failed'}
-				<p class="admin-feedback" data-tone="negative" role="status">
-					YouTube disconnected: {youtube.connection.failure}
-				</p>
-			{/if}
-			<a
-				class="button small"
-				data-intent="primary"
-				href="/admin/youtube/connect"
-				data-sveltekit-reload>Connect YouTube</a
-			>
-		{/if}
-		{#if connect_result === 'connected'}
-			<p class="admin-feedback" data-tone="positive" role="status">YouTube connected</p>
-		{:else if connect_result === 'cancelled'}
-			<p class="admin-feedback" data-tone="negative" role="status">Sign-in cancelled</p>
-		{:else if connect_result}
-			<p class="admin-feedback" data-tone="negative" role="alert">{connect_result}</p>
-		{/if}
-	</div>
+		{/snippet}
+	</AdminPageHeader>
+
+	{#if youtube.connection.status === 'failed'}
+		<p class="admin-feedback" data-tone="negative" role="status">
+			YouTube disconnected: {youtube.connection.failure}
+		</p>
+	{/if}
+	{#if connect_result === 'connected'}
+		<p class="admin-feedback" data-tone="positive" role="status">YouTube connected</p>
+	{:else if connect_result === 'cancelled'}
+		<p class="admin-feedback" data-tone="negative" role="status">Sign-in cancelled</p>
+	{:else if connect_result}
+		<p class="admin-feedback" data-tone="negative" role="alert">{connect_result}</p>
+	{/if}
 
 	<AdminList
 		total={list_result.total}
@@ -169,7 +166,7 @@
 
 		{#snippet empty()}
 			<tr>
-				<td colspan="6">No matching videos found.</td>
+				<td colspan="6" class="admin-cell-muted">No matching videos found.</td>
 			</tr>
 		{/snippet}
 	</AdminList>

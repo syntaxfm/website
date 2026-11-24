@@ -95,10 +95,16 @@
 
 	/* An editor's header: back to the list, what you're editing, save state. Sticks under the
 	   admin menu so the save state is always in view. */
+
+	/* An editor's header sticks under the admin menu; a list page's header scrolls away */
 	.admin-editor-header {
 		position: sticky;
 		top: var(--admin-nav-height);
 		z-index: 3;
+	}
+
+	.admin-editor-header,
+	.admin-page-header {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
 		column-gap: var(--pad-medium);
@@ -157,7 +163,9 @@
 	}
 
 	/* A top-level page's header has no back link, so the title starts on the first row */
-	.admin-editor-header:not(:has(> .admin-editor-back)) > .admin-editor-header-end {
+	.admin-editor-header:not(:has(> .admin-editor-back)) > .admin-editor-header-end,
+	.admin-page-header > .admin-actions {
+		grid-column: 2;
 		grid-row: 1 / span 2;
 	}
 
@@ -1181,7 +1189,8 @@
 		}
 
 		/* Editor header: one column and not sticky, so it doesn't take over a small screen */
-		.admin-editor-header {
+		.admin-editor-header,
+		.admin-page-header {
 			position: static;
 			grid-template-columns: minmax(0, 1fr);
 
@@ -1190,10 +1199,14 @@
 			}
 		}
 
-		.admin-editor-header-end {
+		.admin-editor-header-end,
+		.admin-editor-header:not(:has(> .admin-editor-back)) > .admin-editor-header-end,
+		.admin-page-header > .admin-actions {
 			grid-column: 1;
 			grid-row: auto;
+			justify-content: flex-start;
 			flex-wrap: wrap;
+			padding-block-start: var(--pad-small);
 		}
 
 		/* Markdown editor: label on its own line, formatting and Edit/Preview under it */

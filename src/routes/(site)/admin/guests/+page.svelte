@@ -3,6 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { build_url, has_any_filter, read_int, read_string } from '#lib/admin/admin_filters.ts';
@@ -71,20 +72,24 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<form class="admin-inline-form admin-actions" onsubmit={handle_create_guest}>
-		<label class="admin-visually-hidden" for="new-guest-name">Guest name</label>
-		<input
-			id="new-guest-name"
-			type="text"
-			bind:value={new_guest_name}
-			placeholder="New guest name"
-			required
-			disabled={creating_guest}
-		/>
-		<button type="submit" data-intent="primary" disabled={creating_guest}>
-			{creating_guest ? 'Creating…' : 'Create guest'}
-		</button>
-	</form>
+	<AdminPageHeader title="Guests">
+		{#snippet actions()}
+			<form class="admin-inline-form" onsubmit={handle_create_guest}>
+				<label class="admin-visually-hidden" for="new-guest-name">Guest name</label>
+				<input
+					id="new-guest-name"
+					type="text"
+					bind:value={new_guest_name}
+					placeholder="New guest name"
+					required
+					disabled={creating_guest}
+				/>
+				<button type="submit" data-intent="primary" disabled={creating_guest}>
+					{creating_guest ? 'Creating…' : 'Create guest'}
+				</button>
+			</form>
+		{/snippet}
+	</AdminPageHeader>
 
 	<AdminList
 		total={list_result.total}

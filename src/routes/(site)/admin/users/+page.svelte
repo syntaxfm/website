@@ -5,6 +5,7 @@
 	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import { build_url, read_int, read_string } from '#lib/admin/admin_filters.ts';
@@ -152,6 +153,8 @@
 </svelte:head>
 
 <div class="admin-page stack">
+	<AdminPageHeader title="Users" />
+
 	<AdminList
 		total={list_result.total}
 		page={list_result.page}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import { format, formatDistance } from 'date-fns';
 	import { resolve } from '$app/paths';
 	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
@@ -64,6 +65,8 @@
 {/snippet}
 
 <div class="admin-page stack">
+	<AdminPageHeader title="Dashboard" />
+
 	<div class="admin-stats">
 		<a class="admin-stat" href={resolve('admin/submissions?status=PENDING')}>
 			<strong>{dashboard.pending_submissions_count.toLocaleString()}</strong>

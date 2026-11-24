@@ -6,6 +6,7 @@
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
@@ -100,23 +101,18 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<div class="admin-actions">
-		<a class="button small" data-intent="primary" href={resolve('admin/content/podcast/new')}
-			>New Show</a
-		>
-
-		<RemoteFormButton class="small" data-intent="primary" remote={import_all_shows}
-			>Sync Changed/New Shows</RemoteFormButton
-		>
-
-		<RemoteFormButton class="small" data-intent="quiet" remote={refresh_all}
-			>Refresh All Shows</RemoteFormButton
-		>
-
-		<form class="admin-inline-form" action="/webhooks/refresh" method="GET">
-			<button class="small" type="submit" data-intent="quiet">Refresh Webhook</button>
-		</form>
-	</div>
+	<AdminPageHeader title="Podcast">
+		{#snippet actions()}
+			<form action="/webhooks/refresh" method="GET">
+				<button type="submit" data-intent="quiet">Refresh webhook</button>
+			</form>
+			<RemoteFormButton data-intent="quiet" remote={refresh_all}>Refresh all</RemoteFormButton>
+			<RemoteFormButton remote={import_all_shows}>Sync new shows</RemoteFormButton>
+			<a class="button" data-intent="primary" href={resolve('admin/content/podcast/new')}
+				>New show</a
+			>
+		{/snippet}
+	</AdminPageHeader>
 
 	<AdminList
 		total={list_result.total}

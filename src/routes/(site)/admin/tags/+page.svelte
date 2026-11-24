@@ -5,6 +5,7 @@
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import AdminPageHeader from '#lib/admin/AdminPageHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import {
 		build_url,
@@ -191,25 +192,29 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<form class="admin-inline-form admin-actions" onsubmit={create_new_tag}>
-		<label class="admin-visually-hidden" for="new-tag-name">Tag name</label>
-		<input
-			id="new-tag-name"
-			type="text"
-			bind:value={new_name}
-			placeholder="New tag name"
-			required
-			disabled={creating}
-		/>
-		<label class="admin-visually-hidden" for="new-tag-kind">Kind</label>
-		<select id="new-tag-kind" bind:value={new_kind} disabled={creating}>
-			<option value="TOPIC">Topic</option>
-			<option value="LIBRARY">Library</option>
-		</select>
-		<button type="submit" data-intent="primary" disabled={creating}>
-			{creating ? 'Creating…' : 'Create tag'}
-		</button>
-	</form>
+	<AdminPageHeader title="Tags">
+		{#snippet actions()}
+			<form class="admin-inline-form" onsubmit={create_new_tag}>
+				<label class="admin-visually-hidden" for="new-tag-name">Tag name</label>
+				<input
+					id="new-tag-name"
+					type="text"
+					bind:value={new_name}
+					placeholder="New tag name"
+					required
+					disabled={creating}
+				/>
+				<label class="admin-visually-hidden" for="new-tag-kind">Kind</label>
+				<select id="new-tag-kind" bind:value={new_kind} disabled={creating}>
+					<option value="TOPIC">Topic</option>
+					<option value="LIBRARY">Library</option>
+				</select>
+				<button type="submit" data-intent="primary" disabled={creating}>
+					{creating ? 'Creating…' : 'Create tag'}
+				</button>
+			</form>
+		{/snippet}
+	</AdminPageHeader>
 
 	<AdminList
 		total={list_result.total}

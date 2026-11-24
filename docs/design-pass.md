@@ -80,6 +80,8 @@ of them. Pages never hand-write these:
   `AdminDateCell`
 - `content_links.ts`: where a Content item is edited and where it lives in public
 - `AdminTable`: the bare table (head, rows, empty row). `AdminList` uses it; so do the dashboard panels
+- `AdminPageHeader`: every list page's title, with its page actions (New show, Import all, a
+  create form) on the right
 - `AdminEditorHeader`: every editor's sticky header — back link, live title, public icon, save
   state, page actions, section jump links
 - Editor CSS: one control height, input + button rows (slug, date), one-line markdown toolbar,
@@ -96,21 +98,21 @@ declared in `app.html`.
 |---|-------|------|--------|-------|
 | — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Scrolls sideways on phones; links fade under Report |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
-| 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; action buttons above still need a look |
+| 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; New show / Sync / Refresh in the page header |
 | 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
 | 4 | `/admin/content/podcast/new` | New podcast | 🟨 | Editor header with Create show |
-| 5 | `/admin/content/podcast/transcripts` | Transcripts | ⬜ | |
-| 6 | `/admin/content/videos` | Video list | ⬜ | |
+| 5 | `/admin/content/podcast/transcripts` | Transcripts | 🟨 | Page header with Import / Delete all, search, 50 a page, links to editor + public transcript |
+| 6 | `/admin/content/videos` | Video list | 🟨 | YouTube connection as the header's detail line, Connect/Reconnect as its action |
 | 7 | `/admin/content/videos/[content_id]` | Video editor | 🟨 | Editor header + thumbnail. Waiting on Scott's review |
-| 8 | `/admin/content/articles` | Article list | ⬜ | |
+| 8 | `/admin/content/articles` | Article list | 🟨 | New article in the page header |
 | 9 | `/admin/content/articles/[content_id]` | Article editor | 🟨 | Editor header; not seen live (no articles in the local DB) |
 | 10 | `/admin` | Dashboard | 🟨 | Number tiles, panels on `AdminTable`, long panels show 8 rows + Show all. Waiting on Scott's review |
 | 11 | `/admin/submissions` | Submissions | 🟨 | Compact in-row status + Close; message preview fixed. Waiting on Scott's review |
 | 12 | `/admin/tags` | Tags | 🟨 | Names/descriptions edit in place, Save only when changed, quiet Delete. Waiting on Scott's review |
 | 13 | `/admin/tags/[id]` | Tag editor | 🟨 | Editor header + shared table |
-| 14 | `/admin/guests` | Guests | ⬜ | Create row sits above search; 44px vs 40px controls |
+| 14 | `/admin/guests` | Guests | 🟨 | Create form in the page header |
 | 15 | `/admin/guests/[id]` | Guest editor | 🟨 | Editor header, handles in the rail, shows table. Waiting on Scott's review |
 | 16 | `/admin/seo` | SEO tracker | 🟨 | Header + jump links, toned stat changes, "What changed" in four visible panels, tracked searches as a table grouped by topic with toned rank chips (`RankChip`), "Close to the top" led by rank, raw tables collapsed at the bottom. Waiting on Scott's review |
-| 17 | `/admin/users` | Users | ⬜ | |
+| 17 | `/admin/users` | Users | 🟨 | Page header |
 | 18 | `/admin/users/[user_id]` | User editor | 🟨 | Editor header, roles in the rail, shows/articles tables. Waiting on Scott's review |
-| 19 | `/admin/users/roles` | Roles | ⬜ | |
+| 19 | `/admin/users/roles` | Roles | 🟨 | Create form in the page header |
