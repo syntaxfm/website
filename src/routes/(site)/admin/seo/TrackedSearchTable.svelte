@@ -140,7 +140,7 @@
 						{/if}
 					{/if}
 				</td>
-				<td>
+				<td data-label="Over time">
 					{#if has_history(row)}
 						<PositionHistory
 							google={row.google_history}

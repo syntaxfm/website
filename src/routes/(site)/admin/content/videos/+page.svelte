@@ -158,10 +158,12 @@
 					<td class="admin-cell-number admin-cell-muted">
 						{video_row.duration_seconds ? format_time(video_row.duration_seconds) : ''}
 					</td>
-					<td class="admin-cell-number admin-cell-muted"
+					<td class="admin-cell-number admin-cell-muted" data-label="Views"
 						>{video_row.view_count?.toLocaleString() ?? ''}</td
 					>
-					<td class="admin-cell-muted">{video_row.has_transcript ? '✓' : ''}</td>
+					<td class="admin-cell-muted" data-label="Captions"
+						>{video_row.has_transcript ? '✓' : ''}</td
+					>
 				</tr>
 			{/each}
 		{/snippet}

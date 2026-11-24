@@ -162,14 +162,17 @@
 	<AdminTable is_empty={visible_ids.length === 0} {empty}>
 		{#snippet head()}
 			{#if bulk}
+				<!-- The words show only on phones, where the column headers are gone -->
 				<th>
-					<input
-						type="checkbox"
-						aria-label="Select all rows on this page"
-						checked={all_visible_selected}
-						{indeterminate}
-						onchange={(event) => toggle_all_visible(event.currentTarget.checked)}
-					/>
+					<label class="admin-select-all">
+						<input
+							type="checkbox"
+							checked={all_visible_selected}
+							{indeterminate}
+							onchange={(event) => toggle_all_visible(event.currentTarget.checked)}
+						/>
+						<span>Select all on this page</span>
+					</label>
 				</th>
 			{/if}
 			{@render table_head()}

@@ -885,9 +885,25 @@
 	}
 
 	/* The checkbox column hugs its box */
-	.admin :is(th, td):has(> input[type='checkbox']:only-child) {
+	.admin :is(th, td):is(:has(> input[type='checkbox']:only-child), :has(> .admin-select-all)) {
 		width: 1px;
 		line-height: 0;
+	}
+
+	.admin-select-all {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--pad-small);
+		cursor: pointer;
+
+		> span {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
 	}
 
 	.admin-cell-title {
@@ -906,7 +922,7 @@
 		   breaking mid-word */
 		> small {
 			display: block;
-			max-inline-size: 22rem;
+			max-inline-size: min(22rem, 100%);
 			overflow: hidden;
 			font-size: var(--fs-1);
 			color: var(--admin-muted);
@@ -1314,8 +1330,43 @@
 			display: block;
 		}
 
+		/* No column headers on a card, except select-all, which stays as a line above the cards */
 		.admin thead {
 			display: none;
+		}
+
+		.admin thead:has(.admin-select-all) {
+			display: block;
+
+			> tr {
+				display: block;
+				padding-block: var(--pad-small);
+				background: none;
+			}
+
+			th {
+				display: none;
+			}
+
+			th:has(.admin-select-all) {
+				display: block;
+				width: auto;
+				padding: 0;
+				font-size: var(--fs-2);
+				font-weight: normal;
+				font-variation-settings: normal;
+				color: var(--admin-muted);
+				line-height: 1.5;
+				text-transform: none;
+				border: 0;
+			}
+
+			.admin-select-all > span {
+				position: static;
+				width: auto;
+				height: auto;
+				clip-path: none;
+			}
 		}
 
 		/* The title on top, the other cells as one muted line of details under it */
@@ -1335,6 +1386,7 @@
 
 		.admin tbody td {
 			display: block;
+			min-width: 0;
 			padding: 0;
 		}
 
@@ -1349,7 +1401,47 @@
 		.admin tbody td:is(.admin-cell-title, :has(> input[type='text'])) {
 			flex: 1 1 100%;
 			order: -1;
-			font-size: var(--fs-3);
+			font-size: var(--fs-2);
+			font-variation-settings: var(--fv-600);
+		}
+
+		.admin tbody .admin-cell-title > small {
+			font-variation-settings: normal;
+		}
+
+		/* A thumbnail keeps its own column, so a long title wraps beside it, not under it */
+		.admin tbody .admin-cell-title:has(> img) {
+			display: grid;
+			grid-template-columns: 64px minmax(0, 1fr);
+			column-gap: var(--pad-small);
+			align-items: start;
+
+			> img {
+				grid-row: span 2;
+				float: none;
+				margin: 0;
+			}
+
+			> :not(img, .admin-link-out) {
+				grid-column: 2;
+			}
+		}
+
+		/* A card leaves out what a row would show as an empty "–" */
+		.admin tbody td:empty {
+			display: none;
+		}
+
+		/* The public-page icon sits in the card's top corner, so it never wraps onto a line alone */
+		.admin tbody tr:has(> .admin-cell-title > .admin-link-out) {
+			padding-inline-end: calc(1rem + var(--pad-small));
+		}
+
+		.admin tbody .admin-cell-title > .admin-link-out {
+			position: absolute;
+			inset-block-start: var(--pad-medium);
+			inset-inline-end: 0;
+			margin: 0;
 		}
 
 		.admin tbody td:not(.admin-cell-title, :has(> input)) {
@@ -1372,6 +1464,11 @@
 		}
 
 		/* Without the column headers, a cell that needs its column's name says it (data-label) */
+		.admin tbody td[data-label]:not(:empty) {
+			display: flex;
+			align-items: center;
+		}
+
 		.admin tbody td[data-label]::before {
 			content: attr(data-label);
 			margin-inline-end: var(--pad-xsmall);
@@ -1384,6 +1481,12 @@
 			display: block;
 			flex-basis: 100%;
 			padding: 0;
+			background: none;
+		}
+
+		.admin tbody tr:has(> th:only-child) {
+			padding-block-end: 0;
+			border-bottom: 0;
 		}
 
 		.admin-source-facts,
