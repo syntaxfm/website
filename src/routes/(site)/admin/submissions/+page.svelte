@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { formatDistance } from 'date-fns';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
 	import AdminDateRange from '#lib/admin/AdminDateRange.svelte';
 	import AdminFilterMenu from '#lib/admin/AdminFilterMenu.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
@@ -223,11 +223,7 @@
 								<p>{submission.body.trim()}</p>
 							</details>
 						</td>
-						<td class="admin-cell-muted admin-cell-date">
-							{formatDistance(new Date(submission.created_at), new Date(), {
-								addSuffix: true
-							})}
-						</td>
+						<AdminDateCell value={submission.created_at} />
 						<td>
 							<AdminFilterMenu
 								label={humanize_enum(submission.status)}
@@ -275,9 +271,9 @@
 </div>
 
 <style>
+	/* The message takes whatever width is left, so the table fits its box */
 	.submission-body {
-		max-width: 420px;
-		min-width: 220px;
+		min-width: 14rem;
 	}
 
 	/* Clamp to two lines until expanded; no heavy textarea, no scrollbars. */
@@ -290,7 +286,8 @@
 		line-clamp: 2;
 		overflow: hidden;
 		white-space: pre-wrap;
-		overflow-wrap: break-word;
+		/* Long words and links break, so they can't force the table wider */
+		overflow-wrap: anywhere;
 	}
 
 	.submission-body summary::-webkit-details-marker {

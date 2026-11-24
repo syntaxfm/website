@@ -483,10 +483,12 @@
 
 	.admin-table-container,
 	.admin .table-container {
-		/* The page scrolls, not the table, so the header can stick under the admin menu */
+		/* A table wider than the sheet scrolls sideways in its box, never past the page */
+		/* Relative, so hidden labels inside are placed in the box and scroll with it */
+		position: relative;
 		max-width: none;
 		margin: 0;
-		overflow: visible;
+		overflow-x: auto;
 		border: 0;
 		border-top: 1px solid var(--admin-border);
 	}
@@ -500,9 +502,6 @@
 	}
 
 	.admin thead th {
-		position: sticky;
-		top: var(--admin-nav-height);
-		z-index: 1;
 		padding: var(--pad-small);
 		white-space: nowrap;
 		font-size: var(--fs-1);
@@ -643,6 +642,7 @@
 			display: block;
 			font-size: var(--fs-1);
 			color: var(--admin-muted);
+			overflow-wrap: anywhere;
 		}
 	}
 
@@ -965,11 +965,6 @@
 		/* Titles keep a readable width; the table scrolls sideways instead */
 		.admin-cell-title {
 			min-width: 14rem;
-		}
-
-		.admin-table-container,
-		.admin .table-container {
-			overflow-x: auto;
 		}
 
 		.admin-control-row > :is(input, select, textarea),
