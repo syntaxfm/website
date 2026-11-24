@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import { XAI_API_KEY } from '$app/env/private';
 import { read } from '$app/server';
 import { db } from '$server/db/client';
-import { show } from '$server/db/schema';
+import { show, transcript } from '$server/db/schema';
 import { people_on_show } from '#lib/transcript/utils.ts';
 import { keywords } from './fixes';
 import { save_transcript_to_db } from './transcripts';
@@ -146,8 +146,13 @@ export async function transcribe_audio(
 	return words_from(body);
 }
 
-/** Transcribes a released episode and saves it. Fails if it already has a transcript. */
-export async function get_transcript(show_number: number) {
+/**
+ * Transcribes a released episode with Grok and saves it. Fails if it already has a transcript,
+ * unless replacing it.
+ * @param replace swap out the episode's transcript; the old one is only dropped once Grok has
+ *   returned the new words, so a failed run leaves it in place
+ */
+export async function get_transcript(show_number: number, { replace = false } = {}) {
 	const active_show = await db.query.show.findFirst({
 		where: eq(show.number, show_number),
 		with: {
@@ -157,7 +162,7 @@ export async function get_transcript(show_number: number) {
 		}
 	});
 	if (!active_show) error(404, `Show #${show_number} not found.`);
-	if (active_show.transcript) {
+	if (active_show.transcript && !replace) {
 		error(
 			409,
 			`Transcript for show #${show_number} already exists. Delete it if you want to re-fetch it.`
@@ -171,6 +176,9 @@ export async function get_transcript(show_number: number) {
 	console.log(`Transcribing show #${show_number} - ${active_show.title}...`);
 	const words = await transcribe_audio(active_show.url, [...keywords, ...people]);
 	const utterances = words_to_utterances(words);
+	if (active_show.transcript) {
+		await db.delete(transcript).where(eq(transcript.id, active_show.transcript.id));
+	}
 
 	// Grok has charged by now, so a database blip mustn't lose the words (the cron would pay again)
 	for (let attempt = 1; ; attempt++) {

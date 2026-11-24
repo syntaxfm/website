@@ -33,6 +33,7 @@ import * as show_editor from '$server/shows/show_editor';
 import { error } from '@sveltejs/kit';
 import { and, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
+import * as transcript_editor from '$server/transcripts/transcript_editor';
 import { generate_ai_notes } from '$server/ai/openai';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
@@ -659,6 +660,33 @@ export const transcribe_show = command(show_number_schema, async ({ show_number 
 	await get_show_editor(show_number).refresh();
 	return { message: `Transcribed #${show_number}` };
 });
+
+export const regenerate_show_transcript = command(show_number_schema, async ({ show_number }) => {
+	await assert_admin();
+
+	await get_transcript(show_number, { replace: true });
+	await get_show_editor(show_number).refresh();
+	return { message: `Transcribed #${show_number} again` };
+});
+
+export const get_transcript_editor = query(
+	v.object({
+		show_number: v.number(),
+		search_text: v.optional(v.string()),
+		page: v.optional(v.number())
+	}),
+	async (input) => transcript_editor.get_transcript_editor(await assert_admin(), input)
+);
+
+export const rename_transcript_speaker = command(
+	v.object({ transcript_id: v.string(), speaker: v.number(), speaker_name: v.string() }),
+	async (input) => transcript_editor.rename_transcript_speaker(await assert_admin(), input)
+);
+
+export const update_transcript_line = command(
+	v.object({ id: v.string(), text: v.string() }),
+	async (input) => transcript_editor.update_transcript_line(await assert_admin(), input)
+);
 
 export const delete_show_transcript = command(show_number_schema, async ({ show_number }) => {
 	await assert_admin();

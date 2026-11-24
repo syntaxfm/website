@@ -10,6 +10,7 @@
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
 	import SlugEditor from '#lib/admin/SlugEditor.svelte';
 	import StatusSelect from '#lib/admin/StatusSelect.svelte';
+	import TranscriptSection from './TranscriptSection.svelte';
 	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import { error_message } from '#lib/utils/error_message.ts';
 	import { humanize_enum } from '#lib/utils/format_enum.ts';
@@ -23,7 +24,6 @@
 		delete_ai_summary_entry,
 		delete_ai_tweet,
 		delete_link,
-		delete_show_transcript,
 		delete_topic,
 		fetch_ai_notes,
 		get_show_editor,
@@ -31,7 +31,6 @@
 		search_users_for_host,
 		renumber_show,
 		sync_spotify_for_show,
-		transcribe_show,
 		update_ai_guest,
 		update_ai_show_note,
 		update_ai_summary_entry,
@@ -200,7 +199,6 @@
 		show?.transcript ? show.transcript_line_count : null
 	);
 	let has_transcript = $derived(transcript_line_count !== null);
-	let transcript_busy = $state(false);
 
 	let new_summary_time = $state('');
 	let new_summary_text = $state('');
@@ -874,37 +872,6 @@
 		}
 	}
 
-	async function transcribe(): Promise<void> {
-		if (!show) return;
-		transcript_busy = true;
-		clear_feedback();
-		try {
-			status_message = (await transcribe_show({ show_number: show.number })).message;
-			await refresh_show_editor();
-		} catch (error) {
-			console.error('Unable to transcribe show', error);
-			status_error = error instanceof Error ? error.message : 'Unable to transcribe this show.';
-		} finally {
-			transcript_busy = false;
-		}
-	}
-
-	async function delete_transcript(): Promise<void> {
-		if (!show) return;
-		transcript_busy = true;
-		clear_feedback();
-		try {
-			status_message = (await delete_show_transcript({ show_number: show.number })).message;
-			await refresh_show_editor();
-		} catch (error) {
-			console.error('Unable to delete transcript', error);
-			status_error = error instanceof Error ? error.message : 'Unable to delete the transcript.';
-			throw error;
-		} finally {
-			transcript_busy = false;
-		}
-	}
-
 	function settle_regeneration(error?: unknown): void {
 		const resolve_current_regeneration = resolve_regeneration;
 		const reject_current_regeneration = reject_regeneration;
@@ -1147,36 +1114,13 @@
 			</section>
 		</form>
 
-		<section id="transcript" class="admin-section" aria-labelledby="transcript-heading">
-			<h2 id="transcript-heading">Transcript</h2>
-			<div class="admin-row">
-				{#if transcript_line_count !== null}
-					<a
-						href={resolve(`show/${show.number}/${show.slug}/transcript`)}
-						target="_blank"
-						rel="noopener noreferrer">{transcript_line_count.toLocaleString()} lines</a
-					>
-					<AdminConfirmDialog
-						title="Delete this transcript?"
-						description="Its lines go too. Transcribe again to get a new one."
-						confirm_phrase="DELETE"
-						action_label="Delete transcript"
-						trigger_label="Delete transcript"
-						onconfirm={delete_transcript}
-					/>
-				{:else}
-					<p class="admin-cell-muted">No transcript yet</p>
-					<button
-						type="button"
-						data-intent="primary"
-						onclick={transcribe}
-						disabled={transcript_busy || !url}
-					>
-						{transcript_busy ? 'Transcribing…' : 'Transcribe'}
-					</button>
-				{/if}
-			</div>
-		</section>
+		<TranscriptSection
+			show_number={show.number}
+			show_slug={show.slug}
+			line_count={transcript_line_count}
+			has_audio={Boolean(url)}
+			onchange={refresh_show_editor}
+		/>
 
 		<section id="ai-notes" class="admin-section" aria-labelledby="ai-notes-heading">
 			<h2 id="ai-notes-heading">AI notes</h2>
