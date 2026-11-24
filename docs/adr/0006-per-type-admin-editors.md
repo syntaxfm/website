@@ -8,7 +8,7 @@ Accepted. Supersedes the "New admin UI" rule in [ADR-0004](./0004-unified-conten
 
 Each content type has its own deep editor under `/admin/content/{type}/[id]`:
 
-- `/admin/content/podcast/[show_number]`
+- `/admin/content/podcast/[id]`
 - `/admin/content/articles/[content_id]`
 - `/admin/content/videos/[content_id]`
 - (future per-type editors as new content types are built)

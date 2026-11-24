@@ -99,7 +99,7 @@ declared in `app.html`.
 | — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Two rows at most: sections, then Content/Users sub-pages. Scrolls sideways on phones; links fade under Report |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
 | 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; New show / Sync / Refresh in the page header |
-| 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
+| 3 | `/admin/content/podcast/[id]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
 | 4 | `/admin/content/podcast/new` | New podcast | 🟨 | Editor header with Create show |
 | 5 | `/admin/content/podcast/transcripts` | Transcripts | ✅ | Removed. Each episode's editor has a Transcript section (Transcribe with Grok, view, delete); the dashboard lists episodes missing one |
 | 6 | `/admin/content/videos` | Video list | 🟨 | YouTube connection as the header's detail line, Connect/Reconnect as its action |
