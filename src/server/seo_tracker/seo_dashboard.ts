@@ -9,6 +9,7 @@ import {
 	GOOGLE_MAX_POSITION,
 	SPOTIFY_EPISODE_MAX_POSITION,
 	SPOTIFY_SHOW_MAX_POSITION,
+	TRACKED_SEARCH_GROUPS,
 	YOUTUBE_MAX_POSITION
 } from './seo_config';
 import { searches_without_detail_sql } from './seo_queries';
@@ -69,6 +70,11 @@ export async function get_seo_dashboard(actor: Actor) {
 			spotify_show: SPOTIFY_SHOW_MAX_POSITION,
 			spotify_episode: SPOTIFY_EPISODE_MAX_POSITION
 		},
+		// The tracked searches by topic, for the page's grouped table
+		tracked_groups: TRACKED_SEARCH_GROUPS.map((group) => ({
+			label: group.label,
+			searches: [...group.searches] as string[]
+		})),
 		latest: latest ? { ...latest, report: without_result_detail(latest.report) } : null,
 		comparison:
 			latest && previous ? compare_reports(previous.report, latest.report, topic_names) : null,

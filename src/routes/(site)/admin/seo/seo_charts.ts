@@ -121,18 +121,15 @@ export function position_band_rows(overview: DomainOverview): BarRow[] {
 	}));
 }
 
-// Opportunity keywords as bars of monthly searches, with Syntax's position beside each
-export function opportunity_rows(
-	keywords: readonly { keyword: string; search_volume: number | null; position: number }[],
-	limit: number
-): BarRow[] {
-	return keywords.slice(0, limit).map((keyword) => ({
-		key: keyword.keyword,
-		label: keyword.keyword,
-		value: keyword.search_volume ?? 0,
-		value_text: (keyword.search_volume ?? 0).toLocaleString(),
-		detail: `#${keyword.position}`
-	}));
+// How good a position is at a glance: the top 3, the rest of the first page, further down, or
+// not found at all
+export type RankTier = 'top' | 'page' | 'deep' | 'none';
+
+export function rank_tier(position: number | null): RankTier {
+	if (position === null) return 'none';
+	if (position <= 3) return 'top';
+	if (position <= 10) return 'page';
+	return 'deep';
 }
 
 // YouTube search terms by views, with the watch hours each brought beside the bar
@@ -237,6 +234,22 @@ export function build_tracked_rows(
 			)
 		};
 	});
+}
+
+// Tracked rows under their topic, in the topic's order. Searches no topic lists (tracked in an
+// older snapshot) go last, under "Other".
+export function group_tracked_rows(
+	rows: readonly TrackedRow[],
+	groups: readonly { label: string; searches: readonly string[] }[]
+): { label: string; rows: TrackedRow[] }[] {
+	const by_search = new Map(rows.map((row) => [row.search, row]));
+	const grouped = groups.map((group) => ({
+		label: group.label,
+		rows: group.searches.flatMap((search) => by_search.get(search) ?? [])
+	}));
+	const listed = new Set(groups.flatMap((group) => group.searches));
+	const other = rows.filter((row) => !listed.has(row.search));
+	return [...grouped, { label: 'Other', rows: other }].filter((group) => group.rows.length > 0);
 }
 
 // SVG point runs for a position history: #1 at the top on the same log scale as the track. A

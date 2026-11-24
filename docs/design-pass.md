@@ -110,7 +110,7 @@ declared in `app.html`.
 | 13 | `/admin/tags/[id]` | Tag editor | 🟨 | Editor header + shared table |
 | 14 | `/admin/guests` | Guests | ⬜ | Create row sits above search; 44px vs 40px controls |
 | 15 | `/admin/guests/[id]` | Guest editor | 🟨 | Editor header, handles in the rail, shows table. Waiting on Scott's review |
-| 16 | `/admin/seo` | SEO tracker | ⬜ | |
+| 16 | `/admin/seo` | SEO tracker | 🟨 | Header + jump links, toned stat changes, "What changed" in four visible panels, tracked searches as a table grouped by topic with toned rank chips (`RankChip`), "Close to the top" led by rank, raw tables collapsed at the bottom. Waiting on Scott's review |
 | 17 | `/admin/users` | Users | ⬜ | |
 | 18 | `/admin/users/[user_id]` | User editor | 🟨 | Editor header, roles in the rail, shows/articles tables. Waiting on Scott's review |
 | 19 | `/admin/users/roles` | Roles | ⬜ | |

@@ -23,7 +23,16 @@
 				<dt>{tile.label}</dt>
 				<dd class="stat-value">{value_text(tile)}</dd>
 				{#if tile.change !== null}
-					<dd class="stat-change">{change_text(tile)}</dd>
+					<dd
+						class="stat-change"
+						data-direction={change_text(tile).startsWith('+')
+							? 'up'
+							: change_text(tile).startsWith('-')
+								? 'down'
+								: null}
+					>
+						{change_text(tile)}
+					</dd>
 				{/if}
 				{#if tile.trend.length > 1}
 					<dd>
@@ -73,5 +82,13 @@
 	.stat-change {
 		font-size: var(--fs-2);
 		color: var(--admin-muted);
+	}
+
+	.stat-change[data-direction='up'] {
+		color: var(--c-chart-3);
+	}
+
+	.stat-change[data-direction='down'] {
+		color: var(--admin-danger);
 	}
 </style>

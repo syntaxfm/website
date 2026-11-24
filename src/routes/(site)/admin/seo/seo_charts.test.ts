@@ -3,10 +3,11 @@ import type { DomainOverview } from '$server/seo_tracker/seo_report';
 import {
 	build_stat_tiles,
 	build_tracked_rows,
-	opportunity_rows,
+	group_tracked_rows,
 	position_band_rows,
 	position_history_runs,
 	position_percent,
+	rank_tier,
 	search_term_rows,
 	sparkline_points,
 	type SnapshotSummary
@@ -195,6 +196,44 @@ describe('build_tracked_rows', () => {
 	});
 });
 
+describe('rank_tier', () => {
+	it('sorts positions into top 3, page 1, deeper and not found', () => {
+		expect([1, 3, 4, 10, 11, null].map(rank_tier)).toEqual([
+			'top',
+			'top',
+			'page',
+			'page',
+			'deep',
+			'none'
+		]);
+	});
+});
+
+describe('group_tracked_rows', () => {
+	it('puts rows under their topic in its order, with unlisted searches last', () => {
+		const [vibe, node, old] = ['vibe coding', 'node.js', 'old search'].map(
+			(search) =>
+				build_tracked_rows(
+					{ google_searches: [google_check(search, 5)], youtube_searches: [] },
+					[]
+				)[0]
+		);
+		const groups = group_tracked_rows(
+			[old, node, vibe],
+			[
+				{ label: 'AI engineering', searches: ['vibe coding', 'claude code'] },
+				{ label: 'Development', searches: ['node.js'] },
+				{ label: 'Podcast', searches: ['coding podcast'] }
+			]
+		);
+		expect(groups.map((group) => [group.label, group.rows.map((row) => row.search)])).toEqual([
+			['AI engineering', ['vibe coding']],
+			['Development', ['node.js']],
+			['Other', ['old search']]
+		]);
+	});
+});
+
 describe('position_history_runs', () => {
 	it('puts #1 at the top and breaks the line where Syntax was not found', () => {
 		const runs = position_history_runs([1, 100, null, 10], 100, 62, 24, 4);
@@ -216,25 +255,6 @@ describe('bar rows', () => {
 			['#4–10 (rest of page 1)', 10],
 			['#11–20 (page 2)', 20],
 			['#21–100', 100]
-		]);
-	});
-
-	it('keeps the first opportunities with their position beside the bar', () => {
-		const rows = opportunity_rows(
-			[
-				{ keyword: 'bun javascript', search_volume: 2900, position: 19 },
-				{ keyword: 'css scroll animation', search_volume: 480, position: 11 }
-			],
-			1
-		);
-		expect(rows).toEqual([
-			{
-				key: 'bun javascript',
-				label: 'bun javascript',
-				value: 2900,
-				value_text: (2900).toLocaleString(),
-				detail: '#19'
-			}
 		]);
 	});
 

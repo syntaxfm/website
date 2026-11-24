@@ -12,9 +12,9 @@
 	}
 
 	interface Props {
-		// The list this item belongs to
-		back_href: string;
-		back_label: string;
+		// The list this item belongs to; a top-level page, such as SEO, has none
+		back_href?: string;
+		back_label?: string;
 		title: string;
 		// A muted line under the title, such as "#1051 · Podcast"
 		detail?: string;
@@ -33,7 +33,9 @@
 </script>
 
 <header class="admin-editor-header">
-	<a class="admin-editor-back" href={back_href}>← {back_label}</a>
+	{#if back_href}
+		<a class="admin-editor-back" href={back_href}>← {back_label}</a>
+	{/if}
 	<h1>
 		{title || 'Untitled'}
 		{#if public_href}
