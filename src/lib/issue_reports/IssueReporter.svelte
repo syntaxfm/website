@@ -330,6 +330,17 @@
 		margin-inline: auto calc(var(--pad-medium) * -1);
 		padding-inline: var(--pad-small) var(--pad-medium);
 		background-color: var(--c-bg);
+
+		/* Links fade out as they slide under it, so a cut-off one reads as "more this way" */
+		&::before {
+			position: absolute;
+			inset-block: 0;
+			inset-inline-end: 100%;
+			width: var(--pad-xlarge);
+			content: '';
+			pointer-events: none;
+			background: linear-gradient(to right, transparent, var(--c-bg));
+		}
 	}
 
 	button {

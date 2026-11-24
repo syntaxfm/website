@@ -213,7 +213,12 @@
 			gap: var(--pad-small);
 			min-height: 2.5rem;
 			list-style: none;
+			overflow-wrap: anywhere;
 			border-bottom: 1px solid var(--admin-border);
+
+			> :first-child {
+				min-width: 0;
+			}
 		}
 
 		button {
@@ -309,6 +314,7 @@
 	}
 
 	.admin-field > :is(label, .admin-field-label),
+	.admin .admin-field-label,
 	.admin label.admin-field,
 	.admin label > span:first-child {
 		font-size: var(--fs-2);
@@ -1169,19 +1175,110 @@
 			padding: var(--pad-medium) var(--pad-small);
 		}
 
-		/* Titles keep a readable width; the table scrolls sideways instead */
-		.admin-cell-title {
-			min-width: 14rem;
+		/* Editor header: one column and not sticky, so it doesn't take over a small screen */
+		.admin-editor-header {
+			position: static;
+			grid-template-columns: minmax(0, 1fr);
+
+			> h1 {
+				font-size: var(--fs-4);
+			}
 		}
 
-		.admin-control-row > :is(input, select, textarea),
-		.admin-search input {
+		.admin-editor-header-end {
+			grid-column: 1;
+			grid-row: auto;
+			flex-wrap: wrap;
+		}
+
+		/* Markdown editor: label on its own line, formatting and Edit/Preview under it */
+		.admin .admin-markdown-editor {
+			grid-template-columns: minmax(0, 1fr) auto;
+
+			> label {
+				grid-column: 1 / -1;
+			}
+
+			> .admin-toolbar {
+				grid-column: 1;
+				flex-wrap: wrap;
+			}
+
+			> .admin-tabs {
+				grid-column: 2;
+			}
+		}
+
+		/* Filters on an even two-column grid; search takes the full row */
+		.admin-filters {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+
+			> .admin-search,
+			> a.button {
+				grid-column: 1 / -1;
+			}
+
+			> * > button {
+				width: 100%;
+			}
+		}
+
+		.admin-inline-field > input:is(*, :hover) {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+
+		/* Table rows become cards: checkbox and title on the first line, the rest under them */
+		.admin-table-container,
+		.admin .table-container {
+			overflow: visible;
+		}
+
+		.admin :is(table, tbody) {
+			display: block;
+		}
+
+		.admin thead {
+			display: none;
+		}
+
+		.admin tbody tr {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: var(--pad-xsmall) var(--pad-small);
+			padding-block: var(--pad-small);
+		}
+
+		.admin tbody td {
+			display: block;
+			padding: 0;
+		}
+
+		.admin tbody td:has(> input[type='checkbox']:only-child) {
+			flex: 0 0 auto;
+			order: -2;
+			width: auto;
+		}
+
+		.admin tbody td:is(.admin-cell-title, :has(> input[type='text'])) {
+			flex: 1 1 calc(100% - 3rem);
+			order: -1;
+		}
+
+		.admin tbody td:not(.admin-cell-title, :has(> input)) {
+			font-size: var(--fs-1);
+		}
+
+		/* Longer text, such as a submission's message, gets its own line */
+		.admin tbody td:has(> details) {
 			flex-basis: 100%;
+			font-size: var(--fs-2);
 		}
 
-		.admin-control-row > :is(button, a.button),
-		.admin-search button {
-			flex: 1 1 auto;
+		.admin tbody td.admin-cell-actions {
+			margin-inline-start: auto;
 		}
 
 		.admin-source-facts,

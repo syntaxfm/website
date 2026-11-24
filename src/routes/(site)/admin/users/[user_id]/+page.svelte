@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { format } from 'date-fns';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
+	import AdminTable from '#lib/admin/AdminTable.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
+	import StatusBadge from '#lib/admin/StatusBadge.svelte';
 	import {
 		add_user_role,
 		get_user_detail,
@@ -151,122 +155,108 @@
 		<p class="admin-feedback" data-tone="negative" role="alert">User not found.</p>
 	</div>
 {:else}
+	{@const user_label =
+		user_detail.username || user_detail.name || user_detail.email || user_detail.id}
 	<div class="admin-page stack">
-		<section class="admin-section" aria-labelledby="profile-heading">
-			<h2 id="profile-heading" class="h5">Profile</h2>
-			<dl class="admin-source-facts">
-				<dt>Username</dt>
-				<dd>{user_detail.username || '-'}</dd>
-				<dt>Name</dt>
-				<dd>{user_detail.name || '-'}</dd>
-				<dt>Email</dt>
-				<dd>{user_detail.email || '-'}</dd>
-			</dl>
-		</section>
+		<AdminEditorHeader
+			back_href={resolve('admin/users')}
+			back_label="Users"
+			title={user_label}
+			detail={[user_detail.name, user_detail.email]
+				.filter((part) => part && part !== user_label)
+				.join(' · ')}
+		/>
 
-		<section class="admin-section" aria-labelledby="roles-heading">
-			<h2 id="roles-heading" class="h5">Roles</h2>
-			<form class="admin-inline-form" onsubmit={handle_add_role}>
-				<label class="admin-field">
-					<span>Role</span>
-					<select bind:value={selected_role_id} disabled={available_roles.length === 0 || saving}>
-						{#if available_roles.length === 0}
-							<option value="">No roles available</option>
-						{:else}
+		{#if status_message}
+			<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
+		{/if}
+		{#if status_error}
+			<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
+		{/if}
+
+		<div class="admin-editor-layout">
+			<div class="admin-editor-main">
+				<section class="admin-panel" aria-labelledby="shows-heading">
+					<h2 id="shows-heading">Shows hosted</h2>
+					<AdminTable is_empty={user_detail.shows_hosted.length === 0}>
+						{#snippet head()}
+							<th>#</th>
+							<th>Title</th>
+							<th>Date</th>
+						{/snippet}
+						{#each user_detail.shows_hosted as show_row (show_row.number)}
+							<tr>
+								<td class="admin-cell-muted">#{show_row.number}</td>
+								<AdminTitleCell
+									title={show_row.title}
+									edit_href={resolve(`admin/content/podcast/${show_row.number}`)}
+									public_href={resolve(`show/${show_row.number}/${show_row.slug}`)}
+								/>
+								<AdminDateCell value={show_row.date} />
+							</tr>
+						{/each}
+						{#snippet empty()}
+							<tr><td colspan="3" class="admin-cell-muted">No shows hosted yet.</td></tr>
+						{/snippet}
+					</AdminTable>
+				</section>
+
+				<section class="admin-panel" aria-labelledby="articles-heading">
+					<h2 id="articles-heading">Articles</h2>
+					<AdminTable is_empty={user_detail.articles_authored.length === 0}>
+						{#snippet head()}
+							<th>Title</th>
+							<th>Status</th>
+							<th>Updated</th>
+						{/snippet}
+						{#each user_detail.articles_authored as article_row (article_row.id)}
+							<tr>
+								<AdminTitleCell
+									title={article_row.title}
+									edit_href={resolve(`admin/content/articles/${article_row.id}`)}
+								/>
+								<td><StatusBadge status={article_row.status} /></td>
+								<AdminDateCell value={article_row.updated_at} />
+							</tr>
+						{/each}
+						{#snippet empty()}
+							<tr><td colspan="3" class="admin-cell-muted">No articles yet.</td></tr>
+						{/snippet}
+					</AdminTable>
+				</section>
+			</div>
+
+			<aside class="admin-metadata-rail" aria-labelledby="roles-heading">
+				<h2 id="roles-heading" class="admin-field-label">Roles</h2>
+				<ul class="admin-pick-list">
+					{#each user_detail.roles as user_role (user_role.role.id)}
+						<li>
+							{user_role.role.name}
+							<button
+								type="button"
+								data-intent="quiet"
+								onclick={() => remove_role(user_role.role.id)}
+								disabled={saving}
+							>
+								Remove
+							</button>
+						</li>
+					{:else}
+						<li class="admin-cell-muted">No roles</li>
+					{/each}
+				</ul>
+				{#if available_roles.length > 0}
+					<form class="admin-inline-form" onsubmit={handle_add_role}>
+						<label class="admin-visually-hidden" for="add-role">Role</label>
+						<select id="add-role" bind:value={selected_role_id} disabled={saving}>
 							{#each available_roles as role_item (role_item.id)}
 								<option value={role_item.id}>{role_item.name}</option>
 							{/each}
-						{/if}
-					</select>
-				</label>
-				<button
-					type="submit"
-					data-intent="primary"
-					disabled={saving || available_roles.length === 0 || !selected_role_id}
-				>
-					Add role
-				</button>
-			</form>
-
-			{#if user_detail.roles.length === 0}
-				<p>No roles assigned.</p>
-			{:else}
-				<ul class="no-list">
-					{#each user_detail.roles as user_role (user_role.role.id)}
-						<li class="admin-row admin-control-row">
-							<span>{user_role.role.name}</span>
-							<div class="admin-actions">
-								<button
-									type="button"
-									data-intent="danger"
-									onclick={() => remove_role(user_role.role.id)}
-									disabled={saving}
-								>
-									Remove
-								</button>
-							</div>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-
-			{#if status_message}
-				<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
-			{/if}
-			{#if status_error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
-			{/if}
-		</section>
-
-		<section class="admin-section" aria-labelledby="shows-heading">
-			<h2 id="shows-heading" class="h5">Shows hosted</h2>
-			{#if user_detail.shows_hosted.length === 0}
-				<p class="fs-2">No shows hosted yet.</p>
-			{:else}
-				<ul class="no-list">
-					{#each user_detail.shows_hosted as show_row (show_row.number)}
-						<li class="admin-row admin-control-row">
-							<div class="admin-control-row">
-								<span class="fs-2">#{show_row.number}</span>
-
-								<a href={resolve(`admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
-							</div>
-							<div class="admin-actions">
-								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
-								<a
-									class="button"
-									data-intent="quiet"
-									href={resolve(`show/${show_row.number}/${show_row.slug}`)}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View
-								</a>
-							</div>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</section>
-
-		<section class="admin-section" aria-labelledby="articles-heading">
-			<h2 id="articles-heading" class="h5">Articles authored</h2>
-			{#if user_detail.articles_authored.length === 0}
-				<p class="fs-2">No articles yet.</p>
-			{:else}
-				<ul class="no-list">
-					{#each user_detail.articles_authored as article_row (article_row.id)}
-						<li class="admin-row admin-control-row">
-							<a href={resolve(`admin/content/articles/${article_row.id}`)}>{article_row.title}</a>
-
-							<div class="admin-actions">
-								<span class="fs-2">{article_row.status}</span>
-								<span class="fs-2">{format(article_row.updated_at, 'MMM d, yyyy')}</span>
-							</div>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</section>
+						</select>
+						<button type="submit" disabled={saving || !selected_role_id}>Add role</button>
+					</form>
+				{/if}
+			</aside>
+		</div>
 	</div>
 {/if}

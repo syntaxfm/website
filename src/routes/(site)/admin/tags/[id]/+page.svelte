@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
@@ -18,10 +19,13 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<section class="admin-section" aria-labelledby="tag-details-heading">
-		<h2 id="tag-details-heading" class="h5">Tag details</h2>
-		<p>/{detail.tag.slug} · {detail.total_content_count} content item(s)</p>
-	</section>
+	<AdminEditorHeader
+		back_href={resolve('admin/tags')}
+		back_label="Tags"
+		title={detail.tag.name}
+		detail={`/${detail.tag.slug} · ${detail.total_content_count.toLocaleString()} tagged`}
+		public_href={resolve(`tags/${detail.tag.slug}`)}
+	/>
 
 	<AdminList total={detail.items.length} visible_ids={detail.items.map((item) => item.id)}>
 		{#snippet table_head()}

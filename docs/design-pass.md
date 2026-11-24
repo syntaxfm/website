@@ -84,6 +84,8 @@ of them. Pages never hand-write these:
   state, page actions, section jump links
 - Editor CSS: one control height, input + button rows (slug, date), one-line markdown toolbar,
   `.admin-pick-list` (guests/hosts), `.admin-item-list` / `.admin-item-add` (AI note items)
+- Phones (`--below-med`): table rows become cards, filters sit on a two-column grid, the
+  editor header stops sticking
 - Row CSS: `.admin-cell-number`, `.admin-cell-actions` (compact, Delete muted until row hover),
   fields in cells read as text until hovered, `.admin-inline-form` for one-line create forms
 
@@ -92,11 +94,11 @@ declared in `app.html`.
 
 | # | Route | Page | Status | Notes |
 |---|-------|------|--------|-------|
-| — | all | Admin menu (`AdminMenu.svelte`) | ⬜ | Overflows at phone width |
+| — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Scrolls sideways on phones; links fade under Report |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
 | 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; action buttons above still need a look |
 | 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
-| 4 | `/admin/content/podcast/new` | New podcast | ⬜ | |
+| 4 | `/admin/content/podcast/new` | New podcast | 🟨 | Editor header with Create show |
 | 5 | `/admin/content/podcast/transcripts` | Transcripts | ⬜ | |
 | 6 | `/admin/content/videos` | Video list | ⬜ | |
 | 7 | `/admin/content/videos/[content_id]` | Video editor | 🟨 | Editor header + thumbnail. Waiting on Scott's review |
@@ -105,10 +107,10 @@ declared in `app.html`.
 | 10 | `/admin` | Dashboard | 🟨 | Number tiles, panels on `AdminTable`, long panels show 8 rows + Show all. Waiting on Scott's review |
 | 11 | `/admin/submissions` | Submissions | 🟨 | Compact in-row status + Close; message preview fixed. Waiting on Scott's review |
 | 12 | `/admin/tags` | Tags | 🟨 | Names/descriptions edit in place, Save only when changed, quiet Delete. Waiting on Scott's review |
-| 13 | `/admin/tags/[id]` | Tag editor | ⬜ | |
+| 13 | `/admin/tags/[id]` | Tag editor | 🟨 | Editor header + shared table |
 | 14 | `/admin/guests` | Guests | ⬜ | Create row sits above search; 44px vs 40px controls |
-| 15 | `/admin/guests/[id]` | Guest editor | ⬜ | |
+| 15 | `/admin/guests/[id]` | Guest editor | 🟨 | Editor header, handles in the rail, shows table. Waiting on Scott's review |
 | 16 | `/admin/seo` | SEO tracker | ⬜ | |
 | 17 | `/admin/users` | Users | ⬜ | |
-| 18 | `/admin/users/[user_id]` | User editor | ⬜ | |
+| 18 | `/admin/users/[user_id]` | User editor | 🟨 | Editor header, roles in the rail, shows/articles tables. Waiting on Scott's review |
 | 19 | `/admin/users/roles` | Roles | ⬜ | |

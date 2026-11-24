@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
 	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '#lib/admin/MarkdownEditor.svelte';
 	import SlugEditor from '#lib/admin/SlugEditor.svelte';
@@ -71,11 +72,18 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<div class="admin-actions">
-		<button type="submit" form="new-show-form" data-intent="primary" disabled={creating}>
-			{creating ? 'Creating…' : 'Create Show'}
-		</button>
-	</div>
+	<AdminEditorHeader
+		back_href={resolve('admin/content/podcast')}
+		back_label="Podcast"
+		title={title || 'New show'}
+		detail="New show"
+	>
+		{#snippet actions()}
+			<button type="submit" form="new-show-form" data-intent="primary" disabled={creating}>
+				{creating ? 'Creating…' : 'Create show'}
+			</button>
+		{/snippet}
+	</AdminEditorHeader>
 
 	{#if status_message}
 		<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
@@ -114,8 +122,7 @@
 				<MarkdownEditor bind:value={show_notes} label="Show notes" rows={18} />
 			</div>
 
-			<aside class="admin-metadata-rail" aria-labelledby="show-metadata-heading">
-				<h2 id="show-metadata-heading" class="h5">Metadata</h2>
+			<aside class="admin-metadata-rail" aria-label="Show settings">
 				<div class="admin-field">
 					<label for="show-number">Show number</label>
 					<input

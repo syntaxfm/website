@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import { onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
+	import AdminTable from '#lib/admin/AdminTable.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import SlugEditor from '#lib/admin/SlugEditor.svelte';
 	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
 	import {
@@ -220,61 +222,103 @@
 	</div>
 {:else}
 	<div class="admin-page stack">
-		<AdminSaveStatus
-			state={autosave.state}
-			error_message={autosave.error_message}
-			onretry={() => autosave.retry()}
+		<AdminEditorHeader
+			back_href={resolve('admin/guests')}
+			back_label="Guests"
+			title={name}
+			detail="Guest"
+			public_href={resolve(`guest/${name_slug}`)}
+			{autosave}
 		/>
 
-		<form class="admin-editor stack" onsubmit={handle_submit}>
-			<section class="admin-section" aria-labelledby="guest-profile-heading">
-				<h2 id="guest-profile-heading" class="h5">Profile</h2>
+		{#if status_error}
+			<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
+		{/if}
 
-				<div class="admin-field">
-					<label for="guest-name">Name</label>
-					<input
-						id="guest-name"
-						name="name"
-						type="text"
-						bind:value={name}
-						oninput={handle_name_input}
-						required
+		<div class="admin-editor-layout">
+			<div class="admin-editor-main">
+				<form class="admin-editor stack" onsubmit={handle_submit}>
+					<div class="admin-field">
+						<label for="guest-name">Name</label>
+						<input
+							id="guest-name"
+							name="name"
+							type="text"
+							bind:value={name}
+							oninput={handle_name_input}
+							required
+						/>
+					</div>
+
+					<SlugEditor
+						bind:title={name}
+						bind:slug={name_slug}
+						label="Name slug"
+						onchange={handle_slug_change}
 					/>
-				</div>
 
-				<SlugEditor
-					bind:title={name}
-					bind:slug={name_slug}
-					label="Name slug"
-					onchange={handle_slug_change}
-				/>
+					<div class="admin-field">
+						<label for="guest-title">Title</label>
+						<input
+							id="guest-title"
+							name="of"
+							type="text"
+							bind:value={of}
+							placeholder="Senior Engineer at Acme"
+							oninput={handle_title_input}
+						/>
+					</div>
+				</form>
 
+				<section class="admin-field" aria-labelledby="social-links-heading">
+					<h2 id="social-links-heading" class="admin-field-label">Social links</h2>
+					<ul class="admin-pick-list">
+						{#each social_links as social_link_row (social_link_row.id)}
+							<li>
+								<a href={social_link_row.link} target="_blank" rel="noopener noreferrer external">
+									{social_link_row.link}
+								</a>
+								<button
+									type="button"
+									data-intent="quiet"
+									onclick={() => handle_remove_social_link(social_link_row.id)}
+								>
+									Remove
+								</button>
+							</li>
+						{/each}
+					</ul>
+					<form class="admin-inline-form" onsubmit={handle_add_social_link}>
+						<label class="admin-visually-hidden" for="new-social-link">Social link URL</label>
+						<input
+							id="new-social-link"
+							type="url"
+							bind:value={new_social_link}
+							placeholder="https://example.com/profile"
+							disabled={adding_link}
+						/>
+						<button type="submit" disabled={adding_link || new_social_link.trim().length === 0}>
+							{adding_link ? 'Adding…' : 'Add link'}
+						</button>
+					</form>
+				</section>
+			</div>
+
+			<aside class="admin-metadata-rail" aria-label="Handles">
 				<div class="admin-field">
-					<label for="guest-title">Title</label>
-					<input
-						id="guest-title"
-						name="of"
-						type="text"
-						bind:value={of}
-						placeholder="e.g. Senior Engineer at Acme"
-						oninput={handle_title_input}
-					/>
-				</div>
-
-				<div class="admin-field">
-					<label for="guest-twitter">Twitter handle</label>
+					<label for="guest-twitter">Twitter</label>
 					<input
 						id="guest-twitter"
 						name="twitter"
 						type="text"
 						bind:value={twitter}
-						placeholder="username (no @)"
+						placeholder="username"
 						oninput={handle_twitter_input}
 					/>
 				</div>
 
 				<div class="admin-field">
-					<label for="guest-github">GitHub handle</label>
+					<label for="guest-github">GitHub</label>
 					<input
 						id="guest-github"
 						name="github"
@@ -286,7 +330,7 @@
 				</div>
 
 				<div class="admin-field">
-					<label for="guest-url">Website URL</label>
+					<label for="guest-url">Website</label>
 					<input
 						id="guest-url"
 						name="url"
@@ -296,97 +340,41 @@
 						oninput={handle_url_input}
 					/>
 				</div>
-			</section>
-		</form>
+			</aside>
+		</div>
 
-		{#if status_error}
-			<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
-		{/if}
-
-		<section class="admin-section" aria-labelledby="social-links-heading">
-			<h2 id="social-links-heading" class="h5">Social links</h2>
-
-			{#if social_links.length === 0}
-				<p class="admin-feedback">No social links yet.</p>
-			{:else}
-				<ul class="no-list stack">
-					{#each social_links as social_link_row (social_link_row.id)}
-						<li class="admin-row">
-							<a href={social_link_row.link} target="_blank" rel="noopener noreferrer external">
-								{social_link_row.link}
-							</a>
-							<button
-								type="button"
-								data-intent="quiet"
-								onclick={() => handle_remove_social_link(social_link_row.id)}
-							>
-								Remove
-							</button>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-
-			<form class="admin-inline-form" onsubmit={handle_add_social_link}>
-				<label class="admin-visually-hidden" for="new-social-link">Social link URL</label>
-				<input
-					id="new-social-link"
-					type="url"
-					bind:value={new_social_link}
-					placeholder="https://example.com/profile"
-					disabled={adding_link}
-				/>
-				<button
-					type="submit"
-					data-intent="primary"
-					disabled={adding_link || new_social_link.trim().length === 0}
-				>
-					{adding_link ? 'Adding…' : 'Add link'}
-				</button>
-			</form>
+		<section class="admin-panel" aria-labelledby="guest-shows-heading">
+			<h2 id="guest-shows-heading">Shows</h2>
+			<AdminTable is_empty={loaded_guest.shows.length === 0}>
+				{#snippet head()}
+					<th>#</th>
+					<th>Title</th>
+					<th>Date</th>
+				{/snippet}
+				{#each loaded_guest.shows as show_row (show_row.number)}
+					<tr>
+						<td class="admin-cell-muted">#{show_row.number}</td>
+						<AdminTitleCell
+							title={show_row.title}
+							edit_href={resolve(`admin/content/podcast/${show_row.number}`)}
+							public_href={resolve(`show/${show_row.number}/${show_row.slug}`)}
+						/>
+						<AdminDateCell value={show_row.date} />
+					</tr>
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">No shows yet.</td></tr>
+				{/snippet}
+			</AdminTable>
 		</section>
 
-		<section class="admin-section" aria-labelledby="guest-shows-heading">
-			<h2 id="guest-shows-heading" class="h5">Shows</h2>
-
-			{#if loaded_guest.shows.length === 0}
-				<p class="admin-feedback">No shows yet.</p>
-			{:else}
-				<ul class="no-list stack">
-					{#each loaded_guest.shows as show_row (show_row.number)}
-						<li class="admin-row">
-							<span class="admin-control-row">
-								<span class="fs-2">#{show_row.number}</span>
-
-								<a href={resolve(`admin/content/podcast/${show_row.number}`)}>{show_row.title}</a>
-							</span>
-							<span class="admin-control-row">
-								<span class="fs-2">{format(show_row.date, 'MMM d, yyyy')}</span>
-								<a
-									class="button"
-									data-intent="quiet"
-									href={resolve(`show/${show_row.number}/${show_row.slug}`)}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View
-								</a>
-							</span>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</section>
-
-		<section class="admin-section admin-danger" aria-labelledby="delete-guest-heading">
-			<h2 id="delete-guest-heading" class="h5">Delete guest</h2>
-			<p>Permanently remove this guest and their social links.</p>
+		<div class="admin-actions">
 			<AdminConfirmDialog
 				title="Delete guest?"
-				description="This permanently deletes the guest and cannot be undone."
+				description="This permanently deletes the guest and their social links."
 				action_label="Delete guest"
 				onconfirm={handle_delete_guest}
 			/>
-		</section>
+		</div>
 	</div>
 {/if}
