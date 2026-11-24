@@ -15,19 +15,25 @@ import type { RequestHandler } from './$types';
 // and speaker names as the HTML page, each line linking to its passage there.
 
 async function load_transcript_source(show_number: number) {
-	const [show_row, transcript_row] = await Promise.all([
+	const [show_row, episode] = await Promise.all([
 		db.query.show.findFirst(get_show_detail_query(show_number)),
-		db.query.transcript.findFirst({
-			where: (transcripts, { eq }) => eq(transcripts.show_number, show_number),
-			columns: { show_number: true },
+		db.query.show.findFirst({
+			where: (shows, { eq }) => eq(shows.number, show_number),
+			columns: {},
 			with: {
-				utterances: {
-					columns: { speaker: true, start: true, end: true, transcript_value: true },
-					orderBy: (utterances, { asc }) => [asc(utterances.start)]
+				transcript: {
+					columns: { id: true },
+					with: {
+						utterances: {
+							columns: { speaker: true, start: true, end: true, transcript_value: true },
+							orderBy: (utterances, { asc }) => [asc(utterances.start)]
+						}
+					}
 				}
 			}
 		})
 	]);
+	const transcript_row = episode?.transcript;
 	if (!show_row || !transcript_row) return null;
 	return {
 		title: show_row.title,
@@ -47,10 +53,10 @@ export const GET: RequestHandler = async function GET({ params, url, setHeaders 
 	const show_number = Number(params.show_number);
 	if (!Number.isInteger(show_number)) error(404, 'This show does not exist.');
 
-	// A transcript doesn't change once it's made
+	// Fresh for 5 minutes, so fixes made in the admin show up soon
 	const source = await edge_cached(
-		`transcript-md-${show_number}`,
-		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 30 },
+		`transcript-md-2-${show_number}`,
+		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 * 30 },
 		() => load_transcript_source(show_number)
 	);
 	const published = source ? new Date(source.date) : null;

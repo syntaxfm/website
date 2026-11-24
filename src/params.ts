@@ -22,9 +22,9 @@ function is_app_path(param: string) {
 	);
 }
 
-/** A three-digit show number, e.g. 900. */
+/** A show number, e.g. 900 or 1051. */
 function is_show_number(param: string) {
-	return /^[0-9]{3}$/.test(param);
+	return /^[0-9]{1,4}$/.test(param);
 }
 
 export const params = defineParams({

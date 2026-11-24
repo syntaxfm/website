@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import * as v from 'valibot';
 import { with_show_card_show } from '$server/shows/shows_queries';
 import { query } from '$app/server';
@@ -15,7 +16,7 @@ export const get_guest = query(v.string(), async (name_slug) => {
 	const found = await db.query.guest.findFirst({
 		where: eq(guest.name_slug, name_slug),
 		with: {
-			showGuests: {
+			appearances: {
 				with: {
 					show: { with: with_show_card_show }
 				}
@@ -23,8 +24,8 @@ export const get_guest = query(v.string(), async (name_slug) => {
 		}
 	});
 	if (!found) return null;
-	const released = found.showGuests.filter((show_guest) => is_released(show_guest.show?.date));
-	return released.length > 0 ? { ...found, showGuests: released } : null;
+	const released = found.appearances.filter((show_guest) => is_released(show_guest.show?.date));
+	return released.length > 0 ? { ...found, appearances: released } : null;
 });
 
 // The guest's episodes as feed `content` items — same shape as `get_feed_content`,
@@ -34,16 +35,11 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 		where: eq(guest.name_slug, name_slug),
 		columns: {},
 		with: {
-			showGuests: {
-				columns: {},
-				with: { show: { columns: { content_id: true } } }
-			}
+			appearances: { columns: { content_id: true } }
 		}
 	});
 
-	const content_ids = (found?.showGuests ?? [])
-		.map((show_guest) => show_guest.show?.content_id)
-		.filter((id): id is string => Boolean(id));
+	const content_ids = (found?.appearances ?? []).map((appearance) => appearance.content_id);
 
 	if (content_ids.length === 0) return [];
 
@@ -53,8 +49,8 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 		with: {
 			show: {
 				with: {
-					guests: { with: { guest: true } },
-					hosts: { with: { profile: true } },
+					guests: { orderBy: in_order_added, with: { guest: true } },
+					hosts: { orderBy: in_order_added, with: { profile: true } },
 					aiShowNote: { with: { topics: true } }
 				}
 			},
@@ -69,7 +65,7 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 // ~100 ms). Guests change when an episode comes out.
 export const get_all_guests = query(() =>
 	edge_cached(
-		'all-guests-2',
+		'all-guests-3',
 		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 7 },
 		async () => {
 			const guests = await db.query.guest.findMany({
@@ -83,7 +79,7 @@ export const get_all_guests = query(() =>
 					url: true
 				},
 				with: {
-					showGuests: {
+					appearances: {
 						columns: {},
 						with: {
 							show: {
@@ -100,10 +96,10 @@ export const get_all_guests = query(() =>
 				orderBy: (g, { asc }) => [asc(g.name)]
 			});
 			return guests.flatMap((found) => {
-				const released = found.showGuests.filter((show_guest) =>
+				const released = found.appearances.filter((show_guest) =>
 					is_released(show_guest.show?.date)
 				);
-				return released.length > 0 ? [{ ...found, showGuests: released }] : [];
+				return released.length > 0 ? [{ ...found, appearances: released }] : [];
 			});
 		}
 	)

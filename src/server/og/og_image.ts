@@ -1,6 +1,7 @@
 // Share (OG) images: a screenshot of the /og/[show_number_or_title] page, taken with Cloudflare's
 // browser (Browser Rendering) and kept in R2. Each image is keyed by a hash of what it shows, so it
 // renders once, and a changed title or guest list gets a new image on its own.
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { getRequestEvent } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
@@ -21,8 +22,16 @@ async function load_og_show(show_number: number) {
 		columns: { number: true, title: true, date: true },
 		where: (show, { eq }) => eq(show.number, show_number),
 		with: {
-			guests: { columns: {}, with: { guest: { columns: { name: true, github: true } } } },
-			hosts: { columns: {}, with: { profile: { columns: { name: true, username: true } } } }
+			guests: {
+				orderBy: in_order_added,
+				columns: {},
+				with: { guest: { columns: { name: true, github: true } } }
+			},
+			hosts: {
+				orderBy: in_order_added,
+				columns: {},
+				with: { profile: { columns: { name: true, username: true } } }
+			}
 		}
 	});
 	return og_show ?? null;

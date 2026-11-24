@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
@@ -34,6 +35,7 @@ async function load_sick_picks() {
 		},
 		with: {
 			guests: {
+				orderBy: in_order_added,
 				with: {
 					guest: {
 						columns: {

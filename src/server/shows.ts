@@ -9,8 +9,8 @@ import * as Sentry from '@sentry/sveltekit';
 import { db } from '$server/db/client';
 import {
 	show,
-	showGuest,
-	showToProfile,
+	contentGuest,
+	contentHost,
 	socialLink,
 	profile,
 	guest as guests,
@@ -220,29 +220,26 @@ async function parse_and_save_show_notes(
 			if (host_profiles.length > 0) {
 				// Upsert host connections (ON CONFLICT DO UPDATE does nothing since unique constraint exists)
 				await db
-					.insert(showToProfile)
+					.insert(contentHost)
 					.values(
 						host_profiles.map((host_profile) => ({
-							show_id: id,
+							content_id,
 							profile_id: host_profile.id
 						}))
 					)
-					.onConflictDoUpdate({
-						target: [showToProfile.show_id, showToProfile.profile_id],
-						set: { show_id: id }
-					});
+					.onConflictDoNothing();
 			}
 		}
 
 		// If data guest
 		if (data?.guest && Array.isArray(data?.guest)) {
 			// Iterate through guests and save or update them
-			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, id));
+			const guest_promises = data.guest.map((guest) => add_or_update_guest(guest, content_id));
 			// Save guests
 			await Promise.all(guest_promises);
 			// Otherwise as long as data.guest exists
 		} else if (data?.guest) {
-			await add_or_update_guest(data.guest, id);
+			await add_or_update_guest(data.guest, content_id);
 		}
 		console.log(`Episode # ${id} imported successfully`);
 	} catch (err) {
@@ -255,7 +252,7 @@ async function parse_and_save_show_notes(
 // Guests, show links and social links have UUID ids, so a guest is found by its unique name_slug.
 // This used to build text ids (`guest_<slug>`); every insert failed on the UUID column and the
 // error was only logged, so no imported show got its guests (22 shows, found 2026-11-06).
-async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
+async function add_or_update_guest(guest: FrontMatterGuest, content_id: string) {
 	const { social, name, ...guest_without_socials } = guest;
 	if (typeof guest_without_socials.twitter === 'string') {
 		guest_without_socials.twitter = guest_without_socials.twitter.replace(/^@/, '');
@@ -272,10 +269,7 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 			})
 			.returning({ id: guests.id });
 
-		await db
-			.insert(showGuest)
-			.values({ show_id, guest_id })
-			.onConflictDoNothing({ target: [showGuest.show_id, showGuest.guest_id] });
+		await db.insert(contentGuest).values({ content_id, guest_id }).onConflictDoNothing();
 
 		const social_links =
 			typeof social === 'string' ? [social] : Array.isArray(social) ? social : [];
@@ -293,7 +287,7 @@ async function add_or_update_guest(guest: FrontMatterGuest, show_id: string) {
 
 		return { id: guest_id, name, name_slug };
 	} catch (err) {
-		throw new Error(`Could not import guest ${name} for ${show_id}`, { cause: err });
+		throw new Error(`Could not import guest ${name} for content ${content_id}`, { cause: err });
 	}
 }
 

@@ -39,7 +39,7 @@ export const load: LayoutServerLoad = async (event) => {
 	const show_number = parseInt(params.show_number);
 
 	const show_page = await edge_cached(
-		`show-page-${show_number}`,
+		`show-page-2-${show_number}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		() => load_show_page(show_number)
 	);

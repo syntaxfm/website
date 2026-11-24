@@ -14,13 +14,8 @@ import {
 	link,
 	profile,
 	show,
-	showGuest,
-	showToProfile,
-	socialLink,
 	topic,
-	transcript,
-	transcriptUtterance,
-	transcriptUtteranceWord
+	transcript
 } from '$server/db/schema';
 import {
 	syncAllEpisodesSpotifyData,
@@ -31,7 +26,7 @@ import * as v from 'valibot';
 import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
 import * as show_editor from '$server/shows/show_editor';
 import { error } from '@sveltejs/kit';
-import { and, eq, ilike, inArray, or, sql } from 'drizzle-orm';
+import { eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
 import * as transcript_editor from '$server/transcripts/transcript_editor';
 import { generate_ai_notes } from '$server/ai/openai';
@@ -80,10 +75,8 @@ const create_show_editor_schema = v.object({
 
 const show_number_schema = v.object({ show_number: v.number() });
 const guest_search_schema = v.object({ search_text: v.optional(v.string()) });
-const show_guest_schema = v.object({ show_id: v.string(), guest_id: v.string() });
 
 const user_search_schema = v.object({ search_text: v.optional(v.string()) });
-const show_host_schema = v.object({ show_id: v.string(), user_id: v.string() });
 
 const update_ai_show_note_schema = v.object({
 	id: v.number(),
@@ -313,30 +306,6 @@ export const search_guests = query(guest_search_schema, async ({ search_text }) 
 	});
 });
 
-export const add_show_guest = command(show_guest_schema, async ({ show_id, guest_id }) => {
-	await assert_admin();
-
-	await db
-		.insert(showGuest)
-		.values({
-			show_id,
-			guest_id
-		})
-		.onConflictDoNothing();
-
-	return { success: true };
-});
-
-export const remove_show_guest = command(show_guest_schema, async ({ show_id, guest_id }) => {
-	await assert_admin();
-
-	await db
-		.delete(showGuest)
-		.where(and(eq(showGuest.show_id, show_id), eq(showGuest.guest_id, guest_id)));
-
-	return { success: true };
-});
-
 // ============================================================================
 // HOST PANEL — search and attach Profiles to a Show
 // ============================================================================
@@ -365,30 +334,6 @@ export const search_users_for_host = query(user_search_schema, async ({ search_t
 		orderBy: (profile_item, { asc }) => [asc(profile_item.username)],
 		limit: 25
 	});
-});
-
-export const add_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
-	await assert_admin();
-
-	await db
-		.insert(showToProfile)
-		.values({
-			show_id,
-			profile_id: user_id
-		})
-		.onConflictDoNothing();
-
-	return { success: true };
-});
-
-export const remove_show_host = command(show_host_schema, async ({ show_id, user_id }) => {
-	await assert_admin();
-
-	await db
-		.delete(showToProfile)
-		.where(and(eq(showToProfile.show_id, show_id), eq(showToProfile.profile_id, user_id)));
-
-	return { success: true };
 });
 
 // ============================================================================
@@ -637,21 +582,6 @@ export const refresh_all = form(async () => {
 	return result;
 });
 
-export const delete_all_shows = form(async () => {
-	await assert_admin();
-
-	// Order of these is important because of how db relations work
-	await db.delete(showGuest);
-	await db.delete(transcriptUtteranceWord);
-	await db.delete(transcriptUtterance);
-	await db.delete(transcript);
-	await db.delete(aiShowNote);
-	await db.delete(show);
-	await db.delete(socialLink);
-	await db.delete(guest);
-	return { message: 'Delete All Shows' };
-});
-
 // One episode's transcript: made by Grok from the audio, or deleted so it can be made again
 export const transcribe_show = command(show_number_schema, async ({ show_number }) => {
 	await assert_admin();
@@ -691,7 +621,13 @@ export const update_transcript_line = command(
 export const delete_show_transcript = command(show_number_schema, async ({ show_number }) => {
 	await assert_admin();
 
-	await db.delete(transcript).where(eq(transcript.show_number, show_number));
+	const episode = await db.query.show.findFirst({
+		where: eq(show.number, show_number),
+		columns: { content_id: true }
+	});
+	if (!episode?.content_id) error(404, `Show #${show_number} not found`);
+
+	await db.delete(transcript).where(eq(transcript.content_id, episode.content_id));
 	await get_show_editor(show_number).refresh();
 	return { message: `Deleted the transcript for #${show_number}` };
 });
@@ -728,19 +664,20 @@ export const fetch_ai_notes = form(
 			}
 		});
 
-		if (!current_show?.transcript) {
+		if (!current_show?.transcript || !current_show.content_id) {
 			error(400, 'No show, or no transcript for this show');
 		}
+		const content_id = current_show.content_id;
 
 		const result = await generate_ai_notes(current_show);
 
 		await db.transaction(async (tx) => {
-			await tx.delete(aiShowNote).where(eq(aiShowNote.show_number, show_number));
+			await tx.delete(aiShowNote).where(eq(aiShowNote.content_id, content_id));
 
 			const [inserted_show_note] = await tx
 				.insert(aiShowNote)
 				.values({
-					show_number,
+					content_id,
 					title: result.title,
 					description: result.description,
 					provider: result.provider

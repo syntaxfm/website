@@ -46,11 +46,12 @@ export const GET = async function transcriptCronHandler({ request }) {
 	if (!show) {
 		return json({ message: 'No shows without AI Show notes found.' });
 	}
+	if (!show.content_id) error(409, `Show #${show.number} has no content item for its notes`);
 
 	console.log(`🤖 Found a show that needs AI show notes: show ${show.number} - ${show.title}`);
 
 	const result = await generate_ai_notes(show);
-	await save_ai_notes_to_db(result, show);
+	await save_ai_notes_to_db(result, { content_id: show.content_id });
 	// console.log(result);
 	const duration = Date.now() - start;
 	const minutes = Math.floor(duration / 60000);

@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { error } from '@sveltejs/kit';
 import { and, count, desc, eq, gte, ilike, inArray, lte, ne, notInArray, sql } from 'drizzle-orm';
 
@@ -7,9 +8,9 @@ import { db } from '$server/db/client';
 import {
 	content,
 	content_tags,
+	contentGuest,
+	contentHost,
 	show,
-	showGuest,
-	showToProfile,
 	transcriptUtterance
 } from '$server/db/schema';
 import { get_id_from_show_number } from '$server/shows';
@@ -147,11 +148,13 @@ export async function get_show_editor(actor: Actor, show_number: number) {
 				}
 			},
 			guests: {
+				orderBy: in_order_added,
 				with: {
 					guest: true
 				}
 			},
 			hosts: {
+				orderBy: in_order_added,
 				with: {
 					profile: true
 				}
@@ -300,8 +303,10 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 		error(409, 'Slug already exists on another content item');
 	}
 
-	if (input.tag_ids !== undefined && !content_id) {
-		error(409, 'Show is not linked to content; tags cannot be replaced');
+	const replaces_links =
+		input.tag_ids !== undefined || input.guest_ids !== undefined || input.host_ids !== undefined;
+	if (replaces_links && !content_id) {
+		error(409, 'Show is not linked to content; its tags, guests and hosts cannot be replaced');
 	}
 
 	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
@@ -346,41 +351,36 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 			}
 		}
 
-		if (input.guest_ids !== undefined) {
+		if (input.guest_ids !== undefined && content_id) {
 			const guest_ids = [...new Set(input.guest_ids)].sort();
 
 			if (guest_ids.length === 0) {
-				await tx.delete(showGuest).where(eq(showGuest.show_id, existing_show.id));
+				await tx.delete(contentGuest).where(eq(contentGuest.content_id, content_id));
 			} else {
 				await tx
-					.delete(showGuest)
+					.delete(contentGuest)
 					.where(
-						and(eq(showGuest.show_id, existing_show.id), notInArray(showGuest.guest_id, guest_ids))
+						and(
+							eq(contentGuest.content_id, content_id),
+							notInArray(contentGuest.guest_id, guest_ids)
+						)
 					);
 
 				await tx
-					.insert(showGuest)
-					.values(
-						guest_ids.map((guest_id) => ({
-							show_id: existing_show.id,
-							guest_id
-						}))
-					)
+					.insert(contentGuest)
+					.values(guest_ids.map((guest_id) => ({ content_id, guest_id })))
 					.onConflictDoNothing();
 			}
 		}
 
-		if (input.host_ids !== undefined) {
+		if (input.host_ids !== undefined && content_id) {
 			const host_ids = [...new Set(input.host_ids)].sort();
 
-			await tx.delete(showToProfile).where(eq(showToProfile.show_id, existing_show.id));
+			await tx.delete(contentHost).where(eq(contentHost.content_id, content_id));
 			if (host_ids.length > 0) {
-				await tx.insert(showToProfile).values(
-					host_ids.map((profile_id) => ({
-						show_id: existing_show.id,
-						profile_id
-					}))
-				);
+				await tx
+					.insert(contentHost)
+					.values(host_ids.map((profile_id) => ({ content_id, profile_id })));
 			}
 		}
 
@@ -403,8 +403,9 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 }
 
 /**
- * Gives a Show a new number. Its id follows (it is built from the number), and the database carries
- * both to its transcript, AI notes, guests and hosts (ON UPDATE CASCADE).
+ * Gives a Show a new number. Its id follows (it is built from the number, and creating a Show with
+ * the old number later would otherwise collide). Guests, hosts, transcript and AI notes link to its
+ * content id, so they stay with it.
  */
 export async function renumber_show(actor: Actor, show_number: number, new_show_number: number) {
 	assert_admin_actor(actor);

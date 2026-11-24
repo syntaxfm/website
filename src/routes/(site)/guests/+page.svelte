@@ -15,14 +15,14 @@
 	let ordered = $state<Guest[]>([...all_guests]);
 
 	function latest_episode(guest: Guest) {
-		return guest.showGuests.reduce(
+		return guest.appearances.reduce(
 			(latest, { show }) => (show && show.number > latest ? show.number : latest),
 			0
 		);
 	}
 
 	function episodes_newest_first(guest: Guest) {
-		return guest.showGuests
+		return guest.appearances
 			.map(({ show }) => show)
 			.filter((show): show is NonNullable<typeof show> => show !== null)
 			.sort((a, b) => b.number - a.number);

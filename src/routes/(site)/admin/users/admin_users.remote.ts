@@ -1,15 +1,7 @@
 import { command, query } from '$app/server';
 import { assert_admin } from '$server/auth/request_auth';
 import { db } from '$server/db/client';
-import {
-	article,
-	content,
-	profile,
-	profileRole,
-	role,
-	show,
-	showToProfile
-} from '$server/db/schema';
+import { article, content, contentHost, profile, profileRole, role, show } from '$server/db/schema';
 import { and, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
@@ -106,9 +98,9 @@ export const get_user_detail = query(v.string(), async (user_id) => {
 			title: show.title,
 			date: show.date
 		})
-		.from(showToProfile)
-		.innerJoin(show, eq(show.id, showToProfile.show_id))
-		.where(eq(showToProfile.profile_id, user_id))
+		.from(contentHost)
+		.innerJoin(show, eq(show.content_id, contentHost.content_id))
+		.where(eq(contentHost.profile_id, user_id))
 		.orderBy(desc(show.date));
 
 	const articles_authored = await db

@@ -19,19 +19,19 @@ export async function content() {
 		orderBy: [desc(shows.number)]
 	});
 
-	// ShowGuest
-	const ShowGuest = await db.query.showGuest.findMany();
+	// Guests, linked by content id
+	const ContentGuest = await db.query.contentGuest.findMany();
 	// Guest
 	const Guest = await db.query.guest.findMany();
 	// SocialLink
 	const SocialLink = await db.query.socialLink.findMany();
 
 	const twenty_recent_shows = Show.slice(0, 20);
-	const SHOW_NUMBERS = twenty_recent_shows.map((show) => show.number);
+	const CONTENT_IDS = twenty_recent_shows.flatMap((show) => show.content_id ?? []);
 
 	// Transcript
 	const Transcript = await db.query.transcript.findMany({
-		where: inArray(transcripts.show_number, SHOW_NUMBERS)
+		where: inArray(transcripts.content_id, CONTENT_IDS)
 	});
 
 	const TRANSCRIPT_IDS = Transcript.map((transcript) => transcript.id);
@@ -50,7 +50,7 @@ export async function content() {
 
 	// AiShowNote
 	const AiShowNote = await db.query.aiShowNote.findMany({
-		where: inArray(aiShowNotes.show_number, SHOW_NUMBERS)
+		where: inArray(aiShowNotes.content_id, CONTENT_IDS)
 	});
 
 	const SHOW_NOTE_ID = AiShowNote.map((note) => note.id);
@@ -82,7 +82,7 @@ export async function content() {
 
 	return {
 		Show,
-		ShowGuest,
+		ContentGuest,
 		Guest,
 		SocialLink,
 		Transcript,

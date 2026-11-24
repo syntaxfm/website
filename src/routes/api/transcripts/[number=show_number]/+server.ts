@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { error, json } from '@sveltejs/kit';
 import { asc } from 'drizzle-orm';
 import { db } from '$server/db/client';
@@ -6,35 +7,43 @@ import { getSlimUtterances, people_on_show } from '#lib/transcript/utils.ts';
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
 
-	const transcript = await db.query.transcript.findFirst({
-		where: (transcript, { eq }) => eq(transcript.show_number, show_number),
+	const episode = await db.query.show.findFirst({
+		where: (shows, { eq }) => eq(shows.number, show_number),
+		columns: {
+			title: true,
+			number: true,
+			date: true
+		},
 		with: {
-			show: {
-				columns: {
-					title: true,
-					number: true,
-					date: true
-				},
-				with: {
-					hosts: { with: { profile: { columns: { name: true } } } },
-					guests: { with: { guest: { columns: { name: true } } } }
-				}
+			hosts: {
+				orderBy: in_order_added,
+				with: { profile: { columns: { name: true } } }
 			},
-			utterances: {
-				columns: {
-					speaker: true,
-					transcript_value: true,
-					start: true,
-					end: true
-				},
-				orderBy: (utterance) => [asc(utterance.start)]
+			guests: {
+				orderBy: in_order_added,
+				with: { guest: { columns: { name: true } } }
+			},
+			transcript: {
+				columns: { id: true },
+				with: {
+					utterances: {
+						columns: {
+							speaker: true,
+							transcript_value: true,
+							start: true,
+							end: true
+						},
+						orderBy: (utterance) => [asc(utterance.start)]
+					}
+				}
 			}
 		}
 	});
 
-	if (!transcript || !transcript.show) {
+	if (!episode?.transcript) {
 		error(404, 'Transcript not found');
 	}
+	const transcript = { ...episode.transcript, show: episode };
 
 	const grouped_utterances = getSlimUtterances(
 		transcript.utterances,

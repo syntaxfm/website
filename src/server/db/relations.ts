@@ -7,6 +7,8 @@ import {
 	article,
 	content,
 	content_tags,
+	contentGuest,
+	contentHost,
 	guest,
 	link,
 	newsletter_issue,
@@ -14,8 +16,6 @@ import {
 	profileRole,
 	role,
 	show,
-	showGuest,
-	showToProfile,
 	socialLink,
 	tag,
 	topic,
@@ -29,10 +29,15 @@ import {
 // AI SHOW NOTE RELATIONS
 // ============================================================================
 
+// Episodes, videos and their notes all link by content id, which never changes
 export const aiShowNoteRelations = relations(aiShowNote, ({ one, many }) => ({
 	show: one(show, {
-		fields: [aiShowNote.show_number],
-		references: [show.number]
+		fields: [aiShowNote.content_id],
+		references: [show.content_id]
+	}),
+	content: one(content, {
+		fields: [aiShowNote.content_id],
+		references: [content.id]
 	}),
 	guests: many(aiGuest),
 	summary: many(aiSummaryEntry),
@@ -82,7 +87,24 @@ export const topicRelations = relations(topic, ({ one }) => ({
 
 export const guestRelations = relations(guest, ({ many }) => ({
 	socialLinks: many(socialLink),
-	showGuests: many(showGuest)
+	// Every episode or video the guest is on
+	appearances: many(contentGuest)
+}));
+
+export const contentGuestRelations = relations(contentGuest, ({ one }) => ({
+	content: one(content, {
+		fields: [contentGuest.content_id],
+		references: [content.id]
+	}),
+	// The episode, when the content is one
+	show: one(show, {
+		fields: [contentGuest.content_id],
+		references: [show.content_id]
+	}),
+	guest: one(guest, {
+		fields: [contentGuest.guest_id],
+		references: [guest.id]
+	})
 }));
 
 export const socialLinkRelations = relations(socialLink, ({ one }) => ({
@@ -101,40 +123,30 @@ export const showRelations = relations(show, ({ one, many }) => ({
 		fields: [show.content_id],
 		references: [content.id]
 	}),
-	guests: many(showGuest),
-	hosts: many(showToProfile),
+	guests: many(contentGuest),
+	hosts: many(contentHost),
 	transcript: one(transcript, {
-		fields: [show.number],
-		references: [transcript.show_number]
+		fields: [show.content_id],
+		references: [transcript.content_id]
 	}),
 	aiShowNote: one(aiShowNote, {
-		fields: [show.number],
-		references: [aiShowNote.show_number]
+		fields: [show.content_id],
+		references: [aiShowNote.content_id]
 	})
 }));
 
-export const showGuestRelations = relations(showGuest, ({ one }) => ({
-	show: one(show, {
-		fields: [showGuest.show_id],
-		references: [show.id]
+export const contentHostRelations = relations(contentHost, ({ one }) => ({
+	content: one(content, {
+		fields: [contentHost.content_id],
+		references: [content.id]
 	}),
-	guest: one(guest, {
-		fields: [showGuest.guest_id],
-		references: [guest.id]
-	}),
-	transcript: one(transcript, {
-		fields: [showGuest.transcript_id],
-		references: [transcript.id]
-	})
-}));
-
-export const showToProfileRelations = relations(showToProfile, ({ one }) => ({
+	// The episode, when the content is one
 	show: one(show, {
-		fields: [showToProfile.show_id],
-		references: [show.id]
+		fields: [contentHost.content_id],
+		references: [show.content_id]
 	}),
 	profile: one(profile, {
-		fields: [showToProfile.profile_id],
+		fields: [contentHost.profile_id],
 		references: [profile.id]
 	})
 }));
@@ -145,15 +157,14 @@ export const showToProfileRelations = relations(showToProfile, ({ one }) => ({
 
 export const transcriptRelations = relations(transcript, ({ one, many }) => ({
 	show: one(show, {
-		fields: [transcript.show_number],
-		references: [show.number]
+		fields: [transcript.content_id],
+		references: [show.content_id]
 	}),
 	content: one(content, {
 		fields: [transcript.content_id],
 		references: [content.id]
 	}),
-	utterances: many(transcriptUtterance),
-	showGuests: many(showGuest)
+	utterances: many(transcriptUtterance)
 }));
 
 export const transcriptUtteranceRelations = relations(transcriptUtterance, ({ one, many }) => ({
@@ -188,7 +199,7 @@ export const videoRelations = relations(video, ({ one }) => ({
 
 export const profileRelations = relations(profile, ({ many }) => ({
 	roles: many(profileRole),
-	hostedShows: many(showToProfile)
+	hosted: many(contentHost)
 }));
 
 // ============================================================================
@@ -231,6 +242,12 @@ export const contentRelations = relations(content, ({ one, many }) => ({
 		fields: [content.id],
 		references: [transcript.content_id]
 	}),
+	aiShowNote: one(aiShowNote, {
+		fields: [content.id],
+		references: [aiShowNote.content_id]
+	}),
+	guests: many(contentGuest),
+	hosts: many(contentHost),
 	newsletter_issue: one(newsletter_issue, {
 		fields: [content.id],
 		references: [newsletter_issue.content_id]

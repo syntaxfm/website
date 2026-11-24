@@ -1,3 +1,5 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
+
 // The Home feed is edge cached by this shape: bump HOME_FEED_CACHE_KEY in feed.remote.ts when it
 // changes. Only what the feed cards render (FeedItemPodcast, FeedByline, ShowThumbnail, FeedItemVideo,
 // FeedItemNewsletter).
@@ -17,8 +19,13 @@ export const feed_card_query = {
 				date: true
 			},
 			with: {
-				guests: { columns: {}, with: { guest: { columns: { name: true, github: true } } } },
+				guests: {
+					orderBy: in_order_added,
+					columns: {},
+					with: { guest: { columns: { name: true, github: true } } }
+				},
 				hosts: {
+					orderBy: in_order_added,
 					columns: {},
 					with: { profile: { columns: { name: true, username: true } } }
 				}

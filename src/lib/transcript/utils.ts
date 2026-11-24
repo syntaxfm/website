@@ -185,7 +185,7 @@ export function formatForEmbedding(utterances: SlimUtterance[]) {
 // A voice nobody could be sure of
 export const GUEST = 'Guest';
 
-// Most episodes have no hosts recorded (show_to_profile is empty for them). Until they do, those
+// Most episodes have no hosts recorded (content_hosts is empty for them). Until they do, those
 // were Wes and Scott's.
 const DEFAULT_HOSTS = ['Wes Bos', 'Scott Tolinski'];
 

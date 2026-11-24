@@ -55,12 +55,13 @@ describe('save_ai_notes_to_db', () => {
 				guests: [],
 				provider: 'anthropic'
 			},
-			{ number: 900 }
+			{ content_id: 'content-900' }
 		);
 
 		expect(note).toEqual({ id: 42 });
 		expect(inserts[0].table).toBe(aiShowNote);
 		expect(inserts[0].returning).toEqual({ id: aiShowNote.id });
+		expect(inserts[0].values).toMatchObject({ content_id: 'content-900' });
 
 		const child_inserts = inserts.slice(1);
 		expect(child_inserts.map(({ table }) => getTableName(table))).toEqual([

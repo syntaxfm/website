@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { db } from '$server/db/client';
 import get_show_path from '$utilities/slug';
 import type { SearchNotes, SearchShow } from '#lib/search/types.ts';
@@ -23,7 +24,13 @@ export async function load_search_shows(): Promise<SearchShow[]> {
 		},
 		where: (s, { lte }) => lte(s.date, new Date()),
 		orderBy: (s, { desc }) => [desc(s.number)],
-		with: { guests: { columns: {}, with: { guest: { columns: { name: true } } } } }
+		with: {
+			guests: {
+				orderBy: in_order_added,
+				columns: {},
+				with: { guest: { columns: { name: true } } }
+			}
+		}
 	});
 
 	return rows.map((row) => ({

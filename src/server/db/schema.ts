@@ -139,7 +139,7 @@ export const showToProfile = pgTable(
 	{
 		show_id: text('show_id')
 			.notNull()
-			.references(() => show.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+			.references(() => show.id, { onDelete: 'cascade' }),
 		profile_id: uuid('profile_id')
 			.notNull()
 			.references(() => profile.id, { onDelete: 'cascade' })
@@ -148,6 +148,27 @@ export const showToProfile = pgTable(
 		primaryKey({ columns: [table.show_id, table.profile_id] }),
 		index('show_to_profile_show_id_idx').on(table.show_id),
 		index('show_to_profile_profile_id_idx').on(table.profile_id)
+	]
+);
+
+// Who hosts a piece of content (an episode, a video), by its permanent content id. Replaces
+// show_to_profile (dropped by migration 0012), which linked by show id and so broke when an
+// episode was renumbered.
+export const contentHost = pgTable(
+	'content_hosts',
+	{
+		content_id: uuid('content_id')
+			.notNull()
+			.references(() => content.id, { onDelete: 'cascade' }),
+		profile_id: uuid('profile_id')
+			.notNull()
+			.references(() => profile.id, { onDelete: 'cascade' }),
+		// The order hosts were added in, which is the order pages list them
+		position: serial('position').notNull()
+	},
+	(table) => [
+		primaryKey({ columns: [table.content_id, table.profile_id] }),
+		index('content_hosts_profile_id_idx').on(table.profile_id)
 	]
 );
 
@@ -189,7 +210,7 @@ export const showGuest = pgTable(
 		id: uuid('id').defaultRandom().primaryKey(),
 		show_id: text('show_id')
 			.notNull()
-			.references(() => show.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+			.references(() => show.id, { onDelete: 'cascade' }),
 		guest_id: uuid('guest_id')
 			.notNull()
 			.references(() => guest.id, { onDelete: 'cascade' }),
@@ -200,6 +221,26 @@ export const showGuest = pgTable(
 		index('show_guests_show_id_idx').on(table.show_id),
 		index('show_guests_guest_id_idx').on(table.guest_id),
 		index('show_guests_transcript_id_idx').on(table.transcript_id)
+	]
+);
+
+// Who guests on a piece of content (an episode, a video), by its permanent content id. Replaces
+// show_guests (dropped by migration 0012), which linked by show id.
+export const contentGuest = pgTable(
+	'content_guests',
+	{
+		content_id: uuid('content_id')
+			.notNull()
+			.references(() => content.id, { onDelete: 'cascade' }),
+		guest_id: uuid('guest_id')
+			.notNull()
+			.references(() => guest.id, { onDelete: 'cascade' }),
+		// The order guests were added in, which is the order pages list them (main guest first)
+		position: serial('position').notNull()
+	},
+	(table) => [
+		primaryKey({ columns: [table.content_id, table.guest_id] }),
+		index('content_guests_guest_id_idx').on(table.guest_id)
 	]
 );
 
@@ -226,10 +267,11 @@ export const transcript = pgTable(
 	'transcripts',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
-		// Episodes find their transcript by show number; videos only have content_id
+		// Legacy link, replaced by content_id; dropped by migration 0012
 		show_number: integer('show_number')
 			.unique()
-			.references(() => show.number, { onDelete: 'cascade', onUpdate: 'cascade' }),
+			.references(() => show.number, { onDelete: 'cascade' }),
+		// The episode or video this is the transcript of
 		content_id: uuid('content_id')
 			.unique()
 			.references(() => content.id, { onDelete: 'cascade' }),
@@ -296,10 +338,14 @@ export const aiShowNote = pgTable(
 	'ai_show_notes',
 	{
 		id: serial('id').primaryKey(),
+		// Legacy link, replaced by content_id; dropped by migration 0012
 		show_number: integer('show_number')
-			.notNull()
 			.unique()
-			.references(() => show.number, { onDelete: 'cascade', onUpdate: 'cascade' }),
+			.references(() => show.number, { onDelete: 'cascade' }),
+		// The episode or video these notes are for
+		content_id: uuid('content_id')
+			.unique()
+			.references(() => content.id, { onDelete: 'cascade' }),
 		title: text('title').notNull(),
 		description: text('description').notNull(),
 		provider: varchar('provider', { length: 100 }).default('gpt3.5').notNull()

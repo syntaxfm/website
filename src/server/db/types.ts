@@ -4,7 +4,7 @@ import type { SUBMISSION_TYPE_VALUES } from './schema';
 
 // Select types (for reading from database)
 export type Article = InferSelectModel<typeof schema.article>;
-export type ShowToProfile = InferSelectModel<typeof schema.showToProfile>;
+export type ContentHost = InferSelectModel<typeof schema.contentHost>;
 export type AiGuest = InferSelectModel<typeof schema.aiGuest>;
 export type AiShowNote = InferSelectModel<typeof schema.aiShowNote>;
 export type AiSummaryEntry = InferSelectModel<typeof schema.aiSummaryEntry>;
@@ -16,7 +16,7 @@ export type Profile = InferSelectModel<typeof schema.profile>;
 export type ProfileRole = InferSelectModel<typeof schema.profileRole>;
 export type Role = InferSelectModel<typeof schema.role>;
 export type Show = InferSelectModel<typeof schema.show>;
-export type ShowGuest = InferSelectModel<typeof schema.showGuest>;
+export type ContentGuest = InferSelectModel<typeof schema.contentGuest>;
 export type SocialLink = InferSelectModel<typeof schema.socialLink>;
 export type Topic = InferSelectModel<typeof schema.topic>;
 export type Transcript = InferSelectModel<typeof schema.transcript>;
@@ -27,7 +27,7 @@ export type Video = InferSelectModel<typeof schema.video>;
 
 // Insert types (for creating/inserting into database)
 export type InsertArticle = InferInsertModel<typeof schema.article>;
-export type InsertShowToProfile = InferInsertModel<typeof schema.showToProfile>;
+export type InsertContentHost = InferInsertModel<typeof schema.contentHost>;
 export type InsertAiGuest = InferInsertModel<typeof schema.aiGuest>;
 export type InsertAiShowNote = InferInsertModel<typeof schema.aiShowNote>;
 export type InsertAiSummaryEntry = InferInsertModel<typeof schema.aiSummaryEntry>;
@@ -39,7 +39,7 @@ export type InsertProfile = InferInsertModel<typeof schema.profile>;
 export type InsertProfileRole = InferInsertModel<typeof schema.profileRole>;
 export type InsertRole = InferInsertModel<typeof schema.role>;
 export type InsertShow = InferInsertModel<typeof schema.show>;
-export type InsertShowGuest = InferInsertModel<typeof schema.showGuest>;
+export type InsertContentGuest = InferInsertModel<typeof schema.contentGuest>;
 export type InsertSocialLink = InferInsertModel<typeof schema.socialLink>;
 export type InsertTopic = InferInsertModel<typeof schema.topic>;
 export type InsertTranscript = InferInsertModel<typeof schema.transcript>;

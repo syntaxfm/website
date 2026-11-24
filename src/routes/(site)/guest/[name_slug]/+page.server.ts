@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	if (!guest) error(404, 'Guest not found');
 
 	const now = Date.now();
-	const episodes = guest.showGuests
+	const episodes = guest.appearances
 		.flatMap(({ show }) => (show && new Date(show.date).getTime() <= now ? [show] : []))
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 	const description = guest_description(

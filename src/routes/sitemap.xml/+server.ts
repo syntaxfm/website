@@ -3,7 +3,15 @@ import { PUBLIC_URL } from '$app/env/public';
 import { and, eq, isNotNull, lte, max, sql } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
-import { content, content_tags, guest, show, showGuest, tag, transcript } from '$server/db/schema';
+import {
+	content,
+	content_tags,
+	contentGuest,
+	guest,
+	show,
+	tag,
+	transcript
+} from '$server/db/schema';
 import { MIN_ITEMS_TO_INDEX_TAG } from '#lib/seo/hubs.ts';
 import { sitemap_xml, type SitemapUrl } from '#lib/seo/sitemap.ts';
 import { get_newsletter_issues } from '$server/newsletter/issues';
@@ -31,18 +39,18 @@ async function load_sitemap_rows() {
 				slug: show.slug,
 				date: show.date,
 				updated_at: content.updated_at,
-				transcript_show_number: transcript.show_number
+				transcript_id: transcript.id
 			})
 			.from(show)
 			.leftJoin(content, eq(content.id, show.content_id))
-			.leftJoin(transcript, eq(transcript.show_number, show.number))
+			.leftJoin(transcript, eq(transcript.content_id, show.content_id))
 			.where(lte(show.date, new Date())),
 		// A guest or topic page changes when it gets a new episode
 		db
 			.select({ name_slug: guest.name_slug, lastmod: max(show.date) })
 			.from(guest)
-			.leftJoin(showGuest, eq(showGuest.guest_id, guest.id))
-			.leftJoin(show, and(eq(show.id, showGuest.show_id), lte(show.date, new Date())))
+			.leftJoin(contentGuest, eq(contentGuest.guest_id, guest.id))
+			.leftJoin(show, and(eq(show.content_id, contentGuest.content_id), lte(show.date, new Date())))
 			.groupBy(guest.name_slug),
 		db
 			.select({ slug: tag.slug, lastmod: max(content.published_at) })
@@ -79,7 +87,7 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
 	const [{ shows, guests, tags, videos }, snackpack_issues] = await Promise.all([
 		edge_cached(
 			// Served stale for up to a day: change the key when the rows change shape
-			'sitemap-rows-2',
+			'sitemap-rows-3',
 			{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
 			load_sitemap_rows
 		),
@@ -91,7 +99,7 @@ export const GET: RequestHandler = async function GET({ setHeaders }) {
 		...shows.flatMap((row) => {
 			const path = `/show/${row.number}/${row.slug}`;
 			const lastmod = row.updated_at && row.updated_at > row.date ? row.updated_at : row.date;
-			return row.transcript_show_number === null
+			return row.transcript_id === null
 				? [{ path, lastmod }]
 				: [{ path, lastmod }, { path: `${path}/transcript` }];
 		}),

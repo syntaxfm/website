@@ -3,7 +3,7 @@ import { and, asc, desc, eq, ilike, lte, ne, sql } from 'drizzle-orm';
 
 import { assert_admin_actor, is_admin, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
-import { guest, show, showGuest } from '$server/db/schema';
+import { contentGuest, guest, show } from '$server/db/schema';
 import { normalize_slug } from '$utilities/normalize_slug';
 
 // Guests: people interviewed on a Show. The admin Guests page (admin_guests.remote.ts) and the MCP
@@ -97,12 +97,12 @@ export async function get_guest_detail(actor: Actor, guest_id: string) {
 			title: show.title,
 			date: show.date
 		})
-		.from(showGuest)
-		.innerJoin(show, eq(show.id, showGuest.show_id))
+		.from(contentGuest)
+		.innerJoin(show, eq(show.content_id, contentGuest.content_id))
 		.where(
 			is_admin(actor)
-				? eq(showGuest.guest_id, guest_id)
-				: and(eq(showGuest.guest_id, guest_id), lte(show.date, new Date()))
+				? eq(contentGuest.guest_id, guest_id)
+				: and(eq(contentGuest.guest_id, guest_id), lte(show.date, new Date()))
 		)
 		.orderBy(desc(show.date));
 

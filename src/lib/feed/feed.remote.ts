@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { and, count, desc, eq, gte } from 'drizzle-orm';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
@@ -86,8 +87,16 @@ async function load_recent_episodes(): Promise<(RankedContent & { youtube_id: st
 			show: {
 				columns: { number: true, slug: true, date: true, youtube_url: true, show_type: true },
 				with: {
-					guests: { columns: {}, with: { guest: { columns: { name: true } } } },
-					hosts: { columns: {}, with: { profile: { columns: { name: true } } } }
+					guests: {
+						orderBy: in_order_added,
+						columns: {},
+						with: { guest: { columns: { name: true } } }
+					},
+					hosts: {
+						orderBy: in_order_added,
+						columns: {},
+						with: { profile: { columns: { name: true } } }
+					}
 				}
 			}
 		}

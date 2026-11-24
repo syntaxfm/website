@@ -26,7 +26,8 @@ function in_batches<T>(rows: readonly T[]): T[][] {
  * @param people the episode's hosts and guests (people_on_show), so voices get the right names
  */
 export async function save_transcript_to_db(
-	show: Pick<Show, 'number'>,
+	// The episode's number names its voices; its content id is what the transcript belongs to
+	show: Pick<Show, 'number'> & { content_id: string },
 	utterances: readonly NewUtterance[],
 	people: string[] = []
 ) {
@@ -65,7 +66,7 @@ export async function save_transcript_to_db(
 	);
 
 	await db.transaction(async (tx) => {
-		await tx.insert(transcripts).values({ id: transcript_id, show_number: show.number });
+		await tx.insert(transcripts).values({ id: transcript_id, content_id: show.content_id });
 		for (const batch of in_batches(utterance_rows)) {
 			await tx.insert(transcriptUtterances).values(batch);
 		}
@@ -77,5 +78,5 @@ export async function save_transcript_to_db(
 		`Saved transcript ${transcript_id} for show #${show.number}: ${utterance_rows.length} passages, ${word_rows.length} words`
 	);
 
-	return { id: transcript_id, show_number: show.number };
+	return { id: transcript_id, content_id: show.content_id };
 }

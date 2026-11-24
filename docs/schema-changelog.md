@@ -35,28 +35,43 @@ relying on it.
 
 ---
 
-## 2026-11-24 - Episode numbers can change
+## 2026-11-24 - Guests, hosts, transcripts and AI notes link by content id
 
-**Type**: Constraint
+**Type**: Additive (0011), then Breaking (0012)
 **Status**: 🚧 In Progress (local only; production waits on Scott's approval)
-**Affects**: transcripts, ai_show_notes, show_guests, show_to_profile
+**Affects**: content_guests, content_hosts (new), transcripts, ai_show_notes, show_guests and
+show_to_profile (dropped by 0012)
 
 ### Changes
-- Migration `0011_show_renumber_cascade`: the four foreign keys to `shows.number` / `shows.id` add
-  `ON UPDATE CASCADE`, so renumbering an episode carries its transcript, AI notes, guests and hosts
+- `0011_content_links` (additive): new `content_guests` and `content_hosts` tables keyed by
+  `content_id`, with a `position` for order; `ai_show_notes.content_id`; `ai_show_notes.show_number`
+  becomes optional
+- `0012_drop_show_links` (breaking): drops `show_guests`, `show_to_profile`,
+  `transcripts.show_number` and `ai_show_notes.show_number`
+- Why: [ADR-0008](./adr/0008-link-by-content-id.md)
 
 ### Migration Script Changes
-- None
+- `scripts/backfill-content-links.sql`: copies the old links onto content ids. Safe to run again.
+- `scripts/direct-db-migration.js` writes the v2 MySQL links onto content ids
 
 ### Application Code Changes
-- `renumber_show` in `src/server/shows/show_editor.ts`; Number field in the podcast editor's rail
+- Relations, writes and joins use content ids (episode editor, Markdown and MySQL importers, Grok
+  transcripts, AI notes, guest pages, sitemap, tag pages, API)
+- Renumbering an episode changes only `shows.number` and `shows.id`
 
 ### Rollback Plan
-- Drop and re-add the four constraints without `ON UPDATE CASCADE` (the previous definitions)
+- Before 0012: deploy the previous code; the old links are untouched
+- After 0012: recreate the old tables from the new ones (the local rehearsal did this in one
+  transaction)
 
 ### Deployment Notes
-- Apply before or with the deploy; until it runs, renumbering fails on the foreign keys and
-  changes nothing
+Order matters. If the new code runs before the backfill, every episode looks untranscribed and the
+transcript cron starts paying Grok again.
+1. Apply 0011 to production
+2. Run the backfill: every count it prints should be 0
+3. Deploy the code (commit with 0011)
+4. Run the backfill again right away, to catch anything the old code wrote in between
+5. Apply 0012 (its own commit), then delete `scripts/backfill-content-links.sql`
 
 ---
 

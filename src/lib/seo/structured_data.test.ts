@@ -106,7 +106,10 @@ describe('podcast_episode_schema', () => {
 	});
 
 	it('links the transcript page and its Markdown once there is a transcript', () => {
-		const schema = podcast_episode_schema({ ...episode, transcript: { show_number: 900 } }, SITE);
+		const schema = podcast_episode_schema(
+			{ ...episode, transcript: { id: 'transcript-900' } },
+			SITE
+		);
 
 		expect(schema.subjectOf).toEqual([
 			{

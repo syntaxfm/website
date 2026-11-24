@@ -5,7 +5,6 @@ import {
 	content,
 	content_tagging,
 	content_tags,
-	show,
 	tag,
 	transcript,
 	transcriptUtterance
@@ -53,8 +52,7 @@ export async function load_tag_context(): Promise<TagContext> {
 const has_transcript = sql<boolean>`exists (
 	select 1 from ${transcript}
 	join ${transcriptUtterance} on ${transcriptUtterance.transcript_id} = ${transcript.id}
-	left join ${show} on ${show.number} = ${transcript.show_number}
-	where ${transcript.content_id} = ${content.id} or ${show.content_id} = ${content.id}
+	where ${transcript.content_id} = ${content.id}
 )`;
 
 /**
@@ -95,14 +93,7 @@ export async function load_tag_input(content_id: string): Promise<TagInput | nul
 	});
 	if (!row) return null;
 
-	let transcript_id: string | null = row.transcript?.id ?? null;
-	if (row.show && !transcript_id) {
-		const episode_transcript = await db.query.transcript.findFirst({
-			where: eq(transcript.show_number, row.show.number),
-			columns: { id: true }
-		});
-		transcript_id = episode_transcript?.id ?? null;
-	}
+	const transcript_id = row.transcript?.id ?? null;
 	const utterances = transcript_id
 		? await db
 				.select({ text: transcriptUtterance.transcript_value })

@@ -9,6 +9,10 @@
  * - UUID conversion for show/video IDs
  * - Full-text search vector generation
  * - Upsert mode for repeatable migrations
+ * - Guests, hosts, transcripts and AI notes are written onto content ids (content_guests,
+ *   content_hosts, transcripts.content_id, ai_show_notes.content_id), so content rows are created
+ *   first. Refresh mode rebuilds content, which also removes everything linked to it: run the
+ *   whole table order, not one table.
  */
 import 'varlock/auto-load';
 import { createConnection } from 'mysql2/promise';
@@ -243,9 +247,9 @@ const TABLE_NAME_MAPPING = {
 	Role: 'roles',
 	UserRole: 'profile_roles',
 	Show: 'shows',
-	_ShowToUser: 'show_to_profile',
+	_ShowToUser: 'content_hosts',
 	Guest: 'guests',
-	ShowGuest: 'show_guests',
+	ShowGuest: 'content_guests',
 	SocialLink: 'social_links',
 	Transcript: 'transcripts',
 	TranscriptUtterance: 'transcript_utterances',
@@ -261,6 +265,41 @@ const TABLE_NAME_MAPPING = {
 	Tag: 'tags',
 	ContentTag: 'content_tags'
 };
+
+// Guests, hosts, transcripts and AI notes belong to an episode's content row (its permanent id),
+// not its number or show id: these tables are rewritten onto content_id as they're copied, so the
+// content rows must exist first (main() populates them before the first of these tables).
+const CONTENT_LINKED_TABLES = ['_ShowToUser', 'ShowGuest', 'Transcript', 'AiShowNote'];
+// Join tables keyed by (content_id, other_id), with no id column of their own
+const CONTENT_JOIN_TABLES = ['_ShowToUser', 'ShowGuest'];
+
+// Show id and show number → content id, read once the content rows exist
+let content_links = null;
+
+async function load_content_links(pgClient) {
+	const rows =
+		await pgClient`SELECT id, number, content_id FROM shows WHERE content_id IS NOT NULL`;
+	content_links = {
+		by_show_id: new Map(rows.map((row) => [row.id, row.content_id])),
+		by_show_number: new Map(rows.map((row) => [Number(row.number), row.content_id]))
+	};
+	return content_links;
+}
+
+// A copied row with its show link swapped for the content id. Null when the show has no content
+// row, so the caller skips it.
+function link_to_content(tableName, pgRow, links) {
+	if (tableName === '_ShowToUser' || tableName === 'ShowGuest') {
+		const content_id = links.by_show_id.get(pgRow.show_id);
+		if (!content_id) return null;
+		return tableName === 'ShowGuest'
+			? { content_id, guest_id: pgRow.guest_id }
+			: { content_id, profile_id: pgRow.profile_id };
+	}
+	const { show_number, ...rest } = pgRow;
+	const content_id = links.by_show_number.get(Number(show_number));
+	return content_id ? { ...rest, content_id } : null;
+}
 
 // ============================================================================
 // MIGRATION STATE MANAGEMENT
@@ -486,13 +525,18 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 
 	// Ids already in Postgres, so insert-missing only sends rows it lacks
 	const existing_ids =
-		INSERT_MISSING && mysql_col_names.includes('id')
+		INSERT_MISSING && mysql_col_names.includes('id') && !CONTENT_JOIN_TABLES.includes(tableName)
 			? new Set(
 					(await pgClient`SELECT id::text AS id FROM ${pgClient(pg_table_name)}`).map((r) => r.id)
 				)
 			: null;
 	// Stable order so LIMIT/OFFSET pages neither skip nor repeat rows
 	const order_clause = mysql_col_names.includes('id') ? ' ORDER BY `id`' : '';
+
+	const links = CONTENT_LINKED_TABLES.includes(tableName)
+		? (content_links ?? (await load_content_links(pgClient)))
+		: null;
+	let total_without_content = 0;
 
 	// Stream data in batches
 	console.log('📦 Migrating data...');
@@ -511,7 +555,7 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 		if (rows.length === 0) break;
 
 		// Convert and insert into PostgreSQL
-		const pg_rows = rows.map((row) => {
+		const converted_rows = rows.map((row) => {
 			let converted = {};
 			mysql_col_names.forEach((col) => {
 				const pg_col = column_map ? column_map[col] : col;
@@ -519,8 +563,14 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 			});
 			// Add computed columns (search vectors, timestamps)
 			converted = addComputedColumns(row, tableName, converted);
-			return converted;
+			return links ? link_to_content(tableName, converted, links) : converted;
 		});
+		const pg_rows = converted_rows.filter(Boolean);
+		total_without_content += converted_rows.length - pg_rows.length;
+		if (pg_rows.length === 0) {
+			offset += BATCH_SIZE;
+			continue;
+		}
 
 		// Build column list for PostgreSQL
 		const pg_cols = Object.keys(pg_rows[0]);
@@ -571,7 +621,13 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 				let batch_migrated = 0;
 				for (const pg_row of pg_rows) {
 					try {
-						await pgClient`
+						// A join table row is only its two ids, so there's nothing to update
+						await (CONTENT_JOIN_TABLES.includes(tableName)
+							? pgClient`
+              INSERT INTO ${pgClient(pg_table_name)} ${pgClient([pg_row], ...pg_cols)}
+              ON CONFLICT DO NOTHING
+            `
+							: pgClient`
               INSERT INTO ${pgClient(pg_table_name)} ${pgClient([pg_row], ...pg_cols)}
               ON CONFLICT (${pgClient(pk_col)})
               DO UPDATE SET ${pgClient(
@@ -579,7 +635,7 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 									pg_cols.filter((col) => col !== pk_col).map((col) => [col, pg_row[col]])
 								)
 							)}
-            `;
+            `);
 						batch_migrated++;
 					} catch (rowError) {
 						if (SKIP_INVALID_FK && rowError.code === '23503') {
@@ -646,6 +702,11 @@ async function migrateSingleTable(tableName, mysqlConn, pgClient, migrationState
 	}
 	if (total_skipped > 0) {
 		console.log(`⚠️  Skipped: ${total_skipped.toLocaleString()} (invalid foreign keys)`);
+	}
+	if (total_without_content > 0) {
+		console.log(
+			`⚠️  Skipped: ${total_without_content.toLocaleString()} (their show has no content row)`
+		);
 	}
 	console.log(`⚡ Rate: ${(total_migrated / total_time).toFixed(0)} rows/sec`);
 
@@ -1072,16 +1133,19 @@ async function main() {
 
 		// Migrate each table in order
 		for (const table_name of tables_to_migrate) {
-			// Populate content table before Tag migration if needed
-			if (table_name === 'Tag' && !content_table_populated && POPULATE_CONTENT) {
+			// Populate content table before the tables that link to it (and before Tag)
+			const needs_content = table_name === 'Tag' || CONTENT_LINKED_TABLES.includes(table_name);
+			if (needs_content && !content_table_populated && POPULATE_CONTENT) {
 				// Check if Show or Video was migrated (or if we have existing shows/videos in DB)
 				const show_count = await pg_client`SELECT COUNT(*) as count FROM shows`;
 				const video_count = await pg_client`SELECT COUNT(*) as count FROM videos`;
 
 				if (show_count[0].count > 0 || video_count[0].count > 0) {
-					console.log('\n⚡ Populating content table before Tag migration...');
+					console.log(`\n⚡ Populating content table before ${table_name}...`);
 					await (INSERT_MISSING ? populateMissingContent : populateContentTable)(pg_client);
 					content_table_populated = true;
+					// Content ids just changed, so read them again
+					content_links = null;
 				}
 			}
 

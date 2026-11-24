@@ -23,7 +23,7 @@ async function load_llms_rows() {
 			limit: LATEST_EPISODE_COUNT,
 			with: {
 				aiShowNote: { columns: { description: true } },
-				transcript: { columns: { show_number: true } }
+				transcript: { columns: { id: true } }
 			}
 		}),
 		db
@@ -52,7 +52,7 @@ async function load_llms_rows() {
 
 export const GET: RequestHandler = async function GET({ setHeaders }) {
 	const rows = await edge_cached(
-		'llms-txt-rows',
+		'llms-txt-rows-2',
 		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 },
 		load_llms_rows
 	);

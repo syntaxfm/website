@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { PER_PAGE } from '$const';
 import { desc, asc, lte, and, eq } from 'drizzle-orm';
 import type { InferSelectModel } from 'drizzle-orm';
@@ -78,6 +79,7 @@ export const SHOW_QUERY = (
 			: lte(shows.date, today),
 		with: {
 			guests: {
+				orderBy: in_order_added,
 				with: {
 					guest: {
 						columns: {
@@ -88,6 +90,7 @@ export const SHOW_QUERY = (
 				}
 			},
 			hosts: {
+				orderBy: in_order_added,
 				with: {
 					profile: {
 						columns: {

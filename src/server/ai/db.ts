@@ -8,16 +8,17 @@ import {
 	link as links
 } from '$server/db/schema';
 
-type Show = { number: number };
+// The episode or video the notes are for, by its content id
+type NotesFor = { content_id: string };
 type Result = Awaited<ReturnType<typeof generate_ai_notes>>;
 
-export async function save_ai_notes_to_db(result: Result, show: Show) {
+export async function save_ai_notes_to_db(result: Result, notes_for: NotesFor) {
 	return db.transaction(async (tx) => {
 		// Insert the AI show note first
 		const [ai_show_note] = await tx
 			.insert(aiShowNotes)
 			.values({
-				show_number: show.number,
+				content_id: notes_for.content_id,
 				title: result.title,
 				description: result.description,
 				provider: 'anthropic'

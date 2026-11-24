@@ -13,3 +13,4 @@ When you make a decision that fits all three criteria, add a new ADR with the ne
 - [0005 — snake_case for TypeScript identifiers and module filenames](./0005-snake-case-typescript-naming.md)
 - [0006 — Per-type admin editors are canonical; `/admin/content/[id]` removed](./0006-per-type-admin-editors.md) (supersedes part of ADR-0004)
 - [0007 — Central Syntax Auth with local editorial profiles](./0007-central-syntax-auth.md)
+- [0008 — Guests, hosts, transcripts and AI notes link to `content.id`](./0008-link-by-content-id.md)

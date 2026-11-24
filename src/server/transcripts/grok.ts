@@ -1,5 +1,6 @@
 // Transcripts from xAI's Grok speech-to-text (https://docs.x.ai/developers/model-capabilities/audio/speech-to-text).
 // Deepgram made the transcripts up to #953.
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { error } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import { XAI_API_KEY } from '$app/env/private';
@@ -157,11 +158,20 @@ export async function get_transcript(show_number: number, { replace = false } = 
 		where: eq(show.number, show_number),
 		with: {
 			transcript: { columns: { id: true } },
-			hosts: { with: { profile: { columns: { name: true } } } },
-			guests: { with: { guest: { columns: { name: true } } } }
+			hosts: {
+				orderBy: in_order_added,
+				with: { profile: { columns: { name: true } } }
+			},
+			guests: {
+				orderBy: in_order_added,
+				with: { guest: { columns: { name: true } } }
+			}
 		}
 	});
 	if (!active_show) error(404, `Show #${show_number} not found.`);
+	const content_id = active_show.content_id;
+	if (!content_id)
+		error(409, `Show #${show_number} has no content item to attach a transcript to.`);
 	if (active_show.transcript && !replace) {
 		error(
 			409,
@@ -183,7 +193,11 @@ export async function get_transcript(show_number: number, { replace = false } = 
 	// Grok has charged by now, so a database blip mustn't lose the words (the cron would pay again)
 	for (let attempt = 1; ; attempt++) {
 		try {
-			const saved = await save_transcript_to_db(active_show, utterances, people);
+			const saved = await save_transcript_to_db(
+				{ number: active_show.number, content_id },
+				utterances,
+				people
+			);
 			console.log(`Transcript for show #${show_number} saved: ${words.length} words.`);
 			return saved;
 		} catch (save_error) {

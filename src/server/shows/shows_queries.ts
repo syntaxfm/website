@@ -1,3 +1,4 @@
+import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
 import type {
@@ -16,6 +17,7 @@ import { get_id_from_url } from '#lib/videos/utils.ts';
 
 // Reusable query fragments
 const with_hosts = {
+	orderBy: in_order_added,
 	with: {
 		profile: {
 			columns: {
@@ -48,7 +50,7 @@ const with_ai_show_note_full = {
 
 // Need a show card? this is your query
 export const with_show_card_show = {
-	guests: { with: { guest: true } },
+	guests: { orderBy: in_order_added, with: { guest: true } },
 	hosts: with_hosts,
 	aiShowNote: with_ai_show_note_basic
 } as const;
@@ -97,7 +99,7 @@ export function get_show_detail_query(number: number) {
 			},
 			aiShowNote: with_ai_show_note_full,
 			// Whether there is one, for the episode's JSON-LD; the lines load on the transcript page
-			transcript: { columns: { show_number: true } }
+			transcript: { columns: { id: true } }
 		}
 	} as const;
 }

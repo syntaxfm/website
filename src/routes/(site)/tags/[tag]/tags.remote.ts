@@ -35,8 +35,8 @@ function find_key_moments(slug: string, name: string): Promise<KeyMomentRow[]> {
 		.innerJoin(content_tags, eq(content_tags.tag_id, tag.id))
 		.innerJoin(content, eq(content.id, content_tags.content_id))
 		.innerJoin(show, eq(show.content_id, content.id))
-		.innerJoin(transcript, eq(transcript.show_number, show.number))
-		.innerJoin(aiShowNote, eq(aiShowNote.show_number, show.number))
+		.innerJoin(transcript, eq(transcript.content_id, content.id))
+		.innerJoin(aiShowNote, eq(aiShowNote.content_id, content.id))
 		.innerJoin(aiSummaryEntry, eq(aiSummaryEntry.show_note_id, aiShowNote.id))
 		.where(
 			and(
