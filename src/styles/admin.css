@@ -692,6 +692,17 @@
 		}
 	}
 
+	/* A create form in a page header stays on one line beside the title */
+	.admin .admin-page-header .admin-inline-form {
+		flex-wrap: nowrap;
+
+		> input {
+			flex: 0 1 18rem;
+			width: 18rem;
+			min-width: 0;
+		}
+	}
+
 	.admin-row {
 		display: flex;
 		align-items: center;
@@ -1207,6 +1218,17 @@
 			justify-content: flex-start;
 			flex-wrap: wrap;
 			padding-block-start: var(--pad-small);
+		}
+
+		/* On a phone the header's create form takes the full width: name first, then its button */
+		.admin .admin-page-header .admin-inline-form {
+			flex: 1 1 100%;
+			flex-wrap: wrap;
+
+			> input {
+				flex: 1 1 100%;
+				width: 100%;
+			}
 		}
 
 		/* Markdown editor: label on its own line, formatting and Edit/Preview under it */
