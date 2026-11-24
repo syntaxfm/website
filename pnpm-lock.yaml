@@ -508,10 +508,6 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/runtime@7.23.1':
-    resolution: {integrity: sha512-hC2v6p8ZSI/W0HUzh3V8C5g+NwSKzKPtJwSpTjwl0o297GP9+ZLQSkdvHz46CM3LqyoXxq+5G9komY+eSqSO0g==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.29.7':
     resolution: {integrity: sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==}
     engines: {node: '>=6.9.0'}
@@ -5218,15 +5214,8 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
 
-  parse-nested-form-data@1.0.0:
-    resolution: {integrity: sha512-lIeGMds1l6h6YXxhmcD4aD72xwFAqfDjuzh9dUMyS4h5WhimOfhmfeDiT3KZhqpj+XgaEyen+X9Ks9Y3+Rp5+g==}
-    deprecated: 'Vulnerable to GHSA-27g4-8gfp-mm2j (event loop DoS via large array indices). Upgrade to 1.1.0 or later: https://github.com/milamer/parse-nested-form-data/releases/tag/v1.1.0'
-    peerDependencies:
-      '@remix-run/web-file': '>=3.0.0'
-      '@remix-run/web-form-data': '*'
-    peerDependenciesMeta:
-      '@remix-run/web-form-data':
-        optional: true
+  parse-nested-form-data@1.1.0:
+    resolution: {integrity: sha512-1coPdYi6vywiGhwmv0GeNnmqlzCoXGQ32uA84T1SAAAcjI11ZY3r41x/oEuJRSzDKvN53QyUkYol2dkvrEGYBQ==}
 
   parse5@7.1.2:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
@@ -5639,9 +5628,6 @@ packages:
   redis@6.3.1:
     resolution: {integrity: sha512-mV96ZKxQ4CGn3SyEGaY0Lb9YA443mdVey3c+mdr0NAUaBxiOZGoYCWX8PoM55kictSOmxlJRtZJxIsmZm3jL+w==}
     engines: {node: '>= 20.0.0'}
-
-  regenerator-runtime@0.14.0:
-    resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
 
   rehype-autolink-headings@7.1.0:
     resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
@@ -6857,10 +6843,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.8
     optional: true
-
-  '@babel/runtime@7.23.1':
-    dependencies:
-      regenerator-runtime: 0.14.0
 
   '@babel/runtime@7.29.7': {}
 
@@ -11338,10 +11320,7 @@ snapshots:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
 
-  parse-nested-form-data@1.0.0(@remix-run/web-file@3.1.0):
-    dependencies:
-      '@babel/runtime': 7.23.1
-      '@remix-run/web-file': 3.1.0
+  parse-nested-form-data@1.1.0: {}
 
   parse5@7.1.2:
     dependencies:
@@ -11824,8 +11803,6 @@ snapshots:
       - '@node-rs/xxhash'
       - '@opentelemetry/api'
 
-  regenerator-runtime@0.14.0: {}
-
   rehype-autolink-headings@7.1.0:
     dependencies:
       '@types/hast': 3.0.3
@@ -12059,9 +12036,7 @@ snapshots:
   sk-form-data@2.0.2:
     dependencies:
       '@remix-run/web-file': 3.1.0
-      parse-nested-form-data: 1.0.0(@remix-run/web-file@3.1.0)
-    transitivePeerDependencies:
-      - '@remix-run/web-form-data'
+      parse-nested-form-data: 1.1.0
 
   slash@5.1.0: {}
 
