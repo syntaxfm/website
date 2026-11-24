@@ -166,28 +166,6 @@
 		</section>
 
 		<section class="admin-panel">
-			<h2>Missing AI notes</h2>
-			<AdminTable is_empty={dashboard.shows_missing_ai_notes.length === 0}>
-				{#snippet head()}
-					<th>#</th>
-					<th>Title</th>
-					<th>Date</th>
-				{/snippet}
-				{#each panel_rows('ai_notes', dashboard.shows_missing_ai_notes) as row (row.id)}
-					{@render show_row(row)}
-				{/each}
-				{#snippet empty()}
-					<tr><td colspan="3" class="admin-cell-muted">All recent shows have them.</td></tr>
-				{/snippet}
-			</AdminTable>
-			{#if dashboard.shows_missing_ai_notes.length > PANEL_ROWS && !open_panels['ai_notes']}
-				<button type="button" data-intent="quiet" onclick={() => (open_panels['ai_notes'] = true)}>
-					Show all {dashboard.shows_missing_ai_notes.length}
-				</button>
-			{/if}
-		</section>
-
-		<section class="admin-panel">
 			<h2>Stale drafts</h2>
 			<AdminTable is_empty={dashboard.stale_drafts.length === 0}>
 				{#snippet head()}

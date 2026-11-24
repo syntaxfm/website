@@ -29,7 +29,6 @@ import { error } from '@sveltejs/kit';
 import { eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
 import * as transcript_editor from '$server/transcripts/transcript_editor';
-import { generate_ai_notes } from '$server/ai/openai';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
@@ -631,100 +630,3 @@ export const delete_show_transcript = command(show_number_schema, async ({ show_
 	await get_show_editor(show_number).refresh();
 	return { message: `Deleted the transcript for #${show_number}` };
 });
-
-// fetch_ai_notes: aiNoteRequestHandler
-export const fetch_ai_notes = form(
-	v.object({
-		show_number: v.number()
-	}),
-	async ({ show_number }) => {
-		await assert_admin();
-
-		const current_show = await db.query.show.findFirst({
-			where: eq(show.number, show_number),
-			with: {
-				transcript: {
-					with: {
-						utterances: {
-							columns: {
-								id: true,
-								start: true,
-								end: true,
-								confidence: true,
-								channel: true,
-								transcript_value: true,
-								speaker: true,
-								speaker_name: true,
-								transcript_id: true
-							},
-							orderBy: (utterances, { asc }) => [asc(utterances.start)]
-						}
-					}
-				}
-			}
-		});
-
-		if (!current_show?.transcript || !current_show.content_id) {
-			error(400, 'No show, or no transcript for this show');
-		}
-		const content_id = current_show.content_id;
-
-		const result = await generate_ai_notes(current_show);
-
-		await db.transaction(async (tx) => {
-			await tx.delete(aiShowNote).where(eq(aiShowNote.content_id, content_id));
-
-			const [inserted_show_note] = await tx
-				.insert(aiShowNote)
-				.values({
-					content_id,
-					title: result.title,
-					description: result.description,
-					provider: result.provider
-				})
-				.returning({ id: aiShowNote.id });
-
-			if (result.summary.length > 0) {
-				await tx.insert(aiSummaryEntry).values(
-					result.summary.map((entry) => ({
-						show_note_id: inserted_show_note.id,
-						time: entry.time,
-						text: entry.text,
-						description: entry.description || null
-					}))
-				);
-			}
-
-			if (result.tweets.length > 0) {
-				await tx.insert(aiTweet).values(
-					result.tweets.map((tweet) => ({
-						show_note_id: inserted_show_note.id,
-						content: tweet
-					}))
-				);
-			}
-
-			if (result.links.length > 0) {
-				await tx.insert(link).values(
-					result.links.map((result_link) => ({
-						show_note_id: inserted_show_note.id,
-						name: result_link.name,
-						url: result_link.url,
-						timestamp: result_link.timestamp || null
-					}))
-				);
-			}
-
-			if (result.topics.length > 0) {
-				await tx.insert(topic).values(
-					result.topics.map((topic_name) => ({
-						show_note_id: inserted_show_note.id,
-						name: topic_name
-					}))
-				);
-			}
-		});
-
-		return { message: 'AI Notes Created' };
-	}
-);

@@ -2,7 +2,6 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { onDestroy } from 'svelte';
-	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
 	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
 	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
@@ -25,7 +24,6 @@
 		delete_ai_tweet,
 		delete_link,
 		delete_topic,
-		fetch_ai_notes,
 		get_show_editor,
 		search_guests,
 		search_users_for_host,
@@ -198,7 +196,6 @@
 	let transcript_line_count = $state<number | null>(
 		show?.transcript ? show.transcript_line_count : null
 	);
-	let has_transcript = $derived(transcript_line_count !== null);
 
 	let new_summary_time = $state('');
 	let new_summary_text = $state('');
@@ -221,10 +218,6 @@
 
 	let status_message = $state('');
 	let status_error = $state('');
-
-	let regenerate_form_element: HTMLFormElement | undefined;
-	let resolve_regeneration: (() => void) | undefined;
-	let reject_regeneration: ((error: unknown) => void) | undefined;
 
 	const autosave = create_autosave_controller<ShowEditorPayload>(
 		async (payload) => {
@@ -871,41 +864,6 @@
 			ai_busy = false;
 		}
 	}
-
-	function settle_regeneration(error?: unknown): void {
-		const resolve_current_regeneration = resolve_regeneration;
-		const reject_current_regeneration = reject_regeneration;
-		resolve_regeneration = undefined;
-		reject_regeneration = undefined;
-
-		if (error === undefined) {
-			resolve_current_regeneration?.();
-		} else {
-			reject_current_regeneration?.(error);
-		}
-	}
-
-	function capture_regenerate_form(element: HTMLFormElement): () => void {
-		regenerate_form_element = element;
-
-		return () => {
-			if (regenerate_form_element === element) {
-				regenerate_form_element = undefined;
-			}
-		};
-	}
-
-	function regenerate_ai_notes(): Promise<void> {
-		if (!regenerate_form_element) {
-			return Promise.reject(new Error('AI regeneration form is unavailable.'));
-		}
-
-		return new Promise((resolve_promise, reject_promise) => {
-			resolve_regeneration = resolve_promise;
-			reject_regeneration = reject_promise;
-			regenerate_form_element?.requestSubmit();
-		});
-	}
 </script>
 
 <svelte:head>
@@ -927,7 +885,7 @@
 				{ id: 'details', label: 'Details' },
 				{ id: 'people', label: 'People' },
 				{ id: 'transcript', label: 'Transcript' },
-				{ id: 'ai-notes', label: 'AI notes' }
+				...(ai_show_note ? [{ id: 'ai-notes', label: 'AI notes' }] : [])
 			]}
 		>
 			{#snippet actions()}
@@ -1122,69 +1080,9 @@
 			onchange={refresh_show_editor}
 		/>
 
-		<section id="ai-notes" class="admin-section" aria-labelledby="ai-notes-heading">
-			<h2 id="ai-notes-heading">AI notes</h2>
-
-			{#if !has_transcript}
-				<p class="admin-cell-muted">Needs a <a href="#transcript">transcript</a></p>
-			{:else if !ai_show_note}
-				<form
-					class="admin-actions"
-					{...fetch_ai_notes.enhance(async (form) => {
-						ai_busy = true;
-						clear_feedback();
-						try {
-							await form.submit();
-							await refresh_show_editor();
-							status_message = 'AI notes generated.';
-						} catch (error) {
-							console.error(error);
-							status_error =
-								error instanceof Error ? error.message : 'Unable to generate AI notes.';
-						} finally {
-							ai_busy = false;
-						}
-					})}
-				>
-					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
-					<button type="submit" data-intent="primary" disabled={ai_busy}>
-						{ai_busy ? 'Generating…' : 'Generate AI notes'}
-					</button>
-				</form>
-			{:else}
-				<form
-					{@attach capture_regenerate_form}
-					{...fetch_ai_notes.enhance(async (form) => {
-						ai_busy = true;
-						clear_feedback();
-						let regeneration_error: unknown;
-						try {
-							await form.submit();
-							await refresh_show_editor();
-							status_message = 'AI notes regenerated.';
-						} catch (error) {
-							console.error(error);
-							regeneration_error = error;
-							status_error =
-								error instanceof Error ? error.message : 'Unable to regenerate AI notes.';
-						} finally {
-							ai_busy = false;
-							settle_regeneration(regeneration_error);
-						}
-					})}
-				>
-					<input {...fetch_ai_notes.fields.show_number.as('hidden', show.number)} />
-				</form>
-
-				<div class="admin-actions">
-					<AdminConfirmDialog
-						title="Regenerate AI notes?"
-						description="This replaces every AI artifact, including manual edits."
-						confirm_phrase="REGENERATE"
-						action_label="Regenerate AI notes"
-						onconfirm={regenerate_ai_notes}
-					/>
-				</div>
+		{#if ai_show_note}
+			<section id="ai-notes" class="admin-section" aria-labelledby="ai-notes-heading">
+				<h2 id="ai-notes-heading">AI notes</h2>
 
 				<div class="admin-editor-main">
 					<div class="admin-field">
@@ -1485,7 +1383,7 @@
 						<button type="submit" data-intent="primary" disabled={ai_busy}>Add topic</button>
 					</form>
 				</details>
-			{/if}
-		</section>
+			</section>
+		{/if}
 	</div>
 {/if}

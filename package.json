@@ -93,7 +93,6 @@
 		"pnpm": ">=10"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^1.5.0",
 		"@cloudflare/puppeteer": "1.4.0",
 		"@deepgram/sdk": "^4.11.3",
 		"@oddbird/popover-polyfill": "^0.6.1",
@@ -105,11 +104,9 @@
 		"drizzle-orm": "^0.45.2",
 		"effect": "4.1.2",
 		"flexsearch": "^0.8.212",
-		"gpt-tokenizer": "^4.1.2",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.8",
 		"media-chrome": "^4.19.2",
-		"openai": "^7.51.0",
 		"p-map": "^7.0.4",
 		"postgres": "^3.4.9",
 		"rehype-autolink-headings": "^7.1.0",
@@ -127,7 +124,6 @@
 		"ts-node": "^10.9.2",
 		"unified": "^11.0.5",
 		"valibot": "^1.4.1",
-		"waait": "^1.0.5",
 		"youtube-video-element": "^1.9.0",
 		"zod": "^4.6.7"
 	},

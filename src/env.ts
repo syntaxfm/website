@@ -14,8 +14,6 @@ export const variables = defineEnvVars({
 	POSTGRES_DATABASE_URL: { schema: optional },
 	DATABASE_URL: { schema: optional },
 	NODE_ENV: { schema: optional },
-	OPENAI_API_KEY: { schema: optional },
-	ANTHROPIC_KEY: { schema: optional },
 	GITHUB_ISSUES_TOKEN: { schema: optional },
 	OPENROUTER_API_KEY: { schema: optional },
 	PUBLIC_URL: { public: true, static: true },

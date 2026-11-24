@@ -77,8 +77,7 @@ export async function get_admin_dashboard(actor: Actor) {
 	const recent_shows = await db.query.show.findMany({
 		where: lt(show.date, now),
 		with: {
-			transcript: { columns: { id: true } },
-			aiShowNote: { columns: { id: true } }
+			transcript: { columns: { id: true } }
 		},
 		orderBy: [desc(show.date)],
 		columns: {
@@ -92,12 +91,7 @@ export async function get_admin_dashboard(actor: Actor) {
 
 	const shows_missing_transcript = recent_shows
 		.filter((row) => !row.transcript)
-		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest)
-		.slice(0, MAX_MISSING_ROWS);
-
-	const shows_missing_ai_notes = recent_shows
-		.filter((row) => row.transcript && !row.aiShowNote)
-		.map(({ transcript: _t, aiShowNote: _a, ...rest }) => rest)
+		.map(({ transcript: _t, ...rest }) => rest)
 		.slice(0, MAX_MISSING_ROWS);
 
 	const recently_published = await db.query.content.findMany({
@@ -195,7 +189,6 @@ export async function get_admin_dashboard(actor: Actor) {
 		upcoming_content,
 		stale_drafts,
 		shows_missing_transcript,
-		shows_missing_ai_notes,
 		recently_published,
 		activity
 	};
