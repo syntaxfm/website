@@ -108,20 +108,3 @@ function clamp_int(value: number, options?: ReadIntOptions): number {
 
 	return next_value;
 }
-
-// One page of a list that's already in memory, shaped like the server lists' results
-export function page_of<T>(
-	items: readonly T[],
-	page: number,
-	page_size: number
-): { items: T[]; total: number; page: number; total_pages: number } {
-	const total_pages = Math.max(1, Math.ceil(items.length / page_size));
-	const current_page = Math.min(Math.max(1, page), total_pages);
-	const start = (current_page - 1) * page_size;
-	return {
-		items: items.slice(start, start + page_size),
-		total: items.length,
-		page: current_page,
-		total_pages
-	};
-}

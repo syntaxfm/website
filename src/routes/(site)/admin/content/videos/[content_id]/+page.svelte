@@ -81,8 +81,6 @@
 {:else}
 	<div class="admin-page stack">
 		<AdminEditorHeader
-			back_href={resolve('admin/content/videos')}
-			back_label="Videos"
 			title={content_item.title}
 			detail="Video · from YouTube"
 			public_href={status === 'PUBLISHED'

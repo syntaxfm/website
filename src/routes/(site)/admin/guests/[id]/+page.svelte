@@ -223,8 +223,6 @@
 {:else}
 	<div class="admin-page stack">
 		<AdminEditorHeader
-			back_href={resolve('admin/guests')}
-			back_label="Guests"
 			title={name}
 			detail={`/guest/${name_slug}`}
 			public_href={resolve(`guest/${name_slug}`)}

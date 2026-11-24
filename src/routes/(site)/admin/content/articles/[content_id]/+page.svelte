@@ -167,13 +167,7 @@
 	</div>
 {:else}
 	<div class="admin-page stack">
-		<AdminEditorHeader
-			back_href={resolve('admin/content/articles')}
-			back_label="Articles"
-			{title}
-			detail="Article"
-			{autosave}
-		/>
+		<AdminEditorHeader {title} detail="Article" {autosave} />
 
 		<form class="admin-editor-layout" onsubmit={handle_submit}>
 			<div class="admin-editor-main">

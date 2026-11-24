@@ -34,7 +34,6 @@ import { error } from '@sveltejs/kit';
 import { and, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
 import { generate_ai_notes } from '$server/ai/openai';
-import { import_transcripts } from '$server/transcripts/transcripts';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
@@ -593,20 +592,6 @@ export const delete_topic = command(ai_child_id_schema, async ({ id }) => {
 	return { success: true };
 });
 
-export const import_all_transcripts = command(async () => {
-	await assert_admin();
-
-	await import_transcripts();
-	return { success: true, message: 'Transcripts import completed' };
-});
-
-export const delete_all_transcripts = command(async () => {
-	await assert_admin();
-
-	await db.delete(transcript);
-	return { success: true, message: 'Deleted all transcripts' };
-});
-
 export const import_all_shows = form(async () => {
 	await assert_admin();
 
@@ -660,30 +645,22 @@ export const delete_all_shows = form(async () => {
 	return { message: 'Delete All Shows' };
 });
 
-export const delete_transcript = form(
-	v.object({
-		show_number: v.number()
-	}),
-	async ({ show_number }) => {
-		await assert_admin();
+// One episode's transcript: made by Grok from the audio, or deleted so it can be made again
+export const transcribe_show = command(show_number_schema, async ({ show_number }) => {
+	await assert_admin();
 
-		await db.delete(transcript).where(eq(transcript.show_number, show_number));
-		return { message: `Deleted Transcript for Show ${show_number}` };
-	}
-);
+	await get_transcript(show_number);
+	await get_show_editor(show_number).refresh();
+	return { message: `Transcribed #${show_number}` };
+});
 
-export const fetch_show_transcript = form(
-	v.object({
-		show_number: v.number()
-	}),
-	async ({ show_number }) => {
-		await assert_admin();
+export const delete_show_transcript = command(show_number_schema, async ({ show_number }) => {
+	await assert_admin();
 
-		await get_transcript(show_number);
-		console.log('🤖 transcript fetch requested');
-		return { message: 'Transcript Fetch Requested' };
-	}
-);
+	await db.delete(transcript).where(eq(transcript.show_number, show_number));
+	await get_show_editor(show_number).refresh();
+	return { message: `Deleted the transcript for #${show_number}` };
+});
 
 // fetch_ai_notes: aiNoteRequestHandler
 export const fetch_ai_notes = form(

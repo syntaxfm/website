@@ -20,8 +20,6 @@
 
 <div class="admin-page stack">
 	<AdminEditorHeader
-		back_href={resolve('admin/tags')}
-		back_label="Tags"
 		title={detail.tag.name}
 		detail={`/${detail.tag.slug} · ${detail.total_content_count.toLocaleString()} tagged`}
 		public_href={resolve(`tags/${detail.tag.slug}`)}

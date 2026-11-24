@@ -82,7 +82,7 @@ of them. Pages never hand-write these:
 - `AdminTable`: the bare table (head, rows, empty row). `AdminList` uses it; so do the dashboard panels
 - `AdminPageHeader`: every list page's title, with its page actions (New show, Import all, a
   create form) on the right
-- `AdminEditorHeader`: every editor's sticky header — back link, live title, public icon, save
+- `AdminEditorHeader`: every editor's sticky header — live title (no back link: the menu is right there), public icon, save
   state, page actions, section jump links
 - Editor CSS: one control height, input + button rows (slug, date), one-line markdown toolbar,
   `.admin-pick-list` (guests/hosts), `.admin-item-list` / `.admin-item-add` (AI note items)
@@ -96,12 +96,12 @@ declared in `app.html`.
 
 | # | Route | Page | Status | Notes |
 |---|-------|------|--------|-------|
-| — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Two rows at most: sections, then Content/Users sub-pages. Deeper views are header tabs (`AdminPageHeader` `tabs`, e.g. Podcast: Episodes · Transcripts). Scrolls sideways on phones; links fade under Report |
+| — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Two rows at most: sections, then Content/Users sub-pages. Scrolls sideways on phones; links fade under Report |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
 | 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; New show / Sync / Refresh in the page header |
 | 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
 | 4 | `/admin/content/podcast/new` | New podcast | 🟨 | Editor header with Create show |
-| 5 | `/admin/content/podcast/transcripts` | Transcripts | 🟨 | Page header with Import / Delete all, search, 50 a page, links to editor + public transcript |
+| 5 | `/admin/content/podcast/transcripts` | Transcripts | ✅ | Removed. Each episode's editor has a Transcript section (Transcribe with Grok, view, delete); the dashboard lists episodes missing one |
 | 6 | `/admin/content/videos` | Video list | 🟨 | YouTube connection as the header's detail line, Connect/Reconnect as its action |
 | 7 | `/admin/content/videos/[content_id]` | Video editor | 🟨 | Editor header + thumbnail. Waiting on Scott's review |
 | 8 | `/admin/content/articles` | Article list | 🟨 | New article in the page header |

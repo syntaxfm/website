@@ -72,12 +72,7 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<AdminEditorHeader
-		back_href={resolve('admin/content/podcast')}
-		back_label="Podcast"
-		title={title || 'New show'}
-		detail="New show"
-	>
+	<AdminEditorHeader title={title || 'New show'} detail="New show">
 		{#snippet actions()}
 			<button type="submit" form="new-show-form" data-intent="primary" disabled={creating}>
 				{creating ? 'Creating…' : 'Create show'}

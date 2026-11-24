@@ -22,12 +22,14 @@
 		delete_ai_summary_entry,
 		delete_ai_tweet,
 		delete_link,
+		delete_show_transcript,
 		delete_topic,
 		fetch_ai_notes,
 		get_show_editor,
 		search_guests,
 		search_users_for_host,
 		sync_spotify_for_show,
+		transcribe_show,
 		update_ai_guest,
 		update_ai_show_note,
 		update_ai_summary_entry,
@@ -191,7 +193,12 @@
 		: null;
 
 	let ai_show_note = $state<AiShowNoteData | null>(initial_ai_show_note);
-	const has_transcript = Boolean(show?.transcript);
+	// The transcript's line count, or null while the episode has none
+	let transcript_line_count = $state<number | null>(
+		show?.transcript ? show.transcript_line_count : null
+	);
+	let has_transcript = $derived(transcript_line_count !== null);
+	let transcript_busy = $state(false);
 
 	let new_summary_time = $state('');
 	let new_summary_text = $state('');
@@ -418,6 +425,7 @@
 			return;
 		}
 
+		transcript_line_count = refreshed.transcript ? refreshed.transcript_line_count : null;
 		ai_show_note = refreshed.aiShowNote
 			? {
 					id: refreshed.aiShowNote.id,
@@ -838,6 +846,37 @@
 		}
 	}
 
+	async function transcribe(): Promise<void> {
+		if (!show) return;
+		transcript_busy = true;
+		clear_feedback();
+		try {
+			status_message = (await transcribe_show({ show_number: show.number })).message;
+			await refresh_show_editor();
+		} catch (error) {
+			console.error('Unable to transcribe show', error);
+			status_error = error instanceof Error ? error.message : 'Unable to transcribe this show.';
+		} finally {
+			transcript_busy = false;
+		}
+	}
+
+	async function delete_transcript(): Promise<void> {
+		if (!show) return;
+		transcript_busy = true;
+		clear_feedback();
+		try {
+			status_message = (await delete_show_transcript({ show_number: show.number })).message;
+			await refresh_show_editor();
+		} catch (error) {
+			console.error('Unable to delete transcript', error);
+			status_error = error instanceof Error ? error.message : 'Unable to delete the transcript.';
+			throw error;
+		} finally {
+			transcript_busy = false;
+		}
+	}
+
 	function settle_regeneration(error?: unknown): void {
 		const resolve_current_regeneration = resolve_regeneration;
 		const reject_current_regeneration = reject_regeneration;
@@ -885,8 +924,6 @@
 {:else}
 	<div class="admin-page stack">
 		<AdminEditorHeader
-			back_href={resolve('admin/content/podcast')}
-			back_label="Podcast"
 			{title}
 			detail={`#${show.number} · ${humanize_enum(show.show_type)}`}
 			public_href={resolve(`show/${show.number}/${show.slug}`)}
@@ -894,6 +931,7 @@
 			sections={[
 				{ id: 'details', label: 'Details' },
 				{ id: 'people', label: 'People' },
+				{ id: 'transcript', label: 'Transcript' },
 				{ id: 'ai-notes', label: 'AI notes' }
 			]}
 		>
@@ -1069,11 +1107,42 @@
 			</section>
 		</form>
 
+		<section id="transcript" class="admin-section" aria-labelledby="transcript-heading">
+			<h2 id="transcript-heading">Transcript</h2>
+			<div class="admin-row">
+				{#if transcript_line_count !== null}
+					<a
+						href={resolve(`show/${show.number}/${show.slug}/transcript`)}
+						target="_blank"
+						rel="noopener noreferrer">{transcript_line_count.toLocaleString()} lines</a
+					>
+					<AdminConfirmDialog
+						title="Delete this transcript?"
+						description="Its lines go too. Transcribe again to get a new one."
+						confirm_phrase="DELETE"
+						action_label="Delete transcript"
+						trigger_label="Delete transcript"
+						onconfirm={delete_transcript}
+					/>
+				{:else}
+					<p class="admin-cell-muted">No transcript yet</p>
+					<button
+						type="button"
+						data-intent="primary"
+						onclick={transcribe}
+						disabled={transcript_busy || !url}
+					>
+						{transcript_busy ? 'Transcribing…' : 'Transcribe'}
+					</button>
+				{/if}
+			</div>
+		</section>
+
 		<section id="ai-notes" class="admin-section" aria-labelledby="ai-notes-heading">
 			<h2 id="ai-notes-heading">AI notes</h2>
 
 			{#if !has_transcript}
-				<p class="admin-feedback">Transcript required to generate AI notes.</p>
+				<p class="admin-cell-muted">Needs a <a href="#transcript">transcript</a></p>
 			{:else if !ai_show_note}
 				<form
 					class="admin-actions"

@@ -159,8 +159,6 @@
 		user_detail.username || user_detail.name || user_detail.email || user_detail.id}
 	<div class="admin-page stack">
 		<AdminEditorHeader
-			back_href={resolve('admin/users')}
-			back_label="Users"
 			title={user_label}
 			detail={[user_detail.name, user_detail.email]
 				.filter((part) => part && part !== user_label)

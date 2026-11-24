@@ -143,27 +143,14 @@
 		border-radius: var(--br-small);
 	}
 
-	.admin-editor-back {
-		grid-column: 1 / -1;
-		justify-self: start;
-		font-size: var(--fs-2);
-		color: var(--admin-muted);
-
-		&:hover {
-			color: var(--admin-accent);
-		}
-	}
-
 	.admin-editor-header-end {
-		grid-column: 2;
-		grid-row: 2 / span 2;
 		display: flex;
 		align-items: center;
 		gap: var(--pad-small);
 	}
 
-	/* A top-level page's header has no back link, so the title starts on the first row */
-	.admin-editor-header:not(:has(> .admin-editor-back)) > .admin-editor-header-end,
+	/* Page actions sit at the end of the title and detail rows */
+	.admin-editor-header > .admin-editor-header-end,
 	.admin-page-header > .admin-actions {
 		grid-column: 2;
 		grid-row: 1 / span 2;
@@ -201,14 +188,6 @@
 
 			&:hover {
 				color: var(--admin-accent);
-			}
-
-			/* The view you're on, as a tab in a page header */
-			&[aria-current='page'] {
-				color: var(--admin-fg);
-				text-decoration: underline;
-				text-decoration-color: var(--admin-accent);
-				text-underline-offset: var(--pad-xsmall);
 			}
 		}
 	}
@@ -1261,8 +1240,7 @@
 			}
 		}
 
-		.admin-editor-header-end,
-		.admin-editor-header:not(:has(> .admin-editor-back)) > .admin-editor-header-end,
+		.admin-editor-header > .admin-editor-header-end,
 		.admin-page-header > .admin-actions {
 			grid-column: 1;
 			grid-row: auto;

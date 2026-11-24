@@ -1,10 +1,17 @@
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, gte, ilike, inArray, lte, ne, notInArray, sql } from 'drizzle-orm';
+import { and, count, desc, eq, gte, ilike, inArray, lte, ne, notInArray, sql } from 'drizzle-orm';
 
 import { DAYS_OF_WEEK_TYPES } from '$const';
 import { assert_admin_actor, is_admin, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
-import { content, content_tags, show, showGuest, showToProfile } from '$server/db/schema';
+import {
+	content,
+	content_tags,
+	show,
+	showGuest,
+	showToProfile,
+	transcriptUtterance
+} from '$server/db/schema';
 import { get_id_from_show_number } from '$server/shows';
 import { get_show_detail_query } from '$server/shows/shows_queries';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
@@ -118,7 +125,7 @@ export async function list_shows(actor: Actor, input: ListShowsInput) {
 export async function get_show_editor(actor: Actor, show_number: number) {
 	assert_admin_actor(actor);
 
-	return db.query.show.findFirst({
+	const editor_show = await db.query.show.findFirst({
 		where: eq(show.number, show_number),
 		with: {
 			meta: {
@@ -156,6 +163,16 @@ export async function get_show_editor(actor: Actor, show_number: number) {
 			}
 		}
 	});
+	if (!editor_show) return editor_show;
+
+	// How many lines the transcript has, so the editor can show it exists and how big it is
+	const [line_count_row] = editor_show.transcript
+		? await db
+				.select({ value: count() })
+				.from(transcriptUtterance)
+				.where(eq(transcriptUtterance.transcript_id, editor_show.transcript.id))
+		: [];
+	return { ...editor_show, transcript_line_count: Number(line_count_row?.value ?? 0) };
 }
 
 /**
