@@ -79,6 +79,9 @@ of them. Pages never hand-write these:
 - `AdminTitleCell` (editor link, public-page icon, optional thumbnail and muted detail line),
   `AdminDateCell`
 - `content_links.ts`: where a Content item is edited and where it lives in public
+- `AdminTable`: the bare table (head, rows, empty row). `AdminList` uses it; so do the dashboard panels
+- Row CSS: `.admin-cell-number`, `.admin-cell-actions` (compact, Delete muted until row hover),
+  fields in cells read as text until hovered, `.admin-inline-form` for one-line create forms
 
 `SelectMenu` styles live in `@layer components` so admin.css can restyle them; the layer order is
 declared in `app.html`.
@@ -95,9 +98,9 @@ declared in `app.html`.
 | 7 | `/admin/content/videos/[content_id]` | Video editor | ⬜ | |
 | 8 | `/admin/content/articles` | Article list | ⬜ | |
 | 9 | `/admin/content/articles/[content_id]` | Article editor | ⬜ | |
-| 10 | `/admin` | Dashboard | ⬜ | |
-| 11 | `/admin/submissions` | Submissions | ⬜ | |
-| 12 | `/admin/tags` | Tags | ⬜ | |
+| 10 | `/admin` | Dashboard | 🟨 | Number tiles, panels on `AdminTable`, long panels show 8 rows + Show all. Waiting on Scott's review |
+| 11 | `/admin/submissions` | Submissions | 🟨 | Compact in-row status + Close; message preview fixed. Waiting on Scott's review |
+| 12 | `/admin/tags` | Tags | 🟨 | Names/descriptions edit in place, Save only when changed, quiet Delete. Waiting on Scott's review |
 | 13 | `/admin/tags/[id]` | Tag editor | ⬜ | |
 | 14 | `/admin/guests` | Guests | ⬜ | Create row sits above search; 44px vs 40px controls |
 | 15 | `/admin/guests/[id]` | Guest editor | ⬜ | |

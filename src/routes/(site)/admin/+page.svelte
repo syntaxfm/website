@@ -1,37 +1,31 @@
 <script lang="ts">
 	import { format, formatDistance } from 'date-fns';
 	import { resolve } from '$app/paths';
-	import type { Path } from '$app/types';
+	import AdminDateCell from '#lib/admin/AdminDateCell.svelte';
+	import AdminTable from '#lib/admin/AdminTable.svelte';
+	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
+	import {
+		to_content_edit_path,
+		to_content_public_href,
+		type ContentLinkRow
+	} from '#lib/admin/content_links.ts';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import { get_dashboard } from './admin_dashboard.remote';
 
 	const dashboard = await get_dashboard();
 	const today_iso_date_string = format(new Date(), 'yyyy-MM-dd');
 
-	type DashboardData = typeof dashboard;
-	type ActivityItem = DashboardData['activity'][number];
-	type ContentActivity = Extract<ActivityItem, { kind: 'content' }>;
+	// Long panels show this many rows until opened
+	const PANEL_ROWS = 8;
+	let open_panels = $state<Record<string, boolean>>({});
 
-	type EditLinkInput = {
-		content_id?: string;
-		id?: string;
-		content_type?: ContentActivity['content_type'];
-		type?: ContentActivity['content_type'];
-		show: { number: number; slug: string } | null;
-	};
+	function panel_rows<T>(panel: string, rows: T[]): T[] {
+		return open_panels[panel] ? rows : rows.slice(0, PANEL_ROWS);
+	}
 
-	function content_edit_link(item: EditLinkInput): Path | null {
-		const content_type = item.content_type ?? item.type;
-		const content_id = item.content_id ?? item.id;
-		if (content_type === 'PODCAST' && item.show) {
-			return `/admin/content/podcast/${item.show.number}`;
-		}
-		if (content_type === 'ARTICLE' && content_id) {
-			return `/admin/content/articles/${content_id}`;
-		}
-		if (content_type === 'VIDEO' && content_id) {
-			return `/admin/content/videos/${content_id}`;
-		}
-		return null;
+	function edit_href(content_row: ContentLinkRow) {
+		const edit_path = to_content_edit_path(content_row);
+		return edit_path ? resolve(edit_path) : null;
 	}
 </script>
 
@@ -39,328 +33,224 @@
 	<title>Dashboard | Syntax Admin</title>
 </svelte:head>
 
-<div class="admin-page stack">
-	<div class="admin-control-row">
-		<a class="button small" href={resolve('admin/submissions?status=PENDING')}>
-			<strong>{dashboard.pending_submissions_count}</strong>
-			<span>Pending submissions</span>
-		</a>
+<!-- One row of a Content table: title (editor + public links), type, date -->
+{#snippet content_row(
+	row: ContentLinkRow & { title: string },
+	date: Date | null,
+	show_time: boolean
+)}
+	<tr>
+		<AdminTitleCell
+			title={row.title}
+			edit_href={edit_href(row)}
+			public_href={to_content_public_href(row)}
+		/>
+		<td class="admin-cell-muted">{humanize_enum(row.type)}</td>
+		<AdminDateCell value={date} {show_time} />
+	</tr>
+{/snippet}
 
-		<a class="button small" href={resolve('admin/content?status=DRAFT')}>
-			<strong>{dashboard.drafts_count}</strong>
-			<span>Drafts</span>
+<!-- One row of a Show table: number, title (editor + public links), date -->
+{#snippet show_row(row: { number: number; slug: string; title: string; date: Date })}
+	<tr>
+		<td class="admin-cell-muted">#{row.number}</td>
+		<AdminTitleCell
+			title={row.title}
+			edit_href={resolve(`admin/content/podcast/${row.number}`)}
+			public_href={resolve(`show/${row.number}/${row.slug}`)}
+		/>
+		<AdminDateCell value={row.date} />
+	</tr>
+{/snippet}
+
+<div class="admin-page stack">
+	<div class="admin-stats">
+		<a class="admin-stat" href={resolve('admin/submissions?status=PENDING')}>
+			<strong>{dashboard.pending_submissions_count.toLocaleString()}</strong>
+			Pending submissions
+		</a>
+		<a class="admin-stat" href={resolve('admin/content?status=DRAFT')}>
+			<strong>{dashboard.drafts_count.toLocaleString()}</strong>
+			Drafts
 		</a>
 		<a
-			class="button small"
+			class="admin-stat"
 			href={resolve(`admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 		>
-			<strong>{dashboard.scheduled_count}</strong>
-			<span>Scheduled</span>
+			<strong>{dashboard.scheduled_count.toLocaleString()}</strong>
+			Scheduled
 		</a>
 	</div>
 
 	{#if dashboard.submission_breakdown.length > 0}
-		<div class="admin-control-row">
+		<nav class="admin-chips" aria-label="Pending submissions by type">
 			{#each dashboard.submission_breakdown as bucket (bucket.submission_type)}
 				<a
-					class="button small"
-					data-intent="quiet"
 					href={resolve(
 						`admin/submissions?status=PENDING&submission_type=${bucket.submission_type}`
 					)}
 				>
-					{bucket.submission_type}
+					{humanize_enum(bucket.submission_type)}
 					<strong>{bucket.count}</strong>
 				</a>
 			{/each}
-		</div>
+		</nav>
 	{/if}
 
-	{#if dashboard.activity.length > 0}
-		<section class="admin-section">
-			<h2 class="h5">Recent activity (last 7 days)</h2>
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>When</th>
-							<th>What</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.activity as item (item.kind === 'content' ? `c-${item.content_id}-${item.timestamp.getTime()}` : `s-${item.submission_id}`)}
-							<tr>
-								<td class="fs-1"
-									>{formatDistance(item.timestamp, new Date(), { addSuffix: true })}</td
-								>
-								<td>
-									{#if item.kind === 'content'}
-										{@const edit_link = content_edit_link(item)}
-										<span class="fs-1"
-											>{item.was_published ? 'Published' : 'Updated'} · {item.content_type}</span
-										>
-
-										{#if edit_link}
-											<a href={resolve(edit_link)}>{item.title}</a>
-										{:else}
-											{item.title}
-										{/if}
-									{:else}
-										<span class="fs-1">Submission · {item.submission_type}</span>
-
-										<a
-											href={resolve(
-												`admin/submissions?status=PENDING&submission_type=${item.submission_type}`
-											)}>{item.submitter_name || 'Anon'}</a
-										>
-									{/if}
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		</section>
-	{/if}
-
-	<section class="admin-section">
-		<div class="admin-control-row">
-			<h2 class="h5">Upcoming</h2>
-			<a
-				class="button"
-				data-intent="quiet"
-				href={resolve(`admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
+	<div class="admin-dashboard">
+		<section class="admin-panel">
+			<h2>Upcoming</h2>
+			<a href={resolve(`admin/content?status=PUBLISHED&date_from=${today_iso_date_string}`)}
 				>All upcoming →</a
 			>
-		</div>
-		{#if dashboard.upcoming_content.length === 0}
-			<p class="fs-2">Nothing scheduled.</p>
-		{:else}
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Type</th>
-							<th>Scheduled</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.upcoming_content as content_row (content_row.id)}
-							<tr>
-								<td>
-									<div class="admin-control">
-										{#if content_row.type === 'PODCAST' && content_row.show}
-											<a
-												href={resolve(`show/${content_row.show.number}/${content_row.show.slug}`)}
-												target="_blank"
-												rel="noopener noreferrer">{content_row.title}</a
-											>
+			<AdminTable is_empty={dashboard.upcoming_content.length === 0}>
+				{#snippet head()}
+					<th>Title</th>
+					<th>Type</th>
+					<th>Scheduled</th>
+				{/snippet}
+				{#each dashboard.upcoming_content as row (row.id)}
+					{@render content_row(row, row.published_at, true)}
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">Nothing scheduled.</td></tr>
+				{/snippet}
+			</AdminTable>
+		</section>
 
-											<a href={resolve(`admin/content/podcast/${content_row.show.number}`)}>Edit</a>
-										{:else if content_row.type === 'VIDEO' && content_row.video}
-											<a
-												href={content_row.video.url}
-												target="_blank"
-												rel="noopener noreferrer external">{content_row.title}</a
-											>
-											<a href={resolve(`admin/content/videos/${content_row.id}`)}>Edit</a>
-										{:else if content_row.type === 'ARTICLE'}
-											<p>{content_row.title}</p>
+		<section class="admin-panel">
+			<h2>Recently published</h2>
+			<a href={resolve('admin/content?status=PUBLISHED')}>All published →</a>
+			<AdminTable is_empty={dashboard.recently_published.length === 0}>
+				{#snippet head()}
+					<th>Title</th>
+					<th>Type</th>
+					<th>Published</th>
+				{/snippet}
+				{#each dashboard.recently_published as row (row.id)}
+					{@render content_row(row, row.published_at, false)}
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">Nothing in the last 7 days.</td></tr>
+				{/snippet}
+			</AdminTable>
+		</section>
 
-											<a href={resolve(`admin/content/articles/${content_row.id}`)}>Edit</a>
-										{:else}
-											<p>{content_row.title}</p>
-										{/if}
-									</div>
-								</td>
-								<td>{content_row.type}</td>
-								<td>
-									{#if content_row.published_at}
-										{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-									{:else}
-										-
-									{/if}
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</section>
+		<section class="admin-panel">
+			<h2>Missing transcript</h2>
+			<AdminTable is_empty={dashboard.shows_missing_transcript.length === 0}>
+				{#snippet head()}
+					<th>#</th>
+					<th>Title</th>
+					<th>Date</th>
+				{/snippet}
+				{#each panel_rows('transcript', dashboard.shows_missing_transcript) as row (row.id)}
+					{@render show_row(row)}
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">All recent shows have one.</td></tr>
+				{/snippet}
+			</AdminTable>
+			{#if dashboard.shows_missing_transcript.length > PANEL_ROWS && !open_panels['transcript']}
+				<button
+					type="button"
+					data-intent="quiet"
+					onclick={() => (open_panels['transcript'] = true)}
+				>
+					Show all {dashboard.shows_missing_transcript.length}
+				</button>
+			{/if}
+		</section>
 
-	<section class="admin-section">
-		<h2 class="h5">Stale drafts (not touched in 14+ days)</h2>
-		{#if dashboard.stale_drafts.length === 0}
-			<p class="fs-2">No stale drafts.</p>
-		{:else}
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Type</th>
-							<th>Last updated</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.stale_drafts as draft_row (draft_row.id)}
-							{@const edit_link = content_edit_link(draft_row)}
-							<tr>
-								<td>
-									{#if edit_link}
-										<a href={resolve(edit_link)}>{draft_row.title}</a>
-									{:else}
-										{draft_row.title}
-									{/if}
-								</td>
-								<td>{draft_row.type}</td>
-								<td>{format(draft_row.updated_at, 'MMM d, yyyy')}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</section>
+		<section class="admin-panel">
+			<h2>Missing AI notes</h2>
+			<AdminTable is_empty={dashboard.shows_missing_ai_notes.length === 0}>
+				{#snippet head()}
+					<th>#</th>
+					<th>Title</th>
+					<th>Date</th>
+				{/snippet}
+				{#each panel_rows('ai_notes', dashboard.shows_missing_ai_notes) as row (row.id)}
+					{@render show_row(row)}
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">All recent shows have them.</td></tr>
+				{/snippet}
+			</AdminTable>
+			{#if dashboard.shows_missing_ai_notes.length > PANEL_ROWS && !open_panels['ai_notes']}
+				<button type="button" data-intent="quiet" onclick={() => (open_panels['ai_notes'] = true)}>
+					Show all {dashboard.shows_missing_ai_notes.length}
+				</button>
+			{/if}
+		</section>
 
-	<section class="admin-section">
-		<h2 class="h5">Shows missing transcript</h2>
-		{#if dashboard.shows_missing_transcript.length === 0}
-			<p class="fs-2">All recent shows have transcripts.</p>
-		{:else}
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Title</th>
-							<th>Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.shows_missing_transcript as show_row (show_row.id)}
-							<tr>
-								<td>{show_row.number}</td>
-								<td>
-									<div class="admin-control">
-										<a
-											href={resolve(`show/${show_row.number}/${show_row.slug}`)}
-											target="_blank"
-											rel="noopener noreferrer">{show_row.title}</a
-										>
-										<a href={resolve(`admin/content/podcast/${show_row.number}`)}>Edit</a>
-									</div>
-								</td>
-								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</section>
+		<section class="admin-panel">
+			<h2>Stale drafts</h2>
+			<AdminTable is_empty={dashboard.stale_drafts.length === 0}>
+				{#snippet head()}
+					<th>Title</th>
+					<th>Type</th>
+					<th>Last updated</th>
+				{/snippet}
+				{#each panel_rows('stale', dashboard.stale_drafts) as row (row.id)}
+					{@render content_row(row, row.updated_at, false)}
+				{/each}
+				{#snippet empty()}
+					<tr><td colspan="3" class="admin-cell-muted">No drafts older than 14 days.</td></tr>
+				{/snippet}
+			</AdminTable>
+			{#if dashboard.stale_drafts.length > PANEL_ROWS && !open_panels['stale']}
+				<button type="button" data-intent="quiet" onclick={() => (open_panels['stale'] = true)}>
+					Show all {dashboard.stale_drafts.length}
+				</button>
+			{/if}
+		</section>
+	</div>
 
-	<section class="admin-section">
-		<h2 class="h5">Shows missing AI notes</h2>
-		{#if dashboard.shows_missing_ai_notes.length === 0}
-			<p class="fs-2">All recent shows with transcripts have AI notes.</p>
-		{:else}
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Title</th>
-							<th>Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.shows_missing_ai_notes as show_row (show_row.id)}
-							<tr>
-								<td>{show_row.number}</td>
-								<td>
-									<div class="admin-control">
-										<a
-											href={resolve(`show/${show_row.number}/${show_row.slug}`)}
-											target="_blank"
-											rel="noopener noreferrer">{show_row.title}</a
-										>
-										<a href={resolve(`admin/content/podcast/${show_row.number}`)}>Edit</a>
-									</div>
-								</td>
-								<td>{format(show_row.date, 'MMM d, yyyy')}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</section>
-
-	<section class="admin-section">
-		<div class="admin-control-row">
-			<h2 class="h5">Recently published (last 7 days)</h2>
-
-			<a class="button" data-intent="quiet" href={resolve('admin/content?status=PUBLISHED')}
-				>All published →</a
-			>
-		</div>
-		{#if dashboard.recently_published.length === 0}
-			<p class="fs-2">Nothing published in the last week.</p>
-		{:else}
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Type</th>
-							<th>Published</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each dashboard.recently_published as content_row (content_row.id)}
-							<tr>
-								<td>
-									<div class="admin-control">
-										{#if content_row.type === 'PODCAST' && content_row.show}
-											<a
-												href={resolve(`show/${content_row.show.number}/${content_row.show.slug}`)}
-												target="_blank"
-												rel="noopener noreferrer">{content_row.title}</a
-											>
-
-											<a href={resolve(`admin/content/podcast/${content_row.show.number}`)}>Edit</a>
-										{:else if content_row.type === 'VIDEO' && content_row.video}
-											<a
-												href={content_row.video.url}
-												target="_blank"
-												rel="noopener noreferrer external">{content_row.title}</a
-											>
-											<a href={resolve(`admin/content/videos/${content_row.id}`)}>Edit</a>
-										{:else if content_row.type === 'ARTICLE'}
-											<p>{content_row.title}</p>
-
-											<a href={resolve(`admin/content/articles/${content_row.id}`)}>Edit</a>
-										{:else}
-											<p>{content_row.title}</p>
-										{/if}
-									</div>
-								</td>
-								<td>{content_row.type}</td>
-								<td>
-									{#if content_row.published_at}
-										{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
-									{:else}
-										-
-									{/if}
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
+	<section class="admin-panel">
+		<h2>Last 7 days</h2>
+		<AdminTable is_empty={dashboard.activity.length === 0}>
+			{#snippet head()}
+				<th>What</th>
+				<th>When</th>
+			{/snippet}
+			{#each panel_rows('activity', dashboard.activity) as item (item.kind === 'content' ? `c-${item.content_id}-${item.timestamp.getTime()}` : `s-${item.submission_id}`)}
+				<tr>
+					{#if item.kind === 'content'}
+						{@const row = {
+							id: item.content_id,
+							type: item.content_type,
+							show: item.show,
+							video: item.video
+						}}
+						<AdminTitleCell
+							title={item.title}
+							edit_href={edit_href(row)}
+							public_href={to_content_public_href(row)}
+							detail={`${item.was_published ? 'Published' : 'Updated'} · ${humanize_enum(item.content_type)}`}
+						/>
+					{:else}
+						<AdminTitleCell
+							title={item.submitter_name || 'Anon'}
+							edit_href={resolve(
+								`admin/submissions?status=PENDING&submission_type=${item.submission_type}`
+							)}
+							detail={`Submission · ${humanize_enum(item.submission_type)}`}
+						/>
+					{/if}
+					<td class="admin-cell-muted admin-cell-date">
+						{formatDistance(item.timestamp, new Date(), { addSuffix: true })}
+					</td>
+				</tr>
+			{/each}
+			{#snippet empty()}
+				<tr><td colspan="2" class="admin-cell-muted">Nothing happened.</td></tr>
+			{/snippet}
+		</AdminTable>
+		{#if dashboard.activity.length > PANEL_ROWS && !open_panels['activity']}
+			<button type="button" data-intent="quiet" onclick={() => (open_panels['activity'] = true)}>
+				Show all {dashboard.activity.length}
+			</button>
 		{/if}
 	</section>
 </div>

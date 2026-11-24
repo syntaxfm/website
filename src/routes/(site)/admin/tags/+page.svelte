@@ -87,6 +87,12 @@
 		};
 	}
 
+	// The row has edits that aren't saved yet
+	function is_dirty(row: TagListItem): boolean {
+		const draft = draft_by_id[row.id];
+		return Boolean(draft) && (draft.name !== row.name || draft.description !== row.description);
+	}
+
 	function clear_draft(tag_id: string) {
 		const { [tag_id]: _removed, ...rest } = draft_by_id;
 		draft_by_id = rest;
@@ -234,8 +240,8 @@
 			<th>Kind</th>
 			<th>Description</th>
 			<th>Slug</th>
-			<th>Usage count</th>
-			<th>Actions</th>
+			<th class="admin-cell-number">Used</th>
+			<th><span class="admin-visually-hidden">Actions</span></th>
 		{/snippet}
 
 		{#snippet table_body()}
@@ -251,12 +257,13 @@
 							oninput={(event) => set_draft(row.id, { ...draft, name: event.currentTarget.value })}
 						/>
 					</td>
-					<td>{row.kind ? KIND_LABELS[row.kind] : KIND_LABELS.LEGACY}</td>
+					<td class="admin-cell-muted">{row.kind ? KIND_LABELS[row.kind] : KIND_LABELS.LEGACY}</td>
 					<td>
 						{#if row.kind === 'TOPIC'}
 							<textarea
 								aria-label={`Description of ${row.name}`}
-								rows="2"
+								rows="1"
+								placeholder="Add a description"
 								value={draft.description}
 								disabled={row_busy[row.id]}
 								oninput={(event) =>
@@ -264,10 +271,12 @@
 							></textarea>
 						{/if}
 					</td>
-					<td>/{row.slug}</td>
-					<td><a href={resolve(`admin/tags/${row.id}`)}>{row.content_count}</a></td>
-					<td>
-						<div class="admin-control-row">
+					<td class="admin-cell-muted">/{row.slug}</td>
+					<td class="admin-cell-number">
+						<a href={resolve(`admin/tags/${row.id}`)}>{row.content_count}</a>
+					</td>
+					<td class="admin-cell-actions">
+						{#if is_dirty(row)}
 							<button
 								type="button"
 								data-intent="primary"
@@ -276,14 +285,14 @@
 							>
 								{row_busy[row.id] ? 'Saving…' : 'Save'}
 							</button>
-							<AdminConfirmDialog
-								title={`Delete ${row.name}?`}
-								description="This permanently deletes the tag and cannot be undone."
-								action_label="Delete tag"
-								trigger_label="Delete"
-								onconfirm={() => remove_tag(row)}
-							/>
-						</div>
+						{/if}
+						<AdminConfirmDialog
+							title={`Delete ${row.name}?`}
+							description="This permanently deletes the tag and cannot be undone."
+							action_label="Delete tag"
+							trigger_label="Delete"
+							onconfirm={() => remove_tag(row)}
+						/>
 					</td>
 				</tr>
 			{/each}

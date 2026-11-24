@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import AdminTable from './AdminTable.svelte';
 
 	type TableBodyParams = {
 		// The row's checkbox cell; only lists with bulk actions render it
@@ -158,39 +159,23 @@
 		{/if}
 	</div>
 
-	<div class="admin-table-container table-container">
-		<table>
-			<thead>
-				<tr>
-					{#if bulk}
-						<th>
-							<input
-								type="checkbox"
-								aria-label="Select all rows on this page"
-								checked={all_visible_selected}
-								{indeterminate}
-								onchange={(event) => toggle_all_visible(event.currentTarget.checked)}
-							/>
-						</th>
-					{/if}
-					{@render table_head()}
-				</tr>
-			</thead>
-			<tbody>
-				{#if visible_ids.length === 0}
-					{#if empty}
-						{@render empty()}
-					{:else}
-						<tr>
-							<td>No items found.</td>
-						</tr>
-					{/if}
-				{:else}
-					{@render table_body({ select_cell })}
-				{/if}
-			</tbody>
-		</table>
-	</div>
+	<AdminTable is_empty={visible_ids.length === 0} {empty}>
+		{#snippet head()}
+			{#if bulk}
+				<th>
+					<input
+						type="checkbox"
+						aria-label="Select all rows on this page"
+						checked={all_visible_selected}
+						{indeterminate}
+						onchange={(event) => toggle_all_visible(event.currentTarget.checked)}
+					/>
+				</th>
+			{/if}
+			{@render table_head()}
+		{/snippet}
+		{@render table_body({ select_cell })}
+	</AdminTable>
 
 	{#if total_pages > 1}
 		<div class="admin-list-meta">

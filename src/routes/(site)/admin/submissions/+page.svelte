@@ -208,7 +208,7 @@
 				<th>Body</th>
 				<th>Received</th>
 				<th>Status</th>
-				<th>Actions</th>
+				<th><span class="admin-visually-hidden">Actions</span></th>
 			{/snippet}
 
 			{#snippet table_body({ select_cell })}
@@ -223,7 +223,7 @@
 								<p>{submission.body.trim()}</p>
 							</details>
 						</td>
-						<td class="admin-cell-muted">
+						<td class="admin-cell-muted admin-cell-date">
 							{formatDistance(new Date(submission.created_at), new Date(), {
 								addSuffix: true
 							})}
@@ -237,7 +237,7 @@
 								onselect={(next_status) => set_submission_status(submission.id, next_status)}
 							/>
 						</td>
-						<td>
+						<td class="admin-cell-actions">
 							{#if submission.status === 'COMPLETED'}
 								<button
 									type="button"
@@ -250,7 +250,6 @@
 							{:else}
 								<button
 									type="button"
-									data-intent="primary"
 									disabled={busy}
 									onclick={() => set_submission_status(submission.id, 'COMPLETED')}
 								>

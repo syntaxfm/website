@@ -261,28 +261,28 @@
 		font-variation-settings: normal;
 	}
 
-	.admin :is(button, a.button):hover:not(:disabled, [aria-disabled='true']) {
+	.admin :where(button, a.button):hover:not(:disabled, [aria-disabled='true']) {
 		color: var(--admin-fg);
 		background-color: var(--admin-surface-strong);
 		border-color: var(--admin-border-strong);
 	}
 
-	.admin :is(button, a.button):active:not(:disabled, [aria-disabled='true']) {
+	.admin :where(button, a.button):active:not(:disabled, [aria-disabled='true']) {
 		transform: translateY(1px);
 	}
 
-	.admin :is(button, a.button)[data-intent='primary'] {
+	.admin :where(button, a.button)[data-intent='primary'] {
 		color: var(--c-bg);
 		background-color: var(--c-fg);
 		border-color: var(--c-fg);
 	}
 
-	.admin :is(button, a.button)[data-intent='quiet'] {
+	.admin :where(button, a.button)[data-intent='quiet'] {
 		background-color: transparent;
 		border-color: transparent;
 	}
 
-	.admin :is(button, a.button)[data-intent='danger'],
+	.admin :where(button, a.button)[data-intent='danger'],
 	.admin-danger :is(button, a.button) {
 		color: var(--admin-danger);
 		background-color: var(--admin-danger-surface);
@@ -448,14 +448,25 @@
 		--stack-gap: var(--pad-small);
 	}
 
-	.admin-inline-form {
+	/* A one-line form, such as "new tag": the text field grows, the rest keep their size */
+	.admin .admin-inline-form {
 		display: flex;
-		gap: var(--pad-xsmall);
+		gap: var(--pad-small);
 		flex-wrap: wrap;
-	}
 
-	.admin-inline-form > :is(input, select) {
-		flex: 1 1 16rem;
+		> :is(input, select, button) {
+			block-size: var(--admin-control-height);
+			font-size: var(--fs-2);
+		}
+
+		> input {
+			flex: 1 1 16rem;
+		}
+
+		> select {
+			flex: 0 0 auto;
+			width: auto;
+		}
 	}
 
 	.admin-row {
@@ -517,6 +528,99 @@
 		background-color: var(--admin-surface);
 	}
 
+	/* Big-number tiles that link to the list behind the number */
+	.admin-stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		gap: var(--pad-small);
+	}
+
+	.admin-stat {
+		display: flex;
+		flex-direction: column;
+		gap: var(--pad-xsmall);
+		padding: var(--pad-medium);
+		font-size: var(--fs-2);
+		color: var(--admin-muted);
+		border: 1px solid var(--admin-border);
+		border-radius: var(--br-small);
+
+		> strong {
+			font-size: var(--fs-7);
+			line-height: 1;
+			color: var(--admin-fg);
+		}
+
+		&:hover {
+			border-color: var(--admin-accent);
+		}
+	}
+
+	/* Small count links, such as pending submissions by type */
+	.admin-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--pad-xsmall);
+
+		> a {
+			display: inline-flex;
+			gap: var(--pad-xsmall);
+			padding: var(--pad-xsmall) var(--pad-small);
+			font-size: var(--fs-2);
+			color: var(--admin-muted);
+			background-color: var(--admin-surface);
+			border-radius: var(--br-small);
+
+			&:hover {
+				color: var(--admin-fg);
+				background-color: var(--admin-surface-strong);
+			}
+		}
+
+		strong {
+			color: var(--admin-fg);
+		}
+	}
+
+	/* Dashboard panels side by side where there's room */
+	.admin-dashboard {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+		gap: var(--pad-large);
+		align-items: start;
+	}
+
+	/* A titled table: heading and its "All →" link on one line, the table under them */
+	.admin .admin-panel {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: baseline;
+		gap: var(--pad-small);
+		padding: 0;
+		border: 0;
+	}
+
+	.admin-panel > h2 {
+		font-size: var(--fs-3);
+	}
+
+	.admin-panel > a {
+		font-size: var(--fs-2);
+		color: var(--admin-muted);
+
+		&:hover {
+			color: var(--admin-accent);
+		}
+	}
+
+	.admin-panel > :is(.admin-table-container, button) {
+		grid-column: 1 / -1;
+	}
+
+	.admin-panel > button {
+		justify-self: start;
+	}
+
 	/* The checkbox column hugs its box */
 	.admin :is(th, td):has(> input[type='checkbox']:only-child) {
 		width: 1px;
@@ -559,6 +663,78 @@
 
 	.admin-cell-muted {
 		color: var(--admin-muted);
+	}
+
+	.admin-cell-number {
+		text-align: end;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Controls inside a row are compact, so rows stay one line tall */
+	.admin td :is(button, a.button) {
+		min-height: 2rem;
+		padding: var(--pad-xsmall) var(--pad-small);
+	}
+
+	/* Row actions sit at the end, small, and quiet until needed */
+	.admin-cell-actions {
+		text-align: end;
+		white-space: nowrap;
+
+		> * + * {
+			margin-inline-start: var(--pad-xsmall);
+		}
+
+		/* Muted until its row is hovered, so a column of Deletes doesn't shout */
+		[data-intent='danger'] {
+			color: var(--admin-muted);
+			background-color: transparent;
+			border-color: transparent;
+
+			tr:is(:hover, :focus-within) & {
+				color: var(--admin-danger);
+			}
+
+			&:hover:not(:disabled) {
+				background-color: var(--admin-danger-surface);
+				border-color: var(--admin-danger);
+			}
+		}
+	}
+
+	/* Fields edited in place read as plain text until hovered or focused */
+	.admin td > :is(input[type='text'], textarea) {
+		min-width: 12rem;
+		min-height: 2rem;
+		padding: var(--pad-xsmall) var(--pad-small);
+		font-size: inherit;
+		background-color: transparent;
+		border-color: transparent;
+	}
+
+	.admin td > textarea {
+		min-height: 2rem;
+		resize: none;
+		field-sizing: content;
+	}
+
+	.admin td > :is(input[type='text'], textarea):is(:hover, :focus) {
+		background-color: var(--admin-bg);
+		border-color: var(--admin-border-strong);
+	}
+
+	/* Expandable text inside a table cell, such as a submission's message */
+	.admin td details:is(*, :last-child) {
+		padding: 0;
+		border: 0;
+
+		> summary {
+			font-variation-settings: normal;
+		}
+
+		&[open] > summary {
+			margin: 0;
+		}
 	}
 
 	.admin-cell-date {
