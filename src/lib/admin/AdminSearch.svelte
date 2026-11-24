@@ -18,19 +18,22 @@
 		search_timer = setTimeout(() => on_input?.(value), SEARCH_DELAY_MS);
 	}
 
-	function search_now(event: SubmitEvent): void {
+	// Enter searches at once. Not a <form>, so it can sit inside an editor's form.
+	function search_on_enter(event: KeyboardEvent & { currentTarget: HTMLInputElement }): void {
+		if (event.key !== 'Enter') return;
 		event.preventDefault();
 		clearTimeout(search_timer);
-		on_input?.(text);
+		on_input?.(event.currentTarget.value);
 	}
 </script>
 
-<form class="admin-search" role="search" onsubmit={search_now}>
+<search class="admin-search">
 	<input
 		type="search"
 		bind:value={text}
 		oninput={(event) => search_soon(event.currentTarget.value)}
+		onkeydown={search_on_enter}
 		{placeholder}
 		aria-label={label}
 	/>
-</form>
+</search>

@@ -1,3 +1,6 @@
+/* Rule order here follows the page, not specificity: many rules style different elements that
+   happen to share a selector shape (a card's buttons vs. the pager's), so this check only adds noise. */
+/* stylelint-disable no-descending-specificity */
 @layer admin {
 	/* The admin menu arrives once the page's scripts have asked who is signed in. An admin's browser
 	   marks the page before it paints (app.html), and this keeps the menu's room until then, so the
@@ -47,6 +50,12 @@
 		--stack-gap: var(--pad-medium);
 	}
 
+	/* bass.css has boxes inherit box-sizing; inside <details> they'd inherit the browser's
+	   content-box through its hidden slot, so fields there grew past their width */
+	.admin details * {
+		box-sizing: border-box;
+	}
+
 	/* Links leave the admin through an explicit icon (.admin-link-out), not the site's ↗ suffix */
 	.admin a[href^='http']::after {
 		content: none;
@@ -55,6 +64,19 @@
 	.admin :is(h1, h2, h3, h4, h5, h6) {
 		margin: 0;
 		font-variation-settings: var(--fv-700);
+	}
+
+	/* One heading scale for every admin page, whatever class a page put on it */
+	.admin h1 {
+		font-size: var(--fs-6);
+	}
+
+	.admin h2 {
+		font-size: var(--fs-4);
+	}
+
+	.admin :is(h3, h4, h5, h6) {
+		font-size: var(--fs-3);
 	}
 
 	.admin :is(p, dd) {
@@ -71,6 +93,69 @@
 		width: 100%;
 	}
 
+	/* An editor's header: back to the list, what you're editing, save state. Sticks under the
+	   admin menu so the save state is always in view. */
+	.admin-editor-header {
+		position: sticky;
+		top: var(--admin-nav-height);
+		z-index: 3;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: var(--pad-medium);
+		align-items: center;
+		padding-block: var(--pad-small);
+		background-color: var(--admin-bg);
+		border-bottom: 1px solid var(--admin-border);
+
+		> h1 {
+			grid-column: 1;
+			font-size: var(--fs-5);
+			line-height: 1.2;
+			overflow-wrap: anywhere;
+		}
+
+		> p {
+			grid-column: 1;
+			font-size: var(--fs-2);
+			color: var(--admin-muted);
+		}
+
+		> .admin-section-nav {
+			grid-column: 1 / -1;
+			padding-block-start: var(--pad-small);
+		}
+	}
+
+	/* Sections jumped to from the header land below it, not under it */
+	.admin:has(.admin-editor-header) [id] {
+		scroll-margin-top: 10rem;
+	}
+
+	.admin-editor-thumbnail {
+		width: min(100%, 20rem);
+		height: auto;
+		border-radius: var(--br-small);
+	}
+
+	.admin-editor-back {
+		grid-column: 1 / -1;
+		justify-self: start;
+		font-size: var(--fs-2);
+		color: var(--admin-muted);
+
+		&:hover {
+			color: var(--admin-accent);
+		}
+	}
+
+	.admin-editor-header-end {
+		grid-column: 2;
+		grid-row: 2 / span 2;
+		display: flex;
+		align-items: center;
+		gap: var(--pad-small);
+	}
+
 	.admin-actions,
 	.admin-control-row,
 	.admin-toolbar,
@@ -81,21 +166,103 @@
 		flex-wrap: wrap;
 	}
 
+	/* An input with its button (slug + Regenerate, date + Clear) stays on one line */
+	.admin .admin-control-row > :is(input, select) {
+		flex: 1 1 10rem;
+		width: auto;
+	}
+
 	.admin-actions {
 		justify-content: flex-end;
 	}
 
+	/* Jump links to an editor's sections */
 	.admin-section-nav {
 		display: flex;
-		gap: var(--pad-xsmall);
+		gap: var(--pad-medium);
 		flex-wrap: wrap;
-		padding-block-end: var(--pad-small);
-		border-bottom: 1px solid var(--admin-border);
+		font-size: var(--fs-2);
+
+		> a {
+			color: var(--admin-muted);
+
+			&:hover {
+				color: var(--admin-accent);
+			}
+		}
 	}
 
-	.admin-section-nav :is(a, button) {
-		min-height: 2rem;
-		padding: var(--pad-xsmall) var(--pad-small);
+	/* Guests and hosts side by side */
+	.admin-people {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+		gap: var(--pad-large);
+	}
+
+	/* A short list of picked things (or search results), each with its one button */
+	.admin-pick-list {
+		display: grid;
+		padding: 0;
+		margin: 0;
+		font-size: var(--fs-2);
+
+		> li {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--pad-small);
+			min-height: 2.5rem;
+			list-style: none;
+			border-bottom: 1px solid var(--admin-border);
+		}
+
+		button {
+			min-height: 2rem;
+			padding: var(--pad-xsmall) var(--pad-small);
+		}
+	}
+
+	/* Editable items (AI summary entries, links, tweets): fields in a row, actions at the end */
+	.admin-item-list {
+		display: grid;
+		gap: var(--pad-small);
+		padding: 0;
+		margin: 0;
+
+		> li {
+			list-style: none;
+		}
+	}
+
+	:is(.admin-item-list > li, .admin-item-add) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: end;
+		gap: var(--pad-small);
+		padding: var(--pad-small);
+		border: 1px solid var(--admin-border);
+		border-radius: var(--br-small);
+
+		> .admin-field {
+			flex: 1 1 12rem;
+		}
+
+		> .admin-field:has(textarea) {
+			flex-basis: 100%;
+		}
+
+		> .admin-actions {
+			margin-inline-start: auto;
+		}
+
+		button {
+			min-height: 2rem;
+			padding: var(--pad-xsmall) var(--pad-small);
+		}
+	}
+
+	.admin-item-add {
+		border-style: dashed;
 	}
 
 	.admin-editor-layout {
@@ -126,9 +293,13 @@
 		border-top: 1px solid var(--admin-border);
 	}
 
+	/* An editor's first block sits right under its header, which already draws the line */
+	.admin section:is(.admin-editor-layout, .admin-editor-main) {
+		padding-block-start: 0;
+		border-top: 0;
+	}
+
 	.admin-metadata-rail {
-		position: sticky;
-		top: var(--admin-sticky-offset);
 		padding-inline-start: var(--pad-medium);
 		border-inline-start: 1px solid var(--admin-border);
 	}
@@ -138,6 +309,7 @@
 	}
 
 	.admin-field > :is(label, .admin-field-label),
+	.admin label.admin-field,
 	.admin label > span:first-child {
 		font-size: var(--fs-2);
 		font-variation-settings: var(--fv-700);
@@ -168,10 +340,18 @@
 		min-height: var(--admin-control-height);
 		padding: var(--pad-small) var(--pad-medium);
 		font: inherit;
+		font-size: var(--fs-2);
+		font-variation-settings: normal;
 		color: var(--admin-fg);
 		background-color: var(--admin-bg);
 		border: 1px solid var(--admin-border);
 		border-radius: var(--br-small);
+	}
+
+	/* Every one-line control is the same height, whatever its type */
+	.admin :is(input:not([type='checkbox'], [type='radio'], [type='hidden']), select) {
+		block-size: var(--admin-control-height);
+		padding-block: 0;
 	}
 
 	.admin textarea {
@@ -295,37 +475,59 @@
 		border-radius: var(--br-small);
 	}
 
-	.admin-toolbar {
-		padding-block-end: var(--pad-small);
-		border-bottom: 1px solid var(--admin-border);
+	/* Markdown editor: label, formatting buttons and Edit/Preview on one line above the text */
+	.admin .admin-markdown-editor {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto auto;
+		align-items: end;
+		gap: var(--pad-xsmall) var(--pad-small);
+
+		> .admin-toolbar {
+			grid-column: 2;
+		}
+
+		> .admin-tabs {
+			grid-column: 3;
+		}
+
+		> .admin-editor-panel {
+			grid-column: 1 / -1;
+		}
 	}
 
-	.admin-toolbar :is(button, [role='tab']) {
-		min-height: 2rem;
-		padding: var(--pad-xsmall) var(--pad-small);
-	}
-
+	.admin-toolbar,
 	.admin-tabs {
 		display: flex;
-		gap: var(--pad-xsmall);
-		border-bottom: 1px solid var(--admin-border);
+		gap: 2px;
+
+		:is(button, [role='tab']) {
+			min-height: 1.75rem;
+			padding: 0 var(--pad-small);
+			font-size: var(--fs-1);
+			color: var(--admin-muted);
+			background-color: transparent;
+			border-color: transparent;
+		}
 	}
 
-	.admin-tabs [role='tab'] {
-		margin-block-end: -1px;
-		border-bottom-color: transparent;
-		border-end-start-radius: 0;
-		border-end-end-radius: 0;
-	}
+	/* Edit / Preview read as one switch */
+	.admin-tabs {
+		padding: 2px;
+		border: 1px solid var(--admin-border);
+		border-radius: var(--br-small);
 
-	.admin-tabs [role='tab'][aria-selected='true'] {
-		background-color: var(--admin-bg);
-		border-color: var(--admin-border);
-		border-bottom-color: var(--admin-bg);
+		[role='tab'][aria-selected='true'] {
+			color: var(--admin-fg);
+			background-color: var(--admin-surface-strong);
+		}
 	}
 
 	.admin-editor-panel {
 		min-height: 16rem;
+
+		> textarea {
+			font-size: var(--fs-2);
+		}
 	}
 
 	.admin-markdown-preview {
@@ -347,6 +549,8 @@
 		grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
 		gap: var(--pad-small) var(--pad-medium);
 		padding-block: var(--pad-small);
+		font-size: var(--fs-2);
+		overflow-wrap: anywhere;
 		border-block: 1px solid var(--admin-border);
 	}
 
@@ -484,6 +688,7 @@
 	.admin-table-container,
 	.admin .table-container {
 		/* A table wider than the sheet scrolls sideways in its box, never past the page */
+
 		/* Relative, so hidden labels inside are placed in the box and scroll with it */
 		position: relative;
 		max-width: none;
@@ -684,21 +889,22 @@
 		> * + * {
 			margin-inline-start: var(--pad-xsmall);
 		}
+	}
 
-		/* Muted until its row is hovered, so a column of Deletes doesn't shout */
-		[data-intent='danger'] {
-			color: var(--admin-muted);
-			background-color: transparent;
-			border-color: transparent;
+	/* Delete in a row or item card is muted until that row is hovered, so a column of Deletes
+	   doesn't shout */
+	:is(.admin-cell-actions, .admin-item-list) [data-intent='danger'] {
+		color: var(--admin-muted);
+		background-color: transparent;
+		border-color: transparent;
 
-			tr:is(:hover, :focus-within) & {
-				color: var(--admin-danger);
-			}
+		:is(tr, li):is(:hover, :focus-within) & {
+			color: var(--admin-danger);
+		}
 
-			&:hover:not(:disabled) {
-				background-color: var(--admin-danger-surface);
-				border-color: var(--admin-danger);
-			}
+		&:hover:not(:disabled) {
+			background-color: var(--admin-danger-surface);
+			border-color: var(--admin-danger);
 		}
 	}
 
@@ -706,6 +912,7 @@
 	.admin td > :is(input[type='text'], textarea) {
 		min-width: 12rem;
 		min-height: 2rem;
+		block-size: auto;
 		padding: var(--pad-xsmall) var(--pad-small);
 		font-size: inherit;
 		background-color: transparent;

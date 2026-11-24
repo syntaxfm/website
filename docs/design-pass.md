@@ -80,6 +80,10 @@ of them. Pages never hand-write these:
   `AdminDateCell`
 - `content_links.ts`: where a Content item is edited and where it lives in public
 - `AdminTable`: the bare table (head, rows, empty row). `AdminList` uses it; so do the dashboard panels
+- `AdminEditorHeader`: every editor's sticky header — back link, live title, public icon, save
+  state, page actions, section jump links
+- Editor CSS: one control height, input + button rows (slug, date), one-line markdown toolbar,
+  `.admin-pick-list` (guests/hosts), `.admin-item-list` / `.admin-item-add` (AI note items)
 - Row CSS: `.admin-cell-number`, `.admin-cell-actions` (compact, Delete muted until row hover),
   fields in cells read as text until hovered, `.admin-inline-form` for one-line create forms
 
@@ -91,13 +95,13 @@ declared in `app.html`.
 | — | all | Admin menu (`AdminMenu.svelte`) | ⬜ | Overflows at phone width |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
 | 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; action buttons above still need a look |
-| 3 | `/admin/content/podcast/[show_number]` | Podcast editor | ⬜ | |
+| 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |
 | 4 | `/admin/content/podcast/new` | New podcast | ⬜ | |
 | 5 | `/admin/content/podcast/transcripts` | Transcripts | ⬜ | |
 | 6 | `/admin/content/videos` | Video list | ⬜ | |
-| 7 | `/admin/content/videos/[content_id]` | Video editor | ⬜ | |
+| 7 | `/admin/content/videos/[content_id]` | Video editor | 🟨 | Editor header + thumbnail. Waiting on Scott's review |
 | 8 | `/admin/content/articles` | Article list | ⬜ | |
-| 9 | `/admin/content/articles/[content_id]` | Article editor | ⬜ | |
+| 9 | `/admin/content/articles/[content_id]` | Article editor | 🟨 | Editor header; not seen live (no articles in the local DB) |
 | 10 | `/admin` | Dashboard | 🟨 | Number tiles, panels on `AdminTable`, long panels show 8 rows + Show all. Waiting on Scott's review |
 | 11 | `/admin/submissions` | Submissions | 🟨 | Compact in-row status + Close; message preview fixed. Waiting on Scott's review |
 | 12 | `/admin/tags` | Tags | 🟨 | Names/descriptions edit in place, Save only when changed, quiet Delete. Waiting on Scott's review |

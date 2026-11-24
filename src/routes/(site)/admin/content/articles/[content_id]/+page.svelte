@@ -4,7 +4,7 @@
 	import { page as current_page } from '$app/state';
 	import { onDestroy } from 'svelte';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
 	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '#lib/admin/MarkdownEditor.svelte';
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
@@ -167,10 +167,12 @@
 	</div>
 {:else}
 	<div class="admin-page stack">
-		<AdminSaveStatus
-			state={autosave.state}
-			error_message={autosave.error_message}
-			onretry={() => autosave.retry()}
+		<AdminEditorHeader
+			back_href={resolve('admin/content/articles')}
+			back_label="Articles"
+			{title}
+			detail="Article"
+			{autosave}
 		/>
 
 		<form class="admin-editor-layout" onsubmit={handle_submit}>
@@ -220,16 +222,13 @@
 			</aside>
 		</form>
 
-		<section class="admin-section admin-danger">
-			<h2>Delete article</h2>
-			<div class="admin-actions">
-				<AdminConfirmDialog
-					title="Delete article?"
-					description="This permanently deletes the article."
-					action_label="Delete article"
-					onconfirm={handle_delete_article}
-				/>
-			</div>
-		</section>
+		<div class="admin-actions">
+			<AdminConfirmDialog
+				title="Delete article?"
+				description="This permanently deletes the article."
+				action_label="Delete article"
+				onconfirm={handle_delete_article}
+			/>
+		</div>
 	</div>
 {/if}

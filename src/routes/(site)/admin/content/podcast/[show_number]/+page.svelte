@@ -1,14 +1,17 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { onDestroy } from 'svelte';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
-	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
+	import AdminSearch from '#lib/admin/AdminSearch.svelte';
 	import DateTimePicker from '#lib/admin/DateTimePicker.svelte';
 	import MarkdownEditor from '#lib/admin/MarkdownEditor.svelte';
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
 	import SlugEditor from '#lib/admin/SlugEditor.svelte';
 	import StatusSelect from '#lib/admin/StatusSelect.svelte';
 	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
+	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		add_ai_guest,
 		add_ai_summary_entry,
@@ -206,8 +209,6 @@
 	}));
 
 	let syncing_spotify = $state(false);
-	let is_searching_guests = $state(false);
-	let is_searching_hosts = $state(false);
 	let ai_busy = $state(false);
 
 	let status_message = $state('');
@@ -264,7 +265,6 @@
 			return;
 		}
 
-		is_searching_guests = true;
 		clear_feedback();
 
 		try {
@@ -281,8 +281,6 @@
 		} catch (error) {
 			console.error(error);
 			status_error = 'Unable to search guests.';
-		} finally {
-			is_searching_guests = false;
 		}
 	}
 
@@ -458,7 +456,6 @@
 			return;
 		}
 
-		is_searching_hosts = true;
 		clear_feedback();
 
 		try {
@@ -469,8 +466,6 @@
 		} catch (error) {
 			console.error(error);
 			status_error = 'Unable to search users.';
-		} finally {
-			is_searching_hosts = false;
 		}
 	}
 
@@ -889,11 +884,25 @@
 	</div>
 {:else}
 	<div class="admin-page stack">
-		<AdminSaveStatus
-			state={autosave.state}
-			error_message={autosave.error_message}
-			onretry={() => autosave.retry()}
-		/>
+		<AdminEditorHeader
+			back_href={resolve('admin/content/podcast')}
+			back_label="Podcast"
+			{title}
+			detail={`#${show.number} · ${humanize_enum(show.show_type)}`}
+			public_href={resolve(`show/${show.number}/${show.slug}`)}
+			{autosave}
+			sections={[
+				{ id: 'details', label: 'Details' },
+				{ id: 'people', label: 'People' },
+				{ id: 'ai-notes', label: 'AI notes' }
+			]}
+		>
+			{#snippet actions()}
+				<button type="button" onclick={sync_spotify} disabled={syncing_spotify}>
+					{syncing_spotify ? 'Syncing…' : 'Sync Spotify'}
+				</button>
+			{/snippet}
+		</AdminEditorHeader>
 
 		{#if status_message}
 			<p class="admin-feedback" data-tone="positive" role="status">{status_message}</p>
@@ -902,227 +911,166 @@
 			<p class="admin-feedback" data-tone="negative" role="alert">{status_error}</p>
 		{/if}
 
-		<nav class="admin-section-nav" aria-label="Show editor sections">
-			<a class="button" data-intent="quiet" href="#metadata">Metadata</a>
-			<a class="button" data-intent="quiet" href="#people">People</a>
-			<a class="button" data-intent="quiet" href="#media">Media</a>
-			<a class="button" data-intent="quiet" href="#ai-notes">AI notes</a>
-		</nav>
-
 		<form class="admin-editor stack" onsubmit={handle_submit}>
-			<section id="metadata" class="admin-section" aria-labelledby="metadata-heading">
-				<h2 id="metadata-heading" class="h5">Metadata</h2>
-				<div class="admin-editor-layout">
-					<div class="admin-editor-main">
-						<div class="admin-field">
-							<label for="show-title">Title</label>
-							<input
-								id="show-title"
-								name="title"
-								type="text"
-								required
-								bind:value={title}
-								oninput={handle_title_input}
-							/>
-						</div>
-
-						<SlugEditor bind:title bind:slug onchange={handle_slug_change} />
-
-						<div class="admin-field">
-							<label for="show-audio-url">Audio URL</label>
-							<input
-								id="show-audio-url"
-								name="url"
-								type="url"
-								required
-								bind:value={url}
-								oninput={handle_audio_url_input}
-							/>
-						</div>
-
-						<div class="admin-field">
-							<label for="show-youtube-url">YouTube URL</label>
-							<input
-								id="show-youtube-url"
-								name="youtube_url"
-								type="url"
-								bind:value={youtube_url}
-								placeholder="https://www.youtube.com/watch?v=..."
-								oninput={handle_youtube_url_input}
-							/>
-						</div>
-
-						<MarkdownEditor
-							bind:value={show_notes}
-							label="Show notes"
-							rows={18}
-							onchange={handle_show_notes_change}
+			<section id="details" class="admin-editor-layout" aria-label="Details">
+				<div class="admin-editor-main">
+					<div class="admin-field">
+						<label for="show-title">Title</label>
+						<input
+							id="show-title"
+							name="title"
+							type="text"
+							required
+							bind:value={title}
+							oninput={handle_title_input}
 						/>
 					</div>
 
-					<aside class="admin-metadata-rail" aria-label="Show metadata">
-						<StatusSelect {status} onchange={handle_status_change} />
-						<DateTimePicker
-							value={published_at}
-							label="Published at"
-							onchange={handle_published_at_change}
+					<SlugEditor bind:title bind:slug onchange={handle_slug_change} />
+
+					<div class="admin-field">
+						<label for="show-audio-url">Audio URL</label>
+						<input
+							id="show-audio-url"
+							name="url"
+							type="url"
+							required
+							bind:value={url}
+							oninput={handle_audio_url_input}
 						/>
-						{#if show.meta?.id}
-							<MultiSelect
-								options={tag_options}
-								selected_ids={selected_tag_ids}
-								label="Tags"
-								onchange={handle_tag_change}
-							/>
-						{:else}
-							<p class="admin-feedback">Tags require linked content.</p>
-						{/if}
-					</aside>
+					</div>
+
+					<div class="admin-field">
+						<label for="show-youtube-url">YouTube URL</label>
+						<input
+							id="show-youtube-url"
+							name="youtube_url"
+							type="url"
+							bind:value={youtube_url}
+							placeholder="https://www.youtube.com/watch?v=..."
+							oninput={handle_youtube_url_input}
+						/>
+					</div>
+
+					<MarkdownEditor
+						bind:value={show_notes}
+						label="Show notes"
+						rows={18}
+						onchange={handle_show_notes_change}
+					/>
 				</div>
+
+				<aside class="admin-metadata-rail" aria-label="Show settings">
+					<StatusSelect {status} onchange={handle_status_change} />
+					<DateTimePicker
+						value={published_at}
+						label="Published at"
+						onchange={handle_published_at_change}
+					/>
+					{#if show.meta?.id}
+						<MultiSelect
+							options={tag_options}
+							selected_ids={selected_tag_ids}
+							label="Tags"
+							onchange={handle_tag_change}
+						/>
+					{/if}
+				</aside>
 			</section>
 
 			<section id="people" class="admin-section" aria-labelledby="people-heading">
-				<h2 id="people-heading" class="h5">People</h2>
+				<h2 id="people-heading">People</h2>
 
-				<h3>Guests</h3>
-				<div class="admin-field">
-					<label for="guest-search">Find guest</label>
-					<div class="admin-control-row">
-						<input
-							id="guest-search"
-							type="search"
-							bind:value={guest_search_text}
-							onkeydown={(event) => {
-								if (event.key === 'Enter') {
-									event.preventDefault();
-									void run_guest_search();
-								}
+				<div class="admin-people">
+					<div class="admin-field">
+						<h3>Guests</h3>
+						<AdminSearch
+							text={guest_search_text}
+							label="Find a guest"
+							placeholder="Find a guest"
+							on_input={(value) => {
+								guest_search_text = value;
+								void run_guest_search();
 							}}
 						/>
-						<button
-							type="button"
-							data-intent="quiet"
-							onclick={run_guest_search}
-							disabled={is_searching_guests}
-						>
-							{is_searching_guests ? 'Searching…' : 'Search'}
-						</button>
+						{#if guest_search_text && guest_search_results.length > 0}
+							<ul class="admin-pick-list" aria-label="Guest search results">
+								{#each guest_search_results as guest_item (guest_item.id)}
+									{@const is_added = selected_guest_ids.includes(guest_item.id)}
+									<li>
+										{guest_item.name}
+										<button type="button" onclick={() => add_guest(guest_item)} disabled={is_added}>
+											{is_added ? 'Added' : 'Add'}
+										</button>
+									</li>
+								{/each}
+							</ul>
+						{/if}
+						<ul class="admin-pick-list" aria-label="Guests on this show">
+							{#each selected_guest_ids as guest_id (guest_id)}
+								<li>
+									{guest_lookup[guest_id]?.name ?? guest_id}
+									<button type="button" data-intent="quiet" onclick={() => remove_guest(guest_id)}
+										>Remove</button
+									>
+								</li>
+							{:else}
+								<li class="admin-cell-muted">No guests</li>
+							{/each}
+						</ul>
 					</div>
-				</div>
 
-				{#if guest_search_results.length > 0}
-					<ul class="no-list stack" aria-label="Guest search results">
-						{#each guest_search_results as guest_item (guest_item.id)}
-							<li class="admin-control-row">
-								<span>{guest_item.name} /{guest_item.name_slug}</span>
-								<button
-									type="button"
-									data-intent="primary"
-									onclick={() => add_guest(guest_item)}
-									disabled={selected_guest_ids.includes(guest_item.id)}
-								>
-									{selected_guest_ids.includes(guest_item.id) ? 'Added' : 'Add'}
-								</button>
-							</li>
-						{/each}
-					</ul>
-				{/if}
-
-				{#if selected_guest_ids.length === 0}
-					<p class="admin-feedback">No guests selected.</p>
-				{:else}
-					<ul class="no-list stack" aria-label="Selected guests">
-						{#each selected_guest_ids as guest_id (guest_id)}
-							<li class="admin-control-row">
-								<span>{guest_lookup[guest_id]?.name ?? guest_id}</span>
-								<button type="button" data-intent="quiet" onclick={() => remove_guest(guest_id)}
-									>Remove</button
-								>
-							</li>
-						{/each}
-					</ul>
-				{/if}
-
-				<h3>Hosts</h3>
-				<div class="admin-field">
-					<label for="host-search">Find host</label>
-					<div class="admin-control-row">
-						<input
-							id="host-search"
-							type="search"
-							bind:value={host_search_text}
-							onkeydown={(event) => {
-								if (event.key === 'Enter') {
-									event.preventDefault();
-									void run_host_search();
-								}
+					<div class="admin-field">
+						<h3>Hosts</h3>
+						<AdminSearch
+							text={host_search_text}
+							label="Find a host"
+							placeholder="Find a host"
+							on_input={(value) => {
+								host_search_text = value;
+								void run_host_search();
 							}}
 						/>
-						<button
-							type="button"
-							data-intent="quiet"
-							onclick={run_host_search}
-							disabled={is_searching_hosts}
-						>
-							{is_searching_hosts ? 'Searching…' : 'Search'}
-						</button>
+						{#if host_search_text && host_search_results.length > 0}
+							<ul class="admin-pick-list" aria-label="Host search results">
+								{#each host_search_results as candidate (candidate.id)}
+									{@const is_attached = attached_hosts.some(
+										(host_item) => host_item.id === candidate.id
+									)}
+									<li>
+										{host_label(candidate)}
+										<button
+											type="button"
+											onclick={() => attach_host(candidate)}
+											disabled={is_attached}
+										>
+											{is_attached ? 'Added' : 'Add'}
+										</button>
+									</li>
+								{/each}
+							</ul>
+						{/if}
+						<ul class="admin-pick-list" aria-label="Hosts on this show">
+							{#each attached_hosts as host_item (host_item.id)}
+								<li>
+									{host_label(host_item)}
+									<button
+										type="button"
+										data-intent="quiet"
+										onclick={() => detach_host(host_item.id)}>Remove</button
+									>
+								</li>
+							{:else}
+								<li class="admin-cell-muted">No hosts</li>
+							{/each}
+						</ul>
 					</div>
-				</div>
-
-				{#if host_search_results.length > 0}
-					<ul class="no-list stack" aria-label="Host search results">
-						{#each host_search_results as candidate (candidate.id)}
-							{@const already_attached = attached_hosts.some(
-								(host_item) => host_item.id === candidate.id
-							)}
-							<li class="admin-control-row">
-								<span>{host_label(candidate)}{candidate.email ? ` · ${candidate.email}` : ''}</span>
-								<button
-									type="button"
-									data-intent="primary"
-									onclick={() => attach_host(candidate)}
-									disabled={already_attached}
-								>
-									{already_attached ? 'Attached' : 'Attach'}
-								</button>
-							</li>
-						{/each}
-					</ul>
-				{/if}
-
-				{#if attached_hosts.length === 0}
-					<p class="admin-feedback">No hosts attached.</p>
-				{:else}
-					<ul class="no-list stack" aria-label="Attached hosts">
-						{#each attached_hosts as host_item (host_item.id)}
-							<li class="admin-control-row">
-								<span>{host_label(host_item)}</span>
-								<button type="button" data-intent="quiet" onclick={() => detach_host(host_item.id)}
-									>Remove</button
-								>
-							</li>
-						{/each}
-					</ul>
-				{/if}
-			</section>
-
-			<section id="media" class="admin-section" aria-labelledby="media-heading">
-				<div class="admin-control-row">
-					<h2 id="media-heading" class="h5">Media</h2>
-					<button
-						type="button"
-						data-intent="primary"
-						onclick={sync_spotify}
-						disabled={syncing_spotify}
-					>
-						{syncing_spotify ? 'Syncing Spotify…' : 'Sync Spotify'}
-					</button>
 				</div>
 			</section>
 		</form>
 
 		<section id="ai-notes" class="admin-section" aria-labelledby="ai-notes-heading">
-			<h2 id="ai-notes-heading" class="h5">AI Notes</h2>
+			<h2 id="ai-notes-heading">AI notes</h2>
 
 			{#if !has_transcript}
 				<p class="admin-feedback">Transcript required to generate AI notes.</p>
@@ -1212,9 +1160,9 @@
 					{#if ai_show_note.summary.length === 0}
 						<p class="admin-feedback">No summary entries.</p>
 					{:else}
-						<ul class="no-list stack">
+						<ul class="admin-item-list">
 							{#each ai_show_note.summary as entry (entry.id)}
-								<li class="stack">
+								<li>
 									<label class="admin-field">
 										Time
 										<input type="text" bind:value={entry.time} />
@@ -1250,7 +1198,7 @@
 						</ul>
 					{/if}
 					<form
-						class="stack"
+						class="admin-item-add"
 						onsubmit={(event) => {
 							event.preventDefault();
 							void add_summary_entry_row();
@@ -1278,9 +1226,9 @@
 					{#if ai_show_note.tweets.length === 0}
 						<p class="admin-feedback">No tweets.</p>
 					{:else}
-						<ul class="no-list stack">
+						<ul class="admin-item-list">
 							{#each ai_show_note.tweets as tweet (tweet.id)}
-								<li class="stack">
+								<li>
 									<label class="admin-field">
 										Content
 										<textarea bind:value={tweet.content} rows="3" maxlength="350"></textarea>
@@ -1308,7 +1256,7 @@
 						</ul>
 					{/if}
 					<form
-						class="stack"
+						class="admin-item-add"
 						onsubmit={(event) => {
 							event.preventDefault();
 							void add_tweet_row();
@@ -1327,9 +1275,9 @@
 					{#if ai_show_note.links.length === 0}
 						<p class="admin-feedback">No links.</p>
 					{:else}
-						<ul class="no-list stack">
+						<ul class="admin-item-list">
 							{#each ai_show_note.links as link_row (link_row.id)}
-								<li class="stack">
+								<li>
 									<label class="admin-field">
 										Name
 										<input type="text" bind:value={link_row.name} />
@@ -1365,7 +1313,7 @@
 						</ul>
 					{/if}
 					<form
-						class="stack"
+						class="admin-item-add"
 						onsubmit={(event) => {
 							event.preventDefault();
 							void add_link_row();
@@ -1392,9 +1340,9 @@
 					{#if ai_show_note.guests.length === 0}
 						<p class="admin-feedback">No AI-detected guests.</p>
 					{:else}
-						<ul class="no-list stack">
+						<ul class="admin-item-list">
 							{#each ai_show_note.guests as ai_guest_row (ai_guest_row.id)}
-								<li class="stack">
+								<li>
 									<label class="admin-field">
 										Name
 										<input type="text" bind:value={ai_guest_row.name} />
@@ -1422,7 +1370,7 @@
 						</ul>
 					{/if}
 					<form
-						class="stack"
+						class="admin-item-add"
 						onsubmit={(event) => {
 							event.preventDefault();
 							void add_ai_guest_row();
@@ -1441,9 +1389,9 @@
 					{#if ai_show_note.topics.length === 0}
 						<p class="admin-feedback">No topics.</p>
 					{:else}
-						<ul class="no-list stack">
+						<ul class="admin-item-list">
 							{#each ai_show_note.topics as topic_row (topic_row.id)}
-								<li class="stack">
+								<li>
 									<label class="admin-field">
 										Name
 										<input type="text" bind:value={topic_row.name} />
@@ -1471,7 +1419,7 @@
 						</ul>
 					{/if}
 					<form
-						class="stack"
+						class="admin-item-add"
 						onsubmit={(event) => {
 							event.preventDefault();
 							void add_topic_row();

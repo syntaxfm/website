@@ -157,13 +157,16 @@
 <div class="admin-field admin-markdown-editor">
 	<label for={id}>{label}</label>
 
-	<div class="admin-toolbar" role="toolbar" aria-label="Markdown formatting">
-		<button type="button" onclick={make_h2} title="Insert heading level two">Heading</button>
-		<button type="button" onclick={make_bold} title="Insert bold markdown">Bold</button>
-		<button type="button" onclick={make_italic} title="Insert italic markdown">Italic</button>
-		<button type="button" onclick={make_link} title="Insert link markdown">Link</button>
-		<button type="button" onclick={make_list_item} title="Insert unordered list item">List</button>
-	</div>
+	{#if active_tab === 'edit'}
+		<div class="admin-toolbar" role="toolbar" aria-label="Markdown formatting">
+			<button type="button" onclick={make_h2} title="Insert heading level two">Heading</button>
+			<button type="button" onclick={make_bold} title="Insert bold markdown">Bold</button>
+			<button type="button" onclick={make_italic} title="Insert italic markdown">Italic</button>
+			<button type="button" onclick={make_link} title="Insert link markdown">Link</button>
+			<button type="button" onclick={make_list_item} title="Insert unordered list item">List</button
+			>
+		</div>
+	{/if}
 
 	<div
 		class="admin-tabs"

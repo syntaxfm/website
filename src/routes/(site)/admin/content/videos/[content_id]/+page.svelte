@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import AdminSaveStatus from '#lib/admin/AdminSaveStatus.svelte';
+	import AdminEditorHeader from '#lib/admin/AdminEditorHeader.svelte';
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
 	import StatusSelect from '#lib/admin/StatusSelect.svelte';
 	import { create_autosave_controller } from '#lib/utils/autosave.svelte.ts';
@@ -79,20 +80,29 @@
 	</div>
 {:else}
 	<div class="admin-page stack">
-		<AdminSaveStatus
-			state={autosave.state}
-			error_message={autosave.error_message}
-			onretry={() => autosave.retry()}
+		<AdminEditorHeader
+			back_href={resolve('admin/content/videos')}
+			back_label="Videos"
+			title={content_item.title}
+			detail="Video · from YouTube"
+			public_href={status === 'PUBLISHED'
+				? resolve(`videos/${content_item.slug}`)
+				: content_item.video?.url}
+			{autosave}
 		/>
 
 		<div class="admin-editor-layout">
-			<section class="admin-editor-main" aria-labelledby="video-facts-heading">
-				<h2 id="video-facts-heading" class="h5">Video</h2>
-				<p class="admin-source-note">Synced from YouTube</p>
+			<section class="admin-editor-main" aria-label="From YouTube">
+				{#if content_item.video?.thumbnail}
+					<img
+						class="admin-editor-thumbnail"
+						src={content_item.video.thumbnail}
+						alt=""
+						width="320"
+						height="180"
+					/>
+				{/if}
 				<dl class="admin-source-facts">
-					<dt>Title</dt>
-					<dd>{content_item.title}</dd>
-
 					<dt>Page</dt>
 					<dd>
 						{#if status === 'PUBLISHED'}
@@ -132,8 +142,7 @@
 				</dl>
 			</section>
 
-			<aside class="admin-metadata-rail" aria-labelledby="content-metadata-heading">
-				<h2 id="content-metadata-heading" class="h5">Content</h2>
+			<aside class="admin-metadata-rail" aria-label="Video settings">
 				<StatusSelect {status} onchange={handle_status_change} />
 
 				<MultiSelect

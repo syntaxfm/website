@@ -71,14 +71,6 @@
 		previous_title = title;
 		onchange?.(slug);
 	}
-
-	let helper_text = $derived(
-		is_custom_slug
-			? show_regenerate
-				? 'Using custom slug. Click Regenerate to sync from title.'
-				: 'Using custom slug.'
-			: ''
-	);
 </script>
 
 <div class="admin-field">
@@ -94,11 +86,8 @@
 			spellcheck={false}
 			oninput={handle_slug_input}
 		/>
-		{#if show_regenerate}
-			<button type="button" data-intent="quiet" onclick={regenerate_slug}>Regenerate</button>
+		{#if show_regenerate && is_custom_slug}
+			<button type="button" data-intent="quiet" onclick={regenerate_slug}>Match title</button>
 		{/if}
 	</div>
-	{#if helper_text}
-		<p class="admin-field-help">{helper_text}</p>
-	{/if}
 </div>
