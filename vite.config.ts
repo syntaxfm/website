@@ -60,7 +60,9 @@ export default defineConfig(({ mode, command }) => {
 									features: {
 										'nesting-rules': true,
 										'custom-media-queries': true,
-										'media-query-ranges': true
+										'media-query-ranges': true,
+										// Browsers support @layer; the fallback flattens it, so admin.css couldn't restyle components
+										'cascade-layers': false
 									}
 								})
 							]

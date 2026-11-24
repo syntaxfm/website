@@ -7,6 +7,12 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<!-- Cascade layer order, set before any stylesheet so a component's CSS can't load first and
+		     reorder it. Kept the same as src/routes/(site)/style.css. -->
+		<style>
+			@layer reset, bass, base, components, utilities, layout, theme, admin;
+		</style>
+
 		<script>
 			// The visitor's theme (ThemeMaker's `theme` cookie), applied before the first paint. The
 			// server renders the same page for everyone, so it never reads the cookie.

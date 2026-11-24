@@ -7,6 +7,7 @@
 	import AdminSearch from '../AdminSearch.svelte';
 	import AdminConfirmDialog from '#lib/admin/AdminConfirmDialog.svelte';
 	import AdminList from '#lib/admin/AdminList.svelte';
+	import Icon from '#lib/Icon.svelte';
 	import SelectMenu from '#lib/SelectMenu.svelte';
 	import MultiSelect from '#lib/admin/MultiSelect.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
@@ -43,17 +44,19 @@
 
 	type ContentStatusFilter = (typeof STATUS_FILTERS)[number];
 	type ContentTypeFilter = (typeof TYPE_FILTERS)[number];
-	type ContentStatus = (typeof BULK_STATUSES)[number];
 
 	const STATUS_FILTER_OPTIONS = STATUS_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
-		label: value === 'ALL' ? 'All' : value
+		label: humanize_enum(value)
 	}));
 	const TYPE_FILTER_OPTIONS = TYPE_FILTERS.map((value) => ({
 		value: value === 'ALL' ? '' : value,
-		label: value === 'ALL' ? 'All' : value
+		label: humanize_enum(value)
 	}));
-	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({ value, label: value }));
+	const BULK_STATUS_OPTIONS = BULK_STATUSES.map((value) => ({
+		value,
+		label: humanize_enum(value)
+	}));
 
 	let search_text = $derived(read_string(current_page.url.searchParams, 'q'));
 	let status_filter = $derived(
@@ -71,14 +74,6 @@
 	let date_to = $derived(read_string(current_page.url.searchParams, 'date_to'));
 	let tag_id = $derived(read_string(current_page.url.searchParams, 'tag_id'));
 	let page_number = $derived(read_int(current_page.url.searchParams, 'page', 1, { min: 1 }));
-	let bulk_status = $derived(
-		read_picklist<ContentStatus>(
-			current_page.url.searchParams,
-			'bulk_status',
-			BULK_STATUSES,
-			'DRAFT'
-		)
-	);
 	let show_clear_filters = $derived(has_any_filter(current_page.url.searchParams, FILTER_KEYS));
 	let active_tag_name = $derived.by(() => {
 		if (!tag_id) return '';
@@ -135,7 +130,10 @@
 		action_error = '';
 	}
 
-	async function run_bulk_status_update() {
+	async function run_bulk_status_update(value: string) {
+		const status = BULK_STATUSES.find((bulk_status) => bulk_status === value);
+		if (!status) return;
+
 		if (selected_content_ids.length === 0) {
 			action_error = 'Select at least one row first.';
 			return;
@@ -147,9 +145,9 @@
 		try {
 			const result = await bulk_update_status({
 				content_ids: selected_content_ids,
-				status: bulk_status
+				status
 			});
-			action_message = `Updated ${result.count} item(s) to ${bulk_status}.`;
+			action_message = `Set ${result.count} item(s) to ${humanize_enum(status)}.`;
 			selected_content_ids = [];
 			await list_content({
 				search_text,
@@ -331,57 +329,53 @@
 		{busy}
 	>
 		{#snippet filters()}
-			<div class="admin-control-row">
+			<div class="admin-filters">
 				<AdminSearch
 					text={search_text}
 					on_input={(value) => update_url({ q: value || null, page: null })}
 				/>
-				<div class="admin-control-row">
-					<label class="admin-field">
-						<span class="fs-1">From</span>
-						<input
-							type="date"
-							value={date_from}
-							onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
-						/>
-					</label>
-					<label class="admin-field">
-						<span class="fs-1">To</span>
-						<input
-							type="date"
-							value={date_to}
-							onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
-						/>
-					</label>
-					<SelectMenu
-						popover_id="filter-status"
-						button_text={`Status ${status_filter !== 'ALL' ? `(${status_filter})` : ''}`}
-						button_icon="filter"
-						value={status_filter === 'ALL' ? '' : status_filter}
-						options={STATUS_FILTER_OPTIONS}
-						onselect={(value) => update_url({ status: value || null, page: null })}
+				<label class="admin-inline-field">
+					<span>From</span>
+					<input
+						type="date"
+						value={date_from}
+						onchange={(e) => update_url({ date_from: e.currentTarget.value || null, page: null })}
 					/>
-					<SelectMenu
-						popover_id="filter-type"
-						button_text={`Type ${type_filter !== 'ALL' ? `(${type_filter})` : ''}`}
-						button_icon="filter"
-						value={type_filter === 'ALL' ? '' : type_filter}
-						options={TYPE_FILTER_OPTIONS}
-						onselect={(value) => update_url({ type: value || null, page: null })}
+				</label>
+				<label class="admin-inline-field">
+					<span>To</span>
+					<input
+						type="date"
+						value={date_to}
+						onchange={(e) => update_url({ date_to: e.currentTarget.value || null, page: null })}
 					/>
-					{#if tag_id}
-						<a
-							class="button small"
-							data-intent="quiet"
-							href={build_url(current_page.url, { tag_id: null, page: null })}
-						>
-							× Tag{active_tag_name ? `: ${active_tag_name}` : ''}
-						</a>
-					{/if}
-					{#if show_clear_filters}
-						<a class="button small" data-intent="quiet" href={resolve('admin/content')}>× Clear</a>
-					{/if}
-				</div>
+				</label>
+				<SelectMenu
+					popover_id="filter-status"
+					button_text={status_filter === 'ALL' ? 'Status' : humanize_enum(status_filter)}
+					value={status_filter === 'ALL' ? '' : status_filter}
+					options={STATUS_FILTER_OPTIONS}
+					onselect={(value) => update_url({ status: value || null, page: null })}
+				/>
+				<SelectMenu
+					popover_id="filter-type"
+					button_text={type_filter === 'ALL' ? 'Type' : humanize_enum(type_filter)}
+					value={type_filter === 'ALL' ? '' : type_filter}
+					options={TYPE_FILTER_OPTIONS}
+					onselect={(value) => update_url({ type: value || null, page: null })}
+				/>
+				{#if tag_id}
+					<a
+						class="button"
+						data-intent="quiet"
+						href={build_url(current_page.url, { tag_id: null, page: null })}
+					>
+						× Tag{active_tag_name ? `: ${active_tag_name}` : ''}
+					</a>
+				{/if}
+				{#if show_clear_filters}
+					<a class="button" data-intent="quiet" href={resolve('admin/content')}>× Clear</a>
+				{/if}
 			</div>
 		{/snippet}
 
@@ -392,44 +386,23 @@
 				label="Tags"
 				placeholder="Search tags"
 			/>
-			<div class="admin-control-row">
-				<button
-					type="button"
-					data-intent="quiet"
-					onclick={run_bulk_add_tags}
-					disabled={busy || bulk_selected_tag_ids.length === 0}
-				>
-					Add tags
-				</button>
-				<button
-					type="button"
-					data-intent="quiet"
-					onclick={run_bulk_remove_tags}
-					disabled={busy || bulk_selected_tag_ids.length === 0}
-				>
-					Remove tags
-				</button>
-			</div>
-
-			<div class="admin-control-row">
-				<SelectMenu
-					popover_id="filter-bulk_status"
-					button_text={`Bulk status (${bulk_status})`}
-					button_icon="filter"
-					value={bulk_status}
-					options={BULK_STATUS_OPTIONS}
-					onselect={(value) => update_url({ bulk_status: value || null })}
-				/>
-				<button type="button" data-intent="quiet" onclick={run_bulk_status_update} disabled={busy}>
-					Update status
-				</button>
-				<AdminConfirmDialog
-					title="Delete selected content?"
-					description="Selected Articles will be permanently deleted. Other content is skipped: archive Videos instead, since the YouTube sync would bring them back."
-					action_label="Delete selected"
-					onconfirm={run_bulk_delete}
-				/>
-			</div>
+			{#if bulk_selected_tag_ids.length > 0}
+				<button type="button" onclick={run_bulk_add_tags} disabled={busy}>Add tags</button>
+				<button type="button" onclick={run_bulk_remove_tags} disabled={busy}>Remove tags</button>
+			{/if}
+			<SelectMenu
+				popover_id="bulk-status"
+				button_text="Set status"
+				options={BULK_STATUS_OPTIONS}
+				disabled={busy}
+				onselect={(value) => run_bulk_status_update(value)}
+			/>
+			<AdminConfirmDialog
+				title="Delete selected content?"
+				description="Selected Articles will be permanently deleted. Other content is skipped: archive Videos instead, since the YouTube sync would bring them back."
+				action_label="Delete"
+				onconfirm={run_bulk_delete}
+			/>
 		{/snippet}
 
 		{#snippet action_feedback()}
@@ -478,25 +451,32 @@
 							}}
 						/>
 					</td>
-					<td>
-						<div class="admin-row">
-							{#if public_link}
-								<a href={public_link} target="_blank" rel="noopener noreferrer external">
-									{content_row.title}
-								</a>
-							{:else}
-								<p>{content_row.title}</p>
-							{/if}
-							{#if edit_link}
-								<a href={resolve(edit_link)}>Edit</a>
-							{/if}
-						</div>
+					<td class="admin-cell-title">
+						{#if edit_link}
+							<a href={resolve(edit_link)}>{content_row.title}</a>
+						{:else}
+							{content_row.title}
+						{/if}
+						{#if public_link}
+							<a
+								class="admin-link-out"
+								href={public_link}
+								target="_blank"
+								rel="noopener noreferrer external"
+								aria-label={`Open ${content_row.title} on the site`}
+							>
+								<Icon name="link-out" />
+							</a>
+						{/if}
 					</td>
 					<td><StatusBadge status={content_row.status} /></td>
-					<td>{humanize_enum(content_row.type)}</td>
-					<td>
+					<td class="admin-cell-muted">{humanize_enum(content_row.type)}</td>
+					<td class="admin-cell-date">
 						{#if content_row.published_at}
-							{format(content_row.published_at, 'MMM d, yyyy HH:mm')}
+							<time datetime={new Date(content_row.published_at).toISOString()}>
+								{format(content_row.published_at, 'MMM d, yyyy')}
+								<small>{format(content_row.published_at, 'HH:mm')}</small>
+							</time>
 						{:else}
 							-
 						{/if}

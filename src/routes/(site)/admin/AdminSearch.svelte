@@ -6,17 +6,31 @@
 		label?: string;
 	}
 
-	const uid = $props.id();
+	// Long enough that a word is typed before the list reloads
+	const SEARCH_DELAY_MS = 250;
+
 	let { text = '', on_input, placeholder = 'Search', label = 'Search' }: Props = $props();
 
-	function handle_submit(event: SubmitEvent): void {
+	let search_timer: ReturnType<typeof setTimeout> | undefined;
+
+	function search_soon(value: string): void {
+		clearTimeout(search_timer);
+		search_timer = setTimeout(() => on_input?.(value), SEARCH_DELAY_MS);
+	}
+
+	function search_now(event: SubmitEvent): void {
 		event.preventDefault();
+		clearTimeout(search_timer);
 		on_input?.(text);
 	}
 </script>
 
-<form class="admin-search" role="search" onsubmit={handle_submit}>
-	<label class="admin-visually-hidden" for={uid}>{label}</label>
-	<input id={uid} type="search" bind:value={text} {placeholder} />
-	<button type="submit">Search</button>
+<form class="admin-search" role="search" onsubmit={search_now}>
+	<input
+		type="search"
+		bind:value={text}
+		oninput={(event) => search_soon(event.currentTarget.value)}
+		{placeholder}
+		aria-label={label}
+	/>
 </form>

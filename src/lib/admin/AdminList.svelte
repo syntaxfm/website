@@ -105,11 +105,14 @@
 	{/if}
 
 	{#if selected_ids.length > 0 && bulk}
-		<div class="admin-list-bulk" aria-label="Bulk actions">
-			<div class="admin-list-bulk-header">
-				<span class="admin-list-bulk-title">Bulk actions</span>
-				<span class="admin-list-count">{selected_ids.length} selected</span>
-			</div>
+		<div class="admin-list-bulk" role="group" aria-label="Bulk actions">
+			<button
+				type="button"
+				data-intent="quiet"
+				onclick={() => (selected_ids = [])}
+				aria-label="Clear selection">×</button
+			>
+			<strong>{selected_ids.length} selected</strong>
 			{@render bulk()}
 		</div>
 	{/if}
@@ -120,17 +123,31 @@
 
 	{#snippet pager()}
 		<nav class="admin-list-pagination" aria-label="Pagination">
-			<button type="button" onclick={go_previous} disabled={page <= 1 || busy}>Previous</button>
-			<p>Page {page} of {total_pages} ({total} total)</p>
-			<button type="button" onclick={go_next} disabled={page >= total_pages || busy}>Next</button>
+			<p>Page {page} of {total_pages}</p>
+			<button
+				type="button"
+				onclick={go_previous}
+				disabled={page <= 1 || busy}
+				aria-label="Previous page">←</button
+			>
+			<button
+				type="button"
+				onclick={go_next}
+				disabled={page >= total_pages || busy}
+				aria-label="Next page">→</button
+			>
 		</nav>
 	{/snippet}
 
-	{#if total_pages > 1}
-		{@render pager()}
-	{:else}
-		<p class="admin-list-count">{total} {total === 1 ? 'item' : 'items'}</p>
-	{/if}
+	<div class="admin-list-meta">
+		<p class="admin-list-count">
+			{total.toLocaleString()}
+			{total === 1 ? 'item' : 'items'}
+		</p>
+		{#if total_pages > 1}
+			{@render pager()}
+		{/if}
+	</div>
 
 	<div class="admin-table-container table-container">
 		<table>
@@ -156,6 +173,8 @@
 	</div>
 
 	{#if total_pages > 1}
-		{@render pager()}
+		<div class="admin-list-meta">
+			{@render pager()}
+		</div>
 	{/if}
 </div>

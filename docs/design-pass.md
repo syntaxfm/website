@@ -63,3 +63,36 @@ under the epic `iw15n6bh` (Public site design pass); the Dex task is in the last
 ## Admin pages (phase 2 — after public)
 
 21 routes under `/admin/**`. Note: admin keeps Save buttons (exempt from no-Save rule).
+
+Started 2026-11-24. Fix shared pieces in `src/styles/admin.css` and `src/lib/admin/` first, so
+one fix cleans every page that uses them. Admin content sits on a solid sheet (`.admin`) over the
+speckle texture.
+
+Shared pieces done on the Content list: one even filter row (`.admin-filters`,
+`.admin-inline-field`), live search (`AdminSearch`), count + pager row (`.admin-list-meta`),
+sticky one-row bulk bar (`.admin-list-bulk`), flat table rows, title opens the editor with a
+`.admin-link-out` icon to the public page. `SelectMenu` styles live in `@layer components` so
+admin.css can restyle them; the layer order is declared in `app.html`.
+
+| # | Route | Page | Status | Notes |
+|---|-------|------|--------|-------|
+| — | all | Admin menu (`AdminMenu.svelte`) | ⬜ | Overflows at phone width |
+| 1 | `/admin/content` | Content list | 🟨 | Filters, table, bulk bar done. Waiting on Scott's review |
+| 2 | `/admin/content/podcast` | Podcast list | ⬜ | |
+| 3 | `/admin/content/podcast/[show_number]` | Podcast editor | ⬜ | |
+| 4 | `/admin/content/podcast/new` | New podcast | ⬜ | |
+| 5 | `/admin/content/podcast/transcripts` | Transcripts | ⬜ | |
+| 6 | `/admin/content/videos` | Video list | ⬜ | |
+| 7 | `/admin/content/videos/[content_id]` | Video editor | ⬜ | |
+| 8 | `/admin/content/articles` | Article list | ⬜ | |
+| 9 | `/admin/content/articles/[content_id]` | Article editor | ⬜ | |
+| 10 | `/admin` | Dashboard | ⬜ | |
+| 11 | `/admin/submissions` | Submissions | ⬜ | |
+| 12 | `/admin/tags` | Tags | ⬜ | |
+| 13 | `/admin/tags/[id]` | Tag editor | ⬜ | |
+| 14 | `/admin/guests` | Guests | ⬜ | Create row sits above search; 44px vs 40px controls |
+| 15 | `/admin/guests/[id]` | Guest editor | ⬜ | |
+| 16 | `/admin/seo` | SEO tracker | ⬜ | |
+| 17 | `/admin/users` | Users | ⬜ | |
+| 18 | `/admin/users/[user_id]` | User editor | ⬜ | |
+| 19 | `/admin/users/roles` | Roles | ⬜ | |

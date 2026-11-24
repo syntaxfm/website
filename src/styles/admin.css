@@ -39,9 +39,17 @@
 	}
 
 	.admin > .stack,
-	.admin-page,
-	.admin-list {
+	.admin-page {
 		--stack-gap: var(--pad-large);
+	}
+
+	.admin-list {
+		--stack-gap: var(--pad-medium);
+	}
+
+	/* Links leave the admin through an explicit icon (.admin-link-out), not the site's ↗ suffix */
+	.admin a[href^='http']::after {
+		content: none;
 	}
 
 	.admin :is(h1, h2, h3, h4, h5, h6) {
@@ -71,10 +79,6 @@
 		align-items: center;
 		gap: var(--pad-small);
 		flex-wrap: wrap;
-	}
-
-	.admin-list-pagination {
-		justify-content: space-between;
 	}
 
 	.admin-actions {
@@ -228,10 +232,15 @@
 		outline-offset: 2px;
 	}
 
-	.admin :is(button, a.button) {
+	/* :where keeps this light, so any admin component's own button rule wins over it */
+	.admin :where(button, a.button) {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--pad-xsmall);
 		min-height: var(--admin-control-height);
 		padding: var(--pad-small) var(--pad-medium);
 		justify-content: center;
+		white-space: nowrap;
 		font-size: var(--fs-2);
 		font-variation-settings: var(--fv-700);
 		line-height: 1.2;
@@ -244,6 +253,13 @@
 			border-color 120ms ease,
 			color 120ms ease,
 			transform 120ms ease;
+	}
+
+	/* SelectMenu's options keep their menu look */
+	.admin [popover] :is(button, a) {
+		min-height: auto;
+		justify-content: flex-start;
+		font-variation-settings: normal;
 	}
 
 	.admin :is(button, a.button):hover:not(:disabled, [aria-disabled='true']) {
@@ -455,29 +471,12 @@
 		min-width: 0;
 	}
 
-	.admin-list-bulk {
-		padding: var(--pad-medium);
-		background-color: var(--admin-surface);
-		border-block: 1px solid var(--admin-border);
-	}
-
-	.admin-list-bulk-header {
-		display: flex;
-		align-items: baseline;
-		justify-content: space-between;
-		gap: var(--pad-small);
-	}
-
-	.admin-list-bulk-title {
-		font-size: var(--fs-2);
-		font-variation-settings: var(--fv-700);
-	}
-
 	.admin-table-container,
 	.admin .table-container {
 		max-height: min(72vh, 51rem);
+		margin: 0;
 		overflow: auto;
-		border-block: 1px solid var(--admin-border);
+		border-top: 1px solid var(--admin-border);
 	}
 
 	.admin table {
@@ -494,41 +493,148 @@
 		z-index: 1;
 		padding: var(--pad-small);
 		white-space: nowrap;
+		font-size: var(--fs-1);
 		font-variation-settings: var(--fv-700);
+		color: var(--admin-muted);
 		background-color: var(--admin-bg);
-		border-bottom: 1px solid var(--admin-border-strong);
+		border: 0;
+		border-bottom: 1px solid var(--admin-border);
 	}
 
 	.admin tbody td {
 		padding: var(--pad-small);
-		vertical-align: top;
+		vertical-align: middle;
 	}
 
-	.admin tbody tr {
-		background-color: transparent;
-	}
-
+	.admin tbody tr,
 	.admin tbody tr:nth-child(odd) {
-		background-color: var(--admin-surface);
+		background-color: transparent;
+		border-bottom: 1px solid var(--admin-border);
 	}
 
 	.admin tbody tr:hover {
-		background-color: var(--c-yellow-1);
+		background-color: var(--admin-surface);
 	}
 
-	.admin-list-pagination p {
-		font-size: var(--fs-2);
+	/* The checkbox column hugs its box */
+	.admin :is(th, td):has(> input[type='checkbox']:only-child) {
+		width: 1px;
+		line-height: 0;
+	}
+
+	.admin-cell-title {
+		line-height: 1.5;
+	}
+
+	.admin-cell-title > a:not(.admin-link-out):hover {
+		text-decoration: underline;
+		text-decoration-color: var(--admin-accent);
+	}
+
+	.admin-link-out {
+		margin-inline-start: var(--pad-xsmall);
 		color: var(--admin-muted);
+		vertical-align: middle;
+
+		&:hover {
+			color: var(--admin-accent);
+		}
+	}
+
+	.admin-cell-muted {
+		color: var(--admin-muted);
+	}
+
+	.admin-cell-date {
+		white-space: nowrap;
+
+		small {
+			margin-inline-start: var(--pad-xsmall);
+			font-size: inherit;
+			color: var(--admin-muted);
+		}
+	}
+
+	.admin-list-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--pad-small);
+	}
+
+	.admin-list-pagination {
+		margin-inline-start: auto;
+	}
+
+	.admin-list-pagination p,
+	.admin-list-meta > .admin-list-count {
+		font-size: var(--fs-2);
+		white-space: nowrap;
+		color: var(--admin-muted);
+	}
+
+	.admin-list-pagination button {
+		min-width: var(--admin-control-height);
+		padding-inline: var(--pad-small);
+	}
+
+	/* One even row of filters: every control the same height and look */
+	.admin-filters {
+		display: flex;
+		align-items: center;
+		gap: var(--pad-small);
+		flex-wrap: wrap;
 	}
 
 	.admin-search {
 		display: flex;
-		width: 100%;
-		gap: var(--pad-xsmall);
 	}
 
-	.admin-search input {
-		flex: 1 1 16rem;
+	.admin-filters > .admin-search {
+		flex: 1 1 18rem;
+	}
+
+	:is(.admin-filters, .admin-search) :is(input, button) {
+		block-size: var(--admin-control-height);
+		font-size: var(--fs-2);
+	}
+
+	/* A label and its input inside one box, so filters line up without labels above them */
+	.admin-inline-field {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--admin-control-height);
+		padding-inline-start: var(--pad-small);
+		font-size: var(--fs-2);
+		color: var(--admin-muted);
+		background-color: var(--admin-bg);
+		border: 1px solid var(--admin-border);
+		border-radius: var(--br-small);
+
+		&:hover {
+			border-color: var(--admin-border-strong);
+		}
+
+		&:focus-within {
+			outline: 2px solid var(--admin-accent);
+			outline-offset: 2px;
+		}
+
+		> input:is(*, :hover) {
+			width: auto;
+			min-height: 0;
+			block-size: calc(var(--admin-control-height) - 2px);
+			padding-block: 0;
+			padding-inline: var(--pad-small);
+			font-size: var(--fs-2);
+			background-color: transparent;
+			border: 0;
+		}
+
+		/* The box shows focus, so the input inside it doesn't */
+		.admin & > input:focus-visible {
+			outline: none;
+		}
 	}
 
 	.admin-multi-select {
@@ -572,7 +678,9 @@
 
 	.admin-multi-select-options [role='option'] {
 		width: 100%;
+		min-height: 2rem;
 		justify-content: flex-start;
+		font-variation-settings: normal;
 		background-color: transparent;
 		border-color: transparent;
 	}
@@ -585,6 +693,51 @@
 		padding: var(--pad-small);
 		font-size: var(--fs-2);
 		color: var(--admin-muted);
+	}
+
+	/* One row of actions for the selected rows, kept in reach under the admin menu */
+	.admin-list-bulk {
+		position: sticky;
+		top: var(--admin-nav-height);
+		z-index: 2;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		padding: var(--pad-small);
+		font-size: var(--fs-2);
+		background-color: var(--admin-bg);
+		border: 1px solid var(--admin-accent);
+		border-radius: var(--br-small);
+
+		> strong {
+			margin-inline-end: auto;
+		}
+
+		/* The tag picker sits in the row: its label is read out, not shown */
+		.admin-multi-select {
+			flex: 0 1 16rem;
+
+			> label {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+				clip-path: inset(50%);
+				white-space: nowrap;
+			}
+		}
+
+		.admin-multi-select-options {
+			position: absolute;
+			inset-inline: 0;
+			top: calc(var(--admin-control-height) + var(--pad-xsmall));
+			z-index: 1;
+		}
+
+		:is(input, button):not([role='option']) {
+			block-size: var(--admin-control-height);
+			font-size: var(--fs-2);
+		}
 	}
 
 	.admin :is(input, select, textarea):disabled,
@@ -609,8 +762,15 @@
 	}
 
 	@media (--below-med) {
+		/* On phones the sheet reaches close to the screen edge, so the page's gutter isn't doubled */
 		.admin {
-			padding-block-start: var(--pad-small);
+			margin-inline: calc(var(--pad-small) - var(--layout-padding, var(--padding, 2rem)));
+			padding: var(--pad-medium) var(--pad-small);
+		}
+
+		/* Titles keep a readable width; the table scrolls sideways instead */
+		.admin-cell-title {
+			min-width: 14rem;
 		}
 
 		.admin-control-row > :is(input, select, textarea),
@@ -626,16 +786,6 @@
 		.admin-source-facts,
 		.admin form > dl {
 			grid-template-columns: minmax(0, 1fr);
-		}
-
-		.admin-list-pagination {
-			justify-content: center;
-		}
-
-		.admin-list-pagination p {
-			flex-basis: 100%;
-			text-align: center;
-			order: -1;
 		}
 	}
 

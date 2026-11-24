@@ -56,7 +56,6 @@
 		})
 	);
 	let visible_options = $derived(filtered_options.slice(0, VISIBLE_OPTION_LIMIT));
-	let additional_match_count = $derived(filtered_options.length - visible_options.length);
 	let active_option = $derived(visible_options[active_index]);
 	let active_option_id = $derived(active_option ? `${uid}-option-${active_index}` : undefined);
 
@@ -254,10 +253,5 @@
 				{/each}
 			{/if}
 		</div>
-		{#if additional_match_count > 0}
-			<p class="admin-multi-select-empty" role="status">
-				{additional_match_count} more matches. Keep typing to narrow results.
-			</p>
-		{/if}
 	{/if}
 </div>

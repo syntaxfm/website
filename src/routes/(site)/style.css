@@ -15,7 +15,8 @@
 
 /* The main css entry. Primarily used to import stuff */
 
-@layer reset, bass, base, utilities, layout, theme, admin;
+/* `components`: shared components put their default look here, so admin.css can restyle them */
+@layer reset, bass, base, components, utilities, layout, theme, admin;
 
 /* Import all css themes */
 @import '../../styles/reset.css';
