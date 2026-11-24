@@ -2,7 +2,7 @@
 // Deepgram made the transcripts up to #953.
 import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { error } from '@sveltejs/kit';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { XAI_API_KEY } from '$app/env/private';
 import { read } from '$app/server';
 import { db } from '$server/db/client';
@@ -147,21 +147,6 @@ export async function transcribe_audio(
 	return words_from(body);
 }
 
-// Before scripts/backfill-content-links.sql has run, an episode's transcript still links by its
-// number only, so the episode looks untranscribed and the cron would pay Grok to make it again. The
-// row is read as JSON, so this query stays valid once migration 0012 drops show_number (it then
-// finds nothing). Delete it with the backfill script.
-async function has_unlinked_transcript(show_number: number): Promise<boolean> {
-	const [row] = await db.execute<{ found: boolean }>(sql`
-		select exists (
-			select 1 from ${transcript}
-			where ${transcript.content_id} is null
-				and to_jsonb(${transcript}) ->> 'show_number' = ${String(show_number)}
-		) as found
-	`);
-	return Boolean(row?.found);
-}
-
 /**
  * Transcribes a released episode with Grok and saves it. Fails if it already has a transcript,
  * unless replacing it.
@@ -191,12 +176,6 @@ export async function get_transcript(show_number: number, { replace = false } = 
 		error(
 			409,
 			`Transcript for show #${show_number} already exists. Delete it if you want to re-fetch it.`
-		);
-	}
-	if (!active_show.transcript && (await has_unlinked_transcript(show_number))) {
-		error(
-			409,
-			`Show #${show_number}'s transcript isn't linked to its content yet: run scripts/backfill-content-links.sql.`
 		);
 	}
 

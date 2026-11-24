@@ -38,8 +38,9 @@ relying on it.
 ## 2026-11-24 - Guests, hosts, transcripts and AI notes link by content id
 
 **Type**: Additive (0011), then Breaking (0012)
-**Status**: 🚧 In Progress: 0011 and the first backfill pass applied to production 2026-11-24
-(backup `db_exports/prod-pre-0011-content-links-20261124.dump`); deploy, second pass and 0012 pending
+**Status**: ✅ Applied to production 2026-11-24: 0011, backfill (twice), deploy, then 0012
+(backups `db_exports/prod-pre-0011-content-links-20261124.dump`,
+`db_exports/prod-pre-0012-drop-show-links-20261124.dump`)
 **Affects**: content_guests, content_hosts (new), transcripts, ai_show_notes, show_guests and
 show_to_profile (dropped by 0012)
 
@@ -52,7 +53,7 @@ show_to_profile (dropped by 0012)
 - Why: [ADR-0008](./adr/0008-link-by-content-id.md)
 
 ### Migration Script Changes
-- `scripts/backfill-content-links.sql`: copies the old links onto content ids. Safe to run again.
+- `scripts/backfill-content-links.sql` copied the old links onto content ids (deleted after 0012 ran)
 - `scripts/direct-db-migration.js` writes the v2 MySQL links onto content ids
 
 ### Application Code Changes
