@@ -40,6 +40,8 @@
 		if (signed_in_user?.ready) remember_admin(is_admin);
 	});
 
+	let is_admin_route = $derived(Boolean(page.route.id?.startsWith('/(site)/admin')));
+
 	// The video keeps playing across pages, so save where it is before its page goes away
 	beforeNavigate((navigation) => {
 		if (navigation.shallow && navigation.type === 'goto') return;
@@ -81,11 +83,14 @@
 
 	<ThemeMaker />
 
-	<Player />
+	<!-- Hidden, not removed, in the admin: whatever is playing keeps playing out of the way -->
+	<div hidden={is_admin_route}>
+		<Player />
 
-	{#if browser}
-		<GlobalYoutubePlayer />
-	{/if}
+		{#if browser}
+			<GlobalYoutubePlayer />
+		{/if}
+	</div>
 
 	<Toaster />
 

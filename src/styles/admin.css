@@ -1243,12 +1243,19 @@
 			display: none;
 		}
 
+		/* The title on top, the other cells as one muted line of details under it */
 		.admin tbody tr {
+			position: relative;
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
-			gap: var(--pad-xsmall) var(--pad-small);
-			padding-block: var(--pad-small);
+			gap: var(--pad-xsmall) var(--pad-medium);
+			padding-block: var(--pad-medium);
+		}
+
+		/* A selectable row keeps its checkbox in a left column; title and details line up beside it */
+		.admin tbody tr:has(> td > input[type='checkbox']:only-child) {
+			padding-inline-start: calc(1.125rem + var(--pad-medium));
 		}
 
 		.admin tbody td {
@@ -1257,18 +1264,26 @@
 		}
 
 		.admin tbody td:has(> input[type='checkbox']:only-child) {
-			flex: 0 0 auto;
-			order: -2;
+			position: absolute;
+			inset-block-start: var(--pad-medium);
+			inset-inline-start: 0;
 			width: auto;
+			line-height: 1.5;
 		}
 
 		.admin tbody td:is(.admin-cell-title, :has(> input[type='text'])) {
-			flex: 1 1 calc(100% - 3rem);
+			flex: 1 1 100%;
 			order: -1;
+			font-size: var(--fs-3);
 		}
 
 		.admin tbody td:not(.admin-cell-title, :has(> input)) {
 			font-size: var(--fs-1);
+			color: var(--admin-muted);
+		}
+
+		.admin tbody .admin-cell-date small {
+			margin-inline-start: var(--pad-xsmall);
 		}
 
 		/* Longer text, such as a submission's message, gets its own line */
