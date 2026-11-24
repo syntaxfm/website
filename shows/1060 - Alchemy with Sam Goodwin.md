@@ -1,6 +1,6 @@
 ---
 number: 1060
-title: Alchemy with Sam Goodwin
+title: "You Can Build Literally Anything (Alchemy)"
 date: 1796209200000
 url: https://traffic.megaphone.fm/FSI1013143483.mp3
 youtube_url: https://www.youtube.com/watch?v=vIJdaBr7K4s
