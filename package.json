@@ -24,12 +24,17 @@
 		"db:seed": "prisma db seed",
 		"i-changed-the-schema": "pnpm run db:push && pnpm run db:generate",
 		"postinstall": "pnpm db:generate && pnpm exec playwright install",
-		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\""
+		"stylelint": "NODE_OPTIONS=--no-deprecation stylelint \"**/*.css\"",
+		"test:midscene:seed": "node tests/midscene/seed.mjs",
+		"test:midscene:check": "tsc -p tests/midscene/tsconfig.json && cd tests/midscene && midscene-test nodes",
+		"test:midscene": "cd tests/midscene && midscene-test --config midscene.config.ts"
 	},
 	"devDependencies": {
 		"@codecov/sveltekit-plugin": "^2.0.1",
 		"@eslint/compat": "^2.1.1",
 		"@eslint/js": "^10.0.1",
+		"@midscene/test": "1.16.5",
+		"@midscene/web": "1.16.5",
 		"@playwright/test": "^1.64.1",
 		"@sveltejs/kit": "^3.1.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
@@ -44,6 +49,7 @@
 		"eslint": "^10.13.0",
 		"globals": "^17.13.0",
 		"mysql2": "^3.14.1",
+		"playwright": "1.64.1",
 		"postcss": "^8.5.6",
 		"postcss-import": "^17.0.1",
 		"postcss-preset-env": "^11.6.1",

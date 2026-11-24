@@ -8,5 +8,6 @@ allowBuilds:
   bufferutil: true
   esbuild: true
   prisma: true
+  sharp: true
   svelte-preprocess: true
   utf-8-validate: true
