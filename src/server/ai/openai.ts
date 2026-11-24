@@ -1,5 +1,6 @@
 import { formatAsTranscript, getSlimUtterances } from '#lib/transcript/utils.ts';
-import { encode } from 'gpt-3-encoder';
+// Not gpt-3-encoder: it reads its vocabulary from disk through __dirname, which Workers don't have
+import { countTokens } from 'gpt-tokenizer/model/gpt-4';
 import OpenAI from 'openai';
 import type { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
 import wait from 'waait';
@@ -32,7 +33,7 @@ async function condense(
 	}
 ): Promise<SlimUtterance[]> {
 	// Figure out how large the input is
-	const input_tokens_length = encode(`${transcript} ${summarize_prompt}`).length;
+	const input_tokens_length = countTokens(`${transcript} ${summarize_prompt}`);
 	// If its under the limit, return the transcript as is
 	if (input_tokens_length < TOKEN_INPUT_LIMIT || options.skip) {
 		console.log(
@@ -56,7 +57,7 @@ async function condense(
 			const wait_time = Math.floor(Math.random() * 10000);
 			await wait(wait_time);
 			console.time(`Condensing ${index} of ${slim_utterances.length}`);
-			const size = encode(utterance.transcript).length;
+			const size = countTokens(utterance.transcript);
 			// If under 50 chars, leave it alone. Return it via a promise
 			if (utterance.transcript.length < CONDENSE_THRESHOLD) {
 				console.log(`Skipping condensing of ${index} of ${slim_utterances.length}`);
@@ -97,8 +98,8 @@ async function condense(
         `);
 				return Promise.resolve(utterance);
 			}
-			const smaller = encode(condensed || '').length;
-			const original = encode(utterance.transcript).length;
+			const smaller = countTokens(condensed || '');
+			const original = countTokens(utterance.transcript);
 
 			console.log(
 				index,

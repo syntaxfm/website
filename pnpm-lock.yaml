@@ -50,9 +50,9 @@ importers:
       flexsearch:
         specifier: ^0.8.212
         version: 0.8.212
-      gpt-3-encoder:
-        specifier: ^1.1.4
-        version: 1.1.4
+      gpt-tokenizer:
+        specifier: ^4.1.2
+        version: 4.1.2
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -4370,8 +4370,8 @@ packages:
   gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
 
-  gpt-3-encoder@1.1.4:
-    resolution: {integrity: sha512-fSQRePV+HUAhCn7+7HL7lNIXNm6eaFWFbNLOOGtmSJ0qJycyQvj60OvRlH7mee8xAMjBDNRdMXlMwjAbMTDjkg==}
+  gpt-tokenizer@4.1.2:
+    resolution: {integrity: sha512-5GwcLcZd6IqCdrGTTPcoKqbJk8cCWHHsoTHR/uQGZKT29CFcnJEg69qisGbKesQpzxRq9yQO4lBgsaZ8SawcGQ==}
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -10191,7 +10191,7 @@ snapshots:
     dependencies:
       get-intrinsic: 1.2.2
 
-  gpt-3-encoder@1.1.4: {}
+  gpt-tokenizer@4.1.2: {}
 
   graceful-fs@4.2.11:
     optional: true

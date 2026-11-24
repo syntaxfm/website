@@ -105,7 +105,7 @@
 		"drizzle-orm": "^0.45.2",
 		"effect": "4.1.2",
 		"flexsearch": "^0.8.212",
-		"gpt-3-encoder": "^1.1.4",
+		"gpt-tokenizer": "^4.1.2",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.8",
 		"media-chrome": "^4.19.2",
