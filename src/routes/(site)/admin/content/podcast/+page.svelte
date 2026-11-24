@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PODCAST_TABS } from '#lib/admin/admin_tabs.ts';
 	import { goto } from '$app/navigation';
 	import { page as current_page } from '$app/state';
 	import { resolve } from '$app/paths';
@@ -101,7 +102,7 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<AdminPageHeader title="Podcast">
+	<AdminPageHeader title="Podcast" tabs={PODCAST_TABS}>
 		{#snippet actions()}
 			<form action="/webhooks/refresh" method="GET">
 				<button type="submit" data-intent="quiet">Refresh webhook</button>

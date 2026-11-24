@@ -12,15 +12,10 @@
 			text: 'Content',
 			path: '/admin/content',
 			subroutes: [
+				// Transcripts is a tab in the Podcast page header, so the menu stays two rows at most
 				{
 					text: 'Podcast',
-					path: '/admin/content/podcast',
-					subroutes: [
-						{
-							text: 'Transcripts',
-							path: '/admin/content/podcast/transcripts'
-						}
-					]
+					path: '/admin/content/podcast'
 				},
 				{
 					text: 'Video',
@@ -63,21 +58,7 @@
 			// Check if current path is exactly this link
 			if (path_matches(link.path, current_path)) return true;
 
-			// Check if current path is in any subroutes (recursively)
-			if (link.subroutes) {
-				return link.subroutes.some((subroute) => {
-					if (path_matches(subroute.path, current_path)) return true;
-
-					// Check nested subroutes
-					if (subroute.subroutes) {
-						return subroute.subroutes.some((nested) => path_matches(nested.path, current_path));
-					}
-
-					return false;
-				});
-			}
-
-			return false;
+			return link.subroutes?.some((subroute) => path_matches(subroute.path, current_path)) ?? false;
 		});
 	});
 
@@ -87,27 +68,14 @@
 
 		if (!active_parent?.subroutes) return null;
 
-		return active_parent.subroutes.find((subroute) => {
-			if (path_matches(subroute.path, current_path)) return true;
-
-			// Check if current path is in nested subroutes
-			if (subroute.subroutes) {
-				return subroute.subroutes.some((nested) => path_matches(nested.path, current_path));
-			}
-
-			return false;
-		});
+		return active_parent.subroutes.find((subroute) => path_matches(subroute.path, current_path));
 	});
 
 	// Derive whether to show subnav and what subroutes to show
 	let active_subroutes = $derived(active_parent?.subroutes ?? []);
 	let show_subnav = $derived(active_subroutes.length > 0);
 
-	// Derive third level subroutes
-	let active_nested_subroutes = $derived(active_subroute?.subroutes ?? []);
-	let show_nested_subnav = $derived(active_nested_subroutes.length > 0);
-
-	// The menu is pinned to the top, one to three rows tall: --admin-nav-height (variables.css)
+	// The menu is pinned to the top, one or two rows tall: --admin-nav-height (variables.css)
 	// tells whatever else sticks to the top of the page where to stop
 	function publish_height(nav: HTMLElement) {
 		const root = document.documentElement;
@@ -148,18 +116,6 @@
 			{/each}
 		</div>
 	{/if}
-
-	{#if show_nested_subnav}
-		<div class="admin-nested-submenu" aria-label={`${active_subroute?.text} navigation`}>
-			{#each active_nested_subroutes as nested (nested.path + 'admin-nested-subnav')}
-				<a
-					href={resolve(nested.path)}
-					class:active={path_matches(nested.path, page.url.pathname)}
-					aria-current={page.url.pathname === nested.path ? 'page' : undefined}>{nested.text}</a
-				>
-			{/each}
-		</div>
-	{/if}
 </nav>
 
 <style>
@@ -177,8 +133,7 @@
 	}
 
 	.admin-menu,
-	.admin-submenu,
-	.admin-nested-submenu {
+	.admin-submenu {
 		display: flex;
 		overflow-x: auto;
 		gap: var(--pad-medium);
@@ -212,14 +167,9 @@
 		min-block-size: calc(var(--admin-menu-height) - 1px);
 	}
 
-	.admin-submenu,
-	.admin-nested-submenu {
+	.admin-submenu {
 		padding-block: var(--pad-xsmall);
 		background-color: var(--c-fg-05);
 		border-top: 1px solid var(--c-fg-1);
-	}
-
-	.admin-nested-submenu {
-		padding-inline-start: var(--pad-xlarge);
 	}
 </style>

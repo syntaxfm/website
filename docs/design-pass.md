@@ -96,7 +96,7 @@ declared in `app.html`.
 
 | # | Route | Page | Status | Notes |
 |---|-------|------|--------|-------|
-| — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Scrolls sideways on phones; links fade under Report |
+| — | all | Admin menu (`AdminMenu.svelte`) | 🟨 | Two rows at most: sections, then Content/Users sub-pages. Deeper views are header tabs (`AdminPageHeader` `tabs`, e.g. Podcast: Episodes · Transcripts). Scrolls sideways on phones; links fade under Report |
 | 1 | `/admin/content` | Content list | 🟨 | On the shared list pieces. Waiting on Scott's review |
 | 2 | `/admin/content/podcast` | Podcast list | 🟨 | On the shared list pieces; New show / Sync / Refresh in the page header |
 | 3 | `/admin/content/podcast/[show_number]` | Podcast editor | 🟨 | Editor header, live guest/host search, AI notes as item cards. Waiting on Scott's review |

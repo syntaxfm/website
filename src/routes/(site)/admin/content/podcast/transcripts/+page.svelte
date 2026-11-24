@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PODCAST_TABS } from '#lib/admin/admin_tabs.ts';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page as current_page } from '$app/state';
@@ -91,7 +92,7 @@
 </svelte:head>
 
 <div class="admin-page stack">
-	<AdminPageHeader title="Transcripts">
+	<AdminPageHeader title="Podcast" tabs={PODCAST_TABS}>
 		{#snippet actions()}
 			{#if pending_action === 'import'}
 				<button type="button" data-intent="danger" disabled>Delete all</button>
