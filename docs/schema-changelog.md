@@ -38,7 +38,8 @@ relying on it.
 ## 2026-11-24 - Guests, hosts, transcripts and AI notes link by content id
 
 **Type**: Additive (0011), then Breaking (0012)
-**Status**: 🚧 In Progress (local only; production waits on Scott's approval)
+**Status**: 🚧 In Progress: 0011 and the first backfill pass applied to production 2026-11-24
+(backup `db_exports/prod-pre-0011-content-links-20261124.dump`); deploy, second pass and 0012 pending
 **Affects**: content_guests, content_hosts (new), transcripts, ai_show_notes, show_guests and
 show_to_profile (dropped by 0012)
 
