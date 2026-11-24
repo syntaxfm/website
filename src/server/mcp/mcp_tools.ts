@@ -204,6 +204,26 @@ const content_ids_input = Schema.Array(id_input('A content ID (search_content).'
 	.check(Schema.isMinLength(1), Schema.isMaxLength(100))
 	.annotate({ description: 'The content items, 1 to 100.' });
 
+const show_number_input = (description: string) =>
+	Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({ description });
+
+// An episode, named by its content ID or by its number (a draft may have no number yet)
+const show_key_inputs = {
+	content_id: Schema.optionalKey(
+		id_input("The Show's content ID (from create_show or search_shows).")
+	),
+	show_number: Schema.optionalKey(show_number_input('The episode number.'))
+};
+
+function to_show_key(input: { content_id?: string; show_number?: number }): show_editor.ShowKey {
+	if (input.content_id !== undefined && input.show_number !== undefined) {
+		error(400, 'Give content_id or show_number, not both');
+	}
+	if (input.content_id !== undefined) return { content_id: input.content_id };
+	if (input.show_number !== undefined) return { show_number: input.show_number };
+	error(400, 'Give content_id or show_number');
+}
+
 // A tool without arguments: an empty object (Schema.Struct({}) would accept any value)
 const no_input = Schema.Record(
 	Schema.String,
@@ -242,17 +262,13 @@ const search_shows = define_tool({
 const get_show = define_tool({
 	name: 'get_show',
 	description:
-		'One Show by its number: show notes, tags, guests, hosts, and its AI notes (summary, links, topics, tweets). Admins also see unreleased Shows and their status.',
+		'One Show by its content ID or its number: show notes, tags, guests, hosts, and its AI notes (summary, links, topics, tweets). Admins also see unreleased Shows, including drafts without a number.',
 	access: 'signed_in',
 	is_read_only: true,
 	is_idempotent: true,
-	input: Schema.Struct({
-		show_number: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({
-			description: 'The episode number.'
-		})
-	}),
-	run: async (actor, { show_number }) => {
-		const found = await show_editor.get_show(actor, show_number);
+	input: Schema.Struct(show_key_inputs),
+	run: async (actor, input) => {
+		const found = await show_editor.get_show(actor, to_show_key(input));
 		if (!found) error(404, 'Show not found');
 		return project_show_detail(found);
 	}
@@ -558,33 +574,40 @@ const list_seo_opportunities = define_tool({
 const create_show = define_tool({
 	name: 'create_show',
 	description:
-		'Admin only. Creates a Show and its content. Use status DRAFT for a draft; PUBLISHED with a future published_at schedules it.',
+		'Admin only. Creates a Show and its content, and answers with its content_id. A DRAFT may leave out show_number and url (the audio) until they are known; PUBLISHED (with a future published_at it is scheduled) needs both. Add hosts, guests and tags with update_show.',
 	access: 'admin',
 	is_read_only: false,
 	is_idempotent: false,
 	input: Schema.Struct({
-		show_number: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({
-			description: 'The new episode number; must not exist yet.'
-		}),
+		show_number: Schema.optionalKey(
+			Schema.NullOr(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))).annotate({
+				description:
+					'The new episode number; must not exist yet. Null or left out for a draft without one.'
+			})
+		),
 		title: text_input('The episode title.'),
 		slug: text_input('The URL slug, unique across all content.'),
 		status: content_status_input('DRAFT, PUBLISHED or ARCHIVED.'),
 		published_at: published_at_input,
 		show_notes: Schema.String.annotate({ description: 'The show notes, Markdown.' }),
-		url: text_input('The episode audio URL.'),
+		url: Schema.optionalKey(
+			Schema.NullOr(Schema.String).annotate({
+				description: 'The episode audio URL. Null or left out for a draft without audio yet.'
+			})
+		),
 		youtube_url: Schema.optionalKey(
 			Schema.NullOr(Schema.String).annotate({ description: 'The YouTube URL, if any.' })
 		)
 	}),
 	run: (actor, input) =>
 		show_editor.create_show(actor, {
-			show_number: input.show_number,
+			show_number: input.show_number ?? null,
 			title: input.title,
 			slug: input.slug,
 			status: input.status,
 			published_at_iso: input.published_at,
 			show_notes: input.show_notes,
-			url: input.url,
+			url: input.url ?? null,
 			youtube_url: input.youtube_url
 		})
 });
@@ -592,14 +615,17 @@ const create_show = define_tool({
 const update_show = define_tool({
 	name: 'update_show',
 	description:
-		'Admin only. Changes a Show: only the fields you give change. Publish with status PUBLISHED (now, or at a future published_at to schedule). guest_ids and tag_ids replace the whole list.',
+		'Admin only. Changes a Show, named by content_id or show_number: only the fields you give change. new_show_number sets its number (null clears it on a draft). Publish with status PUBLISHED (now, or at a future published_at to schedule); that needs a number and an audio url. host_ids, guest_ids and tag_ids replace the whole list.',
 	access: 'admin',
 	is_read_only: false,
 	is_idempotent: true,
 	input: Schema.Struct({
-		show_number: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)).annotate({
-			description: 'The episode number.'
-		}),
+		...show_key_inputs,
+		new_show_number: Schema.optionalKey(
+			Schema.NullOr(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))).annotate({
+				description: 'A new episode number; must not exist yet. Null clears it (drafts only).'
+			})
+		),
 		title: Schema.optionalKey(text_input('The episode title.')),
 		slug: Schema.optionalKey(text_input('The URL slug, unique across all content.')),
 		status: Schema.optionalKey(content_status_input('DRAFT, PUBLISHED or ARCHIVED.')),
@@ -607,9 +633,18 @@ const update_show = define_tool({
 		show_notes: Schema.optionalKey(
 			Schema.String.annotate({ description: 'The show notes, Markdown.' })
 		),
-		url: Schema.optionalKey(text_input('The episode audio URL.')),
+		url: Schema.optionalKey(
+			Schema.NullOr(Schema.String).annotate({
+				description: 'The episode audio URL; null removes it (drafts only).'
+			})
+		),
 		youtube_url: Schema.optionalKey(
 			Schema.NullOr(Schema.String).annotate({ description: 'The YouTube URL; null removes it.' })
+		),
+		host_ids: Schema.optionalKey(
+			Schema.Array(id_input('A host profile ID (search_hosts).'))
+				.check(Schema.isMaxLength(10))
+				.annotate({ description: "The Show's hosts; replaces the list. [] removes them all." })
 		),
 		guest_ids: Schema.optionalKey(
 			Schema.Array(id_input('A guest ID (search_guests).'))
@@ -621,11 +656,17 @@ const update_show = define_tool({
 		)
 	}),
 	run: async (actor, input) => {
-		const existing = await show_editor.get_show_editor(actor, input.show_number);
+		const content_id = await show_editor.get_show_content_id(to_show_key(input));
+		const existing = await show_editor.get_show_editor(actor, content_id);
 		if (!existing) error(404, 'Show not found');
 
-		return show_editor.update_show(actor, {
-			show_number: input.show_number,
+		// The number first, so a Show given its number can be published in the same call
+		if (input.new_show_number !== undefined) {
+			await show_editor.set_show_number(actor, content_id, input.new_show_number);
+		}
+
+		await show_editor.update_show(actor, {
+			content_id,
 			title: input.title ?? existing.title,
 			slug: input.slug ?? existing.slug,
 			status: input.status ?? existing.meta?.status ?? 'DRAFT',
@@ -634,12 +675,30 @@ const update_show = define_tool({
 					? input.published_at
 					: (existing.meta?.published_at?.toISOString() ?? null),
 			show_notes: input.show_notes ?? existing.show_notes,
-			url: input.url ?? existing.url,
+			url: input.url !== undefined ? input.url : existing.url,
 			youtube_url: input.youtube_url !== undefined ? input.youtube_url : existing.youtube_url,
+			host_ids: input.host_ids ? [...input.host_ids] : undefined,
 			guest_ids: input.guest_ids ? [...input.guest_ids] : undefined,
 			tag_ids: input.tag_ids ? [...input.tag_ids] : undefined
 		});
+		return { success: true, content_id };
 	}
+});
+
+const search_hosts = define_tool({
+	name: 'search_hosts',
+	description:
+		'Admin only. People who can host a Show (Syntax profiles), by username or name, 25 at most. Their IDs go in update_show host_ids.',
+	access: 'admin',
+	is_read_only: true,
+	is_idempotent: true,
+	input: Schema.Struct({ search_text: search_text_input }),
+	run: async (actor, input) =>
+		(await show_editor.search_hosts(actor, input.search_text)).map(({ id, username, name }) => ({
+			id,
+			username,
+			name
+		}))
 });
 
 const update_video = define_tool({
@@ -896,6 +955,7 @@ export const MCP_TOOLS: readonly McpTool[] = [
 	list_seo_opportunities,
 	create_show,
 	update_show,
+	search_hosts,
 	update_video,
 	create_article,
 	update_article,

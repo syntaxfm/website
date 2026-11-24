@@ -1,11 +1,15 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { PUBLIC_URL } from '$app/env/public';
-import { and, count, desc, eq, isNotNull, lte } from 'drizzle-orm';
+import { and, count, desc, eq, isNotNull } from 'drizzle-orm';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { content, content_tags, show, tag } from '$server/db/schema';
 import { llms_txt } from '#lib/seo/llms_txt.ts';
-import { released_content_clause } from '$server/content/released';
+import {
+	has_show_number,
+	released_content_clause,
+	released_show_clause
+} from '$server/content/released';
 
 const LATEST_EPISODE_COUNT = 50;
 const TOPIC_COUNT = 50;
@@ -13,7 +17,7 @@ const TOPIC_COUNT = 50;
 // Three queries (~100 ms each from the Worker), and the answer only changes when a show is
 // released, so the rows are edge cached.
 async function load_llms_rows() {
-	const released = lte(show.date, new Date());
+	const released = released_show_clause();
 	const [episode_count, latest, topics] = await Promise.all([
 		db.$count(show, released),
 		db.query.show.findMany({
@@ -39,7 +43,7 @@ async function load_llms_rows() {
 
 	return {
 		episode_count,
-		latest_episodes: latest.map((episode) => ({
+		latest_episodes: latest.filter(has_show_number).map((episode) => ({
 			number: episode.number,
 			title: episode.title,
 			slug: episode.slug,

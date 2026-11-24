@@ -7,7 +7,7 @@ describe('to_content_edit_path', () => {
 		expect(to_content_edit_path({ id: 'v1', type: 'VIDEO' })).toBe('/admin/content/videos/v1');
 		expect(
 			to_content_edit_path({ id: 'p1', type: 'PODCAST', show: { number: 900, slug: 'x' } })
-		).toBe('/admin/content/podcast/900');
+		).toBe('/admin/content/podcast/p1');
 	});
 
 	it('has no editor for newsletters, or a podcast without its show', () => {

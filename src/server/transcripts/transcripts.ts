@@ -1,4 +1,3 @@
-import type { Show } from '$server/db/types';
 import { db } from '$server/db/client';
 import {
 	transcript as transcripts,
@@ -27,7 +26,7 @@ function in_batches<T>(rows: readonly T[]): T[][] {
  */
 export async function save_transcript_to_db(
 	// The episode's number names its voices; its content id is what the transcript belongs to
-	show: Pick<Show, 'number'> & { content_id: string },
+	show: { number: number; content_id: string },
 	utterances: readonly NewUtterance[],
 	people: string[] = []
 ) {

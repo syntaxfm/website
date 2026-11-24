@@ -3,7 +3,8 @@ import { get_transcript } from '$server/transcripts/grok';
 import { has_auth } from './has_auth';
 import { db } from '$server/db/client';
 import { show as shows } from '$server/db/schema';
-import { and, desc, gt, lte } from 'drizzle-orm';
+import { and, desc, gt } from 'drizzle-orm';
+import { has_show_number, released_show_clause } from '$server/content/released';
 
 // Transcribes the newest released episode that has no transcript yet, one per call
 export const GET = async function transcriptCronHandler({ request }) {
@@ -16,10 +17,10 @@ export const GET = async function transcriptCronHandler({ request }) {
 	const released_shows = await db.query.show.findMany({
 		columns: { number: true, title: true },
 		with: { transcript: { columns: { id: true } } },
-		where: and(gt(shows.number, 700), lte(shows.date, new Date())),
+		where: and(gt(shows.number, 700), released_show_clause()),
 		orderBy: [desc(shows.number)]
 	});
-	const show = released_shows.find((s) => !s.transcript);
+	const show = released_shows.filter(has_show_number).find((s) => !s.transcript);
 	if (!show) {
 		return json({ message: 'No shows without transcripts found.' });
 	}

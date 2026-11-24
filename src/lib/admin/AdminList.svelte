@@ -147,15 +147,16 @@
 				{total.toLocaleString()}
 				{total === 1 ? 'item' : 'items'}
 			</p>
-			{#if message}
-				<p class="admin-feedback" data-tone="positive" role="status">{message}</p>
-			{/if}
-			{#if error}
-				<p class="admin-feedback" data-tone="negative" role="alert">{error}</p>
-			{/if}
-			{#if total_pages > 1}
-				{@render pager()}
-			{/if}
+		{/if}
+		<!-- A failed bulk action keeps its selection, so its error shows while selecting too -->
+		{#if message}
+			<p class="admin-feedback" data-tone="positive" role="status">{message}</p>
+		{/if}
+		{#if error}
+			<p class="admin-feedback" data-tone="negative" role="alert">{error}</p>
+		{/if}
+		{#if !is_selecting && total_pages > 1}
+			{@render pager()}
 		{/if}
 	</div>
 

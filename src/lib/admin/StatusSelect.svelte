@@ -7,6 +7,8 @@
 		id?: string;
 		name?: string;
 		disabled?: boolean;
+		/** False while the item can't go live yet (an episode without its number or audio) */
+		can_publish?: boolean;
 		onchange?: (next_status: Status) => void;
 	}
 
@@ -18,6 +20,7 @@
 		id,
 		name,
 		disabled = false,
+		can_publish = true,
 		onchange
 	}: Props = $props();
 
@@ -54,7 +57,11 @@
 		onchange={handle_status_change}
 	>
 		{#each status_options as option (option.value)}
-			<option value={option.value}>{option.label}</option>
+			<option
+				value={option.value}
+				disabled={option.value === 'PUBLISHED' && !can_publish && status !== 'PUBLISHED'}
+				>{option.label}</option
+			>
 		{/each}
 	</select>
 </div>

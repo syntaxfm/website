@@ -2,8 +2,9 @@ import { CRON_SECRET } from '$app/env/private';
 import { db } from '$server/db/client';
 import { content } from '$server/db/schema';
 import { error, json } from '@sveltejs/kit';
-import { and, eq, lte, sql } from 'drizzle-orm';
+import { and, eq, lte, notInArray, sql } from 'drizzle-orm';
 import type { RequestHandler } from './$types';
+import { unpublishable_episode_content_ids } from '$server/shows/episode_publishing';
 
 export const POST: RequestHandler = async ({ request, url }) => {
 	const cron_secret = CRON_SECRET;
@@ -25,7 +26,14 @@ export const POST: RequestHandler = async ({ request, url }) => {
 			updated_at: now,
 			published_at: sql`coalesce(${content.published_at}, now())`
 		})
-		.where(and(eq(content.status, 'DRAFT'), lte(content.published_at, now)))
+		.where(
+			and(
+				eq(content.status, 'DRAFT'),
+				lte(content.published_at, now),
+				// An episode waits for its number and audio
+				notInArray(content.id, unpublishable_episode_content_ids())
+			)
+		)
 		.returning({ id: content.id });
 
 	return json({

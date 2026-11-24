@@ -169,9 +169,10 @@ export async function get_transcript(show_number: number, { replace = false } = 
 		}
 	});
 	if (!active_show) error(404, `Show #${show_number} not found.`);
-	const content_id = active_show.content_id;
+	const { content_id, number, url } = active_show;
 	if (!content_id)
 		error(409, `Show #${show_number} has no content item to attach a transcript to.`);
+	if (number === null || !url) error(409, `Show #${show_number} has no audio to transcribe.`);
 	if (active_show.transcript && !replace) {
 		error(
 			409,
@@ -184,7 +185,7 @@ export async function get_transcript(show_number: number, { replace = false } = 
 		active_show.guests.map(({ guest }) => guest.name)
 	);
 	console.log(`Transcribing show #${show_number} - ${active_show.title}...`);
-	const words = await transcribe_audio(active_show.url, [...keywords, ...people]);
+	const words = await transcribe_audio(url, [...keywords, ...people]);
 	const utterances = words_to_utterances(words);
 	if (active_show.transcript) {
 		await db.delete(transcript).where(eq(transcript.id, active_show.transcript.id));
@@ -193,11 +194,7 @@ export async function get_transcript(show_number: number, { replace = false } = 
 	// Grok has charged by now, so a database blip mustn't lose the words (the cron would pay again)
 	for (let attempt = 1; ; attempt++) {
 		try {
-			const saved = await save_transcript_to_db(
-				{ number: active_show.number, content_id },
-				utterances,
-				people
-			);
+			const saved = await save_transcript_to_db({ number, content_id }, utterances, people);
 			console.log(`Transcript for show #${show_number} saved: ${words.length} words.`);
 			return saved;
 		} catch (save_error) {

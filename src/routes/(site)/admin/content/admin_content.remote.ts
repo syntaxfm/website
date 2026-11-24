@@ -8,6 +8,7 @@ import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
 import { error } from '@sveltejs/kit';
 import { and, eq, inArray, ne } from 'drizzle-orm';
 import * as v from 'valibot';
+import { assert_episodes_can_publish } from '$server/shows/episode_publishing';
 
 const CONTENT_SLUG_MAX_LENGTH = 120;
 
@@ -274,6 +275,8 @@ export const update_content_meta = command(update_content_schema, async (input) 
 	if (existing_slug) {
 		error(409, 'Slug already exists');
 	}
+
+	if (input.status === 'PUBLISHED') await assert_episodes_can_publish([input.content_id]);
 
 	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
 	if (input.status === 'PUBLISHED' && !next_published_at) {

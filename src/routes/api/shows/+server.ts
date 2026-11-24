@@ -2,11 +2,12 @@ import { json } from '@sveltejs/kit';
 import { format } from 'date-fns';
 import { shows_api_query } from './query';
 import { db } from '$server/db/client';
+import { has_show_number } from '$server/content/released';
 
 export async function GET() {
 	const data = await db.query.show.findMany(shows_api_query());
 
-	const shows = data.map((show) => {
+	const shows = data.filter(has_show_number).map((show) => {
 		return {
 			...show,
 			notesFile: show?.md_file,

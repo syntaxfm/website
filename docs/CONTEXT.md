@@ -11,6 +11,7 @@ This is a glossary, not a spec. It captures only domain language that is ambiguo
 **Show**:
 A single episode of the Syntax podcast. Rows in the `shows` table (Drizzle model `show`). Component and route language matches: `ShowCard`, `/show/[show_number]/[slug]`, `src/lib/shows/`.
 _Avoid_: Episode (in code/identifiers; use "Show"). Acceptable in user-facing copy where "episode" reads more naturally.
+A draft Show may have no number and no audio URL yet; it can't be published (now or scheduled) until it has both (`src/server/shows/episode_publishing.ts`). Released means published and dated now or earlier (`src/server/content/released.ts`), never the date alone. Admin and MCP know a Show by its content id; the number is a label.
 
 **Syntax**:
 The podcast itself — the brand. There is only one. Distinct from a **Show**, which is one episode.
@@ -69,7 +70,7 @@ A third-party who appears on a **Show** as an interviewee. Stored in the `guests
 ### AI-generated content
 
 **aiShowNote**:
-The parent AI-generated artifact for a **Show** — one row per show (unique on `show_number`). Holds the AI-written title and description of the episode. Owns child rows: `aiSummaryEntry`, `aiTweet`, `link`, `aiGuest`, `topic`.
+The parent AI-generated artifact for a **Show** — one row per show (unique on `content_id`). Holds the AI-written title and description of the episode. Owns child rows: `aiSummaryEntry`, `aiTweet`, `link`, `aiGuest`, `topic`.
 
 **aiSummaryEntry**:
 A timestamped summary segment within an `aiShowNote` (e.g. "01:23 — Topic introduction"). Many per show note.

@@ -93,6 +93,7 @@ export const get_user_detail = query(v.string(), async (user_id) => {
 
 	const shows_hosted = await db
 		.select({
+			content_id: contentHost.content_id,
 			number: show.number,
 			slug: show.slug,
 			title: show.title,

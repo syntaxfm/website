@@ -3,7 +3,7 @@ import { and, asc, count, eq, ilike, sql } from 'drizzle-orm';
 
 import { assert_admin_actor, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
-import { show, transcriptUtterance } from '$server/db/schema';
+import { transcript, transcriptUtterance } from '$server/db/schema';
 
 // Editing an episode's transcript in the admin: name its voices and fix its lines. The words under
 // each line are Grok's timing data; the site shows the line text, so a fixed line shows as fixed.
@@ -11,7 +11,7 @@ import { show, transcriptUtterance } from '$server/db/schema';
 const LINES_PER_PAGE = 50;
 
 export interface TranscriptLinesInput {
-	show_number: number;
+	content_id: string;
 	search_text?: string;
 	page?: number;
 }
@@ -20,12 +20,10 @@ export interface TranscriptLinesInput {
 export async function get_transcript_editor(actor: Actor, input: TranscriptLinesInput) {
 	assert_admin_actor(actor);
 
-	const episode = await db.query.show.findFirst({
-		where: eq(show.number, input.show_number),
-		columns: {},
-		with: { transcript: { columns: { id: true } } }
+	const episode_transcript = await db.query.transcript.findFirst({
+		where: eq(transcript.content_id, input.content_id),
+		columns: { id: true }
 	});
-	const episode_transcript = episode?.transcript;
 	if (!episode_transcript) return null;
 
 	const speakers = await db

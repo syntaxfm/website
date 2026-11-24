@@ -27,7 +27,7 @@
 		get_show_editor,
 		search_guests,
 		search_users_for_host,
-		renumber_show,
+		set_show_number,
 		sync_spotify_for_show,
 		update_ai_guest,
 		update_ai_show_note,
@@ -60,13 +60,13 @@
 	}
 
 	interface ShowEditorPayload {
-		show_number: number;
+		content_id: string;
 		title: string;
 		slug: string;
 		status: Status;
 		published_at_iso: string | null;
 		show_notes: string;
-		url: string;
+		url: string | null;
 		youtube_url: string | null;
 		host_ids?: string[];
 		guest_ids?: string[];
@@ -118,8 +118,8 @@
 		topics: AiTopicRow[];
 	}
 
-	const show_number = Number((page.params as Record<string, string>).show_number || '0');
-	const show = await get_show_editor(show_number);
+	const content_id = page.params.id ?? '';
+	const show = await get_show_editor(content_id);
 
 	const initial_guest_lookup = Object.fromEntries(
 		(show?.guests ?? []).map((show_guest: { guest: GuestItem }) => [
@@ -143,6 +143,9 @@
 	);
 	let show_notes = $state(show?.show_notes ?? '');
 	let url = $state(show?.url ?? '');
+	// Blank until the episode is given one; it can't be published without it
+	let show_number = $state<number | null>(show?.number ?? null);
+	let can_publish = $derived(show_number !== null && url.trim() !== '');
 	let youtube_url = $state(show?.youtube_url ?? '');
 
 	let selected_guest_ids = $state<string[]>([...initial_selected_guest_ids]);
@@ -213,7 +216,7 @@
 	}));
 
 	let syncing_spotify = $state(false);
-	let renumbering = $state(false);
+	let saving_number = $state(false);
 	let ai_busy = $state(false);
 
 	let status_message = $state('');
@@ -293,13 +296,13 @@
 		}
 
 		const payload: ShowEditorPayload = {
-			show_number: show.number,
+			content_id,
 			title,
 			slug,
 			status,
 			published_at_iso: published_at ? published_at.toISOString() : null,
 			show_notes,
-			url,
+			url: url.trim() || null,
 			youtube_url: youtube_url.trim() || null
 		};
 
@@ -393,28 +396,30 @@
 		await autosave.save_now();
 	}
 
-	// A new number moves the episode to a new editor URL, so the page loads again there
+	// Blank clears the number, which only a draft may do
 	async function handle_number_change(event: Event): Promise<void> {
 		const input = event.currentTarget;
 		if (!(input instanceof HTMLInputElement) || !show) return;
-		const new_show_number = input.valueAsNumber;
-		if (!Number.isInteger(new_show_number) || new_show_number < 1) {
-			input.value = String(show.number);
+		const next_show_number = input.value.trim() === '' ? null : input.valueAsNumber;
+		if (
+			next_show_number !== null &&
+			(!Number.isInteger(next_show_number) || next_show_number < 0)
+		) {
+			input.value = show_number === null ? '' : String(show_number);
 			return;
 		}
 
-		renumbering = true;
+		saving_number = true;
 		clear_feedback();
 		try {
-			// Pending edits are saved under the old number first
-			await autosave.save_now();
-			const result = await renumber_show({ show_number: show.number, new_show_number });
-			window.location.replace(resolve(`admin/content/podcast/${result.show_number}`));
+			const result = await set_show_number({ content_id, show_number: next_show_number });
+			show_number = result.show_number;
 		} catch (error) {
-			console.error('Unable to renumber show', error);
+			console.error('Unable to change the episode number', error);
 			status_error = error_message(error, 'Unable to change the number.');
-			input.value = String(show.number);
-			renumbering = false;
+			input.value = show_number === null ? '' : String(show_number);
+		} finally {
+			saving_number = false;
 		}
 	}
 
@@ -428,7 +433,7 @@
 		clear_feedback();
 
 		try {
-			const result = await sync_spotify_for_show({ show_number: show.number });
+			const result = await sync_spotify_for_show({ content_id });
 			status_message = result.message || 'Spotify sync completed.';
 		} catch (error) {
 			console.error(error);
@@ -439,7 +444,7 @@
 	}
 
 	async function refresh_show_editor() {
-		const refreshed = await get_show_editor(show_number);
+		const refreshed = await get_show_editor(content_id);
 		if (!refreshed) {
 			return;
 		}
@@ -878,8 +883,8 @@
 	<div class="admin-page stack">
 		<AdminEditorHeader
 			{title}
-			detail={`#${show.number} · ${humanize_enum(show.show_type)}`}
-			public_href={resolve(`show/${show.number}/${show.slug}`)}
+			detail={`${show_number === null ? 'No number yet' : `#${show_number}`} · ${humanize_enum(show.show_type)}`}
+			public_href={show_number === null ? null : resolve(`show/${show_number}/${slug}`)}
 			{autosave}
 			sections={[
 				{ id: 'details', label: 'Details' },
@@ -889,7 +894,11 @@
 			]}
 		>
 			{#snippet actions()}
-				<button type="button" onclick={sync_spotify} disabled={syncing_spotify}>
+				<button
+					type="button"
+					onclick={sync_spotify}
+					disabled={syncing_spotify || show_number === null}
+				>
 					{syncing_spotify ? 'Syncing…' : 'Sync Spotify'}
 				</button>
 			{/snippet}
@@ -957,14 +966,14 @@
 						<input
 							id="show-number"
 							type="number"
-							min="1"
+							min="0"
 							step="1"
-							value={show.number}
-							disabled={renumbering}
+							value={show_number ?? ''}
+							disabled={saving_number}
 							onchange={handle_number_change}
 						/>
 					</div>
-					<StatusSelect {status} onchange={handle_status_change} />
+					<StatusSelect {status} {can_publish} onchange={handle_status_change} />
 					<DateTimePicker
 						value={published_at}
 						label="Published at"
@@ -1073,8 +1082,9 @@
 		</form>
 
 		<TranscriptSection
-			show_number={show.number}
-			show_slug={show.slug}
+			{content_id}
+			{show_number}
+			show_slug={slug}
 			line_count={transcript_line_count}
 			has_audio={Boolean(url)}
 			onchange={refresh_show_editor}

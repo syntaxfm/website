@@ -18,6 +18,8 @@
 	let show_notes = $state('');
 	let url = $state('');
 	let youtube_url = $state('');
+	// A draft may wait for its number and audio; publishing needs both
+	let can_publish = $derived(typeof show_number_input === 'number' && url.trim() !== '');
 
 	let creating = $state(false);
 	let status_message = $state('');
@@ -29,30 +31,31 @@
 	}
 
 	async function create_show(): Promise<void> {
-		if (!show_number_input || !Number.isInteger(show_number_input) || show_number_input < 1) {
-			status_error = 'Show number must be a positive integer.';
+		if (
+			typeof show_number_input === 'number' &&
+			(!Number.isInteger(show_number_input) || show_number_input < 0)
+		) {
+			status_error = 'An episode number is a whole number, 0 or above.';
 			return;
 		}
-
-		const parsed_show_number = show_number_input;
 
 		creating = true;
 		clear_feedback();
 
 		try {
 			const result = await create_show_editor({
-				show_number: parsed_show_number,
+				show_number: typeof show_number_input === 'number' ? show_number_input : null,
 				title,
 				slug,
 				status,
 				published_at_iso: published_at ? published_at.toISOString() : null,
 				show_notes,
-				url,
+				url: url.trim() || null,
 				youtube_url: youtube_url.trim() || null
 			});
 
-			status_message = `Show #${result.show_number} created.`;
-			await goto(resolve(`admin/content/podcast/${result.show_number}`));
+			status_message = 'Show created.';
+			await goto(resolve(`admin/content/podcast/${result.content_id}`));
 		} catch (error) {
 			console.error('Unable to create show', error);
 			status_error = error instanceof Error ? error.message : 'Unable to create show.';
@@ -100,7 +103,7 @@
 
 				<div class="admin-field">
 					<label for="show-audio-url">Audio URL</label>
-					<input id="show-audio-url" name="url" type="url" bind:value={url} required />
+					<input id="show-audio-url" name="url" type="url" bind:value={url} />
 				</div>
 
 				<div class="admin-field">
@@ -124,14 +127,13 @@
 						id="show-number"
 						name="show_number"
 						type="number"
-						min="1"
+						min="0"
 						step="1"
 						bind:value={show_number_input}
-						required
 					/>
 				</div>
 
-				<StatusSelect bind:status />
+				<StatusSelect bind:status {can_publish} />
 				<DateTimePicker bind:value={published_at} label="Published at" show_clear={false} />
 			</aside>
 		</div>

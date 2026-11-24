@@ -7,24 +7,26 @@ export type ContentLinkRow = {
 	type: string;
 	slug?: string;
 	status?: string;
-	show?: { number: number; slug: string } | null;
+	show?: { number: number | null; slug: string } | null;
 	video?: { url: string } | null;
 };
 
 /** The admin editor for a Content item, or null when its type has none (newsletters, tools). */
 export function to_content_edit_path(content_row: ContentLinkRow): Path | null {
 	if (content_row.type === 'ARTICLE') return `/admin/content/articles/${content_row.id}`;
-	if (content_row.type === 'PODCAST' && content_row.show) {
-		return `/admin/content/podcast/${content_row.show.number}`;
-	}
+	if (content_row.type === 'PODCAST' && content_row.show)
+		return `/admin/content/podcast/${content_row.id}`;
 	if (content_row.type === 'VIDEO') return `/admin/content/videos/${content_row.id}`;
 	return null;
 }
 
-/** Where a Content item lives in public: its episode page, its video page (or YouTube before it's
- * published), or its Snack Pack issue. */
+/** Where a Content item lives in public: its episode page (once it has a number), its video page (or
+ * YouTube before it's published), or its Snack Pack issue. */
 export function to_content_public_href(content_row: ContentLinkRow): string | null {
-	if (content_row.show) return `/show/${content_row.show.number}/${content_row.show.slug}`;
+	if (content_row.show) {
+		const { number, slug } = content_row.show;
+		return number === null ? null : `/show/${number}/${slug}`;
+	}
 	// A published video has its own page; until then only YouTube has it
 	if (content_row.type === 'VIDEO' && content_row.status === 'PUBLISHED' && content_row.slug) {
 		return `/videos/${content_row.slug}`;

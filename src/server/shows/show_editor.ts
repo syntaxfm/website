@@ -1,6 +1,6 @@
 import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { error } from '@sveltejs/kit';
-import { and, count, desc, eq, gte, ilike, inArray, lte, ne, notInArray, sql } from 'drizzle-orm';
+import { and, count, desc, eq, gte, ilike, inArray, lte, ne, notInArray, or, sql } from 'drizzle-orm';
 
 import { DAYS_OF_WEEK_TYPES } from '$const';
 import { assert_admin_actor, is_admin, type Actor } from '$server/auth/authorization';
@@ -10,6 +10,7 @@ import {
 	content_tags,
 	contentGuest,
 	contentHost,
+	profile,
 	show,
 	transcriptUtterance
 } from '$server/db/schema';
@@ -18,6 +19,8 @@ import { get_show_detail_query } from '$server/shows/shows_queries';
 import { get_hash_from_content } from '$utilities/file_utilities/get_hash_from_content';
 import { left_pad } from '$utilities/left_pad';
 import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
+import { is_released, released_show_clause } from '$server/content/released';
+import { assert_episode_can_publish } from '$server/shows/episode_publishing';
 
 // Shows: Syntax episodes. The admin show editor (admin_podcast.remote.ts) and the MCP endpoint
 // (server/mcp) both call these with the person acting, so the rules live here once.
@@ -34,20 +37,70 @@ export interface ListShowsInput {
 }
 
 export interface CreateShowInput {
-	show_number: number;
+	/** Left out or null for a draft whose number isn't known yet */
+	show_number?: number | null;
 	title: string;
 	slug: string;
 	status: ShowStatus;
 	published_at_iso?: string | null;
 	show_notes: string;
-	url: string;
+	/** Left out or null for a draft whose audio isn't up yet */
+	url?: string | null;
 	youtube_url?: string | null;
 }
 
-export interface UpdateShowInput extends CreateShowInput {
+export interface UpdateShowInput {
+	content_id: string;
+	title: string;
+	slug: string;
+	status: ShowStatus;
+	published_at_iso?: string | null;
+	show_notes: string;
+	url: string | null;
+	youtube_url?: string | null;
 	host_ids?: string[];
 	guest_ids?: string[];
 	tag_ids?: string[];
+}
+
+// An episode's id is built from its number; one without a number yet gets a draft id until it does
+function get_show_id(show_number: number | null): string {
+	return show_number === null
+		? `syntax_podcast_draft_${crypto.randomUUID()}`
+		: get_id_from_show_number(show_number);
+}
+
+// A blank audio URL is no audio URL
+function audio_url_or_null(url: string | null | undefined): string | null {
+	return url?.trim() || null;
+}
+
+function assert_show_number(show_number: number): void {
+	if (!Number.isInteger(show_number) || show_number < 0) {
+		error(400, 'An episode number is a whole number, 0 or above');
+	}
+}
+
+async function assert_show_number_free(show_number: number): Promise<void> {
+	const taken = await db.query.show.findFirst({
+		where: eq(show.number, show_number),
+		columns: { id: true }
+	});
+	if (taken) error(409, `Show #${show_number} already exists`);
+}
+
+/** How callers name an episode: by its content id, or by its number once it has one. */
+export type ShowKey = { content_id: string } | { show_number: number };
+
+/** The content id of the episode named by `key`. */
+export async function get_show_content_id(key: ShowKey): Promise<string> {
+	if ('content_id' in key) return key.content_id;
+	const found = await db.query.show.findFirst({
+		where: eq(show.number, key.show_number),
+		columns: { content_id: true }
+	});
+	if (!found?.content_id) error(404, 'Show not found');
+	return found.content_id;
 }
 
 function content_ids_with_status(status: ShowStatus) {
@@ -70,7 +123,7 @@ export async function list_shows(actor: Actor, input: ListShowsInput) {
 	if (!is_admin(actor)) {
 		where_clauses.push(
 			inArray(show.content_id, content_ids_with_status('PUBLISHED')),
-			lte(show.date, new Date())
+			released_show_clause()
 		);
 	}
 
@@ -123,11 +176,11 @@ export async function list_shows(actor: Actor, input: ListShowsInput) {
 }
 
 /** Everything the show editor edits: content, tags, AI notes, guests, hosts. Admins only. */
-export async function get_show_editor(actor: Actor, show_number: number) {
+export async function get_show_editor(actor: Actor, content_id: string) {
 	assert_admin_actor(actor);
 
 	const editor_show = await db.query.show.findFirst({
-		where: eq(show.number, show_number),
+		where: eq(show.content_id, content_id),
 		with: {
 			meta: {
 				with: {
@@ -180,29 +233,40 @@ export async function get_show_editor(actor: Actor, show_number: number) {
 
 /**
  * A Show as the person acting may see it: the editor's view for an admin; for anyone else the
- * public page's view, and only once it is released (a future date is hidden, as on its page).
+ * public page's view, and only once it is released (a draft or future date is hidden, as on its page).
  */
-export async function get_show(actor: Actor, show_number: number) {
+export async function get_show(actor: Actor, key: ShowKey) {
 	if (is_admin(actor)) {
-		return (await get_show_editor(actor, show_number)) ?? null;
+		return (await get_show_editor(actor, await get_show_content_id(key))) ?? null;
 	}
 
+	const show_number =
+		'show_number' in key
+			? key.show_number
+			: (
+					await db.query.show.findFirst({
+						where: eq(show.content_id, key.content_id),
+						columns: { number: true }
+					})
+				)?.number;
+	if (show_number === null || show_number === undefined) return null;
 	const public_show = await db.query.show.findFirst(get_show_detail_query(show_number));
-	return public_show && public_show.date <= new Date() ? public_show : null;
+	return public_show && is_released(public_show.meta) ? public_show : null;
 }
 
+/**
+ * Creates an episode and its content. A draft may leave out its number and audio URL; publishing
+ * (now or scheduled) needs both.
+ */
 export async function create_show(actor: Actor, input: CreateShowInput) {
 	assert_admin_actor(actor);
 
-	const duplicate_show_number = await db.query.show.findFirst({
-		where: eq(show.number, input.show_number),
-		columns: {
-			id: true
-		}
-	});
-
-	if (duplicate_show_number) {
-		error(409, 'Show number already exists');
+	const show_number = input.show_number ?? null;
+	const url = audio_url_or_null(input.url);
+	assert_episode_can_publish({ status: input.status, number: show_number, url });
+	if (show_number !== null) {
+		assert_show_number(show_number);
+		await assert_show_number_free(show_number);
 	}
 
 	const duplicate_slug = await db.query.content.findFirst({
@@ -222,12 +286,12 @@ export async function create_show(actor: Actor, input: CreateShowInput) {
 	}
 
 	const show_date = next_published_at || new Date();
-	const show_id = get_id_from_show_number(input.show_number);
+	const show_id = get_show_id(show_number);
 	const day_of_week = show_date.getDay();
 	const show_type = DAYS_OF_WEEK_TYPES[day_of_week] || 'SPECIAL';
-	const md_file = `/shows/${left_pad(input.show_number)} - ${input.slug}.md`;
+	const md_file = show_number === null ? null : `/shows/${left_pad(show_number)} - ${input.slug}.md`;
 	const hash = await get_hash_from_content(
-		`${input.show_number}:${input.title}:${input.slug}:${input.url}:${input.show_notes}`
+		`${show_id}:${input.title}:${input.slug}:${url}:${input.show_notes}`
 	);
 
 	const created_content = await db.transaction(async (tx) => {
@@ -244,11 +308,11 @@ export async function create_show(actor: Actor, input: CreateShowInput) {
 
 		await tx.insert(show).values({
 			id: show_id,
-			number: input.show_number,
+			number: show_number,
 			title: input.title,
 			slug: input.slug,
 			date: show_date,
-			url: input.url,
+			url,
 			youtube_url: input.youtube_url || null,
 			show_notes: input.show_notes,
 			show_type,
@@ -263,7 +327,7 @@ export async function create_show(actor: Actor, input: CreateShowInput) {
 
 	return {
 		success: true,
-		show_number: input.show_number,
+		show_number,
 		content_id: created_content.id,
 		show_id
 	};
@@ -276,24 +340,25 @@ export async function create_show(actor: Actor, input: CreateShowInput) {
 export async function update_show(actor: Actor, input: UpdateShowInput) {
 	assert_admin_actor(actor);
 
+	const { content_id } = input;
 	const existing_show = await db.query.show.findFirst({
-		where: eq(show.number, input.show_number),
+		where: eq(show.content_id, content_id),
 		columns: {
 			id: true,
-			date: true,
-			content_id: true
+			number: true,
+			date: true
 		}
 	});
 
 	if (!existing_show) {
 		error(404, 'Show not found');
 	}
-	const content_id = existing_show.content_id;
+
+	const url = audio_url_or_null(input.url);
+	assert_episode_can_publish({ status: input.status, number: existing_show.number, url });
 
 	const duplicate_slug = await db.query.content.findFirst({
-		where: content_id
-			? and(eq(content.slug, input.slug), ne(content.id, content_id))
-			: eq(content.slug, input.slug),
+		where: and(eq(content.slug, input.slug), ne(content.id, content_id)),
 		columns: {
 			id: true
 		}
@@ -301,12 +366,6 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 
 	if (duplicate_slug) {
 		error(409, 'Slug already exists on another content item');
-	}
-
-	const replaces_links =
-		input.tag_ids !== undefined || input.guest_ids !== undefined || input.host_ids !== undefined;
-	if (replaces_links && !content_id) {
-		error(409, 'Show is not linked to content; its tags, guests and hosts cannot be replaced');
 	}
 
 	let next_published_at = parse_optional_iso_date(input.published_at_iso || null);
@@ -321,19 +380,19 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 				title: input.title,
 				slug: input.slug,
 				show_notes: input.show_notes,
-				url: input.url,
+				url,
 				youtube_url: input.youtube_url || null,
 				date: next_published_at || existing_show.date,
 				updated_at: new Date()
 			})
-			.where(eq(show.number, input.show_number))
+			.where(eq(show.content_id, content_id))
 			.returning({ id: show.id });
 
 		if (updated_show.length === 0) {
 			error(404, 'Show not found');
 		}
 
-		if (content_id) {
+		{
 			const updated_content = await tx
 				.update(content)
 				.set({
@@ -351,7 +410,7 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 			}
 		}
 
-		if (input.guest_ids !== undefined && content_id) {
+		if (input.guest_ids !== undefined) {
 			const guest_ids = [...new Set(input.guest_ids)].sort();
 
 			if (guest_ids.length === 0) {
@@ -373,7 +432,7 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 			}
 		}
 
-		if (input.host_ids !== undefined && content_id) {
+		if (input.host_ids !== undefined) {
 			const host_ids = [...new Set(input.host_ids)].sort();
 
 			await tx.delete(contentHost).where(eq(contentHost.content_id, content_id));
@@ -384,7 +443,7 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 			}
 		}
 
-		if (input.tag_ids !== undefined && content_id) {
+		if (input.tag_ids !== undefined) {
 			const tag_ids = [...new Set(input.tag_ids)].sort();
 
 			await tx.delete(content_tags).where(eq(content_tags.content_id, content_id));
@@ -403,34 +462,69 @@ export async function update_show(actor: Actor, input: UpdateShowInput) {
 }
 
 /**
- * Gives a Show a new number. Its id follows (it is built from the number, and creating a Show with
- * the old number later would otherwise collide). Guests, hosts, transcript and AI notes link to its
- * content id, so they stay with it.
+ * Sets an episode's number, or clears it (null) on one that isn't published. Its id follows (it is
+ * built from the number, and creating a Show with the old number later would otherwise collide).
+ * Guests, hosts, transcript and AI notes link to its content id, so they stay with it.
  */
-export async function renumber_show(actor: Actor, show_number: number, new_show_number: number) {
+export async function set_show_number(
+	actor: Actor,
+	content_id: string,
+	new_show_number: number | null
+) {
 	assert_admin_actor(actor);
 
-	if (!Number.isInteger(new_show_number) || new_show_number < 1) {
-		error(400, 'A show number is a whole number above 0');
-	}
-	if (new_show_number === show_number) return { show_number };
-
-	const taken = await db.query.show.findFirst({
-		where: eq(show.number, new_show_number),
-		columns: { id: true }
+	const existing = await db.query.show.findFirst({
+		where: eq(show.content_id, content_id),
+		columns: { number: true, url: true, title: true },
+		with: { meta: { columns: { status: true } } }
 	});
-	if (taken) error(409, `Show #${new_show_number} already exists`);
+	if (!existing) error(404, 'Show not found');
+	if (new_show_number === existing.number) return { show_number: new_show_number };
 
-	const renumbered = await db
+	if (new_show_number === null) {
+		assert_episode_can_publish({
+			status: existing.meta?.status ?? 'DRAFT',
+			number: null,
+			url: existing.url,
+			title: existing.title
+		});
+	} else {
+		assert_show_number(new_show_number);
+		await assert_show_number_free(new_show_number);
+	}
+
+	await db
 		.update(show)
 		.set({
 			number: new_show_number,
-			id: get_id_from_show_number(new_show_number),
+			id: get_show_id(new_show_number),
 			updated_at: new Date()
 		})
-		.where(eq(show.number, show_number))
-		.returning({ number: show.number });
-	if (renumbered.length === 0) error(404, 'Show not found');
+		.where(eq(show.content_id, content_id));
 
 	return { show_number: new_show_number };
+}
+
+/** Profiles that can host an episode, by username, name or email (25 at most). Admins only. */
+export async function search_hosts(actor: Actor, search_text: string | undefined) {
+	assert_admin_actor(actor);
+
+	const normalized_search = search_text?.trim() || '';
+	return db.query.profile.findMany({
+		where: normalized_search
+			? or(
+					ilike(profile.username, `%${normalized_search}%`),
+					ilike(profile.name, `%${normalized_search}%`),
+					ilike(profile.email, `%${normalized_search}%`)
+				)
+			: undefined,
+		columns: {
+			id: true,
+			username: true,
+			name: true,
+			email: true
+		},
+		orderBy: (profile_item, { asc }) => [asc(profile_item.username)],
+		limit: 25
+	});
 }

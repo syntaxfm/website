@@ -3,20 +3,21 @@ import { format } from 'date-fns';
 import { shows_api_query } from '../query';
 import { db } from '$server/db/client';
 import { show as shows } from '$server/db/schema';
-import { and, eq, lte } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
+import { has_show_number, released_show_clause } from '$server/content/released';
 
 const query = shows_api_query();
 
 export async function GET({ params }) {
 	const show_number = parseInt(params.number);
 	const data = await db.query.show.findFirst({
-		where: and(eq(shows.number, show_number), lte(shows.date, new Date())),
+		where: and(eq(shows.number, show_number), released_show_clause()),
 		with: {
 			...query.with
 		}
 	});
 
-	if (data) {
+	if (data && has_show_number(data)) {
 		return json(
 			{
 				...data,

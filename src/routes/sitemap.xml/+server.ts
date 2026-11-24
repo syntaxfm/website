@@ -15,6 +15,7 @@ import {
 import { MIN_ITEMS_TO_INDEX_TAG } from '#lib/seo/hubs.ts';
 import { sitemap_xml, type SitemapUrl } from '#lib/seo/sitemap.ts';
 import { get_newsletter_issues } from '$server/newsletter/issues';
+import { released_show_clause } from '$server/content/released';
 
 const STATIC_PATHS = [
 	'',
@@ -44,13 +45,13 @@ async function load_sitemap_rows() {
 			.from(show)
 			.leftJoin(content, eq(content.id, show.content_id))
 			.leftJoin(transcript, eq(transcript.content_id, show.content_id))
-			.where(lte(show.date, new Date())),
+			.where(released_show_clause()),
 		// A guest or topic page changes when it gets a new episode
 		db
 			.select({ name_slug: guest.name_slug, lastmod: max(show.date) })
 			.from(guest)
 			.leftJoin(contentGuest, eq(contentGuest.guest_id, guest.id))
-			.leftJoin(show, and(eq(show.content_id, contentGuest.content_id), lte(show.date, new Date())))
+			.leftJoin(show, and(eq(show.content_id, contentGuest.content_id), released_show_clause()))
 			.groupBy(guest.name_slug),
 		db
 			.select({ slug: tag.slug, lastmod: max(content.published_at) })

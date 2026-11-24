@@ -11,6 +11,7 @@
 	import AdminTitleCell from '#lib/admin/AdminTitleCell.svelte';
 	import StatusBadge from '#lib/admin/StatusBadge.svelte';
 	import RemoteFormButton from '#lib/forms/RemoteFormButton.svelte';
+	import { error_message } from '#lib/utils/error_message.ts';
 	import { humanize_enum } from '#lib/utils/format_enum.ts';
 	import {
 		build_url,
@@ -76,20 +77,13 @@
 		busy = true;
 
 		try {
-			const show_numbers = selected_ids
-				.map((id) => Number.parseInt(id, 10))
-				.filter((show_number) => Number.isFinite(show_number));
-			const result = await bulk_update_show_status({ show_numbers, status });
-
-			const skipped_suffix =
-				result.skipped_count > 0 ? ` Skipped ${result.skipped_count} unlinked show(s).` : '';
-
-			action_message = `Set ${result.count} show(s) to ${humanize_enum(status)}.${skipped_suffix}`;
+			const result = await bulk_update_show_status({ content_ids: selected_ids, status });
+			action_message = `Set ${result.count} show(s) to ${humanize_enum(status)}.`;
 			selected_ids = [];
 			await list_shows(list_query).refresh();
 		} catch (error) {
 			console.error(error);
-			action_error = 'Unable to update status. Please try again.';
+			action_error = error_message(error, 'Unable to update status. Please try again.');
 		} finally {
 			busy = false;
 		}
@@ -120,7 +114,7 @@
 		total_pages={list_result.total_pages}
 		on_page_change={(next) => update_url({ page: next > 1 ? next : null })}
 		bind:selected_ids
-		visible_ids={list_result.items.map((item) => String(item.number))}
+		visible_ids={list_result.items.flatMap((item) => (item.content_id ? [item.content_id] : []))}
 		{busy}
 		message={action_message}
 		error={action_error}
@@ -162,14 +156,18 @@
 		{/snippet}
 
 		{#snippet table_body({ select_cell })}
-			{#each list_result.items as show_row (show_row.number)}
+			{#each list_result.items as show_row (show_row.id)}
 				<tr>
-					{@render select_cell(String(show_row.number), show_row.title)}
-					<td class="admin-cell-muted">#{show_row.number}</td>
+					{@render select_cell(show_row.content_id ?? show_row.id, show_row.title)}
+					<td class="admin-cell-muted">{show_row.number === null ? '' : `#${show_row.number}`}</td>
 					<AdminTitleCell
 						title={show_row.title}
-						edit_href={resolve(`admin/content/podcast/${show_row.number}`)}
-						public_href={resolve(`show/${show_row.number}/${show_row.slug}`)}
+						edit_href={show_row.content_id
+							? resolve(`admin/content/podcast/${show_row.content_id}`)
+							: null}
+						public_href={show_row.number === null
+							? null
+							: resolve(`show/${show_row.number}/${show_row.slug}`)}
 					/>
 					<td><StatusBadge status={show_row.meta?.status} /></td>
 					<AdminDateCell value={show_row.date} />

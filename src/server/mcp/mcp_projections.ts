@@ -34,8 +34,10 @@ function project_profile(profile: PublicProfile) {
 	return { id: profile.id, name: profile.name, username: profile.username };
 }
 
-function project_show_link(show: { number: number; slug: string }) {
-	return { number: show.number, slug: show.slug, path: get_show_path(show) };
+// A draft may have no number yet, and so no page
+function project_show_link(show: { number: number | null; slug: string }) {
+	const { number, slug } = show;
+	return { number, slug, path: number === null ? null : get_show_path({ number, slug }) };
 }
 
 export function project_guest(guest: Guest) {
@@ -51,11 +53,11 @@ export function project_guest(guest: Guest) {
 }
 
 interface ShowSummaryRow {
-	number: number;
+	number: number | null;
 	title: string;
 	slug: string;
 	date: Date;
-	url: string;
+	url: string | null;
 	youtube_url: string | null;
 	show_type: string;
 	content_id: string | null;
@@ -123,7 +125,7 @@ interface ContentSummaryRow extends Pick<
 	Content,
 	'id' | 'type' | 'title' | 'slug' | 'status' | 'published_at' | 'updated_at'
 > {
-	show: { number: number; slug: string } | null;
+	show: { number: number | null; slug: string } | null;
 	video: Pick<Video, 'id' | 'url'> | null;
 }
 
@@ -148,7 +150,12 @@ export function project_tagged_content_summary(item: ContentSummaryRow & { tags:
 interface ContentDetailRow extends ContentSummaryRow {
 	created_at: Date;
 	tags: TagLink[];
-	show: { number: number; slug: string; url: string; youtube_url: string | null } | null;
+	show: {
+		number: number | null;
+		slug: string;
+		url: string | null;
+		youtube_url: string | null;
+	} | null;
 	video: Video | null;
 	article: { body: string; author: PublicProfile } | null;
 }
@@ -179,13 +186,14 @@ export function project_content_detail(item: ContentDetailRow) {
 export function project_guest_detail(
 	guest: Guest & {
 		socialLinks: SocialLink[];
-		shows: { number: number; slug: string; title: string; date: Date }[];
+		shows: { content_id: string; number: number | null; slug: string; title: string; date: Date }[];
 	}
 ) {
 	return {
 		...project_guest(guest),
 		social_links: guest.socialLinks.map(({ id, link }) => ({ id, link })),
 		shows: guest.shows.map((show) => ({
+			content_id: show.content_id,
 			...project_show_link(show),
 			title: show.title,
 			date: show.date

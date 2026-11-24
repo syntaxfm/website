@@ -9,7 +9,7 @@
 	// The Guest feed only ever holds episodes, so it doesn't load newsletter_issue
 	type Feed_content = Omit<Cached_content, 'published_at' | 'show' | 'newsletter_issue'> & {
 		published_at: string | Date | null;
-		show: Omit<Cached_content['show'], 'date'> & { date: string | Date };
+		show: (Omit<NonNullable<Cached_content['show']>, 'date'> & { date: string | Date }) | null;
 		newsletter_issue?: Cached_content['newsletter_issue'] | null;
 	};
 
@@ -17,7 +17,7 @@
 </script>
 
 <!-- TODO make this if item type === show, swag social ect -->
-{#if content.type === 'PODCAST'}
+{#if content.type === 'PODCAST' && content.show}
 	<FeedItemPodcast show={content.show} {content} />
 {:else if content.type === 'VIDEO' && content.video}
 	<FeedItemVideo

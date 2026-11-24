@@ -8,6 +8,7 @@ import type { PlayerVideo } from '$state/player_utils';
 import { get_show_label, VIDEO_LABEL } from '#lib/shows/show_label.ts';
 import { get_watch_url_from_url } from '#lib/videos/utils.ts';
 import { BROWSE_TYPES, TOPIC_PATTERN, type BrowseType } from './browse_filters';
+import { is_complete_episode } from '$server/content/released';
 
 // /videos: every episode and video, newest first, with filters. Edge cached like the episode list
 // it replaced: new content goes out a few times a week.
@@ -103,7 +104,7 @@ export const get_browse_items = query(browse_page_schema, (filters) =>
 			});
 
 			return rows.flatMap((row): BrowseItem[] => {
-				if (row.show) {
+				if (row.show && is_complete_episode(row.show)) {
 					const { show } = row;
 					return [
 						{

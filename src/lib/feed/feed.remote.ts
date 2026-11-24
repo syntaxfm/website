@@ -15,12 +15,16 @@ import type { RankedContent } from '#lib/sidebar/ranked.ts';
 import { get_show_label } from '#lib/shows/show_label.ts';
 import { feed_card_query } from './feed_queries';
 import { refresh_newsletter_issues_if_stale } from '$server/newsletter/issues';
-import { released_content_clause } from '$server/content/released';
+import {
+	has_show_number,
+	released_content_clause,
+	with_complete_show
+} from '$server/content/released';
 
 // Cached at the edge: new content goes out a few times a week, and the query took 180-420 ms.
 // A stale copy is served for up to a day, so change HOME_FEED_CACHE_KEY whenever feed_card_query
 // changes shape, or cards get yesterday's fields (video cards once rendered `undefined` ids).
-const HOME_FEED_CACHE_KEY = 'home-feed-2';
+const HOME_FEED_CACHE_KEY = 'home-feed-3';
 export const get_feed_content = query(() =>
 	edge_cached(
 		HOME_FEED_CACHE_KEY,
@@ -28,12 +32,13 @@ export const get_feed_content = query(() =>
 		async () => {
 			// Snack Pack issues are in the feed, and nothing else on the home page would notice a new one
 			await refresh_newsletter_issues_if_stale();
-			return db.query.content.findMany({
+			const rows = await db.query.content.findMany({
 				...feed_card_query,
 				where: released_content_clause(),
 				orderBy: (c, { desc }) => [desc(c.published_at)],
 				limit: 100
 			});
+			return rows.map(with_complete_show);
 		}
 	)
 );
@@ -105,7 +110,7 @@ async function load_recent_episodes(): Promise<(RankedContent & { youtube_id: st
 	const items: (RankedContent & { youtube_id: string })[] = [];
 	for (const row of rows) {
 		const { show } = row;
-		if (!show) continue;
+		if (!show || !has_show_number(show)) continue;
 
 		const youtube_id = show.youtube_url ? get_id_from_url(show.youtube_url) : '';
 		const guests = show.guests

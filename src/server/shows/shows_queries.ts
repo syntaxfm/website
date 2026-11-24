@@ -10,10 +10,11 @@ import type {
 	Show,
 	Topic
 } from '$server/db/types';
-import { and, desc, eq, like, lte } from 'drizzle-orm';
+import { and, desc, eq, like } from 'drizzle-orm';
 import { edge_cached } from '$server/edge_cache';
 import type { PlayerShow } from '$state/player_utils';
 import { get_id_from_url } from '#lib/videos/utils.ts';
+import { is_complete_episode, released_show_clause } from '$server/content/released';
 
 // Reusable query fragments
 const with_hosts = {
@@ -56,12 +57,13 @@ export const with_show_card_show = {
 } as const;
 
 export async function get_last_10_shows() {
-	return db.query.show.findMany({
+	const rows = await db.query.show.findMany({
 		limit: 10,
 		orderBy: [desc(show.number)],
-		where: lte(show.date, new Date()),
+		where: released_show_clause(),
 		with: with_show_card_show
 	});
+	return rows.filter(is_complete_episode);
 }
 
 /**
@@ -71,16 +73,20 @@ export async function get_last_10_shows() {
  */
 export function get_player_show_for_video(video_id: string): Promise<PlayerShow | null> {
 	return edge_cached(
-		`player-show-for-video-${video_id}`,
+		`player-show-for-video-2-${video_id}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		async () => {
 			const candidates = await db.query.show.findMany({
 				columns: { number: true, title: true, slug: true, url: true, youtube_url: true },
-				where: and(like(show.youtube_url, `%${video_id}%`), lte(show.date, new Date())),
+				where: and(like(show.youtube_url, `%${video_id}%`), released_show_clause()),
 				limit: 5
 			});
 			// `_` in a video id matches any character in LIKE, so compare the ids themselves
-			return candidates.find((c) => get_id_from_url(c.youtube_url) === video_id) ?? null;
+			return (
+				candidates
+					.filter(is_complete_episode)
+					.find((c) => get_id_from_url(c.youtube_url) === video_id) ?? null
+			);
 		}
 	);
 }

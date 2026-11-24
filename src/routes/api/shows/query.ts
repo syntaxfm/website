@@ -1,6 +1,7 @@
 import { in_order_added } from '#lib/utils/in_order_added.ts';
-import { desc, lte } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import { show as shows } from '$server/db/schema';
+import { released_show_clause } from '$server/content/released';
 
 export const shows_api_query = () => ({
 	orderBy: desc(shows.number),
@@ -18,5 +19,5 @@ export const shows_api_query = () => ({
 			}
 		}
 	},
-	where: lte(shows.date, new Date())
+	where: released_show_clause()
 });

@@ -5,6 +5,7 @@ import { db } from '$server/db/client';
 import { content, content_tags, type content_status, type content_types } from '$server/db/schema';
 import { parse_optional_iso_date } from '$utilities/parse_optional_iso_date';
 import { released_content_clause } from './released';
+import { assert_episodes_can_publish } from '$server/shows/episode_publishing';
 
 // Content: the wrapper for every content type (docs/CONTEXT.md). The admin Content pages
 // (admin_content.remote.ts) and the MCP endpoint (server/mcp) both call these with the person
@@ -153,6 +154,7 @@ export async function get_content_detail(actor: Actor, content_id: string) {
  */
 export async function bulk_update_status(actor: Actor, input: BulkContentStatusInput) {
 	assert_admin_actor(actor);
+	if (input.status === 'PUBLISHED') await assert_episodes_can_publish(input.content_ids);
 
 	const set_values: {
 		status: ContentStatus;

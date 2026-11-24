@@ -6,10 +6,13 @@ import type { MediaKind } from './media_timeline';
 
 /**
  * The fields the player reads from a show: `url` to play it, `youtube_url` to play its video,
- * `number`/`title`/`slug` for the title link, share button and media session. Callers with a full
- * database `Show` satisfy it as-is; list cards pass only these fields and have no `id`.
+ * `number`/`title`/`slug` for the title link, share button and media session. Only released
+ * episodes play, and those always have a number and audio (is_complete_episode narrows a row to
+ * this); list cards pass only these fields and have no `id`.
  */
-export type PlayerShow = Pick<Show, 'number' | 'title' | 'slug' | 'url'> & {
+export type PlayerShow = Pick<Show, 'title' | 'slug'> & {
+	number: number;
+	url: string;
 	id?: Show['id'];
 	youtube_url?: Show['youtube_url'];
 };

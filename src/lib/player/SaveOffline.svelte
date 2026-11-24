@@ -4,7 +4,7 @@
 	import type { Show } from '$server/db/types';
 
 	interface Props {
-		show: Show;
+		show: Show & { url: string };
 	}
 
 	let { show }: Props = $props();

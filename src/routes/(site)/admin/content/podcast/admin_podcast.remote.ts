@@ -12,7 +12,6 @@ import {
 	content,
 	guest,
 	link,
-	profile,
 	show,
 	topic,
 	transcript
@@ -26,9 +25,10 @@ import * as v from 'valibot';
 import { import_or_update_all_changed_shows, import_or_update_all_shows } from '$server/shows';
 import * as show_editor from '$server/shows/show_editor';
 import { error } from '@sveltejs/kit';
-import { eq, ilike, inArray, or, sql } from 'drizzle-orm';
+import { eq, ilike, inArray, sql } from 'drizzle-orm';
 import { get_transcript } from '$server/transcripts/grok';
 import * as transcript_editor from '$server/transcripts/transcript_editor';
+import { assert_episodes_can_publish } from '$server/shows/episode_publishing';
 
 const CONTENT_STATUS_VALUES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const;
 const FILTER_STATUS_VALUES = [...CONTENT_STATUS_VALUES, 'ALL'] as const;
@@ -43,18 +43,21 @@ const list_shows_schema = v.object({
 });
 
 const bulk_show_status_schema = v.object({
-	show_numbers: v.pipe(v.array(v.number()), v.minLength(1)),
+	content_ids: v.pipe(v.array(v.string()), v.minLength(1)),
 	status: v.picklist(CONTENT_STATUS_VALUES)
 });
 
+// A blank audio URL is a draft without audio yet
+const audio_url_schema = v.optional(v.nullable(v.pipe(v.string(), v.trim())));
+
 const update_show_editor_schema = v.object({
-	show_number: v.number(),
+	content_id: v.string(),
 	title: v.pipe(v.string(), v.trim(), v.minLength(1)),
 	slug: v.pipe(v.string(), v.trim(), v.minLength(1)),
 	status: v.picklist(CONTENT_STATUS_VALUES),
 	published_at_iso: v.optional(v.nullable(v.string())),
 	show_notes: v.string(),
-	url: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	url: audio_url_schema,
 	youtube_url: v.optional(v.nullable(v.string())),
 	host_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
 	guest_ids: v.optional(v.array(v.pipe(v.string(), v.trim(), v.minLength(1)))),
@@ -62,17 +65,17 @@ const update_show_editor_schema = v.object({
 });
 
 const create_show_editor_schema = v.object({
-	show_number: v.number(),
+	show_number: v.optional(v.nullable(v.number())),
 	title: v.pipe(v.string(), v.trim(), v.minLength(1)),
 	slug: v.pipe(v.string(), v.trim(), v.minLength(1)),
 	status: v.picklist(CONTENT_STATUS_VALUES),
 	published_at_iso: v.optional(v.nullable(v.string())),
 	show_notes: v.string(),
-	url: v.pipe(v.string(), v.trim(), v.minLength(1)),
+	url: audio_url_schema,
 	youtube_url: v.optional(v.nullable(v.string()))
 });
 
-const show_number_schema = v.object({ show_number: v.number() });
+const episode_schema = v.object({ content_id: v.string() });
 const guest_search_schema = v.object({ search_text: v.optional(v.string()) });
 
 const user_search_schema = v.object({ search_text: v.optional(v.string()) });
@@ -203,9 +206,8 @@ export const bulk_update_show_status = command(bulk_show_status_schema, async (i
 	await assert_admin();
 
 	const existing_shows = await db.query.show.findMany({
-		where: inArray(show.number, input.show_numbers),
+		where: inArray(show.content_id, input.content_ids),
 		columns: {
-			number: true,
 			content_id: true
 		}
 	});
@@ -214,11 +216,10 @@ export const bulk_update_show_status = command(bulk_show_status_schema, async (i
 		.map((row) => row.content_id)
 		.filter((maybe_id): maybe_id is string => Boolean(maybe_id));
 
-	const skipped_count = existing_shows.length - updatable_content_ids.length;
-
 	if (updatable_content_ids.length === 0) {
-		return { success: true, count: 0, skipped_count };
+		return { success: true, count: 0 };
 	}
+	if (input.status === 'PUBLISHED') await assert_episodes_can_publish(updatable_content_ids);
 
 	const set_values: {
 		status: (typeof CONTENT_STATUS_VALUES)[number];
@@ -241,31 +242,42 @@ export const bulk_update_show_status = command(bulk_show_status_schema, async (i
 
 	return {
 		success: true,
-		count: updatable_content_ids.length,
-		skipped_count
+		count: updatable_content_ids.length
 	};
 });
 
-export const get_show_editor = query(v.number(), async (show_number) =>
-	show_editor.get_show_editor(await assert_admin(), show_number)
+export const get_show_editor = query(v.string(), async (content_id) =>
+	show_editor.get_show_editor(await assert_admin(), content_id)
 );
 
-export const renumber_show = command(
-	v.object({ show_number: v.number(), new_show_number: v.number() }),
-	async ({ show_number, new_show_number }) =>
-		show_editor.renumber_show(await assert_admin(), show_number, new_show_number)
+export const set_show_number = command(
+	v.object({ content_id: v.string(), show_number: v.nullable(v.number()) }),
+	async ({ content_id, show_number }) =>
+		show_editor.set_show_number(await assert_admin(), content_id, show_number)
 );
+
+// The number of the episode with this content id; refuses one that has none yet
+async function get_episode_number(content_id: string): Promise<number> {
+	const episode = await db.query.show.findFirst({
+		where: eq(show.content_id, content_id),
+		columns: { number: true }
+	});
+	if (!episode) error(404, 'Show not found');
+	if (episode.number === null) error(409, 'This episode has no number yet');
+	return episode.number;
+}
 
 export const create_show_editor = command(create_show_editor_schema, async (input) =>
 	show_editor.create_show(await assert_admin(), input)
 );
 
 export const update_show_editor = command(update_show_editor_schema, async (input) =>
-	show_editor.update_show(await assert_admin(), input)
+	show_editor.update_show(await assert_admin(), { ...input, url: input.url ?? null })
 );
 
-export const sync_spotify_for_show = command(show_number_schema, async ({ show_number }) => {
+export const sync_spotify_for_show = command(episode_schema, async ({ content_id }) => {
 	await assert_admin();
+	const show_number = await get_episode_number(content_id);
 
 	if (!MEGAPHONE_API_TOKEN || !MEGAPHONE_NETWORK_ID || !MEGAPHONE_PODCAST_ID) {
 		error(
@@ -309,31 +321,9 @@ export const search_guests = query(guest_search_schema, async ({ search_text }) 
 // HOST PANEL — search and attach Profiles to a Show
 // ============================================================================
 
-export const search_users_for_host = query(user_search_schema, async ({ search_text }) => {
-	await assert_admin();
-
-	const normalized_search = search_text?.trim() || '';
-
-	const where_clause = normalized_search
-		? or(
-				ilike(profile.username, `%${normalized_search}%`),
-				ilike(profile.name, `%${normalized_search}%`),
-				ilike(profile.email, `%${normalized_search}%`)
-			)
-		: undefined;
-
-	return db.query.profile.findMany({
-		where: where_clause,
-		columns: {
-			id: true,
-			username: true,
-			name: true,
-			email: true
-		},
-		orderBy: (profile_item, { asc }) => [asc(profile_item.username)],
-		limit: 25
-	});
-});
+export const search_users_for_host = query(user_search_schema, async ({ search_text }) =>
+	show_editor.search_hosts(await assert_admin(), search_text)
+);
 
 // ============================================================================
 // AI ARTIFACT EDITORIAL CRUD
@@ -582,25 +572,27 @@ export const refresh_all = form(async () => {
 });
 
 // One episode's transcript: made by Grok from the audio, or deleted so it can be made again
-export const transcribe_show = command(show_number_schema, async ({ show_number }) => {
+export const transcribe_show = command(episode_schema, async ({ content_id }) => {
 	await assert_admin();
+	const show_number = await get_episode_number(content_id);
 
 	await get_transcript(show_number);
-	await get_show_editor(show_number).refresh();
+	await get_show_editor(content_id).refresh();
 	return { message: `Transcribed #${show_number}` };
 });
 
-export const regenerate_show_transcript = command(show_number_schema, async ({ show_number }) => {
+export const regenerate_show_transcript = command(episode_schema, async ({ content_id }) => {
 	await assert_admin();
+	const show_number = await get_episode_number(content_id);
 
 	await get_transcript(show_number, { replace: true });
-	await get_show_editor(show_number).refresh();
+	await get_show_editor(content_id).refresh();
 	return { message: `Transcribed #${show_number} again` };
 });
 
 export const get_transcript_editor = query(
 	v.object({
-		show_number: v.number(),
+		content_id: v.string(),
 		search_text: v.optional(v.string()),
 		page: v.optional(v.number())
 	}),
@@ -617,16 +609,10 @@ export const update_transcript_line = command(
 	async (input) => transcript_editor.update_transcript_line(await assert_admin(), input)
 );
 
-export const delete_show_transcript = command(show_number_schema, async ({ show_number }) => {
+export const delete_show_transcript = command(episode_schema, async ({ content_id }) => {
 	await assert_admin();
 
-	const episode = await db.query.show.findFirst({
-		where: eq(show.number, show_number),
-		columns: { content_id: true }
-	});
-	if (!episode?.content_id) error(404, `Show #${show_number} not found`);
-
-	await db.delete(transcript).where(eq(transcript.content_id, episode.content_id));
-	await get_show_editor(show_number).refresh();
-	return { message: `Deleted the transcript for #${show_number}` };
+	await db.delete(transcript).where(eq(transcript.content_id, content_id));
+	await get_show_editor(content_id).refresh();
+	return { message: 'Deleted the transcript' };
 });

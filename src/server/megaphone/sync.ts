@@ -3,6 +3,7 @@ import { show } from '$server/db/schema';
 import { eq, ne, isNull, desc, and, sql } from 'drizzle-orm';
 import { MegaphoneApiClient } from './client';
 import type { MegaphoneEpisode } from './client';
+import { has_show_number } from '$server/content/released';
 
 /**
  * Match episodes using various strategies: title matching and episode number
@@ -321,7 +322,7 @@ export async function syncEpisodeSpotifyData(
 		}
 	});
 
-	if (!current_show) {
+	if (!current_show || !has_show_number(current_show)) {
 		throw new Error(`Show ${showNumber} not found`);
 	}
 
@@ -371,7 +372,7 @@ export async function checkDuplicateSpotifyIds(): Promise<
 
 		duplicate_details.push({
 			spotifyId: duplicate.spotify_id,
-			shows: shows_data
+			shows: shows_data.filter(has_show_number)
 		});
 	}
 
@@ -401,7 +402,7 @@ export async function syncAllEpisodesSpotifyData(credentials: MegaphoneCredentia
 	);
 
 	// Process each show
-	for (const show of shows_without_spotify) {
+	for (const show of shows_without_spotify.filter(has_show_number)) {
 		try {
 			const { matching_episode, match_result } = findBestEpisodeMatch(show, megaphone_episodes);
 

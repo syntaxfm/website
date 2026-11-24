@@ -13,6 +13,7 @@ import {
 } from '#lib/videos/utils.ts';
 import { feed_card_query } from '../feed/feed_queries';
 import type { RankedContent } from './ranked';
+import { has_show_number } from '$server/content/released';
 
 // A few spare, so the sidebar can drop ones Most Popular already shows and still have enough
 const RELATED_CANDIDATES = 10;
@@ -48,7 +49,7 @@ async function load_related_content(content_id: string): Promise<RankedContent[]
 	const items: RankedContent[] = [];
 	for (const row of sorted) {
 		const { show, video } = row;
-		if (show) {
+		if (show && has_show_number(show)) {
 			const people = [
 				...show.guests.map(({ guest }) => guest?.name),
 				...show.hosts.map(({ profile }) => profile?.name)

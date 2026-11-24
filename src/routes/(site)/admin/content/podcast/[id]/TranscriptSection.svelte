@@ -18,7 +18,9 @@
 	// fix its lines, or delete it
 
 	interface Props {
-		show_number: number;
+		content_id: string;
+		// Null until the episode has a number; Grok transcribes numbered episodes
+		show_number: number | null;
 		show_slug: string;
 		// The transcript's line count, or null while there is none
 		line_count: number | null;
@@ -28,7 +30,7 @@
 		onchange: () => Promise<void>;
 	}
 
-	let { show_number, show_slug, line_count, has_audio, onchange }: Props = $props();
+	let { content_id, show_number, show_slug, line_count, has_audio, onchange }: Props = $props();
 
 	let busy = $state(false);
 	let message = $state('');
@@ -36,7 +38,7 @@
 	let search_text = $state('');
 	let page = $state(1);
 
-	let query_input = $derived({ show_number, search_text, page });
+	let query_input = $derived({ content_id, search_text, page });
 	let editor = $derived(line_count === null ? null : await get_transcript_editor(query_input));
 
 	async function run(action: () => Promise<{ message: string }>, fallback: string) {
@@ -58,7 +60,7 @@
 	}
 
 	function transcribe() {
-		run(() => transcribe_show({ show_number }), 'Unable to transcribe this episode.').catch(
+		run(() => transcribe_show({ content_id }), 'Unable to transcribe this episode.').catch(
 			() => {}
 		);
 	}
@@ -100,7 +102,7 @@
 				type="button"
 				data-intent="primary"
 				onclick={transcribe}
-				disabled={busy || !has_audio}
+				disabled={busy || !has_audio || show_number === null}
 			>
 				{busy ? 'Transcribing…' : 'Transcribe'}
 			</button>
@@ -110,11 +112,15 @@
 		{/if}
 	{:else}
 		<div class="admin-row">
-			<a
-				href={resolve(`show/${show_number}/${show_slug}/transcript`)}
-				target="_blank"
-				rel="noopener noreferrer">{line_count.toLocaleString()} lines</a
-			>
+			{#if show_number === null}
+				<p>{line_count.toLocaleString()} lines</p>
+			{:else}
+				<a
+					href={resolve(`show/${show_number}/${show_slug}/transcript`)}
+					target="_blank"
+					rel="noopener noreferrer">{line_count.toLocaleString()} lines</a
+				>
+			{/if}
 			<div class="admin-actions">
 				<AdminConfirmDialog
 					title="Transcribe this episode again?"
@@ -124,7 +130,7 @@
 					trigger_label="Transcribe again"
 					onconfirm={() =>
 						run(
-							() => regenerate_show_transcript({ show_number }),
+							() => regenerate_show_transcript({ content_id }),
 							'Unable to transcribe this episode again.'
 						)}
 				/>
@@ -135,7 +141,7 @@
 					action_label="Delete transcript"
 					trigger_label="Delete"
 					onconfirm={() =>
-						run(() => delete_show_transcript({ show_number }), 'Unable to delete the transcript.')}
+						run(() => delete_show_transcript({ content_id }), 'Unable to delete the transcript.')}
 				/>
 			</div>
 		</div>

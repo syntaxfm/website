@@ -40,7 +40,8 @@ vi.mock('./player_utils', async (import_original) => ({
 import { audio_timeline_time, player } from './player';
 import { youtube_player } from './youtube_player';
 
-const show: Show = {
+// A released episode: it has its number and audio
+const show: Show & { number: number; url: string } = {
 	id: 'show-1',
 	number: 900,
 	title: 'Episode 900',

@@ -2,6 +2,7 @@ import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { db } from '$server/db/client';
 import get_show_path from '$utilities/slug';
 import type { SearchNotes, SearchShow } from '#lib/search/types.ts';
+import { has_show_number, released_show_clause } from '$server/content/released';
 
 // Search is split in two so it answers from the first keystroke: titles, numbers and guests
 // (~45 KB compressed) load before search opens, and the show notes (~600 KB) load behind.
@@ -11,7 +12,7 @@ export const SEARCH_INDEX_HEADERS = {
 	'cache-control': `public, max-age=${60 * 60}, s-maxage=${60 * 60 * 5}`
 };
 
-// Shows dated in the future are scheduled, not out yet
+// Released shows only: a draft or a scheduled episode isn't out yet
 export async function load_search_shows(): Promise<SearchShow[]> {
 	const rows = await db.query.show.findMany({
 		columns: {
@@ -22,7 +23,7 @@ export async function load_search_shows(): Promise<SearchShow[]> {
 			show_type: true,
 			youtube_url: true
 		},
-		where: (s, { lte }) => lte(s.date, new Date()),
+		where: released_show_clause(),
 		orderBy: (s, { desc }) => [desc(s.number)],
 		with: {
 			guests: {
@@ -33,7 +34,7 @@ export async function load_search_shows(): Promise<SearchShow[]> {
 		}
 	});
 
-	return rows.map((row) => ({
+	return rows.filter(has_show_number).map((row) => ({
 		href: get_show_path(row),
 		number: row.number,
 		title: row.title,
@@ -48,9 +49,11 @@ export async function load_search_shows(): Promise<SearchShow[]> {
 export async function load_search_notes(): Promise<SearchNotes[]> {
 	const rows = await db.query.show.findMany({
 		columns: { number: true, slug: true, show_notes: true },
-		where: (s, { lte }) => lte(s.date, new Date()),
+		where: released_show_clause(),
 		orderBy: (s, { desc }) => [desc(s.number)]
 	});
 
-	return rows.map((row) => ({ href: get_show_path(row), notes: row.show_notes }));
+	return rows
+		.filter(has_show_number)
+		.map((row) => ({ href: get_show_path(row), notes: row.show_notes }));
 }

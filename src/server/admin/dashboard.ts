@@ -3,6 +3,7 @@ import { and, asc, count, desc, eq, gt, gte, lt, lte, ne } from 'drizzle-orm';
 import { assert_admin_actor, type Actor } from '$server/auth/authorization';
 import { db } from '$server/db/client';
 import { content, show, userSubmission } from '$server/db/schema';
+import { has_show_number, released_show_clause } from '$server/content/released';
 
 // The admin home's summary: what needs attention and what changed this week. The admin page
 // (admin_dashboard.remote.ts) and the MCP endpoint (server/mcp) both call it with the person acting.
@@ -75,13 +76,14 @@ export async function get_admin_dashboard(actor: Actor) {
 	});
 
 	const recent_shows = await db.query.show.findMany({
-		where: lt(show.date, now),
+		where: released_show_clause(),
 		with: {
 			transcript: { columns: { id: true } }
 		},
 		orderBy: [desc(show.date)],
 		columns: {
 			id: true,
+			content_id: true,
 			number: true,
 			title: true,
 			slug: true,
@@ -90,6 +92,7 @@ export async function get_admin_dashboard(actor: Actor) {
 	});
 
 	const shows_missing_transcript = recent_shows
+		.filter(has_show_number)
 		.filter((row) => !row.transcript)
 		.map(({ transcript: _t, ...rest }) => rest)
 		.slice(0, MAX_MISSING_ROWS);
@@ -140,7 +143,7 @@ export async function get_admin_dashboard(actor: Actor) {
 		content_type: (typeof recent_content_updates)[number]['type'];
 		title: string;
 		status: (typeof recent_content_updates)[number]['status'];
-		show: { number: number; slug: string } | null;
+		show: { number: number | null; slug: string } | null;
 		video: { url: string } | null;
 		was_published: boolean;
 	};

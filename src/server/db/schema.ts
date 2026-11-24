@@ -101,17 +101,17 @@ export const show = pgTable(
 	'shows',
 	{
 		id: text('id').primaryKey(),
-		number: integer('number').notNull().unique(),
+		number: integer('number').unique(),
 		title: text('title').notNull(), // deprecated
 		slug: text('slug').notNull(), // deprecated
 		date: timestamp('date', { withTimezone: true }).notNull(), // deprecated
-		url: text('url').notNull(),
+		url: text('url'),
 		youtube_url: text('youtube_url'),
 		spotify_id: varchar('spotify_id', { length: 255 }),
 		show_notes: text('show_notes').notNull(),
 		show_type: showTypeEnum('show_type').default('SPECIAL').notNull(),
 		hash: varchar('hash', { length: 100 }).notNull().unique(),
-		md_file: text('md_file').notNull().unique(),
+		md_file: text('md_file').unique(),
 		// Full-text search vector (populated by migration script & triggers)
 		search_vector: text('search_vector'), // Will be tsvector in DB
 		content_id: uuid('content_id').references(() => content.id, { onDelete: 'cascade' }), // nullable until migration complete, no unique constraint yet

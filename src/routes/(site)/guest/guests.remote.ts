@@ -5,7 +5,13 @@ import { query } from '$app/server';
 import { db } from '$server/db/client';
 import { edge_cached } from '$server/edge_cache';
 import { guest } from '$server/db/schema';
-import { is_released, released_content_clause } from '$server/content/released';
+import {
+	has_show_number,
+	is_complete_episode,
+	is_released,
+	released_content_clause,
+	with_complete_show
+} from '$server/content/released';
 import { eq } from 'drizzle-orm';
 
 // A guest booked on a scheduled episode isn't shown until that episode is out: the relation from a
@@ -18,13 +24,16 @@ export const get_guest = query(v.string(), async (name_slug) => {
 		with: {
 			appearances: {
 				with: {
+					content: { columns: { status: true, published_at: true } },
 					show: { with: with_show_card_show }
 				}
 			}
 		}
 	});
 	if (!found) return null;
-	const released = found.appearances.filter((show_guest) => is_released(show_guest.show?.date));
+	const released = found.appearances.flatMap(({ content: content_meta, show, ...show_guest }) =>
+		is_released(content_meta) && show && is_complete_episode(show) ? [{ ...show_guest, show }] : []
+	);
 	return released.length > 0 ? { ...found, appearances: released } : null;
 });
 
@@ -43,7 +52,7 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 
 	if (content_ids.length === 0) return [];
 
-	return db.query.content.findMany({
+	const rows = await db.query.content.findMany({
 		where: (c, { and, inArray }) => and(inArray(c.id, content_ids), released_content_clause()),
 		orderBy: (c, { desc }) => [desc(c.published_at)],
 		with: {
@@ -59,13 +68,14 @@ export const get_guest_feed = query(v.string(), async (name_slug) => {
 			video: true
 		}
 	});
+	return rows.map(with_complete_show);
 });
 
 // Every guest with their released episodes (177 guests, 57 KB; Postgres takes 3 ms, the round trip
 // ~100 ms). Guests change when an episode comes out.
 export const get_all_guests = query(() =>
 	edge_cached(
-		'all-guests-3',
+		'all-guests-4',
 		{ fresh_seconds: 60 * 60, stale_seconds: 60 * 60 * 24 * 7 },
 		async () => {
 			const guests = await db.query.guest.findMany({
@@ -82,6 +92,7 @@ export const get_all_guests = query(() =>
 					appearances: {
 						columns: {},
 						with: {
+							content: { columns: { status: true, published_at: true } },
 							show: {
 								columns: {
 									number: true,
@@ -96,8 +107,8 @@ export const get_all_guests = query(() =>
 				orderBy: (g, { asc }) => [asc(g.name)]
 			});
 			return guests.flatMap((found) => {
-				const released = found.appearances.filter((show_guest) =>
-					is_released(show_guest.show?.date)
+				const released = found.appearances.flatMap(({ content: content_meta, show }) =>
+					is_released(content_meta) && show && has_show_number(show) ? [{ show }] : []
 				);
 				return released.length > 0 ? [{ ...found, appearances: released }] : [];
 			});

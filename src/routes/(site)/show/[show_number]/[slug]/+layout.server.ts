@@ -4,7 +4,12 @@ import { edge_cached } from '$server/edge_cache';
 import { get_request_user } from '$server/auth/request_auth';
 import { show } from '$server/db/schema';
 import { and, inArray } from 'drizzle-orm';
-import { released_show_clause } from '$server/content/released';
+import {
+	has_show_number,
+	is_complete_episode,
+	is_released,
+	released_show_clause
+} from '$server/content/released';
 import { get_show_detail_query } from '$server/shows/shows_queries';
 import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { episode_dates } from '#lib/seo/structured_data.ts';
@@ -27,11 +32,16 @@ async function load_show_page(show_number: number) {
 			limit: 2
 		})
 	]);
-	if (!show_data) return null;
+	// A draft without its number or audio isn't a page yet, even for an admin preview
+	if (!show_data || !is_complete_episode(show_data)) return null;
 
 	// The notes reach the page as a safe content tree, not as Markdown or an HTML string.
 	const { show_notes, ...show_fields } = show_data;
-	return { show: show_fields, show_notes: markdown_to_content(show_notes), prev_next };
+	return {
+		show: show_fields,
+		show_notes: markdown_to_content(show_notes),
+		prev_next: prev_next.filter(has_show_number)
+	};
 }
 
 export const load: LayoutServerLoad = async (event) => {
@@ -39,23 +49,30 @@ export const load: LayoutServerLoad = async (event) => {
 	const show_number = parseInt(params.show_number);
 
 	const show_page = await edge_cached(
-		`show-page-2-${show_number}`,
+		`show-page-3-${show_number}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		() => load_show_page(show_number)
 	);
 
-	// Only an unreleased show asks who is signed in: admins can preview it. That page is for the
-	// admin alone, so it stays out of shared caches.
-	const show_date = new Date(show_page?.show.date || '');
-	if (show_date > new Date()) {
-		const user = await get_request_user(event);
-		if (!user?.roles.includes('admin')) {
-			error(401, `That is a show, but it's in the future! \n\nCome back ${show_date}`);
-		}
-		event.setHeaders({ 'cache-control': 'private, no-store' });
-	}
 	if (!show_page) {
 		error(404, `This show does not exist.`);
+	}
+
+	// Only an unreleased show (a draft, or scheduled) asks who is signed in: admins can preview it.
+	// That page is for the admin alone, so it stays out of shared caches.
+	const content_meta = show_page.show.meta;
+	if (!is_released(content_meta)) {
+		const user = await get_request_user(event);
+		if (!user?.roles.includes('admin')) {
+			if (content_meta?.status !== 'PUBLISHED' || !content_meta.published_at) {
+				error(404, `This show does not exist.`);
+			}
+			error(
+				401,
+				`That is a show, but it's in the future! \n\nCome back ${new Date(content_meta.published_at)}`
+			);
+		}
+		event.setHeaders({ 'cache-control': 'private, no-store' });
 	}
 
 	const { show: show_fields, show_notes, prev_next } = show_page;

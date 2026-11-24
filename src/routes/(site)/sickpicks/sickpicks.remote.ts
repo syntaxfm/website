@@ -2,9 +2,10 @@ import { in_order_added } from '#lib/utils/in_order_added.ts';
 import { markdown_to_content } from '#lib/content/markdown_to_content.server.ts';
 import { db } from '$server/db/client';
 import { show } from '$server/db/schema';
-import { lte, desc } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import { query } from '$app/server';
 import { edge_cached } from '$server/edge_cache';
+import { released_show_clause } from '$server/content/released';
 
 function cleanUpLines(string: string) {
 	return string
@@ -46,7 +47,7 @@ async function load_sick_picks() {
 			}
 		},
 		orderBy: [desc(show.number)],
-		where: lte(show.date, new Date())
+		where: released_show_clause()
 	});
 
 	// Filter out shows that don't have Sick Picks in the show notes somewhere

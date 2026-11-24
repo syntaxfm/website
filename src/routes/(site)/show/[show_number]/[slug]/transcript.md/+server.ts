@@ -10,6 +10,7 @@ import {
 	remove_flagging_utterances
 } from '#lib/transcript/utils.ts';
 import type { RequestHandler } from './$types';
+import { is_released } from '$server/content/released';
 
 // The transcript as Markdown, for AI agents: /show/{number}/{slug}/transcript.md. Same passages
 // and speaker names as the HTML page, each line linking to its passage there.
@@ -38,7 +39,10 @@ async function load_transcript_source(show_number: number) {
 	return {
 		title: show_row.title,
 		slug: show_row.slug,
-		date: show_row.date,
+		release: {
+			status: show_row.meta?.status ?? 'DRAFT',
+			published_at: show_row.meta?.published_at ?? null
+		},
 		description: show_row.aiShowNote?.description ?? null,
 		topics: (show_row.aiShowNote?.summary ?? []).map(({ time, text }) => ({ time, text })),
 		people_on_show: people_on_show(
@@ -55,12 +59,11 @@ export const GET: RequestHandler = async function GET({ params, url, setHeaders 
 
 	// Fresh for 5 minutes, so fixes made in the admin show up soon
 	const source = await edge_cached(
-		`transcript-md-2-${show_number}`,
+		`transcript-md-3-${show_number}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 * 30 },
 		() => load_transcript_source(show_number)
 	);
-	const published = source ? new Date(source.date) : null;
-	if (!source || !published || published > new Date()) {
+	if (!source || !is_released(source.release)) {
 		error(404, 'No transcript for this show.');
 	}
 	if (params.slug !== source.slug) {
@@ -86,7 +89,7 @@ export const GET: RequestHandler = async function GET({ params, url, setHeaders 
 			title: source.title,
 			transcript_url: `${episode_url}/transcript`,
 			episode_url,
-			published,
+			published: new Date(source.release.published_at ?? ''),
 			description: source.description,
 			topics: source.topics,
 			passages

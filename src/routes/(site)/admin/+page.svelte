@@ -52,12 +52,18 @@
 {/snippet}
 
 <!-- One row of a Show table: number, title (editor + public links), date -->
-{#snippet show_row(row: { number: number; slug: string; title: string; date: Date })}
+{#snippet show_row(row: {
+	content_id: string | null;
+	number: number;
+	slug: string;
+	title: string;
+	date: Date;
+})}
 	<tr>
 		<td class="admin-cell-muted">#{row.number}</td>
 		<AdminTitleCell
 			title={row.title}
-			edit_href={resolve(`admin/content/podcast/${row.number}`)}
+			edit_href={row.content_id ? resolve(`admin/content/podcast/${row.content_id}`) : undefined}
 			public_href={resolve(`show/${row.number}/${row.slug}`)}
 		/>
 		<AdminDateCell value={row.date} />

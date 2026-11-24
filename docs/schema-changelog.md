@@ -35,6 +35,39 @@ relying on it.
 
 ---
 
+## 2026-11-24 - Draft episodes without a number or audio
+
+**Type**: Constraint (relaxed)
+**Status**: 🚧 Not yet on production
+**Affects**: shows
+
+### Changes
+- `0013_episode_drafts`: `shows.number`, `shows.url` and `shows.md_file` may be null, so a draft episode
+  can exist before its number and audio are known (Syntax Buddy sends it when the edit is done)
+- Publishing (now or scheduled) still needs both: `src/server/shows/episode_publishing.ts` refuses it on
+  every path (editor, bulk status, content editor, MCP, the publish cron)
+
+### Migration Script Changes
+- None
+
+### Application Code Changes
+- "Released" means published and dated now or earlier (`released.ts`); it used to be the date alone,
+  which would have shown a draft the day it was made
+- The episode editor is `/admin/content/podcast/[content id]`; the number is editable and may be blank
+  on a draft
+- MCP: `create_show` takes no number or audio for a draft; `update_show` names a Show by `content_id`
+  or `show_number`, sets `new_show_number` and `host_ids`; new `search_hosts`
+
+### Rollback Plan
+- Only while no row has a null: `ALTER TABLE shows ALTER COLUMN number SET NOT NULL` (and `url`,
+  `md_file`), then deploy the previous code
+
+### Deployment Notes
+- Apply 0013 before the deploy: the new code writes nulls for numberless drafts. Relaxing NOT NULL
+  doesn't affect the running code
+
+---
+
 ## 2026-11-24 - Guests, hosts, transcripts and AI notes link by content id
 
 **Type**: Additive (0011), then Breaking (0012)

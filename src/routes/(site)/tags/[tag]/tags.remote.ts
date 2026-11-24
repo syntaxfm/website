@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 import { error } from '@sveltejs/kit';
-import { and, desc, eq, lte, sql } from 'drizzle-orm';
+import { and, desc, eq, sql } from 'drizzle-orm';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
 import {
@@ -15,6 +15,7 @@ import {
 import { edge_cached } from '$server/edge_cache';
 import { feed_card_query } from '#lib/feed/feed_queries.ts';
 import { pick_key_moments, whole_word_pattern, type KeyMomentRow } from '#lib/seo/hubs.ts';
+import { released_show_clause, with_complete_show } from '$server/content/released';
 
 // Moments are picked one per episode from the newest matches, so a handful of rows is plenty
 const KEY_MOMENT_LIMIT = 5;
@@ -41,20 +42,24 @@ function find_key_moments(slug: string, name: string): Promise<KeyMomentRow[]> {
 		.where(
 			and(
 				eq(tag.slug, slug),
-				eq(content.status, 'PUBLISHED'),
-				lte(show.date, new Date()),
+				released_show_clause(),
 				sql`${aiSummaryEntry.text} ~* ${whole_word_pattern(name)}`
 			)
 		)
 		.orderBy(desc(show.date), aiSummaryEntry.id)
-		.limit(KEY_MOMENT_CANDIDATES);
+		.limit(KEY_MOMENT_CANDIDATES)
+		.then((rows) =>
+			rows.flatMap(({ show_number, ...row }) =>
+				show_number === null ? [] : [{ ...row, show_number }]
+			)
+		);
 }
 
 // Edge cached like the Home feed. The tag and its content are asked for at once: each query is
 // a ~100 ms round trip to the database.
 export const get_content_by_tag = query(v.string(), async (slug) => {
 	const data = await edge_cached(
-		`tag-feed-${slug}`,
+		`tag-feed-2-${slug}`,
 		{ fresh_seconds: 60 * 5, stale_seconds: 60 * 60 * 24 },
 		async () => {
 			const [tag_row, items] = await Promise.all([
@@ -85,7 +90,7 @@ export const get_content_by_tag = query(v.string(), async (slug) => {
 			const key_moments = tag_row
 				? pick_key_moments(await find_key_moments(slug, tag_row.name), KEY_MOMENT_LIMIT)
 				: [];
-			return { tag: tag_row ?? null, items, key_moments };
+			return { tag: tag_row ?? null, items: items.map(with_complete_show), key_moments };
 		}
 	);
 
