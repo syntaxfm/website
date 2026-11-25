@@ -15,6 +15,7 @@
 			<li><a href={resolve('about')}>About</a></li>
 			<li><a href={resolve('sickpicks')}>Sick Picks</a></li>
 			<li><a href={resolve('guests')}>Guest List</a></li>
+			<li><a href={resolve('links')}>Links</a></li>
 
 			<li>
 				<a

@@ -1,10 +1,7 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
-	import Logo from '#lib/layout/Logo.svelte';
 	import NewsletterForm from '#lib/newsletter/NewsletterForm.svelte';
 	import PodcastLinks from '#lib/PodcastLinks.svelte';
-	import { resolve } from '$app/paths';
-	import '../../(site)/style.css';
 
 	const POD_DATA = {
 		name: 'Syntax',
@@ -18,15 +15,11 @@
 </script>
 
 <div>
-	<div class="logo">
-		<a href={resolve('')}><Logo /></a>
-	</div>
-	<main class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
+	<div class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
 		<section>
-			<h3 class="h4" style="margin: 2rem 0;">Subscribe to the podcast</h3>
+			<h1 class="h4">Subscribe to the podcast</h1>
 			<PodcastLinks />
-			<br />
-			<h3 class="h4">Links</h3>
+			<h2 class="h4">Links</h2>
 
 			<div class="links">
 				<a href={`https://x.com/${POD_DATA.twitter}`} target="_blank" class="button subscribe">
@@ -76,14 +69,13 @@
 				<NewsletterForm show_logo={false} />
 			</div>
 		</div>
-	</main>
+	</div>
 </div>
 
 <style lang="postcss">
-	.logo {
-		margin: 0 auto;
-		width: 50%;
-		max-width: 100px;
+	h1,
+	h2 {
+		margin: 2rem 0 0;
 	}
 
 	.links {
