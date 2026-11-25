@@ -38,7 +38,7 @@ relying on it.
 ## 2026-11-24 - Draft episodes without a number or audio
 
 **Type**: Constraint (relaxed)
-**Status**: 🚧 Not yet on production
+**Status**: ✅ Applied to production 2026-11-25 with psql, before the deploy (backup `db_exports/prod-pre-0013-episode-drafts-20261125.dump`, shows table)
 **Affects**: shows
 
 ### Changes
