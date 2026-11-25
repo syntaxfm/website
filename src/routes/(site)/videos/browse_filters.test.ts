@@ -25,6 +25,10 @@ describe('read_browse_filters', () => {
 		);
 	});
 
+	it('reads the live episodes filter', () => {
+		expect(read_browse_filters(params('type=live')).type).toBe('live');
+	});
+
 	it('falls back to the default for values it does not know', () => {
 		expect(
 			read_browse_filters(params('type=shorts&topic=Not%20A%20Slug&order=up&page=-2&perPage=0'))

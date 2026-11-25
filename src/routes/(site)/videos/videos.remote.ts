@@ -1,11 +1,11 @@
-import { and, asc, count, desc, eq, inArray, isNotNull, lte } from 'drizzle-orm';
+import { and, asc, count, desc, eq, gte, inArray, isNotNull, lte } from 'drizzle-orm';
 import * as v from 'valibot';
 import { query } from '$app/server';
 import { db } from '$server/db/client';
-import { content, content_tags, tag } from '$server/db/schema';
+import { content, content_tags, show, tag } from '$server/db/schema';
 import { edge_cached } from '$server/edge_cache';
 import type { PlayerVideo } from '$state/player_utils';
-import { get_show_label, VIDEO_LABEL } from '#lib/shows/show_label.ts';
+import { FIRST_LIVE_EPISODE_DATE, get_show_label, VIDEO_LABEL } from '#lib/shows/show_label.ts';
 import { get_watch_url_from_url } from '#lib/videos/utils.ts';
 import { BROWSE_TYPES, TOPIC_PATTERN, type BrowseType } from './browse_filters';
 import { is_complete_episode } from '$server/content/released';
@@ -20,8 +20,15 @@ const TOPIC_COUNT = 24;
 const CONTENT_TYPES_BY_BROWSE_TYPE = {
 	all: ['PODCAST', 'VIDEO'],
 	podcast: ['PODCAST'],
+	live: ['PODCAST'],
 	video: ['VIDEO']
 } as const satisfies Record<BrowseType, readonly ('PODCAST' | 'VIDEO')[]>;
+
+// Episodes labelled Syntax Live: the same rule as get_show_label, in SQL
+const LIVE_EPISODE_IDS = db
+	.select({ id: show.content_id })
+	.from(show)
+	.where(and(eq(show.show_type, 'HASTY'), gte(show.date, FIRST_LIVE_EPISODE_DATE)));
 
 // SvelteKit 3 queries can't read the request URL, so the page passes its filters in
 const browse_filter_schema = v.object({
@@ -45,6 +52,7 @@ function browse_where({ type, topic }: BrowseFilters) {
 		inArray(content.type, [...CONTENT_TYPES_BY_BROWSE_TYPE[type]]),
 		// Episodes are imported ahead of their release date
 		lte(content.published_at, new Date()),
+		type === 'live' ? inArray(content.id, LIVE_EPISODE_IDS) : undefined,
 		topic
 			? inArray(
 					content.id,

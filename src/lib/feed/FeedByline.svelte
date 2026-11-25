@@ -6,19 +6,27 @@
 	type Props = {
 		// What kind of thing the card is: Syntax Podcast, Syntax Live, Syntax Video
 		label: string;
+		// Where the label goes: the list of everything of that kind
+		label_href?: string;
 		published_at: string | Date | null;
 		faces?: ComponentProps<typeof FacePile>['faces'];
 		people?: string;
 	};
 
-	const { label, published_at, faces = [], people }: Props = $props();
+	const { label, label_href, published_at, faces = [], people }: Props = $props();
 
 	const published = $derived(published_at ? new Date(published_at) : null);
 </script>
 
 <footer class:has-faces={faces.length > 0}>
 	<p class="kind">
-		<strong>{label}</strong>
+		<strong>
+			{#if label_href}
+				<a href={label_href}>{label}</a>
+			{:else}
+				{label}
+			{/if}
+		</strong>
 		{#if published}
 			<time datetime={published.toISOString()}>
 				{formatDistanceToNowStrict(published, { addSuffix: true })}
@@ -78,6 +86,18 @@
 
 		@media (--below-med) {
 			align-self: center;
+		}
+	}
+
+	/* Looks like the plain label until it's pointed at */
+	.kind a {
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+			text-decoration-color: var(--c-primary);
+			text-decoration-thickness: 1.5px;
 		}
 	}
 

@@ -1,6 +1,7 @@
 // /videos filters, read from the URL. Anything unknown falls back to the default view.
 
-export const BROWSE_TYPES = ['all', 'podcast', 'video'] as const;
+// live: the Monday episodes cut from the live stream, also counted as podcast episodes
+export const BROWSE_TYPES = ['all', 'podcast', 'live', 'video'] as const;
 export type BrowseType = (typeof BROWSE_TYPES)[number];
 
 export const PER_PAGE_OPTIONS = [29, 49, 69] as const;
@@ -55,6 +56,7 @@ type FilterOption = { value: string; label: string };
 export const TYPE_OPTIONS: FilterOption[] = [
 	{ value: '', label: 'Everything' },
 	{ value: 'podcast', label: 'Episodes' },
+	{ value: 'live', label: 'Live' },
 	{ value: 'video', label: 'Videos' }
 ];
 export const ORDER_OPTIONS: FilterOption[] = [

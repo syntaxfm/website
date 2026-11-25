@@ -6,7 +6,7 @@
 	import TagRow from '../tags/TagRow.svelte';
 	import FeedByline from './FeedByline.svelte';
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
-	import { VIDEO_LABEL } from '#lib/shows/show_label.ts';
+	import { get_label_browse_url, VIDEO_LABEL } from '#lib/shows/show_label.ts';
 	import { get_watch_url_from_url } from '#lib/videos/utils.ts';
 	import type { PlayerVideo } from '$state/player_utils';
 
@@ -40,7 +40,7 @@
 
 	<h3 class="fv-700-i"><a href={resolve(`videos/${slug}`)}>{title}</a></h3>
 
-	<FeedByline label={VIDEO_LABEL} {published_at} />
+	<FeedByline label={VIDEO_LABEL} label_href={get_label_browse_url(VIDEO_LABEL)} {published_at} />
 
 	{#if tags.length > 0}
 		<TagRow tags={tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug }))} />

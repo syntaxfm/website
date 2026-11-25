@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { get_show_label } from './show_label';
+import { get_label_browse_url, get_show_label, VIDEO_LABEL } from './show_label';
 
 describe('get_show_label', () => {
 	it('calls the first Monday episode cut from a live stream Syntax Live', () => {
@@ -24,5 +24,13 @@ describe('get_show_label', () => {
 		const label = get_show_label({ show_type: 'HASTY', date: '2026-11-02T00:00:00.000Z' });
 
 		expect(label).toBe('Syntax Live');
+	});
+});
+
+describe('get_label_browse_url', () => {
+	it('links each label to /videos with its type filter', () => {
+		expect(get_label_browse_url('Syntax Podcast')).toBe('/videos?type=podcast');
+		expect(get_label_browse_url('Syntax Live')).toBe('/videos?type=live');
+		expect(get_label_browse_url(VIDEO_LABEL)).toBe('/videos?type=video');
 	});
 });

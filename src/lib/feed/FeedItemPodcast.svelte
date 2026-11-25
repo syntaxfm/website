@@ -5,7 +5,7 @@
 	import ShowThumbnail from '#lib/shows/ShowThumbnail.svelte';
 	import { resolve } from '$app/paths';
 	import FeedByline from './FeedByline.svelte';
-	import { get_show_label, type LabeledShow } from '#lib/shows/show_label.ts';
+	import { get_label_browse_url, get_show_label, type LabeledShow } from '#lib/shows/show_label.ts';
 	import type { PlayerVideo } from '$state/player_utils';
 
 	type Feed_show = Exclude<ComponentProps<typeof ShowThumbnail>['show'], PlayerVideo> &
@@ -19,6 +19,7 @@
 	const { show, content }: { show: Feed_show; content: Feed_content } = $props();
 
 	const faces = $derived(get_faces_from_show(show));
+	const label = $derived(get_show_label(show));
 </script>
 
 <article class="stack">
@@ -34,7 +35,8 @@
 	<h3 class="fv-700-i"><a href={resolve(`show/${show.number}/${show.slug}`)}>{show.title}</a></h3>
 
 	<FeedByline
-		label={get_show_label(show)}
+		{label}
+		label_href={get_label_browse_url(label)}
 		published_at={content.published_at}
 		{faces}
 		people={get_people_line(faces)}
