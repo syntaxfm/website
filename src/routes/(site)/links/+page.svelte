@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PlatformLinks from '#lib/layout/PlatformLinks.svelte';
 	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
-	import { PODCAST_PLATFORMS, SOCIAL_PLATFORMS } from '#lib/social/platforms';
+	import { PODCAST_PLATFORMS, SOCIAL_PLATFORMS } from '#lib/social/platforms.ts';
 </script>
 
 <h1 class="h1 fv-700-i">Links</h1>

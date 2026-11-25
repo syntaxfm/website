@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
-	import { FEATURED_PODCAST_PLATFORMS, type Platform } from '#lib/social/platforms';
+	import { FEATURED_PODCAST_PLATFORMS, type Platform } from '#lib/social/platforms.ts';
 
 	const { platforms = FEATURED_PODCAST_PLATFORMS }: { platforms?: Platform[] } = $props();
 </script>
