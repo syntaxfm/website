@@ -626,6 +626,7 @@
 	.admin dialog {
 		width: min(32rem, calc(100% - var(--pad-xlarge)));
 		max-width: none;
+		margin: auto;
 		padding: var(--pad-large);
 		color: var(--admin-fg);
 		background-color: var(--admin-bg);
