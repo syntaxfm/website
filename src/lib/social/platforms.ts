@@ -91,7 +91,14 @@ export const PODCAST_PLATFORMS: Platform[] = [
 ];
 
 export const SOCIAL_PLATFORMS: Platform[] = [
-	{ label: 'X', action: 'Follow', href: 'https://x.com/syntaxfm', icon: 'twitter', bg: '#000' },
+	{
+		label: 'X',
+		action: 'Follow',
+		href: 'https://x.com/syntaxfm',
+		icon: 'twitter',
+		bg: 'var(--c-fg)',
+		fg: 'var(--c-bg)'
+	},
 	{
 		label: 'GitHub',
 		action: 'Follow',
@@ -118,7 +125,8 @@ export const SOCIAL_PLATFORMS: Platform[] = [
 		action: 'Follow',
 		href: 'https://www.tiktok.com/@syntaxfm',
 		icon: 'tiktok',
-		bg: '#000'
+		bg: 'var(--c-fg)',
+		fg: 'var(--c-bg)'
 	},
 	{
 		label: 'LinkedIn',
@@ -132,6 +140,7 @@ export const SOCIAL_PLATFORMS: Platform[] = [
 		action: 'Follow',
 		href: 'https://www.threads.net/@syntax_fm',
 		icon: 'threads',
-		bg: '#000'
+		bg: 'var(--c-fg)',
+		fg: 'var(--c-bg)'
 	}
 ];

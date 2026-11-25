@@ -13,3 +13,9 @@
 <PlatformLinks platforms={SOCIAL_PLATFORMS} />
 
 <SwaggyNewsletterForm />
+
+<style>
+	h2 {
+		margin-top: 2rem;
+	}
+</style>
