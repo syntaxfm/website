@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
-	import NewsletterForm from '#lib/newsletter/NewsletterForm.svelte';
 	import PodcastLinks from '#lib/PodcastLinks.svelte';
+	import SwaggyNewsletterForm from '#lib/newsletter/SwaggyNewsletterForm.svelte';
 
 	const POD_DATA = {
 		name: 'Syntax',
@@ -15,7 +15,7 @@
 </script>
 
 <div>
-	<div class="layout zone" style:--c-bg="var(--c-bg)" style:--c-fg="var(--c-fg)">
+	<div class="layout">
 		<section>
 			<h1 class="h4">Subscribe to the podcast</h1>
 			<PodcastLinks />
@@ -64,11 +64,7 @@
 			</div>
 		</section>
 
-		<div class="zone layout full" style:--c-bg="var(--c-black)" style:--c-fg="var(--c-white)">
-			<div>
-				<NewsletterForm show_logo={false} />
-			</div>
-		</div>
+		<SwaggyNewsletterForm />
 	</div>
 </div>
 
