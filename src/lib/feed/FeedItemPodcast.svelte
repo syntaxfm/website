@@ -37,6 +37,7 @@
 	<FeedByline
 		{label}
 		label_href={get_label_browse_url(label)}
+		number={show.number}
 		published_at={content.published_at}
 		{faces}
 		people={get_people_line(faces)}

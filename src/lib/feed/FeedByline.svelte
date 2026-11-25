@@ -8,12 +8,14 @@
 		label: string;
 		// Where the label goes: the list of everything of that kind
 		label_href?: string;
+		// An episode's show number, after the label as on the /videos cards
+		number?: number | null;
 		published_at: string | Date | null;
 		faces?: ComponentProps<typeof FacePile>['faces'];
 		people?: string;
 	};
 
-	const { label, label_href, published_at, faces = [], people }: Props = $props();
+	const { label, label_href, number, published_at, faces = [], people }: Props = $props();
 
 	const published = $derived(published_at ? new Date(published_at) : null);
 </script>
@@ -25,6 +27,9 @@
 				<a href={label_href}>{label}</a>
 			{:else}
 				{label}
+			{/if}
+			{#if number != null}
+				{number}
 			{/if}
 		</strong>
 		{#if published}
