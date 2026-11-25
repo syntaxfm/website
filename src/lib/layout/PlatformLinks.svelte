@@ -2,10 +2,13 @@
 	import Icon from '#lib/Icon.svelte';
 	import { FEATURED_PODCAST_PLATFORMS, type Platform } from '#lib/social/platforms.ts';
 
-	const { platforms = FEATURED_PODCAST_PLATFORMS }: { platforms?: Platform[] } = $props();
+	const {
+		platforms = FEATURED_PODCAST_PLATFORMS,
+		is_stacked = false
+	}: { platforms?: Platform[]; is_stacked?: boolean } = $props();
 </script>
 
-<div class="platform-links">
+<div class="platform-links" class:stacked={is_stacked}>
 	{#each platforms as { href, label, action, icon, image, bg, fg } (label)}
 		<a {href} target="_blank" rel="noopener external" class="platform">
 			<span class="badge" style:--badge-bg={bg} style:--badge-fg={fg ?? '#fff'}>
@@ -36,6 +39,14 @@
 			flex-direction: column;
 			align-items: stretch;
 			max-width: 22rem;
+		}
+
+		/* One card per row at every width, filling whatever column it's placed in */
+		&.stacked {
+			flex-direction: column;
+			align-items: stretch;
+			max-width: none;
+			margin: 0;
 		}
 	}
 
