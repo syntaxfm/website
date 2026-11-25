@@ -41,6 +41,8 @@
 	});
 
 	let is_admin_route = $derived(Boolean(page.route.id?.startsWith('/(site)/admin')));
+	// /links already lists every platform, so the banner would repeat it
+	let is_links_route = $derived(page.route.id === '/(site)/links');
 
 	// The video keeps playing across pages, so save where it is before its page goes away
 	beforeNavigate((navigation) => {
@@ -77,7 +79,9 @@
 		{@render children?.()}
 	</main>
 
-	<FollowBanner />
+	{#if !is_links_route}
+		<FollowBanner />
+	{/if}
 
 	<Footer />
 

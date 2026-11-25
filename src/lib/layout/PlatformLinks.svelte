@@ -1,56 +1,8 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
-	import { PODCAST_LINKS } from '$const';
+	import { FEATURED_PODCAST_PLATFORMS, type Platform } from '#lib/social/platforms';
 
-	type Platform = {
-		/** Matches a `PODCAST_LINKS` entry so the URL stays single-sourced in const.ts. */
-		text: string;
-		label: string;
-		action: string;
-		icon?: 'youtube' | 'spotify' | 'apple-podcasts';
-		image?: string;
-		bg: string;
-		fg?: string;
-	};
-
-	const PLATFORMS: Platform[] = [
-		{
-			text: 'Overcast',
-			label: 'Overcast',
-			action: 'Subscribe',
-			image: '/icons/overcast.jpg',
-			bg: '#fc7e0f'
-		},
-		{
-			text: 'YouTube',
-			label: 'YouTube',
-			action: 'Subscribe',
-			icon: 'youtube',
-			bg: '#f61c0d',
-			fg: '#fff'
-		},
-		{
-			text: 'Spotify',
-			label: 'Spotify',
-			action: 'Follow us',
-			icon: 'spotify',
-			bg: '#1db954',
-			fg: '#000'
-		},
-		{
-			text: 'Apple Podcasts',
-			label: 'Apple',
-			action: 'Subscribe',
-			icon: 'apple-podcasts',
-			bg: '#a93dd1',
-			fg: '#fff'
-		}
-	];
-
-	const platforms = PLATFORMS.map((platform) => ({
-		...platform,
-		href: PODCAST_LINKS.find((link) => link.text === platform.text)?.href ?? '#'
-	}));
+	const { platforms = FEATURED_PODCAST_PLATFORMS }: { platforms?: Platform[] } = $props();
 </script>
 
 <div class="platform-links">
