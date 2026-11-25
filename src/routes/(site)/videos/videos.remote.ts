@@ -24,12 +24,6 @@ const CONTENT_TYPES_BY_BROWSE_TYPE = {
 	video: ['VIDEO']
 } as const satisfies Record<BrowseType, readonly ('PODCAST' | 'VIDEO')[]>;
 
-// Episodes labelled Syntax Live: the same rule as get_show_label, in SQL
-const LIVE_EPISODE_IDS = db
-	.select({ id: show.content_id })
-	.from(show)
-	.where(and(eq(show.show_type, 'HASTY'), gte(show.date, FIRST_LIVE_EPISODE_DATE)));
-
 // SvelteKit 3 queries can't read the request URL, so the page passes its filters in
 const browse_filter_schema = v.object({
 	type: v.picklist(BROWSE_TYPES),
@@ -52,7 +46,17 @@ function browse_where({ type, topic }: BrowseFilters) {
 		inArray(content.type, [...CONTENT_TYPES_BY_BROWSE_TYPE[type]]),
 		// Episodes are imported ahead of their release date
 		lte(content.published_at, new Date()),
-		type === 'live' ? inArray(content.id, LIVE_EPISODE_IDS) : undefined,
+		// Episodes labelled Syntax Live: the same rule as get_show_label, in SQL. Built here, not
+		// at module load: on Cloudflare `db` only works inside a request.
+		type === 'live'
+			? inArray(
+					content.id,
+					db
+						.select({ id: show.content_id })
+						.from(show)
+						.where(and(eq(show.show_type, 'HASTY'), gte(show.date, FIRST_LIVE_EPISODE_DATE)))
+				)
+			: undefined,
 		topic
 			? inArray(
 					content.id,
