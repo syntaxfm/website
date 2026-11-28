@@ -51,7 +51,7 @@ Kyle Prinsloo teaches you everything you need to know about freelancing, includi
 * [Gatsby](https://www.gatsbyjs.org/)
 * [Javascript30](https://javascript30.com/)
 * [Dead Man's Snitch](https://deadmanssnitch.com/)
-* [Corntab](http://corntab.com/)
+* Corntab (no longer online; try [Cron Expression Explainer](https://freecodetools.org/cron-expression/))
 * [Syntax106: A Look Forward to 2019](https://syntax.fm/show/106/a-look-forward-to-2019)
 * [Drip](https://www.drip.com/)
 * [Segment.io](https://segment.com/)
