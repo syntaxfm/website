@@ -16,6 +16,10 @@
 	} as const;
 </script>
 
+<svelte:head>
+	<title>Links - Syntax</title>
+</svelte:head>
+
 <div class="theme-wrapper theme-light">
 	<div class="logo">
 		<a href="/"><Logo /></a>
